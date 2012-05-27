@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= *Introdución* =
+El servidor es la aplicación que se encarga de manejar las consultas de los clientes y ejecutar las actualizaciones de los agentes. Maneja archivos de configuración y de datos.
+
+= *Detalles* =
+== *Uso* ==
+
+La llamada al programa es la siguiente:
+
+{{{
+./servidor [puerto]
+}}}
+
+Con dicha ejecución, el servidor quedará trabajando hasta que se dé la condición de salida. En nuestro caso, _Q_.

@@ -6,9 +6,12 @@
  */
 
 #include "Servidor.h"
+#include "Definiciones.h"
+#include <iostream>
 
 Servidor::Servidor() {
 	// TODO Auto-generated constructor stub
+	enum Agregacion a;
 
 }
 

@@ -7,7 +7,20 @@
 
 #include "Servidor.h"
 #include "Definiciones.h"
+#include "../comun/Socket.h"
 #include <iostream>
+
+void Servidor::comenzar() {
+	// TODO(Nacho): comenzar el servidor
+}
+
+void Servidor::detener() {
+	// TODO(Nacho): detener el servidor
+}
+
+void Servidor::persistir() {
+	// TODO(Nacho): iniciar la persistencia
+}
 
 Servidor::Servidor() {
 	// TODO Auto-generated constructor stub

@@ -9,7 +9,13 @@
 #define SERVIDOR_H_
 
 class Servidor {
+private:
+	IntermediarioServidor intermediario;
+	
 public:
+	void comenzar();
+	void detener();
+	void persistir();
 	Servidor();
 	virtual ~Servidor();
 };

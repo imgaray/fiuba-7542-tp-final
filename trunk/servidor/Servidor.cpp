@@ -12,20 +12,21 @@
 
 void Servidor::comenzar() {
 	// TODO(Nacho): comenzar el servidor
+	intermediario.start();
 }
 
 void Servidor::detener() {
 	// TODO(Nacho): detener el servidor
+	intermediario.detener();
 }
 
 void Servidor::persistir() {
 	// TODO(Nacho): iniciar la persistencia
 }
 
-Servidor::Servidor() {
+Servidor::Servidor(unsigned short port): intermediario(port) {
 	// TODO Auto-generated constructor stub
 	enum Agregacion a;
-
 }
 
 Servidor::~Servidor() {

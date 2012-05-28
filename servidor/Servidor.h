@@ -7,12 +7,18 @@
 
 #ifndef SERVIDOR_H_
 #define SERVIDOR_H_
+#include "BaseDeDatos.h"
+#include "IntermediarioServidor.h"
+
 
 class Servidor {
 private:
+	BaseDeDatos bdd;
 	IntermediarioServidor intermediario;
+	VerificadorConsultas verificador;
 	
 public:
+	
 	void comenzar();
 	void detener();
 	void persistir();

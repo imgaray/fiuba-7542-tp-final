@@ -8,8 +8,10 @@
 #ifndef ARCHIVODEDATOS_H_
 #define ARCHIVODEDATOS_H_
 
-#include "Definiciones.h"
 #include <string>
+#include <fstream>
+
+typedef unsigned int Id_Registro;
 
 class ArchivoDeDatos {
 public:
@@ -22,13 +24,13 @@ public:
 	std::string obtenerRegistro(Id_Registro id);
 
 	/*
-	 *
+	 * Guarda el registro en el archivo
 	 */
 	void guardarRegistro(const std::string& registro);
 
 private:
 	std::fstream _archivo;
-	Id_Registro _ultimo_id;
+	Id_Registro _ultimoID;
 };
 
 #endif /* ARCHIVODEDATOS_H_ */

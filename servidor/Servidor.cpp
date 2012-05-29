@@ -26,7 +26,6 @@ void Servidor::persistir() {
 
 Servidor::Servidor(unsigned short port): intermediario(port) {
 	// TODO Auto-generated constructor stub
-	enum Agregacion a;
 }
 
 Servidor::~Servidor() {

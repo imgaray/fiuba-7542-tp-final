@@ -7,8 +7,9 @@
 
 #include "ArchivoDeDatos.h"
 
-ArchivoDeDatos::ArchivoDeDatos() {
+ArchivoDeDatos::ArchivoDeDatos(const std::string& ruta) {
 	// TODO Auto-generated constructor stub
+	_archivo.seekp();
 
 }
 

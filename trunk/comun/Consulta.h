@@ -28,7 +28,7 @@ public:
 	/*
 	 * Agrega un Filtro a la Consulta
 	 */
-	void agregarFiltro(const std::string filtro);
+	void agregarFiltro(const std::string filtro, const std::string valor);
 	/*
 	 * Agrega una Entrada a la Consulta
 	 */

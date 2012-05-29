@@ -57,18 +57,16 @@ public:
     /*
      * Envia el mensaje atravez
      */
-    void enviar(const Mensaje& mensaje);
+    bool enviar(const Mensaje& mensaje);
+
+    // bool recibir(Consulta& consulta);
     
-    /*
-     * Se pone en espera a recibir una consulta.
-     */
-    bool recibir(Consulta& consulta);
+    // bool recibir(Respuesta& respuesta);
 
     /*
-     * Se pone en espera a recibir una respuesta.
-     */
-    bool recibir(Respuesta& respuesta);
-
+	 * Se pone en espera a recibir una respuesta.
+	 */
+    bool recibir(Mensaje& mesaje);
     /*
      * Cierra la conexion.
      */

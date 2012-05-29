@@ -16,16 +16,10 @@ class Consulta;
 class Mensaje {
 public:
 	Mensaje();
+	virtual ~Mensaje();
+
 	virtual std::string serializar() = 0;
 	virtual void deserializar(const std::string& datos) = 0;
-
-	virtual bool esRespuesta();
-	virtual bool esConsulta();
-
-	virtual Consulta* consulta() = 0;
-	virtual Respuesta* respuesta() = 0;
-
-	virtual ~Mensaje();
 };
 
 #endif /* MENSAJE_H_ */

@@ -136,7 +136,7 @@ void Socket::desconectar() {
     }
 }
 
-void Socket::enviar(const Mensaje& mensaje) {
+bool Socket::enviar(const Mensaje& mensaje) {
 
 	std::string s_datos = mensaje.serializar();
 
@@ -150,9 +150,11 @@ void Socket::enviar(const Mensaje& mensaje) {
                 (tam_datos - cant_enviada), 
                 0);
     }
+
+    return _conectado;
 }
 
-
+/*
 bool Socket::recibir(Consulta& consulta) {
 	std::string datos;
 	datos.clear();
@@ -172,6 +174,20 @@ bool Socket::recibir(Respuesta& respuesta) {
 
 	if (ok) {
 		respuesta.deserializar(datos);
+	}
+
+	return ok;
+}
+
+*/
+
+bool Socket::recibir(Mensaje& mensaje) {
+	std::string datos;
+	datos.clear();
+	bool ok = recibirDatos(datos);
+
+	if (ok) {
+		mensaje.deserializar(datos);
 	}
 
 	return ok;

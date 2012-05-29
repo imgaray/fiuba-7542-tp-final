@@ -35,7 +35,7 @@ typedef std::map<std::string, std::string> Entradas;
 /*
  * Estructura para guardar los Filtros de una consulta
  */
-typedef std::vector<std::string> Filtros;
+typedef std::map<std::string, std::string> Filtros;
 
 /*
  * Estructura para guardar los Resultados que utiliza la Consulta

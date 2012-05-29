@@ -8,9 +8,13 @@
 #ifndef RESPUESTA_H_
 #define RESPUESTA_H_
 
-class Respuesta {
+#include "Mensaje.h"
+
+class Respuesta : public Mensaje {
 public:
 	Respuesta();
+	Respuesta(const Respuesta& original);
+
 	virtual ~Respuesta();
 
 	/*

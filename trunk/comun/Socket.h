@@ -57,13 +57,15 @@ public:
     /*
      * Envia el mensaje atravez
      */
-    void enviar(const Consulta& consulta);
+    void enviar(const Mensaje& mensaje);
     
     /*
      * Se pone en espera a recibir un mensaje y lo retorna.
      */
-    const Respuesta recibir();
-    
+    bool recibir(Consulta& consulta);
+
+    bool recibir(Respuesta& respuesta);
+
     /*
      * Cierra la conexion.
      */
@@ -80,6 +82,8 @@ private:
      */
     explicit Socket(int fd);
     
+    bool recibirDatos(std::string& datos);
+
     /*
      * Constructor copia privado.
      */

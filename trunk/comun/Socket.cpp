@@ -136,9 +136,9 @@ void Socket::desconectar() {
     }
 }
 
-void Socket::enviar(const Consulta& consulta) {
+void Socket::enviar(const Mensaje& mensaje) {
 
-	std::string s_datos = consulta.serializar();
+	std::string s_datos = mensaje.serializar();
 
     const char* datos = s_datos.c_str(); // consulta.datos();
     size_t tam_datos = s_datos.size(); // consulta.tamanio();
@@ -152,39 +152,61 @@ void Socket::enviar(const Consulta& consulta) {
     }
 }
 
-const Respuesta Socket::recibir() {
-    std::string aux, datos;
 
-    size_t recibidos = 0;
-    bool finDeMensaje = false;
-    
-    while ( finDeMensaje == false && _conectado) {
-        recibidos = recv(_fd, _buffer, TAM_BUFFER, 0);
-        
-        if (recibidos == (size_t)(-1)) {
-            perror("Error al recibir. ");
-            // printf("Error: %s\n", strerror(errno));
-            _conectado = false;
-        } else if (recibidos > 0) {
-            aux.clear();
-            aux.append(_buffer, recibidos);
-            
-            aux.resize(recibidos);
+bool Socket::recibir(Consulta& consulta) {
+	std::string datos;
+	datos.clear();
+	bool ok = recibirDatos(datos);
 
-            finDeMensaje = (datos.find(sep_fin, 0) != std::string::npos);
+	if (ok) {
+		consulta.deserializar(datos);
+	}
 
-        } else if (recibidos == 0) {
-            _conectado = false;
-        }
-    }
-    
-    Respuesta resp;
-    if (finDeMensaje) {
-    	resp.deserializar(datos);
-    }
-
-    return resp;
+	return ok;
 }
+
+bool Socket::recibir(Respuesta& respuesta) {
+	std::string datos;
+	datos.clear();
+	bool ok = recibirDatos(datos);
+
+	if (ok) {
+		respuesta.deserializar(datos);
+	}
+
+	return ok;
+}
+
+bool Socket::recibirDatos(std::string& datos){
+	std::string aux;
+
+	size_t recibidos = 0;
+	bool finDeMensaje = false;
+
+	while ( finDeMensaje == false && _conectado) {
+		recibidos = recv(_fd, _buffer, TAM_BUFFER, 0);
+
+		if (recibidos == (size_t)(-1)) {
+			perror("Error al recibir. ");
+			// printf("Error: %s\n", strerror(errno));
+			_conectado = false;
+		} else if (recibidos > 0) {
+			aux.clear();
+			aux.append(_buffer, recibidos);
+
+			aux.resize(recibidos);
+
+			finDeMensaje = (datos.find(sep_fin, 0) != std::string::npos);
+
+		} else if (recibidos == 0) {
+			_conectado = false;
+		}
+	}
+
+	return _conectado;
+}
+
+
 
 bool Socket::conectado() {
     return this->_conectado;

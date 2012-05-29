@@ -10,7 +10,7 @@ El servidor es la aplicación que se encarga de manejar las consultas de los cli
 La llamada al programa es la siguiente:
 
 {{{
-./servidor [puerto]
+./servidor
 }}}
 
 Con dicha ejecución, el servidor quedará trabajando hasta que se dé la condición de salida. En nuestro caso, _Q_.

@@ -18,11 +18,11 @@
 #include <string>
 
 #define TAM_BUFFER 128
+#include "Definiciones.h"
 
+class Mensaje;
 class Consulta;
 class Respuesta;
-
-typedef unsigned short int Puerto;
 
 class Socket {
 public:
@@ -60,10 +60,13 @@ public:
     void enviar(const Mensaje& mensaje);
     
     /*
-     * Se pone en espera a recibir un mensaje y lo retorna.
+     * Se pone en espera a recibir una consulta.
      */
     bool recibir(Consulta& consulta);
 
+    /*
+     * Se pone en espera a recibir una respuesta.
+     */
     bool recibir(Respuesta& respuesta);
 
     /*

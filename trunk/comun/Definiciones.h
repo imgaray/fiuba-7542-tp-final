@@ -97,4 +97,12 @@ typedef std::vector<Fila> DatosDeRespuesta;
  */
 #define mensaje_cliente 'C'
 
+/////////////////////////////////////////////////////////
+//
+//TiposDatos para Socket
+//
+/////////////////////////////////////////////////////////
+
+typedef unsigned short int Puerto;
+
 #endif /* DEFINICIONES_H_ */

@@ -25,7 +25,7 @@ public:
 	/*
 	 * Define las columnas que tendra la respuesta.
 	 */
-	void definirColumnas(int filas);
+	void definirColumnas(int columnas);
 
 	/*
 	 * Agrega un campo a la fila argumento

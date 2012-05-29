@@ -9,10 +9,11 @@
 #define CONSULTA_H_
 
 #include "Definiciones.h"
-
-class Consulta {
+#include "Mensaje.h"
+class Consulta : public Mensaje {
 public:
 	Consulta();
+	Consulta(const Consulta& original);
 	virtual ~Consulta();
 
 	/*
@@ -73,6 +74,17 @@ public:
 	 * Retorna el Filtro indexado por el argumento indice
 	 */
 	const std::string& filtro(int indice) const;
+
+	/*
+	 * Retorna el valor del Filtro indexado por el argumento indice
+	 */
+	const std::string& valorFiltro(int indice) const;
+
+	/*
+	 * Retorna el valor del Filtro indexado por el Filtro
+	 */
+	const std::string& valorFiltro(const std::string& filtro) const;
+
 	/*
 	 * Retorna la Entrada indexada por el argumento indice
 	 */
@@ -81,6 +93,9 @@ public:
 	 * Retorna el Valor de la Entrada indexada por el argumento indice
 	 */
 	const std::string& valorEntrada(int indice) const;
+
+	const std::string& valorEntrada(const std::string& entrada) const;
+
 	/*
 	 * Retorna cual que es resultado indexado por el argumento indice
 	 */

@@ -3,11 +3,11 @@
 
 class IntermediarioServidor {
 private:
-	unsigned short puerto;
+	ResolvedorConsulta* resolvedor;
 public:
 
 	// construye el intermediario con el puerto recibido por parametro
-	IntermediarioServidor(unsigned short port);
+	IntermediarioServidor(ResolvedorConsulta* port);
 	
 	// destruye el intermediario, cerrando conexiones e hilos
 	~IntermediarioServidor();

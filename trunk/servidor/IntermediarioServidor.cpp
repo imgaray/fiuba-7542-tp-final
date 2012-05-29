@@ -1,7 +1,7 @@
 #include "IntermediarioServidor.h"
 
-IntermediarioServidor::IntermediarioServidor(unsigned short port):
-	puerto(port) {
+IntermediarioServidor::IntermediarioServidor(ResolvedorConsulta* rsv):
+	resolvedor(rsv) {
 }
 
 // comienza la actividad del servidor

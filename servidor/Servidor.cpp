@@ -10,8 +10,15 @@
 #include "../comun/Socket.h"
 #include <iostream>
 
+Respuesta resolver(Consulta& consulta) {
+	Respuesta ret;
+	if (verificador->verificarConsulta(consulta)) {
+		ret = bdd->resolverConsulta(consulta);
+	}
+	return ret;
+}
+
 void Servidor::comenzar() {
-	// TODO(Nacho): comenzar el servidor
 	intermediario.start();
 }
 
@@ -22,9 +29,10 @@ void Servidor::detener() {
 
 void Servidor::persistir() {
 	// TODO(Nacho): iniciar la persistencia
+	bdd.persistir();
 }
 
-Servidor::Servidor(unsigned short port): intermediario(port) {
+Servidor::Servidor() {
 	// TODO Auto-generated constructor stub
 }
 

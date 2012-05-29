@@ -11,14 +11,13 @@
 #include "IntermediarioServidor.h"
 
 
-class Servidor {
+class Servidor: public ResolvedorConsultas {
 private:
 	BaseDeDatos bdd;
 	IntermediarioServidor intermediario;
 	VerificadorConsultas verificador;
-	
 public:
-	
+	Respuesta resolver(Consulta& consulta);
 	void comenzar();
 	void detener();
 	void persistir();

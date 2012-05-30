@@ -26,7 +26,6 @@ class Respuesta;
 
 class Socket {
 public:
-    
     /*
      * Constructor para el Socket que recibe el puerto en donde
      * se va a conectar
@@ -83,6 +82,10 @@ private:
      */
     explicit Socket(int fd);
     
+    /*
+     * Metodo que guarda lo recibido del socket en el string datos.
+     * hasta tener un mensaje completo.
+     */
     bool recibirDatos(std::string& datos);
 
     /*

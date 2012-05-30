@@ -112,17 +112,22 @@ public:
 
 private:
 	/*
-	 * Guarda los "Filtros" de la consulta en el string datos
+	 * Guarda los "Filtros" de la consulta en el string datos a serializar
 	 */
-	void guardarFiltros(std::string& datos);
+	void cargarFiltros(std::string& datos);
 	/*
-	 * Guarda los "Resultados" de la consulta en el string datos
+	 * Guarda los "Resultados" de la consulta en el string datos a serializar
 	 */
-	void guardarResultados(std::string& datos);
+	void cargarResultados(std::string& datos);
 	/*
-	 * Guarda los "Entradas" de la consulta en el string datos
+	 * Guarda los "Entradas" de la consulta en el string datos a serializar
 	 */
-	void guardarEntradas(std::string&datos);
+	void cargarEntradas(std::string& datos);
+
+
+	void guardarFiltros(const std::string& filtros);
+	void guardarResultados(const std::string& resultados);
+	void guardarEntradas(const std::string& entradas);
 
 	Filtros _filtros;
 	Entradas _entradas;

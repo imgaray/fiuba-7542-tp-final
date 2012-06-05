@@ -8,6 +8,7 @@
 #ifndef RESPUESTA_H_
 #define RESPUESTA_H_
 
+#include "Definiciones.h"
 #include "Mensaje.h"
 
 class Respuesta : public Mensaje {
@@ -17,24 +18,28 @@ public:
 
 	virtual ~Respuesta();
 
-	/*
-	 * Serializa la Respuesta en un string
-	 */
-	std::string serializar();
-	/*
-	 * Deserializa la Respuesta a partir de un string
-	 */
+	// Serializa la Respuesta en un string
+	std::string serializar() const;
+
+	// Deserializa la Respuesta a partir de un string
 	void deserializar(const std::string& datos);
+
+	void operator=(const Respuesta& resp);
+
+	/*
+	 * Deja la Respuesta vacia
+	 */
+	void limpiar();
 
 	/*
 	 * Define las columnas que tendra la respuesta.
 	 */
-	void definirColumnas(int columnas);
+	void definirColumnas(size_t columnas);
 
 	/*
 	 * Agrega un campo a la fila argumento
 	 */
-	void agregar(int fila, const std::string dato);
+	void agregar(const std::string& dato);
 
 	/*
 	 * Finaliza la fila actual y comienza una nueva
@@ -44,20 +49,27 @@ public:
 	/*
 	 * Retorna el string encontrado en la fila  y columna argumentos
 	 */
-	const std::string& dato(int fila, int columna);
+	const std::string& dato(size_t fila, size_t columna) const;
 
 	/*
 	 * Retorna la cantidad de Columnas que posee la respuesta
 	 */
-	int cantidadColumnas() const;
+	size_t cantidadColumnas() const;
 	/*
 	 * Rertorna la cantidad de FIlas que posee la respuesta
 	 */
-	int cantidadFilas() const;
+	size_t cantidadFilas() const;
 
 private:
-	int _filas;
+	void guardarFila(const std::string& fila);
+
+	void cargarFila(const Fila& fila, std::string& datos) const;
+
+	size_t _columnas;
 	DatosDeRespuesta _datos;
+	Fila _filaActual;
+
+	static Campo campo_nulo;
 };
 
 #endif /* RESPUESTA_H_ */

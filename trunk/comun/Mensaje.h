@@ -18,7 +18,7 @@ public:
 	Mensaje();
 	virtual ~Mensaje();
 
-	virtual std::string serializar() = 0;
+	virtual std::string serializar() const = 0;
 	virtual void deserializar(const std::string& datos) = 0;
 };
 

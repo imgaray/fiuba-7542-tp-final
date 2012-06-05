@@ -6,12 +6,52 @@
  */
 
 #include "Cliente.h"
+#include <iostream>
+#include <gtkmm/main.h>
+#include "VentanaCliente.h"
 
-Cliente::Cliente() {
-	// TODO Auto-generated constructor stub
+#define GLADE "Cliente UI.glade"
+#define UI_PERSONALIZADA "ventanaPersonalizada.xml"
+#define VENTANA_CLIENTE "VentanaCliente"
 
+Cliente::Cliente(int argc, char* argv[]) {
+    pVentana = NULL;
+    initGtk(argc, argv);
 }
 
 Cliente::~Cliente() {
-	// TODO Auto-generated destructor stub
+	delete pVentana;
+}
+
+void Cliente::run() {
+    if (pVentana)
+        Gtk::Main::run(*pVentana);
+    else
+        std::cerr << "Gtk::Builder::get_derived_widget(...) error"
+                  << std::endl;
+}
+
+void Cliente::initGtk(int argc, char* argv[]) {
+    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
+    try {
+        builder->add_from_file(GLADE);
+    }
+    catch(const Glib::FileError& e) {
+        std::cerr << "FileError: " << e.what() << std::endl;
+        return;
+    }
+    catch(const Gtk::BuilderError& e) {
+        std::cerr << "BuilderError: " << e.what() << std::endl;
+        return;
+    }
+    catch(const Glib::MarkupError& e) {
+        std::cerr << "MarkupError: " << e.what() << std::endl;
+        return;
+    }
+
+    builder->get_widget_derived(VENTANA_CLIENTE, pVentana);
+    if (pVentana) {
+        pVentana->personalizar(UI_PERSONALIZADA);
+        pVentana->show_all();
+    }
 }

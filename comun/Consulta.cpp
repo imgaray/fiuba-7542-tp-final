@@ -6,14 +6,22 @@
  */
 
 #include "Consulta.h"
+#include "Utilitario.h"
 
-Consulta::Consulta() : _filtros(), _campos(_filtros) {
+std::string Consulta::s_nulo = "";
+
+#define TablaPivote 'T'
+
+Consulta::Consulta() : _filtros(), _campos(_resultados) {
 	_consultaValida = true;
 	_consultaDeCliente = true;
+	_consultaTablaPivote = false;
+	_agregacion = NADA;
 }
 
-Consulta::Consulta(const Consulta& original) {
-	this->_campos = original._campos;
+Consulta::Consulta(const Consulta& original) :
+		_campos(_resultados) {
+	// this->_campos = original._campos;
 	this->_consultaDeCliente = original._consultaDeCliente;
 	this->_consultaValida = original._consultaValida;
 	this->_entradas = original._entradas;
@@ -24,7 +32,7 @@ Consulta::Consulta(const Consulta& original) {
 Consulta::~Consulta() {
 }
 
-std::string Consulta::serializar() {
+std::string Consulta::serializar() const {
 	std::string datos;
 
 	if (_consultaValida) {
@@ -34,7 +42,12 @@ std::string Consulta::serializar() {
 			datos = mensaje_agente;
 	}
 	else {
-		return;
+		return datos;
+	}
+
+	if(_consultaTablaPivote) {
+		datos += sep_datos;
+		datos += TablaPivote;
 	}
 
 	datos += sep_tipo;
@@ -45,18 +58,103 @@ std::string Consulta::serializar() {
 
 	cargarResultados(datos);
 
+	cargarAgregacion(datos);
+
+	if(_consultaTablaPivote)
+		cargarVarDeTabla(datos);
+
 	datos += sep_fin;
 
 	return datos;
 }
 
+void Consulta::cargarAgregacion(std::string& datos) const {
+	char agreg = (char)_agregacion;
+	datos += agreg;
+	datos += sep_tipo;
+}
+
+void Consulta::cargarVarDeTabla(std::string& datos) const {
+	datos += _xTabla;
+	datos += sep_datos;
+	datos += _yTabla;
+
+	datos += sep_tipo;
+}
+
+void Consulta::definirTablaPivote(const std::string& x, const std::string& y) {
+	_xTabla = x;
+	_yTabla = y;
+	this->definirConsultaDeTablaPivote();
+}
+
+const std::string& Consulta::xDeTablaPivote() const {
+	return _xTabla;
+}
+const std::string& Consulta::yDeTablaPivote() const {
+	return _yTabla;
+}
+
+void Consulta::definirConsultaDeTablaPivote() {
+	_consultaTablaPivote = true;
+	_consultaDeCliente = true;
+}
+
+void Consulta::guardarVarDeTabla(const std::string& variables) {
+	_xTabla = Utilitario::separar(variables, sep_datos, 0);
+	_yTabla = Utilitario::separar(variables, sep_datos, 1);
+}
+
+void Consulta::guardarAgregacion(const std::string& agregacion) {
+	_agregacion = (Agregacion)(agregacion[0]);
+}
+
+void Consulta::cargarFiltros(std::string& datos) const {
+	Filtros::const_iterator it;
+	for (it = _filtros.begin() ; it != _filtros.end() ; ++it) {
+		datos += it->first;
+
+		datos += sep_valor;
+
+		datos += it->second;
+
+		datos += sep_datos;
+	}
+	datos += sep_tipo;
+}
+
+void Consulta::cargarEntradas(std::string& datos) const{
+	Entradas::const_iterator it;
+	for (it = _entradas.begin(); it != _entradas.end() ; ++it) {
+		datos += it->first;
+
+		datos += sep_valor;
+
+		datos += it->second;
+
+		datos += sep_datos;
+	}
+	datos += sep_tipo;
+}
+
+void Consulta::cargarResultados(std::string& datos) const {
+	Resultados::const_iterator it;
+	for (it = _resultados.begin(); it != _resultados.end() ; ++it) {
+		datos += *it;
+		datos += sep_datos;
+	}
+	datos += sep_tipo;
+}
 
 void Consulta::deserializar(const std::string& consulta) {
 	_consultaValida = true;
-	if (consulta[0] == mensaje_agente) {
+
+	std::string cabecera = Utilitario::separar(consulta, sep_tipo, 0);
+
+	if (cabecera[0] == mensaje_agente) {
 		this->_consultaDeCliente = false;
 	}
-	else if (consulta[0] == mensaje_cliente) {
+	else if (cabecera[0] == mensaje_cliente) {
 		this->_consultaDeCliente = true;
 	}
 	else {
@@ -64,70 +162,102 @@ void Consulta::deserializar(const std::string& consulta) {
 		return;
 	}
 
-	size_t primer_sep = consulta.find(sep_tipo, 0);
-	size_t segundo_sep = consulta.find(sep_tipo, primer_sep + 1);
-	size_t tercer_sep = consulta.find(sep_tipo, segundo_sep + 1);
-	size_t ultimo_sep = consulta.find(sep_tipo, tercer_sep + 1);
+	if (cabecera.size() > 2) {
+		if (cabecera[2] == TablaPivote) {
+			_consultaTablaPivote = true;
+		}
+	}
 
-	std::string filtros = &consulta.c_str()[primer_sep];
-	filtros.resize(segundo_sep - primer_sep);
+
+	std::string filtros = Utilitario::separar(consulta, sep_tipo , 1);
+	std::string entradas = Utilitario::separar(consulta, sep_tipo , 2);
+	std::string resultados = Utilitario::separar(consulta, sep_tipo , 3);
+	std::string agregacion = Utilitario::separar(consulta, sep_tipo, 4);
 
 	guardarFiltros(filtros);
 
-	std::string entradas = &consulta.c_str()[segundo_sep];
-	entradas.resize(tercer_sep - segundo_sep);
-
 	guardarEntradas(entradas);
 
-	std::string resultados = &consulta.c_str()[tercer_sep];
-	resultados.resize(ultimo_sep - tercer_sep);
-
 	guardarResultados(resultados);
+
+	guardarAgregacion(agregacion);
+
+	if (_consultaTablaPivote) {
+		std::string variablesTabla = Utilitario::separar(consulta, sep_tipo, 5);
+		guardarVarDeTabla(variablesTabla);
+	}
+
 }
 
 void Consulta::guardarFiltros(const std::string& filtros) {
-	size_t pos_sep_filtro = 0;
-	size_t pos_sep_ant;
-	size_t pos_sep_valor;
-	std::string n_filtro;
+	size_t ind = 0;
+	std::string filtroEntero;
+	std::string filtro;
 	std::string valor;
 
 	bool hayMasFiltros = true;
 	while (hayMasFiltros) {
-		n_filtro = &filtros.c_str()[pos_sep_filtro];
-		pos_sep_ant = pos_sep_filtro;
-		pos_sep_filtro = filtros.find(sep_datos, pos_sep_filtro + 1);
-		n_filtro.resize(pos_sep_filtro - pos_sep_ant - 1);
+		filtroEntero = Utilitario::separar(filtros, sep_datos, ind);
+		ind++;
+		filtro = Utilitario::separar(filtroEntero, sep_valor, 0);
+		valor = Utilitario::separar(filtroEntero, sep_valor, 1);
 
-		pos_sep_valor = filtros.find(sep_valor, pos_sep_filtro);
-		valor = &filtros[pos_sep_valor];
-		valor.resize(pos_sep_filtro - pos_sep_valor - 1);
-
-		_filtros[n_filtro] = valor;
-
-		hayMasFiltros = (filtros.find(sep_datos, pos_sep_filtro + 1) != std::string::npos);
+		if (filtro.empty() == false && valor.empty() == false) {
+			_filtros[filtro] = valor;
+		}
+		else {
+			hayMasFiltros = false;
+		}
 	}
 }
 
 
 void Consulta::guardarResultados(const std::string& resultados){
-	size_t pos_sep = 0;
-	size_t pos_sep_ant;
+	size_t ind = 0;
 	std::string resultado;
 
-	bool hayMasResultados = true;
+	bool seguirGuardando = true;
 
-	while (hayMasResultados) {
-		resultado = &resultados[pos_sep];
-		pos_sep_ant = pos_sep;
-		pos_sep = resultados.find(sep_datos, pos_sep + 1);
-
-		resultado.resize(pos_sep - pos_sep_ant - 1);
-
-		_resultados.push_back(resultado);
-
-		hayMasResultados = (resultados.find(sep_datos, pos_sep + 1) != std::string::npos);
+	while (seguirGuardando) {
+		resultado = Utilitario::separar(resultados, sep_datos, ind);
+		ind++;
+		if (resultado.empty() == false) {
+			_resultados.push_back(resultado);
+		}
+		else {
+			seguirGuardando = false;
+		}
 	}
+}
+
+void Consulta::guardarEntradas(const std::string& entradas) {
+	size_t ind = 0;
+	std::string entradaCompleta, entrada, valor;
+	bool seguirGuardando = true;
+	while (seguirGuardando){
+		entradaCompleta = Utilitario::separar(entradas, sep_datos, ind);
+		ind++;
+
+		entrada = Utilitario::separar(entradaCompleta, sep_valor, 0);
+		valor = Utilitario::separar(entradaCompleta, sep_valor, 1);
+
+		if (entrada.empty() == false && valor.empty() == false) {
+			_entradas[entrada] = valor;
+		}
+		else {
+			seguirGuardando = false;
+		}
+	}
+}
+
+Agregacion Consulta::agregacion() const {
+	return _agregacion;
+}
+
+void Consulta::defininirAgregacion(Agregacion agregacion, const std::string resultado) {
+	this->_agregacion = agregacion;
+	_resultados.push_front(resultado);
+	_resultados.unique();
 }
 
 void Consulta::agregarFiltro(const std::string filtro,
@@ -150,100 +280,111 @@ void Consulta::agregarResultado(const std::string resultado) {
 	}
 }
 
-const std::string& Consulta::filtro(int indice) {
-	if (_filtros.size() > indice && indice >= 0) {
-		Filtros::iterator it = _filtros.begin();
-		it += indice;
+void Consulta::agregarCampo(const std::string& campo) {
+	this->agregarResultado(campo);
+}
 
+const std::string& Consulta::campo(unsigned indice) const{
+	return this->resultado(indice);
+}
+
+const std::string& Consulta::filtro(unsigned indice) const{
+	if (_filtros.size() > indice && indice >= 0) {
+		Filtros::const_iterator it = _filtros.begin();
+		for (unsigned i = 0; i < indice ; i++)
+			++it;
 		return it->first;
 	}
 	else
-		return "";
+		return Consulta::s_nulo;
 }
 
-const std::string& Consulta::valorFiltro(int indice) {
+const std::string& Consulta::valorFiltro(unsigned indice) const {
 	if (_filtros.size() > indice && indice >= 0) {
-		Filtros::iterator it = _filtros.begin();
-		it += indice;
-
+		Filtros::const_iterator it = _filtros.begin();
+		for (unsigned i = 0; i < indice ; i++)
+			++it;
 		return it->second;
 	}
 	else
-		return "";
+		return Consulta::s_nulo;
 }
 
-const std::string& Consulta::valorFiltro(const string& filtro) {
-	Filtros::iterator it = this->_filtros.find(filtro);
+const std::string& Consulta::valorFiltro(const std::string& filtro) const {
+	Filtros::const_iterator it = this->_filtros.find(filtro);
 
 	if (it != _filtros.end()) {
 		return it->second;
 	}
 	else {
-		return "";
+		return Consulta::s_nulo;
 	}
 }
 
-const std::string& Consulta::entrada(int indice) {
-	if (_entradas.size() > indice && indice >= 0) {
-		Entradas::iterator it = _entradas.begin();
-		it += indice;
+const std::string& Consulta::entrada(unsigned indice) const {
+	if (_entradas.size() > indice) {
+		Entradas::const_iterator it = _entradas.begin();
+		for (unsigned i = 0; i < indice ;i++)
+			++it;
 
 		return it->first;
 	}
 	else {
-		return "";
+		return Consulta::s_nulo;
 	}
 }
 
-const std::string& Consulta::valorEntrada(int indice) {
-	if (_entradas.size() > indice && indice >= 0) {
-		Entradas::iterator it = _entradas.begin();
-		it += indice;
+const std::string& Consulta::valorEntrada(unsigned indice) const {
+	if (_entradas.size() > indice) {
+		Entradas::const_iterator it;
+		it = _entradas.begin();
+		for (unsigned i = 0; i < indice ; i++)
+			++it;
 
 		return it->second;
 	}
 	else {
-		return "";
+		return Consulta::s_nulo;
 	}
 }
 
-const std::string& Consulta::valorEntrada(const std::string& entrada) {
-	Entradas::iterator it = _entradas.find(entrada);
+const std::string& Consulta::valorEntrada(const std::string& entrada) const {
+	Entradas::const_iterator it = _entradas.find(entrada);
 	if (it != _entradas.end()) {
 		return it->second;
 	}
 	else {
-		return "";
+		return Consulta::s_nulo;
 	}
 }
 
-const std::string& Consulta::resultado(int indice) {
-	if (_resultados.size() > indice && indice >= 0) {
-		return _resultados[indice];
+const std::string& Consulta::resultado(unsigned indice) const {
+	if (_resultados.size() > indice) {
+		Resultados::const_iterator it;
+		it = _resultados.begin();
+		for (unsigned i = 0; i < indice ; i++)
+			++it;
+		return *it;
 	}
 	else {
-		return "";
+		return Consulta::s_nulo;
 	}
 }
 
-void Consulta::definirComoConsultaAgente() {
-	this->_consultaDeCliente = false;
-}
-
-void Consulta::definirComoConsultaCliente() {
-	this->_consultaDeCliente = true;
-}
-
-int Consulta::cantidadResultados() const {
+unsigned Consulta::cantidadResultados() const {
 	return _resultados.size();
 }
 
-int Consulta::cantidadFiltros() const {
+unsigned Consulta::cantidadFiltros() const {
 	return _filtros.size();
 }
 
-int Consulta::cantidadEntradas() const {
+unsigned Consulta::cantidadEntradas() const {
 	return _entradas.size();
+}
+
+unsigned Consulta::cantidadCampos() const {
+	return cantidadResultados();
 }
 
 void Consulta::definirComoConsultaAgente() {
@@ -261,3 +402,21 @@ bool Consulta::esConsultaDeCliente() const {
 bool Consulta::esConsultaDeAgente() const {
 	return !_consultaDeCliente;
 }
+
+bool Consulta::esConsultaDeTablaPivote() const {
+	return _consultaTablaPivote;
+}
+
+void Consulta::limpiar() {
+	_agregacion = NADA;
+	_campos.clear();
+	_consultaDeCliente = true;
+	_consultaTablaPivote = false;
+	_consultaValida = true;
+	_entradas.clear();
+	_filtros.clear();
+	_resultados.clear();
+	_xTabla.clear();
+	_yTabla.clear();
+}
+

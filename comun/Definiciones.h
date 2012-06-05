@@ -17,34 +17,40 @@
  * Tipo de Funcion de agregacion para una consulta
  */
 enum Agregacion {
-	NADA,	// Ninguno
-	SUM,	// Suma
-	MAX,	// Maximo
-	MIN,	// Minimo
-	PROM,	// Promedio
-	CONT	// Contar
+	NADA = 65,	// Ninguno
+	SUM = 66,	// Suma
+	MAX = 67,	// Maximo
+	MIN = 68,	// Minimo
+	PROM = 69,	// Promedio
+	CONT = 70	// Contar
 };
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
 
+typedef std::string Campo;
+
+typedef std::string Fecha;
+
+typedef size_t FechaNumerica;
+
 /*
  * Estructura para guardas las Entradas ("Inputs")  de una la Consulta
  */
-typedef std::map<std::string, std::string> Entradas;
+typedef std::map < std::string, std::string > Entradas;
 
 /*
  * Estructura para guardar los Filtros de una consulta
  */
-typedef std::map<std::string, std::string> Filtros;
+typedef std::map < std::string, std::string > Filtros;
 
 /*
  * Estructura para guardar los Resultados que utiliza la Consulta
  */
-typedef std::vector<std::string> Resultados;
+
+typedef std::list < Campo > Campos;
 
 
-typedef Filtros Campos;
-
+typedef Campos Resultados;
 
 /////////////////////////////////////////////////////////////
 //
@@ -53,36 +59,30 @@ typedef Filtros Campos;
 /////////////////////////////////////////////////////////////
 
 
-typedef std::vector<std::string> Fila;
+typedef std::vector < std::string > Fila;
 
 /*
  * Estructura para Guardar todos los datos que contiene una Respuesta
  */
-typedef std::vector<Fila> DatosDeRespuesta;
+typedef std::vector < Fila > DatosDeRespuesta;
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
-/*
- * Separador para determinar el fin de un Mensaje
- */
+
+// Separador para determinar el fin de un Mensaje
 #define sep_fin '\03'
 
-/*
- * Separador del tipo de Dato
- */
-#define sep_tipo '\04'
+// Separador del tipo de Dato
+#define sep_tipo  '%'// '\04'
 
-/*
- * Separador de valores para un mismo tipo de dato
- */
-#define sep_datos  '\05'
+// Separador de valores para un mismo tipo de dato
+#define sep_datos '\05'
 
-/*
- * Separador para utilizar en una entrada ( entrada , valor)
- */
-#define sep_valor '\06'
+// Separador para utilizar en una entrada ( entrada , valor)
+#define sep_valor '|'//\06'
 
+#define sep_fecha '\07'
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 

@@ -19,12 +19,15 @@ public:
 	/*
 	 * Serializa toda la Consulta en string
 	 */
-	std::string serializar();
+	std::string serializar() const;
 
 	/*
 	 * Deserializa la Consulta a partir del string
 	 */
 	void deserializar(const std::string& consulta);
+
+	// Deja la consulta vacia
+	void limpiar();
 
 	/*
 	 * Agrega un Filtro a la Consulta
@@ -40,7 +43,16 @@ public:
 	 */
 	void agregarResultado(const std::string resultado);
 
+	/*
+	 * Define la funcion de agregacion que tendra la consulta.
+	 * Por defecto es "NADA"
+	 */
+	void defininirAgregacion(Agregacion agregacion, const std::string resultado);
 
+	/*
+	 * Retorna la funcion de agregacion de la consulta
+	 */
+	Agregacion agregacion() const;
 
 	/*
 	 * Define a la consulta como de "Cliente"
@@ -51,34 +63,41 @@ public:
 	 */
 	void definirComoConsultaAgente();
 
+	// Define a la Consulta para que la respuesta sea una tabla pivote
+	void definirConsultaDeTablaPivote();
 
-	/*
-	 * Agrega un campo a la consulta hecha por el Agente
-	 */
-	void agregarCampo(const std::string campo);
+	void definirTablaPivote(const std::string& x, const std::string& y);
 
-	/*
-	 * Retorna la cantidad de filtros que tiene la consulta
-	 */
-	int cantidadFiltros() const;
+	const std::string& xDeTablaPivote() const;
+	const std::string& yDeTablaPivote() const;
+
+	bool esConsultaDeTablaPivote() const;
+
+	// Agrega un campo a la consulta hecha por el Agente
+	void agregarCampo(const std::string& campo);
+
+	// Retorna la cantidad de filtros que tiene la consulta
+	unsigned cantidadFiltros() const;
 	/*
 	 * Retorna la cantidad de Entradas que tiene la consulta
 	 */
-	int cantidadEntradas() const;
+	unsigned cantidadEntradas() const;
 	/*
 	 * Retorna la cantidad de Resultados que posee la consulta
 	 */
-	int cantidadResultados() const;
+	unsigned cantidadResultados() const;
+
+	unsigned cantidadCampos() const;
 
 	/*
 	 * Retorna el Filtro indexado por el argumento indice
 	 */
-	const std::string& filtro(int indice) const;
+	const std::string& filtro(unsigned indice) const;
 
 	/*
 	 * Retorna el valor del Filtro indexado por el argumento indice
 	 */
-	const std::string& valorFiltro(int indice) const;
+	const std::string& valorFiltro(unsigned indice) const;
 
 	/*
 	 * Retorna el valor del Filtro indexado por el Filtro
@@ -88,18 +107,20 @@ public:
 	/*
 	 * Retorna la Entrada indexada por el argumento indice
 	 */
-	const std::string& entrada(int indice) const;
+	const std::string& entrada(unsigned indice) const;
 	/*
 	 * Retorna el Valor de la Entrada indexada por el argumento indice
 	 */
-	const std::string& valorEntrada(int indice) const;
+	const std::string& valorEntrada(unsigned indice) const;
 
 	const std::string& valorEntrada(const std::string& entrada) const;
 
 	/*
 	 * Retorna cual que es resultado indexado por el argumento indice
 	 */
-	const std::string& resultado(int indice) const;
+	const std::string& resultado(unsigned indice) const;
+
+	const std::string& campo(unsigned indice) const;
 
 	/*
 	 * Retorna un bool indicando si es una consulta del Cliente
@@ -114,29 +135,41 @@ private:
 	/*
 	 * Guarda los "Filtros" de la consulta en el string datos a serializar
 	 */
-	void cargarFiltros(std::string& datos);
+	void cargarFiltros(std::string& datos) const;
 	/*
 	 * Guarda los "Resultados" de la consulta en el string datos a serializar
 	 */
-	void cargarResultados(std::string& datos);
+	 void cargarResultados(std::string& datos) const;
 	/*
 	 * Guarda los "Entradas" de la consulta en el string datos a serializar
 	 */
-	void cargarEntradas(std::string& datos);
+	void cargarEntradas(std::string& datos) const;
 
+	void cargarAgregacion(std::string& datos) const;
+	void cargarVarDeTabla(std::string& datos) const;
 
 	void guardarFiltros(const std::string& filtros);
 	void guardarResultados(const std::string& resultados);
 	void guardarEntradas(const std::string& entradas);
+	void guardarAgregacion(const std::string& agregacion);
+	void guardarVarDeTabla(const std::string& variables);
 
 	Filtros _filtros;
 	Entradas _entradas;
 	Resultados _resultados;
 
+	std::string _xTabla;
+	std::string _yTabla;
+	bool _consultaTablaPivote;
+
 	Campos &_campos;
+
+	Agregacion _agregacion;
 
 	bool _consultaDeCliente;
 	bool _consultaValida;
+
+	static std::string s_nulo;
 };
 
 #endif /* CONSULTA_H_ */

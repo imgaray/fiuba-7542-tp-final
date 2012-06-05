@@ -8,10 +8,17 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
+class VentanaCliente;
+
 class Cliente {
 public:
-	Cliente();
-	virtual ~Cliente();
+    Cliente(int argc, char* argv[]);
+    virtual ~Cliente();
+
+    void run();
+private:
+    VentanaCliente* pVentana;
+    void initGtk(int argc, char* argv[]);
 };
 
 #endif /* CLIENTE_H_ */

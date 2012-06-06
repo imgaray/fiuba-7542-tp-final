@@ -1,21 +1,27 @@
 #ifndef GRAFICO_DE_BARRAS_H
 #define GRAFICO_DE_BARRAS_H
 
-#include <gtkmm/drawingarea.h>
-#include <list>
+#include "Grafico.h"
 
+#ifndef MAX_VALORES
 #define MAX_VALORES 9
+#endif
 
-class GraficoDeBarras : public Gtk::DrawingArea {
+class GraficoDeBarras : public Grafico {
     public:
         GraficoDeBarras();
         virtual ~GraficoDeBarras();
-    protected:
-        bool on_expose_event(GdkEventExpose* ev);
+
+        void actualizarDatos(const std::list< Hecho >& datos);
     private:
-        std::list<double> valores;
-        static double colores[MAX_VALORES][3];
-        double max;
+        void hallarNormalizacion(const std::list< Hecho >& datos);
+        void dibujarEspecializacion(GdkEventExpose* ev,
+                                    Cairo::RefPtr< Cairo::Context >& ctx);
+        void dibujarEspecializacionReferencias(
+                Cairo::RefPtr< Cairo::Context >& ctx);
+        double getOffset();
+        double separacion;
+        double ancho;
 };
 
 #endif  // GRAFICO_DE_BARRAS_H

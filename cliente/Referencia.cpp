@@ -9,9 +9,14 @@ Referencia::Referencia(const Area& referente) {
     const double* refColor = referente.getColor();
     for (unsigned i = 0; i < 4; ++i)
         color[i] = refColor[i];
+    negrita = false;
 }
 
 Referencia::~Referencia() {}
+
+void Referencia::setNegrita(bool estado) {
+    negrita = estado;
+}
 
 double Referencia::dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
                            double offset) {
@@ -24,6 +29,12 @@ double Referencia::dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
         ctx->set_source_rgba(0.0, 0.0, 0.0, 1.0);
         ctx->move_to(x + 1.5*anchoCuadradito, y+offset);
         ctx->set_font_size(anchoCuadradito);
+        if (negrita)
+            ctx->select_font_face("sans-serif", Cairo::FONT_SLANT_NORMAL,
+                                  Cairo::FONT_WEIGHT_BOLD);
+        else
+            ctx->select_font_face("sans-serif", Cairo::FONT_SLANT_NORMAL,
+                                  Cairo::FONT_WEIGHT_NORMAL);
         ctx->show_text(etiqueta);
     ctx->restore();
     return offset + 1.5*anchoCuadradito;

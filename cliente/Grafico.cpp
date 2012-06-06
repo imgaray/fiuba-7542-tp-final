@@ -52,19 +52,33 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
     std::list< Area* >::const_iterator it = areas.begin();
     bool encontrado = false;
     double offset = getOffset();
+    unsigned i = 0;
     while ( !encontrado && it != areas.end()) {
         encontrado = (*it)->fueClickeada(ev->x/min_lado,
                                          ev->y/min_lado, offset);
         ++it;
+        ++i;
     }
-    std::cout << "Click en: ( " << ev->x << ", " << ev->y << ") = ( "
-              << ev->x/min_lado <<", " << ev->y/min_lado << ")" << std::endl;
-    if (encontrado)
-        std::cout << (*it)->getEtiqueta() << " clickeado." << std::endl;
-    else
-        std::cout << "Clickeada la nada misma" << std::endl;
 
+    if (encontrado) {
+        --it; --i;
+    }
+
+    std::list< Referencia >::iterator itRefs = referencias.begin();
+    unsigned j = 0;
+    for ( ; j < i; ++j, ++itRefs)
+        itRefs->setNegrita(false);
+    if (itRefs != referencias.end()) {
+        itRefs++->setNegrita(true);
+        ++j;
+
+        for ( ; j < referencias.size(); ++j, ++itRefs)
+            itRefs->setNegrita(false);
+    }
+
+    queue_draw_area(0,0, ancho_ventana, alto_ventana);
     return true;
+
 }
 
 void Grafico::dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx) {

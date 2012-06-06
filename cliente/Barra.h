@@ -14,6 +14,9 @@ class Barra : public Area {
     private:
         double sep;
         double ancho;
+        double hasta;
+        double x0;
+        double y0;
 };
 
 #endif  // BARRA_H

@@ -6,22 +6,31 @@ Barra::Barra(const Hecho& dato, double maximo, unsigned i,
              double separacion, double _ancho) : Area(dato, maximo, i) {
     sep = separacion;
     ancho = _ancho;
+    hasta = dato.getValor() / max - SEP_TECHO;
+    y0 = 1.0;
+    x0 = 0.0;
 }
 
 Barra::~Barra() {}
 
 double Barra::dibujar(Cairo::RefPtr< Cairo::Context >& ctx, double offset) {
-    double hasta = dato.getValor() / max - SEP_TECHO;
+    x0 = offset;
     ctx->save();
         ctx->set_source_rgba(color[0], color[1], color[2], color[3]);
-        ctx->rectangle(offset, 1.0, ancho, -hasta);
+        ctx->rectangle(x0, y0, ancho, -hasta);
         ctx->fill_preserve();
         ctx->set_source_rgba(0.0, 0.0, 0.0, 1.0);
         ctx->stroke();
     ctx->restore();
-    return offset + ancho + sep;
+    return x0 + ancho + sep;
 }
 
 bool Barra::fueClickeada(double x, double y, double& offset) {
-    return false;
+    x0 = offset;
+    offset += ancho + sep;
+    if (x0 < x && x < x0 + ancho &&
+        y0 - hasta < y && y < y0)
+        return true;
+    else
+        return false;
 }

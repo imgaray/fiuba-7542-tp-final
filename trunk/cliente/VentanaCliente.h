@@ -17,7 +17,7 @@ class VentanaCliente : public Gtk::Window {
     private:
         Glib::RefPtr<Gtk::Builder> builder;
         /** @todo cambiar list por map<string, Table*> para la etiqueta*/
-        std::map<Glib::ustring, Gtk::Table*> tabs;
+        std::map< Glib::ustring, Gtk::Table* > tabs;
         Gtk::Table* pGrilla;
         Gtk::Table* pGrillaTab2;
         GraficoDeBarras gBarras;
@@ -25,6 +25,8 @@ class VentanaCliente : public Gtk::Window {
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();
         void on_exportarPDF_button_clicked();
+        void on_configurar_button_clicked();
+        void on_salir_button_clicked();
 };
 
 #endif  // VENTANA_CLIENTE_H

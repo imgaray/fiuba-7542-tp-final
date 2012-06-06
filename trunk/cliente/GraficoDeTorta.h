@@ -1,31 +1,25 @@
 #ifndef GRAFICO_DE_TORTA_H
 #define GRAFICO_DE_TORTA_H
 
-#include <gtkmm/drawingarea.h>
-#include <list>
+#include "Grafico.h"
 
+#ifndef MAX_VALORES
 #define MAX_VALORES 9
+#endif
 
-class GraficoDeTorta : public Gtk::DrawingArea {
+class GraficoDeTorta : public Grafico {
     public:
         GraficoDeTorta();
         virtual ~GraficoDeTorta();
 
-        /** Los valores deben sumar 1.
-         *  SÓLO por los colores, _valores.size() < MAX_VALORES
-         */
-        void setValores(const std::list<double>& _valores);
-
-        /** @brief para poder relacionar un valor con una etiqueta par
-         * para pegarla en esa porción del gráfico
-        void setValores(const std::map<Glib::ustring, double>& valores); // así los reordena
-        void setValores(const std::list<std::pair<Glib::ustring, double> >& valores); // así no
-        */
-    protected:
-        virtual bool on_expose_event(GdkEventExpose* ev);
+        void actualizarDatos(const std::list< Hecho >& datos);
     private:
-        std::list<double> valores;
-        static double colores[MAX_VALORES][3];
+        void hallarNormalizacion(const std::list< Hecho >& datos);
+        void dibujarEspecializacion(GdkEventExpose* ev,
+                                    Cairo::RefPtr< Cairo::Context >& ctx);
+        void dibujarEspecializacionReferencias(
+                Cairo::RefPtr< Cairo::Context >& ctx);
+        double getOffset();
 };
 
 #endif  // GRAFICO_DE_TORTA_H

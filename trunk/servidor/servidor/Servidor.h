@@ -1,7 +1,7 @@
 #ifndef __SERVIDOR_H
 #define __SERVIDOR_H
 
-#include "BaseDeDatosH.h"
+#include "BaseDeDatos.h"
 #include "ResolvedorConsultas.h"
 #include "ResolvedorEntradas.h"
 #include "VerificadorConsultasH.h"
@@ -10,7 +10,7 @@
 
 class Servidor: public ResolvedorConsultas, public ResolvedorEntradas {
 private:
-	BaseDeDatosH bdd;
+	BaseDeDatos bdd;
 	VerificadorConsultasH vdc;
 	VerificadorEntradasH vde;
 	ControladorServidor cds;

@@ -16,7 +16,7 @@ Hilo::~Hilo() {
 
 void Hilo::iniciar() {
     this->_correr = true;
-    // pthread_create(&this->hilo, 0, Hilo::llamarHilo, this);
+    pthread_create(&this->hilo, 0, Hilo::llamarHilo, this);
 }
 
 void* Hilo::llamarHilo(void* hilo) {
@@ -29,7 +29,7 @@ void Hilo::parar() {
 }
 
 void Hilo::sincronizar() {
-   // pthread_join(this->hilo, NULL);
+   pthread_join(this->hilo, NULL);
 }
 
 bool Hilo::corriendo() {

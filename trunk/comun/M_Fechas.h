@@ -10,7 +10,6 @@
 #include "Definiciones.h"
 #include <sstream>
 
-
 /*
  * Clase Estatica encargada de manejar fechas
  */

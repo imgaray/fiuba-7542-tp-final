@@ -9,6 +9,7 @@
 #include "Consulta.h"
 #include "Respuesta.h"
 #include "Definiciones.h"
+#include <iostream>
 // #include "common-Mensaje.h"
 
 // extern int errno;
@@ -140,6 +141,8 @@ bool Socket::enviar(const Mensaje& mensaje) {
 
 	std::string s_datos = mensaje.serializar();
 
+	// std::cout << "Socket--Datos a enviar: \"" << s_datos <<"\"" <<std::endl;
+
     const char* datos = s_datos.c_str(); // consulta.datos();
     size_t tam_datos = s_datos.size(); // consulta.tamanio();
     size_t cant_enviada = 0;
@@ -151,40 +154,18 @@ bool Socket::enviar(const Mensaje& mensaje) {
                 0);
     }
 
+   // std::cout << "Socket--TODOS LOS DATOS ENVIADOS******" << std::endl;
+
     return _conectado;
 }
 
-/*
-bool Socket::recibir(Consulta& consulta) {
-	std::string datos;
-	datos.clear();
-	bool ok = recibirDatos(datos);
-
-	if (ok) {
-		consulta.deserializar(datos);
-	}
-
-	return ok;
-}
-
-bool Socket::recibir(Respuesta& respuesta) {
-	std::string datos;
-	datos.clear();
-	bool ok = recibirDatos(datos);
-
-	if (ok) {
-		respuesta.deserializar(datos);
-	}
-
-	return ok;
-}
-
-*/
 
 bool Socket::recibir(Mensaje& mensaje) {
 	std::string datos;
 	datos.clear();
 	bool ok = recibirDatos(datos);
+
+	//( std::cout << "Socket---Datos que llegaron: \"" << datos << "\"" << std::endl;
 
 	if (ok) {
 		mensaje.deserializar(datos);
@@ -199,6 +180,9 @@ bool Socket::recibirDatos(std::string& datos){
 	size_t recibidos = 0;
 	bool finDeMensaje = false;
 
+	// std::cout << "Socket-En esperada de datos... " << std::endl;
+
+
 	while ( finDeMensaje == false && _conectado) {
 		recibidos = recv(_fd, _buffer, TAM_BUFFER, 0);
 
@@ -212,12 +196,17 @@ bool Socket::recibirDatos(std::string& datos){
 
 			aux.resize(recibidos);
 
-			finDeMensaje = (datos.find(sep_fin, 0) != std::string::npos);
+			finDeMensaje = (aux.find(sep_fin) != std::string::npos);
 
 		} else if (recibidos == 0) {
 			_conectado = false;
 		}
+
+
+		// std::cout << "Socket-Tanda de datos recibidas..." << std::endl;
 	}
+
+	datos = aux;
 
 	return _conectado;
 }

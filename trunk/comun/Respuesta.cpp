@@ -60,11 +60,15 @@ void Respuesta::cargarFila(const Fila& fila, std::string& datos) const {
 void Respuesta::deserializar(const std::string& datos) {
 	_datos.clear();
 	_filaActual.clear();
+
+	std::string datosSerializados = datos;
+	datosSerializados.resize(datos.size() - 1);
+
 	bool hayMasFilas = true;
 	std::string fila;
 	unsigned int ind = 0;
 	while (hayMasFilas) {
-		fila = Utilitario::separar(datos, sep_tipo, ind);
+		fila = Utilitario::separar(datosSerializados, sep_tipo, ind);
 		ind++;
 		if (fila.empty() == false) {
 			guardarFila(fila);
@@ -106,6 +110,7 @@ void Respuesta::filaCompletada() {
 
 void Respuesta::definirColumnas(size_t columnas) {
 	_filaActual.reserve(columnas);
+	_columnas = columnas;
 }
 
 const std::string& Respuesta::dato(size_t fila, size_t columna) const {

@@ -43,6 +43,11 @@ std::string Utilitario::separar(const std::string& datos,
 		}
 	}
 
+	// si no tiene separadores retorna le dato entero para "indice" = 0
+	if ((_posiciones.size() == 0) && (indice == 0)) {
+		return datos;
+	}
+
 	if (_posiciones.size() > 0 && _posiciones.size() >= indice) {
 		std::string arg;
 		if (indice == 0) {
@@ -53,6 +58,7 @@ std::string Utilitario::separar(const std::string& datos,
 			arg = &datos.c_str()[_posiciones[indice - 1] + 1];
 		}
 
+		// caso para el ultimo argumento
 		if (indice == _posiciones.size())
 			arg.resize(datos.size() - _posiciones[indice - 1] - 1);
 		else if (indice > 0)
@@ -61,6 +67,7 @@ std::string Utilitario::separar(const std::string& datos,
 		return arg;
 	}
 	else {
+		// retorno string nulo si indice > cantArgumentos
 		return "";
 	}
 }

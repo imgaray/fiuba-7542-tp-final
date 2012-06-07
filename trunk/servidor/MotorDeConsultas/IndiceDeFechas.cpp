@@ -49,6 +49,7 @@ const Lista_Id& IndiceDeFechas::recuperar(const Fecha & fecha) {
 	_res.sort();
 	_res.unique();
 
+
 	return _res;
 }
 
@@ -67,6 +68,7 @@ void IndiceDeFechas::guardarDesdeRango(const FechaNumerica& f1, const FechaNumer
 	MapaDeFechas::iterator itf2 = _fechas.lower_bound(f2);
 
 	MapaDeFechas::iterator it;
+
 
 	for (it = itf1 ; it != itf2 ; it++) {
 		_res.push_back(it->second);

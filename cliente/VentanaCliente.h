@@ -19,9 +19,6 @@ class VentanaCliente : public Gtk::Window {
     private:
         Glib::RefPtr< Gtk::Builder > builder;
         Personalizador dynBuilder;
-//        std::map< Glib::ustring, Gtk::Table* > tabs;
-        Gtk::Table* pGrilla;
-        Gtk::Table* pGrillaTab2;
         GraficoDeBarras gBarras;
         GraficoDeTorta gTorta;
         void on_actualizar_button_clicked();

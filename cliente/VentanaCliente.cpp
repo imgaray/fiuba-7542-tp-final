@@ -9,6 +9,7 @@
 #include "GraficoDeBarras.h"
 #include "GraficoDeTorta.h"
 #include "Hecho.h"
+#include "Tab.h"
 
 #define NOTEBOOK "Notebook"
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
@@ -21,7 +22,6 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     const Glib::RefPtr<Gtk::Builder>& _builder)
     : Gtk::Window(cobject), builder(_builder) {
     srand(time(NULL));
-    pGrilla = NULL;
     Gtk::ToolButton* pAux;
 
     builder->get_widget(BOTON_ACTUALIZAR, pAux);
@@ -50,11 +50,7 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
             &VentanaCliente::on_salir_button_clicked));
 }
 
-VentanaCliente::~VentanaCliente() {
-//    std::map< Glib::ustring, Gtk::Table* >::iterator it;
-//    for (it = tabs.begin(); it != tabs.end(); ++it)
-//        delete it->second;
-}
+VentanaCliente::~VentanaCliente() {}
 
 void VentanaCliente::personalizar(const char* archivo) {
     if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
@@ -66,8 +62,10 @@ void VentanaCliente::personalizar(const char* archivo) {
     Gtk::Notebook* pNotebook;
     builder->get_widget(NOTEBOOK, pNotebook);
     if (pNotebook)
-        while (dynBuilder.tieneSiguiente())
-            pNotebook->append_page(dynBuilder.siguiente(), "Tab");
+        while (dynBuilder.tieneSiguiente()) {
+            Tab& t = dynBuilder.siguiente();
+            pNotebook->append_page(t, t.getEtiqueta());
+        }
 }
 
 void VentanaCliente::on_actualizar_button_clicked() {

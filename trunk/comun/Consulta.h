@@ -36,8 +36,8 @@ public:
 	/*
 	 * Agrega una Entrada a la Consulta
 	 */
-	void agregarEntrada(const std::string entrada&,
-				const std::string& valor);
+	void agregarEntrada(const std::string entrada,
+				const std::string valor);
 	/*
 	 * Agrega un Resultado a la Consulta
 	 */
@@ -48,11 +48,6 @@ public:
 	 * Por defecto es "NADA"
 	 */
 	void defininirAgregacion(Agregacion agregacion, const std::string& resultado);
-
-	/*
-	 * Retorna la funcion de agregacion de la consulta
-	 */
-	Agregacion agregacion() const;
 
 	/*
 	 * Define a la consulta como de "Cliente"
@@ -120,6 +115,16 @@ public:
 	 */
 	const std::string& resultado(unsigned indice) const;
 
+
+	/*
+	 * Retorna la agregacion Agregacion de resultado.
+	 */
+	Agregacion agregacionDeResultado(unsigned indice) const;
+
+
+	/*
+	 * Retorna un campo de la "Consulta" hecha por el agente.
+	 */
 	const std::string& campo(unsigned indice) const;
 
 	/*
@@ -145,13 +150,11 @@ private:
 	 */
 	void cargarEntradas(std::string& datos) const;
 
-	void cargarAgregacion(std::string& datos) const;
 	void cargarVarDeTabla(std::string& datos) const;
 
 	void guardarFiltros(const std::string& filtros);
 	void guardarResultados(const std::string& resultados);
 	void guardarEntradas(const std::string& entradas);
-	void guardarAgregacion(const std::string& agregacion);
 	void guardarVarDeTabla(const std::string& variables);
 
 	Filtros _filtros;
@@ -164,7 +167,7 @@ private:
 
 	Campos &_campos;
 
-	Agregacion _agregacion;
+	Agregaciones _agregaciones;
 
 	bool _consultaDeCliente;
 	bool _consultaValida;

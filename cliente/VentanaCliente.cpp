@@ -51,26 +51,23 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
 }
 
 VentanaCliente::~VentanaCliente() {
-    std::map< Glib::ustring, Gtk::Table* >::iterator it;
-    for (it = tabs.begin(); it != tabs.end(); ++it)
-        delete it->second;
+//    std::map< Glib::ustring, Gtk::Table* >::iterator it;
+//    for (it = tabs.begin(); it != tabs.end(); ++it)
+//        delete it->second;
 }
 
 void VentanaCliente::personalizar(const char* archivo) {
-    pGrilla = new Gtk::Table(2, 2, true);
-    pGrillaTab2 = new Gtk::Table(2, 2, true);
-    pGrilla->attach(gTorta, 0, 1, 0, 1);
-    pGrilla->attach(gBarras, 0, 1, 1, 2);
-    tabs["test tab1"] = pGrilla;
-    tabs["test tab2"] = pGrillaTab2;
+    if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
+        std::cout << "Error al abrir el archivo de personalización " << archivo
+                  << ". Contáctese con el administrador." << std::endl;
+        return;
+    }
 
     Gtk::Notebook* pNotebook;
     builder->get_widget(NOTEBOOK, pNotebook);
-    if (pNotebook) {
-        std::map< Glib::ustring, Gtk::Table* >::const_iterator it;
-        for (it = tabs.begin(); it != tabs.end(); ++it)
-            pNotebook->append_page(*(it->second), it->first);
-    }
+    if (pNotebook)
+        while (dynBuilder.tieneSiguiente())
+            pNotebook->append_page(dynBuilder.siguiente(), "Tab");
 }
 
 void VentanaCliente::on_actualizar_button_clicked() {
@@ -107,6 +104,5 @@ void VentanaCliente::on_configurar_button_clicked() {
 }
 
 void VentanaCliente::on_salir_button_clicked() {
-//    Gtk::Main::quit();
     hide();
 }

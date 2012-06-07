@@ -8,16 +8,18 @@
 #include <gtkmm/table.h>
 #include "GraficoDeBarras.h"
 #include "GraficoDeTorta.h"
+#include "Personalizador.h"
 
 class VentanaCliente : public Gtk::Window {
     public:
-        VentanaCliente(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
+        VentanaCliente(BaseObjectType* cobject,
+                       const Glib::RefPtr<Gtk::Builder>& builder);
         ~VentanaCliente();
         void personalizar(const char* archivo);
     private:
-        Glib::RefPtr<Gtk::Builder> builder;
-        /** @todo cambiar list por map<string, Table*> para la etiqueta*/
-        std::map< Glib::ustring, Gtk::Table* > tabs;
+        Glib::RefPtr< Gtk::Builder > builder;
+        Personalizador dynBuilder;
+//        std::map< Glib::ustring, Gtk::Table* > tabs;
         Gtk::Table* pGrilla;
         Gtk::Table* pGrillaTab2;
         GraficoDeBarras gBarras;

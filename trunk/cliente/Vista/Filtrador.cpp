@@ -6,7 +6,7 @@
 
 /** @todo conectar las señales */
 Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
-: filtros(filt), entradas(entr) {
+: filtros(filt), entradasTab(entr) {
     Gtk::HBox* cont;
     Gtk::Label* dim;
     Gtk::Label* val;
@@ -41,8 +41,8 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
         ++itFiltros;
     }
 
-    Entradas::iterator itEntradas = entradas.begin();
-    while (itEntradas != entradas.end()) {
+    Entradas::iterator itEntradas = entradasTab.begin();
+    while (itEntradas != entradasTab.end()) {
         cont = new Gtk::HBox();
         dim = new Gtk::Label(itEntradas->first);
         sep = new Gtk::VSeparator();
@@ -50,7 +50,7 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
         cbText->append_text("Test comboboxtext");
         cbText->append_text("Test comboboxtext2");
         /** @todo poner esto más elegante... */
-        if (itEntradas == entradas.begin()) {
+        if (itEntradas == entradasTab.begin()) {
             eyecandy = new Gtk::Spinner();
             cont->pack_start(*eyecandy, false, false);
             widgets.push_back(eyecandy);
@@ -68,6 +68,42 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
         ++itEntradas;
     }
 
+}
+
+Filtrador::Filtrador(const Filtros& filt, const Entradas& entrTab,
+                     const Entradas& entrPanel) :
+filtros(filt), entradasTab(entrTab), entradasPanel(entrPanel) {
+    Gtk::HBox* cont;
+    Gtk::Label* dim;
+    Gtk::ComboBoxText* cbText;
+    Gtk::VSeparator* sep;
+    Gtk::Spinner* eyecandy;
+    Entradas::iterator itEntradas = entradasPanel.begin();
+    while (itEntradas != entradasPanel.end()) {
+        cont = new Gtk::HBox();
+        dim = new Gtk::Label(itEntradas->first);
+        sep = new Gtk::VSeparator();
+        cbText = new Gtk::ComboBoxText();
+        cbText->append_text("Test comboboxtext");
+        cbText->append_text("Test comboboxtext2");
+        /** @todo poner esto más elegante... */
+        if (itEntradas == entradasPanel.begin()) {
+            eyecandy = new Gtk::Spinner();
+            cont->pack_start(*eyecandy, false, false);
+            widgets.push_back(eyecandy);
+        }
+        cont->pack_end(*dim, false, false);
+        cont->add(*sep);
+        cont->add(*cbText);
+
+        widgets.push_back(cont);
+        widgets.push_back(dim);
+        widgets.push_back(sep);
+        widgets.push_back(cbText);
+
+        add(*cont);
+        ++itEntradas;
+    }
 }
 
 Filtrador::~Filtrador() {

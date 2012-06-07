@@ -11,6 +11,11 @@ GraficoDeBarras::GraficoDeBarras() {
     offset = INIT_OFFSET;
     separacion = SEPARACION_BASE/MIN_SIZE;
     ancho = ANCHO_BASE/MIN_SIZE;
+    Hecho juan("Juan", 10.13);
+    Hecho carlos("Carlos", 7.5);
+    areas.push_back(new Barra(juan, 10.13, 0, separacion, ancho));
+    areas.push_back(new Barra(carlos, 10.13, 1, separacion, ancho));
+    regenerarReferencias();
 }
 
 GraficoDeBarras::~GraficoDeBarras() {}

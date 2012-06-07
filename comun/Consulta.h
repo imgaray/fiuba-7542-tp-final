@@ -32,22 +32,22 @@ public:
 	/*
 	 * Agrega un Filtro a la Consulta
 	 */
-	void agregarFiltro(const std::string filtro, const std::string valor);
+	void agregarFiltro(const std::string& filtro, const std::string& valor);
 	/*
 	 * Agrega una Entrada a la Consulta
 	 */
-	void agregarEntrada(const std::string entrada,
-				const std::string valor);
+	void agregarEntrada(const std::string entrada&,
+				const std::string& valor);
 	/*
 	 * Agrega un Resultado a la Consulta
 	 */
-	void agregarResultado(const std::string resultado);
+	void agregarResultado(const std::string& resultado);
 
 	/*
 	 * Define la funcion de agregacion que tendra la consulta.
 	 * Por defecto es "NADA"
 	 */
-	void defininirAgregacion(Agregacion agregacion, const std::string resultado);
+	void defininirAgregacion(Agregacion agregacion, const std::string& resultado);
 
 	/*
 	 * Retorna la funcion de agregacion de la consulta

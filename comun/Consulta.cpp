@@ -254,27 +254,27 @@ Agregacion Consulta::agregacion() const {
 	return _agregacion;
 }
 
-void Consulta::defininirAgregacion(Agregacion agregacion, const std::string resultado) {
+void Consulta::defininirAgregacion(Agregacion agregacion, const std::string& resultado) {
 	this->_agregacion = agregacion;
 	_resultados.push_front(resultado);
 	_resultados.unique();
 }
 
-void Consulta::agregarFiltro(const std::string filtro,
-			const std::string valor) {
+void Consulta::agregarFiltro(const std::string& filtro,
+			const std::string& valor) {
 	if (filtro.empty() == false && valor.empty() == false) {
 		this->_filtros[filtro] = valor;
 	}
 }
 
-void Consulta::agregarEntrada(const std::string entrada,
-				const std::string valor) {
+void Consulta::agregarEntrada(const std::string& entrada,
+				const std::string& valor) {
 	if (entrada.empty() == false && valor.empty() == false) {
 			this->_entradas[entrada] = valor;
 		}
 }
 
-void Consulta::agregarResultado(const std::string resultado) {
+void Consulta::agregarResultado(const std::string& resultado) {
 	if (resultado.empty() == false) {
 		this->_resultados.push_back(resultado);
 	}

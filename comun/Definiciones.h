@@ -44,13 +44,20 @@ typedef std::map < std::string, std::string > Entradas;
 typedef std::map < std::string, std::string > Filtros;
 
 /*
- * Estructura para guardar los Resultados que utiliza la Consulta
+ * Contenedor para guardar campos de un registro
  */
 
 typedef std::list < Campo > Campos;
-
+/*
+ * Estructura para guardar los Resultados que utiliza la Consulta
+ */
 
 typedef Campos Resultados;
+
+/*
+ * Estructura para guardar las Agregaciones
+ */
+typedef std::vector <Agregacion> Agregaciones;
 
 /////////////////////////////////////////////////////////////
 //

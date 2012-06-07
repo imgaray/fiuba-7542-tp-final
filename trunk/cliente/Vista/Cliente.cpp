@@ -10,7 +10,7 @@
 #include <gtkmm/main.h>
 #include "VentanaCliente.h"
 
-#define GLADE "Cliente UI.glade"
+#define GLADE "Vista/Cliente UI.glade"
 #define UI_PERSONALIZADA "ventanaPersonalizada.xml"
 #define VENTANA_CLIENTE "VentanaCliente"
 

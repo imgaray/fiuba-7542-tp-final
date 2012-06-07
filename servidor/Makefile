@@ -4,9 +4,13 @@ MAKE = make
 
 CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O3 -g -pthread -lpthread
 
+# EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
+# USAR EN LA COMPILACION DEL MAIN
 SUBDIRS = MotorDeConsultas servidor
 
 CC = g++
+
+I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
 
 bin = $(archivos:.cpp=.o)
 
@@ -20,7 +24,7 @@ subdirs:
 	done
 	
 main: subdirs
-	$(CC) $(CXXFLAGS) -I$(SUBDIRS) main.cpp -o main
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) main.cpp -o main
 
 test: make_subs
 	$(CC) $(CXXFLAGS) test.cpp -o test

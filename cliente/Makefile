@@ -1,28 +1,35 @@
 # Makefile
 
+MAKE = make
+
 CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O3 -g -pthread -lpthread
+
+# EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
+# USAR EN LA COMPILACION DEL MAIN
+SUBDIRS = MotorDeConsultas servidor
 
 CC = g++
 
-archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
-
-INCLUDES = ../../comun ../MotorDeConsultas
+I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
 
 bin = $(archivos:.cpp=.o)
 
 robjs = $(wildcard *.o main test)
 
-all: binaries
+all: main
 
-binaries: $(bin)
-
-%.o: %.cpp
-	$(CC) $(CXXFLAGS) -I$(INCLUDES) -c $<
-
-test: $(bin)
-	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test
+subdirs:
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir; \
+	done
 	
-clean:
-	rm $(robjs)
+main: subdirs
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) main.cpp -o main
 
-.PHONY: clean all binaries
+test: make_subs
+	$(CC) $(CXXFLAGS) test.cpp -o test
+
+clean: $(SUBDIRS)
+	
+
+.PHONY: all

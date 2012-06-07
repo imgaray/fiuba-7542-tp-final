@@ -30,7 +30,8 @@ Respuesta BaseDeDatos::resolverConsulta(const Consulta& consulta) {
 	Respuesta resp;
 
 	//resolucion que envia todos los registros....
-	__guardarRegistros(consulta, resp);
+	//__guardarRegistros(consulta, resp);
+	resolverConsultaNormal(consulta,resp);
 	return resp;
 
 
@@ -249,6 +250,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 	MapaCombinaciones mCombin;
 
 	if (huboFiltrado) {
+
 		if (hayDimEnResultados) {
 			guardarCombinaciones(consulta, listaReg, mCombin, filtrarHechos);
 			hacerAgregaciones(consulta, mCombin, respuesta);
@@ -275,7 +277,7 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg,
 	Lista_Id::iterator it;
 
 	/*
-	 * Completar para que filtre registros...
+	 * Completar para que filtre registros con filtro de "HECHOS"...
 	 */
 
 	for (it = lReg.begin(); it != lReg.end() ; ++it) {
@@ -528,6 +530,15 @@ void BaseDeDatos::calcularPromedio(unsigned& acum, unsigned& cant, const unsigne
 	}
 }
 
+
+void BaseDeDatos::borrarDatos() {
+	_archDatos.borrarDatos();
+
+	for (unsigned i = 0; i < Organizacion::cantidadDimensionesSimples() ; i++)
+		_indDimensiones[i].limpiar();
+
+	_indFechas.limpiar();
+}
 
 void BaseDeDatos::__guardarRegistros(const Consulta& cons, Respuesta& resp) {
 	resp.limpiar();

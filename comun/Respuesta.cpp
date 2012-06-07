@@ -11,6 +11,7 @@
 Campo Respuesta::campo_nulo;
 
 Respuesta::Respuesta() {
+	_columnas = 0;
 }
 
 Respuesta::Respuesta(const Respuesta& original) {
@@ -21,6 +22,7 @@ Respuesta::Respuesta(const Respuesta& original) {
 
 Respuesta::Respuesta(const std::string& mensaje) {
 	_msjInterno = mensaje;
+	_columnas = 0;
 }
 
 Respuesta::~Respuesta() {

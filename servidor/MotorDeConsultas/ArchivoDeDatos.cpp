@@ -123,10 +123,10 @@ void ArchivoDeDatos::borrarDatos() {
 		_posRelativas.close();
 
 
-	_archivoPrincipal.open(_rutaArchivoPrin.c_str(), std::fstream::trunc);
+	_archivoPrincipal.open(_rutaArchivoPrin.c_str(), std::fstream::out);
 	_archivoPrincipal.close();
 
-	_posRelativas.open(_rutaArchivoSec.c_str(), std::fstream::trunc);
+	_posRelativas.open(_rutaArchivoSec.c_str(), std::fstream::out);
 	_posRelativas.close();
 
 	inicilizarArchivos();

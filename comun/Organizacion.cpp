@@ -80,7 +80,7 @@ void Organizacion::cargarDimensiones(const std::string& dimensiones) {
 	std::string dimNueva;
 	dimNueva = Utilitario::separar(dimensiones, ',', 0);
 	int ind = 0;
-	int id = 0;
+	//int id = 0;
 	while (dimNueva.empty() == false) {
 		if ((dimNueva==DIMENSION_FECHA) && !_existeCampoEspecial) {
 			_existeCampoEspecial = true;

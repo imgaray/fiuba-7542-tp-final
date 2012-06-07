@@ -77,6 +77,10 @@ const Lista_Id& IndiceDeFechas::recuperar(const Fecha & fecha) {
 	return _res;
 }
 
+void IndiceDeFechas::limpiar() {
+	_fechas.clear();
+}
+
 void IndiceDeFechas::guardarIDs(const FechaNumerica& fecha) {
 	std::pair < MapaDeFechas::iterator , MapaDeFechas::iterator > ret;
 	MapaDeFechas::iterator it;

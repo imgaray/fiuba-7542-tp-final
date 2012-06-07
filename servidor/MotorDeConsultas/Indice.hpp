@@ -56,6 +56,10 @@ public:
 		_mapa.insert(std::pair< _dato_, Id_Registro > (dato, registro));
 	}
 
+	void limpiar() {
+		_mapa.clear();
+	}
+
 	virtual ~Indice() { }
 private:
 	Mapa _mapa;

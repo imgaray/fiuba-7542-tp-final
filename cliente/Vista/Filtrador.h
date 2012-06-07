@@ -8,10 +8,12 @@ class Filtrador : public Gtk::VBox {
     public:
         /** @todo agregar agregaciones */
         Filtrador(const Filtros& filt, const Entradas& entr);
+        Filtrador(const Filtros& filt, const Entradas& entrTab, const Entradas& entrPanel);
         ~Filtrador();
     private:
         Filtros filtros;
-        Entradas entradas;
+        Entradas entradasTab;
+        Entradas entradasPanel;
         std::list< Gtk::Widget* > widgets;
 };
 

@@ -6,6 +6,7 @@
 #include "Panel.h"
 #include "Filtrador.h"
 
+#define ESPACIO_FILTROS_TAB 1
 
 Personalizador::Personalizador() {}
 
@@ -44,10 +45,10 @@ Tab& Personalizador::siguiente() {
 
 /** @todo este método DEBE irse */
 #include <iostream>
-Filtrador* getFiltrador() {
-    static int i = 0;
+Filtrador* getFiltradorPanel(int i) {
     Filtros filtros;
-    Entradas entradas;
+    Entradas entradasTab;
+    Entradas entradasPanel;
     switch (i%2) {
         case 0: filtros["Sucursal"] = "San Telmo";
                 filtros["Marca"] = "Apple";
@@ -58,37 +59,34 @@ Filtrador* getFiltrador() {
             std::cout << "You are not supposed to be here, you know?" << std::endl;
             break;
     }
-    switch (i%3) {
-        case 0: entradas["Vendedor"] = "María";
+    entradasTab["Vendedor"] = "María";
+    switch (i%2) {
+        case 0: entradasPanel["Marca"] = "Apple";
                 break;
-        case 1: entradas["Marca"] = "Apple";
-                break;
-        case 2: entradas["Vendedor"] = "Gonzalo";
-                entradas["Producto"] = "iPhone";
+        case 1: entradasPanel["Vendedor"] = "Gonzalo";
+                entradasPanel["Producto"] = "iPhone";
                 break;
         default:
             std::cout << "You are not supposed to be here, you know?" << std::endl;
             break;
     }
-
-    ++i;
-    return new Filtrador(filtros, entradas);
+    return new Filtrador(filtros, entradasTab, entradasPanel);
 }
 void Personalizador::construir() {
-    Tab* pTab1 = new Tab(2, 2, true, "Tab 1 - Torta+Barra");
-    Tab* pTab2 = new Tab(3, 3, true, "Tab 2 - Mezcla dipersada");
+    Tab* pTab1 = new Tab(2, 2+ESPACIO_FILTROS_TAB, true, "Tab 1 - Torta+Barra");
+    Tab* pTab2 = new Tab(3, 3+ESPACIO_FILTROS_TAB, true, "Tab 2 - Mezcla dipersada");
     Grafico* gBarras1 = new GraficoDeBarras();
     Grafico* gTorta1 = new GraficoDeTorta();
     Grafico* gBarras2 = new GraficoDeBarras();
     Grafico* gTorta2 = new GraficoDeTorta();
     Grafico* gBarras3 = new GraficoDeBarras();
     Grafico* gTorta3 = new GraficoDeTorta();
-    Filtrador* f1 = getFiltrador();
-    Filtrador* f2 = getFiltrador();
-    Filtrador* f3 = getFiltrador();
-    Filtrador* f4 = getFiltrador();
-    Filtrador* f5 = getFiltrador();
-    Filtrador* f6 = getFiltrador();
+    Filtrador* f1 = getFiltradorPanel(0);
+    Filtrador* f2 = getFiltradorPanel(0);
+    Filtrador* f3 = getFiltradorPanel(1);
+    Filtrador* f4 = getFiltradorPanel(1);
+    Filtrador* f5 = getFiltradorPanel(1);
+    Filtrador* f6 = getFiltradorPanel(1);
     Panel* pPanBarras1 = new Panel(*gBarras1, *f1);
     Panel* pPanTorta1 = new Panel(*gTorta1, *f2);
     Panel* pPanBarras2 = new Panel(*gBarras2, *f3);
@@ -114,14 +112,15 @@ void Personalizador::construir() {
     hijos.push_back(pPanBarras3);
     hijos.push_back(pPanTorta3);
 
-    pTab1->attach(*pPanTorta1, 0, 1, 0, 1);
-    pTab1->attach(*pPanBarras1, 0, 1, 1, 2);
+    int y = ESPACIO_FILTROS_TAB;
+    pTab1->attach(*pPanTorta1, 0, 1, 0+y, 1+y);
+    pTab1->attach(*pPanBarras1, 0, 1, 1+y, 2+y);
     tabs.push_back(pTab1);
 
-    pTab2->attach(*pPanTorta2, 0, 2, 0, 1);
-    pTab2->attach(*pPanBarras2, 1, 2, 1, 2);
-    pTab2->attach(*pPanTorta3, 0, 2, 2, 3);
-    pTab2->attach(*pPanBarras3, 2, 3, 0, 3);
+    pTab2->attach(*pPanTorta2, 0, 2, 0+y, 1+y);
+    pTab2->attach(*pPanBarras2, 1, 2, 1+y, 2+y);
+    pTab2->attach(*pPanTorta3, 0, 2, 2+y, 3+y);
+    pTab2->attach(*pPanBarras3, 2, 3, 0+y, 3+y);
     tabs.push_back(pTab2);
 
     it = tabs.begin();

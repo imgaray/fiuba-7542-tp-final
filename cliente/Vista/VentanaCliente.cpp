@@ -86,7 +86,7 @@ void VentanaCliente::on_actualizar_button_clicked() {
     Gtk::Notebook* pNotebook;
     builder->get_widget(NOTEBOOK, pNotebook);
     if (pNotebook)
-        pNotebook->queue_draw_area(0,0, 800, 640);
+        pNotebook->queue_draw();
 }
 
 void VentanaCliente::on_detenerActualizar_button_clicked() {

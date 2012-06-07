@@ -4,6 +4,7 @@
 #include "GraficoDeTorta.h"
 #include "Tab.h"
 #include "Panel.h"
+#include "Filtrador.h"
 
 
 Personalizador::Personalizador() {}
@@ -41,6 +42,38 @@ Tab& Personalizador::siguiente() {
     return **it++;
 }
 
+/** @todo este método DEBE irse */
+#include <iostream>
+Filtrador* getFiltrador() {
+    static int i = 0;
+    Filtros filtros;
+    Entradas entradas;
+    switch (i%2) {
+        case 0: filtros["Sucursal"] = "San Telmo";
+                filtros["Marca"] = "Apple";
+                break;
+        case 1: filtros["Sucursal"] = "Puerto Madero";
+                break;
+        default:
+            std::cout << "You are not supposed to be here, you know?" << std::endl;
+            break;
+    }
+    switch (i%3) {
+        case 0: entradas["Vendedor"] = "María";
+                break;
+        case 1: entradas["Marca"] = "Apple";
+                break;
+        case 2: entradas["Vendedor"] = "Gonzalo";
+                entradas["Producto"] = "iPhone";
+                break;
+        default:
+            std::cout << "You are not supposed to be here, you know?" << std::endl;
+            break;
+    }
+
+    ++i;
+    return new Filtrador(filtros, entradas);
+}
 void Personalizador::construir() {
     Tab* pTab1 = new Tab(2, 2, true, "Tab 1 - Torta+Barra");
     Tab* pTab2 = new Tab(3, 3, true, "Tab 2 - Mezcla dipersada");
@@ -50,18 +83,30 @@ void Personalizador::construir() {
     Grafico* gTorta2 = new GraficoDeTorta();
     Grafico* gBarras3 = new GraficoDeBarras();
     Grafico* gTorta3 = new GraficoDeTorta();
-    Panel* pPanBarras1 = new Panel(*gBarras1);
-    Panel* pPanTorta1 = new Panel(*gTorta1);
-    Panel* pPanBarras2 = new Panel(*gBarras2);
-    Panel* pPanTorta2 = new Panel(*gTorta2);
-    Panel* pPanBarras3 = new Panel(*gBarras3);
-    Panel* pPanTorta3 = new Panel(*gTorta3);
+    Filtrador* f1 = getFiltrador();
+    Filtrador* f2 = getFiltrador();
+    Filtrador* f3 = getFiltrador();
+    Filtrador* f4 = getFiltrador();
+    Filtrador* f5 = getFiltrador();
+    Filtrador* f6 = getFiltrador();
+    Panel* pPanBarras1 = new Panel(*gBarras1, *f1);
+    Panel* pPanTorta1 = new Panel(*gTorta1, *f2);
+    Panel* pPanBarras2 = new Panel(*gBarras2, *f3);
+    Panel* pPanTorta2 = new Panel(*gTorta2, *f4);
+    Panel* pPanBarras3 = new Panel(*gBarras3, *f5);
+    Panel* pPanTorta3 = new Panel(*gTorta3, *f6);
     hijos.push_back(gBarras1);
     hijos.push_back(gTorta1);
     hijos.push_back(gBarras2);
     hijos.push_back(gTorta2);
     hijos.push_back(gBarras3);
     hijos.push_back(gTorta3);
+    hijos.push_back(f1);
+    hijos.push_back(f2);
+    hijos.push_back(f3);
+    hijos.push_back(f4);
+    hijos.push_back(f5);
+    hijos.push_back(f6);
     hijos.push_back(pPanBarras1);
     hijos.push_back(pPanTorta1);
     hijos.push_back(pPanBarras2);

@@ -3,9 +3,9 @@
 
 #include <fstream>
 #include <list>
-#include <glibmm/ustring.h>
-#include <gtkmm/table.h>
-//#include "Tab.h"
+#include <gtkmm/widget.h>
+
+class Tab;
 
 class Personalizador {
     public:
@@ -13,11 +13,11 @@ class Personalizador {
         ~Personalizador();
         bool personalizarDesdeArchivo(const char* nombreArch);
         bool tieneSiguiente();
-        Gtk::Table& siguiente();
+        Tab& siguiente();
     private:
         std::ifstream archivo;
-        std::list< Gtk::Table* > tabs;
-        std::list< Gtk::Table* >::iterator it;
+        std::list< Tab* > tabs;
+        std::list< Tab* >::iterator it;
         std::list< Gtk::Widget* > hijos;
         void construir();
 };

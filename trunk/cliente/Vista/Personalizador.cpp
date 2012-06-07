@@ -76,7 +76,7 @@ Filtrador* getFiltradorPanel(int i, int j) {
         return new Filtrador(filtros, entradasTab);
 }
 void Personalizador::construir() {
-    Tab* pTab1 = new Tab(2, 2+ESPACIO_FILTROS_TAB, true, "Tab 1 - Torta+Barra");
+    Tab* pTab1 = new Tab(2, 2+ESPACIO_FILTROS_TAB, false, "Tab 1 - Torta+Barra");
     Tab* pTab2 = new Tab(3, 3+ESPACIO_FILTROS_TAB, true, "Tab 2 - Mezcla dipersada");
     Grafico* gBarras1 = new GraficoDeBarras();
     Grafico* gTorta1 = new GraficoDeTorta();

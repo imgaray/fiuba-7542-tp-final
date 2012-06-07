@@ -26,8 +26,8 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
             widgets.push_back(eyecandy);
         }
         cont->pack_end(*dim, false, false);
-        cont->add(*sep);
         cont->add(*val);
+        cont->add(*sep);
 
         widgets.push_back(cont);
         widgets.push_back(dim);
@@ -56,8 +56,8 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
             widgets.push_back(eyecandy);
         }
         cont->pack_end(*dim, false, false);
-        cont->add(*sep);
         cont->add(*cbText);
+        cont->add(*sep);
 
         widgets.push_back(cont);
         widgets.push_back(dim);

@@ -7,6 +7,7 @@
 
 #include "Utilitario.h"
 #include <vector>
+#include <sstream>
 
 std::vector<size_t> Utilitario::_posiciones;
 std::string Utilitario::s_anterior;
@@ -71,3 +72,25 @@ std::string Utilitario::separar(const std::string& datos,
 		return "";
 	}
 }
+
+
+std::string Utilitario::convertirAString(const int& numero) {
+	std::stringstream ss;
+	std::string res;
+
+	ss << numero;
+	ss >> res;
+
+	return res;
+}
+
+int Utilitario::convertirAEntero(const std::string& numero) {
+	std::stringstream ss;
+	int res;
+
+	ss << numero;
+	ss >> res;
+
+	return res;
+}
+

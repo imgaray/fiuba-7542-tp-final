@@ -16,45 +16,11 @@
 #define TAM_BUFFER 500
 
 ArchivoDeDatos::ArchivoDeDatos(const std::string& ruta) {
-	_archivoPrincipal.open(ruta.c_str(), std::fstream::out | std::fstream::in | std::fstream::binary);
-	if (_archivoPrincipal.is_open() == false) {
-		_archivoPrincipal.open(ruta.c_str(),std::fstream::out);
-		_archivoPrincipal.close();
-		_archivoPrincipal.open(ruta.c_str(),std::fstream::out | std::fstream::in | std::fstream::binary);
-	}
 
-	std::string rutaIDs = ruta;
-	rutaIDs += RUTA_POSCIONES_RELATIVAS;
-	_posRelativas.open(rutaIDs.c_str(), std::fstream::binary | std::fstream::in | std::fstream::out);
-	if (_posRelativas.is_open() == false) {
-		_posRelativas.open(rutaIDs.c_str(),std::fstream::out);
-		_posRelativas.close();
-		_posRelativas.open(rutaIDs.c_str(), std::fstream::out | std::fstream::in | std::fstream::binary);
-	}
+	_rutaArchivoPrin = ruta;
 
-	Id_Registro id;
+	inicilizarArchivos();
 
-	if (_posRelativas.good()) {
-		_posRelativas.seekg(0, std::ios::end);
-		size_t tamArchivo = _posRelativas.tellg();
-
-		if (tamArchivo > sizeof(Id_Registro) ) {
-			_posRelativas.seekg(0, std::ios::beg);
-			_posRelativas.read((char*)&id, sizeof(Id_Registro));
-			_ultimoID = id;
-		}
-		else {
-			_ultimoID = 0;
-			_posRelativas.seekp(0, std::ios::beg);
-			_posRelativas.write((char*)&_ultimoID, sizeof(Id_Registro));
-			_posRelativas.seekp(sizeof(_ultimoID), std::ios::beg);
-			_posRelativas.write((char*)&_ultimoID, sizeof(Id_Registro));
-			_posRelativas.flush();
-		}
-
-	} else {
-		_ultimoID = 0;
-	}
 }
 
 ArchivoDeDatos::~ArchivoDeDatos() {
@@ -147,4 +113,64 @@ void ArchivoDeDatos::leerRegistro(const size_t& posicion, std::string& reg) {
 
 	if (_archivoPrincipal.fail())
 		_archivoPrincipal.clear();
+}
+
+void ArchivoDeDatos::borrarDatos() {
+	if (_archivoPrincipal.is_open())
+		_archivoPrincipal.close();
+
+	if (_posRelativas.is_open())
+		_posRelativas.close();
+
+
+	_archivoPrincipal.open(_rutaArchivoPrin.c_str(), std::fstream::trunc);
+	_archivoPrincipal.close();
+
+	_posRelativas.open(_rutaArchivoSec.c_str(), std::fstream::trunc);
+	_posRelativas.close();
+
+	inicilizarArchivos();
+}
+
+void ArchivoDeDatos::inicilizarArchivos() {
+	_archivoPrincipal.open(_rutaArchivoPrin.c_str(), std::fstream::out | std::fstream::in | std::fstream::binary);
+	if (_archivoPrincipal.is_open() == false) {
+		_archivoPrincipal.open(_rutaArchivoPrin.c_str(),std::fstream::out);
+		_archivoPrincipal.close();
+		_archivoPrincipal.open(_rutaArchivoPrin.c_str(),std::fstream::out | std::fstream::in | std::fstream::binary);
+	}
+
+	_rutaArchivoSec = _rutaArchivoPrin;
+	_rutaArchivoSec += RUTA_POSCIONES_RELATIVAS;
+
+	_posRelativas.open(_rutaArchivoSec.c_str(), std::fstream::binary | std::fstream::in | std::fstream::out);
+	if (_posRelativas.is_open() == false) {
+		_posRelativas.open(_rutaArchivoSec.c_str(),std::fstream::out);
+		_posRelativas.close();
+		_posRelativas.open(_rutaArchivoSec.c_str(), std::fstream::out | std::fstream::in | std::fstream::binary);
+	}
+
+	Id_Registro id;
+
+	if (_posRelativas.good()) {
+		_posRelativas.seekg(0, std::ios::end);
+		size_t tamArchivo = _posRelativas.tellg();
+
+		if (tamArchivo > sizeof(Id_Registro) ) {
+			_posRelativas.seekg(0, std::ios::beg);
+			_posRelativas.read((char*)&id, sizeof(Id_Registro));
+			_ultimoID = id;
+		}
+		else {
+			_ultimoID = 0;
+			_posRelativas.seekp(0, std::ios::beg);
+			_posRelativas.write((char*)&_ultimoID, sizeof(Id_Registro));
+			_posRelativas.seekp(sizeof(_ultimoID), std::ios::beg);
+			_posRelativas.write((char*)&_ultimoID, sizeof(Id_Registro));
+			_posRelativas.flush();
+		}
+
+	} else {
+		_ultimoID = 0;
+	}
 }

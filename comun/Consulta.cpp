@@ -270,8 +270,8 @@ void Consulta::defininirAgregacion(Agregacion agregacion, const std::string& res
 	_resultados.push_back(resultado);
 }
 
-void Consulta::agregarFiltro(const std::string filtro,
-			const std::string valor) {
+void Consulta::agregarFiltro(const std::string& filtro,
+			const std::string& valor) {
 	if (filtro.empty() == false && valor.empty() == false) {
 		this->_filtros[filtro] = valor;
 	}
@@ -284,7 +284,7 @@ void Consulta::agregarEntrada(const std::string entrada,
 		}
 }
 
-void Consulta::agregarResultado(const std::string resultado) {
+void Consulta::agregarResultado(const std::string& resultado) {
 	if (resultado.empty() == false) {
 		this->_resultados.push_back(resultado);
 		this->_agregaciones.push_back(NADA);

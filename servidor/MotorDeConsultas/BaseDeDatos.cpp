@@ -132,14 +132,25 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 
 		int indice = Organizacion::indiceDeCampo(filtro);
 
-		_indDimensiones[indice].recuperar(valor, listaAux1);
+		if (Organizacion::esDimensionEspecial(filtro)) {
+			_indFechas.recuperar(valor, listaAux1);
+		}
+		else if (Organizacion::esDimension(filtro)) {
+			_indDimensiones[indice].recuperar(valor, listaAux1);
+		}
 
 		for (unsigned i = 1 ; i < consulta.cantidadFiltros() ; i++) {
 			filtro = consulta.filtro(i);
 			valor = consulta.valorFiltro(filtro);
 			indice = Organizacion::indiceDeCampo(filtro);
 
-			_indDimensiones[indice].recuperar(valor, listaAux2);
+
+			if (Organizacion::esDimensionEspecial(filtro)) {
+				_indFechas.recuperar(valor, listaAux1);
+			}
+			else if (Organizacion::esDimension(filtro)) {
+				_indDimensiones[indice].recuperar(valor, listaAux1);
+			}
 
 			calcularInterseccion(listaAux1, listaAux2, lista);
 			listaAux1 = lista;
@@ -156,14 +167,24 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 
 		int indice = Organizacion::indiceDeCampo(entrada);
 
-		_indDimensiones[indice].recuperar(valor, listaAux1);
+		if (Organizacion::esDimensionEspecial(entrada)) {
+			_indFechas.recuperar(valor, listaAux1);
+		}
+		else if (Organizacion::esDimension(entrada)) {
+			_indDimensiones[indice].recuperar(valor, listaAux1);
+		}
 
 		for (unsigned i = 1 ; i < consulta.cantidadEntradas() ; i++) {
 			entrada = consulta.entrada(i);
 			valor = consulta.valorEntrada(entrada);
 			indice = Organizacion::indiceDeCampo(entrada);
 
-			_indDimensiones[indice].recuperar(valor, listaAux2);
+			if (Organizacion::esDimensionEspecial(entrada)) {
+							_indFechas.recuperar(valor, listaAux1);
+			}
+			else if (Organizacion::esDimension(entrada)) {
+				_indDimensiones[indice].recuperar(valor, listaAux1);
+			}
 
 			calcularInterseccion(listaAux1, listaAux2, lista);
 			listaAux1 = lista;
@@ -252,12 +273,19 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg, MapaCombinaciones& mComb, bool filtrarHechos) {
 	std::string reg;
 	Lista_Id::iterator it;
+
+	/*
+	 * Completar para que filtre registros...
+	 */
+
 	for (it = lReg.begin(); it != lReg.end() ; ++it) {
 		reg = this->_archDatos.obtenerRegistro(*it);
 		std::string combinacion;
+		unsigned numArgRegistro;
 		for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
 			if (Organizacion::esDimension(consulta.resultado(i))) {
-				combinacion +=Utilitario::separar(reg, sep_campos,Organizacion::indiceDeCampo(consulta.resultado(i)));
+				numArgRegistro = Organizacion::indiceDeCampo(consulta.resultado(i));
+				combinacion +=Utilitario::separar(reg, sep_campos, numArgRegistro);
 				combinacion +=sep_campos;
 			}
 		}
@@ -347,14 +375,18 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
             cantHechos++;
     }
     
+    // En donde se van a guardar las resoluciones para las dimensiones
     std::vector<std::string> resolucionesDim;
+    // Guarda las posiciones de las dimensiones para el orden de resultados de la Consulta
     std::vector<unsigned> indDim;
     if (cantDim > 0) {
     	resolucionesDim.reserve(cantDim);
     	indDim.reserve(cantDim);
     }
 
+	// En donde se van a guardar las resoluciones para los hechos
     std::vector<std::string> resolucionesHec;
+    // Guarda las posiciones de los hechos para el orden de resultados de la Consulta
     std::vector<unsigned> indHechos;
     if (cantHechos > 0) {
     	resolucionesHec.reserve(cantHechos);
@@ -381,23 +413,44 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
     /*
      * Resolver la agregacion para un campo y guardarla en
      * resolucioneHec.
-     * ...
-     * ...
-     * ...
-     * ...
      */
+
+    std::vector <unsigned> resHechos(cantHechos, 0);
+    unsigned auxPromedio = 0;
+
+
     Lista_Id::const_iterator itIds;
     std::string reg;
+
     for (itIds = ids.begin() ; itIds != ids.end() ; ++itIds) {
     	reg = _archDatos.obtenerRegistro(*itIds);
 
-    	for (unsigned i = 0; i < indHechos.size() ; i++) {
-    		// resolver la agregacion de cada registro en cada indice
-    	}
+        for (unsigned i = 0; i < cantHechos ; i++) {
+        	// indice de hecho para obternerlo desde el regsitro
+        	unsigned iHecho = Organizacion::indiceDeCampo(cons.resultado(indHechos[i]));
+        	campo = Utilitario::separar(reg, sep_campos, iHecho);
+
+        	unsigned campoNumerico = Utilitario::convertirAEntero(campo);
+        	Agregacion agre = cons.agregacionDeResultado(indHechos[i]);
+
+        	if ( agre == PROM) {
+        		calcularPromedio(resHechos[i], auxPromedio, campoNumerico);
+        	}
+        	else {
+        		calcularAgregacion(agre, resHechos[i], campoNumerico);
+        	}
+        }
+    }
+
+    for (unsigned i = 0; i < cantHechos ; i++) {
+    	resolucionesHec[i] = Utilitario::convertirAString(resHechos[i]);
     }
 
 
     //... Fin de agregacion de los registros
+
+    /////////////////////////////////////
+    /////////////////////////////////////
 
     std::vector <unsigned>::const_iterator itd,ith;
     itd = indDim.begin();
@@ -410,7 +463,6 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
 
     //agrego los campo en el orden correcta a la consulta
     while (itd != indDim.end() || ith != indHechos.end()) {
-
     	if (*itd > *ith) {
     		// agrego el campo de resolucion a la respuesta
     		resp.agregar(*itrh);
@@ -429,6 +481,51 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
 
     //Indico a la respuesta que se completo una fila
     resp.filaCompletada();
+}
+
+
+void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, unsigned aAgregar) {
+
+	switch (agre) {
+
+	case NADA:
+		// Imprmir error;
+		break;
+
+	case MAX:
+		if (aAgregar > acum)
+			acum = aAgregar;
+		break;
+
+	case MIN:
+		if (aAgregar < acum)
+			acum = aAgregar;
+		break;
+
+	case CONT:
+		acum++;
+		break;
+
+	case SUM:
+		acum += aAgregar;
+		break;
+
+	default: // imprimir error
+		break;
+	}
+
+
+}
+
+void BaseDeDatos::calcularPromedio(unsigned& acum, unsigned& cant, const unsigned& nuevoHecho) {
+	if (cant == 0) {
+		cant = 1;
+		acum = nuevoHecho;
+	}
+	else {
+		acum = (acum*cant + nuevoHecho) / (cant + 1);
+		cant++;
+	}
 }
 
 

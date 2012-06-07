@@ -16,7 +16,6 @@ Consulta::Consulta() : _filtros(), _campos(_resultados) {
 	_consultaValida = true;
 	_consultaDeCliente = true;
 	_consultaTablaPivote = false;
-	_agregacion = NADA;
 }
 
 Consulta::Consulta(const Consulta& original) :
@@ -26,6 +25,7 @@ Consulta::Consulta(const Consulta& original) :
 	this->_consultaValida = original._consultaValida;
 	this->_entradas = original._entradas;
 	this->_resultados = original._resultados;
+	this->_agregaciones = original._agregaciones;
 	this->_filtros = original._filtros;
 }
 
@@ -58,7 +58,7 @@ std::string Consulta::serializar() const {
 
 	cargarResultados(datos);
 
-	cargarAgregacion(datos);
+	//cargarAgregacion(datos);
 
 	if(_consultaTablaPivote)
 		cargarVarDeTabla(datos);
@@ -68,11 +68,6 @@ std::string Consulta::serializar() const {
 	return datos;
 }
 
-void Consulta::cargarAgregacion(std::string& datos) const {
-	char agreg = (char)_agregacion;
-	datos += agreg;
-	datos += sep_tipo;
-}
 
 void Consulta::cargarVarDeTabla(std::string& datos) const {
 	datos += _xTabla;
@@ -105,9 +100,6 @@ void Consulta::guardarVarDeTabla(const std::string& variables) {
 	_yTabla = Utilitario::separar(variables, sep_datos, 1);
 }
 
-void Consulta::guardarAgregacion(const std::string& agregacion) {
-	_agregacion = (Agregacion)(agregacion[0]);
-}
 
 void Consulta::cargarFiltros(std::string& datos) const {
 	Filtros::const_iterator it;
@@ -138,9 +130,14 @@ void Consulta::cargarEntradas(std::string& datos) const{
 }
 
 void Consulta::cargarResultados(std::string& datos) const {
-	Resultados::const_iterator it;
-	for (it = _resultados.begin(); it != _resultados.end() ; ++it) {
-		datos += *it;
+	Resultados::const_iterator itr;
+	Agregaciones::const_iterator ita = _agregaciones.begin();
+	for (itr = _resultados.begin(); itr != _resultados.end() ; ++itr, ++ita) {
+		datos += *itr;
+		if (_consultaDeCliente) {
+			datos += sep_valor;
+			datos += (char)*ita;
+		}
 		datos += sep_datos;
 	}
 	datos += sep_tipo;
@@ -165,6 +162,8 @@ void Consulta::deserializar(const std::string& consulta) {
 	if (cabecera.size() > 2) {
 		if (cabecera[2] == TablaPivote) {
 			_consultaTablaPivote = true;
+			if (_consultaDeCliente == false)
+				_consultaValida = false;
 		}
 	}
 
@@ -172,7 +171,7 @@ void Consulta::deserializar(const std::string& consulta) {
 	std::string filtros = Utilitario::separar(consulta, sep_tipo , 1);
 	std::string entradas = Utilitario::separar(consulta, sep_tipo , 2);
 	std::string resultados = Utilitario::separar(consulta, sep_tipo , 3);
-	std::string agregacion = Utilitario::separar(consulta, sep_tipo, 4);
+	// std::string agregacion = Utilitario::separar(consulta, sep_tipo, 4);
 
 	guardarFiltros(filtros);
 
@@ -180,10 +179,10 @@ void Consulta::deserializar(const std::string& consulta) {
 
 	guardarResultados(resultados);
 
-	guardarAgregacion(agregacion);
+	// guardarAgregacion(agregacion);
 
 	if (_consultaTablaPivote) {
-		std::string variablesTabla = Utilitario::separar(consulta, sep_tipo, 5);
+		std::string variablesTabla = Utilitario::separar(consulta, sep_tipo, 4);
 		guardarVarDeTabla(variablesTabla);
 	}
 
@@ -214,15 +213,26 @@ void Consulta::guardarFiltros(const std::string& filtros) {
 
 void Consulta::guardarResultados(const std::string& resultados){
 	size_t ind = 0;
-	std::string resultado;
+	std::string resCompleto, resNuevo, agregacion;
 
 	bool seguirGuardando = true;
 
 	while (seguirGuardando) {
-		resultado = Utilitario::separar(resultados, sep_datos, ind);
+		resCompleto = Utilitario::separar(resultados, sep_datos, ind);
 		ind++;
-		if (resultado.empty() == false) {
-			_resultados.push_back(resultado);
+		if (resCompleto.empty() == false) {
+
+			if (_consultaDeCliente) {
+				resNuevo = Utilitario::separar(resCompleto, sep_valor, 0);
+
+				agregacion = Utilitario::separar(resCompleto, sep_valor, 1);
+				_agregaciones.push_back((Agregacion)agregacion[0]);
+			}
+			else {
+				resNuevo = resCompleto;
+			}
+
+			_resultados.push_back(resNuevo);
 		}
 		else {
 			seguirGuardando = false;
@@ -250,33 +260,34 @@ void Consulta::guardarEntradas(const std::string& entradas) {
 	}
 }
 
-Agregacion Consulta::agregacion() const {
-	return _agregacion;
-}
-
 void Consulta::defininirAgregacion(Agregacion agregacion, const std::string& resultado) {
+	/* VIEJO...
 	this->_agregacion = agregacion;
 	_resultados.push_front(resultado);
 	_resultados.unique();
+	*/
+	_agregaciones.push_back(agregacion);
+	_resultados.push_back(resultado);
 }
 
-void Consulta::agregarFiltro(const std::string& filtro,
-			const std::string& valor) {
+void Consulta::agregarFiltro(const std::string filtro,
+			const std::string valor) {
 	if (filtro.empty() == false && valor.empty() == false) {
 		this->_filtros[filtro] = valor;
 	}
 }
 
-void Consulta::agregarEntrada(const std::string& entrada,
-				const std::string& valor) {
+void Consulta::agregarEntrada(const std::string entrada,
+				const std::string valor) {
 	if (entrada.empty() == false && valor.empty() == false) {
 			this->_entradas[entrada] = valor;
 		}
 }
 
-void Consulta::agregarResultado(const std::string& resultado) {
+void Consulta::agregarResultado(const std::string resultado) {
 	if (resultado.empty() == false) {
 		this->_resultados.push_back(resultado);
+		this->_agregaciones.push_back(NADA);
 	}
 }
 
@@ -371,6 +382,14 @@ const std::string& Consulta::resultado(unsigned indice) const {
 	}
 }
 
+Agregacion Consulta::agregacionDeResultado(unsigned indice) const {
+	if (_agregaciones.size() > indice) {
+		return _agregaciones[indice];
+	}
+	else
+		return NADA;
+}
+
 unsigned Consulta::cantidadResultados() const {
 	return _resultados.size();
 }
@@ -408,7 +427,7 @@ bool Consulta::esConsultaDeTablaPivote() const {
 }
 
 void Consulta::limpiar() {
-	_agregacion = NADA;
+	_agregaciones.clear();
 	_campos.clear();
 	_consultaDeCliente = true;
 	_consultaTablaPivote = false;

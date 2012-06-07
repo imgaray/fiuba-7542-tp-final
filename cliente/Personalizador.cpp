@@ -3,6 +3,7 @@
 #include "GraficoDeBarras.h"
 #include "GraficoDeTorta.h"
 #include "Tab.h"
+#include "Panel.h"
 
 
 Personalizador::Personalizador() {}
@@ -49,21 +50,33 @@ void Personalizador::construir() {
     Grafico* gTorta2 = new GraficoDeTorta();
     Grafico* gBarras3 = new GraficoDeBarras();
     Grafico* gTorta3 = new GraficoDeTorta();
+    Panel* pPanBarras1 = new Panel(*gBarras1);
+    Panel* pPanTorta1 = new Panel(*gTorta1);
+    Panel* pPanBarras2 = new Panel(*gBarras2);
+    Panel* pPanTorta2 = new Panel(*gTorta2);
+    Panel* pPanBarras3 = new Panel(*gBarras3);
+    Panel* pPanTorta3 = new Panel(*gTorta3);
     hijos.push_back(gBarras1);
     hijos.push_back(gTorta1);
     hijos.push_back(gBarras2);
     hijos.push_back(gTorta2);
     hijos.push_back(gBarras3);
     hijos.push_back(gTorta3);
+    hijos.push_back(pPanBarras1);
+    hijos.push_back(pPanTorta1);
+    hijos.push_back(pPanBarras2);
+    hijos.push_back(pPanTorta2);
+    hijos.push_back(pPanBarras3);
+    hijos.push_back(pPanTorta3);
 
-    pTab1->attach(*gTorta1, 0, 1, 0, 1);
-    pTab1->attach(*gBarras1, 0, 1, 1, 2);
+    pTab1->attach(*pPanTorta1, 0, 1, 0, 1);
+    pTab1->attach(*pPanBarras1, 0, 1, 1, 2);
     tabs.push_back(pTab1);
 
-    pTab2->attach(*gTorta2, 0, 2, 0, 1);
-    pTab2->attach(*gBarras2, 1, 2, 1, 2);
-    pTab2->attach(*gTorta3, 0, 2, 2, 3);
-    pTab2->attach(*gBarras3, 2, 3, 0, 3);
+    pTab2->attach(*pPanTorta2, 0, 2, 0, 1);
+    pTab2->attach(*pPanBarras2, 1, 2, 1, 2);
+    pTab2->attach(*pPanTorta3, 0, 2, 2, 3);
+    pTab2->attach(*pPanBarras3, 2, 3, 0, 3);
     tabs.push_back(pTab2);
 
     it = tabs.begin();

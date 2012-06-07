@@ -18,7 +18,7 @@ class Consulta;
 
 class BaseDeDatos {
 public:
-	BaseDeDatos(const std::string rutaArchivo);
+	BaseDeDatos(const std::string rutaArchivo = "ruta.txt");
 
 	/*
 	 * Resuelve una Consulta y retorna la Respuesta de esta.
@@ -30,6 +30,10 @@ public:
 	 */
 	Respuesta agregarEntrada(const Consulta& entrada);
 
+	/*
+	 * Metodo que deja a la base de datos vacia.
+	 */
+	void borrarDatos();
 
 	virtual ~BaseDeDatos();
 //private:
@@ -60,6 +64,11 @@ public:
     void agregaParaFila(const Consulta& consulta, const Combinacion& combinacion,const Lista_Id& ids, Respuesta& resp);
 
 	void obtenerIDs(const std::string& dimension, const std::string& valorDim, Lista_Id& lista);
+
+
+	void calcularAgregacion(const Agregacion& agregacion, unsigned& acumulador, unsigned aAgregar);
+	void calcularPromedio(unsigned& acumulador, unsigned& cantidad, const unsigned& nuevoHecho);
+
 
 	// metodo simple para resolver una consulta rapido
 	void __guardarRegistros(const Consulta& cons, Respuesta& resp);

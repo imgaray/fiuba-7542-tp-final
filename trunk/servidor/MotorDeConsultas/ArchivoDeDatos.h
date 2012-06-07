@@ -28,14 +28,28 @@ public:
 	 */
 	Id_Registro guardarRegistro(const std::string& registro);
 
+	/*
+	 * Retorna la cantidad de registros que estan guardados en el archivo
+	 */
 	size_t cantidadRegistros();
+
+	/*
+	 * Borra todo el contenido de los datos
+	 */
+
+	void borrarDatos();
 
 private:
 	void leerRegistro(const size_t& posicion, std::string& reg);
 
+	void inicilizarArchivos();
+
 	std::fstream _archivoPrincipal;
 	std::fstream _posRelativas;
 	Id_Registro _ultimoID;
+
+	std::string _rutaArchivoPrin;
+	std::string _rutaArchivoSec;
 };
 
 #endif /* ARCHIVODEDATOS_H_ */

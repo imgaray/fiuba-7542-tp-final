@@ -19,6 +19,10 @@ Respuesta::Respuesta(const Respuesta& original) {
 	this->_filaActual = original._filaActual;
 }
 
+Respuesta::Respuesta(const std::string& mensaje) {
+	_msjInterno = mensaje;
+}
+
 Respuesta::~Respuesta() {
 }
 
@@ -26,6 +30,10 @@ void Respuesta::operator =(const Respuesta& resp) {
 	this->_datos = resp._datos;
 	this->_columnas = resp._columnas;
 	this->_filaActual = resp._filaActual;
+}
+
+const std::string& Respuesta::mensajeInterno() const {
+	return _msjInterno;
 }
 
 std::string Respuesta::serializar() const {

@@ -10,11 +10,13 @@
 
 #include "Definiciones.h"
 #include "Mensaje.h"
+#include <string>
 
 class Respuesta : public Mensaje {
 public:
 	Respuesta();
 	Respuesta(const Respuesta& original);
+	Respuesta(const std::string& mensaje);
 
 	virtual ~Respuesta();
 
@@ -25,6 +27,8 @@ public:
 	void deserializar(const std::string& datos);
 
 	void operator=(const Respuesta& resp);
+
+	const std::string& mensajeInterno() const;
 
 	/*
 	 * Deja la Respuesta vacia
@@ -68,6 +72,8 @@ private:
 	size_t _columnas;
 	DatosDeRespuesta _datos;
 	Fila _filaActual;
+
+	std::string _msjInterno;
 
 	static Campo campo_nulo;
 };

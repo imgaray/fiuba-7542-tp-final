@@ -20,6 +20,8 @@ public:
 	void recuperar(const Fecha& fecha, Lista_Id& ids);
 
 	void guardarFecha(const Fecha& fecha, const Id_Registro& id);
+
+	void limpiar();
 private:
 	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2);
 	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2, Lista_Id& ids);

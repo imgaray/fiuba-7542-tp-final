@@ -1,11 +1,11 @@
 #ifndef __AGENTEREMOTO_H
 #define __AGENTEREMOTO_H
 
-#include "Hilo.h"
-#include "Socket.h"
+#include "../../comun/Hilo.h"
+#include "../../comun/Socket.h"
 #include "ResolvedorEntradas.h"
-#include "Consulta.h"
-#include "Respuesta.h"
+#include "../../comun/Consulta.h"
+#include "../../comun/Respuesta.h"
 
 class AgenteRemoto: public Hilo {
 private:

@@ -1,7 +1,7 @@
 #ifndef __SERVIDOR_H
 #define __SERVIDOR_H
 
-#include "BaseDeDatos.h"
+#include "../MotorDeConsultas/BaseDeDatos.h"
 #include "ResolvedorConsultas.h"
 #include "ResolvedorEntradas.h"
 #include "VerificadorConsultasH.h"

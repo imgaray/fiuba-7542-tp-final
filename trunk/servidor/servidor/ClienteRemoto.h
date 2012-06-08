@@ -1,11 +1,11 @@
 #ifndef __CLIENTEREMOTO_H
 #define __CLIENTEREMOTO_H
 
-#include "Hilo.h"
-#include "Socket.h"
+#include "../../comun/Hilo.h"
+#include "../../comun/Socket.h"
 #include "ResolvedorConsultas.h"
-#include "Consulta.h"
-#include "Respuesta.h"
+#include "../../comun/Consulta.h"
+#include "../../comun/Respuesta.h"
 #include <iostream>
 using namespace std;
 

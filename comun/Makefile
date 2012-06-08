@@ -1,6 +1,6 @@
 # Makefile
 
-CXXFLAGS = -Wall -pedantic -O0 -g -pthread -lpthread
+CXXFLAGS = -Wall -O0 -g -pthread -lpthread
 
 CC = g++
 
@@ -8,9 +8,9 @@ archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
 
 # EN ESTA VARIABLE SE DEFINEN TODAS LAS CARPETAS QUE TENGAN .H
 # EXTERNOS QUE ESTEN USANDO
-INCLUDES = ../../comun ../MotorDeConsultas
+#INCLUDES = ../../comun ../MotorDeConsultas
 
-I-INCLUDES = $(addprefix -I, $(INCLUDES))
+#I-INCLUDES = $(addprefix -I, $(INCLUDES))
 
 bin = $(archivos:.cpp=.o)
 
@@ -21,7 +21,7 @@ all: binaries
 binaries: $(bin)
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) $(I-INCLUDES) -c $<
+	$(CC) $(CXXFLAGS) -c $<
 
 test: $(bin)
 	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test

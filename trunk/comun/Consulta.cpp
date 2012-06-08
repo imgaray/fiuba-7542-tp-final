@@ -70,34 +70,72 @@ std::string Consulta::serializar() const {
 
 
 void Consulta::cargarVarDeTabla(std::string& datos) const {
-	datos += _xTabla;
-	datos += sep_datos;
-	datos += _yTabla;
+//	datos += _xTabla;
+//	datos += sep_datos;
+//	datos += _yTabla;
+//
+//	datos += sep_tipo;
+
+	EntradasTabla::const_iterator it;
+
+	for (it = _xTabla.begin() ; it != _xTabla.end() ;) {
+		datos += *it;
+		++it;
+		if (it != _xTabla.end())
+			datos += sep_valor;
+	}
+
+	datos +=  sep_datos;
+
+
+	for (it = _yTabla.begin() ; it != _yTabla.end() ;) {
+		datos += *it;
+		++it;
+		if (it != _xTabla.end())
+			datos +=sep_valor;
+	}
 
 	datos += sep_tipo;
 }
 
-void Consulta::definirTablaPivote(const std::string& x, const std::string& y) {
-	_xTabla = x;
-	_yTabla = y;
-	this->definirConsultaDeTablaPivote();
+void Consulta::guardarVarDeTabla(const std::string& variables) {
+	std::string x_Tabla = Utilitario::separar(variables, sep_datos, 0);
+	std::string y_Tabla = Utilitario::separar(variables, sep_datos, 1);
+
+	std::string campo = Utilitario::separar(x_Tabla, sep_valor, 0);
+	unsigned ind = 0;
+	while (campo.empty() == false) {
+		ind++;
+		_xTabla.push_back(campo);
+		campo = Utilitario::separar(x_Tabla, sep_valor,ind);
+	}
+
+	campo = Utilitario::separar(y_Tabla, sep_valor, 0);
+	ind = 0;
+	while (campo.empty() == false) {
+		ind++;
+		_yTabla.push_back(campo);
+		campo = Utilitario::separar(y_Tabla, sep_valor,ind);
+	}
+
 }
 
-const std::string& Consulta::xDeTablaPivote() const {
-	return _xTabla;
+const std::string& Consulta::xDeTablaPivote(unsigned i) const {
+	if (_xTabla.size() > i)
+		return _xTabla[i];
+	else
+		return Consulta::s_nulo;
 }
-const std::string& Consulta::yDeTablaPivote() const {
-	return _yTabla;
+const std::string& Consulta::yDeTablaPivote(unsigned i) const {
+	if (_yTabla.size() > i)
+		return _yTabla[i];
+	else
+		return Consulta::s_nulo;
 }
 
 void Consulta::definirConsultaDeTablaPivote() {
 	_consultaTablaPivote = true;
 	_consultaDeCliente = true;
-}
-
-void Consulta::guardarVarDeTabla(const std::string& variables) {
-	_xTabla = Utilitario::separar(variables, sep_datos, 0);
-	_yTabla = Utilitario::separar(variables, sep_datos, 1);
 }
 
 
@@ -439,3 +477,10 @@ void Consulta::limpiar() {
 	_yTabla.clear();
 }
 
+void Consulta::agregarXTablaP(const std::string& x) {
+	_xTabla.push_back(x);
+}
+
+void Consulta::agregarYTablaP(const std::string& y) {
+	_yTabla.push_back(y);
+}

@@ -13,12 +13,9 @@ std::vector<size_t> Utilitario::_posiciones;
 std::string Utilitario::s_anterior;
 
 Utilitario::Utilitario() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Utilitario::~Utilitario() {
-	// TODO Auto-generated destructor stub
 }
 
 

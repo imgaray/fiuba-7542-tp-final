@@ -98,13 +98,13 @@ void Socket::conectar(const std::string& huesped) {
         return;
     }
     else {
-    	this->_timeout.tv_sec = 100;
-    	this->_timeout.tv_usec = 0;
-
-    	if (setsockopt(_fd, SOL_SOCKET, SO_SNDTIMEO, (void*) &_timeout, sizeof(_timeout)) == -1) {
-    		desconectar();
-    		return;
-    	}
+//    	this->_timeout.tv_sec = 100;
+//    	this->_timeout.tv_usec = 0;
+//
+//    	if (setsockopt(_fd, SOL_SOCKET, SO_SNDTIMEO, (void*) &_timeout, sizeof(_timeout)) == -1) {
+//    		desconectar();
+//    		return;
+//    	}
     }
         
     _direccion.sin_family = AF_INET; 

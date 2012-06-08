@@ -178,5 +178,5 @@ void Respuesta::mensajeInterno(const std::string& mensaje) {
 }
 
 bool Respuesta::huboError() const {
-	return false;
+	return (_msjInterno == Respuesta::mensajeError);
 }

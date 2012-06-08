@@ -29,21 +29,14 @@ BaseDeDatos::~BaseDeDatos() {
 Respuesta BaseDeDatos::resolverConsulta(const Consulta& consulta) {
 	Respuesta resp;
 
-	//resolucion que envia todos los registros....
-	//__guardarRegistros(consulta, resp);
-	resolverConsultaNormal(consulta,resp);
-	return resp;
-
+	//resolverConsultaNormal(consulta,resp);
 
 	if (consulta.esConsultaDeTablaPivote()) {
 		resolverTablaPivote(consulta, resp);
 	}
-//	else if (consulta.agregacion()) {
-//		this->resolverSinAgregacion(consulta, resp);
-//	}
-//	else {
-//		this->resolverSinAgregacion(consulta, resp);
-//	}
+	else if (consulta.esConsultaDeCliente()) {
+		resolverConsultaNormal(consulta,resp);
+	}
 
 	return resp;
 }
@@ -68,47 +61,6 @@ void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, L
 			++it2;
 		}
 	}
-}
-
-void BaseDeDatos::resolverSinAgregacion(const Consulta& consulta, Respuesta& resp) {
-	if (consulta.cantidadEntradas() == 0 && consulta.cantidadFiltros() == 0) {
-		bool dimEnResultado = false;
-		Dimension dim;
-
-		for (unsigned i = 0 ; i < consulta.cantidadResultados() && !dimEnResultado ; i ++) {
-			dimEnResultado = (Organizacion::esDimension(consulta.resultado(i))
-							&& !Organizacion::esDimensionEspecial(consulta.resultado((unsigned)i)));
-			if (dimEnResultado)
-				dim = consulta.resultado((unsigned)i);
-		}
-
-
-		if (dimEnResultado) {
-			int indice = Organizacion::indiceDeCampo(dim);
-			ConjuntoValoresDimension::iterator it = _cnjDimensiones[indice].begin();
-			ConjuntoValoresDimension::iterator it_end = _cnjDimensiones[indice].end();
-
-			for ( ; it != it_end ; it++) {
-				resp.agregar(*it);
-				resp.filaCompletada();
-			}
-		}
-		else {
-
-			/*
-			 * Agregar todos lo hechos a la tabla
-			 * Verificar que sea consulta Valida... creo que no
-			 */
-		}
-	}
-	else {
-		// ....
-		// Filtrar y obtener los registros
-	}
-}
-
-void BaseDeDatos::resolverConAgregacion(const Consulta& consulta, Respuesta& resp) {
-
 }
 
 void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp){
@@ -234,7 +186,6 @@ void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registr
 		dimension = Utilitario::separar(entrada, sep_datos, i);
 
 		if (dimension.empty() == false) {
-
 			if (Organizacion::esDimensionEspecial(Organizacion::nombreDimension(i))) {
 				_indFechas.guardarFecha(dimension, id);
 			}
@@ -287,7 +238,6 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 	else {
 		respuesta.mensajeInterno(Respuesta::respuestaValida);
 	}
-
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg, MapaCombinaciones& mComb, bool filtrarHechos) {

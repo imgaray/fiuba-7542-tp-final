@@ -61,10 +61,13 @@ public:
 	// Define a la Consulta para que la respuesta sea una tabla pivote
 	void definirConsultaDeTablaPivote();
 
-	void definirTablaPivote(const std::string& x, const std::string& y);
+	//void definirTablaPivote(const std::string& x, const std::string& y);
 
-	const std::string& xDeTablaPivote() const;
-	const std::string& yDeTablaPivote() const;
+	void agregarXTablaP(const std::string& x);
+	void agregarYTablaP(const std::string& y);
+
+	const std::string& xDeTablaPivote(unsigned i) const;
+	const std::string& yDeTablaPivote(unsigned i) const;
 
 	bool esConsultaDeTablaPivote() const;
 
@@ -161,8 +164,8 @@ private:
 	Entradas _entradas;
 	Resultados _resultados;
 
-	std::string _xTabla;
-	std::string _yTabla;
+	EntradasTabla _xTabla;
+	EntradasTabla _yTabla;
 	bool _consultaTablaPivote;
 
 	Campos &_campos;

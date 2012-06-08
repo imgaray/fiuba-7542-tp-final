@@ -39,9 +39,7 @@ public:
 //private:
 
 	void resolverTablaPivote(const Consulta& consulta, Respuesta& resp);
-	void resolverSinAgregacion(const Consulta& consulta, Respuesta& resp);
-	void resolverConAgregacion(const Consulta& consulta, Respuesta& resp);
-
+	void resolverConsultaNormal(const Consulta& consulta, Respuesta& respuesta);
 
 	void actualizarIndices(const std::string& entrada, const Id_Registro& id);
 
@@ -49,8 +47,6 @@ public:
 	void calcularFiltros(const Consulta& consulta, Lista_Id& lista);
 	void calcularEntradas(const Consulta& consulta, Lista_Id& lista);
 
-
-	void resolverConsultaNormal(const Consulta& consulta, Respuesta& respuesta);
 
 	bool filtrarDatos(const Consulta& consulta, Lista_Id& listaReg);
 

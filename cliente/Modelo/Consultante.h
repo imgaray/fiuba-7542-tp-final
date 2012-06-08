@@ -1,6 +1,7 @@
 #ifndef CONSULTANTE_H
 #define CONSULTANTE_H
 
+#include "../../comun/Consulta.h"
 class Respuesta;
 
 class Consultante {
@@ -8,13 +9,13 @@ class Consultante {
         Consultante();
         ~Consultante();
 
-        void hacerConsulta() const;
+        virtual void hacerConsulta();
         virtual void recibirRespuesta(const Respuesta& rta);
 
         virtual unsigned getID() const;
     protected:
         Consulta consulta;
-        virtual void procesarRespuesta(const Respuesat& rta) = 0;
+        virtual void procesarRespuesta(const Respuesta& rta) = 0;
     private:
         static unsigned generadorID;
         unsigned ID;

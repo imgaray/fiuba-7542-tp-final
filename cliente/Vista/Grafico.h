@@ -3,14 +3,19 @@
 
 #include <list>
 #include <gtkmm/drawingarea.h>
+#include <gtkmm/layout.h>
+#include <gtkmm/viewport.h>
 #include "Referencia.h"
 #include "Hecho.h"
+#include "../Modelo/Consultante.h"
+#include "Filtrador.h"
 
 class Area;
+class Filtrador;
 
-class Grafico : public Gtk::DrawingArea {
+class Grafico : public Gtk::DrawingArea, public Consultante {
     public:
-        Grafico();
+        Grafico(Filtrador& f);
         virtual ~Grafico();
 
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
@@ -39,5 +44,7 @@ class Grafico : public Gtk::DrawingArea {
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
+        Filtrador& f;
+        void procesarRespuesta(const Respuesta& rta);
 };
 #endif  // GRAFICO_H

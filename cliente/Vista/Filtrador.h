@@ -3,18 +3,20 @@
 
 #include <gtkmm/box.h>
 #include "../../comun/Definiciones.h"
+#include "../Modelo/Consultante.h"
 
-class Filtrador : public Gtk::VBox {
+class Filtrador : public Gtk::VBox, public Consultante{
     public:
         /** @todo agregar agregaciones */
         Filtrador(const Filtros& filt, const Entradas& entr);
-        Filtrador(const Filtros& filt, const Entradas& entrTab, const Entradas& entrPanel);
+        Filtrador(const Filtrador& filt, const Entradas& entrPanel);
         ~Filtrador();
     private:
         Filtros filtros;
         Entradas entradasTab;
         Entradas entradasPanel;
         std::list< Gtk::Widget* > widgets;
+        void procesarRespuesta(const Respuesta& rta);
 };
 
 #endif  // FILTRADOR_H

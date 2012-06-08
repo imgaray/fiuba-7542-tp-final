@@ -24,6 +24,12 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     srand(time(NULL));
     Gtk::ToolButton* pAux;
 
+    builder->get_widget(NOTEBOOK, pNotebook);
+    if (!pNotebook) {
+        std::cout << "Se rompió algo" << std::endl;
+        return;
+    }
+
     builder->get_widget(BOTON_ACTUALIZAR, pAux);
     if (pAux)
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
@@ -59,34 +65,17 @@ void VentanaCliente::personalizar(const char* archivo) {
         return;
     }
 
-    Gtk::Notebook* pNotebook;
-    builder->get_widget(NOTEBOOK, pNotebook);
-    if (pNotebook)
-        while (dynBuilder.tieneSiguiente()) {
-            Tab& t = dynBuilder.siguiente();
-            pNotebook->append_page(t, t.getEtiqueta());
-        }
+    while (dynBuilder.tieneSiguiente()) {
+        Tab& t = dynBuilder.siguiente();
+        pNotebook->append_page(t, t.getEtiqueta());
+    }
 }
 
 void VentanaCliente::on_actualizar_button_clicked() {
     std::cout << BOTON_ACTUALIZAR " clicked." << std::endl;
-    unsigned tt = rand() % 8 + 1;
-    double valor;
-    Glib::ustring nombres[9] = { "Migue", "Nacho", "Maria", "Micaela",
-        "Sebastian", "Sandra", "Pablo", "Gonzalo", "Julia" };
-    std::list< Hecho > datos;
-    for (unsigned i = 0; i < tt; ++i) {
-        valor = (rand() % 100 + 1) * 1.123456789;
-        datos.push_back(Hecho(nombres[i] , valor));
-    }
 
-    gBarras.actualizarDatos(datos);
-    gTorta.actualizarDatos(datos);
-
-    Gtk::Notebook* pNotebook;
-    builder->get_widget(NOTEBOOK, pNotebook);
-    if (pNotebook)
-        pNotebook->queue_draw();
+    /** @todo hacerConsulta() a cada hijo del notebook */
+    pNotebook->queue_draw();
 }
 
 void VentanaCliente::on_detenerActualizar_button_clicked() {

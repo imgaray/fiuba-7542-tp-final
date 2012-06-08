@@ -3,7 +3,7 @@
 
 #include <fstream>
 #include <list>
-#include <gtkmm/widget.h>
+#include <gtkmm/object.h>
 
 class Tab;
 
@@ -18,7 +18,7 @@ class Personalizador {
         std::ifstream archivo;
         std::list< Tab* > tabs;
         std::list< Tab* >::iterator it;
-        std::list< Gtk::Widget* > hijos;
+        std::list< Gtk::Object* > hijos;
         void construir();
 };
 #endif  // PERSONALIZADOR_H

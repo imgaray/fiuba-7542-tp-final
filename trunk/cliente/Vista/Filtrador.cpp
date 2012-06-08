@@ -25,8 +25,9 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
             cont->pack_start(*eyecandy, false, false);
             widgets.push_back(eyecandy);
         }
-        cont->pack_end(*dim, false, false);
-        cont->add(*val);
+        cont->pack_end(*val, false, false);
+//        cont->pack_start(*val, false, false);
+        cont->add(*dim);
         cont->add(*sep);
 
         widgets.push_back(cont);
@@ -55,8 +56,8 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
             cont->pack_start(*eyecandy, false, false);
             widgets.push_back(eyecandy);
         }
-        cont->pack_end(*dim, false, false);
-        cont->add(*cbText);
+        cont->pack_end(*cbText, false, false);
+        cont->add(*dim);
         cont->add(*sep);
 
         widgets.push_back(cont);
@@ -64,15 +65,17 @@ Filtrador::Filtrador(const Filtros& filt, const Entradas& entr)
         widgets.push_back(sep);
         widgets.push_back(cbText);
 
-        add(*cont);
+        if (itEntradas == entradasTab.begin())
+            pack_start(*cont, false, false);
+        else
+            add(*cont);
         ++itEntradas;
     }
 
 }
 
-Filtrador::Filtrador(const Filtros& filt, const Entradas& entrTab,
-                     const Entradas& entrPanel) :
-filtros(filt), entradasTab(entrTab), entradasPanel(entrPanel) {
+Filtrador::Filtrador(const Filtrador& filt, const Entradas& entrPanel) :
+entradasPanel(entrPanel) {
     Gtk::HBox* cont;
     Gtk::Label* dim;
     Gtk::ComboBoxText* cbText;
@@ -92,9 +95,9 @@ filtros(filt), entradasTab(entrTab), entradasPanel(entrPanel) {
             cont->pack_start(*eyecandy, false, false);
             widgets.push_back(eyecandy);
         }
-        cont->pack_end(*dim, false, false);
+        cont->pack_end(*cbText, false, false);
+        cont->add(*dim);
         cont->add(*sep);
-        cont->add(*cbText);
 
         widgets.push_back(cont);
         widgets.push_back(dim);
@@ -111,3 +114,5 @@ Filtrador::~Filtrador() {
     for ( ; it != widgets.end(); ++it)
         delete *it;
 }
+
+void Filtrador::procesarRespuesta(const Respuesta& rta) {}

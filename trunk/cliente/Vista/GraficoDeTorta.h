@@ -9,7 +9,7 @@
 
 class GraficoDeTorta : public Grafico {
     public:
-        GraficoDeTorta();
+        GraficoDeTorta(Filtrador& f);
         virtual ~GraficoDeTorta();
 
         void actualizarDatos(const std::list< Hecho >& datos);

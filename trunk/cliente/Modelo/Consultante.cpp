@@ -11,7 +11,7 @@ Consultante::Consultante() {
 
 Consultante::~Consultante() {}
 
-void Consultante::hacerConsulta() const {
+void Consultante::hacerConsulta() {
     if (esperandoRespuesta)
         // cancelar
         std::cout << "Consulta anterior cancelada" << std::endl;

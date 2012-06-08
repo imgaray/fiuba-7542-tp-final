@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Area.h"
 
-Grafico::Grafico() {
+Grafico::Grafico(Filtrador& _f) : f(_f) {
     add_events(Gdk::BUTTON_PRESS_MASK);
 }
 
@@ -56,8 +56,7 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
     while ( !encontrado && it != areas.end()) {
         encontrado = (*it)->fueClickeada(ev->x/min_lado,
                                          ev->y/min_lado, offset);
-        ++it;
-        ++i;
+        ++it; ++i;
     }
 
     if (encontrado) {
@@ -95,3 +94,5 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
         offset = it->dibujar(ctx, offset);
     }
 }
+
+void Grafico::procesarRespuesta(const Respuesta& rta) {}

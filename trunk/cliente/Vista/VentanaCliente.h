@@ -18,9 +18,8 @@ class VentanaCliente : public Gtk::Window {
         void personalizar(const char* archivo);
     private:
         Glib::RefPtr< Gtk::Builder > builder;
+        Gtk::Notebook* pNotebook;
         Personalizador dynBuilder;
-        GraficoDeBarras gBarras;
-        GraficoDeTorta gTorta;
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();
         void on_exportarPDF_button_clicked();

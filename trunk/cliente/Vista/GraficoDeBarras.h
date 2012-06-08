@@ -9,7 +9,7 @@
 
 class GraficoDeBarras : public Grafico {
     public:
-        GraficoDeBarras();
+        GraficoDeBarras(Filtrador& f);
         virtual ~GraficoDeBarras();
 
         void actualizarDatos(const std::list< Hecho >& datos);

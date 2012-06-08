@@ -2,11 +2,11 @@
 #define TAB_H__
 
 #include <glibmm/ustring.h>
-#include <gtkmm/table.h>
+#include <gtkmm/box.h>
 
-class Tab : public Gtk::Table {
+class Tab : public Gtk::VBox {
     public:
-        Tab(int x, int y, bool homog, const Glib::ustring& etiqueta);
+        Tab(int i, const Glib::ustring& etiqueta);
         explicit Tab(const std::string& xml);
         ~Tab();
         const Glib::ustring& getEtiqueta();

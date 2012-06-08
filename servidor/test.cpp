@@ -101,7 +101,7 @@ public:
 			std::cout << "esperando respuesta "<< i << std::endl;
 			assert_prueba(sock->recibir(r));
 			// imprimirRespuesta(r);
-			std::cout << r.mensajeInterno();
+			std::cout << "Mensaje interno " << r.mensajeInterno();
 		}
 		sock->desconectar();
 		delete sock;
@@ -147,7 +147,7 @@ void pruebaAgentes() {
 		assert_prueba(sock->enviar(c[i]));
 		std::cout << "esperando respuesta "<< i << std::endl;
 		assert_prueba(sock->recibir(r));
-		imprimirRespuesta(r);
+		std::cout << "Mensaje interno " << r.mensajeInterno();
 	}
 	sock->desconectar();
 	delete sock;
@@ -160,6 +160,7 @@ void pruebaClientes() {
 		c[i].definirComoConsultaCliente();
 		c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
 		c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
+		c[i].agregarResultado("Vendedor");
 	}
 	Socket* sock = new Socket((Puerto)4321);
 	std::string host("localhost");

@@ -18,7 +18,8 @@ void ThreadEntradaClientes::detener_entrada() {
 		parar();
 	if (entradaClientes)
 		entradaClientes->desconectar();
-//	sincronizar();
+	//sincronizar();
+	this->parar();
 }
 
 ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons):

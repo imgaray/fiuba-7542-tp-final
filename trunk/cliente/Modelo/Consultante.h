@@ -1,7 +1,7 @@
 #ifndef CONSULTANTE_H
 #define CONSULTANTE_H
 
-#include "../../comun/Consulta.h"
+#include "Consulta.h"
 class Respuesta;
 
 class Consultante {

@@ -2,8 +2,11 @@
 #include <iostream>
 #include "Area.h"
 
+#define MIN_LADO 200
+
 Grafico::Grafico(Filtrador& _f) : f(_f) {
     add_events(Gdk::BUTTON_PRESS_MASK);
+    set_size_request(MIN_LADO, MIN_LADO);
 }
 
 Grafico::~Grafico() {
@@ -33,10 +36,10 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
         alto_ventana = allocation.get_height();
         Cairo::RefPtr<Cairo::Context> ctx = window->create_cairo_context();
         ctx->set_source_rgba(1.0, 1.0, 1.0, 1.0);
+        min_lado = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
         ctx->rectangle(ev->area.x, ev->area.y, ev->area.width, ev->area.height);
         ctx->fill_preserve();
         ctx->clip();
-        min_lado = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
         ctx->scale(min_lado, min_lado);
         ctx->set_line_width(0.01);
         ctx->set_source_rgb(0.0, 0.0, 0.0);
@@ -59,6 +62,7 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
         ++it; ++i;
     }
 
+    std::cout << "(x, y) = (x/lado, y/lado) : " << ev->x << " " << ev->y << " " << ev->x/min_lado << " " << ev->y/min_lado << std::endl;
     if (encontrado) {
         --it; --i;
     }
@@ -91,8 +95,12 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
     std::list< Referencia >::iterator it = referencias.begin();
     for ( ; it != referencias.end(); ++it) {
         dibujarEspecializacionReferencias(ctx);
-        offset = it->dibujar(ctx, offset);
+        offset = it->dibujar(ctx, offset, *this);
     }
 }
 
 void Grafico::procesarRespuesta(const Respuesta& rta) {}
+
+void Grafico::actualizarTamanioMinimo(double x, double y) {
+
+}

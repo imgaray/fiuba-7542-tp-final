@@ -5,6 +5,7 @@
 #include <glibmm/ustring.h>
 
 class Area;
+class Grafico;
 
 class Referencia {
     public:
@@ -13,7 +14,8 @@ class Referencia {
 
         void setNegrita(bool estado);
 
-        double dibujar(Cairo::RefPtr< Cairo::Context >& ctx, double offset);
+        double dibujar(Cairo::RefPtr< Cairo::Context >& ctx, double offset,
+                       Grafico& g);
     private:
         double color[4];
         Glib::ustring etiqueta;

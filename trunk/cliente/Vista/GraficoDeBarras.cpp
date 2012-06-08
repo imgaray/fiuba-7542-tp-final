@@ -3,8 +3,8 @@
 #include <iostream>
 
 #define INIT_OFFSET     0.1
-#define SEPARACION_BASE 0.25
-#define ANCHO_BASE      0.65
+#define SEPARACION_BASE 0.20
+#define ANCHO_BASE      0.50
 #define MIN_SIZE        4
 
 GraficoDeBarras::GraficoDeBarras(Filtrador& _f) : Grafico(_f) {
@@ -57,7 +57,7 @@ void GraficoDeBarras::dibujarEspecializacion(GdkEventExpose* ev,
 
 void GraficoDeBarras::dibujarEspecializacionReferencias(
         Cairo::RefPtr< Cairo::Context >& ctx) {
-    ctx->move_to(1.0, 0.1);
+    ctx->move_to(SEPARACION_BASE+ANCHO_BASE+0.05, 0.1);
 }
 
 double GraficoDeBarras::getOffset() {

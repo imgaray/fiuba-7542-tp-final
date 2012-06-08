@@ -19,7 +19,7 @@ double PorcionCircular::dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
         ctx->set_source_rgba(color[0], color[1], color[2], color[3]);
         ctx->move_to(x0, y0);
         ctx->arc(x0, y0, r, offset, offset + valor);
-        ctx->move_to(x0, y0);
+//        ctx->move_to(x0, y0);
         ctx->close_path();
         ctx->fill_preserve();
         ctx->set_source_rgba(0.0, 0.0, 0.0, 1.0);

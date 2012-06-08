@@ -1,5 +1,6 @@
 #include "Referencia.h"
 #include "Area.h"
+#include "Grafico.h"
 #include <iostream>
 
 double Referencia::anchoCuadradito = 0.06;
@@ -19,7 +20,7 @@ void Referencia::setNegrita(bool estado) {
 }
 
 double Referencia::dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
-                           double offset) {
+                           double offset, Grafico& g) {
     ctx->save();
         double x, y;
         ctx->set_source_rgba(color[0], color[1], color[2], color[3]);
@@ -36,6 +37,8 @@ double Referencia::dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
             ctx->select_font_face("sans-serif", Cairo::FONT_SLANT_NORMAL,
                                   Cairo::FONT_WEIGHT_NORMAL);
         ctx->show_text(etiqueta);
+        ctx->get_current_point(x, y);
+        g.actualizarTamanioMinimo(x, y);
     ctx->restore();
     return offset + 1.5*anchoCuadradito;
 }

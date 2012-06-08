@@ -7,7 +7,7 @@
 //	std::cout << ((resultado)? "OK" : "ERROR") << std::endl;
 //}
 
-int main__(int argc, char **argv) {
+int main(int argc, char **argv) {
 	Servidor serv;
 	std::string a("");
 	std::string q("q");

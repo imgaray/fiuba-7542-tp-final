@@ -8,8 +8,8 @@
 #include "../comun/Hilo.h"
 #include "servidor/Servidor.h"
 
-#define MAX_CLIENTES_SIMULTANEOS 2
-#define MAX_AGENTES_SIMULTANEOS 2
+#define MAX_CLIENTES_SIMULTANEOS 4
+#define MAX_AGENTES_SIMULTANEOS 4
 
 #define PUERTO_CLIENTE 4321
 #define PUERTO_AGENTE 12345
@@ -46,8 +46,21 @@ class clienteDummy: public Hilo {
 private:
 	static unsigned instancias;
 	unsigned id;
+	Socket* sock;
 public:
+	void detener() {
+		parar();
+		sock->desconectar();
+		delete sock;
+		sincronizar();
+	}
+
 	clienteDummy() {
+		sock = new Socket((Puerto)4321);
+		if (sock) {
+			std::string host("localhost");
+			sock->conectar(host);
+		}
 		id = ++instancias;
 	}
 	~clienteDummy() {}
@@ -60,9 +73,7 @@ public:
 			c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
 			c[i].agregarResultado("Vendedor");
 		}
-		Socket* sock = new Socket((Puerto)4321);
 		std::string host("localhost");
-		sock->conectar(host);
 		Respuesta r;
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
@@ -73,8 +84,6 @@ public:
 			assert_prueba(sock->recibir(r));
 			imprimirRespuesta(r);
 		}
-		sock->desconectar();
-		delete sock;
 	}
 };
 
@@ -84,8 +93,21 @@ class agenteDummy: public Hilo {
 private:
 	static unsigned instancias;
 	unsigned id;
+	Socket* sock;
 public:
+
+	void detener() {
+		parar();
+		sock->desconectar();
+		delete sock;
+		sincronizar();
+	}
 	agenteDummy() {
+		Socket* sock = new Socket((Puerto)PUERTO_AGENTE);
+		if (sock) {
+			std::string host("localhost");
+			sock->conectar(host);
+		}
 		id = ++instancias;
 	}
 	~agenteDummy() {}
@@ -99,9 +121,6 @@ public:
 			c[i].agregarCampo(fechas[i].c_str());
 			c[i].agregarCampo(productos[i].c_str());
 		}
-		Socket* sock = new Socket((Puerto)PUERTO_AGENTE);
-		std::string host("localhost");
-		sock->conectar(host);
 		Respuesta r;
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
@@ -113,8 +132,6 @@ public:
 			// imprimirRespuesta(r);
 			std::cout << "Mensaje interno " << r.mensajeInterno() << std::endl;
 		}
-		sock->desconectar();
-		delete sock;
 	}
 };
 
@@ -196,35 +213,40 @@ void pruebaClientes() {
 }
 
 void pruebaAgentesMultiples() {
+	std::cout << "========= PRUEBA AGENTES MULTIPLES ==============" << std::endl;
 	agenteDummy agentes[MAX_AGENTES_SIMULTANEOS];
 	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i) {
 		agentes[i].iniciar();
 	}
 	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i) {
-		agentes[i].sincronizar();
+		agentes[i].detener();
 	}
-}
-
-void pruebaClientesMultiples() {
-	clienteDummy clientes[MAX_CLIENTES_SIMULTANEOS];
-	agenteDummy agentes[MAX_AGENTES_SIMULTANEOS];
-	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i)
-		clientes[i].iniciar();
-	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i)
-		agentes[i].iniciar();
-	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i)
-		clientes[i].sincronizar();
-	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i)
-		agentes[i].sincronizar();	
 }
 
 void pruebaAmbosMultiples() {
+	std::cout << "========== PRUEBA AMBOS MULTIPLES =============" << std::endl;
+	clienteDummy clientes[MAX_CLIENTES_SIMULTANEOS];
+	agenteDummy agentes[MAX_AGENTES_SIMULTANEOS];
+	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i)
+		clientes[i].iniciar();
+	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i)
+		agentes[i].iniciar();
+	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i) {
+		clientes[i].detener();
+	}
+	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i) {
+		agentes[i].detener();
+	}	
+}
+
+void pruebaClientesMultiples() {
+	std::cout << "========= PRUEBA CLIENTES MULTIPLES ===========" << std::endl;
 	clienteDummy clientes[MAX_CLIENTES_SIMULTANEOS];
 	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i) {
 		clientes[i].iniciar();
 	}
 	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i) {
-		clientes[i].sincronizar();
+		clientes[i].detener();
 	}
 }
 

@@ -11,28 +11,30 @@ void ControladorServidor::comenzar() {
 
 Respuesta ControladorServidor::resolverEntrada(Consulta& entrada) {
 	while (ncons != 0)
-		m.wait();
-	m.lock();
+		magentes.wait();
+	magentes.lock();
 	nact++;
 	Respuesta r = rentr.resolverEntrada(entrada);
 	nact--;
-	m.signal();
-	m.unlock();
+	mclientes.signal();
+	magentes.signal();
+	magentes.unlock();
 	return r;
 }
 	
 Respuesta ControladorServidor::resolver(Consulta& consulta) {
 	cout << "nact = " << nact << " ncons = " << ncons << endl;
 	while (nact != 0)
-		m.wait();
-	m.lock();
+		mclientes.wait();
+	mclientes.lock();
 	ncons++;
-	m.unlock();
+	mclientes.unlock();
 	Respuesta r = rcons.resolver(consulta);
-	m.lock();
+	mclientes.lock();
 	ncons--;
-	m.signal();
-	m.unlock();
+	magentes.signal();
+	mclientes.signal();
+	mclientes.unlock();
 	return r;
 }	
 
@@ -56,30 +58,34 @@ ControladorServidor::~ControladorServidor() {
 }
 
 void ControladorServidor::agregarCliente(ClienteRemoto* rem) {
-	Lock l(this->m);
+	Lock l(this->mclientes);
 	clientes.push_back(rem);
 }
 
 void ControladorServidor::detener() {
-	Lock l(m);
+	mclientes.lock();
+	tclientes->detener_entrada();
 	lclientes::iterator iter_clientes;
 	for (iter_clientes = clientes.begin(); iter_clientes != clientes.end();
 												++iter_clientes) {
 		ClienteRemoto* crem = *iter_clientes;
 		crem->detener_cliente();
 	}
+
+	mclientes.unlock();
+	magentes.lock();
+	tagentes->detener_entrada();
 	lagentes::iterator iter_agentes;
 	for (iter_agentes = agentes.begin(); iter_agentes != agentes.end();
 												++iter_agentes) {
 		AgenteRemoto* arem = *iter_agentes;
 		arem->detener_agente();
 	}
-	tagentes->detener_entrada();
-	tagentes->detener_entrada();
+	magentes.unlock();
 }
 
 void ControladorServidor::agregarAgente(AgenteRemoto* agt) {
-	Lock l(this->m);
+	Lock l(this->magentes);
 	agentes.push_back(agt);
 }
 

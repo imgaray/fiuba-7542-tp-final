@@ -26,7 +26,11 @@ void assert_prueba(bool resultado) {
 void imprimirRespuesta(Respuesta& r) {
 
 	std::cout << ">>>Datos de Respuesta: " << r.serializar() << endl;
-
+	if (r.mensajeInterno() == Respuesta::respuestaValida) {
+		std::cout <<">>> Cant Filas: " << r.cantidadFilas()<< std::endl;
+		std::cout <<">>> Cant Columnas: " << r.cantidadColumnas()<< std::endl;
+	}
+	std::cout << std::endl << "Mensaje Respuesta: " << r.mensajeInterno() << std::endl;
 	for (unsigned i = 0; i < r.cantidadFilas(); i++) {
 		std::cout << "::";
 		for (unsigned j = 0; j < r.cantidadColumnas(); j++) {
@@ -170,8 +174,8 @@ void pruebaClientes() {
 	Consulta c[5];
 	for (unsigned i = 0; i < 5; ++i) {
 		c[i].definirComoConsultaCliente();
-		//c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
-		//c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
+		c[i].agregarFiltro(Organizacion::nombreCampo(0), sucursales[i].c_str());
+		c[i].agregarFiltro(Organizacion::nombreCampo(1), "Seba");
 		c[i].agregarResultado(Organizacion::nombreCampo(i)); // "Vendedor"
 	}
 	Socket* sock = new Socket((Puerto)PUERTO_CLIENTE);
@@ -232,10 +236,10 @@ int main(int argc, char **argv) {
 	cout << "===================================================" << endl;
 	pruebaClientes();
 	cout << "===================================================" << endl;
-	//pruebaAgentesMultiples();
+	pruebaAgentesMultiples();
 	cout << "===================================================" << endl;
-	//pruebaClientesMultiples();
+	pruebaClientesMultiples();
 	cout << "===================================================" << endl;
-	//pruebaAmbosMultiples();
+	pruebaAmbosMultiples();
 	return 0;
 }

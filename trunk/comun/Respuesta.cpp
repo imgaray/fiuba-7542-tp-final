@@ -8,7 +8,16 @@
 #include "Respuesta.h"
 #include "Utilitario.h"
 #include <iostream>
+
 Campo Respuesta::campo_nulo;
+std::string Respuesta::mensajeError = "Error";
+std::string Respuesta::respuestaVacia = "La Respuesta esta vacia";
+std::string Respuesta::respuestaValida = "Respuesta Valida";
+
+
+#define sep_fila 		sep_valor
+#define sep_datoFila 	sep_datos
+#define sep_principal	sep_tipo
 
 Respuesta::Respuesta() {
 	_columnas = 0;
@@ -41,10 +50,19 @@ const std::string& Respuesta::mensajeInterno() const {
 std::string Respuesta::serializar() const {
 	std::string datos;
 	DatosDeRespuesta::const_iterator it;
-	for (it = _datos.begin() ; it != _datos.end() ; ++it) {
+
+	datos = _msjInterno;
+	datos += sep_principal;
+
+	for (it = _datos.begin() ; it != _datos.end() ; ) {
 		const Fila f_fila = *it;
 		this->cargarFila(f_fila, datos);
+		++it;
+		if (it !=_datos.end())
+			datos += sep_fila;
+
 	}
+
 
 	datos += sep_fin;
 
@@ -62,23 +80,27 @@ void Respuesta::cargarFila(const Fila& fila, std::string& datos) const {
 	Fila::const_iterator it;
 	for (it = fila.begin() ; it != fila.end() ; ++it) {
 		datos += *it;
-		datos += sep_valor;
+		datos += sep_datoFila;
 	}
-	datos += sep_tipo;
 }
 
 void Respuesta::deserializar(const std::string& datos) {
 	_datos.clear();
 	_filaActual.clear();
 
-	std::string datosSerializados = datos;
-	datosSerializados.resize(datos.size() - 1);
+	_msjInterno = Utilitario::separar(datos, sep_principal, 0);
+
+	std::string datosSerializados = Utilitario::separar(datos, sep_principal, 1);
+
+	Utilitario::borrarCaracter(datosSerializados, sep_fin);
+	//datosSerializados.resize(datos.size() - 1);
+
 
 	bool hayMasFilas = true;
 	std::string fila;
 	unsigned int ind = 0;
 	while (hayMasFilas) {
-		fila = Utilitario::separar(datosSerializados, sep_tipo, ind);
+		fila = Utilitario::separar(datosSerializados, sep_fila, ind);
 		ind++;
 		if (fila.empty() == false) {
 			guardarFila(fila);
@@ -88,7 +110,7 @@ void Respuesta::deserializar(const std::string& datos) {
 		}
 	}
 
-	if (_datos.size() > 1) {
+	if (_datos.size() >= 1) {
 		_columnas = _datos[0].size();
 	}
 }
@@ -100,7 +122,7 @@ void Respuesta::guardarFila(const std::string& fila) {
 	unsigned int ind = 0;
 	int camposAgregados = 0;
 	while (hayDatos) {
-		campo = Utilitario::separar(fila, sep_valor, ind);
+		campo = Utilitario::separar(fila, sep_datoFila, ind);
 		ind++;
 
 		if (campo.empty() == false) {
@@ -149,6 +171,10 @@ size_t Respuesta::cantidadFilas() const {
 	return _datos.size();
 }
 
-bool Respuesta::huboError() const {
+void Respuesta::mensajeInterno(const std::string& mensaje) {
+	_msjInterno = mensaje;
+}
 
+bool Respuesta::huboError() const {
+	return false;
 }

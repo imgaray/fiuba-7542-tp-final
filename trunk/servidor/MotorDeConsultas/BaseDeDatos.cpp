@@ -147,10 +147,10 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 
 
 			if (Organizacion::esDimensionEspecial(filtro)) {
-				_indFechas.recuperar(valor, listaAux1);
+				_indFechas.recuperar(valor, listaAux2);
 			}
 			else if (Organizacion::esDimension(filtro)) {
-				_indDimensiones[indice].recuperar(valor, listaAux1);
+				_indDimensiones[indice].recuperar(valor, listaAux2);
 			}
 
 			calcularInterseccion(listaAux1, listaAux2, lista);
@@ -184,10 +184,10 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 			indice = Organizacion::indiceDeCampo(entrada);
 
 			if (Organizacion::esDimensionEspecial(entrada)) {
-							_indFechas.recuperar(valor, listaAux1);
+							_indFechas.recuperar(valor, listaAux2);
 			}
 			else if (Organizacion::esDimension(entrada)) {
-				_indDimensiones[indice].recuperar(valor, listaAux1);
+				_indDimensiones[indice].recuperar(valor, listaAux2);
 			}
 
 			calcularInterseccion(listaAux1, listaAux2, lista);
@@ -199,7 +199,6 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 }
 
 Respuesta BaseDeDatos::agregarEntrada(const Consulta& entrada) {
-	Respuesta resp("OK");
 	std::string reg;
 
 	unsigned i = 0 ;
@@ -220,6 +219,8 @@ Respuesta BaseDeDatos::agregarEntrada(const Consulta& entrada) {
 	 * Tratar la respuesta
 	 * ...
 	 */
+
+	Respuesta resp("OK");
 
 	return resp;
 }
@@ -257,7 +258,10 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 
 	if (huboFiltrado) {
 
-		if (hayDimEnResultados) {
+		if (listaReg.size() == 0) {
+			respuesta = Respuesta(Respuesta::respuestaVacia);
+		}
+		else if (hayDimEnResultados) {
 			guardarCombinaciones(consulta, listaReg, mCombin, filtrarHechos);
 			hacerAgregaciones(consulta, mCombin, respuesta);
 		}
@@ -276,6 +280,14 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 			// sin dimensiones en resultados
 		}
 	}
+
+	if (respuesta.cantidadFilas() == 0) {
+		respuesta.mensajeInterno(Respuesta::respuestaVacia);
+	}
+	else {
+		respuesta.mensajeInterno(Respuesta::respuestaValida);
+	}
+
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg, MapaCombinaciones& mComb, bool filtrarHechos) {
@@ -364,7 +376,6 @@ void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinac
     itActual = mComb.begin(); 
     Lista_Id ids_aAgregar;
     bool ultimoHecho = false;
-
     
     for (it = mComb.begin(); it != mComb.end(); ++it) {
         if (itActual->first == it->first) {

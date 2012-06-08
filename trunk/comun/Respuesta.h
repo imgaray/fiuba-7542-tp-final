@@ -30,6 +30,8 @@ public:
 
 	const std::string& mensajeInterno() const;
 
+	void mensajeInterno(const std::string& mensaje);
+
 	/*
 	 * Deja la Respuesta vacia
 	 */
@@ -65,6 +67,11 @@ public:
 	size_t cantidadFilas() const;
 
 	bool huboError() const;
+
+
+	static std::string mensajeError;
+	static std::string respuestaVacia;
+	static std::string respuestaValida;
 
 private:
 	void guardarFila(const std::string& fila);

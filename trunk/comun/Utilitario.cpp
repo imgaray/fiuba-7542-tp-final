@@ -99,3 +99,20 @@ int Utilitario::convertirAEntero(const std::string& numero) {
 	return res;
 }
 
+
+void Utilitario::borrarCaracter(std::string& palabra, const char caracter) {
+	std::string aux;
+	std::string parte = Utilitario::separar(palabra, caracter, 0);
+
+	int i = 1;
+	int cantBorrada = 0;
+	do {
+		cantBorrada++;
+		aux += parte;
+		parte = Utilitario::separar(palabra, caracter, i);
+		i++;
+	} while ((aux.size() + cantBorrada)< palabra.size());
+
+	palabra = aux;
+}
+

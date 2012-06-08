@@ -9,7 +9,7 @@
 #include "servidor/Servidor.h"
 
 #define MAX_CLIENTES_SIMULTANEOS 4
-#define MAX_AGENTES_SIMULTANEOS 4
+#define MAX_AGENTES_SIMULTANEOS 1
 
 #define PUERTO_CLIENTE 4321
 #define PUERTO_AGENTE 12345
@@ -48,22 +48,19 @@ private:
 	unsigned id;
 	Socket* sock;
 public:
-	void detener() {
-		parar();
-		sock->desconectar();
-		delete sock;
-		sincronizar();
-	}
 
 	clienteDummy() {
 		sock = new Socket((Puerto)4321);
 		if (sock) {
 			std::string host("localhost");
-			sock->conectar(host);
+			//while (!sock->conectado())
+				sock->conectar(host);
 		}
 		id = ++instancias;
 	}
-	~clienteDummy() {}
+	~clienteDummy() {
+		delete sock;
+	}
 	void correr() {
 		std::cout << "=========PRUEBA CLIENTE EN THREAD " << id << " ==========" << endl;
 		Consulta c[5];
@@ -77,13 +74,15 @@ public:
 		Respuesta r;
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
-			assert_prueba(sock->conectado());
+			assert_prueba(sock? sock->conectado(): false);
 			std::cout << "mandando dato " << i << std::endl;
-			assert_prueba(sock->enviar(c[i]));
+			assert_prueba(sock? sock->enviar(c[i]) : false);
 			std::cout << "esperando respuesta " << i << std::endl;
-			assert_prueba(sock->recibir(r));
+			assert_prueba(sock? sock->recibir(r) : false);
 			imprimirRespuesta(r);
 		}
+		if (sock)
+			sock->desconectar();
 	}
 };
 
@@ -96,21 +95,18 @@ private:
 	Socket* sock;
 public:
 
-	void detener() {
-		parar();
-		sock->desconectar();
-		delete sock;
-		sincronizar();
-	}
 	agenteDummy() {
-		Socket* sock = new Socket((Puerto)PUERTO_AGENTE);
+		sock = new Socket((Puerto)PUERTO_AGENTE);
 		if (sock) {
 			std::string host("localhost");
-			sock->conectar(host);
+		//	while (!sock->conectado())
+				sock->conectar(host);
 		}
 		id = ++instancias;
 	}
-	~agenteDummy() {}
+	~agenteDummy() {
+		delete sock;
+	}
 	void correr() {
 		std::cout << "=========PRUEBA AGENTE EN THREAD " << id << " ==========" << endl;
 		Consulta c[5];		
@@ -124,14 +120,16 @@ public:
 		Respuesta r;
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
-			assert_prueba(sock->conectado());
+			assert_prueba(sock? sock->conectado() : false);
 			std::cout << "mandando dato " << i << std::endl;
-			assert_prueba(sock->enviar(c[i]));
+			assert_prueba(sock? sock->enviar(c[i]) : false);
 			std::cout << "esperando respuesta "<< i << std::endl;
-			assert_prueba(sock->recibir(r));
+			assert_prueba(sock? sock->recibir(r) : false);
 			// imprimirRespuesta(r);
 			std::cout << "Mensaje interno " << r.mensajeInterno() << std::endl;
 		}
+		if (sock)
+			sock->desconectar();
 	}
 };
 
@@ -219,7 +217,7 @@ void pruebaAgentesMultiples() {
 		agentes[i].iniciar();
 	}
 	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i) {
-		agentes[i].detener();
+		agentes[i].sincronizar();
 	}
 }
 
@@ -232,10 +230,10 @@ void pruebaAmbosMultiples() {
 	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i)
 		agentes[i].iniciar();
 	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i) {
-		clientes[i].detener();
+		clientes[i].sincronizar();
 	}
 	for (unsigned i = 0; i < MAX_AGENTES_SIMULTANEOS; ++i) {
-		agentes[i].detener();
+		agentes[i].sincronizar();
 	}	
 }
 
@@ -246,7 +244,7 @@ void pruebaClientesMultiples() {
 		clientes[i].iniciar();
 	}
 	for (unsigned i = 0; i < MAX_CLIENTES_SIMULTANEOS; ++i) {
-		clientes[i].detener();
+		clientes[i].sincronizar();
 	}
 }
 

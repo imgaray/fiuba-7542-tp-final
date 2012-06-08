@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
-SUBDIRS = servidor ../comun
+SUBDIRS = servidor ../comun MotorDeConsultas
 
 EXTERNOBJS = $(addsuffix .o, $(basename  $(wildcard */*.cpp)))
 
@@ -34,6 +34,9 @@ test: subdirs
 	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) test.cpp -o test
 
 clean: $(SUBDIRS)
+	for dir in $(SUBDIRS); do \
+		$(MAKE) clean -C $$dir; \
+	done
 	
 
 .PHONY: all

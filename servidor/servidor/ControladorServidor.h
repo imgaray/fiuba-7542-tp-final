@@ -91,9 +91,6 @@ public:
 		cc(ccli), rc(rcons) {
 		entradaClientes = new Socket(PORT_CLIENTE);
 		entradaClientes->enlazar();
-		if (!entradaClientes->conectado())
-			parar();
-			entradaClientes->desconectar();
 	}
 	
 	~ThreadEntradaClientes() {
@@ -125,8 +122,9 @@ private:
 //	ManejadorIds mids;
 	ThreadEntradaAgentes* tagentes;
 	ThreadEntradaClientes* tclientes;
-	Mutex magentes;
-	Mutex mclientes;
+	Mutex m;
+//	Mutex magentes;
+//	Mutex mclientes;
 public:
 	Respuesta resolverEntrada(Consulta& entrada);
 	Respuesta resolver(Consulta& consulta);

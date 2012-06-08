@@ -132,15 +132,13 @@ void Socket::desconectar() {
     this->_enlazado = false;
     
     if (shutdown(_fd, SHUT_RDWR) == -1) {
-        perror("Error al cerrar conexion de Socket. ");
-        // printf(" Error: %s\n", strerror(errno));
+		if (errno != ENOTCONN)	
+			perror("Error al cerrar conexion de Socket. ");
     }
 }
 
 bool Socket::enviar(const Mensaje& mensaje) {
-
-	std::string s_datos = mensaje.serializar();
-
+	std::string s_datos = mensaje.serializar() + sep_fin;
 	// std::cout << "Socket--Datos a enviar: \"" << s_datos <<"\"" <<std::endl;
 
     const char* datos = s_datos.c_str(); // consulta.datos();

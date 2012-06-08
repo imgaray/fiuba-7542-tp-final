@@ -6,13 +6,17 @@ CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
-SUBDIRS = MotorDeConsultas servidor
+SUBDIRS = servidor ../comun
+
+EXTERNOBJS = $(addsuffix .o, $(basename  $(wildcard */*.cpp)))
+
+EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../comun/*.cpp)))
 
 CC = g++
 
 I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
 
-bin = $(archivos:.cpp=.o)
+#bin = $(archivos:.cpp=.o)
 
 robjs = $(wildcard *.o main test)
 
@@ -24,10 +28,10 @@ subdirs:
 	done
 	
 main: subdirs
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) main.cpp -o main
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) main.cpp -o main
 
-test: make_subs
-	$(CC) $(CXXFLAGS) test.cpp -o test
+test: subdirs
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) test.cpp -o test
 
 clean: $(SUBDIRS)
 	

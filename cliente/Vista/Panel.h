@@ -4,7 +4,7 @@
 #include <gtkmm/box.h>
 #include <gtkmm/scrolledwindow.h>
 #include <gtkmm/viewport.h>
-#include "../Modelo/Consultante.h"
+#include "Consultante.h"
 
 class Grafico;
 class Filtrador;

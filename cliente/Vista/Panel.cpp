@@ -1,7 +1,7 @@
 #include "Panel.h"
 #include "Grafico.h"
 #include "Filtrador.h"
-#include "../../comun/Respuesta.h"
+#include "Respuesta.h"
 
 Panel::Panel(Grafico& g, Filtrador& f) : grafico(g), filtrador(f) {
     pack_start(filtrador, false, false);

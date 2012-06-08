@@ -7,7 +7,7 @@
 #include <gtkmm/viewport.h>
 #include "Referencia.h"
 #include "Hecho.h"
-#include "../Modelo/Consultante.h"
+#include "Consultante.h"
 #include "Filtrador.h"
 
 class Area;
@@ -19,6 +19,8 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         virtual ~Grafico();
 
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
+        /** @todo implementar para cuando las referencias no entran en el [0,1]x[0,1] */
+        void actualizarTamanioMinimo(double x, double y);
     protected:
         std::list< Area* > areas;
         double offset;

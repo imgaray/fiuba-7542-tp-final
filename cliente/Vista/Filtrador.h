@@ -2,8 +2,8 @@
 #define FILTRADOR_H
 
 #include <gtkmm/box.h>
-#include "../../comun/Definiciones.h"
-#include "../Modelo/Consultante.h"
+#include "Definiciones.h"
+#include "Consultante.h"
 
 class Filtrador : public Gtk::VBox, public Consultante{
     public:

@@ -2,9 +2,12 @@
 #define __SERVIDORREMOTO_H
 
 #include "Consulta.h"
+#include "Respuesta.h"
 #include "BLQueue.h"
 #include "BLMap.h"
 #include <utility>
+
+class Consultante;
 
 class ServidorRemoto {
 private:
@@ -14,12 +17,12 @@ private:
 	typedef BLQueue<ParConsulta> ColaConsultas;
 	typedef BLQueue<ParRespuesta> ColaRespuestas;
 	typedef BLMap<unsigned, Consultante*> MapaConsultantes;
-	
+
 	// atributos contenedores
 	ColaConsultas consultas;
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
-	
+
 	// faltaria ver donde van los hilos consumer/producer
 public:
 	ServidorRemoto();

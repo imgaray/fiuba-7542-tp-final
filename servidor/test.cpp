@@ -101,7 +101,7 @@ public:
 			std::cout << "esperando respuesta "<< i << std::endl;
 			assert_prueba(sock->recibir(r));
 			// imprimirRespuesta(r);
-			std::cout << "Mensaje interno " << r.mensajeInterno();
+			std::cout << "Mensaje interno " << r.mensajeInterno() << std::endl;
 		}
 		sock->desconectar();
 		delete sock;
@@ -147,7 +147,7 @@ void pruebaAgentes() {
 		assert_prueba(sock->enviar(c[i]));
 		std::cout << "esperando respuesta "<< i << std::endl;
 		assert_prueba(sock->recibir(r));
-		std::cout << "Mensaje interno " << r.mensajeInterno();
+		std::cout << "Mensaje interno " << r.mensajeInterno() << std::endl;
 	}
 	sock->desconectar();
 	delete sock;

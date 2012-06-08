@@ -1,12 +1,12 @@
 #ifndef __THREADENTRADAAGENTES_H
 #define __THREADENTRADAAGENTES_H
 
-#include "Socket.h"
+#include "../../comun/Socket.h"
 #include "ContenedorAgentes.h"
 #include "ResolvedorEntradas.h"
 #include "AgenteRemoto.h"
-#include "Hilo.h"
-#define PORT_AGENTE (Puerto) 12345
+#include "../../comun/Hilo.h"
+#define PORT_AGENTE (Puerto) 12346
 
 class ThreadEntradaAgentes: public Hilo {
 private:

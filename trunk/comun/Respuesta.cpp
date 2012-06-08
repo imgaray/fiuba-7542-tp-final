@@ -78,9 +78,11 @@ void Respuesta::limpiar() {
 
 void Respuesta::cargarFila(const Fila& fila, std::string& datos) const {
 	Fila::const_iterator it;
-	for (it = fila.begin() ; it != fila.end() ; ++it) {
+	for (it = fila.begin() ; it != fila.end() ; ) {
 		datos += *it;
-		datos += sep_datoFila;
+		++it;
+		if (it != fila.end())
+			datos += sep_datoFila;
 	}
 }
 

@@ -16,37 +16,21 @@ private:
 	ResolvedorConsultas& blresolvedor;
 public:
 
-	void detener_cliente() {
-		parar();
-		if (cliente)
-			cliente->desconectar();
-		sincronizar();
-	}
+	// detiene la ejecucion del cliente. Cierra la conexion, detiene y
+	// sincroniza el hilo
+	void detener_cliente();
 	
-	void correr() {
-		while (corriendo()) {
-			Consulta c;
-			bool valido = false;
-			if (cliente->recibir(c)) {
-				Respuesta r = blresolvedor.resolver(c);
-				valido = cliente->enviar(r);
-			}
-			if (!valido) {
-				detener_cliente();
-			}
-		}
-	}
+	// metodo que se corre mientras este en ejecucion el hilo. Resuelve
+	// y envia consultas
+	void correr();
 	
-	ClienteRemoto(Socket* cl, ResolvedorConsultas& rcons):
-		cliente(cl), blresolvedor(rcons) {
-	}
+	// constructor de clienteremoto. Recibe un socket conectado al cliente
+	// y un resolvedor de consultas
+	ClienteRemoto(Socket* cl, ResolvedorConsultas& rcons);
 	
-	~ClienteRemoto() {
-		if (corriendo())
-			detener_cliente();
-		if (cliente)
-			delete cliente;
-	}
+	// destructor. Si esta corriendo, lo detiene. Si sigue conectado, 
+	// desconecta
+	~ClienteRemoto();
 };
 
 #endif

@@ -64,6 +64,8 @@ public:
 	 */
 	size_t cantidadFilas() const;
 
+	bool huboError() const;
+
 private:
 	void guardarFila(const std::string& fila);
 

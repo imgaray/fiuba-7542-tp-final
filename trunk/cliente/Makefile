@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread `p
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
-SUBDIRS = Vista
+SUBDIRS = Vista Modelo ../comun
 
 EXTERNOBJS = $(addsuffix .o, $(basename  */*.cpp))
 

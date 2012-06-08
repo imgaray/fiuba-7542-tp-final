@@ -12,93 +12,12 @@
 #include "ResolvedorConsultas.h"
 #include "ResolvedorEntradas.h"
 #include "../../comun/Consulta.h"
+#include "ThreadEntradaAgentes.h"
+#include "ThreadEntradaClientes.h"
 #include "Mutex.h"
 #include "../../comun/Definiciones.h"
 #include <iostream>
 using namespace std;
-
-#define PORT_AGENTE (Puerto) 12345
-#define PORT_CLIENTE (Puerto) 4321
-
-class ThreadEntradaAgentes: public Hilo {
-private:
-	Socket* entradaAgentes;
-	ContenedorAgentes& ca;	
-	ResolvedorEntradas& re;
-public:
-	void correr() {
-		while (corriendo()) {
-			Socket* sagente = entradaAgentes->escucharConexion();
-			if (sagente) {	
-				AgenteRemoto* ag = new AgenteRemoto(sagente, re);
-				ca.agregarAgente(ag);
-				ag->iniciar();
-			} else {
-				detener_entrada();
-			}
-		}
-	}
-	
-	void detener_entrada() {
-		if (corriendo())
-			parar();
-		if (entradaAgentes)	
-			entradaAgentes->desconectar();
-		sincronizar();
-	}
-	
-	ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent):
-		ca(cag), re(rent) {
-		entradaAgentes = new Socket(PORT_AGENTE);
-		entradaAgentes->enlazar();
-	}
-	
-	~ThreadEntradaAgentes() {
-		detener_entrada();
-		if (entradaAgentes)
-			delete entradaAgentes;
-	}
-};
-
-class ThreadEntradaClientes: public Hilo {
-private:
-	Socket* entradaClientes;
-	ContenedorClientes& cc;
-	ResolvedorConsultas& rc;
-public:
-	void correr() {
-		while (corriendo()) {
-			Socket* scliente = entradaClientes->escucharConexion();
-			if (scliente) {
-				ClienteRemoto* ag = new ClienteRemoto(scliente, rc);
-				cc.agregarCliente(ag);
-				ag->iniciar();
-			} else {
-				detener_entrada();
-			}
-		}
-	}
-	
-	void detener_entrada() {
-		if (corriendo())
-			parar();
-		if (entradaClientes)
-			entradaClientes->desconectar();
-		sincronizar();
-	}
-	
-	ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons):
-		cc(ccli), rc(rcons) {
-		entradaClientes = new Socket(PORT_CLIENTE);
-		entradaClientes->enlazar();
-	}
-	
-	~ThreadEntradaClientes() {
-		detener_entrada();
-		if (entradaClientes)
-			delete entradaClientes;
-	}
-};
 
 class ControladorServidor:  public ResolvedorConsultas, 
 							public ResolvedorEntradas,

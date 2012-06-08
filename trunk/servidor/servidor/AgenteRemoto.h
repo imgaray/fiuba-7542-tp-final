@@ -13,37 +13,20 @@ private:
 	// este resolvedor DEBE ser bloqueante
 	ResolvedorEntradas& blresolvedor;
 public:
-	void detener_agente() {
-		parar();
-		if (agente)
-			agente->desconectar();
-		sincronizar();
-	}
+	// Detiene la ejecucion del agente remoto. Cierra la conexion, detiene
+	// y sincroniza
+	void detener_agente();
 	
-	void correr() {
-		while (corriendo()) {
-			Consulta c;
-			bool valido = false;
-			if (agente->recibir(c)) {
-				Respuesta r = blresolvedor.resolverEntrada(c);
-				valido = agente->enviar(r);
-			}
-			if (!valido) {
-				detener_agente();
-			}
-		}
-	}
+	// metodo que se ejecuta mientras este corriendo el hilo
+	void correr();
 	
-	AgenteRemoto(Socket* agt, ResolvedorEntradas& rentr):
-		agente(agt), blresolvedor(rentr) {
-	}
+	// constructor del agente remoto. Recibe el socket activo conectado
+	// con el servidor y un resolvedor de entradas
+	AgenteRemoto(Socket* agt, ResolvedorEntradas& rentr);
 	
-	~AgenteRemoto() {
-		if (corriendo())
-			detener_agente();
-		if (agente)
-			delete agente;
-	}
+	// destructor de agente remoto. Si esta corriendo, lo detiene. Si
+	// esta conectado, lo desconecta
+	~AgenteRemoto();
 };
 
 #endif

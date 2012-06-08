@@ -93,7 +93,7 @@ void Socket::conectar(const std::string& huesped) {
     he = gethostbyname(huesped.c_str());
     if (he == NULL) {
         perror("Error al obtener le Host. ");
-        // printf("Error: %s \n", strerror(errno));
+       // printf("Error: %s \n", strerror(errno));
         _conectado = true;
         return;
     }

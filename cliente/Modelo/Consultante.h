@@ -7,11 +7,14 @@ class Consultante {
     public:
         Consultante();
         ~Consultante();
+
         void hacerConsulta() const;
-        void recibirRespuesta(const Respuesta& rta);
-        unsigned getID() const;
+        virtual void recibirRespuesta(const Respuesta& rta);
+
+        virtual unsigned getID() const;
     protected:
         Consulta consulta;
+        virtual void procesarRespuesta(const Respuesat& rta) = 0;
     private:
         static unsigned generadorID;
         unsigned ID;

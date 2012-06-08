@@ -25,6 +25,7 @@ enum Agregacion {
 	CONT = 70	// Contar
 };
 ///////////////////////////////////////////////////////
+// Estructuras Para Consulta
 ///////////////////////////////////////////////////////
 
 typedef std::string Campo;
@@ -59,6 +60,11 @@ typedef Campos Resultados;
  */
 typedef std::vector <Agregacion> Agregaciones;
 
+/*
+ * Estructura para guardar las tablas
+ */
+
+typedef std::vector <Campo> EntradasTabla;
 /////////////////////////////////////////////////////////////
 //
 // Estructuras para Respuesta

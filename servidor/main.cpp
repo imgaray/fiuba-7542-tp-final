@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
-#include "Servidor.h"
-#include "Definiciones.h"
+#include "servidor/Servidor.h"
+#include "../comun/Definiciones.h"
 
-void assert_prueba(bool resultado) {
-	std::cout << ((resultado)? "OK" : "ERROR") << std::endl;
-}
+//void assert_prueba(bool resultado) {
+//	std::cout << ((resultado)? "OK" : "ERROR") << std::endl;
+//}
 
-int main(int argc, char **argv) {
+int main__(int argc, char **argv) {
 	Servidor serv;
 	std::string a("");
 	std::string q("q");

@@ -1,15 +1,18 @@
 #include <iostream>
 #include <string>
-#include "Socket.h"
-#include "Definiciones.h"
-#include "Consulta.h"
-#include "Respuesta.h"
-#include "Organizacion.h"
-#include "Hilo.h"
-#include "Servidor.h"
+#include "../comun/Socket.h"
+#include "../comun/Definiciones.h"
+#include "../comun/Consulta.h"
+#include "../comun/Respuesta.h"
+#include "../comun/Organizacion.h"
+#include "../comun/Hilo.h"
+#include "servidor/Servidor.h"
 
 #define MAX_CLIENTES_SIMULTANEOS 2
 #define MAX_AGENTES_SIMULTANEOS 2
+
+#define PUERTO_CLIENTE 4321
+#define PUERTO_AGENTE 12345
 
 std::string vendedores[] = {"Seba", "Migue", "Piba", "Chabon", "Nacho"};
 std::string sucursales[] = {"Mordor", "Varela", "Moron", "Venus", "Lomas"};
@@ -21,9 +24,12 @@ void assert_prueba(bool resultado) {
 }
 
 void imprimirRespuesta(Respuesta& r) {
-	for (unsigned i = 0; i < r.cantidadFilas(); ++i) {
+
+	std::cout << ">>>Datos de Respuesta: " << r.serializar() << endl;
+
+	for (unsigned i = 0; i < r.cantidadFilas(); i++) {
 		std::cout << "::";
-		for (unsigned j = 0; j < r.cantidadColumnas(); ++j) {
+		for (unsigned j = 0; j < r.cantidadColumnas(); j++) {
 			std::cout.width(11);
 			std::cout.fill('.');
 			std::cout << r.dato(i,j) << "|";
@@ -89,7 +95,7 @@ public:
 			c[i].agregarCampo(fechas[i].c_str());
 			c[i].agregarCampo(productos[i].c_str());
 		}
-		Socket* sock = new Socket((Puerto)12345);
+		Socket* sock = new Socket((Puerto)PUERTO_AGENTE);
 		std::string host("localhost");
 		sock->conectar(host);
 		Respuesta r;
@@ -130,13 +136,19 @@ void pruebaAgentes() {
 	std::string fechas[] = {"20111212", "20080909", "20081230", "20120101", "19900502" };
 	std::string productos[] = {"chupetin", "notebook", "ferrari", "felicidad", "titulos de ingeniero"};
 	for (unsigned i = 0; i < 5; ++i) {
+		c[i].limpiar();
 		c[i].definirComoConsultaAgente();
-		c[i].agregarCampo(vendedores[i].c_str());
+
 		c[i].agregarCampo(sucursales[i].c_str());
+		c[i].agregarCampo(vendedores[i].c_str());
+
 		c[i].agregarCampo(fechas[i].c_str());
 		c[i].agregarCampo(productos[i].c_str());
+
+		c[i].agregarCampo("220");
+		c[i].agregarCampo("230");
 	}
-	Socket* sock = new Socket((Puerto)12345);
+	Socket* sock = new Socket((Puerto)PUERTO_AGENTE);
 	std::string host("localhost");
 	sock->conectar(host);
 	Respuesta r;
@@ -158,11 +170,11 @@ void pruebaClientes() {
 	Consulta c[5];
 	for (unsigned i = 0; i < 5; ++i) {
 		c[i].definirComoConsultaCliente();
-		c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
-		c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
-		c[i].agregarResultado("Vendedor");
+		//c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
+		//c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
+		c[i].agregarResultado(Organizacion::nombreCampo(i)); // "Vendedor"
 	}
-	Socket* sock = new Socket((Puerto)4321);
+	Socket* sock = new Socket((Puerto)PUERTO_CLIENTE);
 	std::string host("localhost");
 	sock->conectar(host);
 	Respuesta r;
@@ -220,10 +232,10 @@ int main(int argc, char **argv) {
 	cout << "===================================================" << endl;
 	pruebaClientes();
 	cout << "===================================================" << endl;
-	pruebaAgentesMultiples();
+	//pruebaAgentesMultiples();
 	cout << "===================================================" << endl;
-	pruebaClientesMultiples();
+	//pruebaClientesMultiples();
 	cout << "===================================================" << endl;
-	pruebaAmbosMultiples();
+	//pruebaAmbosMultiples();
 	return 0;
 }

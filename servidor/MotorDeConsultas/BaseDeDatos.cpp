@@ -199,7 +199,7 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 }
 
 Respuesta BaseDeDatos::agregarEntrada(const Consulta& entrada) {
-	Respuesta resp;
+	Respuesta resp("OK");
 	std::string reg;
 
 	unsigned i = 0 ;

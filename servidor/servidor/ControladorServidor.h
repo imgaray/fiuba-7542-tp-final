@@ -11,9 +11,9 @@
 #include "ContenedorClientes.h"
 #include "ResolvedorConsultas.h"
 #include "ResolvedorEntradas.h"
-#include "Consulta.h"
+#include "../../comun/Consulta.h"
 #include "Mutex.h"
-#include "Definiciones.h"
+#include "../../comun/Definiciones.h"
 #include <iostream>
 using namespace std;
 

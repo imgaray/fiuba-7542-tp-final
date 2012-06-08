@@ -87,6 +87,10 @@ void Respuesta::deserializar(const std::string& datos) {
 			hayMasFilas = false;
 		}
 	}
+
+	if (_datos.size() > 1) {
+		_columnas = _datos[0].size();
+	}
 }
 
 void Respuesta::guardarFila(const std::string& fila) {

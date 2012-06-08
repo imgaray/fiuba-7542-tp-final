@@ -4,7 +4,7 @@ void ClienteRemoto::detener_cliente() {
 	parar();
 	if (cliente)
 		cliente->desconectar();
-	sincronizar();
+//	sincronizar();
 }
 
 void ClienteRemoto::correr() {

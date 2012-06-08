@@ -70,8 +70,9 @@ void ControladorServidor::detener() {
 												++iter_clientes) {
 		ClienteRemoto* crem = *iter_clientes;
 		crem->detener_cliente();
+		crem->sincronizar();
 	}
-
+	tclientes->sincronizar();
 	mclientes.unlock();
 	magentes.lock();
 	tagentes->detener_entrada();
@@ -80,7 +81,9 @@ void ControladorServidor::detener() {
 												++iter_agentes) {
 		AgenteRemoto* arem = *iter_agentes;
 		arem->detener_agente();
+		arem->sincronizar();
 	}
+	tagentes->sincronizar();
 	magentes.unlock();
 }
 

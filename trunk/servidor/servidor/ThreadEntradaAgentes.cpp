@@ -18,7 +18,7 @@ void ThreadEntradaAgentes::detener_entrada() {
 		parar();
 	if (entradaAgentes)	
 		entradaAgentes->desconectar();
-	sincronizar();
+//	sincronizar();
 }
 
 ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent):

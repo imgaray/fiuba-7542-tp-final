@@ -4,7 +4,7 @@ void AgenteRemoto::detener_agente() {
 	parar();
 	if (agente)
 		agente->desconectar();
-	sincronizar();
+//	sincronizar();
 }
 
 void AgenteRemoto::correr() {

@@ -19,6 +19,8 @@ public:
 
 	static int convertirAEntero(const std::string& numero);
 
+	static void borrarCaracter(std::string& palabra, const char caracter);
+
 private:
 	Utilitario();
 	virtual ~Utilitario();

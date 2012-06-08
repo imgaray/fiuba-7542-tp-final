@@ -1,8 +1,8 @@
 #ifndef __CONTROLADOR_H
 #define __CONTROLADOR_H
 
-#include "BLQueue.h"
-#include "BLMap.h"
+//#include "BLQueue.h"
+//#include "BLMap.h"
 #include <utility>
 #include <list>
 #include "ClienteRemoto.h"

@@ -1,5 +1,5 @@
 #include "ControladorServidor.h"
-#include "BLMap.h"
+//#include "BLMap.h"
 #include "Mutex.h"
 #include <iostream>
 using namespace std;
@@ -24,14 +24,21 @@ Respuesta ControladorServidor::resolverEntrada(Consulta& entrada) {
 	
 Respuesta ControladorServidor::resolver(Consulta& consulta) {
 	cout << "nact = " << nact << " ncons = " << ncons << endl;
+
+
 	while (nact != 0)
 		mclientes.wait();
+
 	mclientes.lock();
 	ncons++;
 	mclientes.unlock();
+
+
 	Respuesta r = rcons.resolver(consulta);
 	mclientes.lock();
 	ncons--;
+
+
 	magentes.signal();
 	mclientes.signal();
 	mclientes.unlock();

@@ -3,11 +3,17 @@
 
 class VerificadorConsultasH {
 public:
-	bool verificarConsulta(Consulta& consulta) {
+	bool verificarConsulta(const Consulta& consulta) {
 		return true;
 	}
 	VerificadorConsultasH() {}
 	~VerificadorConsultasH() {}
+private:
+	bool hayDimesionesEnRes(const Consulta& cons);
+	bool hayHechosEnRes(const Consulta& cons);
+
+	bool cClienteValida(const Consulta& cons);
+	bool cAgenteValida(const Consulta& cons);
 };
 
 #endif

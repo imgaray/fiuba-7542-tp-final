@@ -1,13 +1,13 @@
 #ifndef __THREADENTRADACLIENTES__H
 #define __THREADENTRADACLIENTES__H
 
-#include "Socket.h"
+#include "../../comun/Socket.h"
 #include "ContenedorClientes.h"
 #include "ResolvedorConsultas.h"
 #include "ClienteRemoto.h"
-#include "Hilo.h"
+#include "../../comun/Hilo.h"
 
-#define PORT_CLIENTE (Puerto) 4321
+#define PORT_CLIENTE (Puerto) 4322
 
 class ThreadEntradaClientes: public Hilo {
 private:

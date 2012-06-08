@@ -20,6 +20,15 @@
 #define F_SEMES 'S'
 #define F_RANGO 'R'
 
+Fecha M_Fechas::fecha(const std::string& fechaComun) {
+	Fecha fecha;
+
+	for (unsigned i = 2 ; i >= 0 ; i--)
+		fecha += Utilitario::separar(fechaComun, '-',0);
+
+	return fecha;
+}
+
 
 Fecha M_Fechas::fecha(int dia, int mes, int anio) {
 	Fecha fecha;

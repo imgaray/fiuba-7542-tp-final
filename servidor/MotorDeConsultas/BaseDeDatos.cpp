@@ -156,6 +156,9 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 			calcularInterseccion(listaAux1, listaAux2, lista);
 			listaAux1 = lista;
 		}
+
+		if (consulta.cantidadFiltros() == 1)
+				listaAux1 = lista;
 	}
 }
 
@@ -190,6 +193,8 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 			calcularInterseccion(listaAux1, listaAux2, lista);
 			listaAux1 = lista;
 		}
+		if (consulta.cantidadEntradas() == 1)
+		lista = listaAux1;
 	}
 }
 
@@ -242,6 +247,7 @@ void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registr
 }
 
 void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& respuesta) {
+	respuesta.definirColumnas(consulta.cantidadResultados());
 	Lista_Id listaReg;
 	bool huboFiltrado = filtrarDatos(consulta,listaReg);
 	bool hayDimEnResultados = hayResultadosDeDimensiones(consulta);
@@ -327,36 +333,57 @@ bool BaseDeDatos::hayResultadosDeDimensiones(const Consulta& consulta) {
 }
 
 bool BaseDeDatos::filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) {
-	if (consulta.cantidadEntradas() == 0 && consulta.cantidadFiltros() == 0)
+
+	bool hayFiltros = (consulta.cantidadFiltros() > 0);
+	bool hayEntradas = (consulta.cantidadEntradas() > 0);
+
+	if (hayFiltros == false && hayEntradas == false)
 		return false;
 
 	Lista_Id idFiltros, idEntradas;
 
-	if (consulta.cantidadEntradas() > 0)
+	if (hayEntradas)
 		calcularEntradas(consulta, idEntradas);
 
 
-	if (consulta.cantidadFiltros() > 0)
+	if (hayFiltros)
 		calcularFiltros(consulta, idFiltros);
 
-	calcularInterseccion(idEntradas, idFiltros, listaReg);
+	if (hayFiltros && hayEntradas)
+		calcularInterseccion(idEntradas, idFiltros, listaReg);
+	else if (hayFiltros)
+		listaReg = idFiltros;
+	else
+		listaReg = idEntradas;
 
 	return true;
 }
 
 void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinaciones& mComb, Respuesta& resp) {
-    MapaCombinaciones::const_iterator it, itActual;
+    MapaCombinaciones::const_iterator it, itActual, itAux;
     itActual = mComb.begin(); 
     Lista_Id ids_aAgregar;
+    bool ultimoHecho = false;
+
     
     for (it = mComb.begin(); it != mComb.end(); ++it) {
         if (itActual->first == it->first) {
             ids_aAgregar.push_back(it->second);
+            ultimoHecho = false;
         }
         else {
-            itActual = it;     
+
             // hacer una agregacion individual para la lista
+            agregaParaFila(consulta, itActual->first, ids_aAgregar, resp);
+            ids_aAgregar.clear();
+            itActual = it;
+            --it;
+            ultimoHecho = true;
         }
+    }
+
+    if (ultimoHecho == false) {
+    	 agregaParaFila(consulta, itActual->first, ids_aAgregar, resp);
     }
 }
 
@@ -445,7 +472,9 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
     }
 
     for (unsigned i = 0; i < cantHechos ; i++) {
-    	resolucionesHec[i] = Utilitario::convertirAString(resHechos[i]);
+    	unsigned aux = resHechos[i];
+    	//resolucionesHec[i] = Utilitario::convertirAString(aux);
+    	resolucionesHec.push_back(Utilitario::convertirAString(aux));
     }
 
 
@@ -462,25 +491,41 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
     itrd = resolucionesDim.begin();
     itrh = resolucionesHec.begin();
 
+    if (cantHechos > 0 && cantDim > 0) {
+		//agrego los campo en el orden correcta a la consulta
+		while (itd != indDim.end() || ith != indHechos.end()) {
+			if ((*itd > *ith) || itd == indDim.end()) {
+				// agrego el campo de hecho de resolucion a la respuesta
+				resp.agregar(*itrh);
 
-    //agrego los campo en el orden correcta a la consulta
-    while (itd != indDim.end() || ith != indHechos.end()) {
-    	if (*itd > *ith) {
-    		// agrego el campo de resolucion a la respuesta
-    		resp.agregar(*itrh);
+				++itrh;
+				++ith;
+			}else if ((*itd < *ith)  || ith == indHechos.end()) {
+				// agregado el campo de dimension de resolucion a la respuesta
+				resp.agregar(*itrd);
 
-    		++itrh;
-    		++ith;
-    	}else if (*itd < *ith) {
-    		// agregado el campo de resolucion a la respuesta
+				++itrd;
+				++itd;
+			} else if (itd == indDim.end()) {
+
+
+			} else if (ith == indHechos.end()) {
+
+			}
+		}
+    }
+    else if (cantDim > 0) {
+    	for (unsigned i = 0 ; i < cantDim ; i++) {
     		resp.agregar(*itrd);
-
     		++itrd;
-    		++itd;
     	}
     }
-
-
+    else {
+    	for (unsigned i = 0 ; i < cantHechos ; i++) {
+			resp.agregar(*itrh);
+			++itrh;
+		}
+    }
     //Indico a la respuesta que se completo una fila
     resp.filaCompletada();
 }

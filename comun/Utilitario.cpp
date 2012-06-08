@@ -78,8 +78,13 @@ std::string Utilitario::convertirAString(const int& numero) {
 	std::stringstream ss;
 	std::string res;
 
-	ss << numero;
-	ss >> res;
+
+	if (numero == 0)
+		res = "0";
+	else {
+		ss << numero;
+		ss >> res;
+	}
 
 	return res;
 }

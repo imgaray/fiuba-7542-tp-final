@@ -15,38 +15,20 @@ private:
 	ContenedorClientes& cc;
 	ResolvedorConsultas& rc;
 public:
-	void correr() {
-		while (corriendo()) {
-			Socket* scliente = entradaClientes->escucharConexion();
-			if (scliente) {
-				ClienteRemoto* ag = new ClienteRemoto(scliente, rc);
-				cc.agregarCliente(ag);
-				ag->iniciar();
-			} else {
-				detener_entrada();
-			}
-		}
-	}
+	// metodo que se encarga de escuchar las conexiones de clientes entrantes
+	// si encuentra un cliente, crea un ClienteRemoto y lo manda a correr
+	void correr();
 	
-	void detener_entrada() {
-		if (corriendo())
-			parar();
-		if (entradaClientes)
-			entradaClientes->desconectar();
-		sincronizar();
-	}
+	// Desconecta, detiene y sincroniza el hilo
+	void detener_entrada();
 	
-	ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons):
-		cc(ccli), rc(rcons) {
-		entradaClientes = new Socket(PORT_CLIENTE);
-		entradaClientes->enlazar();
-	}
+	// constructor. Debe recibir un contenedor de clientes que sera el que
+	// vaya a poseer todos los clientes y un resolvedor de consultas, que 
+	// se encargara de las consultas del cliente
+	ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons);
 	
-	~ThreadEntradaClientes() {
-		detener_entrada();
-		if (entradaClientes)
-			delete entradaClientes;
-	}
+	// destructor. Si esta corriendo, para. Si esta conectado, desconecta
+	~ThreadEntradaClientes();
 };
 
 #endif

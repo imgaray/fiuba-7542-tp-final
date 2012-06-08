@@ -144,3 +144,7 @@ size_t Respuesta::cantidadColumnas() const {
 size_t Respuesta::cantidadFilas() const {
 	return _datos.size();
 }
+
+bool Respuesta::huboError() const {
+
+}

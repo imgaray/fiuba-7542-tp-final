@@ -7,12 +7,15 @@
 #include "../comun/Organizacion.h"
 #include "../comun/Hilo.h"
 #include "servidor/Servidor.h"
+#include "Mutex.h"
 
-#define MAX_CLIENTES_SIMULTANEOS 4
-#define MAX_AGENTES_SIMULTANEOS 1
+#define MAX_CLIENTES_SIMULTANEOS 2
+#define MAX_AGENTES_SIMULTANEOS 2
 
 #define PUERTO_CLIENTE 4321
 #define PUERTO_AGENTE 12345
+
+Mutex MUTEX;
 
 std::string vendedores[] = {"Seba", "Migue", "Piba", "Chabon", "Nacho"};
 std::string sucursales[] = {"Mordor", "Varela", "Moron", "Venus", "Lomas"};
@@ -72,6 +75,7 @@ public:
 		}
 		std::string host("localhost");
 		Respuesta r;
+		MUTEX.lock();
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
 			assert_prueba(sock? sock->conectado(): false);
@@ -83,6 +87,7 @@ public:
 		}
 		if (sock)
 			sock->desconectar();
+		MUTEX.unlock();
 	}
 };
 
@@ -118,6 +123,7 @@ public:
 			c[i].agregarCampo(productos[i].c_str());
 		}
 		Respuesta r;
+		MUTEX.lock();
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
 			assert_prueba(sock? sock->conectado() : false);
@@ -130,6 +136,7 @@ public:
 		}
 		if (sock)
 			sock->desconectar();
+		MUTEX.unlock();
 	}
 };
 

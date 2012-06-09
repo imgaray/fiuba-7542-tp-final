@@ -6,7 +6,7 @@
 #include "ResolvedorEntradas.h"
 #include "AgenteRemoto.h"
 #include "../../comun/Hilo.h"
-#define PORT_AGENTE (Puerto) 12346
+#define PORT_AGENTE (Puerto) 12345
 
 class ThreadEntradaAgentes: public Hilo {
 private:

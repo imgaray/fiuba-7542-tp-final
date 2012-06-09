@@ -18,7 +18,6 @@ void ThreadEntradaClientes::detener_entrada() {
 		parar();
 	if (entradaClientes)
 		entradaClientes->desconectar();
-	//sincronizar();
 	this->parar();
 }
 

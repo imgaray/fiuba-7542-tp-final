@@ -115,4 +115,6 @@ Filtrador::~Filtrador() {
         delete *it;
 }
 
-void Filtrador::procesarRespuesta(const Respuesta& rta) {}
+void Filtrador::hacerConsulta() {
+
+}

@@ -101,7 +101,7 @@ void Personalizador::construir() {
     Panel* pPanTorta3 = new Panel(*gTorta3, *f6);
     Gtk::HSeparator* sep1 = new Gtk::HSeparator();
     Gtk::HSeparator* sep2 = new Gtk::HSeparator();
-    Gtk::Table* pTable1 = new Gtk::Table(2, 2, false);
+    Gtk::Table* pTable1 = new Gtk::Table(2, 2, true);
     Gtk::Table* pTable2 = new Gtk::Table(3, 3, true);
     hijos.push_back(gBarras1);
     hijos.push_back(gTorta1);

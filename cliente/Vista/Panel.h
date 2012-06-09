@@ -4,13 +4,12 @@
 #include <gtkmm/box.h>
 #include <gtkmm/scrolledwindow.h>
 #include <gtkmm/viewport.h>
-#include "Consultante.h"
+#include "PadreDeConsultantes.h"
 
 class Grafico;
 class Filtrador;
-class Respuesta;
 
-class Panel : public Gtk::VBox, public Consultante {
+class Panel : public Gtk::VBox, public PadreDeConsultantes {
     public:
         Panel(Grafico& g, Filtrador& f);
         ~Panel();
@@ -21,8 +20,6 @@ class Panel : public Gtk::VBox, public Consultante {
         Filtrador& filtrador;
         Gtk::ScrolledWindow scrWin;
         Gtk::Viewport* pViewport;
-
-        virtual void procesarRespuesta(const Respuesta& rta);
 };
 
 #endif  // PANEL_H__

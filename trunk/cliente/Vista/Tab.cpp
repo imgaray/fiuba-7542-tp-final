@@ -9,3 +9,7 @@ Tab::~Tab() {}
 const Glib::ustring& Tab::getEtiqueta() {
     return etiqueta;
 }
+
+void Tab::hacerConsulta() {
+
+}

@@ -10,8 +10,8 @@
 #include <gtkmm/main.h>
 #include "VentanaCliente.h"
 
-#define GLADE "Vista/Cliente UI.glade"
-#define UI_PERSONALIZADA "ventanaPersonalizada.xml"
+#define UI_ESTATICA "Vista/Cliente UI.glade"
+#define UI_DINAMICA "ventanaPersonalizada.xml"
 #define VENTANA_CLIENTE "VentanaCliente"
 
 Cliente::Cliente(int argc, char* argv[]) {
@@ -34,7 +34,7 @@ void Cliente::run() {
 void Cliente::initGtk(int argc, char* argv[]) {
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     try {
-        builder->add_from_file(GLADE);
+        builder->add_from_file(UI_ESTATICA);
     }
     catch(const Glib::FileError& e) {
         std::cerr << "FileError: " << e.what() << std::endl;
@@ -51,7 +51,7 @@ void Cliente::initGtk(int argc, char* argv[]) {
 
     builder->get_widget_derived(VENTANA_CLIENTE, pVentana);
     if (pVentana) {
-        pVentana->personalizar(UI_PERSONALIZADA);
+        pVentana->personalizar(UI_DINAMICA);
         pVentana->show_all();
     }
 }

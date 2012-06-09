@@ -2,14 +2,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <gtkmm/builder.h>
-#include <gtkmm/box.h>
-#include <gtkmm/notebook.h>
 #include <gtkmm/toolbutton.h>
 #include <gtkmm/main.h>
-#include "GraficoDeBarras.h"
-#include "GraficoDeTorta.h"
-#include "Hecho.h"
-#include "Tab.h"
+#include "VentanaClienteDinamica.h"
 
 #define NOTEBOOK "Notebook"
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
@@ -19,13 +14,13 @@
 #define BOTON_SALIR "HerramientaSalir"
 
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
-    const Glib::RefPtr<Gtk::Builder>& _builder)
+    const Glib::RefPtr< Gtk::Builder >& _builder)
     : Gtk::Window(cobject), builder(_builder) {
     srand(time(NULL));
     Gtk::ToolButton* pAux;
 
-    builder->get_widget(NOTEBOOK, pNotebook);
-    if (!pNotebook) {
+    builder->get_widget_derived(NOTEBOOK, pVDinamica);
+    if (!pVDinamica) {
         std::cout << "Se rompió algo" << std::endl;
         return;
     }
@@ -59,23 +54,13 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
 VentanaCliente::~VentanaCliente() {}
 
 void VentanaCliente::personalizar(const char* archivo) {
-    if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
-        std::cout << "Error al abrir el archivo de personalización " << archivo
-                  << ". Contáctese con el administrador." << std::endl;
-        return;
-    }
-
-    while (dynBuilder.tieneSiguiente()) {
-        Tab& t = dynBuilder.siguiente();
-        pNotebook->append_page(t, t.getEtiqueta());
-    }
+    pVDinamica->personalizar(archivo);
 }
 
 void VentanaCliente::on_actualizar_button_clicked() {
     std::cout << BOTON_ACTUALIZAR " clicked." << std::endl;
 
-    /** @todo hacerConsulta() a cada hijo del notebook */
-    pNotebook->queue_draw();
+    pVDinamica->hacerConsulta();
 }
 
 void VentanaCliente::on_detenerActualizar_button_clicked() {

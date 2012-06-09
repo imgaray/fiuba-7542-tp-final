@@ -11,10 +11,12 @@
 #include "Definiciones.h"
 #include <iostream>
 // #include "common-Mensaje.h"
+#define MYPRINT(c) std::cout << "SOCKET DEBUG " <<(c) << std::endl
+
 
 // extern int errno;
 
-#define CONEX_EN_ESPERA 5
+#define CONEX_EN_ESPERA 10
 
 Socket::Socket(Puerto puerto) {
     this->inicializar();
@@ -191,8 +193,8 @@ bool Socket::recibirDatos(std::string& datos){
 		} else if (recibidos > 0) {
 			aux.clear();
 			aux.append(_buffer, recibidos);
-
-			aux.resize(recibidos);
+			MYPRINT(recibidos);
+		//	aux.resize(recibidos);
 
 			finDeMensaje = (aux.find(sep_fin) != std::string::npos);
 

@@ -8,6 +8,7 @@
 #include "ArchivoDeDatos.h"
 #include <iostream>
 #include "../../comun/Definiciones.h"
+#include <cstring>
 
 #define RUTA_POSCIONES_RELATIVAS "-id.dat"
 #define RUTA_ARCHIVO_DATOS "./datos.txt"
@@ -91,6 +92,7 @@ std::string ArchivoDeDatos::obtenerRegistro(Id_Registro id) {
 
 void ArchivoDeDatos::leerRegistro(const size_t& posicion, std::string& reg) {
 	char buffer[TAM_BUFFER];
+	memset(buffer,0,TAM_BUFFER);
 
 	reg.clear();
 	size_t bytesLeidos = 0;

@@ -41,9 +41,7 @@ private:
 //	ManejadorIds mids;
 	ThreadEntradaAgentes* tagentes;
 	ThreadEntradaClientes* tclientes;
-//	Mutex m;
-	Mutex magentes;
-	Mutex mclientes;
+	Mutex m;
 public:
 	Respuesta resolverEntrada(Consulta& entrada);
 	Respuesta resolver(Consulta& consulta);

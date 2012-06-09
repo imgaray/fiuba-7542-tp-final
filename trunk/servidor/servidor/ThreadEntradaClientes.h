@@ -7,7 +7,7 @@
 #include "ClienteRemoto.h"
 #include "../../comun/Hilo.h"
 
-#define PORT_CLIENTE (Puerto) 4322
+#define PORT_CLIENTE (Puerto) 4321
 
 class ThreadEntradaClientes: public Hilo {
 private:

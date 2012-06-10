@@ -484,6 +484,11 @@ void Consulta::limpiar() {
 	_yTabla.clear();
 }
 
+void Consulta::limpiarResultados() {
+	_agregaciones.clear();
+	_resultados.clear();
+}
+
 void Consulta::agregarXTablaP(const std::string& x) {
 	_xTabla.push_back(x);
 }

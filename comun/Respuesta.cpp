@@ -143,6 +143,10 @@ void Respuesta::agregar(const std::string& dato) {
 }
 void Respuesta::filaCompletada() {
 	_datos.push_back(_filaActual);
+
+	if (_filaActual.size() != _columnas)
+		_columnas = _filaActual.size();
+
 	_filaActual.clear();
 }
 

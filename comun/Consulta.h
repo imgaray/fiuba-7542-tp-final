@@ -28,6 +28,8 @@ public:
 
 	// Deja la consulta vacia
 	void limpiar();
+	// Deja sin resultados la consulta pero conservando Filtros y Entradas
+	void limpiarResultados();
 
 	/*
 	 * Agrega un Filtro a la Consulta

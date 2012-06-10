@@ -3,12 +3,20 @@
 
 #include "Definiciones.h"
 #include "Consultante.h"
+#include "Consulta.h"
+#include "Respuesta.h"
 #include "BLQueue.h"
+#include "Hilo.h"
+#include "Mutex.h"
 
 // TODO: hacer la clase consumer respuesta
-class ConsumerRespuesta {
+class ConsumerRespuesta: public Hilo {
+private:
+	ColaRespuestas& respuestas;
+	MapaConsultantes& consultantes;
 public:
-	ConsumerRespuesta();
+	void correr();
+	ConsumerRespuesta(ColaRespuestas& cresp, MapaConsultantes& mcons);
 	~ConsumerRespuesta();
 	
 };

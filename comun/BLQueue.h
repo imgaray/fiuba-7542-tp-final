@@ -9,9 +9,14 @@ template <typename T>
 class BLQueue {
 	std::queue<T> c;
 	Mutex m;
+	bool bopen;
 public:
+	bool open() {
+		return bopen;
+	}
+	
 	// constructor
-	BLQueue() {}
+	BLQueue() {bopen = true;}
 	// agregar
 	void push(const T &i) {
 		Lock l(m);
@@ -33,10 +38,26 @@ public:
 		Lock l(m);
 		return c.size();
 	}
-	// pop bloqueante
+	
+	void close() {
+		bopen = false;
+		m.signal();
+	}
+	
+	bool empty() {
+		Lock l(m);
+		return c.empty();
+	}
+	
+	// pop bloqueante. Cuando se cierra la cola, lanza la excepcion pertinente
 	T pop2() {
-		while (c.size() == 0)
+		while ((c.size() == 0) && open())
 			m.wait();
+		if (!open()) {
+			// aviso a los demas hilos que este se cayo
+			m.signal();
+			throw "cola cerrada";
+		}
 		T t=c.front();
 		c.pop();
 		return t;

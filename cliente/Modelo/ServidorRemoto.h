@@ -1,12 +1,16 @@
 #ifndef __SERVIDORREMOTO_H
 #define __SERVIDORREMOTO_H
 
-#include "Consulta.h"
 #include "Definiciones.h"
+#include "Consulta.h"
 #include "Respuesta.h"
+#include "Consultante.h"
+#include "ConsumerConsultas.h"
+#include "ConsumerRespuestas.h"
 #include "BLQueue.h"
 #include "BLMap.h"
 #include <utility>
+#include <list>
 
 class Consultante;
 
@@ -16,21 +20,14 @@ private:
 	ColaConsultas consultas;
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
-	friend ConsumerConsultas;
-	friend ConsumerRespuestas;
-	// faltaria ver donde van los hilos consumer/producer
+	ConsumerRespuesta crespuesta;
+	std::list<ConsumerConsulta*> cconsultas;
+	
 public:
 	ServidorRemoto();
 	~ServidorRemoto();
-	void enviarConsulta(Consultante* consultante, Consulta consulta) {
-		if (!consultantes.has(consultante->getID())) {
-			consultantes[consultante->getID()] = consultante;
-		}
-		ParConsulta par;
-		par.first = consultante->getID();
-		par.second = consulta;
-		consultas.push(par);
-	}
+	
+	void enviarConsulta(Consultante* consultante, Consulta consulta);
 };
 
 #endif

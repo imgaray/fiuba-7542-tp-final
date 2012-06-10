@@ -7,7 +7,7 @@
 #include "../comun/Organizacion.h"
 #include "../comun/Hilo.h"
 #include "servidor/Servidor.h"
-#include "Mutex.h"
+#include "../comun/Mutex.h"
 
 #define MAX_CLIENTES_SIMULTANEOS 2
 #define MAX_AGENTES_SIMULTANEOS 2
@@ -69,9 +69,9 @@ public:
 		Consulta c[5];
 		for (unsigned i = 0; i < 5; ++i) {
 			c[i].definirComoConsultaCliente();
-			c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
-			c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
-			c[i].agregarResultado("Vendedor");
+			//c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
+			//c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
+			c[i].agregarResultado(Organizacion::nombreCampo(i));
 		}
 		std::string host("localhost");
 		Respuesta r;
@@ -116,11 +116,16 @@ public:
 		std::cout << "=========PRUEBA AGENTE EN THREAD " << id << " ==========" << endl;
 		Consulta c[5];		
 		for (unsigned i = 0; i < 5; ++i) {
+			c[i].limpiar();
+
 			c[i].definirComoConsultaAgente();
 			c[i].agregarCampo(vendedores[i].c_str());
 			c[i].agregarCampo(sucursales[i].c_str());
 			c[i].agregarCampo(fechas[i].c_str());
 			c[i].agregarCampo(productos[i].c_str());
+
+			c[i].agregarCampo("100");
+			c[i].agregarCampo("200");
 		}
 		Respuesta r;
 		MUTEX.lock();
@@ -196,8 +201,8 @@ void pruebaClientes() {
 	Consulta c[5];
 	for (unsigned i = 0; i < 5; ++i) {
 		c[i].definirComoConsultaCliente();
-		c[i].agregarFiltro(Organizacion::nombreCampo(0), sucursales[i].c_str());
-		c[i].agregarFiltro(Organizacion::nombreCampo(1), "Seba");
+		//c[i].agregarFiltro(Organizacion::nombreCampo(0), sucursales[i].c_str());
+		//c[i].agregarFiltro(Organizacion::nombreCampo(1), "Seba");
 		c[i].agregarResultado(Organizacion::nombreCampo(i)); // "Vendedor"
 	}
 	Socket* sock = new Socket((Puerto)PUERTO_CLIENTE);

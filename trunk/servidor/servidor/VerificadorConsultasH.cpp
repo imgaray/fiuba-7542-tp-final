@@ -47,8 +47,8 @@ bool VerificadorConsultasH::cClienteValida(const Consulta& cons) {
 	if (!entradasCorrectos(cons))
 		return false;
 
-	if (!_hayAgreEnHechos && _hayDimEnRes)
-		return false;
+//	if (!_hayAgreEnHechos && _hayDimEnRes)
+//		return false;
 
 	/*
 	 * Agregar verificador de tabla pivote

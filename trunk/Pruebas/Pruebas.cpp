@@ -201,6 +201,55 @@ void testValidadorConsulta() {
 	}
 
 
+	c.limpiar();
+	c.definirConsultaDeTablaPivote();
+	c.defininirAgregacion(PROM, Organizacion::nombreHecho(0));
+	c.agregarXTablaP(Organizacion::nombreCampo(0));
+	c.agregarYTablaP(Organizacion::nombreCampo(1));
+
+	if (!vCons.verificarConsulta(c)) {
+		errores++;
+		cout << "Error al no aprobar consulta simple de Tabla Pivote." << endl;
+	}
+
+	c.limpiar();
+	c.definirConsultaDeTablaPivote();
+	c.defininirAgregacion(NADA, Organizacion::nombreHecho(0));
+	c.agregarXTablaP(Organizacion::nombreCampo(0));
+	c.agregarYTablaP(Organizacion::nombreCampo(1));
+
+	if (vCons.verificarConsulta(c)) {
+		errores++;
+		cout << "Error al aprobar consulta simple de Tabla Pivote." << endl;
+	}
+
+
+	c.limpiar();
+	c.definirConsultaDeTablaPivote();
+	c.defininirAgregacion(NADA, Organizacion::nombreHecho(0));
+	c.agregarXTablaP(Organizacion::nombreCampo(0));
+	//c.agregarYTablaP(Organizacion::nombreCampo(1));
+
+	if (vCons.verificarConsulta(c)) {
+		errores++;
+		cout << "Error al aprobar consulta simple de Tabla Pivote." << endl;
+	}
+
+
+
+	c.limpiar();
+	c.definirConsultaDeTablaPivote();
+	c.defininirAgregacion(SUM, Organizacion::nombreHecho(0));
+	c.agregarXTablaP("LALAL");
+	c.agregarYTablaP("LALALA");
+
+	if (vCons.verificarConsulta(c)) {
+		errores++;
+		cout << "Error al aprobar consulta simple de Tabla Pivote." << endl;
+	}
+
+
+
 	if (errores == 0) {
 		cout << "TEST SIN ERRORES++" << endl << endl;
 	}

@@ -2,6 +2,7 @@
 #define __SERVIDORREMOTO_H
 
 #include "Consulta.h"
+#include "Definiciones.h"
 #include "Respuesta.h"
 #include "BLQueue.h"
 #include "BLMap.h"
@@ -11,23 +12,25 @@ class Consultante;
 
 class ServidorRemoto {
 private:
-	// Definiciones de tipos
-	typedef std::pair<unsigned, Consulta> ParConsulta;
-	typedef std::pair<unsigned, Respuesta> ParRespuesta;
-	typedef BLQueue<ParConsulta> ColaConsultas;
-	typedef BLQueue<ParRespuesta> ColaRespuestas;
-	typedef BLMap<unsigned, Consultante*> MapaConsultantes;
-
 	// atributos contenedores
 	ColaConsultas consultas;
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
-
+	friend ConsumerConsultas;
+	friend ConsumerRespuestas;
 	// faltaria ver donde van los hilos consumer/producer
 public:
 	ServidorRemoto();
 	~ServidorRemoto();
-	// codigo, codigo everywhere! (Buzzlightyear)
+	void enviarConsulta(Consultante* consultante, Consulta consulta) {
+		if (!consultantes.has(consultante->getID())) {
+			consultantes[consultante->getID()] = consultante;
+		}
+		ParConsulta par;
+		par.first = consultante->getID();
+		par.second = consulta;
+		consultas.push(par);
+	}
 };
 
 #endif

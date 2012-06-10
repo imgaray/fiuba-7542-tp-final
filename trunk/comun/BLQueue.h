@@ -16,6 +16,7 @@ public:
 	void push(const T &i) {
 		Lock l(m);
 		c.push(i);
+		m.signal();
 	}
 	// sacar de tope de pila
 	void pop() {
@@ -33,11 +34,13 @@ public:
 		return c.size();
 	}
 	// pop bloqueante
-	/*T pop2() {
+	T pop2() {
+		while (c.size() == 0)
+			m.wait();
 		T t=c.front();
 		c.pop();
 		return t;
-	}*/
+	}
 };
 
 #endif

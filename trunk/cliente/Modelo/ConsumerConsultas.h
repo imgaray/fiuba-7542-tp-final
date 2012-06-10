@@ -3,6 +3,10 @@
 
 #include "Socket.h"
 #include "Definiciones.h"
+#include "Hilo.h"
+#include "Respuesta.h"
+#include "Consulta.h"
+#define MAX_OPEN_PORTS 10
 
 class ConsumerConsulta: public Hilo {
 private:
@@ -10,37 +14,13 @@ private:
 	ColaConsultas& consultas;
 	ColaRespuestas& respuestas;
 public:
-	void detener_hilo() {
-		servidor->desconectar();
-		parar();
-	}
-	void correr() {
-		while (corriendo()) {
-			if (servidor && servidor->conectado()) {
-				bool error = true;
-				ParConsulta pconsulta = consultas.pop2();
-				ParRespuesta prespuesta;
-				prespuesta.second = pconsulta.first;
-				if (servidor->enviar(pconsulta.second)) 
-					error = servidor->recibir(prespuesta.second);
-				if (error) {
-					detener_hilo();
-				} else {
-					respuestas.push(prespuesta);
-				}
-			}
-		}
-	}
-	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp):
-		consultas(cons), respuestas(resp) {
-		// TODO: terminar este constructor
-//		servidor = new Socket();
-	}
-	~ConsumerConsulta() {
-		if (corriendo())
-			detener_hilo();
-		delete servidor;
-	}
+	void detener_hilo();
+	
+	void correr();
+	
+	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp);
+	
+	~ConsumerConsulta();
 };
 
 #endif

@@ -15,6 +15,10 @@
 #include "BLMap.h"
 #include "BLQueue.h"
 #include <utility>
+class Consulta;
+class Respuesta;
+class Consultante;
+
 
 /*
  * Tipo de Funcion de agregacion para una consulta
@@ -115,12 +119,22 @@ typedef std::vector < Fila > DatosDeRespuesta;
 
 /////////////////////////////////////////////////////////
 //
-//TiposDatos para ServidorRemoto (cliente
+//Constantes (provisorias) de conexion, como puertos y demas
 //
 /////////////////////////////////////////////////////////
 
-typedef std::pair<unsigned, Consulta> ParConsulta;
-typedef std::pair<unsigned, Respuesta> ParRespuesta;
+#define PORT_CLIENTE (Puerto) 4321
+#define PORT_AGENTE (Puerto) 12345
+std::string SHOST = "localhost";
+
+/////////////////////////////////////////////////////////
+//
+//TiposDatos para ServidorRemoto (cliente)
+//
+/////////////////////////////////////////////////////////
+
+typedef std::pair<unsigned, Consulta*> ParConsulta;
+typedef std::pair<unsigned, Respuesta*> ParRespuesta;
 typedef BLQueue<ParConsulta> ColaConsultas;
 typedef BLQueue<ParRespuesta> ColaRespuestas;
 typedef BLMap<unsigned, Consultante*> MapaConsultantes;

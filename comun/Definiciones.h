@@ -12,6 +12,9 @@
 #include <map>
 #include <list>
 #include <string>
+#include "BLMap.h"
+#include "BLQueue.h"
+#include <utility>
 
 /*
  * Tipo de Funcion de agregacion para una consulta
@@ -109,6 +112,18 @@ typedef std::vector < Fila > DatosDeRespuesta;
  * Identificador de que la consulta pertenece al Agente
  */
 #define mensaje_cliente 'C'
+
+/////////////////////////////////////////////////////////
+//
+//TiposDatos para ServidorRemoto (cliente
+//
+/////////////////////////////////////////////////////////
+
+typedef std::pair<unsigned, Consulta> ParConsulta;
+typedef std::pair<unsigned, Respuesta> ParRespuesta;
+typedef BLQueue<ParConsulta> ColaConsultas;
+typedef BLQueue<ParRespuesta> ColaRespuestas;
+typedef BLMap<unsigned, Consultante*> MapaConsultantes;
 
 /////////////////////////////////////////////////////////
 //

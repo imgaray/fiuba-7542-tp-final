@@ -21,6 +21,7 @@ private:
 	bool hayAgregacionesEnHechos(const Consulta& cons);
 	bool filtrosCorrectos(const Consulta& cons);
 	bool entradasCorrectos(const Consulta& cons);
+	bool resultadoCorrectos(const Consulta& cons);
 
 	bool cClienteValida(const Consulta& cons);
 };

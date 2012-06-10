@@ -47,8 +47,11 @@ bool VerificadorConsultasH::cClienteValida(const Consulta& cons) {
 	if (!entradasCorrectos(cons))
 		return false;
 
-//	if (!_hayAgreEnHechos && _hayDimEnRes)
-//		return false;
+	if (!resultadoCorrectos(cons))
+		return false;
+
+	if ((_hayDimEnRes && _hayHechosEnRes) && !_hayAgreEnHechos)
+		return false;
 
 	/*
 	 * Agregar verificador de tabla pivote
@@ -71,6 +74,15 @@ bool VerificadorConsultasH::entradasCorrectos(const Consulta& cons) {
 	for (unsigned i=0; i < cons.cantidadEntradas() ; i++) {
 		if (!Organizacion::esDimension(cons.entrada(i)) &&
 				!Organizacion::esHecho(cons.entrada(i)))
+			return false;
+	}
+	return true;
+}
+
+bool VerificadorConsultasH::resultadoCorrectos(const Consulta& cons) {
+	for (unsigned i = 0; i < cons.cantidadResultados() ; i++) {
+		if (!Organizacion::esDimension(cons.resultado(i)) &&
+				!Organizacion::esHecho(cons.resultado(i)))
 			return false;
 	}
 	return true;

@@ -22,8 +22,11 @@ private:
 	bool filtrosCorrectos(const Consulta& cons);
 	bool entradasCorrectos(const Consulta& cons);
 	bool resultadoCorrectos(const Consulta& cons);
+	bool camposTablaPivoteCorrectos(const Consulta& cons);
+
 
 	bool cClienteValida(const Consulta& cons);
+	bool cClienteTP(const Consulta& cons);
 };
 
 #endif

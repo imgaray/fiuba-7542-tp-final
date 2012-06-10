@@ -7,7 +7,10 @@ bool VerificadorConsultasH::verificarConsulta(const Consulta& consulta) {
 	if (!consulta.esConsultaDeCliente())
 		return false;
 
-	return this->cClienteValida(consulta);
+	if (consulta.esConsultaDeTablaPivote())
+		return this->cClienteTP(consulta);
+	else
+		return this->cClienteValida(consulta);
 }
 
 bool VerificadorConsultasH::hayDimesionesEnRes(const Consulta& cons) {
@@ -53,12 +56,6 @@ bool VerificadorConsultasH::cClienteValida(const Consulta& cons) {
 	if ((_hayDimEnRes && _hayHechosEnRes) && !_hayAgreEnHechos)
 		return false;
 
-	/*
-	 * Agregar verificador de tabla pivote
-	 * comprobando los campos
-	 */
-
-
 	return true;
 }
 
@@ -88,3 +85,46 @@ bool VerificadorConsultasH::resultadoCorrectos(const Consulta& cons) {
 	return true;
 }
 
+bool VerificadorConsultasH::cClienteTP(const Consulta& cons) {
+	if (!filtrosCorrectos(cons))
+		return false;
+
+	if (!entradasCorrectos(cons))
+		return false;
+
+	if (cons.cantVarXTabla() == 0 || cons.cantVarYTabla() == 0)
+		return false;
+
+	if (hayDimesionesEnRes(cons))
+		return false;
+
+	if (cons.cantidadResultados() > 1)
+		return false;
+
+	if (cons.agregacionDeResultado(0) == NADA)
+		return false;
+
+	if (!resultadoCorrectos(cons))
+		return false;
+
+	if (!camposTablaPivoteCorrectos(cons))
+		return false;
+
+	return true;
+}
+
+bool VerificadorConsultasH::camposTablaPivoteCorrectos(const Consulta& cons) {
+	for (unsigned i = 0; i < cons.cantVarXTabla() ; i++) {
+		if (!Organizacion::esDimension(cons.xDeTablaPivote(i)) &&
+				!Organizacion::esHecho(cons.xDeTablaPivote(i)))
+			return false;
+	}
+
+	for (unsigned i = 0; i < cons.cantVarYTabla() ; i++) {
+		if (!Organizacion::esDimension(cons.yDeTablaPivote(i)) &&
+				!Organizacion::esHecho(cons.yDeTablaPivote(i)))
+			return false;
+	}
+
+	return true;
+}

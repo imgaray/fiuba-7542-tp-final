@@ -23,12 +23,29 @@
 Fecha M_Fechas::fecha(const std::string& fechaComun) {
 	Fecha fecha;
 
-	for (unsigned i = 2 ; i >= 0 ; i--)
-		fecha += Utilitario::separar(fechaComun, '-',0);
+	for (int i = 2 ; i >= 0 ; i--)
+		fecha += Utilitario::separar(fechaComun, '-',i);
 
 	return fecha;
 }
 
+
+bool M_Fechas::esFechaConvecional(const std::string& fecha) {
+	size_t pos;
+	pos = fecha.find('-',0);
+	if (pos != std::string::npos) {
+		pos = fecha.find('-',pos + 1);
+		if (pos != std::string::npos) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
 
 Fecha M_Fechas::fecha(int dia, int mes, int anio) {
 	Fecha fecha;
@@ -211,23 +228,31 @@ void M_Fechas::desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned
 
 	anio = anio * MUL_ANIO;
 
-	if (mul == 1) {
-		coef++;
-	}
+//	if (mul == 1) {
+//		coef++;
+//	}
+//
+//	if (coef == 1) {
+//		f1 = M_Fechas::convertir(anio + coef * MUl_MES + 1 * MUL_DIA);
+//	}
+//	else {
+//		f1 = M_Fechas::convertir(anio + (coef-1) *mul* MUl_MES + 1 * MUL_DIA);
+//	}
+//
+//	if (coef * mul >= 12) {
+//		f2 = M_Fechas::convertir(anio + 1 * MUL_ANIO +  1* MUl_MES + 1 * MUL_DIA);
+//	}
+//	else {
+//		f2 = M_Fechas::convertir(anio + (coef)* mul * MUl_MES + 1 * MUL_DIA);
+//	}
 
-	if (coef == 1) {
-		f1 = M_Fechas::convertir(anio + coef * MUl_MES + 1 * MUL_DIA);
-	}
-	else {
-		f1 = M_Fechas::convertir(anio + (coef-1) *mul* MUl_MES + 1 * MUL_DIA);
-	}
 
-	if (coef * mul >= 12) {
-		f2 = M_Fechas::convertir(anio + 1 * MUL_ANIO +  1* MUl_MES + 1 * MUL_DIA);
-	}
-	else {
-		f2 = M_Fechas::convertir(anio + (coef)* mul * MUl_MES + 1 * MUL_DIA);
-	}
+	f1 = M_Fechas::convertir(anio + (1 + (coef -1) *(mul))*MUl_MES + 1*MUL_DIA);
+
+	if ((coef*mul) == 12)
+		f2 = M_Fechas::convertir(anio + 1*MUL_ANIO + 1*MUl_MES + 1*MUL_DIA);
+	else
+		f2 = M_Fechas::convertir(anio + (1 + coef *(mul))*MUl_MES + 1*MUL_DIA);
 }
 
 void M_Fechas::desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2) {

@@ -1,19 +1,28 @@
+/*
+ * VerificadorConsultasH.h
+ *
+ *  Created on: 09/06/2012
+ *      Author: migue
+ */
+
 #ifndef __VALIDADORCONSULTAS_H
 #define __VALIDADORCONSULTAS_H
 
+class Consulta;
+
 class VerificadorConsultasH {
 public:
-	bool verificarConsulta(const Consulta& consulta) {
-		return true;
-	}
+	bool verificarConsulta(const Consulta& consulta);
 	VerificadorConsultasH() {}
 	~VerificadorConsultasH() {}
 private:
 	bool hayDimesionesEnRes(const Consulta& cons);
 	bool hayHechosEnRes(const Consulta& cons);
+	bool hayAgregacionesEnHechos(const Consulta& cons);
+	bool filtrosCorrectos(const Consulta& cons);
+	bool entradasCorrectos(const Consulta& cons);
 
 	bool cClienteValida(const Consulta& cons);
-	bool cAgenteValida(const Consulta& cons);
 };
 
 #endif

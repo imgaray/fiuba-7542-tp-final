@@ -69,6 +69,9 @@ public:
 	const std::string& xDeTablaPivote(unsigned i) const;
 	const std::string& yDeTablaPivote(unsigned i) const;
 
+	unsigned cantVarXTabla() const;
+	unsigned cantVarYTabla() const;
+
 	bool esConsultaDeTablaPivote() const;
 
 	// Agrega un campo a la consulta hecha por el Agente

@@ -30,11 +30,13 @@ void IndiceDeFechas::recuperar(const Fecha& fecha, Lista_Id& ids) {
 
 		this->guardarDesdeRango(nf1, nf2, ids);
 	}
+	else if (M_Fechas::esFechaConvecional(fecha)) {
+		FechaNumerica nFecha = M_Fechas::convertir(M_Fechas::fecha(fecha));
+		this->guardarIDs(nFecha, ids);
+	}
 	else {
 		FechaNumerica nFecha = M_Fechas::convertir(fecha);
-
 		this->guardarIDs(nFecha, ids);
-
 	}
 
 	ids.sort();
@@ -44,7 +46,15 @@ void IndiceDeFechas::recuperar(const Fecha& fecha, Lista_Id& ids) {
 
 void IndiceDeFechas::guardarFecha(const Fecha& fecha,const Id_Registro& id) {
 	if (M_Fechas::esSimple(fecha)) {
-		FechaNumerica nfecha = M_Fechas::convertir(fecha);
+		FechaNumerica nfecha;
+		if (M_Fechas::esFechaConvecional(fecha)) {
+			nfecha = M_Fechas::convertir(M_Fechas::fecha(fecha));
+		}
+		else {
+			nfecha = M_Fechas::convertir(fecha);
+		}
+
+
 		std::pair < FechaNumerica, Id_Registro> par(nfecha, id);
 		this->_fechas.insert(par);
 	}

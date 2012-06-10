@@ -32,4 +32,6 @@ typedef std::multimap < std::string, Id_Registro > MapaCombinaciones;
 
 typedef std::pair <Combinacion, Id_Registro> parMapaCombinaciones;
 
+typedef std::pair <MapaCombinaciones::const_iterator, MapaCombinaciones::const_iterator> parItMapaCombinaciones;
+
 #endif /* TIPOSDEDATOS_H_ */

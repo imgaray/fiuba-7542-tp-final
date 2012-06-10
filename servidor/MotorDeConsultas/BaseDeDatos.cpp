@@ -63,8 +63,17 @@ void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, L
 }
 
 void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp){
+	Lista_Id listaReg;
+	bool huboFiltrado = filtrarDatos(consulta,listaReg);
+	bool hayDimEnResultados = hayResultadosDeDimensiones(consulta);
+	bool filtrarHechos = hayFiltrosDeHechos(consulta);
+
+
 	resp.limpiar();
-	Consulta cX, cY;
+	Consulta cX(consulta), cY(consulta);
+
+	cX.limpiarResultados();
+	cY.limpiarResultados();
 
 	for (unsigned i = 0; i < consulta.cantVarXTabla() ; i++) {
 		cX.agregarResultado(consulta.xDeTablaPivote(i));
@@ -74,21 +83,199 @@ void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp)
 		cY.agregarResultado(consulta.yDeTablaPivote(i));
 	}
 
+	MapaCombinaciones mCombX, mCombY;
 
-	Respuesta rX, rY;
+	if (huboFiltrado) {
+		guardarCombinacionesTP(cX, mCombX, filtrarHechos, &listaReg);
+		guardarCombinacionesTP(cY, mCombY, filtrarHechos, &listaReg);
+	}
+	else {
+		guardarCombinacionesTP(cX, mCombX, filtrarHechos);
+		guardarCombinacionesTP(cY, mCombY, filtrarHechos);
+	}
 
-	this->resolverConsultaNormal(cX, rX);
-	this->resolverConsultaNormal(cY, rY);
+	hacerAgregacionesTP(cX, mCombX, cY, mCombY, consulta, resp);
 
 
 }
 
+void BaseDeDatos::hacerAgregacionesTP(const Consulta& cX,
+		const MapaCombinaciones& mCombX,
+		const Consulta& cY,
+		const MapaCombinaciones& mCombY,
+		const Consulta& cons,
+		Respuesta& resp) {
+	Lista_Id interseccionXY , lauxX, lauxY;
 
-void BaseDeDatos::obtenerIDs(const std::string& dimension,
-							const std::string& valorDim,
-							Lista_Id& lista) {
-	int indice = Organizacion::indiceDeCampo(dimension);
-	_indDimensiones[indice].recuperar(valorDim, lista);
+	parItMapaCombinaciones rango;
+	MapaCombinaciones::const_iterator itCombX, itCombY, itAuxX, itAuxY;
+
+	unsigned cantCol = 0;
+
+	/*
+	 * Guarda los primeros espacios en blanco para el grupo Y, y guardo tambien las primeras
+	 * filas que contendran los datos del grupo X
+	 */
+	for (unsigned i = 0; i < cX.cantidadResultados() ; i++) {
+
+		for (unsigned j = 0; j < cY.cantidadResultados() ; j++) {
+			resp.agregar("...");
+		}
+
+		itCombX = mCombX.begin();
+		while (itCombX != mCombX.end()) {
+			rango = mCombX.equal_range(itCombX->first);
+			resp.agregar(Utilitario::separar(itCombX->first, sep_campos, i));
+			itCombX = rango.second;
+		}
+
+		resp.filaCompletada();
+	}
+
+
+
+	/*
+	 * Doble ciclo que itera y calcula los resultados para cada fila en cada campo
+	 */
+	itCombY = mCombY.begin();
+	while (itCombY != mCombY.end()) {
+		rango = mCombY.equal_range(itCombY->first);
+
+		lauxY.clear();
+
+		/*
+		 * Guardo la combinacion para una combinacion del grupo Y
+		 */
+		for (itAuxY = rango.first; itAuxY != rango.second ; ++itAuxY) {
+			lauxY.push_back(itAuxY->second);
+		}
+
+		// Agrego los campos de Y de para cada Fila nueva
+		for (unsigned i = 0; i < cY.cantidadResultados() ; i++) {
+			resp.agregar(Utilitario::separar(itCombY->first, sep_campos, i));
+		}
+
+
+		/////////////////////////////////////////////////
+		/*
+		 * Guarda la lista de ids para una combinacion del grupo X
+		 */
+
+		itCombX = mCombX.begin();
+		while (itCombX != mCombX.end()) {
+			rango = mCombX.equal_range(itCombX->first);
+
+			lauxX.clear();
+
+			for (itAuxX = rango.first; itAuxX != rango.second ; ++itAuxX) {
+				lauxX.push_back(itAuxX->second);
+			}
+
+			itCombX = rango.second;
+
+
+			//Calcular las agregaciones para una campo de respuesta
+			interseccionXY.clear();
+			calcularInterseccion(lauxX, lauxY, interseccionXY);
+
+			// se calcula la agregacion
+			std::string resAgregacion;
+
+			calcularAgregacionTP(interseccionXY, cons, resAgregacion);
+
+			resp.agregar(resAgregacion);
+
+		}
+
+		resp.filaCompletada();
+
+		itCombY = mCombY.equal_range(itCombY->first).second;
+	}
+}
+
+
+void BaseDeDatos::calcularAgregacionTP(const Lista_Id& ids, const Consulta& cons, std::string& campoRes) {
+	Lista_Id::const_iterator it;
+	std::string reg, hecho;
+	unsigned hechoNumerico = 0 , acum = 0, auxProm = 0;
+	unsigned indHecho = Organizacion::indiceDeCampo(cons.resultado(0));
+	Agregacion agre = cons.agregacionDeResultado(0);
+
+	for (it = ids.begin(); it != ids.end(); ++it) {
+		reg = _archDatos.obtenerRegistro(*it);
+
+		hecho = Utilitario::separar(reg, sep_campos, indHecho);
+		hechoNumerico = Utilitario::convertirAEntero(hecho);
+
+		if (agre == PROM) {
+			calcularPromedio(acum, auxProm, hechoNumerico);
+		}
+		else {
+			calcularAgregacion(agre, acum, hechoNumerico);
+		}
+	}
+
+	campoRes = Utilitario::convertirAString(acum);
+}
+
+
+
+void BaseDeDatos::guardarCombinacionesTP(const Consulta& consulta,
+		MapaCombinaciones& mComb,
+		bool filtrarHechos,
+		Lista_Id* lReg) {
+
+
+	bool iterarPorLista = (lReg != NULL);
+
+	std::string reg;
+	Lista_Id::iterator it;
+	Id_Registro id = 0 ,idActual;
+	ComparadorHechos compHechos(filtrarHechos, consulta);
+
+	bool condClico;
+
+	// Estable y evaluo la condicion inicial
+
+	if (iterarPorLista) {
+		it = lReg->begin();
+		condClico = (it != lReg->end());
+	}
+	else {
+		condClico = (id < _archDatos.cantidadRegistros());
+	}
+
+//	for (it = lReg.begin(); it != lReg.end() ; ++it)
+	while (condClico)
+	{
+		if (iterarPorLista)
+			idActual = *it;
+		else
+			idActual = id;
+
+		reg = this->_archDatos.obtenerRegistro(idActual);
+		std::string combinacion;
+		unsigned numArgRegistro;
+
+		if (compHechos.registroAceptado(reg)) {
+
+			for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
+					numArgRegistro = Organizacion::indiceDeCampo(consulta.resultado(i));
+					combinacion +=Utilitario::separar(reg, sep_campos, numArgRegistro);
+					combinacion +=sep_campos;
+			}
+			mComb.insert(parDeConjunto(combinacion, idActual));
+		}
+
+		if (iterarPorLista) {
+			++it;
+			condClico = (it != lReg->end());
+		}
+		else {
+			id++;
+			condClico = (id < _archDatos.cantidadRegistros());
+		}
+	}
 }
 
 
@@ -254,6 +441,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 		else {
 			// Con filtros
 			// sin dimensiones en resultado
+			guardarHechos(consulta, listaReg, respuesta);
 		}
 	}
 	else {
@@ -264,6 +452,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 		else {
 			// Sin ningun filtro
 			// sin dimensiones en resultados
+			guardarHechos(consulta, respuesta);
 		}
 	}
 
@@ -272,6 +461,108 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 	}
 	else {
 		respuesta.mensajeInterno(Respuesta::respuestaValida);
+	}
+}
+
+bool BaseDeDatos::aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice) {
+	bool hacerAgregacion = true;
+	for (unsigned i = 0; i < cons.cantidadResultados() && hacerAgregacion; i++) {
+		hacerAgregacion = hacerAgregacion && (cons.agregacionDeResultado(i) != NADA);
+		indice.push_back(Organizacion::indiceDeCampo(cons.resultado(i)));
+	}
+
+	return hacerAgregacion;
+}
+
+void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
+	resp.definirColumnas(cons.cantidadResultados());
+
+	std::vector <unsigned> _indHechos;
+	bool hacerAgre = aplicarAgregacionHechos(cons, _indHechos);
+	std::string reg, campo;
+	unsigned campoNumerico;
+	unsigned auxProm = 0;
+	std::vector <unsigned> _acumHechos(_indHechos.size(), 0);
+
+	for (Id_Registro id = 0; id < _archDatos.cantidadRegistros() ; id++) {
+		reg = _archDatos.obtenerRegistro(id);
+
+		for (unsigned i = 0; i < cons.cantidadResultados() ; i++) {
+			campo = Utilitario::separar(reg, sep_campos, _indHechos[i]);
+			if (hacerAgre) {
+				campoNumerico = Utilitario::convertirAEntero(campo);
+				if (cons.agregacionDeResultado(i) == PROM) {
+					calcularPromedio(_acumHechos[i], auxProm, campoNumerico);
+				}
+				else {
+					calcularAgregacion(cons.agregacionDeResultado(i), _acumHechos[i], campoNumerico);
+				}
+			}
+			else {
+				resp.agregar(campo);
+			}
+		}
+
+		if (!hacerAgre) {
+			resp.filaCompletada();
+		}
+
+	}
+
+	if (hacerAgre) {
+		for (unsigned i = 0; i < _acumHechos.size() ; i++) {
+			campo = Utilitario::convertirAString(_acumHechos[i]);
+			resp.agregar(campo);
+		}
+		resp.filaCompletada();
+	}
+}
+
+
+void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respuesta& resp) {
+	resp.definirColumnas(cons.cantidadResultados());
+
+	std::vector <unsigned> _indHechos;
+	bool hacerAgre = aplicarAgregacionHechos(cons, _indHechos);
+	std::string reg, campo;
+	unsigned campoNumerico;
+	unsigned auxProm = 0;
+	std::vector <unsigned> _acumHechos(_indHechos.size(), 0);
+
+
+	Lista_Id::const_iterator it;
+
+	for (it = ids.begin() ; it != ids.end() ; ++it) {
+		reg = _archDatos.obtenerRegistro(*it);
+
+		for (unsigned i = 0; i < cons.cantidadResultados() ; i++) {
+			campo = Utilitario::separar(reg, sep_campos, _indHechos[i]);
+			if (hacerAgre) {
+				campoNumerico = Utilitario::convertirAEntero(campo);
+				if (cons.agregacionDeResultado(i) == PROM) {
+					calcularPromedio(_acumHechos[i], auxProm, campoNumerico);
+				}
+				else {
+					calcularAgregacion(cons.agregacionDeResultado(i), _acumHechos[i], campoNumerico);
+				}
+			}
+			else {
+				resp.agregar(campo);
+			}
+		}
+
+		if (!hacerAgre) {
+			resp.filaCompletada();
+		}
+
+	}
+
+	if (hacerAgre) {
+		for (unsigned i = 0; i < _acumHechos.size() ; i++) {
+			campo = Utilitario::convertirAString(_acumHechos[i]);
+			resp.agregar(campo);
+		}
+		resp.filaCompletada();
 	}
 }
 

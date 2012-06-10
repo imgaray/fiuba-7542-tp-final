@@ -18,9 +18,10 @@ public:
 
 	/*
 	 * Se ingresa fecha como "12-12-2012" y se retorna en el formato
-	 * correcto
+	 * correcto utilazado para el indice
 	 */
 	static Fecha fecha(const std::string& fechaComun);
+	static bool esFechaConvecional(const std::string& fecha);
 
 	static Fecha rango(const Fecha& f1,const Fecha& f2);
 	static Fecha fecha(int dia, int mes, int anio);

@@ -10,19 +10,18 @@
 #include "../../comun/Respuesta.h"
 #include "../../comun/Organizacion.h"
 #include "../../comun/Utilitario.h"
+#include "ComparadorHechos.h"
 
 BaseDeDatos::BaseDeDatos(const std::string rutaArchivo) :
 	_archDatos(rutaArchivo) {
 
 	_indDimensiones = new Indice<Dimension> [Organizacion::cantidadDimensionesSimples()];
-	_cnjDimensiones = new ConjuntoValoresDimension [Organizacion::cantidadDimensionesSimples()];
-	// _indHechos = Indice<Hecho> [Organizacion::cantidadHechos()];
-
+	//_cnjDimensiones = new ConjuntoValoresDimension [Organizacion::cantidadDimensionesSimples()];
 }
 
 BaseDeDatos::~BaseDeDatos() {
 	delete[] _indDimensiones;
-	delete[] _cnjDimensiones;
+	//delete[] _cnjDimensiones;
 	//delete[] _indHechos;
 }
 
@@ -64,6 +63,23 @@ void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, L
 }
 
 void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp){
+	resp.limpiar();
+	Consulta cX, cY;
+
+	for (unsigned i = 0; i < consulta.cantVarXTabla() ; i++) {
+		cX.agregarResultado(consulta.xDeTablaPivote(i));
+	}
+
+	for (unsigned i = 0; i < consulta.cantVarYTabla() ; i++) {
+		cY.agregarResultado(consulta.yDeTablaPivote(i));
+	}
+
+
+	Respuesta rX, rY;
+
+	this->resolverConsultaNormal(cX, rX);
+	this->resolverConsultaNormal(cY, rY);
+
 
 }
 
@@ -77,75 +93,94 @@ void BaseDeDatos::obtenerIDs(const std::string& dimension,
 
 
 void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
-	if (consulta.cantidadFiltros() > 0) {
+	bool hayDimension = false;
+	unsigned cantFiltrosSimples = 0;
+	for (unsigned j = 0 ; j < consulta.cantidadFiltros() && !hayDimension; j++){
 		lista.clear();
 		Lista_Id listaAux1, listaAux2;
-		std::string filtro = consulta.filtro(0);
-		std::string valor = consulta.valorFiltro(0);
+		std::string filtro = consulta.filtro(j);
+		std::string valor = consulta.valorFiltro(j);
 
 		int indice = Organizacion::indiceDeCampo(filtro);
 
 		if (Organizacion::esDimensionEspecial(filtro)) {
 			_indFechas.recuperar(valor, listaAux1);
+			hayDimension = true;
+			cantFiltrosSimples++;
 		}
 		else if (Organizacion::esDimension(filtro)) {
 			_indDimensiones[indice].recuperar(valor, listaAux1);
+			hayDimension = true;
+			cantFiltrosSimples++;
 		}
 
-		for (unsigned i = 1 ; i < consulta.cantidadFiltros() ; i++) {
-			filtro = consulta.filtro(i);
-			valor = consulta.valorFiltro(filtro);
-			indice = Organizacion::indiceDeCampo(filtro);
+		for (unsigned i = (j + 1) ; i < consulta.cantidadFiltros() && hayDimension ; i++) {
+			if (Organizacion::esDimension(consulta.filtro(i))) {
+				filtro = consulta.filtro(i);
+				valor = consulta.valorFiltro(filtro);
+				indice = Organizacion::indiceDeCampo(filtro);
 
+				if (Organizacion::esDimensionEspecial(filtro)) {
+					_indFechas.recuperar(valor, listaAux2);
+					cantFiltrosSimples++;
+				}
+				else {
+					_indDimensiones[indice].recuperar(valor, listaAux2);
+					cantFiltrosSimples++;
+				}
 
-			if (Organizacion::esDimensionEspecial(filtro)) {
-				_indFechas.recuperar(valor, listaAux2);
-			}
-			else if (Organizacion::esDimension(filtro)) {
-				_indDimensiones[indice].recuperar(valor, listaAux2);
-			}
-
-			calcularInterseccion(listaAux1, listaAux2, lista);
-			listaAux1 = lista;
-		}
-
-		if (consulta.cantidadFiltros() == 1)
+				calcularInterseccion(listaAux1, listaAux2, lista);
 				listaAux1 = lista;
+			}
+		}
+
+		if (cantFiltrosSimples == 1)
+				lista = listaAux1;
 	}
 }
 
 void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
-	if (consulta.cantidadEntradas() > 0) {
+	bool hayDimension = false;
+	unsigned cantEntradasSimples = 0;
+	for (unsigned j = 0 ; j < consulta.cantidadEntradas() && !hayDimension; j++){
 		lista.clear();
 		Lista_Id listaAux1, listaAux2;
-		std::string entrada = consulta.entrada(0);
-		std::string valor = consulta.valorEntrada(0);
+		std::string entrada = consulta.entrada(j);
+		std::string valor = consulta.valorEntrada(j);
 
 		int indice = Organizacion::indiceDeCampo(entrada);
 
 		if (Organizacion::esDimensionEspecial(entrada)) {
 			_indFechas.recuperar(valor, listaAux1);
+			hayDimension = true;
+			cantEntradasSimples++;
 		}
 		else if (Organizacion::esDimension(entrada)) {
 			_indDimensiones[indice].recuperar(valor, listaAux1);
+			hayDimension = true;
+			cantEntradasSimples++;
 		}
 
-		for (unsigned i = 1 ; i < consulta.cantidadEntradas() ; i++) {
+		for (unsigned i = (j + 1) ; i < consulta.cantidadEntradas() && hayDimension ; i++) {
 			entrada = consulta.entrada(i);
-			valor = consulta.valorEntrada(entrada);
-			indice = Organizacion::indiceDeCampo(entrada);
+			if (Organizacion::esDimension(entrada)) {
+				valor = consulta.valorEntrada(entrada);
+				indice = Organizacion::indiceDeCampo(entrada);
 
-			if (Organizacion::esDimensionEspecial(entrada)) {
-							_indFechas.recuperar(valor, listaAux2);
-			}
-			else if (Organizacion::esDimension(entrada)) {
-				_indDimensiones[indice].recuperar(valor, listaAux2);
-			}
+				if (Organizacion::esDimensionEspecial(entrada)) {
+					_indFechas.recuperar(valor, listaAux2);
+					cantEntradasSimples++;
+				}
+				else {
+					_indDimensiones[indice].recuperar(valor, listaAux2);
+					cantEntradasSimples++;
+				}
 
-			calcularInterseccion(listaAux1, listaAux2, lista);
-			listaAux1 = lista;
+				calcularInterseccion(listaAux1, listaAux2, lista);
+				listaAux1 = lista;
+			}
 		}
-		if (consulta.cantidadEntradas() == 1)
+		if (cantEntradasSimples == 1)
 		lista = listaAux1;
 	}
 }
@@ -179,7 +214,7 @@ Respuesta BaseDeDatos::agregarEntrada(const Consulta& entrada) {
 
 void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registro& id) {
 	std::string dimension;
-
+	// indice de dimension de la clase Organizacion
 	int indd = 0;
 
 	for (unsigned i = 0 ; i < Organizacion::cantidadDimensionesTotal() ; i++) {
@@ -244,43 +279,62 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg,
 	std::string reg;
 	Lista_Id::iterator it;
 
+	ComparadorHechos compHechos(filtrarHechos, consulta);
+
 	/*
 	 * Completar para que filtre registros con filtro de "HECHOS"...
+	 *
+	 * Hecho++
 	 */
 
 	for (it = lReg.begin(); it != lReg.end() ; ++it) {
 		reg = this->_archDatos.obtenerRegistro(*it);
 		std::string combinacion;
 		unsigned numArgRegistro;
-		for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
-			if (Organizacion::esDimension(consulta.resultado(i))) {
-				numArgRegistro = Organizacion::indiceDeCampo(consulta.resultado(i));
-				combinacion +=Utilitario::separar(reg, sep_campos, numArgRegistro);
-				combinacion +=sep_campos;
+
+		if (compHechos.registroAceptado(reg)) {
+
+			for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
+				if (Organizacion::esDimension(consulta.resultado(i))) {
+					numArgRegistro = Organizacion::indiceDeCampo(consulta.resultado(i));
+					combinacion +=Utilitario::separar(reg, sep_campos, numArgRegistro);
+					combinacion +=sep_campos;
+				}
 			}
+			mComb.insert(parDeConjunto(combinacion, *it));
 		}
-		mComb.insert(parDeConjunto(combinacion, *it));
 	}
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, MapaCombinaciones& mComb, bool filtrarHechos) {
 	std::string reg;
+	std::string combinacion;
+	ComparadorHechos compHechos(filtrarHechos, consulta);
+
 	for (Id_Registro id = 0; id < _archDatos.cantidadRegistros() ; id++) {
 		reg = this->_archDatos.obtenerRegistro(id);
-		std::string combinacion;
-		for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
-			if (Organizacion::esDimension(consulta.resultado(i))) {
-				combinacion +=Utilitario::separar(reg, sep_campos,Organizacion::indiceDeCampo(consulta.resultado(i)));
-				combinacion +=sep_campos;
+		combinacion.clear();
+		if (compHechos.registroAceptado(reg))
+		{
+			for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
+				if (Organizacion::esDimension(consulta.resultado(i))) {
+					combinacion +=Utilitario::separar(reg, sep_campos,Organizacion::indiceDeCampo(consulta.resultado(i)));
+					combinacion +=sep_campos;
+				}
 			}
+			mComb.insert(parDeConjunto(combinacion, id));
 		}
-		mComb.insert(parDeConjunto(combinacion, id));
 	}
 }
 
 bool BaseDeDatos::hayFiltrosDeHechos(const Consulta& consulta) {
 	for (unsigned i = 0 ; i < consulta.cantidadFiltros() ; i++) {
 		if (Organizacion::esHecho(consulta.filtro(i)))
+			return true;
+	}
+
+	for (unsigned i = 0 ; i < consulta.cantidadEntradas() ; i++) {
+		if (Organizacion::esHecho(consulta.entrada(i)))
 			return true;
 	}
 	return false;
@@ -295,9 +349,21 @@ bool BaseDeDatos::hayResultadosDeDimensiones(const Consulta& consulta) {
 }
 
 bool BaseDeDatos::filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) {
+	unsigned cantFiltrosS = 0;
+	for (unsigned i=0 ; i < consulta.cantidadFiltros() ; i++) {
+		if (Organizacion::esDimension(consulta.filtro(i)))
+			cantFiltrosS++;
+	}
 
-	bool hayFiltros = (consulta.cantidadFiltros() > 0);
-	bool hayEntradas = (consulta.cantidadEntradas() > 0);
+	unsigned cantEntradasS = 0;
+	for (unsigned i=0 ; i < consulta.cantidadEntradas() ; i++) {
+		if (Organizacion::esDimension(consulta.entrada(i)))
+			cantEntradasS++;
+	}
+
+	bool hayFiltros = (cantFiltrosS > 0);
+	bool hayEntradas = (cantEntradasS > 0);
+
 
 	if (hayFiltros == false && hayEntradas == false)
 		return false;
@@ -343,7 +409,7 @@ void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinac
         }
     }
 
-    if (ultimoHecho == false) {
+    if (mComb.size() > 0 && ultimoHecho == false) {
     	 agregaParaFila(consulta, itActual->first, ids_aAgregar, resp);
     }
 }
@@ -493,9 +559,7 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
 
 
 void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, unsigned aAgregar) {
-
 	switch (agre) {
-
 	case NADA:
 		// Imprmir error;
 		break;
@@ -506,6 +570,8 @@ void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, uns
 		break;
 
 	case MIN:
+		if (acum == 0)
+			acum = aAgregar;
 		if (aAgregar < acum)
 			acum = aAgregar;
 		break;
@@ -521,8 +587,6 @@ void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, uns
 	default: // imprimir error
 		break;
 	}
-
-
 }
 
 void BaseDeDatos::calcularPromedio(unsigned& acum, unsigned& cant, const unsigned& nuevoHecho) {

@@ -133,6 +133,13 @@ const std::string& Consulta::yDeTablaPivote(unsigned i) const {
 		return Consulta::s_nulo;
 }
 
+unsigned Consulta::cantVarXTabla() const {
+	return _xTabla.size();
+}
+unsigned Consulta::cantVarYTabla() const {
+	return _yTabla.size();
+}
+
 void Consulta::definirConsultaDeTablaPivote() {
 	_consultaTablaPivote = true;
 	_consultaDeCliente = true;

@@ -9,7 +9,7 @@ VentanaClienteDinamica::VentanaClienteDinamica(BaseObjectType* cobject,
 }
 
 VentanaClienteDinamica::~VentanaClienteDinamica() {}
-
+#include "FiltradoresTab.h"
 void VentanaClienteDinamica::personalizar(const char* archivo) {
     if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
         std::cout << "Error al abrir el archivo de personalización " << archivo
@@ -19,7 +19,6 @@ void VentanaClienteDinamica::personalizar(const char* archivo) {
 
     while (dynBuilder.tieneSiguiente()) {
         Tab& t = dynBuilder.siguiente();
-        std::cout << "Pvcd agregó un hijo (tab: " << &t << ")" << std::endl;
         agregarConsultante(&t);
         append_page(t, t.getEtiqueta());
     }

@@ -11,6 +11,7 @@ class PadreDeConsultantes {
         PadreDeConsultantes();
         virtual void hacerConsulta(ServidorRemoto& server);
         virtual void cancelarConsulta(ServidorRemoto& server);
+        void informarConsultaIniciada();
         void informarConsultaTerminada();
         void agregarConsultante(PadreDeConsultantes* c);
         void setSpinner(Gtk::Spinner* s);

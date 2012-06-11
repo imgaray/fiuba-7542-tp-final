@@ -11,6 +11,5 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
 FiltradorInputDimension::~FiltradorInputDimension() {}
 
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
-//    if (padre)
-//        padre->setSpinner(&s);
+
 }

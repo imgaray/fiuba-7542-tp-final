@@ -6,8 +6,8 @@
 
 Filtrador::Filtrador(const Glib::ustring& _filtro) : filtro(_filtro) {
     centradorIzquierdo.pack_end(filtro, false, false);
-    add(centradorIzquierdo);
-    add(centradorDerecho);
+    pack_start(centradorIzquierdo, true, true);
+    pack_start(centradorDerecho, true, true);
 }
 
 Filtrador::~Filtrador() {}

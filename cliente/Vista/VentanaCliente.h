@@ -3,6 +3,7 @@
 
 #include <gtkmm/window.h>
 #include <gtkmm/builder.h>
+#include "ServidorRemoto.h"
 
 class VentanaClienteDinamica;
 
@@ -15,11 +16,13 @@ class VentanaCliente : public Gtk::Window {
     private:
         Glib::RefPtr< Gtk::Builder > builder;
         VentanaClienteDinamica* pVDinamica;
+        ServidorRemoto server;
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();
         void on_exportarPDF_button_clicked();
         void on_configurar_button_clicked();
         void on_salir_button_clicked();
+        bool on_timeout();
 };
 
 #endif  // VENTANA_CLIENTE_H

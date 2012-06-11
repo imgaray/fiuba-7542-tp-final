@@ -4,13 +4,15 @@
 #include "PadreDeConsultantes.h"
 #include "Consulta.h"
 class Respuesta;
+class ServidorRemoto;
 
 class Consultante : public PadreDeConsultantes {
     public:
         Consultante();
         ~Consultante();
 
-        virtual void hacerConsulta();
+        virtual void hacerConsulta(ServidorRemoto& server);
+        virtual void cancelarConsulta(ServidorRemoto& server);
         virtual void recibirRespuesta(const Respuesta& rta);
 
         virtual unsigned getID() const;

@@ -4,19 +4,42 @@
 PadreDeConsultantes::PadreDeConsultantes() {
     spinner = NULL;
     padre = NULL;
+    hijosActualizando = 0;
 }
 
-void PadreDeConsultantes::hacerConsulta() {
+void PadreDeConsultantes::hacerConsulta(ServidorRemoto& server) {
     std::list< PadreDeConsultantes* >::iterator it = hijos.begin();
-    for ( ; it != hijos.end(); ++it) {
-        (*it)->hacerConsulta();
-        Lock l(m);
-        ++hijosActualizando;
-    }
-    if (hijosActualizando > 0 && spinner) {
+    for ( ; it != hijos.end(); ++it)
+        (*it)->hacerConsulta(server);
+
+    Lock l(m);
+    /** @todo revisar esta línea, porque la lógica dice que debería ser
+     * ++hijosActualizando en cada iteración del for anterior */
+    hijosActualizando = hijos.size();
+    if (hijosActualizando > 0) {
         std::cout << "Hijos actualizando: " << hijosActualizando << std::endl;
-        spinner->show();
-        spinner->start();
+        if (spinner) {
+            spinner->show();
+            spinner->start();
+        }
+    }
+}
+
+void PadreDeConsultantes::cancelarConsulta(ServidorRemoto& server) {
+    std::list< PadreDeConsultantes* >::iterator it = hijos.begin();
+    for ( ; it != hijos.end(); ++it)
+        (*it)->cancelarConsulta(server);
+
+    std::cout << "Hijos actualizando: " << hijosActualizando << std::endl;
+
+
+    if (hijosActualizando == 0) {
+        if (spinner) {
+            spinner->stop();
+            spinner->hide();
+        }
+        if (padre)
+            padre->informarConsultaTerminada();
     }
 }
 
@@ -46,6 +69,7 @@ void PadreDeConsultantes::informarConsultaTerminada() {
 }
 
 void PadreDeConsultantes::setPadre(PadreDeConsultantes* _padre) {
+    std::cout << _padre << " es ahora padre de " << this << std::endl;
     padre = _padre;
 }
 

@@ -1,4 +1,5 @@
 #include "Tab.h"
+#include <iostream>
 
 Tab::Tab(int i, const Glib::ustring& _etiqueta): etiqueta(_etiqueta) {
     setSpinner(&s);
@@ -18,5 +19,6 @@ Gtk::HBox& Tab::getEtiqueta() {
 
 
 void Tab::agregarConsultante(PadreDeConsultantes* c) {
+    std::cout << "    Pt agregó un hijo (" << c << ")" << std::endl;
     PadreDeConsultantes::agregarConsultante(c);
 }

@@ -19,6 +19,7 @@ void VentanaClienteDinamica::personalizar(const char* archivo) {
 
     while (dynBuilder.tieneSiguiente()) {
         Tab& t = dynBuilder.siguiente();
+        std::cout << "Pvcd agregó un hijo (tab: " << &t << ")" << std::endl;
         agregarConsultante(&t);
         append_page(t, t.getEtiqueta());
     }

@@ -51,10 +51,8 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
             if (Organizacion::esDimensionEspecial(entrada))
                 f = new FiltradorInputFecha(entrada);
             else {
-                f = new FiltradorInputDimension(entrada);
-                Consultante* c = dynamic_cast< Consultante* >(f);
-                if (c)
-                    agregarConsultante(c);
+                f = new FiltradorInputDimension(entrada, this);
+                    std::cout << "            Pfp agregó un hijo (Cfid: " << f << ")" << std::endl;
             }
         } else {
             if (Organizacion::esHecho(entrada))

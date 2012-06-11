@@ -127,7 +127,9 @@
 FiltradoresTab::FiltradoresTab() {}
 
 FiltradoresTab::~FiltradoresTab() {
-    ///delete widgets
+    std::list< Gtk::Widget* >::iterator it = widgets.begin();
+    for ( ; it != widgets.end(); ++it)
+        delete *it;
 }
 
 void FiltradoresTab::agregarEntrada(const std::string& entrada) {
@@ -137,10 +139,8 @@ void FiltradoresTab::agregarEntrada(const std::string& entrada) {
             if (Organizacion::esDimensionEspecial(entrada))
                 f = new FiltradorInputFecha(entrada);
             else {
-                f = new FiltradorInputDimension(entrada);
-                Consultante* c = dynamic_cast< Consultante* >(f);
-                if (c)
-                    agregarConsultante(c);
+                f = new FiltradorInputDimension(entrada, this);
+                    std::cout << "        Pft agregó un hijo (Cfid: " << f << ")" << std::endl;
             }
         } else {
             if (Organizacion::esHecho(entrada))

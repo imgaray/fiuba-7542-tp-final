@@ -103,6 +103,10 @@ public:
 	 */
 	void hacerAgregaciones(const Consulta& consulta, const MapaCombinaciones& mCombinaciones, Respuesta& respuesta);
 
+	/*
+	 * Hace las agregaciones correspondiente para dos conjunto de Combinaciones
+	 * que representa al grupo X e Y. Guardando los resoluciones en "respuesta"
+	 */
 	void hacerAgregacionesTP(const Consulta& cX,
 			const MapaCombinaciones& mCombX,
 			const Consulta& cY,
@@ -110,6 +114,10 @@ public:
 			const Consulta& cons,
 			Respuesta& respuesta);
 
+	/*
+	 * Realiza el calculo de una Agregacion para un resultado y lo guarda en
+	 * campoRes.
+	 */
 	void calcularAgregacionTP(const Lista_Id& ids, const Consulta& cons, std::string& campoRes);
 
 	/*
@@ -117,7 +125,6 @@ public:
 	 */
     void agregaParaFila(const Consulta& consulta, const Combinacion& combinacion,const Lista_Id& ids, Respuesta& resp);
 
-	//void obtenerIDs(const std::string& dimension, const std::string& valorDim, Lista_Id& lista);
 
 	/*
 	 * Calcula la agragacion para un hecho almacenandola en "acumulador"
@@ -152,7 +159,6 @@ public:
 
 
 private:
-
 
 	Lista_Id _interseccion; // no puedo tenerla tengo que hacer instancias
 							// porque tiene que ser concurrente

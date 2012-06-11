@@ -13,6 +13,8 @@ class Tab : public Gtk::VBox, public PadreDeConsultantes {
         ~Tab();
 
         Gtk::HBox& getEtiqueta();
+
+        void agregarConsultante(PadreDeConsultantes* c);
     private:
         Gtk::HBox etiquetaCompuesta;
         Gtk::Label etiqueta;

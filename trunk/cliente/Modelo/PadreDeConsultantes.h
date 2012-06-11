@@ -17,6 +17,8 @@ class PadreDeConsultantes {
         void setSpinner(Gtk::Spinner* s);
     protected:
         PadreDeConsultantes* padre;
+        void correrSpinner();
+        void detenerSpinner();
     private:
         void setPadre(PadreDeConsultantes* padre);
         std::list< PadreDeConsultantes* > hijos;

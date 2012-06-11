@@ -4,13 +4,18 @@
 #include <gtkmm/box.h>
 #include <gtkmm/label.h>
 
+class Consulta;
+
 class Filtrador : public Gtk::HBox {
     public:
         Filtrador(const Glib::ustring& filtro);
         virtual ~Filtrador();
 
+        virtual Consulta& filtrar(Consulta& c) = 0;
+
     protected:
         Gtk::HBox centradorDerecho;
+        Glib::ustring getFiltro();
     private:
         Gtk::HBox centradorIzquierdo;
         Gtk::Label filtro;

@@ -18,6 +18,10 @@ void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta)
 	consultas.push(par);
 }
 
+void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
+
+}
+
 ServidorRemoto::~ServidorRemoto()  {
 	consultas.close();
 	respuestas.close();

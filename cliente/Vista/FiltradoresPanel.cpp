@@ -2,6 +2,7 @@
 #include "Organizacion.h"
 #include <iostream>
 #include "ExcepcionFiltradorMalConstruido.h"
+#include "ExcepcionFiltradorExistente.h"
 #include "Filtrador.h"
 #include "FiltradorFiltroDimension.h"
 #include "FiltradorFiltroFecha.h"
@@ -19,11 +20,16 @@
 FiltradoresPanel::FiltradoresPanel(FiltradoresTab& filtTab)
 : filtrosHeredados(filtTab) {}
 
-FiltradoresPanel::~FiltradoresPanel() {}
+FiltradoresPanel::~FiltradoresPanel() {
+    std::list< Filtrador* >::iterator it = filtradores.begin();
+    for ( ; it != filtradores.end(); ++it)
+        delete *it;
+}
 
+/** @todo verificar que el filtro/input/resultado no exista ya */
 void FiltradoresPanel::agregarFiltro(const std::string& filtro,
                                      const std::string& valor) {
-    Filtrador* f;
+    FiltradorFiltro* f;
     try {
         if (Organizacion::esDimension(filtro)) {
             if (Organizacion::esDimensionEspecial(filtro))
@@ -37,7 +43,7 @@ void FiltradoresPanel::agregarFiltro(const std::string& filtro,
                 throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_FILTRO_MAL);
         }
         add(*f);
-        widgets.push_back(f);
+        filtradores.push_back(f);
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
@@ -45,7 +51,7 @@ void FiltradoresPanel::agregarFiltro(const std::string& filtro,
 }
 
 void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
-    Filtrador* f;
+    FiltradorInput* f;
     try {
         if (Organizacion::esDimension(entrada)) {
             if (Organizacion::esDimensionEspecial(entrada))
@@ -59,7 +65,7 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
                 throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_INPUT_MAL);
         }
         add(*f);
-        widgets.push_back(f);
+        filtradores.push_back(f);
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
@@ -69,7 +75,7 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
 void FiltradoresPanel::agregarResultado(const std::string& dimension) {
     FiltradorResultadoDimension* f = new FiltradorResultadoDimension(dimension);
     add(*f);
-    widgets.push_back(f);
+    filtradores.push_back(f);
 }
 
 void FiltradoresPanel::agregarResultado(const std::string& fecha,
@@ -79,7 +85,7 @@ void FiltradoresPanel::agregarResultado(const std::string& fecha,
     try {
         f = new FiltradorResultadoFecha(fecha, valorCombo, valorEntrada);
         add(*f);
-        widgets.push_back(f);
+        filtradores.push_back(f);
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
@@ -92,11 +98,17 @@ void FiltradoresPanel::agregarResultado(const std::string& hecho,
     try {
         f = new FiltradorResultadoHecho(hecho, agregacion);
         add(*f);
-        widgets.push_back(f);
+        filtradores.push_back(f);
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
     }
 }
 
-
+Consulta& FiltradoresPanel::filtrar(Consulta& c) {
+    c = filtrosHeredados.filtrar(c);
+    std::list< Filtrador* >::iterator it = filtradores.begin();
+    for ( ; it != filtradores.end(); ++it)
+        c = (*it)->filtrar(c);
+    return c;
+}

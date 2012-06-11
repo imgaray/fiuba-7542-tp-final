@@ -65,7 +65,9 @@ void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, L
 void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp){
 	Lista_Id listaReg;
 	bool huboFiltrado = filtrarDatos(consulta,listaReg);
+/*  comentada esta variable porque no se usa
 	bool hayDimEnResultados = hayResultadosDeDimensiones(consulta);
+*/
 	bool filtrarHechos = hayFiltrosDeHechos(consulta);
 
 
@@ -109,9 +111,9 @@ void BaseDeDatos::hacerAgregacionesTP(const Consulta& cX,
 
 	parItMapaCombinaciones rango;
 	MapaCombinaciones::const_iterator itCombX, itCombY, itAuxX, itAuxY;
-
+/*  Comentada esta variable porque no se usa
 	unsigned cantCol = 0;
-
+*/
 	/*
 	 * Guarda los primeros espacios en blanco para el grupo Y, y guardo tambien las primeras
 	 * filas que contendran los datos del grupo X

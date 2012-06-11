@@ -5,12 +5,15 @@
 #include "PadreDeConsultantes.h"
 
 class FiltradoresTab;
+class Filtrador;
 
 class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
     public:
         /** @todo agregar agregaciones */
         FiltradoresPanel(FiltradoresTab& filtTab);
         ~FiltradoresPanel();
+
+        Consulta& filtrar(Consulta& c);
 
         void agregarFiltro(const std::string& filtro,
                            const std::string& valor);
@@ -26,7 +29,7 @@ class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
                               const std::string& agregacion);
     private:
         FiltradoresTab& filtrosHeredados;
-        std::list< Gtk::Widget* > widgets;
+        std::list< Filtrador* > filtradores;
 };
 
 #endif  // FILTRADORES_PANEL_H

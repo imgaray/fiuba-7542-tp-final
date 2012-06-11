@@ -169,11 +169,11 @@ void Personalizador::construir() {
     pTab2->pack_start(*sep2, false, false);
     pTab2->pack_start(*pTable2, true, true);
 
-    pTab1->agregarConsultante(fTab2);
-    pTab1->agregarConsultante(pPanBarras2);
-    pTab1->agregarConsultante(pPanTorta2);
-    pTab1->agregarConsultante(pPanBarras3);
-    pTab1->agregarConsultante(pPanTorta3);
+    pTab2->agregarConsultante(fTab2);
+    pTab2->agregarConsultante(pPanBarras2);
+    pTab2->agregarConsultante(pPanTorta2);
+    pTab2->agregarConsultante(pPanBarras3);
+    pTab2->agregarConsultante(pPanTorta3);
 
     tabs.push_back(pTab2);
 

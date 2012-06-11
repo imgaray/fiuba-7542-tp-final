@@ -14,6 +14,7 @@ void PadreDeConsultantes::hacerConsulta() {
         ++hijosActualizando;
     }
     if (hijosActualizando > 0 && spinner) {
+        std::cout << "Hijos actualizando: " << hijosActualizando << std::endl;
         spinner->show();
         spinner->start();
     }

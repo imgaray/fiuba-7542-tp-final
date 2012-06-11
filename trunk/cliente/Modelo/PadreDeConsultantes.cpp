@@ -1,4 +1,5 @@
 #include "PadreDeConsultantes.h"
+#include "Consultante.h"
 
 PadreDeConsultantes::PadreDeConsultantes() {
     spinner = NULL;
@@ -21,6 +22,11 @@ void PadreDeConsultantes::hacerConsulta() {
 void PadreDeConsultantes::agregarConsultante(PadreDeConsultantes* c) {
     hijos.push_back(c);
     c->setPadre(this);
+    Consultante* cons = dynamic_cast< Consultante* >(c);
+    if (cons)
+        std::cout << "Agregado consultante ID: " << cons->getID() << std::endl;
+    else
+        std::cout << "Agregado un padre de consultantes" << std::endl;
 }
 
 

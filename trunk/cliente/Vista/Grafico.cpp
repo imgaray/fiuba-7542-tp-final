@@ -56,6 +56,7 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
 }
 
 bool Grafico::on_button_press_event(GdkEventButton* ev) {
+    std::cout << "Consultante "<< getID() << " clickeado." << std::endl;
     std::list< Area* >::const_iterator it = areas.begin();
     bool encontrado = false;
     double offset = getOffset();

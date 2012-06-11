@@ -8,6 +8,8 @@ unsigned Consultante::generadorID = 0;
 Consultante::Consultante() {
     ID = generadorID++;
     esperandoRespuesta = false;
+
+    std::cout << "Consultante creado "<< ID+1 << "/" << generadorID << std::endl;
 }
 
 Consultante::~Consultante() {}
@@ -16,6 +18,9 @@ void Consultante::hacerConsulta() {
     if (esperandoRespuesta)
         // cancelar
         std::cout << "Consulta anterior cancelada" << std::endl;
+
+    std::cout << "Consultante "<< ID+1 << "/" << generadorID
+              << ". Consulta realizada, esperando respuesta" << std::endl;
     esperandoRespuesta = true;
 }
 

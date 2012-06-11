@@ -2,7 +2,7 @@
 
 FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input)
 : FiltradorInput(input) {
-    hacerConsulta();
+//    hacerConsulta();
 }
 
 FiltradorInputDimension::~FiltradorInputDimension() {}

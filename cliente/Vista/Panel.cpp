@@ -4,6 +4,9 @@
 #include "Respuesta.h"
 
 Panel::Panel(Grafico& g, FiltradoresPanel& f) : grafico(g), filtrador(f) {
+    agregarConsultante(&grafico);
+    agregarConsultante(&filtrador);
+
     pack_start(filtrador, false, false);
     scrWin.set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
     pViewport = new Gtk::Viewport(*scrWin.get_hadjustment(), *scrWin.get_vadjustment());
@@ -16,8 +19,6 @@ Panel::~Panel() {
     delete pViewport;
 }
 
-void Panel::hacerConsulta() {
-}
 
 void procesarRespuesta(const Respuesta& rta) {
     // Para cuando esté conectado con el server

@@ -19,10 +19,7 @@ void VentanaClienteDinamica::personalizar(const char* archivo) {
 
     while (dynBuilder.tieneSiguiente()) {
         Tab& t = dynBuilder.siguiente();
+        agregarConsultante(&t);
         append_page(t, t.getEtiqueta());
     }
-}
-
-void VentanaClienteDinamica::hacerConsulta() {
-
 }

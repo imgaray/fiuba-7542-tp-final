@@ -15,7 +15,6 @@ class VentanaClienteDinamica
 
         void personalizar(const char* archivo);
 
-        void hacerConsulta();
     private:
         Personalizador dynBuilder;
 };

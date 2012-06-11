@@ -14,7 +14,6 @@ class Panel : public Gtk::VBox, public PadreDeConsultantes {
         Panel(Grafico& g, FiltradoresPanel& f);
         ~Panel();
 
-        void hacerConsulta();
     private:
         Grafico& grafico;
         FiltradoresPanel& filtrador;

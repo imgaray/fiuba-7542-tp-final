@@ -1,5 +1,6 @@
 #include "FiltradorInputDimension.h"
 #include "Respuesta.h"
+#include "Consulta.h"
 
 FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
     PadreDeConsultantes* padre) : FiltradorInput(input) {
@@ -15,9 +16,14 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
 FiltradorInputDimension::~FiltradorInputDimension() {}
 
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
-    if (rta.cantidadColumnas != 1)
+    if (rta.cantidadColumnas() != 1)
         return;
 
-    for (unsigned i = 0; i < rta.cantidadFilas; ++i)
+    for (unsigned i = 0; i < rta.cantidadFilas(); ++i)
         valores.append_text(rta.dato(i, 0));
+}
+
+Consulta& FiltradorInputDimension::filtrar(Consulta& c) {
+    c.agregarEntrada(getFiltro(), valores.get_active_text());
+    return c;
 }

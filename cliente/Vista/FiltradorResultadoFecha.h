@@ -9,8 +9,12 @@ class FiltradorResultadoFecha : public FiltradorResultado {
                                 const Glib::ustring& valorCombo,
                                 const Glib::ustring& valorEntrada);
         virtual ~FiltradorResultadoFecha();
+
+        Consulta& filtrar(Consulta& c);
+
     private:
-        Glib::ustring label;
+        Glib::ustring valorCombo;
+        Glib::ustring valorEntrada;
 };
 
 #endif  // FILTRADOR_RESULTADO_FECHA_H

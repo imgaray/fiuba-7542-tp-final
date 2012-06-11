@@ -1,5 +1,6 @@
 #include "FiltradorResultadoHecho.h"
 #include "ExcepcionFiltradorMalConstruido.h"
+#include "Consulta.h"
 
 #define CANT_AGREG 6
 Glib::ustring FiltradorResultadoHecho::agregPosibles[CANT_AGREG] = {
@@ -8,7 +9,7 @@ Glib::ustring FiltradorResultadoHecho::agregPosibles[CANT_AGREG] = {
 FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& hecho,
     const Glib::ustring& _agregacion) : FiltradorResultado("") {
     bool existeAgregacion = false;
-    unsigned i = 0;
+    i = 0;
     while (!existeAgregacion && i < CANT_AGREG)
         existeAgregacion = _agregacion == agregPosibles[i++];
 
@@ -19,7 +20,7 @@ FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& hecho,
     }
 
 
-    label = agregPosibles[--i];
+    Glib::ustring label = agregPosibles[--i];
     label += "(";
     label += hecho;
     label += ")";
@@ -38,3 +39,7 @@ FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& hecho,
 
 FiltradorResultadoHecho::~FiltradorResultadoHecho() {}
 
+Consulta& FiltradorResultadoHecho::filtrar(Consulta& c) {
+    std::cout << "@todo Consulta& FiltradorResultadoHecho::filtrar(Consulta& c)" << std::endl;
+    return c;
+}

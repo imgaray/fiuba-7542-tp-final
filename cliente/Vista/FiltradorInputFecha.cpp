@@ -1,4 +1,5 @@
 #include "FiltradorInputFecha.h"
+#include "Consulta.h"
 
 #define CANT_COMBO 8
 Glib::ustring FiltradorInputFecha::valoresCombo[CANT_COMBO] = {
@@ -15,16 +16,23 @@ FiltradorInputFecha::FiltradorInputFecha(const Glib::ustring& input)
 
 FiltradorInputFecha::~FiltradorInputFecha() {}
 
-bool FiltradorInputFecha::perteneceAlCombobox(const Glib::ustring& valor) {
+int FiltradorInputFecha::perteneceAlCombobox(const Glib::ustring& valor) {
     bool pertenece = false;
     unsigned i = 0;
     while (!pertenece && i < CANT_COMBO)
         pertenece = valor == valoresCombo[i++];
 
-    return pertenece;
+    if (pertenece)
+        return --i;
+    else
+        return NO_PERTENECE;
 }
 
 bool FiltradorInputFecha::esValido(const Glib::ustring& valor) {
     return true;
 }
 
+Consulta& FiltradorInputFecha::filtrar(Consulta& c) {
+    std::cout << "@todo Consulta& FiltradorFiltroHecho::filtrar(Consulta& c)" << std::endl;
+    return c;
+}

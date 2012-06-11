@@ -4,7 +4,7 @@
 
 // por lo pronto, el formato correcto sera que haya un solo separador
 
-bool formatoCorrecto(std::string& linea) {
+bool ArchivoConfiguracion::formatoCorrecto(std::string& linea) {
 	return (linea.find_first_of(SEPARADOR) == linea.find_last_of(SEPARADOR));
 }
 

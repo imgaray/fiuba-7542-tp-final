@@ -1,10 +1,12 @@
 #include "FiltradorResultadoFecha.h"
 #include "FiltradorInputFecha.h"
 #include "ExcepcionFiltradorMalConstruido.h"
+#include "Consulta.h"
 
 FiltradorResultadoFecha::FiltradorResultadoFecha(const Glib::ustring& fecha,
-    const Glib::ustring& valorCombo, const Glib::ustring& valorEntrada)
-    : FiltradorResultado("") {
+    const Glib::ustring& _valorCombo, const Glib::ustring& _valorEntrada)
+    : FiltradorResultado(""),
+    valorCombo(_valorCombo), valorEntrada(_valorEntrada)  {
     if (!FiltradorInputFecha::perteneceAlCombobox(valorCombo)) {
         std::string msj = "No pertenece al conjunto de valores posibles: ";
         msj += valorCombo.c_str();
@@ -17,9 +19,7 @@ FiltradorResultadoFecha::FiltradorResultadoFecha(const Glib::ustring& fecha,
         throw ExcepcionFiltradorMalConstruido(msj.c_str());
     }
 
-    label = fecha;
-    label += " ";
-    label += valorCombo;
+    Glib::ustring label = valorCombo;
     label += " ";
     label += valorEntrada;
     setResultado(label);
@@ -27,3 +27,7 @@ FiltradorResultadoFecha::FiltradorResultadoFecha(const Glib::ustring& fecha,
 
 FiltradorResultadoFecha::~FiltradorResultadoFecha() {}
 
+Consulta& FiltradorResultadoFecha::filtrar(Consulta& c) {
+    std::cout << "@todo Consulta& FiltradorResultadoFecha::filtrar(Consulta& c)" << std::endl;
+    return c;
+}

@@ -45,6 +45,6 @@ void FiltradoresTab::agregarEntrada(const std::string& entrada) {
 Consulta& FiltradoresTab::filtrar(Consulta& c) {
     std::list< Filtrador* >::iterator it = filtradores.begin();
     for ( ; it != filtradores.end(); ++it)
-        c = (*it)->filtrar(c);
+        (*it)->filtrar(c);
     return c;
 }

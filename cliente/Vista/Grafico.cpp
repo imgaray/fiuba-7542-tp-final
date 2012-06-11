@@ -1,6 +1,7 @@
 #include "Grafico.h"
 #include <iostream>
 #include "Area.h"
+#include "FiltradoresPanel.h"
 
 #define MIN_LADO 200
 
@@ -15,7 +16,7 @@ Grafico::~Grafico() {
 }
 
 void Grafico::hacerConsulta(ServidorRemoto& server) {
-    consulta = f.filtrar(consulta);
+    f.filtrar(consulta);
     Consultante::hacerConsulta(server);
 }
 

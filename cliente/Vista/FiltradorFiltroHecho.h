@@ -5,11 +5,17 @@
 
 class FiltradorFiltroHecho : public FiltradorFiltro {
     public:
-        FiltradorFiltroHecho(const Glib::ustring& filtro,
-                             const Glib::ustring& valor);
+        FiltradorFiltroHecho(const Glib::ustring& hecho,
+                             const Glib::ustring& valorCombo,
+                             const std::string& valorEntrada);
         ~FiltradorFiltroHecho();
+
+        Consulta& filtrar(Consulta& c);
+
     private:
-        bool esValido(const Glib::ustring& valor);
+        Glib::ustring valorCombo;
+        Glib::ustring valorEntrada;
+        int i;  // iésimo valor del combobox posible
 };
 
 #endif  // FILTRADOR_FILTRO_HECHO_H

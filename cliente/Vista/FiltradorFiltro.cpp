@@ -12,3 +12,7 @@ FiltradorFiltro::~FiltradorFiltro() {}
 void FiltradorFiltro::setValor(const Glib::ustring& _valor) {
     valor.set_text(_valor);
 }
+
+Glib::ustring FiltradorFiltro::getValor() {
+    return valor.get_text();
+}

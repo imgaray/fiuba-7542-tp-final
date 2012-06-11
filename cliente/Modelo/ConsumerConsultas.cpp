@@ -1,4 +1,9 @@
 #include "ConsumerConsultas.h"
+#include "Respuesta.h"
+#include "Consulta.h"
+#include "Socket.h"
+
+std::string SHOST = "localhost";
 
 void ConsumerConsulta::detener_hilo() {
 	servidor->desconectar();
@@ -14,7 +19,7 @@ void ConsumerConsulta::correr() {
 				ParRespuesta parrta;
 				parrta.first = pconsulta.first;
 				parrta.second = new Respuesta();
-				if (servidor->enviar(*pconsulta.second)) { 
+				if (servidor->enviar(*pconsulta.second)) {
 					error = servidor->recibir(*parrta.second);
 				}
 				delete pconsulta.second;

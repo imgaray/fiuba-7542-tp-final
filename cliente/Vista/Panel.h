@@ -7,17 +7,17 @@
 #include "PadreDeConsultantes.h"
 
 class Grafico;
-class Filtrador;
+class FiltradoresPanel;
 
 class Panel : public Gtk::VBox, public PadreDeConsultantes {
     public:
-        Panel(Grafico& g, Filtrador& f);
+        Panel(Grafico& g, FiltradoresPanel& f);
         ~Panel();
 
         void hacerConsulta();
     private:
         Grafico& grafico;
-        Filtrador& filtrador;
+        FiltradoresPanel& filtrador;
         Gtk::ScrolledWindow scrWin;
         Gtk::Viewport* pViewport;
 };

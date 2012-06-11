@@ -11,16 +11,17 @@
 #include "Filtrador.h"
 
 class Area;
-class Filtrador;
+class FiltradoresPanel;
 
 class Grafico : public Gtk::DrawingArea, public Consultante {
     public:
-        Grafico(Filtrador& f);
+        Grafico(FiltradoresPanel& f);
         virtual ~Grafico();
 
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
         /** @todo implementar para cuando las referencias no entran en el [0,1]x[0,1] */
         void actualizarTamanioMinimo(double x, double y);
+        FiltradoresPanel& getFiltrador() const;
     protected:
         std::list< Area* > areas;
         double offset;
@@ -46,7 +47,7 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
-        Filtrador& f;
+        FiltradoresPanel& f;
         void procesarRespuesta(const Respuesta& rta);
 };
 #endif  // GRAFICO_H

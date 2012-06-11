@@ -4,7 +4,6 @@
 #include "Definiciones.h"
 #include "Consulta.h"
 #include "Respuesta.h"
-#include "Consultante.h"
 #include "ConsumerConsultas.h"
 #include "ConsumerRespuestas.h"
 #include "BLQueue.h"
@@ -22,11 +21,11 @@ private:
 	MapaConsultantes consultantes;
 	ConsumerRespuesta crespuesta;
 	std::list<ConsumerConsulta*> cconsultas;
-	
+
 public:
 	ServidorRemoto();
 	~ServidorRemoto();
-	
+
 	void enviarConsulta(Consultante* consultante, Consulta consulta);
 };
 

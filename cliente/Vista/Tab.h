@@ -1,7 +1,7 @@
 #ifndef TAB_H__
 #define TAB_H__
 
-#include <glibmm/ustring.h>
+#include <gtkmm/label.h>
 #include <gtkmm/box.h>
 #include "PadreDeConsultantes.h"
 
@@ -12,11 +12,11 @@ class Tab : public Gtk::VBox, public PadreDeConsultantes {
         explicit Tab(const std::string& xml);
         ~Tab();
 
-        const Glib::ustring& getEtiqueta();
-
-        void hacerConsulta();
+        Gtk::HBox& getEtiqueta();
     private:
-        Glib::ustring etiqueta;
+        Gtk::HBox etiquetaCompuesta;
+        Gtk::Label etiqueta;
+        Gtk::Spinner s;
 };
 
 #endif  // TAB_H__

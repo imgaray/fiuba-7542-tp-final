@@ -23,13 +23,22 @@ class Consultante;
 /*
  * Tipo de Funcion de agregacion para una consulta
  */
+
+/** Migue, tengo un vector que depende de esto
+ * Modificalo si querés, pero no lo saques, ni los cambies de orden.
+ * También te saqué la asignación porque automáticamente se asignan
+ * PRIMER_VALOR+1, PRIMER_VALOR+2, etc.
+ * Cuando leas esto, borralo.
+ */
+#define PRIMER_VALOR 65
+
 enum Agregacion {
-	NADA = 65,	// Ninguno
-	SUM = 66,	// Suma
-	MAX = 67,	// Maximo
-	MIN = 68,	// Minimo
-	PROM = 69,	// Promedio
-	CONT = 70	// Contar
+	NADA = PRIMER_VALOR,	// Ninguno
+	SUM,	                // Suma
+	MAX,	                // Maximo
+	MIN,	                // Minimo
+	PROM,	                // Promedio
+	CONT	                // Contar
 };
 ///////////////////////////////////////////////////////
 // Estructuras Para Consulta
@@ -125,7 +134,6 @@ typedef std::vector < Fila > DatosDeRespuesta;
 
 #define PORT_CLIENTE (Puerto) 4321
 #define PORT_AGENTE (Puerto) 12345
-std::string SHOST = "localhost";
 
 /////////////////////////////////////////////////////////
 //

@@ -1,0 +1,2 @@
+Dimensiones = { Sucursal, Vendedor, Marca, Producto }
+Hechos = { PrecioLista, PrecioVenta }

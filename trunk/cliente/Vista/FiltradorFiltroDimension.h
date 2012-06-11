@@ -9,8 +9,8 @@ class FiltradorFiltroDimension : public FiltradorFiltro {
         FiltradorFiltroDimension(const Glib::ustring& filtro,
                                  const Glib::ustring& valor);
         ~FiltradorFiltroDimension();
-    private:
-        bool esValido(const Glib::ustring& valor);
+
+        Consulta& filtrar(Consulta& c);
 };
 
 #endif  // FILTRADOR_FILTRO_DIMENSION_H

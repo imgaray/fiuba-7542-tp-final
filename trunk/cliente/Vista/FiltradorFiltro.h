@@ -11,8 +11,8 @@ class FiltradorFiltro : public Filtrador {
         virtual ~FiltradorFiltro();
     protected:
         void setValor(const Glib::ustring& valor);
+        Glib::ustring getValor();
     private:
-        virtual bool esValido(const Glib::ustring& valor) = 0;
         Gtk::VSeparator sep;
         Gtk::Label valor;
 };

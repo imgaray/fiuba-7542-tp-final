@@ -13,6 +13,8 @@ class FiltradorInputDimension : public FiltradorInput, public Consultante {
                                 PadreDeConsultantes* padre);
         ~FiltradorInputDimension();
 
+        Consulta& filtrar(Consulta& c);
+
     private:
         void procesarRespuesta(const Respuesta& rta);
         Gtk::Spinner s;

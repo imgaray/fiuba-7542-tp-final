@@ -9,8 +9,11 @@ class FiltradorResultadoHecho : public FiltradorResultado {
         FiltradorResultadoHecho(const Glib::ustring& hecho,
                                 const Glib::ustring& agregacion);
         virtual ~FiltradorResultadoHecho();
+
+        Consulta& filtrar(Consulta& c);
+
     private:
-        Glib::ustring label;
+        int i;
         static Glib::ustring agregPosibles[];
         Agregacion agregacion;
 };

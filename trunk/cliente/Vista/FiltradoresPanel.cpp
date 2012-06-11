@@ -1,4 +1,5 @@
 #include "FiltradoresPanel.h"
+#include "FiltradoresTab.h"
 #include "Organizacion.h"
 #include <iostream>
 #include "ExcepcionFiltradorMalConstruido.h"
@@ -29,19 +30,21 @@ FiltradoresPanel::~FiltradoresPanel() {
 /** @todo verificar que el filtro/input/resultado no exista ya */
 void FiltradoresPanel::agregarFiltro(const std::string& filtro,
                                      const std::string& valor) {
+    FiltradorFiltroDimension* f = new FiltradorFiltroDimension(filtro, valor);
+    add(*f);
+    filtradores.push_back(f);
+}
+
+void FiltradoresPanel::agregarFiltro(const std::string& filtro,
+                                     const std::string& valorCombo,
+                                     const std::string& valorEntrada) {
     FiltradorFiltro* f;
     try {
-        if (Organizacion::esDimension(filtro)) {
-            if (Organizacion::esDimensionEspecial(filtro))
-                f = new FiltradorFiltroFecha(filtro, valor);
-            else
-                f = new FiltradorFiltroDimension(filtro, valor);
-        } else {
-            if (Organizacion::esHecho(filtro))
-                f = new FiltradorFiltroHecho(filtro, valor);
-            else
-                throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_FILTRO_MAL);
-        }
+        if (Organizacion::esDimensionEspecial(filtro))
+            f = new FiltradorFiltroFecha(filtro, valorCombo, valorEntrada);
+        else
+            f = new FiltradorFiltroHecho(filtro, valorCombo, valorEntrada);
+
         add(*f);
         filtradores.push_back(f);
     }
@@ -106,9 +109,9 @@ void FiltradoresPanel::agregarResultado(const std::string& hecho,
 }
 
 Consulta& FiltradoresPanel::filtrar(Consulta& c) {
-    c = filtrosHeredados.filtrar(c);
+    filtrosHeredados.filtrar(c);
     std::list< Filtrador* >::iterator it = filtradores.begin();
     for ( ; it != filtradores.end(); ++it)
-        c = (*it)->filtrar(c);
+        (*it)->filtrar(c);
     return c;
 }

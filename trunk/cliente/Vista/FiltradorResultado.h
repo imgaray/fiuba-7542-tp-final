@@ -10,6 +10,7 @@ class FiltradorResultado : public Filtrador {
         virtual ~FiltradorResultado();
     protected:
         void setResultado(const Glib::ustring& resultado);
+        Glib::ustring getResultado();
     private:
         Gtk::Label resultado;
 };

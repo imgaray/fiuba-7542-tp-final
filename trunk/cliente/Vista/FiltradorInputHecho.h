@@ -4,13 +4,20 @@
 #include "FiltradorInput.h"
 #include <gtkmm/entry.h>
 
+#ifndef NO_PERTENECE
+#define NO_PERTENECE -1
+#endif
+
 class FiltradorInputHecho : public FiltradorInput {
     public:
         FiltradorInputHecho(const Glib::ustring& input);
         ~FiltradorInputHecho();
-        static bool perteneceAlCombobox(const Glib::ustring& valor);
+
+        static int perteneceAlCombobox(const Glib::ustring& valor);
         /// Validador de la entrada (Gtk::Entry)
         static bool esValido(const Glib::ustring& valor);
+
+        Consulta& filtrar(Consulta& c);
     private:
         Gtk::Entry entrada;
         static Glib::ustring valoresCombo[];

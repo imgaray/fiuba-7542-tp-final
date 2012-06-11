@@ -6,6 +6,7 @@
 
 class FiltradoresTab;
 class Filtrador;
+class Consulta;
 
 class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
     public:
@@ -15,8 +16,14 @@ class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
 
         Consulta& filtrar(Consulta& c);
 
-        void agregarFiltro(const std::string& filtro,
+        /// este método no verifica que el filtro sea dimensión
+        void agregarFiltro(const std::string& dimension,
                            const std::string& valor);
+
+        void agregarFiltro(const std::string& filtro,
+                           const std::string& valorCombo,
+                           const std::string& valorEntrada);
+
         void agregarEntrada(const std::string& entrada);
 
         /// estos tres métodos no verifican que el primer parámetro sea

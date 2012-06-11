@@ -7,10 +7,16 @@
 Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     add_events(Gdk::BUTTON_PRESS_MASK);
     set_size_request(MIN_LADO, MIN_LADO);
+    setSpinner(&s);
 }
 
 Grafico::~Grafico() {
     deleteAreas();
+}
+
+void Grafico::hacerConsulta(ServidorRemoto& server) {
+    consulta = f.filtrar(consulta);
+    Consultante::hacerConsulta(server);
 }
 
 FiltradoresPanel& Grafico::getFiltrador() const {

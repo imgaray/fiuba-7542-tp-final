@@ -91,6 +91,11 @@ void Personalizador::construir() {
     FiltradoresPanel* fPanel1_2 = new FiltradoresPanel(*fTab1);
 
     fPanel1_1->agregarEntrada("Marca");
+    fPanel1_1->agregarResultado("Producto");
+
+    fPanel1_2->agregarFiltro("Sucursal", "Avellaneda");
+    fPanel1_2->agregarResultado("Marca");
+    fPanel1_2->agregarResultado("PrecioLista", "SUM");
 
     Grafico* gBarras1 = new GraficoDeBarras(*fPanel1_1);
     Grafico* gTorta1 = new GraficoDeTorta(*fPanel1_2);

@@ -27,6 +27,7 @@ public:
 	~ServidorRemoto();
 
 	void enviarConsulta(Consultante* consultante, Consulta consulta);
+	void cancelarConsulta(unsigned IDcons);
 };
 
 #endif

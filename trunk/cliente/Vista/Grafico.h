@@ -18,6 +18,8 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         Grafico(FiltradoresPanel& f);
         virtual ~Grafico();
 
+        virtual void hacerConsulta(ServidorRemoto& server);
+
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
         /** @todo implementar para cuando las referencias no entran en el [0,1]x[0,1] */
         void actualizarTamanioMinimo(double x, double y);
@@ -49,5 +51,6 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         int min_lado;
         FiltradoresPanel& f;
         void procesarRespuesta(const Respuesta& rta);
+        Gtk::Spinner s;
 };
 #endif  // GRAFICO_H

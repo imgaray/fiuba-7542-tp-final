@@ -3,8 +3,8 @@
 FiltradorFiltro::FiltradorFiltro(const Glib::ustring& filtro,
     const Glib::ustring& _valor) : Filtrador(filtro), valor(_valor) {
 
-    centradorDerecho.pack_end(sep, false, false);
-    centradorDerecho.pack_end(valor, false, false);
+    centradorDerecho.pack_start(sep, false, false);
+    centradorDerecho.pack_start(valor, false, false);
 }
 
 FiltradorFiltro::~FiltradorFiltro() {}

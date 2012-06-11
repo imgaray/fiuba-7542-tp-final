@@ -1,4 +1,5 @@
 #include "ServidorRemoto.h"
+#include "Consultante.h"
 
 ServidorRemoto::ServidorRemoto():
 			crespuesta(respuestas, consultantes) {

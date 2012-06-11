@@ -1,6 +1,6 @@
 # Makefile
 
-CXXFLAGS = -Wall -pedantic -O0 -g -pthread -lpthread
+CXXFLAGS = -Wall -pedantic -O0 -g -pthread -lpthread `pkg-config gtkmm-2.4 --cflags` `pkg-config gtkmm-2.4 --libs`
 
 CC = g++
 
@@ -8,7 +8,7 @@ archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
 
 # EN ESTA VARIABLE SE DEFINEN TODAS LAS CARPETAS QUE TENGAN .H
 # EXTERNOS QUE ESTEN USANDO
-INCLUDES = ../../comun
+INCLUDES = ../../comun ../Vista
 
 I-INCLUDES = $(addprefix -I, $(INCLUDES))
 

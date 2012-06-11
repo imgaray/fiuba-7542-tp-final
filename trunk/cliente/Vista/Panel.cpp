@@ -1,9 +1,9 @@
 #include "Panel.h"
 #include "Grafico.h"
-#include "Filtrador.h"
+#include "FiltradoresPanel.h"
 #include "Respuesta.h"
 
-Panel::Panel(Grafico& g, Filtrador& f) : grafico(g), filtrador(f) {
+Panel::Panel(Grafico& g, FiltradoresPanel& f) : grafico(g), filtrador(f) {
     pack_start(filtrador, false, false);
     scrWin.set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
     pViewport = new Gtk::Viewport(*scrWin.get_hadjustment(), *scrWin.get_vadjustment());

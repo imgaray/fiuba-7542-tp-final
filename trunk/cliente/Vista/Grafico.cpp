@@ -4,13 +4,17 @@
 
 #define MIN_LADO 200
 
-Grafico::Grafico(Filtrador& _f) : f(_f) {
+Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     add_events(Gdk::BUTTON_PRESS_MASK);
     set_size_request(MIN_LADO, MIN_LADO);
 }
 
 Grafico::~Grafico() {
     deleteAreas();
+}
+
+FiltradoresPanel& Grafico::getFiltrador() const {
+    return f;
 }
 
 void Grafico::deleteAreas() {

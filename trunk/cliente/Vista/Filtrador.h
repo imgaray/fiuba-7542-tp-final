@@ -2,23 +2,18 @@
 #define FILTRADOR_H
 
 #include <gtkmm/box.h>
-#include "PadreDeConsultantes.h"
-#include "Definiciones.h"
-#include "Consultante.h"
+#include <gtkmm/label.h>
 
-class Filtrador : public Gtk::VBox, public PadreDeConsultantes {
+class Filtrador : public Gtk::HBox {
     public:
-        /** @todo agregar agregaciones */
-        Filtrador(const Filtros& filt, const Entradas& entr);
-        Filtrador(const Filtrador& filt, const Entradas& entrPanel);
-        ~Filtrador();
+        Filtrador(const Glib::ustring& filtro);
+        virtual ~Filtrador();
 
-        void hacerConsulta();
+    protected:
+        Gtk::HBox centradorDerecho;
     private:
-        Filtros filtros;
-        Entradas entradasTab;
-        Entradas entradasPanel;
-        std::list< Gtk::Widget* > widgets;
+        Gtk::HBox centradorIzquierdo;
+        Gtk::Label filtro;
 };
 
 #endif  // FILTRADOR_H

@@ -10,9 +10,6 @@
 
 #include <string>
 
-class Respuesta;
-class Consulta;
-
 class Mensaje {
 public:
 	Mensaje();

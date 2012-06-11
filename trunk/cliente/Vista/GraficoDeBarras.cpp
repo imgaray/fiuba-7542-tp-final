@@ -7,7 +7,7 @@
 #define ANCHO_BASE      0.50
 #define MIN_SIZE        4
 
-GraficoDeBarras::GraficoDeBarras(Filtrador& _f) : Grafico(_f) {
+GraficoDeBarras::GraficoDeBarras(FiltradoresPanel& _f) : Grafico(_f) {
     offset = INIT_OFFSET;
     separacion = SEPARACION_BASE/MIN_SIZE;
     ancho = ANCHO_BASE/MIN_SIZE;

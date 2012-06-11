@@ -1,6 +1,7 @@
 #include "Consultante.h"
 #include "Respuesta.h"
 #include <iostream>
+#include "Consulta.h"
 
 unsigned Consultante::generadorID = 0;
 

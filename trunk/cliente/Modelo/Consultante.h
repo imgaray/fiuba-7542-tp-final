@@ -1,10 +1,11 @@
 #ifndef CONSULTANTE_H
 #define CONSULTANTE_H
 
+#include "PadreDeConsultantes.h"
 #include "Consulta.h"
 class Respuesta;
 
-class Consultante {
+class Consultante : public PadreDeConsultantes {
     public:
         Consultante();
         ~Consultante();

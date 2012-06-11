@@ -8,7 +8,7 @@ archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
 
 # EN ESTA VARIABLE SE DEFINEN TODAS LAS CARPETAS QUE TENGAN .H
 # EXTERNOS QUE ESTEN USANDO
-INCLUDES = ../../comun
+INCLUDES = ../../comun ../Modelo
 
 I-INCLUDES = $(addprefix -I, $(INCLUDES))
 

@@ -1,4 +1,7 @@
 #include "ConsumerRespuestas.h"
+#include "Consultante.h"
+#include "Consulta.h"
+#include "Respuesta.h"
 
 void ConsumerRespuesta::correr() {
 	while (corriendo()) {
@@ -8,13 +11,13 @@ void ConsumerRespuesta::correr() {
 			delete prespuesta.second;
 		} catch (...){
 			parar();
-		}				
+		}
 	}
 }
 
 ConsumerRespuesta::ConsumerRespuesta(ColaRespuestas& cresp, MapaConsultantes& mcons):
 	respuestas(cresp), consultantes(mcons) {
 }
-	
+
 ConsumerRespuesta::~ConsumerRespuesta() {
 }

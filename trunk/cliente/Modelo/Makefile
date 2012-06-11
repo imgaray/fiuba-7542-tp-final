@@ -1,6 +1,8 @@
 # Makefile
 
-CXXFLAGS = -Wall -pedantic -O0 -g -pthread -lpthread `pkg-config gtkmm-2.4 --cflags` `pkg-config gtkmm-2.4 --libs`
+CXXFLAGS = -Wall -pedantic -O0 -g -pthread -lpthread 
+
+GTKFLAGS = `pkg-config gtkmm-2.4 --cflags --libs`
 
 CC = g++
 
@@ -21,7 +23,7 @@ all: binaries
 binaries: $(bin)
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) $(I-INCLUDES) -c $<
+	$(CC) $(CXXFLAGS) $(I-INCLUDES) -c $< $(GTKFLAGS)
 
 test: $(bin)
 	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test

@@ -1,6 +1,8 @@
 # Makefile
 
-CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread `pkg-config gtkmm-2.4 --cflags` `pkg-config gtkmm-2.4 --libs`
+CXXFLAGS = -O0 -g -pthread -lpthread
+
+GTKFLAGS = `pkg-config gtkmm-2.4 --cflags --libs`
 
 CC = g++
 
@@ -21,10 +23,10 @@ all: binaries
 binaries: $(bin)
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) $(I-INCLUDES) -c $<
+	$(CC) $(CXXFLAGS) $(I-INCLUDES) -c $< $(GTKFLAGS)
 
 test: $(bin)
-	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test
+	$(CC) $(CXXFLAGS) $(bin) test.cpp  -o test
 	
 clean:
 	rm $(robjs)

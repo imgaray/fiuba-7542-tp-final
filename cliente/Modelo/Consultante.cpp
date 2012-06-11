@@ -14,11 +14,10 @@ Consultante::Consultante() {
 Consultante::~Consultante() {}
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
-    cancelarConsulta(server);
-
 //    server.enviarConsulta(this, consulta);
     esperandoRespuesta = true;
     padre->informarConsultaIniciada();
+    correrSpinner();
 }
 
 void Consultante::cancelarConsulta(ServidorRemoto& server) {
@@ -26,6 +25,7 @@ void Consultante::cancelarConsulta(ServidorRemoto& server) {
 //        server.cancelarConsulta(ID);
         padre->informarConsultaTerminada();
         esperandoRespuesta = false;
+        detenerSpinner();
     }
 }
 
@@ -34,6 +34,7 @@ void Consultante::recibirRespuesta(const Respuesta& rta) {
         procesarRespuesta(rta);
         padre->informarConsultaTerminada();
         esperandoRespuesta = false;
+        detenerSpinner();
     }
 }
 

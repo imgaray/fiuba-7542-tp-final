@@ -15,13 +15,8 @@ void PadreDeConsultantes::hacerConsulta(ServidorRemoto& server) {
     for ( ; it != hijos.end(); ++it)
         (*it)->hacerConsulta(server);
 
-//    std::cout << "( " << this << ") Hijos actualizando: " << hijosActualizando << std::endl;
-
     if (hijosActualizando > 0) {
-        if (spinner) {
-            spinner->show();
-            spinner->start();
-        }
+        correrSpinner();
         if (padre)
             padre->informarConsultaIniciada();
     }
@@ -35,13 +30,8 @@ void PadreDeConsultantes::cancelarConsulta(ServidorRemoto& server) {
     for ( ; it != hijos.end(); ++it)
         (*it)->cancelarConsulta(server);
 
-//    std::cout << "( " << this << ") Hijos actualizando: " << hijosActualizando << std::endl;
-
     if (hijosActualizando == 0) {
-        if (spinner) {
-            spinner->stop();
-            spinner->hide();
-        }
+        detenerSpinner();
         if (padre)
             padre->informarConsultaTerminada();
     }
@@ -69,4 +59,18 @@ void PadreDeConsultantes::setPadre(PadreDeConsultantes* _padre) {
 
 void PadreDeConsultantes::setSpinner(Gtk::Spinner* s) {
     spinner = s;
+}
+
+void PadreDeConsultantes::correrSpinner() {
+    if (spinner) {
+        spinner->show();
+        spinner->start();
+    }
+}
+
+void PadreDeConsultantes::detenerSpinner() {
+    if (spinner) {
+        spinner->stop();
+        spinner->hide();
+    }
 }

@@ -16,3 +16,7 @@ Gtk::HBox& Tab::getEtiqueta() {
     return etiquetaCompuesta;
 }
 
+
+void Tab::agregarConsultante(PadreDeConsultantes* c) {
+    PadreDeConsultantes::agregarConsultante(c);
+}

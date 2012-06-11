@@ -19,6 +19,5 @@ Gtk::HBox& Tab::getEtiqueta() {
 
 
 void Tab::agregarConsultante(PadreDeConsultantes* c) {
-    std::cout << "    Pt agregó un hijo (" << c << ")" << std::endl;
     PadreDeConsultantes::agregarConsultante(c);
 }

@@ -4,9 +4,7 @@
 #include "Respuesta.h"
 
 Panel::Panel(Grafico& g, FiltradoresPanel& f) : grafico(g), filtrador(f) {
-    std::cout << "            Pp agregó un hijo (Cg: " << &grafico << ")" << std::endl;
     agregarConsultante(&grafico);
-    std::cout << "            Pp agregó un hijo (Pfp: " << &filtrador << ")" << std::endl;
     agregarConsultante(&filtrador);
 
     pack_start(filtrador, false, false);

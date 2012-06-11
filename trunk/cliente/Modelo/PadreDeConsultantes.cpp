@@ -8,30 +8,34 @@ PadreDeConsultantes::PadreDeConsultantes() {
 }
 
 void PadreDeConsultantes::hacerConsulta(ServidorRemoto& server) {
+    if (hijosActualizando > 0)
+        cancelarConsulta(server);
+
     std::list< PadreDeConsultantes* >::iterator it = hijos.begin();
     for ( ; it != hijos.end(); ++it)
         (*it)->hacerConsulta(server);
 
-    Lock l(m);
-    /** @todo revisar esta línea, porque la lógica dice que debería ser
-     * ++hijosActualizando en cada iteración del for anterior */
-    hijosActualizando = hijos.size();
+//    std::cout << "( " << this << ") Hijos actualizando: " << hijosActualizando << std::endl;
+
     if (hijosActualizando > 0) {
-        std::cout << "Hijos actualizando: " << hijosActualizando << std::endl;
         if (spinner) {
             spinner->show();
             spinner->start();
         }
+        if (padre)
+            padre->informarConsultaIniciada();
     }
 }
 
 void PadreDeConsultantes::cancelarConsulta(ServidorRemoto& server) {
+    if (hijosActualizando == 0)
+        return;
+
     std::list< PadreDeConsultantes* >::iterator it = hijos.begin();
     for ( ; it != hijos.end(); ++it)
         (*it)->cancelarConsulta(server);
 
-    std::cout << "Hijos actualizando: " << hijosActualizando << std::endl;
-
+//    std::cout << "( " << this << ") Hijos actualizando: " << hijosActualizando << std::endl;
 
     if (hijosActualizando == 0) {
         if (spinner) {
@@ -46,30 +50,20 @@ void PadreDeConsultantes::cancelarConsulta(ServidorRemoto& server) {
 void PadreDeConsultantes::agregarConsultante(PadreDeConsultantes* c) {
     hijos.push_back(c);
     c->setPadre(this);
-    Consultante* cons = dynamic_cast< Consultante* >(c);
-    if (cons)
-        std::cout << "Agregado consultante ID: " << cons->getID() << std::endl;
-    else
-        std::cout << "Agregado un padre de consultantes" << std::endl;
 }
 
 
 void PadreDeConsultantes::informarConsultaTerminada() {
     Lock l(m);
     --hijosActualizando;
+}
 
-    if (hijosActualizando == 0) {
-        if (spinner) {
-            spinner->stop();
-            spinner->hide();
-        }
-        if (padre)
-            padre->informarConsultaTerminada();
-    }
+void PadreDeConsultantes::informarConsultaIniciada() {
+    Lock l(m);
+    ++hijosActualizando;
 }
 
 void PadreDeConsultantes::setPadre(PadreDeConsultantes* _padre) {
-    std::cout << _padre << " es ahora padre de " << this << std::endl;
     padre = _padre;
 }
 

@@ -2,11 +2,12 @@
 #include <iostream>
 #include "Area.h"
 #include "FiltradoresPanel.h"
+#include "Respuesta.h"
 
 #define MIN_LADO 200
 
 Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
-    add_events(Gdk::BUTTON_PRESS_MASK);
+    add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
     set_size_request(MIN_LADO, MIN_LADO);
     setSpinner(&s);
 }
@@ -52,7 +53,7 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
         ctx->fill_preserve();
         ctx->clip();
         ctx->scale(min_lado, min_lado);
-        ctx->set_line_width(0.01);
+        ctx->set_line_width(DEFAULT_LINE_WIDTH);
         ctx->set_source_rgb(0.0, 0.0, 0.0);
         dibujarEspecializacion(ev, ctx);
         dibujarAreas(ctx);
@@ -62,21 +63,25 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
     return true;
 }
 
-bool Grafico::on_button_press_event(GdkEventButton* ev) {
-    std::cout << "Consultante "<< getID() << " clickeado." << std::endl;
-    std::list< Area* >::const_iterator it = areas.begin();
+bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
+    std::list< Area* >::iterator it = areas.begin();
     bool encontrado = false;
     double offset = getOffset();
     unsigned i = 0;
     while ( !encontrado && it != areas.end()) {
         encontrado = (*it)->fueClickeada(ev->x/min_lado,
                                          ev->y/min_lado, offset);
-        ++it; ++i;
+        (*(it++))->setSeleccionada(false);
+        ++i;
     }
 
-    std::cout << "(x, y) = (x/lado, y/lado) : " << ev->x << " " << ev->y << " " << ev->x/min_lado << " " << ev->y/min_lado << std::endl;
     if (encontrado) {
-        --it; --i;
+        areaSeleccionada = --it;
+        (*areaSeleccionada)->setSeleccionada(true);
+        ++it;
+        for ( ; it != areas.end(); ++it)
+            (*it)->setSeleccionada(false);
+        --i;
     }
 
     std::list< Referencia >::iterator itRefs = referencias.begin();
@@ -93,8 +98,14 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
 
     queue_draw_area(0,0, ancho_ventana, alto_ventana);
     return true;
-
 }
+
+bool Grafico::on_button_press_event(GdkEventButton* ev) {
+    padre->difundirNavegacionSeleccionada((*areaSeleccionada)->getEtiqueta());
+    return true;
+}
+
+
 
 void Grafico::dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx) {
     std::list< Area* >::iterator it = areas.begin();
@@ -111,7 +122,22 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
     }
 }
 
-void Grafico::procesarRespuesta(const Respuesta& rta) {}
+void Grafico::procesarRespuesta(const Respuesta& rta) {
+    if (rta.cantidadColumnas() != 2)
+        return;
+
+    double valor;
+    std::stringstream ss;
+    std::list< Hecho > datos;
+    for (unsigned i = 0; i < rta.cantidadFilas(); ++i) {
+        ss << rta.dato(i, 1);
+        ss >> valor;
+        datos.push_back(Hecho(rta.dato(i, 0) , valor));
+        ss.clear();
+    }
+
+    actualizarDatos(datos);
+}
 
 void Grafico::actualizarTamanioMinimo(double x, double y) {
 

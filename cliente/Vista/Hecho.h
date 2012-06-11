@@ -3,9 +3,6 @@
 
 #include <glibmm/ustring.h>
 
-/** @todo quizás convenga mover esta clase a ../comun, porque supongo que
- * modela algo más que una etiqueta y un valor
- */
 class Hecho {
     public:
         Hecho(const Hecho& original);

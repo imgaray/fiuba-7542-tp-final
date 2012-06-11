@@ -9,6 +9,9 @@
 #define MAX_VALORES 9
 #endif
 
+#define DEFAULT_LINE_WIDTH  0.01
+#define SELEC_LINE_WIDTH    2*DEFAULT_LINE_WIDTH
+
 class Area {
     public:
         Area(const Hecho& dato, double maximo, unsigned i);
@@ -20,6 +23,8 @@ class Area {
         virtual double dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
                                double offset) = 0;
         virtual bool fueClickeada(double x, double y, double& offset) = 0;
+
+        void setSeleccionada(bool selec);
     protected:
         /** @todo quizás con una referencia al hecho baste, hasta podría ser
          * más conveniente si está directamente conectado con las consultas
@@ -27,6 +32,7 @@ class Area {
         Hecho dato;
         double max;
         double color[4];
+        bool seleccionada;
     private:
         static double colores[MAX_VALORES][4];
 };

@@ -9,10 +9,18 @@ class ServidorRemoto;
 class PadreDeConsultantes {
     public:
         PadreDeConsultantes();
+
         virtual void hacerConsulta(ServidorRemoto& server);
         virtual void cancelarConsulta(ServidorRemoto& server);
+
         void informarConsultaIniciada();
         void informarConsultaTerminada();
+
+        virtual void difundirNavegacionSeleccionada(
+                                            const Glib::ustring& valor);
+        virtual void recibirNavegacionSeleccionada(const Glib::ustring& input,
+                                            const Glib::ustring& valor);
+
         void agregarConsultante(PadreDeConsultantes* c);
         void setSpinner(Gtk::Spinner* s);
     protected:

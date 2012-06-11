@@ -16,6 +16,11 @@ Barra::~Barra() {}
 double Barra::dibujar(Cairo::RefPtr< Cairo::Context >& ctx, double offset) {
     x0 = offset;
     ctx->save();
+        if (seleccionada)
+            ctx->set_line_width(SELEC_LINE_WIDTH);
+        else
+            ctx->set_line_width(DEFAULT_LINE_WIDTH);
+
         ctx->set_source_rgba(color[0], color[1], color[2], color[3]);
         ctx->rectangle(x0, y0, ancho, -hasta);
         ctx->fill_preserve();

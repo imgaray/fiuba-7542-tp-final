@@ -53,6 +53,16 @@ void PadreDeConsultantes::informarConsultaIniciada() {
     ++hijosActualizando;
 }
 
+void PadreDeConsultantes::difundirNavegacionSeleccionada(
+    const Glib::ustring& valor) {
+    std::cout << "Difundiendo " << valor << std::endl;
+}
+
+void PadreDeConsultantes::recibirNavegacionSeleccionada(
+    const Glib::ustring& input, const Glib::ustring& valor) {
+    std::cout << "Recibido input ( " << input << ", " << valor << ")" << std::endl;
+}
+
 void PadreDeConsultantes::setPadre(PadreDeConsultantes* _padre) {
     padre = _padre;
 }

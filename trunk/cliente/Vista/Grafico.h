@@ -20,7 +20,6 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
 
         virtual void hacerConsulta(ServidorRemoto& server);
 
-        virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
         /** @todo implementar para cuando las referencias no entran en el [0,1]x[0,1] */
         void actualizarTamanioMinimo(double x, double y);
         FiltradoresPanel& getFiltrador() const;
@@ -45,12 +44,15 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         virtual void dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx);
     private:
         std::list< Referencia > referencias;
+        std::list< Area* >::iterator areaSeleccionada;
         bool on_button_press_event(GdkEventButton* ev);
+        bool on_motion_notify_event(GdkEventMotion* ev);
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
         FiltradoresPanel& f;
         void procesarRespuesta(const Respuesta& rta);
+        virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
         Gtk::Spinner s;
 };
 #endif  // GRAFICO_H

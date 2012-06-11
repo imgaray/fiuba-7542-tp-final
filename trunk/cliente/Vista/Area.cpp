@@ -23,3 +23,7 @@ const Glib::ustring& Area::getEtiqueta() const {
 const double* Area::getColor() const {
     return color;
 }
+
+void Area::setSeleccionada(bool selec) {
+    seleccionada = selec;
+}

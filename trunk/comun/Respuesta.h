@@ -16,9 +16,13 @@ class Respuesta : public Mensaje {
 public:
 	Respuesta();
 	Respuesta(const Respuesta& original);
-	Respuesta(const std::string& mensaje);
-
 	virtual ~Respuesta();
+
+	/*
+	 *  Constructor de respuesta que se instancia con un mensaje
+	 *  interno espefico
+	 */
+	Respuesta(const std::string& mensaje);
 
 	// Serializa la Respuesta en un string
 	std::string serializar() const;
@@ -26,10 +30,13 @@ public:
 	// Deserializa la Respuesta a partir de un string
 	void deserializar(const std::string& datos);
 
+	// Metodo que implementa el operador= para hacer una copia de Respuesta
 	void operator=(const Respuesta& resp);
 
+	// Retorna un mensaje Interno que posee una instancia de respuesta
 	const std::string& mensajeInterno() const;
 
+	// Se define cual es el mensaje interno de la respuesta
 	void mensajeInterno(const std::string& mensaje);
 
 	/*
@@ -66,6 +73,10 @@ public:
 	 */
 	size_t cantidadFilas() const;
 
+	/*
+	 * Retorna un bool indicando si en la respuesta recibida
+	 * se encuentra algun mensaje de Error
+	 */
 	bool huboError() const;
 
 
@@ -74,8 +85,17 @@ public:
 	static std::string respuestaValida;
 
 private:
+	/*
+	 * Metodo utilizado para deserializar una Respuesta.
+	 * Guardando los datos del argumentos fila en la estructura
+	 * interna de la clase Respuesta
+	 */
 	void guardarFila(const std::string& fila);
 
+	/*
+	 * Metodo utilizado para serializar una Respuesta.
+	 * Guardando los datos del argumento Fila en el string datos.
+	 */
 	void cargarFila(const Fila& fila, std::string& datos) const;
 
 	size_t _columnas;

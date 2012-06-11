@@ -7,11 +7,17 @@
 
 #ifndef AGENTE_H_
 #define AGENTE_H_
+#include "../comun/Socket.h"
 
 class Agente {
 public:
-	Agente();
+	Agente(const std::string& huespedServidor);
+	void cargarDesdeConsola();
+	void cargarDesdeArchivo();
 	virtual ~Agente();
+private:
+	Socket _sck;
+	std::string _huesped;
 };
 
 #endif /* AGENTE_H_ */

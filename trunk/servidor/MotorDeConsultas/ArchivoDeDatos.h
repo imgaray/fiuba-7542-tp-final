@@ -40,8 +40,15 @@ public:
 	void borrarDatos();
 
 private:
+	/*
+	 * Lee un registro desde el argumento posicion y lo almacena en
+	 * el otro argumento string reg.
+	 */
 	void leerRegistro(const size_t& posicion, std::string& reg);
 
+	/*
+	 * Inicializa los archivos utilizados de la Clase
+	 */
 	void inicilizarArchivos();
 
 	std::fstream _archivoPrincipal;

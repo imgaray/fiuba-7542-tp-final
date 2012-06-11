@@ -20,6 +20,10 @@ public:
 	typedef typename std::pair < Iterador, Iterador > Rango;
 
 	Indice() { }
+
+	/*
+	 * Recupera una Lista de Ids que corresponde al valor "dato"
+	 */
 	Lista_Id recuperar(_dato_ dato) {
 		Iterador _it;
 		Rango _ret;
@@ -38,7 +42,9 @@ public:
 		return _res;
 	} ;
 
-
+	/*
+	 * Recupera una Lista de Ids que corresponde al valor "dato"
+	 */
 	void recuperar(_dato_ dato, Lista_Id& lista) {
 			Iterador _it;
 			Rango _ret;
@@ -52,10 +58,16 @@ public:
 			lista.unique();
 		} ;
 
+	/*
+	 * Recupera una Lista de Ids que corresponde al valor "dato"
+	 */
 	void agregar(_dato_ dato, Id_Registro registro) {
 		_mapa.insert(std::pair< _dato_, Id_Registro > (dato, registro));
 	}
 
+	/*
+	 * Se borra y restablece el contenido del indice
+	 */
 	void limpiar() {
 		_mapa.clear();
 	}

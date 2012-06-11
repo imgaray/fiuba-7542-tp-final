@@ -68,12 +68,15 @@ public:
 	void agregarXTablaP(const std::string& x);
 	void agregarYTablaP(const std::string& y);
 
+	// Retorna el campo "i" de la Tabla Pivote para el grupo X o Y
 	const std::string& xDeTablaPivote(unsigned i) const;
 	const std::string& yDeTablaPivote(unsigned i) const;
 
+	// Retorna la cantidad de Campos que tiene el grupo X o Y de la Tabla Pivote
 	unsigned cantVarXTabla() const;
 	unsigned cantVarYTabla() const;
 
+	// Retorna un bool indicando si la consulta es de una Tabla Pivote
 	bool esConsultaDeTablaPivote() const;
 
 	// Agrega un campo a la consulta hecha por el Agente
@@ -90,6 +93,10 @@ public:
 	 */
 	unsigned cantidadResultados() const;
 
+	/*
+	 *  Retorna la cantidad de campos que tiene la consulta
+	 *  (Para que la utilice un a Agente)
+	 */
 	unsigned cantidadCampos() const;
 
 	/*
@@ -113,9 +120,9 @@ public:
 	const std::string& entrada(unsigned indice) const;
 	/*
 	 * Retorna el Valor de la Entrada indexada por el argumento indice
+	 *  o por la entrada misma
 	 */
 	const std::string& valorEntrada(unsigned indice) const;
-
 	const std::string& valorEntrada(const std::string& entrada) const;
 
 	/*
@@ -160,6 +167,10 @@ private:
 
 	void cargarVarDeTabla(std::string& datos) const;
 
+	/*
+	 * Metodos utilizados en la deserializacion de
+	 * la Consulta
+	 */
 	void guardarFiltros(const std::string& filtros);
 	void guardarResultados(const std::string& resultados);
 	void guardarEntradas(const std::string& entradas);

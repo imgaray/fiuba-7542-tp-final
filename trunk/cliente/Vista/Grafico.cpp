@@ -38,6 +38,7 @@ void Grafico::regenerarReferencias() {
         Referencia refNueva(**itAreas);
         referencias.push_back(refNueva);
     }
+    areaSeleccionada = areas.end();
 }
 
 bool Grafico::on_expose_event(GdkEventExpose* ev) {
@@ -64,6 +65,10 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
 }
 
 bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
+//    if (areaSeleccionada != areas.end()); {
+//        (*areaSeleccionada)->setSeleccionada(false);
+//        areaSeleccionada = areas.end();
+//    }
     std::list< Area* >::iterator it = areas.begin();
     bool encontrado = false;
     double offset = getOffset();
@@ -83,6 +88,8 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
             (*it)->setSeleccionada(false);
         --i;
     }
+    else
+        areaSeleccionada = areas.end();
 
     std::list< Referencia >::iterator itRefs = referencias.begin();
     unsigned j = 0;
@@ -101,7 +108,11 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
 }
 
 bool Grafico::on_button_press_event(GdkEventButton* ev) {
-    padre->difundirNavegacionSeleccionada("Implementando...", (*areaSeleccionada)->getEtiqueta());
+    if (areaSeleccionada == areas.end())
+        return true;
+
+    Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
+    padre->difundirNavegacionSeleccionada("Implementando...", valor);
     return true;
 }
 

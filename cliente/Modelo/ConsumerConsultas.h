@@ -8,7 +8,7 @@
 #include "Socket.h"
 #include "ArchivoConfiguracion.h"
 #define MAX_OPEN_PORTS 10
-#define RUTACONFIGURACIONSR "serverRemoto.conf"
+#define RUTACONFIGURACIONSR "servRemoto.conf"
 #define ATRIBPUERTO "puerto_servidor"
 #define ATRIBDIRECCION "direccion_servidor"
 

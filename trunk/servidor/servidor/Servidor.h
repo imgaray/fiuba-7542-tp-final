@@ -7,6 +7,7 @@
 #include "VerificadorConsultasH.h"
 #include "VerificadorEntradasH.h"
 #include "ControladorServidor.h"
+#include "Definiciones.h"
 
 class Servidor: public ResolvedorConsultas, public ResolvedorEntradas {
 private:
@@ -17,7 +18,7 @@ private:
 public:
 	Respuesta resolverEntrada(Consulta& entrada);
 	Respuesta resolver(Consulta& consulta);
-	Servidor();
+	Servidor(Puerto pclientes, Puerto pagentes);
 	~Servidor();
 };
 #endif

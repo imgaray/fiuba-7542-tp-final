@@ -14,9 +14,10 @@ private:
 public:
 	typedef std::map<std::string, std::string>::iterator iterator;
 	std::string obtenerAtributo(std::string& name);
+	std::string obtenerAtributo(char* nombre);
 	iterator begin();
 	iterator end();
-	explicit ArchivoConfiguracion(char* ruta = RUTA);
+	explicit ArchivoConfiguracion(const char* ruta = RUTA);
 	~ArchivoConfiguracion();
 
 };

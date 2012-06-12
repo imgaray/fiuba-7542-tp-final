@@ -21,9 +21,9 @@ void ThreadEntradaClientes::detener_entrada() {
 	this->parar();
 }
 
-ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons):
-	cc(ccli), rc(rcons) {
-	entradaClientes = new Socket(PORT_CLIENTE);
+ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons, Puerto pcli):
+	cc(ccli), rc(rcons), pclientes(pcli) {
+	entradaClientes = new Socket(pclientes);
 	entradaClientes->enlazar();
 }
 

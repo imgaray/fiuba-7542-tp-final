@@ -1,4 +1,4 @@
-#include "ArchivoConfiguracion.h"
+#include "../comun/ArchivoConfiguracion.h"
 #include <iostream>
 using namespace std;
 

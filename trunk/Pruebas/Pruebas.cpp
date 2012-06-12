@@ -16,6 +16,7 @@
 #include "../Servidor/servidor/VerificadorConsultasH.h"
 #include "../Servidor/servidor/VerificadorEntradasH.h"
 #include <stdlib.h>
+#include "GenRegistros.h"
 using namespace std;
 
 
@@ -913,4 +914,43 @@ void testBaseDeDatos() {
 	}
 
 	cout << "Fin de Test de BaseDeDatos" << endl;
+}
+
+void testGeneradorRegistros() {
+	// Creo y configuro la organizacion.
+	char* rutaOrganizacion = "./organizacion.txt";
+	{
+
+	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
+	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
+	fstream archOrg(rutaOrganizacion, fstream::out);
+
+
+	archOrg << dimensiones;
+	archOrg << endl;
+	archOrg << hechos;
+
+	archOrg.close();
+
+	}
+
+	Organizacion::cargarDefiniciones(rutaOrganizacion);
+
+	cout << "====================================================" << endl;
+	cout << "Inicia el Test de Generador De Registros." << endl;
+
+	int errores = 0;
+
+	string rutaDatos = "./datosRegGen.dat";
+	BaseDeDatos bdd(rutaDatos);
+
+	long cantReg = 200;
+
+	generarRegistros(bdd, cantReg);
+
+	//for (Id_Registro id = 0 ; i <)
+
+
+	cout << "FIN DE TEST DE Generador de Registros." << endl;
+
 }

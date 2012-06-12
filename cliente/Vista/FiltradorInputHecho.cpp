@@ -1,5 +1,6 @@
 #include "FiltradorInputHecho.h"
 #include "Consulta.h"
+#include "Utilitario.h"
 
 #define MSJ_ERROR "Sólo números"
 #define CANT_COMBO 2
@@ -31,9 +32,12 @@ int FiltradorInputHecho::perteneceAlCombobox(const Glib::ustring& valor) {
 }
 
 Glib::ustring FiltradorInputHecho::validar(int i, const Glib::ustring& valor) {
-    std::cout << "@todo Glib::ustring  FiltradorInputHecho::filtrar(const Glib::ustring& )" << std::endl;
+    int val_int = Utilitario::convertirAEntero(valor);
+    if (val_int < 0)
+        return STR_NULA;
+
     Glib::ustring val = valoresCombo[i];
-    val += valor;
+    val += Utilitario::convertirAString(val_int);
     return val;
 }
 

@@ -108,7 +108,7 @@ bool M_Fechas::esSimple(const Fecha& fecha) {
 
 Fecha M_Fechas::rango(const Fecha &f1, const Fecha& f2) {
 	if (esRango(f1) || esRango(f2))
-		return "";
+		return STR_NULA;
 
 	Fecha fecha;
 	fecha.clear();
@@ -170,7 +170,7 @@ Fecha M_Fechas::mes(int mes, const std::string& anio) {
 		return fecha;
 	}
 	else {
-		return "";
+		return STR_NULA;
 	}
 }
 
@@ -182,7 +182,7 @@ Fecha M_Fechas::bimestre(int bim, const std::string& anio) {
 		return fecha;
 	}
 	else {
-		return "";
+		return STR_NULA;
 	}
 }
 
@@ -194,7 +194,7 @@ Fecha M_Fechas::trimestre(int tri, const std::string& anio) {
 		return fecha;
 	}
 	else {
-		return "";
+		return STR_NULA;
 	}
 }
 
@@ -206,7 +206,7 @@ Fecha M_Fechas::cuatrimestre(int cuat, const std::string& anio) {
 		return fecha;
 	}
 	else {
-		return "";
+		return STR_NULA;
 	}
 }
 
@@ -218,7 +218,7 @@ Fecha M_Fechas::semestre(int sem, const std::string& anio) {
 		return fecha;
 	}
 	else {
-		return "";
+		return STR_NULA;
 	}
 }
 

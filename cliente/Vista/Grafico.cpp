@@ -65,10 +65,6 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
 }
 
 bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
-//    if (areaSeleccionada != areas.end()); {
-//        (*areaSeleccionada)->setSeleccionada(false);
-//        areaSeleccionada = areas.end();
-//    }
     std::list< Area* >::iterator it = areas.begin();
     bool encontrado = false;
     double offset = getOffset();
@@ -112,7 +108,11 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
         return true;
 
     Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
-    padre->difundirNavegacionSeleccionada("Implementando...", valor);
+    Glib::ustring input = STR_NULA;//f.pertenece(valor);
+    if (input == STR_NULA)
+        std::cout << "Hiciste algo mal" << std::endl;
+
+    padre->difundirNavegacionSeleccionada(input, valor);
     return true;
 }
 

@@ -66,7 +66,7 @@ std::string Utilitario::separar(const std::string& datos,
 	}
 	else {
 		// retorno string nulo si indice > cantArgumentos
-		return "";
+		return STR_NULA;
 	}
 }
 

@@ -12,9 +12,13 @@ class FiltradorResultadoFecha : public FiltradorResultado {
 
         Consulta& filtrar(Consulta& c);
 
+        Glib::ustring pertenece(const Glib::ustring& valor);
+
     private:
         Glib::ustring valorCombo;
         Glib::ustring valorEntrada;
+        int i;  // iésimo valor del combobox posible
+        Fecha f;
 };
 
 #endif  // FILTRADOR_RESULTADO_FECHA_H

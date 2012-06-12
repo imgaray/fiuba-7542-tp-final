@@ -1,9 +1,12 @@
 #include "ConsumerConsultas.h"
-#include "Respuesta.h"
-#include "Consulta.h"
-#include "Socket.h"
+#include <sstream>
 
-std::string SHOST = "localhost";
+template <class T, class Y>
+void convertir(T& objetivo, Y& destino) {
+	std::stringstream st;
+	st << objetivo;
+	st >> destino;
+}
 
 void ConsumerConsulta::detener_hilo() {
 	servidor->desconectar();
@@ -37,9 +40,16 @@ void ConsumerConsulta::correr() {
 
 ConsumerConsulta::ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp):
 	consultas(cons), respuestas(resp) {
-	// TODO: terminar este constructor
-	servidor = new Socket(PORT_CLIENTE);
-	servidor->conectar(SHOST);
+	std::string aux = RUTACONFIGURACIONSR;
+	ArchivoConfiguracion archivo(aux.c_str());
+	aux = ATRIBPUERTO;
+	std::string spuerto = archivo.obtenerAtributo(aux);
+	aux = ATRIBDIRECCION;
+	std::string sdireccion = archivo.obtenerAtributo(aux);
+	Puerto puerto;
+	convertir(spuerto, puerto);
+	servidor = new Socket(puerto);
+	servidor->conectar(sdireccion);
 }
 
 ConsumerConsulta::~ConsumerConsulta() {

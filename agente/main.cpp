@@ -8,7 +8,6 @@
 #include <iostream>
 #include "Agente.h"
 
-
 int main(int argc, char** argv) {
 	if (argc > 1) {
 		Agente agente(argv[0]);

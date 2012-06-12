@@ -16,7 +16,7 @@ class PadreDeConsultantes {
         void informarConsultaIniciada();
         void informarConsultaTerminada();
 
-        virtual void difundirNavegacionSeleccionada(
+        virtual void difundirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);
         virtual void recibirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);
@@ -33,6 +33,7 @@ class PadreDeConsultantes {
         Mutex m;
         unsigned hijosActualizando;
         Gtk::Spinner* spinner;
+        bool difusor;
 };
 
 #endif  // PADRE_DE_CONSULTANTES_H

@@ -18,8 +18,6 @@ class FiltradorInputHecho : public FiltradorInput {
         static Glib::ustring validar(int i, const Glib::ustring& valor);
 
         Consulta& filtrar(Consulta& c);
-
-        Glib::ustring pertenece(const Glib::ustring& valor);
     private:
         Gtk::Entry entrada;
         static Glib::ustring valoresCombo[];

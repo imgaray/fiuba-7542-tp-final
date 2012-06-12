@@ -16,12 +16,6 @@ class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
 
         Consulta& filtrar(Consulta& c);
 
-        /** Si valor es el valor de alguna de las dimensiones
-         * o hechos que este conjunto de filtradores filtra,
-         * retorna el nombre de la dimensión o hecho
-         */
-        Glib::ustring pertenece(const Glib::ustring& valor);
-
         /// este método no verifica que el filtro sea dimensión
         void agregarFiltro(const std::string& dimension,
                            const std::string& valor);

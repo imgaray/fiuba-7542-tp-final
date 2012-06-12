@@ -31,7 +31,10 @@ Consulta& FiltradorInputDimension::filtrar(Consulta& c) {
     return c;
 }
 
-Glib::ustring FiltradorInputDimension::pertenece(const Glib::ustring& valor) {
-    std::cout << "@todo Glib::ustring FiltradorInputDimension::pertenece(const Glib::ustring& )" << std::endl;
-    return STR_NULA;
+void FiltradorInputDimension::recibirNavegacionSeleccionada(
+    const Glib::ustring& input, const Glib::ustring& valor) {
+    std::cout << this << " recibiendo navegación ( " << input << ", " << valor << ")" << std::endl;
+    if (input == getFiltro())
+        valores.append_text(valor);
 }
+

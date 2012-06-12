@@ -95,8 +95,3 @@ Consulta& FiltradorInputFecha::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), f);
     return c;
 }
-
-Glib::ustring FiltradorInputFecha::pertenece(const Glib::ustring& valor) {
-    std::cout << "@todo Glib::ustring FiltradorInputFecha::pertenece(const Glib::ustring& )" << std::endl;
-    return STR_NULA;
-}

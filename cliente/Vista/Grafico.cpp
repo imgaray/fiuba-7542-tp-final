@@ -5,6 +5,7 @@
 #include "Respuesta.h"
 
 #define MIN_LADO 200
+#define COL_RESULTADO 0  // constante que hace que siempre se tome la columna 0 de la respuesta para dar nombre a las áreas del gráfico
 
 Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
@@ -108,15 +109,13 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
         return true;
 
     Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
-    Glib::ustring input = STR_NULA;//f.pertenece(valor);
+    Glib::ustring input = consulta.resultado(COL_RESULTADO);
     if (input == STR_NULA)
         std::cout << "Hiciste algo mal" << std::endl;
 
     padre->difundirNavegacionSeleccionada(input, valor);
     return true;
 }
-
-
 
 void Grafico::dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx) {
     std::list< Area* >::iterator it = areas.begin();
@@ -143,7 +142,7 @@ void Grafico::procesarRespuesta(const Respuesta& rta) {
     for (unsigned i = 0; i < rta.cantidadFilas(); ++i) {
         ss << rta.dato(i, 1);
         ss >> valor;
-        datos.push_back(Hecho(rta.dato(i, 0) , valor));
+        datos.push_back(Hecho(rta.dato(i, COL_RESULTADO) , valor));
         ss.clear();
     }
 

@@ -12,8 +12,6 @@ class FiltradorFiltroHecho : public FiltradorFiltro {
 
         Consulta& filtrar(Consulta& c);
 
-        Glib::ustring pertenece(const Glib::ustring& valor);
-
     private:
         Glib::ustring valorCombo;
         Glib::ustring valorEntrada;

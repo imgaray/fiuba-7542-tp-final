@@ -6,8 +6,9 @@
 Glib::ustring FiltradorResultadoHecho::agregPosibles[CANT_AGREG] = {
     "NADA", "SUM", "MAX", "MIN", "PROM", "CONT" };
 
-FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& hecho,
-    const Glib::ustring& _agregacion) : FiltradorResultado("") {
+FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& _hecho,
+    const Glib::ustring& _agregacion)
+    : FiltradorResultado(STR_NULA), hecho(_hecho) {
     bool existeAgregacion = false;
     i = 0;
     while (!existeAgregacion && i < CANT_AGREG)
@@ -40,6 +41,11 @@ FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& hecho,
 FiltradorResultadoHecho::~FiltradorResultadoHecho() {}
 
 Consulta& FiltradorResultadoHecho::filtrar(Consulta& c) {
-    std::cout << "@todo Consulta& FiltradorResultadoHecho::filtrar(Consulta& c)" << std::endl;
+    c.defininirAgregacion(agregacion, hecho);
     return c;
+}
+
+Glib::ustring FiltradorResultadoHecho::pertenece(const Glib::ustring& valor) {
+    std::cout << "@todo Glib::ustring  FiltradorResultadoHecho::pertenece(const Glib::ustring& )" << std::endl;
+    return STR_NULA;
 }

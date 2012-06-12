@@ -18,7 +18,7 @@ std::fstream Organizacion::_archModelo;
 ConjuntoCampos Organizacion::_dimensiones;
 ConjuntoCampos Organizacion::_hechos;
 vectorCampos Organizacion::_campos;
-std::string Organizacion::nombreNulo = "";
+std::string Organizacion::nombreNulo = STR_NULA;
 bool Organizacion::_existeCampoEspecial;
 unsigned Organizacion::_indEspecial;
 

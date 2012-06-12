@@ -12,10 +12,13 @@ class FiltradorFiltroHecho : public FiltradorFiltro {
 
         Consulta& filtrar(Consulta& c);
 
+        Glib::ustring pertenece(const Glib::ustring& valor);
+
     private:
         Glib::ustring valorCombo;
         Glib::ustring valorEntrada;
         int i;  // iésimo valor del combobox posible
+        Glib::ustring valorHecho;
 };
 
 #endif  // FILTRADOR_FILTRO_HECHO_H

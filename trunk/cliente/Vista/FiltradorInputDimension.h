@@ -15,6 +15,8 @@ class FiltradorInputDimension : public FiltradorInput, public Consultante {
 
         Consulta& filtrar(Consulta& c);
 
+        Glib::ustring pertenece(const Glib::ustring& valor);
+
     private:
         void procesarRespuesta(const Respuesta& rta);
         Gtk::Spinner s;

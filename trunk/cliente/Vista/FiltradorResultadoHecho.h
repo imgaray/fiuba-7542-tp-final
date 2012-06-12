@@ -12,9 +12,12 @@ class FiltradorResultadoHecho : public FiltradorResultado {
 
         Consulta& filtrar(Consulta& c);
 
+        Glib::ustring pertenece(const Glib::ustring& valor);
+
     private:
         int i;
         static Glib::ustring agregPosibles[];
+        Glib::ustring hecho;
         Agregacion agregacion;
 };
 

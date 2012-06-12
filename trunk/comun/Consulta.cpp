@@ -8,7 +8,7 @@
 #include "Consulta.h"
 #include "Utilitario.h"
 
-std::string Consulta::s_nulo = "";
+std::string Consulta::s_nulo = STR_NULA;
 
 #define TablaPivote 'T'
 

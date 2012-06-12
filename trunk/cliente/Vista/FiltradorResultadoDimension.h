@@ -9,6 +9,8 @@ class FiltradorResultadoDimension : public FiltradorResultado {
         virtual ~FiltradorResultadoDimension();
 
         Consulta& filtrar(Consulta& c);
+
+        Glib::ustring pertenece(const Glib::ustring& valor);
 };
 
 #endif  // FILTRADOR_RESULTADO_DIMENSION_H

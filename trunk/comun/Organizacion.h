@@ -11,6 +11,7 @@
 #include <fstream>
 #include <map>
 #include <vector>
+#include "Definiciones.h"
 /*
  * Clase encaragada de determinar y guardar los metadatos
  * refentes a la informacion guardada en el servidor.
@@ -32,7 +33,7 @@ typedef std::vector <std::string> vectorCampos;
 
 class Organizacion {
 public:
-	static void cargarDefiniciones(const std::string& rutaArchivo = "");
+	static void cargarDefiniciones(const std::string& rutaArchivo = STR_NULA);
 
 	static bool esDimension(const std::string& nombreCampo);
 	static bool esHecho(const std::string& nombreCampo);

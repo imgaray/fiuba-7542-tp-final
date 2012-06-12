@@ -5,7 +5,7 @@
 
 FiltradorFiltroFecha::FiltradorFiltroFecha(const Glib::ustring& fecha,
     const Glib::ustring& _valorCombo, const std::string& _valorEntrada)
-    : FiltradorFiltro(fecha, ""),
+    : FiltradorFiltro(fecha, STR_NULA),
     valorCombo(_valorCombo), valorEntrada(_valorEntrada) {
     i = FiltradorInputFecha::perteneceAlCombobox(valorCombo);
     if (i == NO_PERTENECE) {
@@ -14,7 +14,8 @@ FiltradorFiltroFecha::FiltradorFiltroFecha(const Glib::ustring& fecha,
         throw ExcepcionFiltradorMalConstruido(msj.c_str());
     }
 
-    if (!FiltradorInputFecha::esValido(valorEntrada)) {
+    f = FiltradorInputFecha::validar(i, valorEntrada);
+    if (f == STR_NULA) {
         std::string msj = "Valor de entrada inválido: ";
         msj += valorEntrada.c_str();
         throw ExcepcionFiltradorMalConstruido(msj.c_str());
@@ -29,6 +30,11 @@ FiltradorFiltroFecha::FiltradorFiltroFecha(const Glib::ustring& fecha,
 FiltradorFiltroFecha::~FiltradorFiltroFecha() {}
 
 Consulta& FiltradorFiltroFecha::filtrar(Consulta& c) {
-    std::cout << "@todo Consulta& FiltradorFiltroFecha::filtrar(Consulta& c)" << std::endl;
+    c.agregarFiltro(getFiltro(), f);
     return c;
+}
+
+Glib::ustring FiltradorFiltroFecha::pertenece(const Glib::ustring& valor) {
+    std::cout << "@todo Glib::ustring FiltradorFiltroFecha::pertenece(const Glib::ustring& )" << std::endl;
+    return STR_NULA;
 }

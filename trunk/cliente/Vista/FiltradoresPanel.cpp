@@ -115,3 +115,15 @@ Consulta& FiltradoresPanel::filtrar(Consulta& c) {
         (*it)->filtrar(c);
     return c;
 }
+
+Glib::ustring FiltradoresPanel::pertenece(const Glib::ustring& valor) {
+    Glib::ustring input = STR_NULA;
+    bool pertenece = false;
+    std::list< Filtrador* >::iterator it = filtradores.begin();
+    while (!pertenece && it != filtradores.end()) {
+        input = (*it)->pertenece(valor);
+        pertenece = input != STR_NULA;
+    }
+
+    return input;
+}

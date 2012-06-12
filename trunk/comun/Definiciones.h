@@ -126,6 +126,8 @@ typedef std::vector < Fila > DatosDeRespuesta;
  */
 #define mensaje_cliente 'C'
 
+#define STR_NULA ""
+
 /////////////////////////////////////////////////////////
 //
 //Constantes (provisorias) de conexion, como puertos y demas

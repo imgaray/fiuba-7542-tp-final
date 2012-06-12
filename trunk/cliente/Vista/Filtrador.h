@@ -3,6 +3,7 @@
 
 #include <gtkmm/box.h>
 #include <gtkmm/label.h>
+#include "Definiciones.h"
 
 class Consulta;
 
@@ -14,6 +15,7 @@ class Filtrador : public Gtk::HBox {
         Glib::ustring getFiltro();
 
         virtual Consulta& filtrar(Consulta& c) = 0;
+        virtual Glib::ustring pertenece(const Glib::ustring& valor) = 0;
 
     protected:
         Gtk::HBox centradorDerecho;

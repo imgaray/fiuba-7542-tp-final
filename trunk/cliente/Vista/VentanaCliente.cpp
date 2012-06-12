@@ -87,6 +87,6 @@ void VentanaCliente::on_salir_button_clicked() {
 }
 
 bool VentanaCliente::on_timeout() {
-    pVDinamica->hacerConsulta(server);
+//    pVDinamica->hacerConsulta(server);
     return true;
 }

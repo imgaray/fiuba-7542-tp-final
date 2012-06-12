@@ -5,7 +5,7 @@
 
 FiltradorFiltroHecho::FiltradorFiltroHecho(const Glib::ustring& hecho,
     const Glib::ustring& _valorCombo, const std::string& _valorEntrada)
-    : FiltradorFiltro(hecho, ""),
+    : FiltradorFiltro(hecho, STR_NULA),
     valorCombo(_valorCombo), valorEntrada(_valorEntrada)  {
     i =  FiltradorInputHecho::perteneceAlCombobox(valorCombo);
     if (i == NO_PERTENECE) {
@@ -14,7 +14,8 @@ FiltradorFiltroHecho::FiltradorFiltroHecho(const Glib::ustring& hecho,
         throw ExcepcionFiltradorMalConstruido(msj.c_str());
     }
 
-    if (!FiltradorInputHecho::esValido(valorEntrada)) {
+    valorHecho = FiltradorInputHecho::validar(i, valorEntrada);
+    if (valorHecho == STR_NULA) {
         std::string msj = "Valor de entrada inválido: ";
         msj += valorEntrada.c_str();
         throw ExcepcionFiltradorMalConstruido(msj.c_str());
@@ -29,7 +30,12 @@ FiltradorFiltroHecho::FiltradorFiltroHecho(const Glib::ustring& hecho,
 FiltradorFiltroHecho::~FiltradorFiltroHecho() {}
 
 Consulta& FiltradorFiltroHecho::filtrar(Consulta& c) {
-    std::cout << "@todo Consulta& FiltradorFiltroHecho::filtrar(Consulta& c)" << std::endl;
+    c.agregarFiltro(getFiltro(), valorHecho);
     return c;
+}
+
+Glib::ustring FiltradorFiltroHecho::pertenece(const Glib::ustring& valor) {
+    std::cout << "@todo Glib::ustring  FiltradorFiltroHecho::pertenece(const Glib::ustring& )" << std::endl;
+    return STR_NULA;
 }
 

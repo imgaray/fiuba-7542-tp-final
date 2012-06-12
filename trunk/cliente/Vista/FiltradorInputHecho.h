@@ -15,12 +15,21 @@ class FiltradorInputHecho : public FiltradorInput {
 
         static int perteneceAlCombobox(const Glib::ustring& valor);
         /// Validador de la entrada (Gtk::Entry)
-        static bool esValido(const Glib::ustring& valor);
+        static Glib::ustring validar(int i, const Glib::ustring& valor);
 
         Consulta& filtrar(Consulta& c);
+
+        Glib::ustring pertenece(const Glib::ustring& valor);
     private:
         Gtk::Entry entrada;
         static Glib::ustring valoresCombo[];
+        int i;  // iésimo valor del combobox posible
+        Glib::ustring valorHecho;
+
+        // handler para cuando el combobox cambia su selección
+        void on_combo_changed();
+        // handler para cuando el usuario presiona "enter" estando en la Gtk::Entry
+        void on_entry_activated();
 };
 
 #endif  // FILTRADOR_INPUT_HECHO_H

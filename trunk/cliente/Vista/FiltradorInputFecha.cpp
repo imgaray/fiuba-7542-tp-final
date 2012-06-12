@@ -1,8 +1,11 @@
 #include "FiltradorInputFecha.h"
 #include "Consulta.h"
+#include "Utilitario.h"
+#include "M_Fechas.h"
 
 #define MSJ_ERROR "Fecha inválida"
 #define CANT_COMBO 8
+
 Glib::ustring FiltradorInputFecha::valoresCombo[CANT_COMBO] = {
     "Año", "Mes", "Bimestre", "Trimestre", "Cuatrimestre", "Semestre",
     "Semana del año", "Dia" };
@@ -52,10 +55,13 @@ void FiltradorInputFecha::on_entry_activated() {
 Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor) {
     std::cout << "@todo Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor): terminar de implementar" << std::endl;
     Fecha f_validada;
+    Glib::ustring pri = Utilitario::separar(valor, '-', 0);
+    Glib::ustring seg = Utilitario::separar(valor, '-', 1);
+    Glib::ustring terc = Utilitario::separar(valor, '-', 2);
 
     switch (i) {
         // Año
-        case 0: std::cout << "@todo FiltradorInputFecha::validar(...) por Año" << std::endl; break;
+        case 0: f_validada = ; break;
         // Mes
         case 1: std::cout << "@todo FiltradorInputFecha::validar(...) por Mes" << std::endl; break;
         // Bimestre

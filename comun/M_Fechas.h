@@ -51,6 +51,8 @@ private:
 	static void desarmarTrimes(const Fecha& rango, Fecha& f1, Fecha& f2);
 	static void desarmarCuatrimes(const Fecha& rango, Fecha& f1, Fecha& f2);
 	static void desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2);
+	static void desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2);
+
 
 	static void desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul);
 	static void armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha);

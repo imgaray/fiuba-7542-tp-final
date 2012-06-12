@@ -18,6 +18,7 @@
 #define F_TRIMES 'T'
 #define F_CUAT 'C'
 #define F_SEMES 'S'
+#define F_ANIO 'Z'
 #define F_RANGO 'R'
 
 Fecha M_Fechas::fecha(const std::string& fechaComun) {
@@ -131,6 +132,7 @@ bool M_Fechas::esRango(const Fecha& fecha) {
 	case F_CUAT:
 	case F_SEMES:
 	case F_RANGO:
+	case F_ANIO:
 		res = true; break;
 	default: res = false; break;
 	}
@@ -180,6 +182,7 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
 			break;
 		case F_SEMES: desarmarSemes(rango, f1, f2);
 			break;
+		case F_ANIO: desarmarAnio(rango, f1, f2);
 		case F_RANGO:
 					nf1 = Utilitario::separar(rango, sep_fecha, 1);
 					nf2 = Utilitario::separar(rango, sep_fecha, 2);
@@ -196,6 +199,18 @@ void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha
 	fecha += sep_fecha;
 	fecha += anio;
 
+}
+
+Fecha M_Fechas::anio(const std::string& anio) {
+	if (Utilitario::convertirAEntero(anio) > 0) {
+		Fecha fecha;
+		fecha = F_ANIO;
+		armarFecha(1,anio, fecha);
+		return fecha;
+	}
+	else {
+		return STR_NULA;
+	}
 }
 
 Fecha M_Fechas::mes(int mes, const std::string& anio) {
@@ -264,24 +279,6 @@ void M_Fechas::desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned
 
 	anio = anio * MUL_ANIO;
 
-//	if (mul == 1) {
-//		coef++;
-//	}
-//
-//	if (coef == 1) {
-//		f1 = M_Fechas::convertir(anio + coef * MUl_MES + 1 * MUL_DIA);
-//	}
-//	else {
-//		f1 = M_Fechas::convertir(anio + (coef-1) *mul* MUl_MES + 1 * MUL_DIA);
-//	}
-//
-//	if (coef * mul >= 12) {
-//		f2 = M_Fechas::convertir(anio + 1 * MUL_ANIO +  1* MUl_MES + 1 * MUL_DIA);
-//	}
-//	else {
-//		f2 = M_Fechas::convertir(anio + (coef)* mul * MUl_MES + 1 * MUL_DIA);
-//	}
-
 
 	f1 = M_Fechas::convertir(anio + (1 + (coef -1) *(mul))*MUl_MES + 1*MUL_DIA);
 
@@ -308,5 +305,9 @@ void M_Fechas::desarmarCuatrimes(const Fecha& rango, Fecha& f1, Fecha& f2) {
 }
 
 void M_Fechas::desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2) {
+	desarmarFechas(rango, f1, f2, 6);
+}
+
+void M_Fechas::desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2) {
 	desarmarFechas(rango, f1, f2, 6);
 }

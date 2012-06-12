@@ -24,12 +24,6 @@ class Consultante;
  * Tipo de Funcion de agregacion para una consulta
  */
 
-/** Migue, tengo un vector que depende de esto
- * Modificalo si querés, pero no lo saques, ni los cambies de orden.
- * También te saqué la asignación porque automáticamente se asignan
- * PRIMER_VALOR+1, PRIMER_VALOR+2, etc.
- * Cuando leas esto, borralo.
- */
 #define PRIMER_VALOR 65
 
 enum Agregacion {

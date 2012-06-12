@@ -26,6 +26,7 @@ public:
 	static Fecha rango(const Fecha& f1,const Fecha& f2);
 	static Fecha fecha(int dia, int mes, int anio);
 
+    static Fecha anio(const std::string& anio);
 	static Fecha semestre(int sem, const std::string& anio);
 	static Fecha cuatrimestre(int cuat, const std::string& anio);
 	static Fecha trimestre(int tri, const std::string& anio);

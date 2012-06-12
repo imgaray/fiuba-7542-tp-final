@@ -14,7 +14,7 @@ public:
 	bool open() {
 		return bopen;
 	}
-	
+
 	// constructor
 	BLQueue() {bopen = true;}
 	// agregar
@@ -38,17 +38,17 @@ public:
 		Lock l(m);
 		return c.size();
 	}
-	
+
 	void close() {
 		bopen = false;
 		m.signal();
 	}
-	
+
 	bool empty() {
 		Lock l(m);
 		return c.empty();
 	}
-	
+
 	// pop bloqueante. Cuando se cierra la cola, lanza la excepcion pertinente
 	T pop2() {
 		while ((c.size() == 0) && open())

@@ -8,7 +8,7 @@
 #include "../comun/Hilo.h"
 #include "servidor/Servidor.h"
 #include "../comun/Mutex.h"
-#include "ArchivoConfiguracion.h"
+#include "../comun/ArchivoConfiguracion.h"
 #include <sstream>
 #define RUTACONFIGSERV "servidor.conf"
 #define PUERTOCLIENTE "puerto_cliente"
@@ -274,8 +274,15 @@ void pruebaClientesMultiples() {
 	}
 }
 
+#include "../Pruebas/GenRegistros.h"
+#include "servidor/Servidor.h"
+
 int main(int argc, char **argv) {
 	inicializar();
+	Servidor servidor((Puerto)PUERTO_CLIENTE, (Puerto)PUERTO_AGENTE);
+
+	generarRegistros(servidor.baseDeDatos(), 1000);
+
 	cout << "===================================================" << endl;
 	pruebaAgentes();
 	cout << "===================================================" << endl;

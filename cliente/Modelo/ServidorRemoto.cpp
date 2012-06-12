@@ -18,11 +18,13 @@ void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta)
 	ParConsulta par;
 	par.first = consultante->getID();
 	par.second = new Consulta(consulta);
-	consultas.push(par);
+	/** @todo remover este if, no tiene por qué estar */
+	if (consultas.size())
+        consultas.push(par);
 }
 
 void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
-
+    std::cout << "@todo void ServidorRemoto::cancelarConsulta(unsigned )" << std::endl;
 }
 
 ServidorRemoto::~ServidorRemoto()  {

@@ -10,7 +10,7 @@
 #endif
 
 #define DEFAULT_LINE_WIDTH  0.01
-#define SELEC_LINE_WIDTH    2*DEFAULT_LINE_WIDTH
+#define SELEC_LINE_WIDTH    1.5*DEFAULT_LINE_WIDTH
 
 class Area {
     public:

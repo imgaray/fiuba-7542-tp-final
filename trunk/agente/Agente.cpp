@@ -7,21 +7,74 @@
 
 #include "Agente.h"
 #include <iostream>
+#include "../comun/Socket.h"
 #include "../comun/Organizacion.h"
 #include "../comun/Definiciones.h"
 #include "../comun/Consulta.h"
 #include "../comun/Respuesta.h"
+#include "../comun/Utilitario.h"
+#include <stdlib.h>
 
-Agente::Agente(const std::string& huespedServidor) :
-	_sck(PUERTO_ESTANDAR_AGENTE) {
-	this->_huesped = huespedServidor;
+#define T_BUFFER 256
+#define TABULADOR '\t'
 
+Agente::Agente(const std::string& rutaConfig) {
+	this->_sck = NULL;
+	this->cargarConfiguracion(rutaConfig);
 }
 
 Agente::~Agente() {
-	// TODO Auto-generated destructor stub
+	if (_sck->conectado())
+		_sck->desconectar();
+
+	delete this->_sck;
 }
 
+
+void Agente::cargarConfiguracion(const std::string& rutaConfig) {
+	std::fstream archConfig(rutaConfig.c_str(), std::fstream::in);
+	std::string linea;
+	std::string cabecera, arg;
+	Puerto puerto;
+
+	if (archConfig.good()) {
+		while (archConfig.good()) {
+			leerLinea(archConfig, linea);
+
+			if (linea.empty() == false) {
+
+				cabecera = Utilitario::separar(linea, '=' , 0);
+				Utilitario::borrarCaracter(cabecera, ' ');
+
+				if (cabecera == "PUERTO") {
+					arg = Utilitario::separar(linea, '=' , 1);
+					Utilitario::borrarCaracter(arg, ' ');
+					puerto = Utilitario::convertirAEntero(arg);
+				}
+				else if (cabecera == "HUESPED") {
+					arg = Utilitario::separar(linea, '=' , 1);
+					Utilitario::borrarCaracter(arg, ' ');
+					_huesped = arg;
+				}
+			}
+		}
+	}
+	else {
+		// Cargar Configuracion Estandar
+
+		puerto = PUERTO_ESTANDAR_AGENTE;
+		_huesped = "localhost";
+	}
+
+
+	std::cout << "Puerto:  "<< puerto << std::endl;
+	std::cout << "Huesped: "<< _huesped << std::endl;
+
+
+	this->_sck = new Socket(puerto);
+
+	this->_sck->conectar(_huesped);
+}
 
 void Agente::cargarDesdeConsola() {
 	Consulta cons;
@@ -41,18 +94,75 @@ void Agente::cargarDesdeConsola() {
 			cons.agregarCampo(campo);
 		}
 
-		//_sck.enviar(cons);
 
-		// Comprobar la recepcion de Consulta
+		this->enviarConsulta(cons);
+		this->recibirRespuesta();
 
-		//std::cin.seekg(0, std::ios::end);
 		std::cout << "¿Ingresar otra Entrada? S/N" << std::endl;
 
 
 		char aux;
-		//aux = std::cin.peek();
 		std::cin >> aux;
 		seguirCargando = (aux == 's' || aux == 'S');
-
 	}
 }
+
+void Agente::cargarDesdeArchivo(const std::string& rutaDatos) {
+	std::fstream archivo(rutaDatos.c_str(), std::fstream::in);
+	Consulta cons;
+	std::string linea;
+	std::string campo;
+
+	while (archivo.good()) {
+		cons.limpiar();
+		cons.definirComoConsultaAgente();
+
+		leerLinea(archivo, linea);
+
+		if (linea.size() > 0) {
+
+			for (unsigned i = 0 ; i < Organizacion::cantidadCampos() ; i++) {
+				campo = Utilitario::separar(linea, TABULADOR, i);
+				cons.agregarCampo(campo);
+			}
+
+			this->enviarConsulta(cons);
+		}
+	}
+
+	this->recibirRespuesta();
+}
+
+
+
+void Agente::leerLinea(std::fstream& archivo, std::string& linea) {
+	linea.clear();
+
+	char buffer[T_BUFFER];
+
+	bool seguirLeyendo = true;
+	do {
+		archivo.getline(buffer, T_BUFFER, '\n');
+		linea.append(buffer, archivo.gcount());
+
+		seguirLeyendo = (archivo.gcount() == T_BUFFER);
+
+		if (archivo.bad())
+			archivo.clear();
+
+	} while (seguirLeyendo);
+}
+
+void Agente::enviarConsulta(const Consulta& consulta) {
+	if (this->_sck->conectado()) {
+		this->_sck->enviar(consulta);
+	}
+}
+
+void Agente::recibirRespuesta() {
+	Respuesta resp;
+	this->_sck->recibir(resp);
+
+	std::cout << resp.mensajeInterno() << std::endl;
+}
+

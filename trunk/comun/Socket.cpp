@@ -140,7 +140,7 @@ void Socket::desconectar() {
 }
 
 bool Socket::enviar(const Mensaje& mensaje) {
-	std::string s_datos = mensaje.serializar() + sep_fin;
+	std::string s_datos = mensaje.serializar();
 	// std::cout << "Socket--Datos a enviar: \"" << s_datos <<"\"" <<std::endl;
 
     const char* datos = s_datos.c_str(); // consulta.datos();
@@ -179,34 +179,30 @@ bool Socket::recibirDatos(std::string& datos){
 
 	size_t recibidos = 0;
 	bool finDeMensaje = false;
+	char buff;
+	datos.clear();
 
-	// std::cout << "Socket-En esperada de datos... " << std::endl;
-
-
-	while ( finDeMensaje == false && _conectado) {
-		recibidos = recv(_fd, _buffer, TAM_BUFFER, 0);
-
+	while (finDeMensaje == false && _conectado) {
+		//recibidos = recv(_fd, _buffer,sizeof(char)*TAM_BUFFER, 0);
+		recibidos = recv(_fd, &buff,sizeof(char), 0);
 		if (recibidos == (size_t)(-1)) {
 			perror("Error al recibir. ");
 			// printf("Error: %s\n", strerror(errno));
 			_conectado = false;
 		} else if (recibidos > 0) {
 			aux.clear();
-			aux.append(_buffer, recibidos);
-			MYPRINT(recibidos);
-		//	aux.resize(recibidos);
+			//aux.append(_buffer, recibidos);
 
-			finDeMensaje = (aux.find(sep_fin) != std::string::npos);
+		//	MYPRINT(recibidos);
+			datos += buff;
+
+			finDeMensaje = (buff == sep_fin);
 
 		} else if (recibidos == 0) {
 			_conectado = false;
 		}
-
-
 		// std::cout << "Socket-Tanda de datos recibidas..." << std::endl;
 	}
-
-	datos = aux;
 
 	return _conectado;
 }

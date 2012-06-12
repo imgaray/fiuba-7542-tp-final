@@ -7,16 +7,27 @@
 
 #ifndef AGENTE_H_
 #define AGENTE_H_
-#include "../comun/Socket.h"
+#include <string>
+#include <fstream>
+
+class Socket;
+class Consulta;
 
 class Agente {
 public:
-	Agente(const std::string& huespedServidor);
+	Agente(const std::string& rutaConfig = "");
 	void cargarDesdeConsola();
-	void cargarDesdeArchivo();
+	void cargarDesdeArchivo(const std::string& rutaDatos);
 	virtual ~Agente();
 private:
-	Socket _sck;
+
+	void leerLinea(std::fstream& archivo, std::string& linea);
+	void cargarConfiguracion(const std::string& rutaConfig);
+
+	void enviarConsulta(const Consulta& consulta);
+	void recibirRespuesta();
+
+	Socket *_sck;
 	std::string _huesped;
 };
 

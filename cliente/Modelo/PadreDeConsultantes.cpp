@@ -60,9 +60,11 @@ void PadreDeConsultantes::informarConsultaIniciada() {
 void PadreDeConsultantes::difundirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
     std::cout << this << " comenzando difusión input ( " << input << ", " << valor << ")" << std::endl;
-    if (!difusor)
+    if (!difusor) {
         std::cout << this << " difundiendo input ( " << input << ", " << valor << ")" << std::endl;
-    difusor = true;
+        difusor = true;
+        padre->recibirNavegacionSeleccionada(input, valor);
+    }
 }
 
 /** Si era el difusor, no se le aplica la opción seleccionada.
@@ -72,10 +74,15 @@ void PadreDeConsultantes::difundirNavegacionSeleccionada(
 void PadreDeConsultantes::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
     std::cout << this << " recibiendo input ( " << input << ", " << valor << ")" << std::endl;
-    if (!difusor)
-        std::cout << this << " recibido input ( " << input << ", " << valor << ")" << std::endl;
+    if (!difusor) {
+        std::cout << this << " recibido input, difundiendo a hijos ( " << input << ", " << valor << ")" << std::endl;
+
+        std::list< PadreDeConsultantes* >::iterator it = hijos.begin();
+        for ( ; it != hijos.end(); ++it)
+            (*it)->recibirNavegacionSeleccionada(input, valor);
+    }
     else
-        std::cout << this << " difundido input ( " << input << ", " << valor << ")" << std::endl;
+        std::cout << this << " era propio. Difundido input ( " << input << ", " << valor << ")" << std::endl;
 
     difusor = false;
 }

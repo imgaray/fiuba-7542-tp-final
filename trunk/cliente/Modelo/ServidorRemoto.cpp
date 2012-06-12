@@ -4,9 +4,12 @@
 ServidorRemoto::ServidorRemoto():
 			crespuesta(respuestas, consultantes) {
 	for (int i = 0; i < MAX_OPEN_PORTS; ++i) {
-		cconsultas.push_back(new ConsumerConsulta(consultas, respuestas));
+		ConsumerConsulta* cc = new ConsumerConsulta(consultas, respuestas);
+		cconsultas.push_back(cc);
+		cc->iniciar();
 	}
- }
+	crespuesta.iniciar();
+}
 
 void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta) {
 	if (!consultantes.has(consultante->getID())) {
@@ -31,4 +34,5 @@ ServidorRemoto::~ServidorRemoto()  {
 		(*iter)->sincronizar();
 		delete *iter;
 	}
+	crespuesta.sincronizar();
 }

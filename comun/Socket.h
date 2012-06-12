@@ -17,7 +17,6 @@
 #include <sys/types.h>
 #include <string>
 
-#define TAM_BUFFER 128
 #include "Definiciones.h"
 
 class Mensaje;
@@ -105,7 +104,8 @@ private:
     Puerto _puerto;
     bool _conectado;
     bool _enlazado;
-    char _buffer[TAM_BUFFER];
+    //char _buffer[TAM_BUFFER];
+    //std::string _datosRemanentes;
 };
 
 #endif	/* SOCKET_H */

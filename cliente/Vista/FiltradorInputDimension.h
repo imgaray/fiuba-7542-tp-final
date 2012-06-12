@@ -20,6 +20,7 @@ class FiltradorInputDimension : public FiltradorInput, public Consultante {
     private:
         void procesarRespuesta(const Respuesta& rta);
         Gtk::Spinner s;
+        Glib::ustring fialsdfa;
 };
 
 #endif  // FILTRADOR_INPUT_DIMENSION_H

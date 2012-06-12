@@ -15,7 +15,8 @@ class FiltradorInputDimension : public FiltradorInput, public Consultante {
 
         Consulta& filtrar(Consulta& c);
 
-        Glib::ustring pertenece(const Glib::ustring& valor);
+        void recibirNavegacionSeleccionada(const Glib::ustring& input,
+                                           const Glib::ustring& valor);
 
     private:
         void procesarRespuesta(const Respuesta& rta);

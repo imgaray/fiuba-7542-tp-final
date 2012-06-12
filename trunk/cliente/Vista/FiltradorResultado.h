@@ -8,6 +8,7 @@ class FiltradorResultado : public Filtrador {
     public:
         FiltradorResultado(const Glib::ustring& resultado);
         virtual ~FiltradorResultado();
+
     protected:
         void setResultado(const Glib::ustring& resultado);
         Glib::ustring getResultado();

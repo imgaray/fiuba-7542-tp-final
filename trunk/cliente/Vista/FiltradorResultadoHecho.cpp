@@ -45,7 +45,3 @@ Consulta& FiltradorResultadoHecho::filtrar(Consulta& c) {
     return c;
 }
 
-Glib::ustring FiltradorResultadoHecho::pertenece(const Glib::ustring& valor) {
-    std::cout << "@todo Glib::ustring  FiltradorResultadoHecho::pertenece(const Glib::ustring& )" << std::endl;
-    return STR_NULA;
-}

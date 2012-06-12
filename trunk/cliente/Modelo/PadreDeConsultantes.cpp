@@ -5,6 +5,7 @@ PadreDeConsultantes::PadreDeConsultantes() {
     spinner = NULL;
     padre = NULL;
     hijosActualizando = 0;
+    difusor = false;
 }
 
 void PadreDeConsultantes::hacerConsulta(ServidorRemoto& server) {
@@ -53,14 +54,30 @@ void PadreDeConsultantes::informarConsultaIniciada() {
     ++hijosActualizando;
 }
 
+/** Si ya era el difusor, no emite la señal porque, por alguna razón,
+ * no le llegó a sí mismo la suya propia.
+ */
 void PadreDeConsultantes::difundirNavegacionSeleccionada(
-    const Glib::ustring& valor) {
-    std::cout << "Difundiendo " << valor << std::endl;
+    const Glib::ustring& input, const Glib::ustring& valor) {
+    std::cout << this << " comenzando difusión input ( " << input << ", " << valor << ")" << std::endl;
+    if (!difusor)
+        std::cout << this << " difundiendo input ( " << input << ", " << valor << ")" << std::endl;
+    difusor = true;
 }
 
+/** Si era el difusor, no se le aplica la opción seleccionada.
+ * Luego de recibir su propia señal, puede asumir que ya fue difundida
+ * a todos sus hermanos, y corta la señal con difusor = false
+ */
 void PadreDeConsultantes::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
-    std::cout << "Recibido input ( " << input << ", " << valor << ")" << std::endl;
+    std::cout << this << " recibiendo input ( " << input << ", " << valor << ")" << std::endl;
+    if (!difusor)
+        std::cout << this << " recibido input ( " << input << ", " << valor << ")" << std::endl;
+    else
+        std::cout << this << " difundido input ( " << input << ", " << valor << ")" << std::endl;
+
+    difusor = false;
 }
 
 void PadreDeConsultantes::setPadre(PadreDeConsultantes* _padre) {

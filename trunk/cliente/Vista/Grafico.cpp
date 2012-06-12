@@ -101,7 +101,7 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
 }
 
 bool Grafico::on_button_press_event(GdkEventButton* ev) {
-    padre->difundirNavegacionSeleccionada((*areaSeleccionada)->getEtiqueta());
+    padre->difundirNavegacionSeleccionada("Implementando...", (*areaSeleccionada)->getEtiqueta());
     return true;
 }
 

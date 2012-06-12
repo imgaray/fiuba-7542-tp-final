@@ -11,11 +11,13 @@ class Filtrador : public Gtk::HBox {
         Filtrador(const Glib::ustring& filtro);
         virtual ~Filtrador();
 
+        Glib::ustring getFiltro();
+
         virtual Consulta& filtrar(Consulta& c) = 0;
 
     protected:
         Gtk::HBox centradorDerecho;
-        Glib::ustring getFiltro();
+
     private:
         Gtk::HBox centradorIzquierdo;
         Gtk::Label filtro;

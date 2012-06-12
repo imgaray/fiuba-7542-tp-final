@@ -97,10 +97,11 @@ void ControladorServidor::agregarAgente(AgenteRemoto* agt) {
 }
 
 ControladorServidor::ControladorServidor(ResolvedorConsultas& cons,
-				ResolvedorEntradas& rent):
+				ResolvedorEntradas& rent, Puerto pcl, Puerto pag):
+				 puerto_clientes(pcl), puerto_agentes(pag),
 				 rcons(cons), rentr(rent) {
 	ncons = 0;
 	nact = 0;
-	tagentes = new ThreadEntradaAgentes(*this, *this);
-	tclientes = new ThreadEntradaClientes(*this, *this);
+	tagentes = new ThreadEntradaAgentes(*this, *this, puerto_agentes);
+	tclientes = new ThreadEntradaClientes(*this, *this, puerto_clientes);
 }

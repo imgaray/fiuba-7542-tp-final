@@ -21,9 +21,9 @@ void ThreadEntradaAgentes::detener_entrada() {
 	this->parar();
 }
 
-ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent):
-	ca(cag), re(rent) {
-	entradaAgentes = new Socket(PORT_AGENTE);
+ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent, Puerto pag):
+	ca(cag), re(rent), pagentes(pag) {
+	entradaAgentes = new Socket(pagentes);
 	entradaAgentes->enlazar();
 }
 

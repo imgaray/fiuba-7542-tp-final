@@ -1,5 +1,6 @@
 #include "Servidor.h"
 #include <iostream>
+#define RSERVIDOR "servidor.config"
 using namespace std;
 
 Respuesta Servidor::resolverEntrada(Consulta& entrada) {
@@ -18,7 +19,8 @@ Respuesta Servidor::resolver(Consulta& consulta) {
 	return Respuesta("ERROR");
 }
 
-Servidor::Servidor(): cds(*this, *this) {
+Servidor::Servidor(Puerto cliente, Puerto agente): cds(*this, *this,
+													cliente, agente) {
 	cds.comenzar();
 }
 

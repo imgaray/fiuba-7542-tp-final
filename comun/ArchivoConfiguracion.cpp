@@ -2,6 +2,19 @@
 
 #define SEPARADOR '='
 
+std::string ArchivoConfiguracion::obtenerAtributo(std::string& name) {
+	std::string ret;
+	if (atributos.find(name) != atributos.end()) {
+		ret = atributos[name];
+	}
+	return ret;
+}
+
+std::string ArchivoConfiguracion::obtenerAtributo(char* nombre) {
+	std::string nm = nombre;
+	return obtenerAtributo(nm);
+}
+
 ArchivoConfiguracion::iterator ArchivoConfiguracion::begin() {
 	return atributos.begin();
 }
@@ -15,7 +28,7 @@ bool ArchivoConfiguracion::formatoCorrecto(std::string& linea) {
 	(linea.find_first_of(SEPARADOR) == linea.find_last_of(SEPARADOR)));
 }
 
-ArchivoConfiguracion::ArchivoConfiguracion(char* ruta): rutaArchivo(ruta) {
+ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) {
 	std::fstream archivo(ruta);
 	if (!archivo) {
 		// manejar el caso de primer uso
@@ -25,7 +38,7 @@ ArchivoConfiguracion::ArchivoConfiguracion(char* ruta): rutaArchivo(ruta) {
 			std::getline(archivo, aux);
 			if (formatoCorrecto(aux)) {
 				unsigned int posSeparador = aux.find_first_of(SEPARADOR);
-				std::string nombre = aux.substr(0, posSeparador - 1);
+				std::string nombre = aux.substr(0, posSeparador);
 				std::string atributo = aux.substr(posSeparador + 1);
 				if (nombre.size() && atributo.size())
 					atributos[nombre] = atributo;

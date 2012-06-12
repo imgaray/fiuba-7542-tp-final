@@ -8,14 +8,28 @@
 #include "../comun/Hilo.h"
 #include "servidor/Servidor.h"
 #include "../comun/Mutex.h"
+#include "ArchivoConfiguracion.h"
+#include <sstream>
+#define RUTACONFIGSERV "servidor.conf"
+#define PUERTOCLIENTE "puerto_cliente"
+#define PUERTOAGENTE "puerto_agente"
+#define DEFAULTAGENTE 4321
+#define DEFAULTCLIENTE 12345
 
 #define MAX_CLIENTES_SIMULTANEOS 2
 #define MAX_AGENTES_SIMULTANEOS 2
 
-#define PUERTO_CLIENTE 4321
-#define PUERTO_AGENTE 12345
+#define PUERTO_CLIENTE 5000
+#define PUERTO_AGENTE 6000
 
 Mutex MUTEX;
+
+template <class T, class Y> 
+void convertir(T& objetivo, Y& destino) {
+	stringstream st;
+	st << objetivo;
+	st >> destino;
+}
 
 std::string vendedores[] = {"Seba", "Migue", "Piba", "Chabon", "Nacho"};
 std::string sucursales[] = {"Mordor", "Varela", "Moron", "Venus", "Lomas"};
@@ -53,7 +67,7 @@ private:
 public:
 
 	clienteDummy() {
-		sock = new Socket((Puerto)4321);
+		sock = new Socket((Puerto)PUERTO_CLIENTE);
 		if (sock) {
 			std::string host("localhost");
 			//while (!sock->conectado())
@@ -262,7 +276,6 @@ void pruebaClientesMultiples() {
 
 int main(int argc, char **argv) {
 	inicializar();
-	Servidor server;
 	cout << "===================================================" << endl;
 	pruebaAgentes();
 	cout << "===================================================" << endl;

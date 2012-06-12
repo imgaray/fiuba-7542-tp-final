@@ -17,6 +17,7 @@
 #include "Mutex.h"
 #include "../../comun/Definiciones.h"
 #include <iostream>
+#include "Definiciones.h"
 using namespace std;
 
 class ControladorServidor:  public ResolvedorConsultas, 
@@ -33,19 +34,19 @@ private:
 	unsigned int ncons;
 	unsigned int nact;
 	lclientes clientes;
+	Puerto puerto_clientes;
+	Puerto puerto_agentes;
 	lagentes agentes;
-//	BLMap<unsigned, ClienteRemoto*> clientes;
-//	BLMap<unsigned, AgenteRemoto*> agentes;
 	ResolvedorConsultas& rcons;
 	ResolvedorEntradas& rentr;
-//	ManejadorIds mids;
 	ThreadEntradaAgentes* tagentes;
 	ThreadEntradaClientes* tclientes;
 	Mutex m;
 public:
 	Respuesta resolverEntrada(Consulta& entrada);
 	Respuesta resolver(Consulta& consulta);
-	ControladorServidor(ResolvedorConsultas& cons, ResolvedorEntradas& rent);
+	ControladorServidor(ResolvedorConsultas& cons, ResolvedorEntradas& rent,
+								Puerto pclientes, Puerto pagentes);
 	~ControladorServidor();
 	void agregarCliente(ClienteRemoto* rem);
 	void agregarAgente(AgenteRemoto* agt);

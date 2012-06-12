@@ -6,7 +6,7 @@
 #include "ResolvedorEntradas.h"
 #include "AgenteRemoto.h"
 #include "../../comun/Hilo.h"
-#include "Definiciones.h"
+#include "../../comun/Definiciones.h"
 
 class ThreadEntradaAgentes: public Hilo {
 private:

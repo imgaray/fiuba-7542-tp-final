@@ -17,7 +17,7 @@
 #include "Mutex.h"
 #include "../../comun/Definiciones.h"
 #include <iostream>
-#include "Definiciones.h"
+#include "../../comun/Definiciones.h"
 using namespace std;
 
 class ControladorServidor:  public ResolvedorConsultas, 

@@ -6,7 +6,7 @@
 #include "ResolvedorConsultas.h"
 #include "ClienteRemoto.h"
 #include "../../comun/Hilo.h"
-#include "Definiciones.h"
+#include "../../comun/Definiciones.h"
 
 class ThreadEntradaClientes: public Hilo {
 private:

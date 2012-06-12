@@ -10,12 +10,14 @@
 #include "BLMap.h"
 #include <utility>
 #include <list>
+#include "Socket.h"
 
 class Consultante;
 
 class ServidorRemoto {
 private:
 	// atributos contenedores
+	Socket* sock;
 	ColaConsultas consultas;
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
@@ -25,7 +27,6 @@ private:
 public:
 	ServidorRemoto();
 	~ServidorRemoto();
-
 	void enviarConsulta(Consultante* consultante, Consulta consulta);
 	void cancelarConsulta(unsigned IDcons);
 };

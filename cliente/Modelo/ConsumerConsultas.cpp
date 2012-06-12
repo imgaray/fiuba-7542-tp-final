@@ -1,6 +1,9 @@
 #include "ConsumerConsultas.h"
 #include <sstream>
 #include <iostream>
+#define RUTACONFIGURACIONSR "servRemoto.conf"
+#define ATRIBPUERTO "puerto_servidor"
+#define ATRIBDIRECCION "direccion_servidor"
 
 template <class T, class Y>
 void convertir(T& objetivo, Y& destino) {
@@ -10,6 +13,7 @@ void convertir(T& objetivo, Y& destino) {
 }
 
 void ConsumerConsulta::detener_hilo() {
+	std::cout << "se esta deteniendo el hilo" << std::endl;
 	servidor->desconectar();
 	parar();
 }
@@ -20,6 +24,7 @@ void ConsumerConsulta::correr() {
 			try {
 				std::cout << "estoy en consumer consulta, procesando" << std::endl;
 				bool error = false;
+				std::cout << "estoy por entrar a consultas.pop2" << std::endl;
 				ParConsulta pconsulta = consultas.pop2();
 				std::cout << "pase el pop2, tengo una consulta para " << pconsulta.first << std::endl;
 				ParRespuesta parrta;
@@ -58,7 +63,7 @@ ConsumerConsulta::ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp):
 }
 
 ConsumerConsulta::~ConsumerConsulta() {
-	if (corriendo())
-		detener_hilo();
+	std::cout << "entro al destructor de consumer consulta " << std::endl;
+	detener_hilo();
 	delete servidor;
 }

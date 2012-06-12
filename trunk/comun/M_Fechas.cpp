@@ -23,6 +23,9 @@
 Fecha M_Fechas::fecha(const std::string& fechaComun) {
 	Fecha fecha;
 
+	if (!M_Fechas::esFechaConvecional(fechaComun))
+		return "";
+
 	for (int i = 2 ; i >= 0 ; i--)
 		fecha += Utilitario::separar(fechaComun, '-',i);
 
@@ -31,20 +34,53 @@ Fecha M_Fechas::fecha(const std::string& fechaComun) {
 
 
 bool M_Fechas::esFechaConvecional(const std::string& fecha) {
+	bool resParcial;
+
 	size_t pos;
 	pos = fecha.find('-',0);
 	if (pos != std::string::npos) {
 		pos = fecha.find('-',pos + 1);
 		if (pos != std::string::npos) {
-			return true;
+			resParcial = true;
 		}
 		else{
-			return false;
+			resParcial = false;
 		}
 	}
 	else {
-		return false;
+		resParcial = false;
 	}
+
+	bool resFinal = false;
+
+	if (resParcial) {
+		std::string dia = Utilitario::separar(fecha, '-', 0);
+		int numDia = Utilitario::convertirAEntero(dia);
+
+		if (numDia > 0 && numDia <= 31)
+			resFinal = true;
+		else
+			resFinal = false;
+
+		std::string mes = Utilitario::separar(fecha, '-', 1);
+		int numMes = Utilitario::convertirAEntero(mes);
+
+		if (numMes > 0 && numMes <= 12)
+			resFinal = resFinal && true;
+		else
+			resFinal = false;
+
+		std::string anio = Utilitario::separar(fecha, '-', 2);
+		int numAnio = Utilitario::convertirAEntero(anio);
+
+		if (numAnio > 1970)
+			resFinal = resFinal && true;
+		else
+			resFinal = false;
+	}
+
+
+	return resFinal;
 }
 
 Fecha M_Fechas::fecha(int dia, int mes, int anio) {

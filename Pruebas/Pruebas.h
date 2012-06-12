@@ -16,6 +16,7 @@ void testInterseccion();
 void testFiltrar();
 void testAgregacion();
 
+void testGeneradorRegistros();
 
 void testValidadorConsulta();
 

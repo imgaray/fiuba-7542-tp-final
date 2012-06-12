@@ -573,7 +573,7 @@ void testBaseDeDatos() {
 	string reg1[] = {"Avellaneda","Santiago",	"12-12-2012","Samsung Galaxy","500","600"};
 	string reg2[] = {"Lomas",	"Miguel",		"12-12-2012","Samsung Galaxy","600","1600"};
 	string reg3[] = {"Lomas",	"Pablo",		"12-11-2012","Samsung Tablet","150","1000"};
-	string reg4[] = {"Avellaneda","Gustavo",	"12-10-2012","Samsung e-215","550","660"};
+	string reg4[] = {"Avellaneda","Gustavo",	"12-10-2011","Samsung e-215","550","660"};
 	string reg5[] = {"Avellaneda",	"Pablo",	"12-08-2012","Samsung Tablet","600","650"};
 	string reg6[] = {"San Martin",	"Pablo",	"11-09-2012","Samsung Tablet","200","850"};
 	string reg7[] = {"San Justo",	"Santiago",	"11-09-2012","Samsung Galaxy","140","350"};
@@ -687,6 +687,15 @@ void testBaseDeDatos() {
 	imprimirRespuesta(resp, "Entrada: PrecioLista MIN <300. Vendedor");
 
 
+	cCliente.limpiar();
+	cCliente.agregarFiltro("Fecha", M_Fechas::anio("2012"));
+	cCliente.agregarResultado(Organizacion::nombreCampo(1));
+	cCliente.agregarResultado("Fecha");
+	cCliente.agregarResultado("Producto");
+	//cCliente.defininirAgregacion(MIN, Organizacion::nombreHecho(0));
+	resp = bdd.resolverConsulta(cCliente);
+
+	imprimirRespuesta(resp, "Entrada: anio 2009. Vendedor, Fecha, Producto");
 
 
 	cCliente.limpiar();

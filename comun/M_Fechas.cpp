@@ -183,6 +183,7 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
 		case F_SEMES: desarmarSemes(rango, f1, f2);
 			break;
 		case F_ANIO: desarmarAnio(rango, f1, f2);
+			break;
 		case F_RANGO:
 					nf1 = Utilitario::separar(rango, sep_fecha, 1);
 					nf2 = Utilitario::separar(rango, sep_fecha, 2);
@@ -309,5 +310,5 @@ void M_Fechas::desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2) {
 }
 
 void M_Fechas::desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2) {
-	desarmarFechas(rango, f1, f2, 6);
+	desarmarFechas(rango, f1, f2, 12);
 }

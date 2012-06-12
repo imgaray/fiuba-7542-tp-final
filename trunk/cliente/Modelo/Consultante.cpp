@@ -14,8 +14,8 @@ Consultante::Consultante() {
 Consultante::~Consultante() {}
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
-    server.enviarConsulta(this, consulta);
     esperandoRespuesta = true;
+    server.enviarConsulta(this, consulta);
     padre->informarConsultaIniciada();
     correrSpinner();
 }

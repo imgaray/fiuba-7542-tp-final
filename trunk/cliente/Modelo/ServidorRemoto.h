@@ -22,8 +22,7 @@ private:
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
 	ConsumerRespuesta crespuesta;
-//	ConsumerConsulta cconsulta;
-	std::list<ConsumerConsulta*> cconsultas;
+	ConsumerConsulta cconsulta;
 
 public:
 	ServidorRemoto();

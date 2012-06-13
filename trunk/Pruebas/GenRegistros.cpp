@@ -47,6 +47,11 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 	"20011110" , "20020120" ,"20050708", "20030206", "20030702",
 	"20011021" , "20050107" ,"20010505", "20030505", "20040502",
 	};
+
+
+	int cantMarcas = 5;
+	std::string marcas[] = { "Intel", "AMD", "Samsung", "Gateway", "Genius" };
+
 	Consulta ca;
 	std::string nomCampo;
 	for (long i = 0; i < cantReg ; i++) {
@@ -64,6 +69,8 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 				ca.agregarCampo(fechas[generarRandom(cantFechas)]);
 			else if (nomCampo == "Producto")
 				ca.agregarCampo(productos[generarRandom(cantProductos)]);
+			else if (nomCampo == "Marca")
+				ca.agregarCampo(marcas[generarRandom(cantMarcas)]);
 			else if (nomCampo == "PrecioLista" || nomCampo == "PrecioFinal" || Organizacion::esHecho(nomCampo))
 				ca.agregarCampo(Utilitario::convertirAString(generarRandom(1000)));
 			else
@@ -71,6 +78,7 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 		}
 
 		Respuesta res = bdd.agregarEntrada(ca);
+		std::cout << "Msj Respuesta: " << res.mensajeInterno() << std::endl;
 
 		std::cout << "RegNuevo: ";
 		for (unsigned r = 0; r < ca.cantidadCampos() ; r++) {

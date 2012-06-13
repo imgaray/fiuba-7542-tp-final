@@ -12,7 +12,7 @@
 
 class Servidor: public ResolvedorConsultas, public ResolvedorEntradas {
 private:
-	BaseDeDatos bdd;
+	BaseDeDatos *bdd;
 	VerificadorConsultasH vdc;
 	VerificadorEntradasH vde;
 	ControladorServidor cds;
@@ -23,6 +23,6 @@ public:
 	~Servidor();
 
 
-	BaseDeDatos& baseDeDatos(){ return this->bdd; }
+	BaseDeDatos& baseDeDatos(){ return *this->bdd; }
 };
 #endif

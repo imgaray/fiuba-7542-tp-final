@@ -11,11 +11,16 @@
 #include "../../comun/Organizacion.h"
 #include "../../comun/Utilitario.h"
 #include "ComparadorHechos.h"
+#include "../Errores/ErrorOrganizacion.h"
 
 BaseDeDatos::BaseDeDatos(const std::string rutaArchivo) :
 	_archDatos(rutaArchivo) {
+	unsigned cantDimSimples =Organizacion::cantidadDimensionesSimples();
 
-	_indDimensiones = new Indice<Dimension> [Organizacion::cantidadDimensionesSimples()];
+	if (cantDimSimples == 0)
+		throw ErrorOrganizacion();
+
+	_indDimensiones = new Indice<Dimension> [];
 	//_cnjDimensiones = new ConjuntoValoresDimension [Organizacion::cantidadDimensionesSimples()];
 }
 

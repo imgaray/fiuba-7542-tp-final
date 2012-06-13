@@ -9,7 +9,7 @@
 #define GENREGISTROS_H_
 #include <stdlib.h>
 #include <string>
-#include "../Servidor/MotorDeConsultas/BaseDeDatos.h"
+#include "../servidor/MotorDeConsultas/BaseDeDatos.h"
 #include "../comun/Organizacion.h"
 #include "../comun/Utilitario.h"
 

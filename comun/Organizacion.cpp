@@ -196,6 +196,8 @@ unsigned Organizacion::indiceDeCampo(const std::string& campo) {
 		return (_hechos.find(campo)->second + _dimensiones.size());
 	}
 	else {
+
+		// @parahacer lanzar una excepcion
 		return (unsigned)-1;
 	}
 }

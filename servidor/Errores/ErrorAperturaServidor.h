@@ -3,6 +3,6 @@
 
 #include <exception>
 
-class ErrorAperturaServidor.h: public exception {}
+class ErrorAperturaServidor: public std::exception {};
 
 #endif

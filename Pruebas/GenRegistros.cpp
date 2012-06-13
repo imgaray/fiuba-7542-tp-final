@@ -7,6 +7,7 @@
 
 #include "GenRegistros.h"
 #include "../comun/Consulta.h"
+#include "../comun/Respuesta.h"
 
 int generarRandom (int cantMax) {
 	float  r = (float)random() / (float) RAND_MAX;
@@ -22,7 +23,7 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 	{
 	 "Luciano", "Francisco", "Sebastian", "Ricardo", "Augusto",
 	 "Leonardo" ,"Ezequiel", "Oscar", "Miguel", "Alberto",
-	 "Juan", "Santiago" , "Ignacio" , "Joaquin ", "Pedro"
+	 "Juan", "Santiago" , "Ignacio" , "Joaquin", "Pedro"
 	};
 
 
@@ -67,8 +68,9 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 				ca.agregarCampo(Utilitario::convertirAString(generarRandom(1000)));
 			else
 				ca.agregarCampo("CAMPOVACIO");
-
 		}
+
+		Respuesta res = bdd.agregarEntrada(ca);
 
 		std::cout << "RegNuevo: ";
 		for (unsigned r = 0; r < ca.cantidadCampos() ; r++) {

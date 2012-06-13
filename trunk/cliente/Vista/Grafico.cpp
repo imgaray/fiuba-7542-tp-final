@@ -133,6 +133,7 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
 }
 
 void Grafico::procesarRespuesta(const Respuesta& rta) {
+    std::cout << "cantidad de columnas " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 2)
         return;
 

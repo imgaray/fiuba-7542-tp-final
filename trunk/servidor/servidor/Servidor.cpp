@@ -1,5 +1,7 @@
 #include "Servidor.h"
 #include <iostream>
+#include <fstream>
+#include "Organizacion.h"
 #define RSERVIDOR "servidor.config"
 using namespace std;
 
@@ -21,6 +23,24 @@ Respuesta Servidor::resolver(Consulta& consulta) {
 
 Servidor::Servidor(Puerto cliente, Puerto agente): cds(*this, *this,
 													cliente, agente) {
+	std::string rutaOrganizacion = "./organizacion.txt";
+	{
+
+	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
+	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
+	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
+
+
+	archOrg << dimensiones;
+	archOrg << endl;
+	archOrg << hechos;
+
+	archOrg.close();
+
+	}
+
+	Organizacion::cargarDefiniciones(rutaOrganizacion);
+	//generarRegistros(bdd, 1000);
 	cds.comenzar();
 }
 

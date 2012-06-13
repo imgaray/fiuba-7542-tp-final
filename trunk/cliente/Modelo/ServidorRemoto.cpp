@@ -14,7 +14,7 @@ void convertir(T& objetivo, Y& destino) {
 
 void imprimirRespuesta(Respuesta& r) {
 
-	std::cout << ">>>Datos de Respuesta: " << r.serializar() << endl;
+	std::cout << ">>>Datos de Respuesta: " << r.serializar() << std::endl;
 	if (r.mensajeInterno() == Respuesta::respuestaValida) {
 		std::cout <<">>> Cant Filas: " << r.cantidadFilas()<< std::endl;
 		std::cout <<">>> Cant Columnas: " << r.cantidadColumnas()<< std::endl;
@@ -33,22 +33,12 @@ void imprimirRespuesta(Respuesta& r) {
 
 ServidorRemoto::ServidorRemoto():
 			crespuesta(respuestas, consultantes) {
-	/*for (int i = 0; i < MAX_OPEN_PORTS; ++i) {
+	for (int i = 0; i < MAX_OPEN_PORTS; ++i) {
 		ConsumerConsulta* cc = new ConsumerConsulta(consultas, respuestas);
 		cconsultas.push_back(cc);
 		cc->iniciar();
 	}
-	crespuesta.iniciar();*/
-	std::string aux = RUTACONFIGURACIONSR;
-	ArchivoConfiguracion archivo(aux.c_str());
-	aux = ATRIBPUERTO;
-	std::string spuerto = archivo.obtenerAtributo(aux);
-	aux = ATRIBDIRECCION;
-	std::string sdireccion = archivo.obtenerAtributo(aux);
-	Puerto puerto;
-	convertir(spuerto, puerto);
-	sock = new Socket(puerto);
-	sock->conectar(sdireccion);
+	crespuesta.iniciar();
 }
 
 void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta) {
@@ -59,15 +49,7 @@ void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta)
 	par.first = consultante->getID();
 	par.second = new Consulta(consulta);
 	/** @todo remover este if, no tiene por qué estar */
-/*	if (consultas.size())
-        consultas.push(par);*/
-    sock->enviar(*(par.second));
-    delete par.second;
-	Respuesta r;
-    sock->recibir(r);
-    imprimirRespuesta(r);
-    std::cout << "recibi la respuesta" << std::endl;
-    consultante->recibirRespuesta(r);
+    consultas.push(par);
 }
 
 void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
@@ -75,15 +57,13 @@ void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
 }
 
 ServidorRemoto::~ServidorRemoto()  {
-	/*consultas.close();
+	consultas.close();
 	respuestas.close();
 	std::list<ConsumerConsulta*>::iterator iter;
 	for (iter = cconsultas.begin(); iter != cconsultas.end(); ++iter) {
 		(*iter)->detener_hilo();
 		(*iter)->sincronizar();
 		delete *iter;
-	}*/
-	sock->desconectar();
-	delete sock;
+	}
 	crespuesta.sincronizar();
 }

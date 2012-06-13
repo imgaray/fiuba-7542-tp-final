@@ -1,10 +1,11 @@
 #include "ClienteRemoto.h"
+#include <iostream>
 
 void ClienteRemoto::detener_cliente() {
 	parar();
 	if (cliente)
 		cliente->desconectar();
-	//sincronizar();
+	sincronizar();
 }
 
 void ClienteRemoto::correr() {
@@ -12,8 +13,10 @@ void ClienteRemoto::correr() {
 		Consulta c;
 		bool valido = false;
 		if (cliente->recibir(c)) {
+			std::cout << "recibi consulta" << std::endl;
 			Respuesta r = blresolvedor.resolver(c);
 			valido = cliente->enviar(r);
+			std::cout << "envie respuesta" << std::endl;
 		}
 		if (!valido) {
 			detener_cliente();

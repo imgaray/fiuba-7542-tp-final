@@ -9,7 +9,7 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
     setSpinner(&s);
     centradorDerecho.pack_start(s, false, false);
     s.hide();
-
+	valores.append_text("Ignacio");
     // para popular el combobox
     consulta.agregarResultado(getFiltro());
 }
@@ -17,6 +17,7 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
 FiltradorInputDimension::~FiltradorInputDimension() {}
 
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
+	std::cout << "FILTRADOR: cantidad columnas respuesta " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 1)
         return;
 

@@ -7,7 +7,7 @@ using namespace std;
 
 Respuesta Servidor::resolverEntrada(Consulta& entrada) {
 	if (vde.verificarEntrada(entrada)) {
-		return bdd.agregarEntrada(entrada);
+		return bdd->agregarEntrada(entrada);
 	}
 	// TODO: al integrar, habria que reformular esto
 	return Respuesta("ERROR");
@@ -15,7 +15,7 @@ Respuesta Servidor::resolverEntrada(Consulta& entrada) {
 
 Respuesta Servidor::resolver(Consulta& consulta) {
 	if (vdc.verificarConsulta(consulta)) {
-		return bdd.resolverConsulta(consulta);
+		return bdd->resolverConsulta(consulta);
 	}
 	// TODO: al integrar, habria que reformular esto
 	return Respuesta("ERROR");
@@ -23,27 +23,16 @@ Respuesta Servidor::resolver(Consulta& consulta) {
 
 Servidor::Servidor(Puerto cliente, Puerto agente): cds(*this, *this,
 													cliente, agente) {
-	std::string rutaOrganizacion = "./organizacion.txt";
-	{
-
-	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
-	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
-	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
-
-
-	archOrg << dimensiones;
-	archOrg << endl;
-	archOrg << hechos;
-
-	archOrg.close();
-
-	}
-
-	Organizacion::cargarDefiniciones(rutaOrganizacion);
+	Organizacion::cargarDefiniciones(RUTA_ARCH_MODELO);
 	//generarRegistros(bdd, 1000);
+
+	bdd = new BaseDeDatos("BDD.dat");
+
 	cds.comenzar();
 }
 
 Servidor::~Servidor() {
 	cds.detener();
+
+	delete bdd;
 }

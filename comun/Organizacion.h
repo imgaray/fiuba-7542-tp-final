@@ -12,6 +12,9 @@
 #include <map>
 #include <vector>
 #include "Definiciones.h"
+
+#define RUTA_ARCH_MODELO "./modelo.config"
+
 /*
  * Clase encaragada de determinar y guardar los metadatos
  * refentes a la informacion guardada en el servidor.

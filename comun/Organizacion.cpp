@@ -10,7 +10,7 @@
 #include <sstream>
 #include <iostream>
 
-#define RUTA_ARCH_MODELO "./modelo.txt"
+
 #define DIMENSION_FECHA "Fecha"
 
 

@@ -19,6 +19,7 @@
 #define TABULADOR '\t'
 
 Agente::Agente(const std::string& rutaConfig) {
+	Organizacion::cargarDefiniciones(RUTA_ARCH_MODELO);
 	this->_sck = NULL;
 	this->cargarConfiguracion(rutaConfig);
 }

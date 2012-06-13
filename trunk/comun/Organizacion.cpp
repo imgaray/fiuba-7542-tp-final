@@ -35,7 +35,7 @@ void Organizacion::cargarDefiniciones(const std::string& rutaArchivo) {
 
 
 	if (_archModelo.is_open() == false) {
-		// TRATAR EL ERROR
+		// @todo TRATAR EL ERROR
 		std::cerr << "Error al abrir el archivo de Modelo"<< std::endl;
 	}
 	else {

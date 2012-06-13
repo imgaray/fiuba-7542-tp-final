@@ -44,6 +44,7 @@ public:
 	}
 
 	void close() {
+		Lock l(m);
 		bopen = false;
 		std::cout << "estoy en close " << std::endl;
 		m.signal();
@@ -59,7 +60,7 @@ public:
 	T pop2() {
 		Lock l(m);
 		std::cout << "entre al pop2" << std::endl;
-		while (c.size() == 0) {
+		while (c.size() == 0 && bopen) {
 			std::cout << "estoy esperando en pop2" << std::endl;
 			m.wait();
 		}

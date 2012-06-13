@@ -22,11 +22,13 @@ private:
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
 	ConsumerRespuesta crespuesta;
+//	ConsumerConsulta cconsulta;
 	std::list<ConsumerConsulta*> cconsultas;
 
 public:
 	ServidorRemoto();
 	~ServidorRemoto();
+	void conectar() throw();
 	void enviarConsulta(Consultante* consultante, Consulta consulta);
 	void cancelarConsulta(unsigned IDcons);
 };

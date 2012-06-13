@@ -19,6 +19,8 @@ void ClienteRemoto::correr() {
 			std::cout << "envie respuesta" << std::endl;
 		}
 		if (!valido) {
+			std::cout << "entro a not valido de correr de cliente remoto, \
+			ergo cierra el thread" << std::endl;
 			detener_cliente();
 		}
 	}

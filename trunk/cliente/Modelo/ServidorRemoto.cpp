@@ -32,11 +32,22 @@ void imprimirRespuesta(Respuesta& r) {
 }
 
 ServidorRemoto::ServidorRemoto():
-			crespuesta(respuestas, consultantes) {
-	for (int i = 0; i < MAX_OPEN_PORTS; ++i) {
-		ConsumerConsulta* cc = new ConsumerConsulta(consultas, respuestas);
-		cconsultas.push_back(cc);
-		cc->iniciar();
+		crespuesta(respuestas, consultantes)/*,
+		cconsulta(consultas, respuestas)*/
+		 {
+	for(unsigned i = 0; i < MAX_OPEN_PORTS; ++i) {
+		cconsultas.push_back(new ConsumerConsulta(consultas, respuestas));
+	}
+	conectar();
+}
+
+void ServidorRemoto::conectar() throw() {	
+	/*cconsulta.conectar();
+	cconsulta.iniciar();*/
+	std::list<ConsumerConsulta*>::iterator iter;
+	for (iter = cconsultas.begin(); iter != cconsultas.end(); ++iter) {
+		(*iter)->conectar();
+		(*iter)->iniciar();
 	}
 	crespuesta.iniciar();
 }
@@ -48,8 +59,7 @@ void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta)
 	ParConsulta par;
 	par.first = consultante->getID();
 	par.second = new Consulta(consulta);
-	/** @todo remover este if, no tiene por qué estar */
-    consultas.push(par);
+	consultas.push(par);
 }
 
 void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
@@ -59,11 +69,14 @@ void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
 ServidorRemoto::~ServidorRemoto()  {
 	consultas.close();
 	respuestas.close();
+	/*if (cconsulta.corriendo())
+		cconsulta.sincronizar();*/
 	std::list<ConsumerConsulta*>::iterator iter;
 	for (iter = cconsultas.begin(); iter != cconsultas.end(); ++iter) {
-		(*iter)->detener_hilo();
-		(*iter)->sincronizar();
+		if ((*iter)->corriendo())
+			(*iter)->sincronizar();
 		delete *iter;
 	}
-	crespuesta.sincronizar();
+	if (crespuesta.corriendo())	
+		crespuesta.sincronizar();
 }

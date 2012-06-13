@@ -20,7 +20,7 @@ BaseDeDatos::BaseDeDatos(const std::string rutaArchivo) :
 	if (cantDimSimples == 0)
 		throw ErrorOrganizacion();
 
-	_indDimensiones = new Indice<Dimension> [];
+	_indDimensiones = new Indice<Dimension> [cantDimSimples];
 	//_cnjDimensiones = new ConjuntoValoresDimension [Organizacion::cantidadDimensionesSimples()];
 }
 

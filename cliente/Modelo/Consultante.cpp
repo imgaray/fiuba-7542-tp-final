@@ -30,7 +30,10 @@ void Consultante::cancelarConsulta(ServidorRemoto& server) {
 }
 
 void Consultante::recibirRespuesta(const Respuesta& rta) {
+   std::cout << "entre al recibir respuesta de consultante" << std::endl;
     if (esperandoRespuesta) {
+		std::cout << "entre al if de esperandoRespuesta" << std::endl;
+        std::cout << "mensaje interno de respuesta " << rta.mensajeInterno() << std::endl;
         procesarRespuesta(rta);
         padre->informarConsultaTerminada();
         esperandoRespuesta = false;

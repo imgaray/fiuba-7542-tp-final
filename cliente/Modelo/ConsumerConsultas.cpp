@@ -31,7 +31,7 @@ void ConsumerConsulta::correr() {
 				parrta.first = pconsulta.first;
 				parrta.second = new Respuesta();
 				if (servidor->enviar(*pconsulta.second)) {
-					error = servidor->recibir(*(parrta.second));
+					error = !servidor->recibir(*(parrta.second));
 					std::cout << "recibi la respuesta para "<< parrta.first << std::endl;
 				}
 				delete pconsulta.second;

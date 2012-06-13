@@ -13,13 +13,13 @@ agente:
 	$(shell mv agente/*conf apAgente)
 
 cliente:
-	$(shell -C cliente)
+	$(shell make -C cliente)
 	$(shell mkdir apCliente)
 	$(shell mv cliente/main apCliente)
 	$(shell mv cliente/*conf apCliente)
 
 servidor:
-	$(shell -C servidor)
+	$(shell make -C servidor)
 	$(shell mkdir apServidor)
 	$(shell mv servidor/main apServidor)
 	$(shell mv servidor/*conf apServidor)

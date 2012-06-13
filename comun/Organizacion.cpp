@@ -238,6 +238,7 @@ const std::string& Organizacion::nombreDimensionSimple(unsigned indice) {
 }
 
 unsigned Organizacion::cantidadDimensionesSimples() {
+	return 10;
 	if (_existeCampoEspecial) {
 		return _dimensiones.size() - 1;
 	}

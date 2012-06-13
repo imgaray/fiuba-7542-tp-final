@@ -10,25 +10,25 @@ void ControladorServidor::comenzar() {
 }
 
 Respuesta ControladorServidor::resolverEntrada(Consulta& entrada) {
+	m.lock();
 	while (ncons != 0) {
 		cout << "Ciclo wait de resolver entrada de controladorservidor" << endl;
 		m.wait();
 	}
-	m.lock();
 	nact++;
 	Respuesta r = rentr.resolverEntrada(entrada);
 	nact--;
-	m.unlock();
 	m.signal();
+	m.unlock();
 	return r;
 }
 	
 Respuesta ControladorServidor::resolver(Consulta& consulta) {
+	m.lock();
 	while (nact != 0) {
 		cout << "Ciclo wait de resolver consulta de controladorservidor" << endl;
 		m.wait();
 	}
-	m.lock();
 	ncons++;
 	m.unlock();
 	Respuesta r = rcons.resolver(consulta);

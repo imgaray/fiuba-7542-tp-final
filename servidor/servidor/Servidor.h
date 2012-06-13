@@ -7,6 +7,7 @@
 #include "VerificadorConsultasH.h"
 #include "VerificadorEntradasH.h"
 #include "ControladorServidor.h"
+#include "GenRegistros.h"
 #include "../../comun/Definiciones.h"
 
 class Servidor: public ResolvedorConsultas, public ResolvedorEntradas {

@@ -8,7 +8,7 @@ GTKFLAGS = `pkg-config gtkmm-2.4 --cflags --libs`
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
-SUBDIRS = Vista Modelo ../comun
+SUBDIRS = Vista Modelo ../comun ../servidor/MotorDeConsultas
 
 EXTERNOBJS =$(foreach path, $(SUBDIRS), $(addsuffix .o, $(basename  $(wildcard $(path)/*.cpp))))
 

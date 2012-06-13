@@ -4,13 +4,13 @@
 #include "../../comun/Definiciones.h"
 
 bool VerificadorConsultasH::verificarConsulta(const Consulta& consulta) {
-	if (!consulta.esConsultaDeCliente())
+/*	if (!consulta.esConsultaDeCliente())
 		return false;
 
 	if (consulta.esConsultaDeTablaPivote())
 		return this->cClienteTP(consulta);
 	else
-		return this->cClienteValida(consulta);
+		return this->cClienteValida(consulta);*/ return true;
 }
 
 bool VerificadorConsultasH::hayDimesionesEnRes(const Consulta& cons) {

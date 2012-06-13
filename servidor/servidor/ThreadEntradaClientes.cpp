@@ -1,9 +1,11 @@
 #include "ThreadEntradaClientes.h"
+#include <iostream>
 
 void ThreadEntradaClientes::correr() {
 	while (corriendo()) {
 		Socket* scliente = entradaClientes->escucharConexion();
 		if (scliente) {
+			std::cout << "entro conexion" << std::endl;
 			ClienteRemoto* ag = new ClienteRemoto(scliente, rc);
 			cc.agregarCliente(ag);
 			ag->iniciar();

@@ -6,11 +6,9 @@ CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
-SUBDIRS = ../comun
+SUBDIRS = ../comun ../servidor/MotorDeConsultas
 
-EXTERNOBJS = $(addsuffix .o, $(basename  $(wildcard */*.cpp)))
-
-EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../comun/*.cpp)))
+EXTERNOBJS = $(foreach dir, $(SUBDIRS), $(addsuffix .o, $(basename  $(wildcard $(dir)/*.cpp))))
 
 CC = g++
 

@@ -7,7 +7,10 @@
 #include "Consulta.h"
 #include "Socket.h"
 #include "ArchivoConfiguracion.h"
-#define MAX_OPEN_PORTS 10
+#include <cerrno>
+#include <cstring>
+#include <string>
+#define MAX_OPEN_PORTS 1
 
 
 class Socket;
@@ -17,10 +20,13 @@ private:
 	Socket* servidor;
 	ColaConsultas& consultas;
 	ColaRespuestas& respuestas;
+	std::string sdireccion;
 public:
 	void detener_hilo();
 
 	void correr();
+	
+	void conectar() throw();
 
 	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp);
 

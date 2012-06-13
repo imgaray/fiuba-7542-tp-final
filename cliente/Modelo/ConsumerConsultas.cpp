@@ -5,6 +5,7 @@
 #define ATRIBPUERTO "puerto_servidor"
 #define ATRIBDIRECCION "direccion_servidor"
 
+
 template <class T, class Y>
 void convertir(T& objetivo, Y& destino) {
 	std::stringstream st;
@@ -23,7 +24,7 @@ void ConsumerConsulta::correr() {
 		if (servidor && servidor->conectado()) {
 			try {
 				std::cout << "estoy en consumer consulta, procesando" << std::endl;
-				bool error = false;
+				bool error = true;
 				std::cout << "estoy por entrar a consultas.pop2" << std::endl;
 				ParConsulta pconsulta = consultas.pop2();
 				std::cout << "pase el pop2, tengo una consulta para " << pconsulta.first << std::endl;
@@ -55,11 +56,17 @@ ConsumerConsulta::ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp):
 	aux = ATRIBPUERTO;
 	std::string spuerto = archivo.obtenerAtributo(aux);
 	aux = ATRIBDIRECCION;
-	std::string sdireccion = archivo.obtenerAtributo(aux);
+	sdireccion = archivo.obtenerAtributo(aux);
 	Puerto puerto;
 	convertir(spuerto, puerto);
 	servidor = new Socket(puerto);
+}
+
+void ConsumerConsulta::conectar() throw() {
 	servidor->conectar(sdireccion);
+	if (!servidor->conectado()) {
+		throw strerror(errno);
+	}
 }
 
 ConsumerConsulta::~ConsumerConsulta() {

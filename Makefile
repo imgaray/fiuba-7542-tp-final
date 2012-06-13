@@ -1,27 +1,27 @@
-SUBDIRS = agente cliente servidor
-
-EXTRA = comun
 
 all: install
 
-install: agente cliente servidor
-		
-agente:
-	$(shell make -C agenet)
-	$(shell mkdir apAgente)
-	$(shell mv agente/main apAgente)
-	$(shell mv agente/*conf apAgente)
+install: install_agente install_cliente install_servidor
 
-cliente:
-	$(shell make -C cliente)
-	$(shell mkdir apCliente)
-	$(shell mv cliente/main apCliente)
-	$(shell mv cliente/*conf apCliente)
+install_agente:
+	mkdir apAgente
+	cd agente; make
+	cp agente/main apAgente
+install_cliente:
+	mkdir apCliente
+	cd cliente; make
+	cp cliente/main apCliente
+	cp cliente/*.conf apCliente
 
-servidor:
-	$(shell make -C servidor)
-	$(shell mkdir apServidor)
-	$(shell mv servidor/main apServidor)
-	$(shell mv servidor/*conf apServidor)
+install_servidor:
+	mkdir apServidor
+	cd servidor; make
+	cp servidor/main apServidor
+	cp servidor/*.conf apServidor
+	
+uninstall:
+	$(shell rm -r $(wildcard apCliente))
+	$(shell rm -r $(wildcard apServidor))
+	$(shell rm -r $(wildcard apAgente))
 
-.PHONY: install all		
+.PHONY: all install	install_agente install_cliente install_servidor	uninstall

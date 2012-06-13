@@ -15,6 +15,12 @@ Consultante::~Consultante() {}
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
     esperandoRespuesta = true;
+    std::cout << this << " consulta ";
+    if (verificador.verificarConsulta(consulta))
+        std::cout << "OK" << std::endl;
+    else
+        std::cout << "NO OK" << std::endl;
+
     server.enviarConsulta(this, consulta);
     padre->informarConsultaIniciada();
     correrSpinner();

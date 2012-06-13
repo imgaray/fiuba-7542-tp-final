@@ -1,5 +1,6 @@
 #include "Grafico.h"
 #include <iostream>
+#include <exception>
 #include "Area.h"
 #include "FiltradoresPanel.h"
 #include "Respuesta.h"
@@ -135,7 +136,7 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
 void Grafico::procesarRespuesta(const Respuesta& rta) {
     std::cout << "cantidad de columnas " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 2)
-        return;
+        throw "Respuesta para grafico con más o menos de dos columnas";
 
     double valor;
     std::stringstream ss;
@@ -148,6 +149,7 @@ void Grafico::procesarRespuesta(const Respuesta& rta) {
     }
 
     actualizarDatos(datos);
+    queue_draw_area( 0, 0, ancho_ventana, alto_ventana);
 }
 
 void Grafico::actualizarTamanioMinimo(double x, double y) {

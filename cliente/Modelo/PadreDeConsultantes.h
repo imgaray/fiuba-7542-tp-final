@@ -25,11 +25,11 @@ class PadreDeConsultantes {
         void setSpinner(Gtk::Spinner* s);
     protected:
         PadreDeConsultantes* padre;
+        std::list< PadreDeConsultantes* > hijos;
         void correrSpinner();
         void detenerSpinner();
     private:
         void setPadre(PadreDeConsultantes* padre);
-        std::list< PadreDeConsultantes* > hijos;
         Mutex m;
         unsigned hijosActualizando;
         Gtk::Spinner* spinner;

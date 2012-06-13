@@ -17,6 +17,7 @@ class VentanaCliente : public Gtk::Window {
         Glib::RefPtr< Gtk::Builder > builder;
         VentanaClienteDinamica* pVDinamica;
         ServidorRemoto server;
+        void on_conectar_button_clicked();
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();
         void on_exportarPDF_button_clicked();

@@ -6,15 +6,15 @@
  */
 #include "Pruebas.h"
 #include "../comun/Organizacion.h"
-#include "../Servidor/MotorDeConsultas/ArchivoDeDatos.h"
+#include "../servidor/MotorDeConsultas/ArchivoDeDatos.h"
 #include <iostream>
 #include <fstream>
 #include "../comun/Consulta.h"
 #include "../comun/Respuesta.h"
 #include "../comun/M_Fechas.h"
-#include "../Servidor/MotorDeConsultas/BaseDeDatos.h"
-#include "../Servidor/servidor/VerificadorConsultasH.h"
-#include "../Servidor/servidor/VerificadorEntradasH.h"
+#include "../servidor/MotorDeConsultas/BaseDeDatos.h"
+#include "../servidor/servidor/VerificadorConsultasH.h"
+#include "../servidor/servidor/VerificadorEntradasH.h"
 #include <stdlib.h>
 #include "GenRegistros.h"
 using namespace std;

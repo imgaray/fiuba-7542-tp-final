@@ -2,6 +2,7 @@
 #include "Respuesta.h"
 #include "Consulta.h"
 #include <iostream>
+#include <exception>
 
 FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
     PadreDeConsultantes* padre) : FiltradorInput(input) {
@@ -9,7 +10,11 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
     setSpinner(&s);
     centradorDerecho.pack_start(s, false, false);
     s.hide();
-	valores.append_text("Ignacio");
+//	valores.append_text("Ignacio");
+//    valores.append_text("Ignacio");
+//    valores.append_text("Sebastian");
+//    valores.append_text("Miguel");
+    valores.set_active(0);
     // para popular el combobox
     consulta.agregarResultado(getFiltro());
 }
@@ -19,7 +24,7 @@ FiltradorInputDimension::~FiltradorInputDimension() {}
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
 	std::cout << "FILTRADOR: cantidad columnas respuesta " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 1)
-        return;
+        throw "Respuesta para combobox con más o menos de una columnas";
 
     for (unsigned i = 0; i < rta.cantidadFilas(); ++i)
         valores.append_text(rta.dato(i, 0));
@@ -36,6 +41,6 @@ void FiltradorInputDimension::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
     std::cout << this << " recibiendo navegación ( " << input << ", " << valor << ")" << std::endl;
     if (input == getFiltro())
-        valores.append_text(valor);
+        valores.set_active_text(valor);
 }
 

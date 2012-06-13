@@ -3,6 +3,8 @@
 
 #include "PadreDeConsultantes.h"
 #include "Consulta.h"
+#include "VerificadorConsultasH.h"
+
 class Respuesta;
 class ServidorRemoto;
 
@@ -20,6 +22,7 @@ class Consultante : public PadreDeConsultantes {
         Consulta consulta;
         virtual void procesarRespuesta(const Respuesta& rta) = 0;
     private:
+        VerificadorConsultasH verificador;
         static unsigned generadorID;
         unsigned ID;
         bool esperandoRespuesta;

@@ -4,12 +4,10 @@
 
 VentanaClienteDinamica::VentanaClienteDinamica(BaseObjectType* cobject,
                                const Glib::RefPtr< Gtk::Builder >& builder)
-    : Gtk::Notebook(cobject) {
-
-}
+    : Gtk::Notebook(cobject) {}
 
 VentanaClienteDinamica::~VentanaClienteDinamica() {}
-#include "FiltradoresTab.h"
+
 void VentanaClienteDinamica::personalizar(const char* archivo) {
     if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
         std::cout << "Error al abrir el archivo de personalización " << archivo
@@ -22,4 +20,13 @@ void VentanaClienteDinamica::personalizar(const char* archivo) {
         agregarConsultante(&t);
         append_page(t, t.getEtiqueta());
     }
+}
+
+void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
+    int pag = get_current_page();
+    std::list< PadreDeConsultantes* >::iterator it = hijos.begin();
+    for (int i = 0; i < pag; ++i)
+        ++it;
+
+    (*it)->hacerConsulta(server);
 }

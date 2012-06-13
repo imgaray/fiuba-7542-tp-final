@@ -38,10 +38,9 @@ ServidorRemoto::ServidorRemoto():
 	for(unsigned i = 0; i < MAX_OPEN_PORTS; ++i) {
 		cconsultas.push_back(new ConsumerConsulta(consultas, respuestas));
 	}
-	conectar();
 }
 
-void ServidorRemoto::conectar() throw() {	
+void ServidorRemoto::conectar() throw() {
 	/*cconsulta.conectar();
 	cconsulta.iniciar();*/
 	std::list<ConsumerConsulta*>::iterator iter;
@@ -77,6 +76,6 @@ ServidorRemoto::~ServidorRemoto()  {
 			(*iter)->sincronizar();
 		delete *iter;
 	}
-	if (crespuesta.corriendo())	
+	if (crespuesta.corriendo())
 		crespuesta.sincronizar();
 }

@@ -34,6 +34,7 @@ void ConsumerConsulta::correr() {
 				if (servidor->enviar(*pconsulta.second)) {
 					error = !servidor->recibir(*(parrta.second));
 					std::cout << "recibi la respuesta para "<< parrta.first << std::endl;
+					std::cout << "11Mensaje interno de la respuesta: " << parrta.second->mensajeInterno() << std::endl;
 				}
 				delete pconsulta.second;
 				if (error) {

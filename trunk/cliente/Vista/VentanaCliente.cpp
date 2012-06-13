@@ -4,6 +4,7 @@
 #include <gtkmm/builder.h>
 #include <gtkmm/toolbutton.h>
 #include <gtkmm/main.h>
+#include <gtkmm/messagedialog.h>
 #include "VentanaClienteDinamica.h"
 
 #define TIMEOUT 10000
@@ -14,6 +15,7 @@
 #define BOTON_EXPORTAR_PDF "HerramientaExportarPDF"
 #define BOTON_CONFIGURAR "HerramientaConfigurar"
 #define BOTON_SALIR "HerramientaSalir"
+#define BOTON_CONECTAR "HerramientaConectar"
 
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     const Glib::RefPtr< Gtk::Builder >& _builder)
@@ -26,6 +28,11 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
         std::cout << "Se rompió algo" << std::endl;
         return;
     }
+
+    builder->get_widget(BOTON_CONECTAR, pAux);
+    if (pAux)
+        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+            &VentanaCliente::on_conectar_button_clicked));
 
     builder->get_widget(BOTON_ACTUALIZAR, pAux);
     if (pAux)
@@ -60,6 +67,23 @@ VentanaCliente::~VentanaCliente() {}
 
 void VentanaCliente::personalizar(const char* archivo) {
     pVDinamica->personalizar(archivo);
+}
+
+void VentanaCliente::on_conectar_button_clicked() {
+    std::cout << BOTON_CONECTAR " clicked." << std::endl;
+    try {
+        server.conectar();
+//        throw "Hey you! Out there in the cold";
+    }
+    catch (const char* msj) {
+        Gtk::MessageDialog dialog(*this,
+                                  msj,
+                                  false,
+                                  Gtk::MESSAGE_ERROR,
+                                  Gtk::BUTTONS_OK,
+                                  true);
+        dialog.run();
+    }
 }
 
 void VentanaCliente::on_actualizar_button_clicked() {

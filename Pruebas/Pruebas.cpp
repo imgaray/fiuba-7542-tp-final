@@ -963,3 +963,230 @@ void testGeneradorRegistros() {
 	cout << "FIN DE TEST DE Generador de Registros." << endl;
 
 }
+
+void testPesadoSeparador() {
+	cout << "=====================================" << endl;
+	int errores = 0;
+	cout << "Inicia Test para separador" << endl;
+
+	char sep = '-';
+	string aSeparar = "AAA-BBBB-CCCCC";
+
+	if (Utilitario::separar(aSeparar, sep, 0) != "AAA") {
+		cout << "Error en AAA." << endl;
+		errores++;
+	}
+
+
+	if (Utilitario::separar(aSeparar, sep, 1) != "BBBB") {
+		cout << "Error en BBBB" << endl;
+		errores++;
+	}
+
+
+	if (Utilitario::separar(aSeparar, sep, 2) != "CCCCC") {
+		cout << "Error en CCCCC"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 3) != "") {
+		cout << "Error en retorna argmento vacio" << endl;
+		errores++;
+	}
+
+
+
+	aSeparar = "ASVAVABAVASC";
+
+	if (Utilitario::separar(aSeparar, sep, 0) != aSeparar) {
+		cout << "Error al no retornar el string Base."<< endl;
+	}
+
+
+	if (Utilitario::separar(aSeparar, sep, 1)  != "") {
+		cout << "Error en retono de argumento vacio 2";
+		errores++;
+	}
+
+
+	aSeparar = "-aaa-bbb-ccc--";
+
+	if (Utilitario::separar(aSeparar, sep, 0) != "") {
+		cout << "Error en retorno de argumento vacio 3" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 1) != "aaa") {
+		cout << "Error en retorno mal de argumento aaa" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 2) != "bbb") {
+		cout << "Error en retrono mal de argumentos bbb" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 3) != "ccc") {
+		cout << "Error en retorno mal de argumento ccc" << endl;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+		cout << "Error en retorno mal de argumento vacio 4" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 5) != "") {
+		cout << "Error en retorno mal de argumento vacio 5" << endl;
+		errores++;
+	}
+
+	string c1 = "askhfdbasvasbcjasvckjas";
+	string c2 = "akjsbdasdbfkasbjkcaskjcvasjkc";
+	string c3 = "asdkfbaksdbfvsdabckasvcasvkjcas";
+	string c4 = "asfsadbvasdvchasvhjadhgcvasvcsajvcsavchjdavgdavcajscvsahgvcsavc";
+
+	aSeparar = c1;
+	aSeparar += sep;
+	aSeparar += c2;
+	aSeparar += sep;
+	aSeparar += c3;
+	aSeparar += sep;
+	aSeparar += c4;
+
+
+	if (Utilitario::separar(aSeparar, sep, 0) != c1) {
+		cout << "Error en c1"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 1) != c2) {
+		cout << "Error en c2" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 2) != c3) {
+		cout << "Error en c3"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 3) != c4) {
+		cout << "Error en c4" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+		cout << "Error en retorna arg vacio 6" << endl;
+		errores++;
+	}
+
+
+
+	aSeparar = "";
+
+	if (Utilitario::separar(aSeparar, sep, 0) != "") {
+		cout << "Error en dato vacio 1"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 1) != "") {
+		cout << "Error en dato vacio 2"<< endl;
+		errores++;
+	}
+
+
+	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+		cout << "Error en dato vacio 3"<< endl;
+		errores++;
+	}
+
+
+	if (Utilitario::separar("", sep, 0) != "") {
+		cout << "Error en dato vacio 4"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar("", sep, 1) != "") {
+		cout << "Error en dato vacio 3"<< endl;
+		errores++;
+	}
+
+
+	if (Utilitario::separar("", sep, 4) != "") {
+		cout << "Error en dato vacio 5"<< endl;
+		errores++;
+	}
+
+
+	aSeparar.clear();
+
+	if (Utilitario::separar(aSeparar, sep, 0) != "") {
+		cout << "Error en dato vacio 6"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 1) != "") {
+		cout << "Error en dato vacio 7"<< endl;
+		errores++;
+	}
+
+
+	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+		cout << "Error en dato vacio 8"<< endl;
+		errores++;
+	}
+
+
+	c1 = "alskjflkasjlkasjlkvjaklsvnalksdnclkasnclkasjlkvnalkvnalkndslckanslkdcjalksdvjklaklandklnakl ndaaksdhkashdk"
+			"asdkjashckjahsjkchasjlkhcjkasdhkjsdbk bskdjhaljkdn ljkal knalknadln ljadnvcljanldjcnaldnclaknclkansdcla"
+			"askjdnasicbaskcbaksncakscnakscnakscnakjscn kajsn kas ascascsaasiduhcasochaa aisuhcaish asncaskjcnaskcjn";
+
+
+	c2 = "akscoasnckankjnakj nkajdhkahdkcjabkjbakjbafviegwqfihweqoivnuiewqgviwhvisogvaehgcioaehiagcoiugaehic asdcasc"
+			"aochaiuchaiechiueashvouahefcoiajioyaeuvyuiohvklznvm,xzc bkgyegc aciauehcoahicyageciuacojmaoi hoaidjasdv"
+			"akchaoscjoiadshcui agdiycgauocoaenmoahicuhadui badjbkadb kadb akd baakjcnaknaksjnkajsnckjasnc askcnasak"
+			"alkdjcnaidb aidbiaudb ouab obakjsnjcknc,jxzhbbqkbckabckabckjabsckjasdcnaasdascaskcxnasjkcnkajsnaosdjasd";
+
+	c3 = "akjhsbcjab ahkscljanslcknaslkcnalsknhvlkjahvlkahvljkakj bzxkb kwehgfiugauicgaiuscasasdacascac"
+			"asdhaskchakshcaushcachasnckjadn kjadn kajdn kjdankjvaijvpiequfoivuqoiv hyiqohvpvhqio asdas"
+			"aovaohvaeljc nalknclkajlkchalskhvclahcoqwiycoiashvoxlvjzlkxc mnm,wndkwqdhcoiwquydciwuyasda";
+
+
+	aSeparar = c1;
+	aSeparar += sep;
+	aSeparar += c2;
+	aSeparar += sep;
+	aSeparar += c3;
+	aSeparar += sep;
+
+
+	if (Utilitario::separar(aSeparar, sep, 0) != c1) {
+		cout << "Error en c1 largo"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 1) != c2) {
+		cout << "Error en c2 largo" << endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 2) != c3) {
+		cout << "Error en c3 largo"<< endl;
+		errores++;
+	}
+
+	if (Utilitario::separar(aSeparar, sep, 3) != "") {
+		cout << "Error en argVacio largo"<< endl;
+		errores++;
+	}
+
+
+	if (errores == 0) {
+		cout<< "Test sin Errores++"<< endl;
+	}
+	else {
+		cout << "Test con Errores: "<< errores << endl;
+	}
+
+
+	cout << "Fin de Test Pesado para Separador" << endl;
+}

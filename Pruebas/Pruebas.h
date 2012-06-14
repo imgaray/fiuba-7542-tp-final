@@ -22,4 +22,6 @@ void testValidadorConsulta();
 
 void testBaseDeDatos();
 
+void testPesadoSeparador();
+
 #endif /* PRUEBAS_H_ */

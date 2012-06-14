@@ -12,7 +12,7 @@ bool VerificadorConsultasH::verificarConsulta(const Consulta& consulta) {
 	if (consulta.esConsultaDeTablaPivote())
 		return this->cClienteTP(consulta);
 	else
-		return this->cClienteValida(consulta);
+		return this->cClienteValida(consulta);//return true;
 }
 
 bool VerificadorConsultasH::hayDimesionesEnRes(const Consulta& cons) {
@@ -45,6 +45,9 @@ bool VerificadorConsultasH::cClienteValida(const Consulta& cons) {
 	bool _hayAgreEnHechos = hayAgregacionesEnHechos(cons);
 	bool _hayDimEnRes = hayDimesionesEnRes(cons);
 	bool _hayHechosEnRes = hayHechosEnRes(cons);
+
+	if (hayCamposNulos(cons))
+		return false;
 
 	if (!filtrosCorrectos(cons))
 		return false;
@@ -88,6 +91,9 @@ bool VerificadorConsultasH::resultadoCorrectos(const Consulta& cons) {
 }
 
 bool VerificadorConsultasH::cClienteTP(const Consulta& cons) {
+	if (hayCamposNulos(cons))
+		return false;
+
 	if (!filtrosCorrectos(cons))
 		return false;
 
@@ -129,4 +135,38 @@ bool VerificadorConsultasH::camposTablaPivoteCorrectos(const Consulta& cons) {
 	}
 
 	return true;
+}
+
+
+bool VerificadorConsultasH::hayCamposNulos(const Consulta& cons) {
+	bool hayNulos = false;
+	for (unsigned i = 0; i < cons.cantidadResultados() && !hayNulos; i++) {
+		hayNulos = cons.resultado(i).empty();
+		std::cout << "Res: " << cons.resultado(i) << std::endl;
+	}
+
+	for (unsigned i = 0; i < cons.cantidadFiltros() && !hayNulos; i++) {
+		hayNulos = cons.filtro(i).empty() || cons.valorFiltro(i).empty();
+		std::cout << "Filtro: " << cons.filtro(i) << std::endl;
+		std::cout << "valor Filtro: " << cons.valorFiltro(i) << std::endl;
+	}
+
+	for (unsigned i = 0; i < cons.cantidadEntradas() && !hayNulos; i++) {
+		hayNulos = cons.entrada(i).empty() || cons.valorEntrada(i).empty();
+		std::cout << "Entrada: " << cons.entrada(i) << std::endl;
+		std::cout << "Valor Entrada: " << cons.valorEntrada(i) << std::endl;
+	}
+
+
+	if (cons.esConsultaDeTablaPivote()) {
+		for (unsigned i = 0; i < cons.cantVarXTabla() && !hayNulos; i++) {
+			hayNulos = cons.xDeTablaPivote(i).empty();
+		}
+
+		for (unsigned i = 0; i < cons.cantVarYTabla() && !hayNulos; i++) {
+			hayNulos = cons.yDeTablaPivote(i).empty();
+		}
+	}
+
+	return hayNulos;
 }

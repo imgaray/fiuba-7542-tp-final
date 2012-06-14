@@ -24,11 +24,11 @@
 Fecha M_Fechas::fecha(const std::string& fechaComun) {
 	Fecha fecha;
 
-	if (!M_Fechas::esFechaConvecional(fechaComun))
+	if (!esFechaConvecional(fechaComun))
 		return "";
 
 	for (int i = 2 ; i >= 0 ; i--)
-		fecha += Utilitario::separar(fechaComun, '-',i);
+		fecha += u.separar(fechaComun, '-',i);
 
 	return fecha;
 }
@@ -55,24 +55,24 @@ bool M_Fechas::esFechaConvecional(const std::string& fecha) {
 	bool resFinal = false;
 
 	if (resParcial) {
-		std::string dia = Utilitario::separar(fecha, '-', 0);
-		int numDia = Utilitario::convertirAEntero(dia);
+		std::string dia = u.separar(fecha, '-', 0);
+		int numDia = u.convertirAEntero(dia);
 
 		if (numDia > 0 && numDia <= 31)
 			resFinal = true;
 		else
 			resFinal = false;
 
-		std::string mes = Utilitario::separar(fecha, '-', 1);
-		int numMes = Utilitario::convertirAEntero(mes);
+		std::string mes = u.separar(fecha, '-', 1);
+		int numMes = u.convertirAEntero(mes);
 
 		if (numMes > 0 && numMes <= 12)
 			resFinal = resFinal && true;
 		else
 			resFinal = false;
 
-		std::string anio = Utilitario::separar(fecha, '-', 2);
-		int numAnio = Utilitario::convertirAEntero(anio);
+		std::string anio = u.separar(fecha, '-', 2);
+		int numAnio = u.convertirAEntero(anio);
 
 		if (numAnio > 1970)
 			resFinal = resFinal && true;
@@ -185,8 +185,8 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
 		case F_ANIO: desarmarAnio(rango, f1, f2);
 			break;
 		case F_RANGO:
-					nf1 = Utilitario::separar(rango, sep_fecha, 1);
-					nf2 = Utilitario::separar(rango, sep_fecha, 2);
+					nf1 = u.separar(rango, sep_fecha, 1);
+					nf2 = u.separar(rango, sep_fecha, 2);
 					f1 = nf1; f2 = nf2;
 				break;
 		default: break;
@@ -195,7 +195,7 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
 
 void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha) {
 	fecha += sep_fecha;
-	fecha += M_Fechas::convertir(x, 2);
+	fecha += convertir(x, 2);
 	// std::cout << "NUMERO : " << x <<" STRING: \"" <<M_Fechas::convertir(x, 2)  << "\""<< std::endl;
 	fecha += sep_fecha;
 	fecha += anio;
@@ -203,7 +203,7 @@ void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha
 }
 
 Fecha M_Fechas::anio(const std::string& anio) {
-	if (Utilitario::convertirAEntero(anio) > 0) {
+	if (u.convertirAEntero(anio) > 0) {
 		Fecha fecha;
 		fecha = F_ANIO;
 		armarFecha(1,anio, fecha);
@@ -275,18 +275,18 @@ Fecha M_Fechas::semestre(int sem, const std::string& anio) {
 }
 
 void M_Fechas::desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul){
-	FechaNumerica coef = M_Fechas::convertir(Utilitario::separar(rango, sep_fecha, 1));
-	FechaNumerica anio = M_Fechas::convertir(Utilitario::separar(rango, sep_fecha, 2));
+	FechaNumerica coef = convertir(u.separar(rango, sep_fecha, 1));
+	FechaNumerica anio = convertir(u.separar(rango, sep_fecha, 2));
 
 	anio = anio * MUL_ANIO;
 
 
-	f1 = M_Fechas::convertir(anio + (1 + (coef -1) *(mul))*MUl_MES + 1*MUL_DIA);
+	f1 = convertir(anio + (1 + (coef -1) *(mul))*MUl_MES + 1*MUL_DIA);
 
 	if ((coef*mul) == 12)
-		f2 = M_Fechas::convertir(anio + 1*MUL_ANIO + 1*MUl_MES + 1*MUL_DIA);
+		f2 = convertir(anio + 1*MUL_ANIO + 1*MUl_MES + 1*MUL_DIA);
 	else
-		f2 = M_Fechas::convertir(anio + (1 + coef *(mul))*MUl_MES + 1*MUL_DIA);
+		f2 = convertir(anio + (1 + coef *(mul))*MUl_MES + 1*MUL_DIA);
 }
 
 void M_Fechas::desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2) {

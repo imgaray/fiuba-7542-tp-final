@@ -1,10 +1,10 @@
 #include "FiltradorInputHecho.h"
 #include "Consulta.h"
-#include "Utilitario.h"
 
 #define MSJ_ERROR "Sólo números"
 #define CANT_COMBO 2
 Glib::ustring FiltradorInputHecho::valoresCombo[CANT_COMBO] = { ">", "<" };
+Utilitario FiltradorInputHecho::u;
 
 FiltradorInputHecho::FiltradorInputHecho(const Glib::ustring& input)
 : FiltradorInput(input) {
@@ -32,12 +32,12 @@ int FiltradorInputHecho::perteneceAlCombobox(const Glib::ustring& valor) {
 }
 
 Glib::ustring FiltradorInputHecho::validar(int i, const Glib::ustring& valor) {
-    int val_int = Utilitario::convertirAEntero(valor);
+    int val_int = u.convertirAEntero(valor);
     if (val_int < 0)
         return STR_NULA;
 
     Glib::ustring val = valoresCombo[i];
-    val += Utilitario::convertirAString(val_int);
+    val += u.convertirAString(val_int);
     return val;
 }
 

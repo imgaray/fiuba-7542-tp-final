@@ -18,6 +18,7 @@ int generarRandom (int cantMax) {
 }
 
 void generarRegistros(BaseDeDatos& bdd, long cantReg) {
+    Utilitario u;
 	int cantVendedores = 15;
 	std::string vendedores[] =
 	{
@@ -65,14 +66,14 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 			else if (nomCampo == "Producto")
 				ca.agregarCampo(productos[generarRandom(cantProductos)]);
 			else if (nomCampo == "PrecioLista" || nomCampo == "PrecioFinal" || Organizacion::esHecho(nomCampo))
-				ca.agregarCampo(Utilitario::convertirAString(generarRandom(1000)));
+				ca.agregarCampo(u.convertirAString(generarRandom(1000)));
 			else
 				ca.agregarCampo("CAMPOVACIO");
 
 		}
 		Respuesta res = bdd.agregarEntrada(ca);
 		std::cout << res.mensajeInterno();
-		
+
 /*
 		std::cout << "RegNuevo: ";
 		for (unsigned r = 0; r < ca.cantidadCampos() ; r++) {

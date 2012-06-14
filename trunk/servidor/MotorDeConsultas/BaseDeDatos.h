@@ -11,6 +11,7 @@
 #include "Indice.hpp"
 #include "IndiceDeFechas.h"
 #include "ArchivoDeDatos.h"
+#include "../../comun/Utilitario.h"
 #include <map>
 
 class Respuesta;
@@ -169,6 +170,8 @@ private:
 	IndiceDeFechas _indFechas;
 
 	ArchivoDeDatos _archDatos;
+
+	Utilitario u;
 };
 
 #endif /* BASEDEDATOS_H_ */

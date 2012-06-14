@@ -21,6 +21,7 @@ vectorCampos Organizacion::_campos;
 std::string Organizacion::nombreNulo = STR_NULA;
 bool Organizacion::_existeCampoEspecial;
 unsigned Organizacion::_indEspecial;
+Utilitario Organizacion::u;
 
 void Organizacion::cargarDefiniciones(const std::string& rutaArchivo) {
 	_dimensiones.clear();
@@ -44,8 +45,8 @@ void Organizacion::cargarDefiniciones(const std::string& rutaArchivo) {
 		if(_archModelo.good()) {
 
 			_archModelo.getline(buff,500, '\n');
-			std::string nombre = Utilitario::separar(buff, '=' , 0);
-			std::string dim = Utilitario::separar(buff, '=' , 1);
+			std::string nombre = u.separar(buff, '=' , 0);
+			std::string dim = u.separar(buff, '=' , 1);
 
 			borrarCaracter(nombre, ' ');
 
@@ -59,8 +60,8 @@ void Organizacion::cargarDefiniciones(const std::string& rutaArchivo) {
 
 		if (_archModelo.good()) {
 			_archModelo.getline(buff,500, '\n');
-			std::string nombre = Utilitario::separar(buff, '=' , 0);
-			std::string hechos = Utilitario::separar(buff, '=' , 1);
+			std::string nombre = u.separar(buff, '=' , 0);
+			std::string hechos = u.separar(buff, '=' , 1);
 
 			borrarCaracter(nombre, ' ');
 
@@ -78,7 +79,7 @@ void Organizacion::cargarDefiniciones(const std::string& rutaArchivo) {
 
 void Organizacion::cargarDimensiones(const std::string& dimensiones) {
 	std::string dimNueva;
-	dimNueva = Utilitario::separar(dimensiones, ',', 0);
+	dimNueva = u.separar(dimensiones, ',', 0);
 	int ind = 0;
 	//int id = 0;
 	while (dimNueva.empty() == false) {
@@ -90,7 +91,7 @@ void Organizacion::cargarDimensiones(const std::string& dimensiones) {
 		_campos.push_back(dimNueva);
 
 		ind++;
-		dimNueva = Utilitario::separar(dimensiones, ',', ind);
+		dimNueva = u.separar(dimensiones, ',', ind);
 	}
 
 	/*
@@ -103,13 +104,13 @@ void Organizacion::cargarDimensiones(const std::string& dimensiones) {
 
 void Organizacion::cargarHechos(const std::string& hechos) {
 	std::string hechoNuevo;
-	hechoNuevo = Utilitario::separar(hechos, ',', 0);
+	hechoNuevo = u.separar(hechos, ',', 0);
 	int ind = 0;
 	while (hechoNuevo.empty() == false) {
 		_hechos.insert(parDeConjunto(hechoNuevo, ind));
 		_campos.push_back(hechoNuevo);
 		ind++;
-		hechoNuevo = Utilitario::separar(hechos, ',', ind);
+		hechoNuevo = u.separar(hechos, ',', ind);
 	}
 	/*
 	ConjuntoCampos::iterator it;
@@ -121,14 +122,14 @@ void Organizacion::cargarHechos(const std::string& hechos) {
 
 void Organizacion::borrarCaracter(std::string& palabra, const char caracter) {
 	std::string aux;
-	std::string parte = Utilitario::separar(palabra, caracter, 0);
+	std::string parte = u.separar(palabra, caracter, 0);
 
 	int i = 1;
 	int cantBorrada = 0;
 	do {
 		cantBorrada++;
 		aux += parte;
-		parte = Utilitario::separar(palabra, caracter, i);
+		parte = u.separar(palabra, caracter, i);
 		i++;
 	} while ((aux.size() + cantBorrada)< palabra.size());
 

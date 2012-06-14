@@ -66,7 +66,7 @@ void Personalizador::construir() {
 //    Tab* pTab2 = new Tab(0, "Tab 2 - Torta+filtro");
 //    FiltradoresTab* fTab2 = new FiltradoresTab();
 //    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab1);
-//    fPanel2->agregarFiltro("Marca", "Apple");
+//    fPanel2->agregarFiltro("Sucursal", "San Julian");
 //    fPanel2->agregarResultado("Producto");
 //    fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
 //
@@ -87,8 +87,8 @@ void Personalizador::construir() {
 //    pTab2->pack_start(*sep2, false, false);
 //    pTab2->pack_start(*pTable2, true, true);
 //
-//    pTab1->agregarConsultante(fTab2);
-//    pTab1->agregarConsultante(pPanelTorta2);
+//    pTab2->agregarConsultante(fTab2);
+//    pTab2->agregarConsultante(pPanelTorta2);
 //
 //    tabs.push_back(pTab2);
 

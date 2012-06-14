@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include "../../comun/Utilitario.h"
 class Consulta;
 
 class ComparadorHechos {
@@ -37,6 +38,7 @@ private:
 	std::vector <unsigned> _indHechos;
 	std::vector <std::string> _valorHechos;
 	std::string _campoActual;
+	Utilitario u;
 };
 
 #endif /* COMPARADORHECHOS_H_ */

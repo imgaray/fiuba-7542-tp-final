@@ -21,6 +21,7 @@ Consulta::Consulta() : _filtros(), _campos(_resultados) {
 Consulta::Consulta(const Consulta& original) :
 		_campos(_resultados) {
 	// this->_campos = original._campos;
+	this->_consultaTablaPivote = original._consultaTablaPivote;
 	this->_consultaDeCliente = original._consultaDeCliente;
 	this->_consultaValida = original._consultaValida;
 	this->_entradas = original._entradas;
@@ -99,23 +100,23 @@ void Consulta::cargarVarDeTabla(std::string& datos) const {
 }
 
 void Consulta::guardarVarDeTabla(const std::string& variables) {
-	std::string x_Tabla = Utilitario::separar(variables, sep_datos, 0);
-	std::string y_Tabla = Utilitario::separar(variables, sep_datos, 1);
+	std::string x_Tabla = u.separar(variables, sep_datos, 0);
+	std::string y_Tabla = u.separar(variables, sep_datos, 1);
 
-	std::string campo = Utilitario::separar(x_Tabla, sep_valor, 0);
+	std::string campo = u.separar(x_Tabla, sep_valor, 0);
 	unsigned ind = 0;
 	while (campo.empty() == false) {
 		ind++;
 		_xTabla.push_back(campo);
-		campo = Utilitario::separar(x_Tabla, sep_valor,ind);
+		campo = u.separar(x_Tabla, sep_valor,ind);
 	}
 
-	campo = Utilitario::separar(y_Tabla, sep_valor, 0);
+	campo = u.separar(y_Tabla, sep_valor, 0);
 	ind = 0;
 	while (campo.empty() == false) {
 		ind++;
 		_yTabla.push_back(campo);
-		campo = Utilitario::separar(y_Tabla, sep_valor,ind);
+		campo = u.separar(y_Tabla, sep_valor,ind);
 	}
 
 }
@@ -191,7 +192,7 @@ void Consulta::cargarResultados(std::string& datos) const {
 void Consulta::deserializar(const std::string& consulta) {
 	_consultaValida = true;
 
-	std::string cabecera = Utilitario::separar(consulta, sep_tipo, 0);
+	std::string cabecera = u.separar(consulta, sep_tipo, 0);
 
 	if (cabecera[0] == mensaje_agente) {
 		this->_consultaDeCliente = false;
@@ -213,10 +214,10 @@ void Consulta::deserializar(const std::string& consulta) {
 	}
 
 
-	std::string filtros = Utilitario::separar(consulta, sep_tipo , 1);
-	std::string entradas = Utilitario::separar(consulta, sep_tipo , 2);
-	std::string resultados = Utilitario::separar(consulta, sep_tipo , 3);
-	// std::string agregacion = Utilitario::separar(consulta, sep_tipo, 4);
+	std::string filtros = u.separar(consulta, sep_tipo , 1);
+	std::string entradas = u.separar(consulta, sep_tipo , 2);
+	std::string resultados = u.separar(consulta, sep_tipo , 3);
+	// std::string agregacion = u.separar(consulta, sep_tipo, 4);
 
 	guardarFiltros(filtros);
 
@@ -227,7 +228,7 @@ void Consulta::deserializar(const std::string& consulta) {
 	// guardarAgregacion(agregacion);
 
 	if (_consultaTablaPivote) {
-		std::string variablesTabla = Utilitario::separar(consulta, sep_tipo, 4);
+		std::string variablesTabla = u.separar(consulta, sep_tipo, 4);
 		guardarVarDeTabla(variablesTabla);
 	}
 
@@ -241,10 +242,10 @@ void Consulta::guardarFiltros(const std::string& filtros) {
 
 	bool hayMasFiltros = true;
 	while (hayMasFiltros) {
-		filtroEntero = Utilitario::separar(filtros, sep_datos, ind);
+		filtroEntero = u.separar(filtros, sep_datos, ind);
 		ind++;
-		filtro = Utilitario::separar(filtroEntero, sep_valor, 0);
-		valor = Utilitario::separar(filtroEntero, sep_valor, 1);
+		filtro = u.separar(filtroEntero, sep_valor, 0);
+		valor = u.separar(filtroEntero, sep_valor, 1);
 
 		if (filtro.empty() == false && valor.empty() == false) {
 			_filtros[filtro] = valor;
@@ -263,14 +264,14 @@ void Consulta::guardarResultados(const std::string& resultados){
 	bool seguirGuardando = true;
 
 	while (seguirGuardando) {
-		resCompleto = Utilitario::separar(resultados, sep_datos, ind);
+		resCompleto = u.separar(resultados, sep_datos, ind);
 		ind++;
 		if (resCompleto.empty() == false) {
 
 			if (_consultaDeCliente) {
-				resNuevo = Utilitario::separar(resCompleto, sep_valor, 0);
+				resNuevo = u.separar(resCompleto, sep_valor, 0);
 
-				agregacion = Utilitario::separar(resCompleto, sep_valor, 1);
+				agregacion = u.separar(resCompleto, sep_valor, 1);
 				_agregaciones.push_back((Agregacion)agregacion[0]);
 			}
 			else {
@@ -290,11 +291,11 @@ void Consulta::guardarEntradas(const std::string& entradas) {
 	std::string entradaCompleta, entrada, valor;
 	bool seguirGuardando = true;
 	while (seguirGuardando){
-		entradaCompleta = Utilitario::separar(entradas, sep_datos, ind);
+		entradaCompleta = u.separar(entradas, sep_datos, ind);
 		ind++;
 
-		entrada = Utilitario::separar(entradaCompleta, sep_valor, 0);
-		valor = Utilitario::separar(entradaCompleta, sep_valor, 1);
+		entrada = u.separar(entradaCompleta, sep_valor, 0);
+		valor = u.separar(entradaCompleta, sep_valor, 1);
 
 		if (entrada.empty() == false && valor.empty() == false) {
 			_entradas[entrada] = valor;

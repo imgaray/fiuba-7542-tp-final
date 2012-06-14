@@ -10,6 +10,8 @@
 
 #include "Definiciones.h"
 #include "Mensaje.h"
+#include "Utilitario.h"
+
 class Consulta : public Mensaje {
 public:
 	Consulta();
@@ -192,6 +194,8 @@ private:
 	bool _consultaValida;
 
 	static std::string s_nulo;
+
+	Utilitario u;
 };
 
 #endif /* CONSULTA_H_ */

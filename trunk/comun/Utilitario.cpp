@@ -9,9 +9,6 @@
 #include <vector>
 #include <sstream>
 
-std::vector<size_t> Utilitario::_posiciones;
-std::string Utilitario::s_anterior;
-
 Utilitario::Utilitario() {
 }
 
@@ -99,14 +96,14 @@ int Utilitario::convertirAEntero(const std::string& numero) {
 
 void Utilitario::borrarCaracter(std::string& palabra, const char caracter) {
 	std::string aux;
-	std::string parte = Utilitario::separar(palabra, caracter, 0);
+	std::string parte = separar(palabra, caracter, 0);
 
 	int i = 1;
 	int cantBorrada = 0;
 	do {
 		cantBorrada++;
 		aux += parte;
-		parte = Utilitario::separar(palabra, caracter, i);
+		parte = separar(palabra, caracter, i);
 		i++;
 	} while ((aux.size() + cantBorrada)< palabra.size());
 

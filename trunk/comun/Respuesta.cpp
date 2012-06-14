@@ -90,11 +90,11 @@ void Respuesta::deserializar(const std::string& datos) {
 	_datos.clear();
 	_filaActual.clear();
 
-	_msjInterno = Utilitario::separar(datos, sep_principal, 0);
+	_msjInterno = u.separar(datos, sep_principal, 0);
 
-	std::string datosSerializados = Utilitario::separar(datos, sep_principal, 1);
+	std::string datosSerializados = u.separar(datos, sep_principal, 1);
 
-	Utilitario::borrarCaracter(datosSerializados, sep_fin);
+	u.borrarCaracter(datosSerializados, sep_fin);
 	//datosSerializados.resize(datos.size() - 1);
 
 
@@ -102,7 +102,7 @@ void Respuesta::deserializar(const std::string& datos) {
 	std::string fila;
 	unsigned int ind = 0;
 	while (hayMasFilas) {
-		fila = Utilitario::separar(datosSerializados, sep_fila, ind);
+		fila = u.separar(datosSerializados, sep_fila, ind);
 		ind++;
 		if (fila.empty() == false) {
 			guardarFila(fila);
@@ -124,7 +124,7 @@ void Respuesta::guardarFila(const std::string& fila) {
 	unsigned int ind = 0;
 	int camposAgregados = 0;
 	while (hayDatos) {
-		campo = Utilitario::separar(fila, sep_datoFila, ind);
+		campo = u.separar(fila, sep_datoFila, ind);
 		ind++;
 
 		if (campo.empty() == false) {

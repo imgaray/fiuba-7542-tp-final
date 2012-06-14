@@ -1,4 +1,4 @@
-/*
+/*ervidor::
  * VerificadorEntradasH.h
  *
  *  Created on: 09/06/2012
@@ -10,7 +10,7 @@
 class Consulta;
 
 class VerificadorEntradasH {
-public:	
+public:
 	VerificadorEntradasH() {}
 	~VerificadorEntradasH() {}
 	bool verificarEntrada(const Consulta& entrada);

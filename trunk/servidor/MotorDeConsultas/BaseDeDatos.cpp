@@ -9,7 +9,6 @@
 #include "../../comun/Consulta.h"
 #include "../../comun/Respuesta.h"
 #include "../../comun/Organizacion.h"
-#include "../../comun/Utilitario.h"
 #include "ComparadorHechos.h"
 #include "../Errores/ErrorOrganizacion.h"
 
@@ -132,7 +131,7 @@ void BaseDeDatos::hacerAgregacionesTP(const Consulta& cX,
 		itCombX = mCombX.begin();
 		while (itCombX != mCombX.end()) {
 			rango = mCombX.equal_range(itCombX->first);
-			resp.agregar(Utilitario::separar(itCombX->first, sep_campos, i));
+			resp.agregar(u.separar(itCombX->first, sep_campos, i));
 			itCombX = rango.second;
 		}
 
@@ -159,7 +158,7 @@ void BaseDeDatos::hacerAgregacionesTP(const Consulta& cX,
 
 		// Agrego los campos de Y de para cada Fila nueva
 		for (unsigned i = 0; i < cY.cantidadResultados() ; i++) {
-			resp.agregar(Utilitario::separar(itCombY->first, sep_campos, i));
+			resp.agregar(u.separar(itCombY->first, sep_campos, i));
 		}
 
 
@@ -211,8 +210,8 @@ void BaseDeDatos::calcularAgregacionTP(const Lista_Id& ids, const Consulta& cons
 	for (it = ids.begin(); it != ids.end(); ++it) {
 		reg = _archDatos.obtenerRegistro(*it);
 
-		hecho = Utilitario::separar(reg, sep_campos, indHecho);
-		hechoNumerico = Utilitario::convertirAEntero(hecho);
+		hecho = u.separar(reg, sep_campos, indHecho);
+		hechoNumerico = u.convertirAEntero(hecho);
 
 		if (agre == PROM) {
 			calcularPromedio(acum, auxProm, hechoNumerico);
@@ -222,7 +221,7 @@ void BaseDeDatos::calcularAgregacionTP(const Lista_Id& ids, const Consulta& cons
 		}
 	}
 
-	campoRes = Utilitario::convertirAString(acum);
+	campoRes = u.convertirAString(acum);
 }
 
 
@@ -268,7 +267,7 @@ void BaseDeDatos::guardarCombinacionesTP(const Consulta& consulta,
 
 			for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
 					numArgRegistro = Organizacion::indiceDeCampo(consulta.resultado(i));
-					combinacion +=Utilitario::separar(reg, sep_campos, numArgRegistro);
+					combinacion +=u.separar(reg, sep_campos, numArgRegistro);
 					combinacion +=sep_campos;
 			}
 			mComb.insert(parDeConjunto(combinacion, idActual));
@@ -412,7 +411,7 @@ void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registr
 	int indd = 0;
 
 	for (unsigned i = 0 ; i < Organizacion::cantidadDimensionesTotal() ; i++) {
-		dimension = Utilitario::separar(entrada, sep_datos, i);
+		dimension = u.separar(entrada, sep_datos, i);
 
 		if (dimension.empty() == false) {
 			if (Organizacion::esDimensionEspecial(Organizacion::nombreDimension(i))) {
@@ -428,11 +427,17 @@ void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registr
 }
 
 void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& respuesta) {
+    std::cout << "void BaseDeDatos::resolverConsultaNormal(const Consulta& , Respuesta& )" << std::endl;
+    std::cout << "cantidad de columnas para la respuesta: " << consulta.cantidadResultados() << std::endl;
 	respuesta.definirColumnas(consulta.cantidadResultados());
+    std::cout << "cantidad de columnas con que se creó la respuesta: " << respuesta.cantidadColumnas() << std::endl;
 	Lista_Id listaReg;
 	bool huboFiltrado = filtrarDatos(consulta,listaReg);
 	bool hayDimEnResultados = hayResultadosDeDimensiones(consulta);
 	bool filtrarHechos = hayFiltrosDeHechos(consulta);
+    std::cout << "huboFiltrado: " << huboFiltrado << std::endl;
+    std::cout << "hayDimEnResultados: " << hayDimEnResultados << std::endl;
+    std::cout << "filtrarHechos: " << filtrarHechos << std::endl;
 
 	MapaCombinaciones mCombin;
 
@@ -440,6 +445,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 
 		if (listaReg.size() == 0) {
 			respuesta = Respuesta(Respuesta::respuestaVacia);
+    std::cout << "cantidad de columnas con que quedó la respuesta: " << respuesta.cantidadColumnas() << std::endl;
 		}
 		else if (hayDimEnResultados) {
 			guardarCombinaciones(consulta, listaReg, mCombin, filtrarHechos);
@@ -465,6 +471,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 
 	if (respuesta.cantidadFilas() == 0) {
 		respuesta.mensajeInterno(Respuesta::respuestaVacia);
+    std::cout << "cantidad de columnas con que quedó la respuesta: " << respuesta.cantidadColumnas() << std::endl;
 	}
 	else {
 		respuesta.mensajeInterno(Respuesta::respuestaValida);
@@ -495,9 +502,9 @@ void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
 		reg = _archDatos.obtenerRegistro(id);
 
 		for (unsigned i = 0; i < cons.cantidadResultados() ; i++) {
-			campo = Utilitario::separar(reg, sep_campos, _indHechos[i]);
+			campo = u.separar(reg, sep_campos, _indHechos[i]);
 			if (hacerAgre) {
-				campoNumerico = Utilitario::convertirAEntero(campo);
+				campoNumerico = u.convertirAEntero(campo);
 				if (cons.agregacionDeResultado(i) == PROM) {
 					calcularPromedio(_acumHechos[i], auxProm, campoNumerico);
 				}
@@ -518,7 +525,7 @@ void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
 
 	if (hacerAgre) {
 		for (unsigned i = 0; i < _acumHechos.size() ; i++) {
-			campo = Utilitario::convertirAString(_acumHechos[i]);
+			campo = u.convertirAString(_acumHechos[i]);
 			resp.agregar(campo);
 		}
 		resp.filaCompletada();
@@ -543,9 +550,9 @@ void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respue
 		reg = _archDatos.obtenerRegistro(*it);
 
 		for (unsigned i = 0; i < cons.cantidadResultados() ; i++) {
-			campo = Utilitario::separar(reg, sep_campos, _indHechos[i]);
+			campo = u.separar(reg, sep_campos, _indHechos[i]);
 			if (hacerAgre) {
-				campoNumerico = Utilitario::convertirAEntero(campo);
+				campoNumerico = u.convertirAEntero(campo);
 				if (cons.agregacionDeResultado(i) == PROM) {
 					calcularPromedio(_acumHechos[i], auxProm, campoNumerico);
 				}
@@ -566,7 +573,7 @@ void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respue
 
 	if (hacerAgre) {
 		for (unsigned i = 0; i < _acumHechos.size() ; i++) {
-			campo = Utilitario::convertirAString(_acumHechos[i]);
+			campo = u.convertirAString(_acumHechos[i]);
 			resp.agregar(campo);
 		}
 		resp.filaCompletada();
@@ -595,7 +602,7 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg,
 			for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
 				if (Organizacion::esDimension(consulta.resultado(i))) {
 					numArgRegistro = Organizacion::indiceDeCampo(consulta.resultado(i));
-					combinacion +=Utilitario::separar(reg, sep_campos, numArgRegistro);
+					combinacion +=u.separar(reg, sep_campos, numArgRegistro);
 					combinacion +=sep_campos;
 				}
 			}
@@ -616,7 +623,7 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, MapaCombinacion
 		{
 			for (unsigned i = 0; i < consulta.cantidadResultados() ; i++ ) {
 				if (Organizacion::esDimension(consulta.resultado(i))) {
-					combinacion +=Utilitario::separar(reg, sep_campos,Organizacion::indiceDeCampo(consulta.resultado(i)));
+					combinacion +=u.separar(reg, sep_campos,Organizacion::indiceDeCampo(consulta.resultado(i)));
 					combinacion +=sep_campos;
 				}
 			}
@@ -687,10 +694,10 @@ bool BaseDeDatos::filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) {
 
 void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinaciones& mComb, Respuesta& resp) {
     MapaCombinaciones::const_iterator it, itActual, itAux;
-    itActual = mComb.begin(); 
+    itActual = mComb.begin();
     Lista_Id ids_aAgregar;
     bool ultimoHecho = false;
-    
+
     for (it = mComb.begin(); it != mComb.end(); ++it) {
         if (itActual->first == it->first) {
             ids_aAgregar.push_back(it->second);
@@ -712,15 +719,15 @@ void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinac
     }
 }
 
-void BaseDeDatos::agregaParaFila(const Consulta& cons, 
-        const Combinacion& combinacion, 
-        const Lista_Id& ids, 
+void BaseDeDatos::agregaParaFila(const Consulta& cons,
+        const Combinacion& combinacion,
+        const Lista_Id& ids,
         Respuesta& resp) {
-    
+
     std::string nomCampoRes;
     unsigned cantDim = 0;
     unsigned cantHechos = 0;
-    
+
     for (unsigned i = 0; i < cons.cantidadResultados() ;i++) {
         nomCampoRes = cons.resultado(i);
         if (Organizacion::esDimension(nomCampoRes))
@@ -728,7 +735,7 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
         else if (Organizacion::esHecho(nomCampoRes))
             cantHechos++;
     }
-    
+
     // En donde se van a guardar las resoluciones para las dimensiones
     std::vector<std::string> resolucionesDim;
     // Guarda las posiciones de las dimensiones para el orden de resultados de la Consulta
@@ -760,7 +767,7 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
 
     unsigned ind = 0;
     for (unsigned i = 0 ; i < indDim.size() ; i++, ind++) {
-    	campo = Utilitario::separar(combinacion, sep_campos, ind);
+    	campo = u.separar(combinacion, sep_campos, ind);
     	resolucionesDim.push_back(campo);
     }
 
@@ -782,9 +789,9 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
         for (unsigned i = 0; i < cantHechos ; i++) {
         	// indice de hecho para obternerlo desde el regsitro
         	unsigned iHecho = Organizacion::indiceDeCampo(cons.resultado(indHechos[i]));
-        	campo = Utilitario::separar(reg, sep_campos, iHecho);
+        	campo = u.separar(reg, sep_campos, iHecho);
 
-        	unsigned campoNumerico = Utilitario::convertirAEntero(campo);
+        	unsigned campoNumerico = u.convertirAEntero(campo);
         	Agregacion agre = cons.agregacionDeResultado(indHechos[i]);
 
         	if ( agre == PROM) {
@@ -798,8 +805,8 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
 
     for (unsigned i = 0; i < cantHechos ; i++) {
     	unsigned aux = resHechos[i];
-    	//resolucionesHec[i] = Utilitario::convertirAString(aux);
-    	resolucionesHec.push_back(Utilitario::convertirAString(aux));
+    	//resolucionesHec[i] = u.convertirAString(aux);
+    	resolucionesHec.push_back(u.convertirAString(aux));
     }
 
 
@@ -919,7 +926,7 @@ void BaseDeDatos::__guardarRegistros(const Consulta& cons, Respuesta& resp) {
 		reg = _archDatos.obtenerRegistro(id);
 		for (unsigned i = 0; i < cons.cantidadResultados() ; i++) {
 			indCampo = Organizacion::indiceDeCampo(cons.resultado(i));
-			campoAAgregar = Utilitario::separar(reg,sep_campos, indCampo);
+			campoAAgregar = u.separar(reg,sep_campos, indCampo);
 			resp.agregar(campoAAgregar);
 		}
 

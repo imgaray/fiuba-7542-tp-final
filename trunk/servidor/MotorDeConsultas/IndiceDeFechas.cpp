@@ -6,7 +6,6 @@
  */
 
 #include "IndiceDeFechas.h"
-#include "../../comun/M_Fechas.h"
 
 IndiceDeFechas::IndiceDeFechas() {
 	// TODO Auto-generated constructor stub
@@ -20,22 +19,22 @@ IndiceDeFechas::~IndiceDeFechas() {
 void IndiceDeFechas::recuperar(const Fecha& fecha, Lista_Id& ids) {
 	ids.clear();
 
-	if (M_Fechas::esRango(fecha)) {
+	if (m_fechas.esRango(fecha)) {
 		Fecha f1, f2;
-		M_Fechas::desarmar(fecha, f1, f2);
+		m_fechas.desarmar(fecha, f1, f2);
 
 		FechaNumerica nf1, nf2;
-		nf1 = M_Fechas::convertir(f1);
-		nf2 = M_Fechas::convertir(f2);
+		nf1 = m_fechas.convertir(f1);
+		nf2 = m_fechas.convertir(f2);
 
 		this->guardarDesdeRango(nf1, nf2, ids);
 	}
-	else if (M_Fechas::esFechaConvecional(fecha)) {
-		FechaNumerica nFecha = M_Fechas::convertir(M_Fechas::fecha(fecha));
+	else if (m_fechas.esFechaConvecional(fecha)) {
+		FechaNumerica nFecha = m_fechas.convertir(m_fechas.fecha(fecha));
 		this->guardarIDs(nFecha, ids);
 	}
 	else {
-		FechaNumerica nFecha = M_Fechas::convertir(fecha);
+		FechaNumerica nFecha = m_fechas.convertir(fecha);
 		this->guardarIDs(nFecha, ids);
 	}
 
@@ -45,13 +44,13 @@ void IndiceDeFechas::recuperar(const Fecha& fecha, Lista_Id& ids) {
 
 
 void IndiceDeFechas::guardarFecha(const Fecha& fecha,const Id_Registro& id) {
-	if (M_Fechas::esSimple(fecha)) {
+	if (m_fechas.esSimple(fecha)) {
 		FechaNumerica nfecha;
-		if (M_Fechas::esFechaConvecional(fecha)) {
-			nfecha = M_Fechas::convertir(M_Fechas::fecha(fecha));
+		if (m_fechas.esFechaConvecional(fecha)) {
+			nfecha = m_fechas.convertir(m_fechas.fecha(fecha));
 		}
 		else {
-			nfecha = M_Fechas::convertir(fecha);
+			nfecha = m_fechas.convertir(fecha);
 		}
 
 
@@ -63,18 +62,18 @@ void IndiceDeFechas::guardarFecha(const Fecha& fecha,const Id_Registro& id) {
 const Lista_Id& IndiceDeFechas::recuperar(const Fecha & fecha) {
 	this->_res.clear();
 
-	if (M_Fechas::esRango(fecha)) {
+	if (m_fechas.esRango(fecha)) {
 		Fecha f1, f2;
-		M_Fechas::desarmar(fecha, f1, f2);
+		m_fechas.desarmar(fecha, f1, f2);
 
 		FechaNumerica nf1, nf2;
-		nf1 = M_Fechas::convertir(f1);
-		nf2 = M_Fechas::convertir(f2);
+		nf1 = m_fechas.convertir(f1);
+		nf2 = m_fechas.convertir(f2);
 
 		this->guardarDesdeRango(nf1, nf2);
 	}
 	else {
-		FechaNumerica nFecha = M_Fechas::convertir(fecha);
+		FechaNumerica nFecha = m_fechas.convertir(fecha);
 
 		this->guardarIDs(nFecha);
 

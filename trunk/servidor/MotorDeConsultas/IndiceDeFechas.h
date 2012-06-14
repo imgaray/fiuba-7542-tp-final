@@ -9,6 +9,7 @@
 #define INDICEDEFECHAS_H_
 
 #include "TiposDeDatos.h"
+#include "../../comun/M_Fechas.h"
 
 class IndiceDeFechas {
 public:
@@ -51,6 +52,7 @@ private:
 	void guardarIDs(const FechaNumerica& fecha, Lista_Id& ids);
 
 	MapaDeFechas _fechas;
+	M_Fechas m_fechas;
 	Lista_Id _res;
 };
 

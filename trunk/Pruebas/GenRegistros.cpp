@@ -54,6 +54,7 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 
 	Consulta ca;
 	std::string nomCampo;
+	Utilitario util;
 	for (long i = 0; i < cantReg ; i++) {
 
 		ca.limpiar();
@@ -72,7 +73,7 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 			else if (nomCampo == "Marca")
 				ca.agregarCampo(marcas[generarRandom(cantMarcas)]);
 			else if (nomCampo == "PrecioLista" || nomCampo == "PrecioFinal" || Organizacion::esHecho(nomCampo))
-				ca.agregarCampo(Utilitario::convertirAString(generarRandom(1000)));
+				ca.agregarCampo(util.convertirAString(generarRandom(1000)));
 			else
 				ca.agregarCampo("CAMPOVACIO");
 		}

@@ -37,10 +37,12 @@ Respuesta::Respuesta(const std::string& mensaje) {
 Respuesta::~Respuesta() {
 }
 
-void Respuesta::operator =(const Respuesta& resp) {
+Respuesta& Respuesta::operator=(const Respuesta& resp) {
 	this->_datos = resp._datos;
 	this->_columnas = resp._columnas;
 	this->_filaActual = resp._filaActual;
+
+	return *this;
 }
 
 const std::string& Respuesta::mensajeInterno() const {
@@ -52,6 +54,11 @@ std::string Respuesta::serializar() const {
 	DatosDeRespuesta::const_iterator it;
 
 	datos = _msjInterno;
+	datos += sep_principal;
+
+	int col = _columnas;
+
+	datos += u.convertirAString(col);
 	datos += sep_principal;
 
 	for (it = _datos.begin() ; it != _datos.end() ; ) {
@@ -92,7 +99,10 @@ void Respuesta::deserializar(const std::string& datos) {
 
 	_msjInterno = u.separar(datos, sep_principal, 0);
 
-	std::string datosSerializados = u.separar(datos, sep_principal, 1);
+	std::string sColumnas = this->u.separar(datos ,sep_principal, 1);
+	_columnas = u.convertirAEntero(sColumnas);
+
+	std::string datosSerializados = u.separar(datos, sep_principal, 2);
 
 	u.borrarCaracter(datosSerializados, sep_fin);
 	//datosSerializados.resize(datos.size() - 1);
@@ -112,9 +122,9 @@ void Respuesta::deserializar(const std::string& datos) {
 		}
 	}
 
-	if (_datos.size() >= 1) {
-		_columnas = _datos[0].size();
-	}
+//	if (_datos.size() >= 1) {
+//		_columnas = _datos[0].size();
+//	}
 }
 
 void Respuesta::guardarFila(const std::string& fila) {

@@ -17,9 +17,9 @@ public:
 	std::string separar(const std::string& datos,
 			const char separador, const size_t indice);
 
-	std::string convertirAString(const int& numero);
+	std::string convertirAString(const int& numero) const;
 
-	int convertirAEntero(const std::string& numero);
+	int convertirAEntero(const std::string& numero) const;
 
 	void borrarCaracter(std::string& palabra, const char caracter);
 

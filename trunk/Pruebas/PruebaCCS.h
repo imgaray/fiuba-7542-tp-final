@@ -11,7 +11,7 @@
 #include <iostream>
 #include "../comun/Hilo.h"
 #include "../comun/Socket.h"
-#include "GenRegistros.h"
+#include "../comun/GenRegistros.h"
 #include "../comun/Consulta.h"
 #include "../comun/Respuesta.h"
 #include "../comun/Definiciones.h"

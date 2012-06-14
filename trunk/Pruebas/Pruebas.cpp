@@ -16,9 +16,13 @@
 #include "../servidor/servidor/VerificadorConsultasH.h"
 #include "../servidor/servidor/VerificadorEntradasH.h"
 #include <stdlib.h>
-#include "GenRegistros.h"
+#include "../comun/GenRegistros.h"
 using namespace std;
 
+
+void testSerializaciones() {
+
+}
 
 void testOrganizacion() {
 	cout << "=================================================" << endl;
@@ -545,6 +549,9 @@ void testBaseDeDatos() {
 	cout << endl << "Inicia el Test para BaseDeDatos." << endl;
 	int errores = 0;
 
+	M_Fechas mf;
+
+
 	// Creo y configuro la organizacion.
 	char* rutaOrganizacion = "./organizacion.txt";
 	{
@@ -688,7 +695,7 @@ void testBaseDeDatos() {
 
 
 	cCliente.limpiar();
-	cCliente.agregarFiltro("Fecha", M_Fechas::anio("2012"));
+	cCliente.agregarFiltro("Fecha", mf.anio("2012"));
 	cCliente.agregarResultado(Organizacion::nombreCampo(1));
 	cCliente.agregarResultado("Fecha");
 	cCliente.agregarResultado("Producto");
@@ -701,7 +708,7 @@ void testBaseDeDatos() {
 	cCliente.limpiar();
 	//cCliente.agregarEntrada(Organizacion::nombreHecho(0),"<300");
 	//cCliente.defininirAgregacion(SUM, Organizacion::nombreCampo(1));
-	cCliente.agregarFiltro("Fecha", M_Fechas::mes(9,"2012"));
+	cCliente.agregarFiltro("Fecha", mf.mes(9,"2012"));
 	cCliente.agregarResultado(Organizacion::nombreCampo(1));
 	cCliente.defininirAgregacion(CONT, Organizacion::nombreHecho(0));
 	resp = bdd.resolverConsulta(cCliente);
@@ -711,7 +718,7 @@ void testBaseDeDatos() {
 
 
 	cCliente.limpiar();
-	cCliente.agregarFiltro("Fecha", M_Fechas::bimestre(6,"2012"));
+	cCliente.agregarFiltro("Fecha", mf.bimestre(6,"2012"));
 	cCliente.agregarResultado(Organizacion::nombreCampo(1));
 	cCliente.defininirAgregacion(CONT, Organizacion::nombreHecho(0));
 	resp = bdd.resolverConsulta(cCliente);
@@ -720,7 +727,7 @@ void testBaseDeDatos() {
 
 
 	cCliente.limpiar();
-	cCliente.agregarFiltro("Fecha", M_Fechas::mes(10,"2012"));
+	cCliente.agregarFiltro("Fecha", mf.mes(10,"2012"));
 	cCliente.agregarResultado(Organizacion::nombreCampo(1));
 	cCliente.defininirAgregacion(CONT, Organizacion::nombreHecho(1));
 	resp = bdd.resolverConsulta(cCliente);
@@ -729,7 +736,7 @@ void testBaseDeDatos() {
 
 
 	cCliente.limpiar();
-	cCliente.agregarFiltro("Fecha", M_Fechas::mes(9,"2012"));
+	cCliente.agregarFiltro("Fecha", mf.mes(9,"2012"));
 	cCliente.agregarResultado(Organizacion::nombreCampo(1));
 	cCliente.defininirAgregacion(CONT, Organizacion::nombreHecho(0));
 	resp = bdd.resolverConsulta(cCliente);
@@ -779,7 +786,7 @@ void testBaseDeDatos() {
 
 
 	cCliente.limpiar();
-	cCliente.agregarFiltro("Fecha", M_Fechas::mes(9, "2012"));
+	cCliente.agregarFiltro("Fecha", mf.mes(9, "2012"));
 	cCliente.defininirAgregacion(MIN, Organizacion::nombreHecho(0));
 	cCliente.defininirAgregacion(MAX, Organizacion::nombreHecho(1));
 	resp = bdd.resolverConsulta(cCliente);
@@ -789,7 +796,7 @@ void testBaseDeDatos() {
 
 
 	cCliente.limpiar();
-	cCliente.agregarEntrada("Fecha", M_Fechas::mes(9, "2012"));
+	cCliente.agregarEntrada("Fecha", mf.mes(9, "2012"));
 	cCliente.defininirAgregacion(SUM, Organizacion::nombreHecho(0));
 	cCliente.defininirAgregacion(NADA, Organizacion::nombreHecho(1));
 	resp = bdd.resolverConsulta(cCliente);
@@ -799,7 +806,7 @@ void testBaseDeDatos() {
 
 	cCliente.limpiar();
 	cCliente.agregarEntrada("Vendedor", "Pablo");
-	cCliente.agregarEntrada("Fecha", M_Fechas::mes(9,"2012"));
+	cCliente.agregarEntrada("Fecha", mf.mes(9,"2012"));
 	cCliente.agregarResultado(Organizacion::nombreCampo(1));
 	cCliente.defininirAgregacion(PROM, Organizacion::nombreHecho(0));
 	resp = bdd.resolverConsulta(cCliente);
@@ -854,7 +861,7 @@ void testBaseDeDatos() {
 
 	cCliente.limpiar();
 	cCliente.definirConsultaDeTablaPivote();
-	cCliente.agregarFiltro("Fecha", M_Fechas::mes(9, "2012"));
+	cCliente.agregarFiltro("Fecha", mf.mes(9, "2012"));
 	cCliente.agregarXTablaP("Vendedor");
 	cCliente.agregarYTablaP("Producto");
 	cCliente.defininirAgregacion(CONT, Organizacion::nombreHecho(0));
@@ -972,24 +979,28 @@ void testPesadoSeparador() {
 	char sep = '-';
 	string aSeparar = "AAA-BBBB-CCCCC";
 
-	if (Utilitario::separar(aSeparar, sep, 0) != "AAA") {
+	Utilitario util;
+
+
+
+	if (util.separar(aSeparar, sep, 0) != "AAA") {
 		cout << "Error en AAA." << endl;
 		errores++;
 	}
 
 
-	if (Utilitario::separar(aSeparar, sep, 1) != "BBBB") {
+	if (util.separar(aSeparar, sep, 1) != "BBBB") {
 		cout << "Error en BBBB" << endl;
 		errores++;
 	}
 
 
-	if (Utilitario::separar(aSeparar, sep, 2) != "CCCCC") {
+	if (util.separar(aSeparar, sep, 2) != "CCCCC") {
 		cout << "Error en CCCCC"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 3) != "") {
+	if (util.separar(aSeparar, sep, 3) != "") {
 		cout << "Error en retorna argmento vacio" << endl;
 		errores++;
 	}
@@ -998,12 +1009,12 @@ void testPesadoSeparador() {
 
 	aSeparar = "ASVAVABAVASC";
 
-	if (Utilitario::separar(aSeparar, sep, 0) != aSeparar) {
+	if (util.separar(aSeparar, sep, 0) != aSeparar) {
 		cout << "Error al no retornar el string Base."<< endl;
 	}
 
 
-	if (Utilitario::separar(aSeparar, sep, 1)  != "") {
+	if (util.separar(aSeparar, sep, 1)  != "") {
 		cout << "Error en retono de argumento vacio 2";
 		errores++;
 	}
@@ -1011,31 +1022,31 @@ void testPesadoSeparador() {
 
 	aSeparar = "-aaa-bbb-ccc--";
 
-	if (Utilitario::separar(aSeparar, sep, 0) != "") {
+	if (util.separar(aSeparar, sep, 0) != "") {
 		cout << "Error en retorno de argumento vacio 3" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 1) != "aaa") {
+	if (util.separar(aSeparar, sep, 1) != "aaa") {
 		cout << "Error en retorno mal de argumento aaa" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 2) != "bbb") {
+	if (util.separar(aSeparar, sep, 2) != "bbb") {
 		cout << "Error en retrono mal de argumentos bbb" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 3) != "ccc") {
+	if (util.separar(aSeparar, sep, 3) != "ccc") {
 		cout << "Error en retorno mal de argumento ccc" << endl;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+	if (util.separar(aSeparar, sep, 4) != "") {
 		cout << "Error en retorno mal de argumento vacio 4" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 5) != "") {
+	if (util.separar(aSeparar, sep, 5) != "") {
 		cout << "Error en retorno mal de argumento vacio 5" << endl;
 		errores++;
 	}
@@ -1054,27 +1065,27 @@ void testPesadoSeparador() {
 	aSeparar += c4;
 
 
-	if (Utilitario::separar(aSeparar, sep, 0) != c1) {
+	if (util.separar(aSeparar, sep, 0) != c1) {
 		cout << "Error en c1"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 1) != c2) {
+	if (util.separar(aSeparar, sep, 1) != c2) {
 		cout << "Error en c2" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 2) != c3) {
+	if (util.separar(aSeparar, sep, 2) != c3) {
 		cout << "Error en c3"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 3) != c4) {
+	if (util.separar(aSeparar, sep, 3) != c4) {
 		cout << "Error en c4" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+	if (util.separar(aSeparar, sep, 4) != "") {
 		cout << "Error en retorna arg vacio 6" << endl;
 		errores++;
 	}
@@ -1083,35 +1094,35 @@ void testPesadoSeparador() {
 
 	aSeparar = "";
 
-	if (Utilitario::separar(aSeparar, sep, 0) != "") {
+	if (util.separar(aSeparar, sep, 0) != "") {
 		cout << "Error en dato vacio 1"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 1) != "") {
+	if (util.separar(aSeparar, sep, 1) != "") {
 		cout << "Error en dato vacio 2"<< endl;
 		errores++;
 	}
 
 
-	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+	if (util.separar(aSeparar, sep, 4) != "") {
 		cout << "Error en dato vacio 3"<< endl;
 		errores++;
 	}
 
 
-	if (Utilitario::separar("", sep, 0) != "") {
+	if (util.separar("", sep, 0) != "") {
 		cout << "Error en dato vacio 4"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar("", sep, 1) != "") {
+	if (util.separar("", sep, 1) != "") {
 		cout << "Error en dato vacio 3"<< endl;
 		errores++;
 	}
 
 
-	if (Utilitario::separar("", sep, 4) != "") {
+	if (util.separar("", sep, 4) != "") {
 		cout << "Error en dato vacio 5"<< endl;
 		errores++;
 	}
@@ -1119,18 +1130,18 @@ void testPesadoSeparador() {
 
 	aSeparar.clear();
 
-	if (Utilitario::separar(aSeparar, sep, 0) != "") {
+	if (util.separar(aSeparar, sep, 0) != "") {
 		cout << "Error en dato vacio 6"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 1) != "") {
+	if (util.separar(aSeparar, sep, 1) != "") {
 		cout << "Error en dato vacio 7"<< endl;
 		errores++;
 	}
 
 
-	if (Utilitario::separar(aSeparar, sep, 4) != "") {
+	if (util.separar(aSeparar, sep, 4) != "") {
 		cout << "Error en dato vacio 8"<< endl;
 		errores++;
 	}
@@ -1159,22 +1170,22 @@ void testPesadoSeparador() {
 	aSeparar += sep;
 
 
-	if (Utilitario::separar(aSeparar, sep, 0) != c1) {
+	if (util.separar(aSeparar, sep, 0) != c1) {
 		cout << "Error en c1 largo"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 1) != c2) {
+	if (util.separar(aSeparar, sep, 1) != c2) {
 		cout << "Error en c2 largo" << endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 2) != c3) {
+	if (util.separar(aSeparar, sep, 2) != c3) {
 		cout << "Error en c3 largo"<< endl;
 		errores++;
 	}
 
-	if (Utilitario::separar(aSeparar, sep, 3) != "") {
+	if (util.separar(aSeparar, sep, 3) != "") {
 		cout << "Error en argVacio largo"<< endl;
 		errores++;
 	}

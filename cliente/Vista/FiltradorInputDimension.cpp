@@ -19,6 +19,7 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
 FiltradorInputDimension::~FiltradorInputDimension() {}
 
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
+    std::cout << "FiltradorInputDimension recibió respuesta: " << rta.serializar() << std::endl;
     if (valores.get_active_text() != STR_NULA) {
         std::cout << "Filtrador ya tiene su combo actualizado" << std::endl;
         return;

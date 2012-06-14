@@ -41,6 +41,7 @@
                 <child>
                   <object class="GtkToolButton" id="HerramientaActualizar">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Actualizar consultas</property>
                     <property name="label" translatable="yes">toolbutton1</property>
@@ -55,6 +56,7 @@
                 <child>
                   <object class="GtkToolButton" id="HerramientaDetenerActualizar">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Detener actualizaci&#xF3;n</property>
                     <property name="label" translatable="yes">toolbutton1</property>
@@ -78,6 +80,7 @@
                 <child>
                   <object class="GtkToolButton" id="HerramientaExportarPDF">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Exportar a PDF</property>
                     <property name="label" translatable="yes">toolbutton3</property>
@@ -102,7 +105,7 @@
                   <object class="GtkToolButton" id="HerramientaConfigurar">
                     <property name="visible">True</property>
                     <property name="has_tooltip">True</property>
-                    <property name="tooltip_text" translatable="yes">Configurar (requiera admin)</property>
+                    <property name="tooltip_text" translatable="yes">Configurar (requiere admin)</property>
                     <property name="label" translatable="yes">toolbutton3</property>
                     <property name="use_underline">True</property>
                     <property name="stock_id">gtk-preferences</property>

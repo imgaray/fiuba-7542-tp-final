@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <gtkmm/builder.h>
-#include <gtkmm/toolbutton.h>
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
 #include "VentanaClienteDinamica.h"
@@ -30,34 +29,46 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     }
 
     builder->get_widget(BOTON_CONECTAR, pAux);
-    if (pAux)
+    if (pAux) {
+        botones[BOTON_CONECTAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_conectar_button_clicked));
+    }
 
     builder->get_widget(BOTON_ACTUALIZAR, pAux);
-    if (pAux)
+    if (pAux) {
+        botones[BOTON_ACTUALIZAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_actualizar_button_clicked));
+    }
 
     builder->get_widget(BOTON_DETENER_ACTUALIZAR, pAux);
-    if (pAux)
+    if (pAux) {
+        botones[BOTON_DETENER_ACTUALIZAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_detenerActualizar_button_clicked));
+    }
 
     builder->get_widget(BOTON_EXPORTAR_PDF, pAux);
-    if (pAux)
+    if (pAux) {
+        botones[BOTON_EXPORTAR_PDF] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_exportarPDF_button_clicked));
+    }
 
     builder->get_widget(BOTON_CONFIGURAR, pAux);
-    if (pAux)
+    if (pAux) {
+        botones[BOTON_CONFIGURAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_configurar_button_clicked));
+    }
 
     builder->get_widget(BOTON_SALIR, pAux);
-    if (pAux)
+    if (pAux) {
+        botones[BOTON_SALIR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_salir_button_clicked));
+    }
 
     Glib::signal_timeout().connect(sigc::mem_fun(*this,
                                     &VentanaCliente::on_timeout), TIMEOUT);
@@ -73,7 +84,10 @@ void VentanaCliente::on_conectar_button_clicked() {
     std::cout << BOTON_CONECTAR " clicked." << std::endl;
     try {
         server.conectar();
-//        throw "Hey you! Out there in the cold";
+        botones[BOTON_ACTUALIZAR]->set_sensitive();
+        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive();
+        botones[BOTON_EXPORTAR_PDF]->set_sensitive();
+        botones[BOTON_CONECTAR]->set_sensitive(false);
     }
     catch (const char* msj) {
         Gtk::MessageDialog dialog(*this,

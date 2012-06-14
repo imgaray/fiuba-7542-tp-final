@@ -3,6 +3,7 @@
 
 #include <gtkmm/window.h>
 #include <gtkmm/builder.h>
+#include <gtkmm/toolbutton.h>
 #include "ServidorRemoto.h"
 
 class VentanaClienteDinamica;
@@ -16,6 +17,7 @@ class VentanaCliente : public Gtk::Window {
     private:
         Glib::RefPtr< Gtk::Builder > builder;
         VentanaClienteDinamica* pVDinamica;
+        std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
         void on_conectar_button_clicked();
         void on_actualizar_button_clicked();

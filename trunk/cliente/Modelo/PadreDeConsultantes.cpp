@@ -16,6 +16,7 @@ void PadreDeConsultantes::hacerConsulta(ServidorRemoto& server) {
     for ( ; it != hijos.end(); ++it)
         (*it)->hacerConsulta(server);
 
+
     if (hijosActualizando > 0) {
         correrSpinner();
         if (padre)

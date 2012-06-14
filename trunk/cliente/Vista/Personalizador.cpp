@@ -62,35 +62,35 @@ void Personalizador::construir() {
 
     tabs.push_back(pTab1);
 
-//    // Tab 2 - test gráfico de torta con input
-//    Tab* pTab2 = new Tab(0, "Tab 2 - Torta+filtro");
-//    FiltradoresTab* fTab2 = new FiltradoresTab();
-//    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab1);
-//    fPanel2->agregarFiltro("Sucursal", "San Julian");
-//    fPanel2->agregarResultado("Producto");
-//    fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
-//
-//    Grafico* pGraficoTorta2 = new GraficoDeTorta(*fPanel2);
-//    Panel* pPanelTorta2 = new Panel(*pGraficoTorta2, pGraficoTorta2->getFiltrador());
-//
-//    Gtk::HSeparator* sep2 = new Gtk::HSeparator();
-//    Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
-//
-//    hijos.push_back(fTab2);
-//    hijos.push_back(fPanel2);
-//    hijos.push_back(pGraficoTorta2);
-//    hijos.push_back(pPanelTorta2);
-//    hijos.push_back(sep2);
-//    hijos.push_back(pTable2);
-//
-//    pTab2->pack_start(*pPanelTorta2, false, false);
-//    pTab2->pack_start(*sep2, false, false);
-//    pTab2->pack_start(*pTable2, true, true);
-//
-//    pTab2->agregarConsultante(fTab2);
-//    pTab2->agregarConsultante(pPanelTorta2);
-//
-//    tabs.push_back(pTab2);
+    // Tab 2 - test gráfico de torta con input
+    Tab* pTab2 = new Tab(0, "Tab 2 - Torta+filtro");
+    FiltradoresTab* fTab2 = new FiltradoresTab();
+    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab1);
+    fPanel2->agregarFiltro("Sucursal", "San Julian");
+    fPanel2->agregarResultado("Producto");
+    fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
+
+    Grafico* pGraficoTorta2 = new GraficoDeTorta(*fPanel2);
+    Panel* pPanelTorta2 = new Panel(*pGraficoTorta2, pGraficoTorta2->getFiltrador());
+
+    Gtk::HSeparator* sep2 = new Gtk::HSeparator();
+    Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
+
+    hijos.push_back(fTab2);
+    hijos.push_back(fPanel2);
+    hijos.push_back(pGraficoTorta2);
+    hijos.push_back(pPanelTorta2);
+    hijos.push_back(sep2);
+    hijos.push_back(pTable2);
+
+    pTab2->pack_start(*pPanelTorta2, false, false);
+    pTab2->pack_start(*sep2, false, false);
+    pTab2->pack_start(*pTable2, true, true);
+
+    pTab2->agregarConsultante(fTab2);
+    pTab2->agregarConsultante(pPanelTorta2);
+
+    tabs.push_back(pTab2);
 
 //    // Tab 3 -
 //    fPanel1->agregarEntrada("Marca");
@@ -129,11 +129,11 @@ void Personalizador::construir() {
 //    pTab1->pack_start(*sep1, false, false);
 //    pTab1->pack_start(*pTable1, true, true);
 //
-//    pTab1->agregarConsultante(fTab1);
-//    pTab1->agregarConsultante(pPanBarras1);
-//    pTab1->agregarConsultante(pPanTorta1);
+//    pTab2->agregarConsultante(fTab1);
+//    pTab2->agregarConsultante(pPanBarras1);
+//    pTab2->agregarConsultante(pPanTorta1);
 //
-//    tabs.push_back(pTab1);
+//    tabs.push_back(pTab2);
 //
 //    // Tab 2
 //    Tab* pTab2 = new Tab(0, "Tab 2 - Mezcla dipersada");

@@ -12,6 +12,7 @@
 #include <map>
 #include <vector>
 #include "Definiciones.h"
+#include "Utilitario.h"
 
 #define RUTA_ARCH_MODELO "./modelo.config"
 
@@ -73,6 +74,7 @@ private:
 	static std::string nombreNulo;
 	static bool _existeCampoEspecial;
 	static unsigned _indEspecial;
+    static Utilitario u;
 };
 
 #endif /* ORGANIZACION_H_ */

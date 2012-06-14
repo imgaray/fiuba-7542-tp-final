@@ -15,8 +15,10 @@ Respuesta Servidor::resolverEntrada(Consulta& entrada) {
 
 Respuesta Servidor::resolver(Consulta& consulta) {
 	if (vdc.verificarConsulta(consulta)) {
+	    std::cout << "Consulta OK" << std::endl;
 		return bdd->resolverConsulta(consulta);
 	}
+	    std::cout << "Consulta NO OK" << std::endl;
 	// TODO: al integrar, habria que reformular esto
 	return Respuesta("ERROR");
 }

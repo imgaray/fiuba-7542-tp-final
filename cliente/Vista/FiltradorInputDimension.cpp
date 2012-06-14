@@ -3,6 +3,7 @@
 #include "Consulta.h"
 #include <iostream>
 #include <exception>
+#include <cassert>
 
 FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
     PadreDeConsultantes* padre) : FiltradorInput(input) {
@@ -10,11 +11,7 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
     setSpinner(&s);
     centradorDerecho.pack_start(s, false, false);
     s.hide();
-//	valores.append_text("Ignacio");
-//    valores.append_text("Ignacio");
-//    valores.append_text("Sebastian");
-//    valores.append_text("Miguel");
-    valores.set_active(0);
+
     // para popular el combobox
     consulta.agregarResultado(getFiltro());
 }
@@ -22,9 +19,13 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
 FiltradorInputDimension::~FiltradorInputDimension() {}
 
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
+    if (valores.get_active_text() != STR_NULA) {
+        std::cout << "Filtrador ya tiene su combo actualizado" << std::endl;
+        return;
+    }
 	std::cout << "FILTRADOR: cantidad columnas respuesta " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 1)
-        throw "Respuesta para combobox con más o menos de una columnas";
+        throw "*******ERROR: FiltradorInputDimension esperaba una respuesta con 1 columna";
 
     for (unsigned i = 0; i < rta.cantidadFilas(); ++i)
         valores.append_text(rta.dato(i, 0));

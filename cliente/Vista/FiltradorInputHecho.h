@@ -3,6 +3,7 @@
 
 #include "FiltradorInput.h"
 #include <gtkmm/entry.h>
+#include "Utilitario.h"
 
 #ifndef NO_PERTENECE
 #define NO_PERTENECE -1
@@ -19,6 +20,7 @@ class FiltradorInputHecho : public FiltradorInput {
 
         Consulta& filtrar(Consulta& c);
     private:
+        static Utilitario u;
         Gtk::Entry entrada;
         static Glib::ustring valoresCombo[];
         int i;  // iésimo valor del combobox posible

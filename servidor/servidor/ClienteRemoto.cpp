@@ -13,10 +13,12 @@ void ClienteRemoto::correr() {
 		Consulta c;
 		bool valido = false;
 		if (cliente->recibir(c)) {
-			std::cout << "recibi consulta" << std::endl;
+			std::cout << "recibi consulta; serialización: " << c.serializar() << std::endl;
 			Respuesta r = blresolvedor.resolver(c);
 			valido = cliente->enviar(r);
 			std::cout << "envie respuesta" << std::endl;
+			std::cout << "Mensaje interno de la respuesta: " << r.mensajeInterno() << std::endl;
+			std::cout << "Serialización de la respuesta: " << r.serializar() << std::endl;
 		}
 		if (!valido) {
 			std::cout << "entro a not valido de correr de cliente remoto, \

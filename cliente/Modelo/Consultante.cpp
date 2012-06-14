@@ -14,6 +14,8 @@ Consultante::Consultante() {
 Consultante::~Consultante() {}
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
+    cancelarConsulta(server);
+
     esperandoRespuesta = true;
     std::cout << this << " consulta ";
     if (verificador.verificarConsulta(consulta))

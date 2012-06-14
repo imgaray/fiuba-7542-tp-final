@@ -28,6 +28,7 @@ void ConsumerConsulta::correr() {
 				std::cout << "estoy por entrar a consultas.pop2" << std::endl;
 				ParConsulta pconsulta = consultas.pop2();
 				std::cout << "pase el pop2, tengo una consulta para " << pconsulta.first << std::endl;
+				std::cout << "La serialización de la consulta es: " << pconsulta.second->serializar() << std::endl;
 				ParRespuesta parrta;
 				parrta.first = pconsulta.first;
 				parrta.second = new Respuesta();
@@ -35,6 +36,8 @@ void ConsumerConsulta::correr() {
 					error = !servidor->recibir(*(parrta.second));
 					std::cout << "recibi la respuesta para "<< parrta.first << std::endl;
 					std::cout << "11Mensaje interno de la respuesta: " << parrta.second->mensajeInterno() << std::endl;
+					std::cout << "La serialización de la respuesta: " << parrta.second->serializar() << std::endl;
+
 				}
 				delete pconsulta.second;
 				if (error) {

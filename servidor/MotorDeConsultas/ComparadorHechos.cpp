@@ -7,7 +7,6 @@
 
 #include "ComparadorHechos.h"
 #include "../../comun/Consulta.h"
-#include "../../comun/Utilitario.h"
 #include "../../comun/Organizacion.h"
 #include "TiposDeDatos.h"
 
@@ -45,7 +44,7 @@ bool ComparadorHechos::registroAceptado(const std::string& reg) {
 	bool aceptado = true;
 
 	for (unsigned i=0; i < _indHechos.size() && aceptado; i++) {
-		_campoActual = Utilitario::separar(reg, sep_campos, _indHechos[i]);
+		_campoActual = u.separar(reg, sep_campos, _indHechos[i]);
 		aceptado = aceptado && aceptarHecho(_valorHechos[i], _campoActual);
 	}
 
@@ -56,9 +55,9 @@ bool ComparadorHechos::aceptarHecho(const std::string& hechoComp, const std::str
 		return false;
 
 	char comparador = hechoComp[0];
-	unsigned hCompNum = Utilitario::convertirAEntero(&hechoComp.c_str()[1]);
+	unsigned hCompNum = u.convertirAEntero(&hechoComp.c_str()[1]);
 
-	unsigned hecho = Utilitario::convertirAEntero(vHecho);
+	unsigned hecho = u.convertirAEntero(vHecho);
 	bool aceptado = false;
 
 	switch (comparador) {

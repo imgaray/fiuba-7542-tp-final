@@ -9,11 +9,11 @@ void ConsumerRespuesta::correr() {
 		try {
 			std::cout << "estoy en el consumer respuesta" << std::endl;
 			ParRespuesta prespuesta = respuestas.pop2();
-			if (consultantes.has(prespuesta.first))
+//			if (consultantes.has(prespuesta.first)) {
 				consultantes[prespuesta.first]->recibirRespuesta(Respuesta(*prespuesta.second));
 			delete prespuesta.second;
-		} catch (...){
-			std::cout << "detuve el consumer respuesta" << std::endl;
+		} catch (const char* msj){
+			std::cout << "detuve el consumer respuesta porque tiró: " << msj << std::endl;
 			parar();
 		}
 	}

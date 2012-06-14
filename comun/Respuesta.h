@@ -10,6 +10,7 @@
 
 #include "Definiciones.h"
 #include "Mensaje.h"
+#include "Utilitario.h"
 #include <string>
 
 class Respuesta : public Mensaje {
@@ -105,6 +106,8 @@ private:
 	std::string _msjInterno;
 
 	static Campo campo_nulo;
+
+    Utilitario u;
 };
 
 #endif /* RESPUESTA_H_ */

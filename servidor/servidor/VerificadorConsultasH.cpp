@@ -2,8 +2,10 @@
 #include "../../comun/Consulta.h"
 #include "../../comun/Organizacion.h"
 #include "../../comun/Definiciones.h"
+#include <iostream>
 
 bool VerificadorConsultasH::verificarConsulta(const Consulta& consulta) {
+    std::cout << "Verificando consulta: " << consulta.serializar() << std::endl;
 	if (!consulta.esConsultaDeCliente())
 		return false;
 

@@ -5,7 +5,7 @@
 using namespace std;
 
 void ControladorServidor::comenzar() {
-	tagentes->iniciar();
+//	tagentes->iniciar();
 	tclientes->iniciar();
 }
 
@@ -22,7 +22,7 @@ Respuesta ControladorServidor::resolverEntrada(Consulta& entrada) {
 	m.unlock();
 	return r;
 }
-	
+
 Respuesta ControladorServidor::resolver(Consulta& consulta) {
 	m.lock();
 	while (nact != 0) {
@@ -37,7 +37,7 @@ Respuesta ControladorServidor::resolver(Consulta& consulta) {
 	m.signal();
 	m.unlock();
 	return r;
-}	
+}
 
 ControladorServidor::~ControladorServidor() {
 	std::cout << "ENTRO AL DESTRUCTOR DE CONTROLADOR SERVIDOR" << std::endl;

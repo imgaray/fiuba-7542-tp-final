@@ -1,10 +1,11 @@
 #include "FiltradorInputFecha.h"
 #include "Consulta.h"
-#include "Utilitario.h"
-#include "M_Fechas.h"
 
 #define MSJ_ERROR "Fecha inválida"
 #define CANT_COMBO 8
+
+M_Fechas FiltradorInputFecha::m_fechas;
+Utilitario FiltradorInputFecha::u;
 
 Glib::ustring FiltradorInputFecha::valoresCombo[CANT_COMBO] = {
     "Año", "Mes", "Bimestre", "Trimestre", "Cuatrimestre", "Semestre",
@@ -55,37 +56,37 @@ void FiltradorInputFecha::on_entry_activated() {
 Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor) {
     std::cout << "@todo Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor): terminar de implementar" << std::endl;
     Fecha f_validada;
-    Glib::ustring pri_str = Utilitario::separar(valor, '-', 0);
-    Glib::ustring seg_str = Utilitario::separar(valor, '-', 1);
-    Glib::ustring terc_str = Utilitario::separar(valor, '-', 2);
+    Glib::ustring pri_str = u.separar(valor, '-', 0);
+    Glib::ustring seg_str = u.separar(valor, '-', 1);
+    Glib::ustring terc_str = u.separar(valor, '-', 2);
 
     int pri_int = -1;
     int seg_int = -1;
     int terc_int = -1;
     if (pri_str != STR_NULA)
-        pri_int = Utilitario::convertirAEntero(pri_str);
+        pri_int = u.convertirAEntero(pri_str);
     if (seg_str != STR_NULA)
-        seg_int = Utilitario::convertirAEntero(seg_str);
+        seg_int = u.convertirAEntero(seg_str);
     if (terc_str != STR_NULA)
-        terc_int = Utilitario::convertirAEntero(terc_str);
+        terc_int = u.convertirAEntero(terc_str);
 
     switch (i) {
         // Año
-        case 0: f_validada = M_Fechas::anio(pri_str); break;
+        case 0: f_validada = m_fechas.anio(pri_str); break;
         // Mes
-        case 1: f_validada = M_Fechas::mes(pri_int, seg_str); break;
+        case 1: f_validada = m_fechas.mes(pri_int, seg_str); break;
         // Bimestre
-        case 2: f_validada = M_Fechas::bimestre(pri_int, seg_str); break;
+        case 2: f_validada = m_fechas.bimestre(pri_int, seg_str); break;
         // Trimestre
-        case 3: f_validada = M_Fechas::trimestre(pri_int, seg_str); break;
+        case 3: f_validada = m_fechas.trimestre(pri_int, seg_str); break;
         // Cuatrimestre
-        case 4: f_validada = M_Fechas::cuatrimestre(pri_int, seg_str); break;
+        case 4: f_validada = m_fechas.cuatrimestre(pri_int, seg_str); break;
         // Semestre
-        case 5: f_validada = M_Fechas::semestre(pri_int, seg_str); break;
+        case 5: f_validada = m_fechas.semestre(pri_int, seg_str); break;
         // Semana del año
         case 6: std::cout << "@todo FiltradorInputFecha::validar(...) por Semana del año" << std::endl; break;
         // Día
-        case 7: f_validada = M_Fechas::fecha(pri_int, seg_int, terc_int); break;
+        case 7: f_validada = m_fechas.fecha(pri_int, seg_int, terc_int); break;
         default: std::cout << "FiltradorInputFecha::filtrar(...) se rompió algo, debugueá" << std::endl; break;
     }
     return f_validada;

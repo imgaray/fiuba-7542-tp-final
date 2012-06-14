@@ -37,6 +37,7 @@ void Agente::cargarConfiguracion(const std::string& rutaConfig) {
 	std::string linea;
 	std::string cabecera, arg;
 	Puerto puerto;
+	Utilitario util;
 
 	if (archConfig.good()) {
 		while (archConfig.good()) {
@@ -44,17 +45,17 @@ void Agente::cargarConfiguracion(const std::string& rutaConfig) {
 
 			if (linea.empty() == false) {
 
-				cabecera = Utilitario::separar(linea, '=' , 0);
+				cabecera = util.separar(linea, '=' , 0);
 				Utilitario::borrarCaracter(cabecera, ' ');
 
 				if (cabecera == "PUERTO") {
-					arg = Utilitario::separar(linea, '=' , 1);
-					Utilitario::borrarCaracter(arg, ' ');
-					puerto = Utilitario::convertirAEntero(arg);
+					arg = util.separar(linea, '=' , 1);
+					util.borrarCaracter(arg, ' ');
+					puerto = util.convertirAEntero(arg);
 				}
 				else if (cabecera == "HUESPED") {
-					arg = Utilitario::separar(linea, '=' , 1);
-					Utilitario::borrarCaracter(arg, ' ');
+					arg = util.separar(linea, '=' , 1);
+					util.borrarCaracter(arg, ' ');
 					_huesped = arg;
 				}
 			}
@@ -113,6 +114,7 @@ void Agente::cargarDesdeArchivo(const std::string& rutaDatos) {
 	Consulta cons;
 	std::string linea;
 	std::string campo;
+	Utilitario util;
 
 	while (archivo.good()) {
 		cons.limpiar();
@@ -123,7 +125,7 @@ void Agente::cargarDesdeArchivo(const std::string& rutaDatos) {
 		if (linea.size() > 0) {
 
 			for (unsigned i = 0 ; i < Organizacion::cantidadCampos() ; i++) {
-				campo = Utilitario::separar(linea, TABULADOR, i);
+				campo = util.separar(linea, TABULADOR, i);
 				cons.agregarCampo(campo);
 			}
 

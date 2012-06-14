@@ -24,4 +24,6 @@ void testBaseDeDatos();
 
 void testPesadoSeparador();
 
+void testSerializaciones();
+
 #endif /* PRUEBAS_H_ */

@@ -10,6 +10,8 @@
 #include <sstream>
 
 Utilitario::Utilitario() {
+	s_anterior.clear();
+	_posiciones.clear();
 }
 
 Utilitario::~Utilitario() {
@@ -68,7 +70,7 @@ std::string Utilitario::separar(const std::string& datos,
 }
 
 
-std::string Utilitario::convertirAString(const int& numero) {
+std::string Utilitario::convertirAString(const int& numero) const {
 	std::stringstream ss;
 	std::string res;
 
@@ -83,7 +85,7 @@ std::string Utilitario::convertirAString(const int& numero) {
 	return res;
 }
 
-int Utilitario::convertirAEntero(const std::string& numero) {
+int Utilitario::convertirAEntero(const std::string& numero) const {
 	std::stringstream ss;
 	int res;
 

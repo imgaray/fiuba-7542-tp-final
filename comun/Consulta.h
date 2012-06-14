@@ -18,6 +18,8 @@ public:
 	Consulta(const Consulta& original);
 	virtual ~Consulta();
 
+	Consulta& operator=(const Consulta& original);
+
 	/*
 	 * Serializa toda la Consulta en string
 	 */

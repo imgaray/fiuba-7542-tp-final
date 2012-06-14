@@ -32,7 +32,7 @@ public:
 	void deserializar(const std::string& datos);
 
 	// Metodo que implementa el operador= para hacer una copia de Respuesta
-	void operator=(const Respuesta& resp);
+	Respuesta& operator=(const Respuesta& resp);
 
 	// Retorna un mensaje Interno que posee una instancia de respuesta
 	const std::string& mensajeInterno() const;

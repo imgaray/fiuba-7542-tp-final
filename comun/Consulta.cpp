@@ -33,6 +33,18 @@ Consulta::Consulta(const Consulta& original) :
 Consulta::~Consulta() {
 }
 
+Consulta& Consulta::operator=(const Consulta& original) {
+	this->_consultaTablaPivote = original._consultaTablaPivote;
+	this->_consultaDeCliente = original._consultaDeCliente;
+	this->_consultaValida = original._consultaValida;
+	this->_entradas = original._entradas;
+	this->_resultados = original._resultados;
+	this->_agregaciones = original._agregaciones;
+	this->_filtros = original._filtros;
+
+	return *this;
+}
+
 std::string Consulta::serializar() const {
 	std::string datos;
 

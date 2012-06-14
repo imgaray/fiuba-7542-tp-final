@@ -24,6 +24,7 @@ private:
 	bool resultadoCorrectos(const Consulta& cons);
 	bool camposTablaPivoteCorrectos(const Consulta& cons);
 
+	bool hayCamposNulos(const Consulta& cons);
 
 	bool cClienteValida(const Consulta& cons);
 	bool cClienteTP(const Consulta& cons);

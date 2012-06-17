@@ -103,13 +103,13 @@ void VentanaCliente::on_conectar_button_clicked() {
 void VentanaCliente::on_actualizar_button_clicked() {
     std::cout << BOTON_ACTUALIZAR " clicked." << std::endl;
 
-    pVDinamica->hacerConsulta(server);
+//    pVDinamica->hacerConsulta(server);
 }
 
 void VentanaCliente::on_detenerActualizar_button_clicked() {
     std::cout << BOTON_DETENER_ACTUALIZAR " clicked." << std::endl;
 
-    pVDinamica->cancelarConsulta(server);
+//    pVDinamica->cancelarConsulta(server);
 }
 
 void VentanaCliente::on_exportarPDF_button_clicked() {

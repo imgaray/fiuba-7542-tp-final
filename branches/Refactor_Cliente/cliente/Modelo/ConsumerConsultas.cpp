@@ -66,7 +66,7 @@ ConsumerConsulta::ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp):
 	servidor = new Socket(puerto);
 }
 
-void ConsumerConsulta::conectar() throw() {
+void ConsumerConsulta::conectar() throw(char* ) {
 	servidor->conectar(sdireccion);
 	if (!servidor->conectado()) {
 		throw strerror(errno);

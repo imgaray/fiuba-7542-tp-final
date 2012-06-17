@@ -5,15 +5,11 @@
 #include "PadreDeConsultantes.h"
 
 class Filtrador;
-class Consulta;
 
-class FiltradoresTab : public Gtk::VBox, public PadreDeConsultantes {
+class FiltradoresTab : public Gtk::VBox {
     public:
-        /** @todo agregar agregaciones */
         FiltradoresTab();
         ~FiltradoresTab();
-
-        Consulta& filtrar(Consulta& c);
 
         void agregarEntrada(const std::string& entrada);
 

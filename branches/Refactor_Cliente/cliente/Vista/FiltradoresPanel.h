@@ -2,19 +2,13 @@
 #define FILTRADORES_PANEL_H
 
 #include <gtkmm/box.h>
-#include "PadreDeConsultantes.h"
 
-class FiltradoresTab;
 class Filtrador;
-class Consulta;
 
-class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
+class FiltradoresPanel : public Gtk::VBox {
     public:
-        /** @todo agregar agregaciones */
-        FiltradoresPanel(FiltradoresTab& filtTab);
+        FiltradoresPanel();
         ~FiltradoresPanel();
-
-        Consulta& filtrar(Consulta& c);
 
         /// este método no verifica que el filtro sea dimensión
         void agregarFiltro(const std::string& dimension,
@@ -26,8 +20,6 @@ class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
 
         void agregarEntrada(const std::string& entrada);
 
-        /// estos tres métodos no verifican que el primer parámetro sea
-        /// dimensión, fecha o hecho
         void agregarResultado(const std::string& dimension);
         void agregarResultado(const std::string& fecha,
                               const std::string& valorCombo,
@@ -35,7 +27,6 @@ class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
         void agregarResultado(const std::string& hecho,
                               const std::string& agregacion);
     private:
-        FiltradoresTab& filtrosHeredados;
         std::list< Filtrador* > filtradores;
 };
 

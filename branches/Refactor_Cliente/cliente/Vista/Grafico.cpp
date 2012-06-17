@@ -2,29 +2,18 @@
 #include <iostream>
 #include <exception>
 #include "Area.h"
-#include "FiltradoresPanel.h"
-#include "Respuesta.h"
 
 #define MIN_LADO 200
 #define COL_RESULTADO 0  // constante que hace que siempre se tome la columna 0 de la respuesta para dar nombre a las áreas del gráfico
 
-Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
+Grafico::Grafico() {
     add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
     set_size_request(MIN_LADO, MIN_LADO);
-    setSpinner(&s);
+    areaSeleccionada = areas.end();
 }
 
 Grafico::~Grafico() {
     deleteAreas();
-}
-
-void Grafico::hacerConsulta(ServidorRemoto& server) {
-    f.filtrar(consulta);
-    Consultante::hacerConsulta(server);
-}
-
-FiltradoresPanel& Grafico::getFiltrador() const {
-    return f;
 }
 
 void Grafico::deleteAreas() {
@@ -67,6 +56,10 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
 }
 
 bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
+//    if (areaSeleccionada != areas.end() &&
+//        (*areaSeleccionada)->fueClickeada(ev->x/min_lado, ev->y/min_lado))
+//        return true;
+
     std::list< Area* >::iterator it = areas.begin();
     bool encontrado = false;
     double offset = getOffset();
@@ -109,12 +102,12 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
     if (areaSeleccionada == areas.end())
         return true;
 
-    Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
-    Glib::ustring input = consulta.resultado(COL_RESULTADO);
-    if (input == STR_NULA)
-        std::cout << "Hiciste algo mal" << std::endl;
-
-    padre->difundirNavegacionSeleccionada(input, valor);
+//    Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
+//    Glib::ustring input = consulta.resultado(COL_RESULTADO);
+//    if (input == STR_NULA)
+//        std::cout << "Hiciste algo mal" << std::endl;
+//
+//    padre->difundirNavegacionSeleccionada(input, valor);
     return true;
 }
 
@@ -131,25 +124,6 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
         dibujarEspecializacionReferencias(ctx);
         offset = it->dibujar(ctx, offset, *this);
     }
-}
-
-void Grafico::procesarRespuesta(const Respuesta& rta) {
-    std::cout << "cantidad de columnas " << rta.cantidadColumnas() << std::endl;
-    if (rta.cantidadColumnas() != 2)
-        throw "Respuesta para grafico con más o menos de dos columnas";
-
-    double valor;
-    std::stringstream ss;
-    std::list< Hecho > datos;
-    for (unsigned i = 0; i < rta.cantidadFilas(); ++i) {
-        ss << rta.dato(i, 1);
-        ss >> valor;
-        datos.push_back(Hecho(rta.dato(i, COL_RESULTADO) , valor));
-        ss.clear();
-    }
-
-    actualizarDatos(datos);
-    queue_draw_area( 0, 0, ancho_ventana, alto_ventana);
 }
 
 void Grafico::actualizarTamanioMinimo(double x, double y) {

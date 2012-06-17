@@ -25,8 +25,8 @@ public:
 	void detener_hilo();
 
 	void correr();
-	
-	void conectar() throw();
+
+	void conectar() throw(char* );
 
 	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp);
 

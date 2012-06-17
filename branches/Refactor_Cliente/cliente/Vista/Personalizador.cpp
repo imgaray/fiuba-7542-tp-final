@@ -1,7 +1,7 @@
+#include "Personalizador.h"
 #include <gtkmm/separator.h>
 #include <gtkmm/table.h>
 #include <gtkmm/adjustment.h>
-#include "Personalizador.h"
 #include "Grafico.h"
 #include "GraficoDeBarras.h"
 #include "GraficoDeTorta.h"
@@ -58,20 +58,20 @@ void Personalizador::construir() {
     hijos.push_back(fTab1);
     pTab1->pack_start(*fTab1, false, false);
 
-    pTab1->agregarConsultante(fTab1);
+//    pTab1->agregarConsultante(fTab1);
 
     tabs.push_back(pTab1);
 
     // Tab 2 - test gráfico de torta con input
     Tab* pTab2 = new Tab(0, "Tab 2 - Torta+filtro");
     FiltradoresTab* fTab2 = new FiltradoresTab();
-    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab1);
+    FiltradoresPanel* fPanel2 = new FiltradoresPanel();
     fPanel2->agregarFiltro("Sucursal", "San Julian");
     fPanel2->agregarResultado("Producto");
     fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
 
-    Grafico* pGraficoTorta2 = new GraficoDeTorta(*fPanel2);
-    Panel* pPanelTorta2 = new Panel(*pGraficoTorta2, pGraficoTorta2->getFiltrador());
+    Grafico* pGraficoTorta2 = new GraficoDeTorta();
+    Panel* pPanelTorta2 = new Panel();
 
     Gtk::HSeparator* sep2 = new Gtk::HSeparator();
     Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
@@ -86,9 +86,9 @@ void Personalizador::construir() {
     pTab2->pack_start(*pPanelTorta2, false, false);
     pTab2->pack_start(*sep2, false, false);
     pTab2->pack_start(*pTable2, true, true);
-
-    pTab2->agregarConsultante(fTab2);
-    pTab2->agregarConsultante(pPanelTorta2);
+//
+//    pTab2->agregarConsultante(fTab2);
+//    pTab2->agregarConsultante(pPanelTorta2);
 
     tabs.push_back(pTab2);
 

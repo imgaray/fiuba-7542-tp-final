@@ -27,7 +27,7 @@ void FiltradoresTab::agregarEntrada(const std::string& entrada) {
             if (Organizacion::esDimensionEspecial(entrada))
                 f = new FiltradorInputFecha(entrada);
             else
-                f = new FiltradorInputDimension(entrada, this);
+                f = new FiltradorInputDimension(entrada);
         } else {
             if (Organizacion::esHecho(entrada))
                 f = new FiltradorInputHecho(entrada);
@@ -40,11 +40,4 @@ void FiltradoresTab::agregarEntrada(const std::string& entrada) {
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
     }
-}
-
-Consulta& FiltradoresTab::filtrar(Consulta& c) {
-    std::list< Filtrador* >::iterator it = filtradores.begin();
-    for ( ; it != filtradores.end(); ++it)
-        (*it)->filtrar(c);
-    return c;
 }

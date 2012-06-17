@@ -37,7 +37,7 @@ ServidorRemoto::ServidorRemoto():
 		 {
 }
 
-void ServidorRemoto::conectar() throw() {	
+void ServidorRemoto::conectar() throw(char* ) {
 	cconsulta.conectar();
 	cconsulta.iniciar();
 	crespuesta.iniciar();
@@ -62,6 +62,6 @@ ServidorRemoto::~ServidorRemoto()  {
 	respuestas.close();
 	if (cconsulta.corriendo())
 		cconsulta.sincronizar();
-	if (crespuesta.corriendo())	
+	if (crespuesta.corriendo())
 		crespuesta.sincronizar();
 }

@@ -9,10 +9,9 @@
 
 class GraficoDeBarras : public Grafico {
     public:
-        GraficoDeBarras(FiltradoresPanel& f);
+        GraficoDeBarras();
         virtual ~GraficoDeBarras();
 
-        void actualizarDatos(const std::list< Hecho >& datos);
     private:
         void hallarNormalizacion(const std::list< Hecho >& datos);
         void dibujarEspecializacion(GdkEventExpose* ev,
@@ -20,6 +19,9 @@ class GraficoDeBarras : public Grafico {
         void dibujarEspecializacionReferencias(
                 Cairo::RefPtr< Cairo::Context >& ctx);
         double getOffset();
+
+        void actualizarDatos(const std::list< Hecho >& datos);
+
         double separacion;
         double ancho;
 };

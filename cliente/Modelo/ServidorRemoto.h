@@ -27,7 +27,7 @@ private:
 public:
 	ServidorRemoto();
 	~ServidorRemoto();
-	void conectar() throw();
+	void conectar() throw(char* );
 	void enviarConsulta(Consultante* consultante, Consulta consulta);
 	void cancelarConsulta(unsigned IDcons);
 };

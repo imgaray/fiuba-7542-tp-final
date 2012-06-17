@@ -13,16 +13,13 @@
 class Area;
 class FiltradoresPanel;
 
-class Grafico : public Gtk::DrawingArea, public Consultante {
+class Grafico : public Gtk::DrawingArea {
     public:
-        Grafico(FiltradoresPanel& f);
+        Grafico();
         virtual ~Grafico();
-
-        virtual void hacerConsulta(ServidorRemoto& server);
 
         /** @todo implementar para cuando las referencias no entran en el [0,1]x[0,1] */
         void actualizarTamanioMinimo(double x, double y);
-        FiltradoresPanel& getFiltrador() const;
     protected:
         std::list< Area* > areas;
         double offset;
@@ -50,8 +47,6 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
-        FiltradoresPanel& f;
-        void procesarRespuesta(const Respuesta& rta);
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
         Gtk::Spinner s;
 };

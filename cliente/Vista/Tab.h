@@ -5,7 +5,7 @@
 #include <gtkmm/box.h>
 #include "PadreDeConsultantes.h"
 
-class Tab : public Gtk::VBox, public PadreDeConsultantes {
+class Tab : public Gtk::VBox {
     public:
         /** int i para diferenciar mejor del otro constructor */
         Tab(int i, const Glib::ustring& etiqueta);
@@ -14,7 +14,6 @@ class Tab : public Gtk::VBox, public PadreDeConsultantes {
 
         Gtk::HBox& getEtiqueta();
 
-        void agregarConsultante(PadreDeConsultantes* c);
     private:
         Gtk::HBox etiquetaCompuesta;
         Gtk::Label etiqueta;

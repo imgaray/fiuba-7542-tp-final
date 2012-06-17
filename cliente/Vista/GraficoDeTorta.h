@@ -9,10 +9,9 @@
 
 class GraficoDeTorta : public Grafico {
     public:
-        GraficoDeTorta(FiltradoresPanel& f);
+        GraficoDeTorta();
         virtual ~GraficoDeTorta();
 
-        void actualizarDatos(const std::list< Hecho >& datos);
     private:
         void hallarNormalizacion(const std::list< Hecho >& datos);
         void dibujarEspecializacion(GdkEventExpose* ev,
@@ -20,6 +19,8 @@ class GraficoDeTorta : public Grafico {
         void dibujarEspecializacionReferencias(
                 Cairo::RefPtr< Cairo::Context >& ctx);
         double getOffset();
+
+        void actualizarDatos(const std::list< Hecho >& datos);
 };
 
 #endif  // GRAFICO_DE_TORTA_H

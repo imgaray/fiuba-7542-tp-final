@@ -3,25 +3,25 @@
 
 #include <gtkmm/box.h>
 #include <gtkmm/label.h>
-#include "Definiciones.h"
 
-class Consulta;
+#define FILTRO      'F'
+#define RESULTADO   'R'
+
+class Validador;
+
+typedef std::list< Glib::ustring > Campos;
 
 class Filtrador : public Gtk::HBox {
     public:
-        Filtrador(const Glib::ustring& filtro);
-        virtual ~Filtrador();
-
-        Glib::ustring getFiltro();
-
-        virtual Consulta& filtrar(Consulta& c) = 0;
-
+        Filtrador(char tipo, const Glib::ustring& nombre);
+        Filtrador(char tipo, const Glib::ustring& etiqueta, const Glib::ustring& nombre);
     protected:
         Gtk::HBox centradorDerecho;
-
+        Validador* valid;
+        Gtk::Label etiqueta;
+        Glib::ustring nombre;
     private:
         Gtk::HBox centradorIzquierdo;
-        Gtk::Label filtro;
+        char tipo;
 };
-
 #endif  // FILTRADOR_H

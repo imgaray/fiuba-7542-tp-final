@@ -6,7 +6,7 @@
 #define Y_0     0.5
 #define RADIO   0.3
 
-GraficoDeTorta::GraficoDeTorta(FiltradoresPanel& _f) : Grafico(_f) {
+GraficoDeTorta::GraficoDeTorta() {
     offset = 0.0;
     Hecho juan("Samsung", 10.13);
     Hecho carlos("Apple", 7.5);

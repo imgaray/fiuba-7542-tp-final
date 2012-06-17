@@ -18,8 +18,7 @@
 #define EXCEP_MSJ_FILTRO_MAL    "El campo solicitado para el filtro no es dimensión ni hecho"
 #define EXCEP_MSJ_INPUT_MAL     "El campo solicitado para el input no es dimensión ni hecho"
 
-FiltradoresPanel::FiltradoresPanel(FiltradoresTab& filtTab)
-: filtrosHeredados(filtTab) {}
+FiltradoresPanel::FiltradoresPanel() {}
 
 FiltradoresPanel::~FiltradoresPanel() {
     std::list< Filtrador* >::iterator it = filtradores.begin();
@@ -60,7 +59,7 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
             if (Organizacion::esDimensionEspecial(entrada))
                 f = new FiltradorInputFecha(entrada);
             else
-                f = new FiltradorInputDimension(entrada, this);
+                f = new FiltradorInputDimension(entrada);
         } else {
             if (Organizacion::esHecho(entrada))
                 f = new FiltradorInputHecho(entrada);
@@ -107,12 +106,3 @@ void FiltradoresPanel::agregarResultado(const std::string& hecho,
         std::cout << e.what() << std::endl;
     }
 }
-
-Consulta& FiltradoresPanel::filtrar(Consulta& c) {
-    filtrosHeredados.filtrar(c);
-    std::list< Filtrador* >::iterator it = filtradores.begin();
-    for ( ; it != filtradores.end(); ++it)
-        (*it)->filtrar(c);
-    return c;
-}
-

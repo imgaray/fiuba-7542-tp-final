@@ -11,20 +11,24 @@
 #include <utility>
 #include <list>
 #include "Socket.h"
+#include <string>
 
 class Consultante;
 
 class ServidorRemoto {
 private:
 	// atributos contenedores
-	Socket* sock;
 	ColaConsultas consultas;
 	ColaRespuestas respuestas;
 	MapaConsultantes consultantes;
+	BitmapCancelados cancelados;
 	ConsumerRespuesta crespuesta;
 	ConsumerConsulta cconsulta;
+	Socket* sock;
+	std::string sdireccion;
 
 public:
+	
 	ServidorRemoto();
 	~ServidorRemoto();
 	void conectar() throw();

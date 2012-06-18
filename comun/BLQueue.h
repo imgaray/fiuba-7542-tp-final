@@ -4,6 +4,9 @@
 #include <queue>
 #include <iostream>
 #include "Mutex.h"
+#include <exception>
+
+class BLQueueException: public std::exception {};
 
 template <typename T>
 class BLQueue {
@@ -19,11 +22,8 @@ public:
 	BLQueue() {bopen = true;}
 	// agregar
 	void push(const T &i) {
-		std::cout << "entre al push" << std::endl;
 		Lock l(m);
-		std::cout << "estoy bloqueado" << std::endl;
 		c.push(i);
-		std::cout << "estoy tirando signal para ver si algun otro tiene" << std::endl;
 		m.signal();
 	}
 	// sacar de tope de pila
@@ -39,20 +39,17 @@ public:
 	// tamanio pila
 	size_t size() {
 		Lock l(m);
-		std::cout << "estoy en size de cola" << std::endl;
 		return c.size();
 	}
 
 	void close() {
 		Lock l(m);
 		bopen = false;
-		std::cout << "estoy en close " << std::endl;
 		m.signal();
 	}
 
 	bool empty() {
 		Lock l(m);
-		std::cout << "estoy en el empty" << std::endl;
 		return c.empty();
 	}
 
@@ -69,7 +66,7 @@ public:
 		if (!open()) {
 			// aviso a los demas hilos que este se cayo
 			m.signal();
-			throw "cola cerrada";
+			throw BLQueueException();
 		}
 		T t=c.front();
 		c.pop();

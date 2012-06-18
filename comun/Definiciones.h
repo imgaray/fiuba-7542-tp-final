@@ -138,15 +138,25 @@ typedef std::vector < Fila > DatosDeRespuesta;
 
 /////////////////////////////////////////////////////////
 //
+// Tipos de datos para el servidor
+//
+/////////////////////////////////////////////////////////
+
+typedef BLQueue<Consulta> ConsultasServidor;
+typedef BLQueue<Respuesta> RespuestasServidor;
+
+/////////////////////////////////////////////////////////
+//
 //TiposDatos para ServidorRemoto (cliente)
 //
 /////////////////////////////////////////////////////////
 
-typedef std::pair<unsigned, Consulta*> ParConsulta;
-typedef std::pair<unsigned, Respuesta*> ParRespuesta;
+typedef std::pair<unsigned, Consulta> ParConsulta;
+typedef std::pair<unsigned, Respuesta> ParRespuesta;
 typedef BLQueue<ParConsulta> ColaConsultas;
 typedef BLQueue<ParRespuesta> ColaRespuestas;
 typedef BLMap<unsigned, Consultante*> MapaConsultantes;
+typedef BLMap<unsigned, bool> BitmapCancelados;
 
 /////////////////////////////////////////////////////////
 //

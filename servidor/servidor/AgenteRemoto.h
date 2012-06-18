@@ -6,19 +6,29 @@
 #include "ResolvedorEntradas.h"
 #include "../../comun/Consulta.h"
 #include "../../comun/Respuesta.h"
+#include "Definiciones.h"
+#include "HiloConsumerRecibir.h"
+#include "HiloConsumerEnviar.h"
+#include "HiloConsumerResponderEntrada.h"
 
-class AgenteRemoto: public Hilo {
+class AgenteRemoto {
 private:
 	Socket* agente;
 	// este resolvedor DEBE ser bloqueante
 	ResolvedorEntradas& blresolvedor;
+	unsigned id;
+	ConsultasServidor cconsultas;
+	RespuestasServidor crespuestas;
+	HiloConsumerRecibir hcr;
+	HiloConsumerEnviar hce;
+	HiloConsumerResponderEntrada hcre;
 public:
+	
+	void iniciar();
+	
 	// Detiene la ejecucion del agente remoto. Cierra la conexion, detiene
 	// y sincroniza
 	void detener_agente();
-	
-	// metodo que se ejecuta mientras este corriendo el hilo
-	void correr();
 	
 	// constructor del agente remoto. Recibe el socket activo conectado
 	// con el servidor y un resolvedor de entradas

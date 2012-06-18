@@ -13,8 +13,8 @@
 #define RUTACONFIGSERV "servidor.conf"
 #define PUERTOCLIENTE "puerto_cliente"
 #define PUERTOAGENTE "puerto_agente"
-#define DEFAULTAGENTE 4321
-#define DEFAULTCLIENTE 12345
+#define DEFAULTAGENTE 6000
+#define DEFAULTCLIENTE 5000
 
 #define MAX_CLIENTES_SIMULTANEOS 2
 #define MAX_AGENTES_SIMULTANEOS 2
@@ -83,13 +83,12 @@ public:
 		Consulta c[5];
 		for (unsigned i = 0; i < 5; ++i) {
 			c[i].definirComoConsultaCliente();
-			//c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
-			//c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
+			c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
+			c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
 			c[i].agregarResultado(Organizacion::nombreCampo(i));
 		}
 		std::string host("localhost");
 		Respuesta r;
-		MUTEX.lock();
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
 			assert_prueba(sock? sock->conectado(): false);
@@ -101,7 +100,6 @@ public:
 		}
 		if (sock)
 			sock->desconectar();
-		MUTEX.unlock();
 	}
 };
 
@@ -137,12 +135,10 @@ public:
 			c[i].agregarCampo(sucursales[i].c_str());
 			c[i].agregarCampo(fechas[i].c_str());
 			c[i].agregarCampo(productos[i].c_str());
-
 			c[i].agregarCampo("100");
 			c[i].agregarCampo("200");
 		}
 		Respuesta r;
-		MUTEX.lock();
 		for (unsigned i = 0; i < 5; ++i) {
 			std::cout << "conectando con el servidor:" << std::endl;
 			assert_prueba(sock? sock->conectado() : false);
@@ -155,7 +151,6 @@ public:
 		}
 		if (sock)
 			sock->desconectar();
-		MUTEX.unlock();
 	}
 };
 
@@ -281,7 +276,7 @@ int main(int argc, char **argv) {
 	inicializar();
 	Servidor servidor((Puerto)PUERTO_CLIENTE, (Puerto)PUERTO_AGENTE);
 
-	generarRegistros(servidor.baseDeDatos(), 1000);
+	//generarRegistros(servidor.baseDeDatos(), 1000);
 
 	cout << "===================================================" << endl;
 	pruebaAgentes();

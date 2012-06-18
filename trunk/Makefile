@@ -20,8 +20,8 @@ install_servidor:
 	cp servidor/*.conf apServidor
 	
 uninstall:
-	$(shell rm -r $(wildcard apCliente))
-	$(shell rm -r $(wildcard apServidor))
-	$(shell rm -r $(wildcard apAgente))
+	$(shell rm -f -r $(wildcard apCliente))
+	$(shell rm -f -r $(wildcard apServidor))
+	$(shell rm -f -r $(wildcard apAgente))
 
 .PHONY: all install	install_agente install_cliente install_servidor	uninstall

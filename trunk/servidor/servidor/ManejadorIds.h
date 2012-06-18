@@ -13,10 +13,12 @@ public:
 	
 	unsigned int obtenerId() {
 		unsigned int ret;
-		if (llibres.empty())
+		if (llibres.empty()) {
 			ret = ++ultimo;
-		else
-			ret = llibres.pop_back();
+		} else {
+			ret = llibres.back();
+			llibres.pop_back();
+		}
 		return ret;
 	}
 	

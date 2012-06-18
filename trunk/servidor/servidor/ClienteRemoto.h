@@ -7,22 +7,31 @@
 #include "../../comun/Consulta.h"
 #include "../../comun/Respuesta.h"
 #include <iostream>
+#include "HiloConsumerEnviar.h"
+#include "HiloConsumerRecibir.h"
+#include "HiloConsumerResponderConsulta.h"
 using namespace std;
 
-class ClienteRemoto: public Hilo {
+class ClienteRemoto {
 private:
 	Socket* cliente;
+	ConsultasServidor cconsultas;
+	RespuestasServidor crespuestas;
 	// este resolvedor DEBE ser bloqueante
 	ResolvedorConsultas& blresolvedor;
+	RespuestasServidor rs;
+	ConsultasServidor cs;
+	HiloConsumerEnviar hce;
+	HiloConsumerRecibir hcr;
+	HiloConsumerResponderConsulta hcrc;
+	
 public:
 
+	void iniciar();
+	
 	// detiene la ejecucion del cliente. Cierra la conexion, detiene y
 	// sincroniza el hilo
 	void detener_cliente();
-	
-	// metodo que se corre mientras este en ejecucion el hilo. Resuelve
-	// y envia consultas
-	void correr();
 	
 	// constructor de clienteremoto. Recibe un socket conectado al cliente
 	// y un resolvedor de consultas

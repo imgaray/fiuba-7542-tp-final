@@ -5,7 +5,7 @@
 using namespace std;
 
 void ControladorServidor::comenzar() {
-//	tagentes->iniciar();
+	tagentes->iniciar();
 	tclientes->iniciar();
 }
 
@@ -78,7 +78,6 @@ void ControladorServidor::detener() {
 												++iter_clientes) {
 		ClienteRemoto* crem = *iter_clientes;
 		crem->detener_cliente();
-		crem->sincronizar();
 	}
 	// detengo los agentes
 	lagentes::iterator iter_agentes;
@@ -86,7 +85,6 @@ void ControladorServidor::detener() {
 												++iter_agentes) {
 		AgenteRemoto* arem = *iter_agentes;
 		arem->detener_agente();
-		arem->sincronizar();
 	}
 	m.unlock();
 }

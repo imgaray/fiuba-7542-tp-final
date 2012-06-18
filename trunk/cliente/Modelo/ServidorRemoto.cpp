@@ -1,6 +1,8 @@
 #include "ServidorRemoto.h"
 #include "Consultante.h"
 #include <string>
+#include <cerrno>
+#include <cstring>
 #define RUTACONFIGURACIONSR "servRemoto.conf"
 #define ATRIBPUERTO "puerto_servidor"
 #define ATRIBDIRECCION "direccion_servidor"
@@ -32,36 +34,50 @@ void imprimirRespuesta(Respuesta& r) {
 }
 
 ServidorRemoto::ServidorRemoto():
-		crespuesta(respuestas, consultantes),
-		cconsulta(consultas, respuestas)
-		 {
+		crespuesta(respuestas, consultantes, sock, cancelados),
+		cconsulta(consultas, respuestas, sock, cancelados) {
+	std::string aux = RUTACONFIGURACIONSR;
+	ArchivoConfiguracion archivo(aux.c_str());
+	aux = ATRIBPUERTO;
+	std::string spuerto = archivo.obtenerAtributo(aux);
+	aux = ATRIBDIRECCION;
+	sdireccion = archivo.obtenerAtributo(aux);
+	Puerto puerto;
+	convertir(spuerto, puerto);
+	sock = new Socket(puerto);
 }
 
 void ServidorRemoto::conectar() throw() {	
-	cconsulta.conectar();
+	sock->conectar(sdireccion);
+	if (!sock->conectado()) {
+		throw strerror(errno);
+	}
 	cconsulta.iniciar();
 	crespuesta.iniciar();
 }
 
-void ServidorRemoto::enviarConsulta(Consultante* consultante, Consulta consulta) {
+void ServidorRemoto::enviarConsulta(Consultante* consultante, 
+												Consulta consulta) {
 	if (!consultantes.has(consultante->getID())) {
 		consultantes[consultante->getID()] = consultante;
 	}
 	ParConsulta par;
 	par.first = consultante->getID();
-	par.second = new Consulta(consulta);
+	par.second.definirID(par.first);
 	consultas.push(par);
 }
 
 void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
-    std::cout << "@todo void ServidorRemoto::cancelarConsulta(unsigned )" << std::endl;
+	cancelados[IDcons] = true;
 }
 
-ServidorRemoto::~ServidorRemoto()  {
+ServidorRemoto::~ServidorRemoto() {
+	sock->desconectar();
 	consultas.close();
 	respuestas.close();
 	if (cconsulta.corriendo())
 		cconsulta.sincronizar();
 	if (crespuesta.corriendo())	
 		crespuesta.sincronizar();
+	delete sock;
 }

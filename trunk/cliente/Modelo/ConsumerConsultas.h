@@ -17,19 +17,14 @@ class Socket;
 
 class ConsumerConsulta: public Hilo {
 private:
-	Socket* servidor;
 	ColaConsultas& consultas;
 	ColaRespuestas& respuestas;
-	std::string sdireccion;
+	Socket* servidor;
+	BitmapCancelados& cancelados;
 public:
-	void detener_hilo();
-
 	void correr();
-	
-	void conectar() throw();
-
-	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp);
-
+	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp,
+							Socket* conexion, BitmapCancelados& canc);
 	~ConsumerConsulta();
 };
 

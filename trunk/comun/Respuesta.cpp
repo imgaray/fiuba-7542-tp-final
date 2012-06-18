@@ -21,17 +21,20 @@ std::string Respuesta::respuestaValida = "Respuesta Valida";
 
 Respuesta::Respuesta() {
 	_columnas = 0;
+	_id = 0;
 }
 
 Respuesta::Respuesta(const Respuesta& original) {
 	this->_datos = original._datos;
 	this->_columnas = original._columnas;
 	this->_filaActual = original._filaActual;
+	this->_id = original._id;
 }
 
 Respuesta::Respuesta(const std::string& mensaje) {
 	_msjInterno = mensaje;
 	_columnas = 0;
+	_id = 0;
 }
 
 Respuesta::~Respuesta() {
@@ -41,8 +44,17 @@ Respuesta& Respuesta::operator=(const Respuesta& resp) {
 	this->_datos = resp._datos;
 	this->_columnas = resp._columnas;
 	this->_filaActual = resp._filaActual;
+	this->_id = resp._id;
 
 	return *this;
+}
+
+void Respuesta::definirID(const Id_Mensaje& id) {
+	this->_id = id;
+}
+
+Id_Mensaje Respuesta::devolverID() const {
+	return this->_id;
 }
 
 const std::string& Respuesta::mensajeInterno() const {
@@ -59,6 +71,11 @@ std::string Respuesta::serializar() const {
 	int col = _columnas;
 
 	datos += u.convertirAString(col);
+	datos += sep_principal;
+
+	Id_Mensaje id = _id;
+
+	datos += u.convertirAString(id);
 	datos += sep_principal;
 
 	for (it = _datos.begin() ; it != _datos.end() ; ) {
@@ -78,6 +95,7 @@ std::string Respuesta::serializar() const {
 
 
 void Respuesta::limpiar() {
+	_msjInterno.clear();
 	_columnas = 0;
 	_filaActual.clear();
 	_datos.clear();
@@ -94,15 +112,18 @@ void Respuesta::cargarFila(const Fila& fila, std::string& datos) const {
 }
 
 void Respuesta::deserializar(const std::string& datos) {
-	_datos.clear();
-	_filaActual.clear();
+	limpiar();
+
 
 	_msjInterno = u.separar(datos, sep_principal, 0);
 
 	std::string sColumnas = this->u.separar(datos ,sep_principal, 1);
 	_columnas = u.convertirAEntero(sColumnas);
 
-	std::string datosSerializados = u.separar(datos, sep_principal, 2);
+	std::string sId = this->u.separar(datos, sep_principal, 2);
+	_id = u.convertirAEntero(sId);
+
+	std::string datosSerializados = u.separar(datos, sep_principal, 3);
 
 	u.borrarCaracter(datosSerializados, sep_fin);
 	//datosSerializados.resize(datos.size() - 1);

@@ -24,6 +24,15 @@ void testBaseDeDatos();
 
 void testPesadoSeparador();
 
-void testSerializaciones();
+void testSeparador();
+void testIndice();
+void testConsulta();
+void testRespuesta();
+void testMFechas();
+void testIndFechas();
+
+void pruebaArchivos();
+
+
 
 #endif /* PRUEBAS_H_ */

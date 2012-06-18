@@ -171,6 +171,7 @@ bool Socket::recibir(Mensaje& mensaje) {
 		mensaje.deserializar(datos);
 	}
 
+
 	return ok;
 }
 

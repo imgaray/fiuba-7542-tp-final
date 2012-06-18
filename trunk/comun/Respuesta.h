@@ -25,6 +25,10 @@ public:
 	 */
 	Respuesta(const std::string& mensaje);
 
+	void definirID(const Id_Mensaje& id);
+
+	Id_Mensaje devolverID() const;
+
 	// Serializa la Respuesta en un string
 	std::string serializar() const;
 
@@ -108,6 +112,8 @@ private:
 	static Campo campo_nulo;
 
     Utilitario u;
+
+    Id_Mensaje _id;
 };
 
 #endif /* RESPUESTA_H_ */

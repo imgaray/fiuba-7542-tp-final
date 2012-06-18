@@ -20,6 +20,10 @@ public:
 
 	Consulta& operator=(const Consulta& original);
 
+	void definirID(const Id_Mensaje& id);
+
+	Id_Mensaje devolverID() const;
+
 	/*
 	 * Serializa toda la Consulta en string
 	 */
@@ -29,6 +33,10 @@ public:
 	 * Deserializa la Consulta a partir del string
 	 */
 	void deserializar(const std::string& consulta);
+
+
+
+
 
 	// Deja la consulta vacia
 	void limpiar();
@@ -171,6 +179,8 @@ private:
 
 	void cargarVarDeTabla(std::string& datos) const;
 
+	void cargarID(std::string& datos) const;
+
 	/*
 	 * Metodos utilizados en la deserializacion de
 	 * la Consulta
@@ -179,6 +189,7 @@ private:
 	void guardarResultados(const std::string& resultados);
 	void guardarEntradas(const std::string& entradas);
 	void guardarVarDeTabla(const std::string& variables);
+	void guardarID(const std::string& id);
 
 	Filtros _filtros;
 	Entradas _entradas;
@@ -198,6 +209,8 @@ private:
 	static std::string s_nulo;
 
 	Utilitario u;
+
+	Id_Mensaje _id;
 };
 
 #endif /* CONSULTA_H_ */

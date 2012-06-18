@@ -88,7 +88,9 @@ public:
 	Socket _sck;
 };
 
-
+/*
+ * Test para la resolucion de Consula de Cliente con Servidor
+ */
 void testCCS();
 
 #endif /* PRUEBACCS_H_ */

@@ -16,6 +16,8 @@ Consulta::Consulta() : _filtros(), _campos(_resultados) {
 	_consultaValida = true;
 	_consultaDeCliente = true;
 	_consultaTablaPivote = false;
+
+	_id = 0;
 }
 
 Consulta::Consulta(const Consulta& original) :
@@ -28,6 +30,8 @@ Consulta::Consulta(const Consulta& original) :
 	this->_resultados = original._resultados;
 	this->_agregaciones = original._agregaciones;
 	this->_filtros = original._filtros;
+
+	this->_id = original._id;
 }
 
 Consulta::~Consulta() {
@@ -42,7 +46,17 @@ Consulta& Consulta::operator=(const Consulta& original) {
 	this->_agregaciones = original._agregaciones;
 	this->_filtros = original._filtros;
 
+	this->_id = original._id;
+
 	return *this;
+}
+
+void Consulta::definirID(const Id_Mensaje& id) {
+	this->_id = id;
+}
+
+Id_Mensaje Consulta::devolverID() const {
+	return this->_id;
 }
 
 std::string Consulta::serializar() const {
@@ -70,6 +84,8 @@ std::string Consulta::serializar() const {
 	cargarEntradas(datos);
 
 	cargarResultados(datos);
+
+	cargarID(datos);
 
 	//cargarAgregacion(datos);
 
@@ -111,6 +127,15 @@ void Consulta::cargarVarDeTabla(std::string& datos) const {
 	datos += sep_tipo;
 }
 
+void Consulta::cargarID(std::string& datos) const {
+	datos += u.convertirAString(this->_id);
+	datos += sep_tipo;
+}
+
+void Consulta::guardarID(const std::string& id) {
+	_id = u.convertirAEntero(id);
+}
+
 void Consulta::guardarVarDeTabla(const std::string& variables) {
 	std::string x_Tabla = u.separar(variables, sep_datos, 0);
 	std::string y_Tabla = u.separar(variables, sep_datos, 1);
@@ -130,7 +155,6 @@ void Consulta::guardarVarDeTabla(const std::string& variables) {
 		_yTabla.push_back(campo);
 		campo = u.separar(y_Tabla, sep_valor,ind);
 	}
-
 }
 
 const std::string& Consulta::xDeTablaPivote(unsigned i) const {
@@ -202,6 +226,7 @@ void Consulta::cargarResultados(std::string& datos) const {
 }
 
 void Consulta::deserializar(const std::string& consulta) {
+	limpiar();
 	_consultaValida = true;
 
 	std::string cabecera = u.separar(consulta, sep_tipo, 0);
@@ -229,7 +254,7 @@ void Consulta::deserializar(const std::string& consulta) {
 	std::string filtros = u.separar(consulta, sep_tipo , 1);
 	std::string entradas = u.separar(consulta, sep_tipo , 2);
 	std::string resultados = u.separar(consulta, sep_tipo , 3);
-	// std::string agregacion = u.separar(consulta, sep_tipo, 4);
+	std::string id = u.separar(consulta, sep_tipo, 4);
 
 	guardarFiltros(filtros);
 
@@ -237,10 +262,12 @@ void Consulta::deserializar(const std::string& consulta) {
 
 	guardarResultados(resultados);
 
+	guardarID(id);
+
 	// guardarAgregacion(agregacion);
 
 	if (_consultaTablaPivote) {
-		std::string variablesTabla = u.separar(consulta, sep_tipo, 4);
+		std::string variablesTabla = u.separar(consulta, sep_tipo, 5);
 		guardarVarDeTabla(variablesTabla);
 	}
 

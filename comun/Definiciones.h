@@ -19,6 +19,11 @@ class Consulta;
 class Respuesta;
 class Consultante;
 
+/*
+ * Identificador para los mensajes tanto Consulta como Respuesta
+ */
+
+typedef size_t Id_Mensaje;
 
 /*
  * Tipo de Funcion de agregacion para una consulta
@@ -94,7 +99,7 @@ typedef std::vector < Fila > DatosDeRespuesta;
 
 
 // Separador para determinar el fin de un Mensaje
-#define sep_fin '>'//'\03'
+#define sep_fin '\03'
 
 // Separador del tipo de Dato
 #define sep_tipo  '%'// '\04'

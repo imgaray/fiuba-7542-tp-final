@@ -4,25 +4,25 @@
  *  Created on: 03/06/2012
  *      Author: migue
  */
-#include "Pruebas.h"
-#include "../comun/Organizacion.h"
-#include "../servidor/MotorDeConsultas/ArchivoDeDatos.h"
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
+
+#include "Pruebas.h"
+
+#include "../comun/Organizacion.h"
 #include "../comun/Consulta.h"
 #include "../comun/Respuesta.h"
 #include "../comun/M_Fechas.h"
+#include "../comun/GenRegistros.h"
+
 #include "../servidor/MotorDeConsultas/BaseDeDatos.h"
 #include "../servidor/servidor/VerificadorConsultasH.h"
 #include "../servidor/servidor/VerificadorEntradasH.h"
-#include <stdlib.h>
-#include "../comun/GenRegistros.h"
+#include "../servidor/MotorDeConsultas/IndiceDeFechas.h"
+#include "../servidor/MotorDeConsultas/ArchivoDeDatos.h"
+
 using namespace std;
-
-
-void testSerializaciones() {
-
-}
 
 void testOrganizacion() {
 	cout << "=================================================" << endl;
@@ -131,6 +131,7 @@ void testOrganizacion() {
 	}
 	else {
 		cout << "Errores en Test de Organizacion: "<< errores << endl;
+		exit(0);
 	}
 
 	cout << "FIN DE TEST DE Organizacion." << endl;
@@ -515,6 +516,7 @@ void testFiltrar() {
 	}
 	else {
 		cout << "Test con errores: " << errores << endl;
+		exit(0);
 	}
 
 	cout << "Fin de Test de BaseDeDatos::Filtrar" << endl;
@@ -927,6 +929,7 @@ void testBaseDeDatos() {
 	}
 	else {
 		cout << "Errores en test:" << errores << endl;
+		exit(0);
 	}
 
 	cout << "Fin de Test de BaseDeDatos" << endl;
@@ -972,9 +975,9 @@ void testGeneradorRegistros() {
 }
 
 void testPesadoSeparador() {
-	cout << "=====================================" << endl;
+	cout << "========================================" << endl;
 	int errores = 0;
-	cout << "Inicia Test para separador" << endl;
+	cout << "Inicia Test Pesado para el Separador" << endl;
 
 	char sep = '-';
 	string aSeparar = "AAA-BBBB-CCCCC";
@@ -1196,8 +1199,906 @@ void testPesadoSeparador() {
 	}
 	else {
 		cout << "Test con Errores: "<< errores << endl;
+		exit(0);
+	}
+
+	cout << "Fin de Test Pesado para Separador" << endl;
+}
+
+
+#include <fstream>
+
+typedef size_t ID;
+
+void pruebaArchivos() {
+	cout << "=================================================" << endl;
+	cout << endl;
+
+	cout << "INICIO DE PRUEBA DE ARCHIVOS" << endl;
+	fstream arch;
+	arch.open("archivo-prueba.txt");//, fstream::binary | fstream::out);
+
+	ID num = 1234;
+
+
+	for (unsigned i = 0 ; i < 5 ; i++) {
+		num = i*(i - 1) + i + 10;
+		cout << "A guardar:  " << dec << num << " HEX: ";
+
+		cout.width(sizeof(ID) * 2);
+		cout.fill('0');
+		cout << hex << num;
+
+		cout << "\t  posicion: " << i << endl;
+		arch.seekp(sizeof(ID)*i, ios::beg );
+		arch.write((char*)&num, sizeof(num));
+		// arch << num;
+	}
+
+	arch.close();
+	arch.open("archivo-prueba.txt");//, fstream::binary | fstream::in);
+
+	arch.seekg(0, ios::end);
+	cout << "Tamaño del archivo: "<< dec << arch.tellg() <<" b" << endl;
+	cout << "Cantidad de elementos: "<< dec << arch.tellg() / sizeof(ID) <<" num" << endl;
+
+
+	unsigned ind = 4;
+	arch.seekg(ind * sizeof(ID), ios::beg);
+	arch.read((char*)&num, sizeof(ID));
+	//arch.seekg(streamoff(8), ios::beg);
+
+	//
+	// arch.readsome((char*) &num, sizeof(num));
+
+	cout << "Posicion get: "<< dec << arch.tellg() << endl;
+
+	// arch >> dec >> num;
+
+	cout << endl;
+	cout << "Guardado: ";
+	cout.width(sizeof(ID) * 2);
+	cout.fill('0');
+	cout << hex << num;
+	cout << "\t posicion: " << dec << ind << endl;
+	cout << "Posicion alta: " << hex << (num >> ((sizeof(ID)-1) * 8)) << endl;
+
+	cout << "FIN DE PRUEBA DE ARCHIVOS" << endl;
+	arch.close();
+}
+
+void testSeparador() {
+	cout << "=================================================" << endl;
+	cout << "Test Para Separador" << endl;
+
+	string c1 = "|ABCD||EFG|HIJKLM|OPQ|";
+	char sep = '|';
+
+	Utilitario util;
+
+	string a0 = util.separar(c1, sep, 0);
+	cout << "Arg 0: \""<< a0 << "\""<< endl;
+
+	string a1 = util.separar(c1, sep, 1);
+	cout << "Arg 1: \""<< a1 << "\""<< endl;
+
+	string a2 = util.separar(c1, sep, 2);
+	cout << "Arg 2: \""<< a2 << "\""<< endl;
+
+	string a3 = util.separar(c1, sep, 3);
+	cout << "Arg 3: \""<< a3 << "\""<< endl;
+
+	a3 = util.separar(c1, sep, 4);
+	cout << "?Arg 4: \""<< a3 <<"\""<< endl;
+
+	cout << "Fin de Test de Separador" << endl;
+}
+
+void testIndice() {
+	cout << "=================================================" << endl;
+	cout << "Inicia Test para Indice" << endl;
+	Indice <int> indice;
+
+	indice.agregar(0, 1);
+	indice.agregar(0, 2);
+	indice.agregar(0, 5);
+
+	indice.agregar(1, 5);
+	indice.agregar(1, 8);
+	indice.agregar(1, 7);
+	indice.agregar(1, 9);
+
+	indice.agregar(2, 10);
+	indice.agregar(2, 9);
+	indice.agregar(2, 7);
+	indice.agregar(2, 8);
+	indice.agregar(2, 8);
+
+	Lista_Id::const_iterator it;
+
+
+	const Lista_Id &l1= indice.recuperar(0);
+
+	for (it = l1.begin() ; it != l1.end() ; ++it) {
+		cout << "List1 dato = 0 : "<< *it << endl;
 	}
 
 
-	cout << "Fin de Test Pesado para Separador" << endl;
+	indice.recuperar(1);
+
+	for (it = l1.begin() ; it != l1.end() ; ++it) {
+		cout << "List1 dato = 1 : "<< *it << endl;
+	}
+
+	indice.recuperar(2);
+	for (it = l1.begin() ; it != l1.end() ; ++it) {
+		cout << "List1 dato = 2 : "<< *it << endl;
+	}
+
+	cout << "Fin de Test de Indice" << endl;
+}
+
+using namespace std;
+
+void testConsulta() {
+	cout << "=================================================" << endl;
+	int errores = 0;
+	cout << endl << "Inicia Test para Consulta." << endl << endl;
+
+	string datos;
+
+	Consulta consulta;
+
+	consulta.agregarFiltro("Vendedor", "Gonzalo");
+	consulta.agregarFiltro("Sucursal", "Avellaneda");
+
+	if (consulta.cantidadFiltros() != 2) {
+		cout << "Error en la cantidad de filtros"<< endl;
+		errores++;
+	}
+
+	if (consulta.filtro(0) != "Sucursal") {
+		cout << "Error con filtro \"Sucursal\""<< endl;
+		cout << "Rec: "<<consulta.filtro(1) << endl;
+		errores++;
+	}
+	if (consulta.valorFiltro(0) != "Avellaneda") {
+		cout << "Error con filtro \"Avellaneda\""<< endl;
+		cout << "Rec: "<<consulta.filtro(1) << endl;
+		errores++;
+	}
+
+	if (consulta.filtro(1) != "Vendedor") {
+		cout << "Error con filtro \"Vendedor\""<< endl;
+		cout << "Rec: "<<consulta.filtro(1) << endl;
+		errores++;
+	}
+	if (consulta.valorFiltro(1) != "Gonzalo") {
+		cout << "Error con valor de filtro \"Gonzalo\""<< endl;
+		cout << "Rec: "<<consulta.valorFiltro(1) << endl;
+		errores++;
+	}
+
+
+	consulta.agregarEntrada("Marca", "Samsung");
+	consulta.agregarEntrada("Camara", "Viva");
+
+
+	if (consulta.cantidadEntradas() != 2) {
+		cout << "Error en la cantidad de Entradas"<< endl;
+		errores++;
+	}
+
+	if (consulta.entrada(0) != "Camara") {
+		cout << "Error con entrada \"Camara\""<< endl;
+		cout << "Rec: "<<consulta.filtro(1) << endl;
+		errores++;
+	}
+	if (consulta.valorEntrada(0) != "Viva") {
+		cout << "Error con entrada \"Viva\""<< endl;
+		cout << "Rec: "<<consulta.entrada(1) << endl;
+		errores++;
+	}
+
+	if (consulta.entrada(1) != "Marca") {
+		cout << "Error con entrada \"Marca\""<< endl;
+		cout << "Rec: "<<consulta.entrada(1) << endl;
+		errores++;
+	}
+	if (consulta.valorEntrada(1) != "Samsung") {
+		cout << "Error con valor de entrada \"Samsung\""<< endl;
+		cout << "Rec: "<<consulta.valorEntrada(1) << endl;
+		errores++;
+	}
+
+	consulta.defininirAgregacion(PROM, "PrecioLista");
+	consulta.agregarResultado("Resultado");
+	consulta.agregarResultado("Res2");
+	consulta.agregarResultado("Res3");
+
+	if (consulta.cantidadResultados() != 4) {
+		cout << "Error en la cantidad de elementos de Resultados en consulta" << endl;
+		errores++;
+	}
+
+	if (consulta.resultado(0) != "PrecioLista") {
+		cout << "Error en resultado de consulta \"PrecioLista\"" << endl;
+		cout << "Rec: " << consulta.resultado(0) << endl;
+		errores++;
+	}
+	if (consulta.resultado(1) != "Resultado") {
+		cout << "Error en resultado de consulta \"Resultado\"" << endl;
+		cout << "Rec: " << consulta.resultado(1) << endl;
+		errores++;
+	}
+	if (consulta.resultado(2) != "Res2") {
+		cout << "Error en resultado de consulta \"Res2\"" << endl;
+		cout << "Rec: " << consulta.resultado(2) << endl;
+		errores++;
+	}
+	consulta.definirConsultaDeTablaPivote();
+
+	consulta.agregarXTablaP("ABSCISA");
+	consulta.agregarXTablaP("ABS-2");
+	consulta.agregarYTablaP("ORDENADA");
+
+	consulta.definirComoConsultaCliente();
+
+	datos = consulta.serializar();
+
+	Consulta c2;
+
+	c2.deserializar(datos);
+
+	if (c2.cantidadResultados() != consulta.cantidadResultados()) {
+		errores++;
+		cout << "Errores en la cantidad de resultados de una consulta a otra deserializada."<< endl;
+	}
+
+
+	if (c2.cantidadFiltros() != consulta.cantidadFiltros()) {
+			errores++;
+			cout << "Errores en la cantidad de Filtros de una consulta a otra deserializada."<< endl;
+	}
+
+	if (c2.cantidadEntradas() != consulta.cantidadEntradas()) {
+			errores++;
+			cout << "Errores en la cantidad de Entradas de una consulta a otra deserializada."<< endl;
+	}
+
+	if (c2.serializar() != datos) {
+		cout << "Error en serializar la consulta." << endl;
+		cout << "Orig:  " << datos << endl;
+		cout << "Copia: " << c2.serializar() << endl;
+		errores++;
+	}
+	else {
+		cout << "Serializacion y deserializacion Correcta." << endl;
+		cout << "Orig: " << datos << endl;
+		cout << "Copia: " << c2.serializar() << endl;
+	}
+
+
+	consulta.limpiar();
+
+	consulta.definirConsultaDeTablaPivote();
+
+	consulta.agregarXTablaP("Vendedor");
+	consulta.agregarXTablaP("Sucurasl");
+	consulta.agregarXTablaP("CANTIDAD");
+
+	consulta.agregarYTablaP("Producto");
+	consulta.agregarYTablaP("PrecioFinal");
+
+	consulta.agregarResultado("PrecioLista");
+
+	c2.limpiar();
+
+	c2.deserializar(consulta.serializar());
+
+	if (c2.serializar() != consulta.serializar()) {
+		errores++;
+		cout << "Error en la serializacion de consulta de CLiente con Tabla Pivote."<< endl;
+		cout <<"Orig: " << consulta.serializar() << endl;
+		cout <<"Cop:  " << c2.serializar() << endl;
+	}
+
+
+	if (c2.cantidadResultados() != consulta.cantidadResultados()) {
+		errores++;
+		cout << "Errores en la cantidad de resultados de una consulta a otra deserializada."<< endl;
+	}
+
+
+	if (c2.cantidadFiltros() != consulta.cantidadFiltros()) {
+			errores++;
+			cout << "Errores en la cantidad de Filtros de una consulta a otra deserializada."<< endl;
+	}
+
+	if (c2.cantidadEntradas() != consulta.cantidadEntradas()) {
+			errores++;
+			cout << "Errores en la cantidad de Entradas de una consulta a otra deserializada."<< endl;
+	}
+
+
+	if (c2.cantVarXTabla() != consulta.cantVarXTabla()) {
+		errores++;
+		cout << "Errores en la cant de var de Tabla X en consulta serializada" <<endl;
+	}
+
+
+	if (c2.cantVarYTabla() != consulta.cantVarYTabla()) {
+		errores++;
+		cout << "Errores en la cant de var de Tabla Y en consulta serializada" <<endl;
+	}
+
+	Consulta a1;
+
+	a1.definirComoConsultaAgente();
+
+	a1.agregarCampo("Plata");
+	a1.agregarCampo("Direccion");
+	a1.agregarCampo("Compra");
+	a1.agregarCampo("Rotura");
+
+	if (a1.campo(0) != "Plata") {
+		cout << "Error en campo \"Plata\" en consulta de Agente"<< endl;
+		cout << "Rec: "<<a1.campo(0) << endl;
+		errores++;
+	}
+	if (a1.campo(1) != "Direccion") {
+		cout << "Error en campo \"Direccion\" en consulta de Agente"<< endl;
+		cout << "Rec: "<<a1.campo(1) << endl;
+		errores++;
+	}
+	if (a1.campo(2) != "Compra") {
+		cout << "Error en campo \"Rotura\" en consulta de Agente"<< endl;
+		cout << "Rec: "<<a1.campo(2) << endl;
+		errores++;
+	}
+	if (a1.campo(3) != "Rotura") {
+		cout << "Error en campo \"Rotura\" en consulta de Agente"<< endl;
+		cout << "Rec: "<<a1.campo(3) << endl;
+		errores++;
+	}
+
+
+
+	string sa1 = a1.serializar();
+
+	Consulta a2;
+	a2.deserializar(sa1);
+
+
+	if (a2.serializar() != sa1) {
+		cout << "Error en la serializacion del Agente." << endl;
+		cout << "Orig: " << sa1 << endl;
+		cout << "Copia: " << a2.serializar() << endl;
+		errores++;
+	}
+
+	if (errores == 0) {
+		cout << "TEST SIN ERRORES+++"<< endl;
+	}
+	else {
+		cout << "CANTIDAD DE ERRORES: "<< errores << endl;
+		exit(0);
+	}
+
+	cout << "FIN DE TEST DE CONSULTA " << endl << endl;
+
+}
+
+
+void testRespuesta() {
+	cout << "=================================================" << endl;
+	int errores = 0;
+	cout << endl << "Inicia Test para Respuesta" << endl << endl;
+	Respuesta r1;
+	r1.definirColumnas(3);
+
+	r1.agregar("HOLA");	r1.agregar("CHAU");	r1.agregar("SALUDO");	r1.filaCompletada();
+	r1.agregar("Anabella");	r1.agregar("Jazmin"); r1.agregar("Johana");	r1.filaCompletada();
+	r1.agregar("Julieta");	r1.agregar("Yanina");	r1.agregar("Evelin");	r1.filaCompletada();
+	r1.agregar("Julieta");	r1.agregar("Jakelin");	r1.agregar("Barbi"); r1.filaCompletada();
+
+	if (r1.dato(0,0) != "HOLA" || r1.dato(0,1) != "CHAU" || r1.dato(0,2) != "SALUDO") {
+		errores++;
+		cout << "Errores en la fila 0" << endl;
+		cout << "Rec: \"" << r1.dato(0,0) << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(0,1) << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(0,2) << "\""<< endl;
+	}
+
+	if (r1.dato(1,0) != "Anabella" || r1.dato(1,1) != "Jazmin" || r1.dato(1,2) != "Johana") {
+		errores++;
+		cout << "Errores en la fila 1" << endl;
+		cout << "Rec: \"" << r1.dato(1,0) << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(1,1) << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(1,2) << "\""<< endl;
+	}
+
+	if (r1.dato(2,0) != "Julieta" || r1.dato(2,1) != "Yanina" || r1.dato(2,2) != "Evelin") {
+		errores++;
+		cout << "Errores en la fila 2" << endl;
+		cout << "Rec: \"" << r1.dato(2,0) <<"\""<<  endl;
+		cout << "Rec: \"" << r1.dato(2,1) <<"\""<<  endl;
+		cout << "Rec: \"" << r1.dato(2,2) << "\""<< endl;
+	}
+
+	if (r1.dato(3,0) != "Julieta" || r1.dato(3,1) != "Jakelin" || r1.dato(3,2) != "Barbi") {
+		errores++;
+		cout << "Errores en la fila 3" << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(3,0) << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(3,1) << "\""<< endl;
+		cout << "Rec: \"" << r1.dato(3,2) << "\""<< endl;
+	}
+
+	if (r1.cantidadFilas() != 4) {
+		cout << "Cantidad de fila incorrectas." << endl;
+		cout << "Filas Recibidas:" << r1.cantidadFilas() << endl;
+		errores++;
+	}
+
+	string datos;
+	datos = r1.serializar();
+
+	Respuesta r2;
+	r2.deserializar(datos);
+
+
+	if (r2.serializar() != datos) {
+		cout << "Error en la serializacion deserealizacion." << endl;
+		cout << "Orig: " << datos << endl;
+		cout << "Cop:  " << r2.serializar() << endl;
+		cout << "Filas:" << r2.cantidadFilas() << endl;
+		r2.deserializar(r2.serializar());
+		cout << "Copcp:" << r2.serializar() << endl;
+		errores++;
+	}
+
+	r2.limpiar();
+	Respuesta r3;
+
+	r2.agregar("A"); r2.agregar("B"); r2.agregar("C"); r2.agregar("D"); r2.filaCompletada();
+	r2.agregar("EE"); r2.agregar("FF"); r2.agregar("GG"); r2.agregar("HH"); r2.filaCompletada();
+	r2.agregar("III"); r2.agregar("JJJ"); r2.agregar("KKK"); r2.agregar("LLL"); r2.filaCompletada();
+
+
+	r3.deserializar(r2.serializar());
+	r3.deserializar(r3.serializar());
+	r3.deserializar(r3.serializar());
+	r3.deserializar(r3.serializar());
+
+	if (r2.serializar() != r3.serializar()) {
+		cout << "Error en la serializacion deserealizacion." << endl;
+		cout << "Orig: " << r2.serializar() << endl;
+		cout << "Cop:  " << r3.serializar() << endl;
+		cout << "Filas:" << r3.cantidadFilas() << endl;
+		r3.deserializar(r3.serializar());
+		cout << "Copcp:" << r3.serializar() << endl;
+		errores++;
+	}
+
+	Respuesta r4, r5;
+
+	r4.definirColumnas(6);
+	r4.definirID(234);
+
+
+	r5.deserializar(r4.serializar());
+	r5.deserializar(r5.serializar());
+	r5.deserializar(r5.serializar());
+	r5.deserializar(r5.serializar());
+
+	if (r4.serializar() != r5.serializar()) {
+		cout << "Error en serializacion de columnas nada mas."<< endl;
+		cout << "Orig: "<< r4.serializar() << endl;
+		cout << "Cop:  "<< r5.serializar() << endl;
+				errores++;
+	}
+
+
+	if (errores == 0) {
+		cout << "Test sin Errores++" << endl;
+	}
+	else {
+		cout << "Errores en Test: "<<errores << endl;
+		exit(0);
+	}
+
+	cout << "FIN DE TEST DE RESPUESTA" << endl;
+}
+
+
+void testMFechas() {
+	cout << "=================================================" << endl;
+	int errores = 0;
+	cout << endl << "Inicia el Test para M_Fechas" << endl << endl;
+
+	M_Fechas mf;
+
+	Fecha fecha = mf.fecha(17,5,1990);
+	if (fecha != "19900517") {
+		cout <<" Error en metodo \"fecha\"" << endl;
+		errores++;
+	}
+
+	cout << "1 mes 2009: " << mf.mes(1,"2009") << endl;
+	cout << "2 mes 2009: " << mf.mes(2,"2009") << endl;
+	cout << "5 mes 2009: " << mf.mes(5,"2009") << endl;
+	cout << "6 mes 2009: " << mf.mes(6,"2009") << endl;
+	cout << "12 mes 2009: " << mf.mes(12,"2009") << endl;
+
+	cout << endl;
+
+	cout << "1 bimestre 2010: " <<mf.bimestre(1, "2010") << endl;
+	cout << "2 bimestre 2010: " <<mf.bimestre(2, "2010") << endl;
+
+	cout << "5 bimestre 2010: " <<mf.bimestre(5, "2010") << endl;
+	cout << "6 bimestre 2010: " <<mf.bimestre(6, "2010") << endl;
+
+	cout << endl;
+
+
+	cout << "1 trimestre 2000: " << mf.trimestre(1, "2000") << endl;
+	cout << "2 trimestre 2000: " << mf.trimestre(2, "2000") << endl;
+	cout << "4 trimestre 2000: " << mf.trimestre(4, "2000") << endl;
+
+	cout << endl;
+
+	cout << "1 cuatrimestre 2000: " << mf.cuatrimestre(1, "2000") << endl;
+	cout << "2 cuatrimestre 2000: " << mf.cuatrimestre(2, "2000") << endl;
+	cout << "3 cuatrimestre 2000: " << mf.cuatrimestre(3, "2000") << endl;
+
+	cout << endl;
+
+	cout << "1 semestre 1990: " << mf.semestre(1,"1990") << endl;
+	cout << "2 semestre 1990: " << mf.semestre(2,"1990") << endl;
+
+
+	Fecha f1, f2;
+	fecha = mf.trimestre(2, "1990");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1 != "19900401" || f2 != "19900701") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << "2 Trimestre de 1990: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+	fecha = mf.bimestre(1, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1!="19990101" || f2!="19990301") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "1 Bimestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+
+	fecha = mf.bimestre(4, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1 != "19990701" || f2 != "19990901") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "4 Bimestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+
+
+	fecha = mf.bimestre(5, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1 != "19990901" || f2 != "19991101") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "5 Bimestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+
+	fecha = mf.bimestre(6, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1 != "19991101" || f2 != "20000101") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "6 Bimestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+
+	}
+
+
+	fecha = mf.cuatrimestre(1, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1 != "19990101" || f2 != "19990501") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "1 cuatrimestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+
+	fecha = mf.trimestre(4, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1!="19991001" || f2!="20000101") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "4 trimestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+	fecha = mf.semestre(1, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1!="19990101" || f2!="19990701") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "1 Semestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+	fecha = mf.semestre(2, "1999");
+	mf.desarmar(fecha, f1, f2);
+	if (mf.esRango(fecha) == false || f1 !="19990701" || f2!="20000101") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << endl;
+		cout << "2 Semestre de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+
+
+	fecha = mf.mes(1, "1999");
+	mf.desarmar(fecha, f1, f2);
+	cout << endl;
+	if (mf.esRango(fecha) == false || f1!="19990101" || f2!="19990201") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << "1 mes de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+	fecha = mf.mes(3, "1999");
+	mf.desarmar(fecha, f1, f2);
+	cout << endl;
+	if (mf.esRango(fecha) == false || f1 !="19990301" || f2!="19990401") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << "3 mes de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+	fecha = mf.mes(4, "1999");
+	mf.desarmar(fecha, f1, f2);
+	cout << endl;
+	if (mf.esRango(fecha) == false || f1!="19990401" || f2!="19990501") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << "4 mes de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+	fecha = mf.mes(6, "1999");
+	mf.desarmar(fecha, f1, f2);
+	cout << endl;
+	if (mf.esRango(fecha) == false || f1 != "19990601" || f2!="19990701") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << "6 mes de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+	fecha = mf.mes(12, "1999");
+	mf.desarmar(fecha, f1, f2);
+	cout << endl;
+	if (mf.esRango(fecha) == false || f1!="19991201" || f2!="20000101") {
+		errores++;
+		cout << "Error la fecha con rango" << endl;
+		cout << "12 mes de 1999: "<< endl;
+		cout << "Inferior: " << f1 << endl;
+		cout << "Superior: " << f2 << endl;
+	}
+
+
+	if (mf.esFechaConvecional("12-12-2012") == false) {
+		errores++;
+		cout << "Error en metodo esFechaConvecional." << endl;
+		cout << "Mal calculo de fecha convencional."<< endl;
+	}
+
+	if (mf.esFechaConvecional("12122012")) {
+		errores++;
+		cout << "Error en metodo esFechaConvecional." << endl;
+		cout << "Por ser fecha no convecional"<< endl;
+	}
+
+	if (mf.esFechaConvecional("12-122012")) {
+		errores++;
+		cout << "Error en metodo esFechaConvecional." << endl;
+	}
+
+
+	if (mf.esFechaConvecional("12-14-2002")) {
+		errores++;
+		cout << "Error: no es fecha convencional 12-14-2002" << endl;
+	}
+
+	if (mf.esFechaConvecional("33-11-2000")) {
+		errores++;
+		cout << "Error: no es fecha convencional 12-14-2000" << endl;
+	}
+
+	if (mf.esFechaConvecional("0-11-2000")) {
+		errores++;
+		cout << "Error: no es fecha convencional 12-14-2000" << endl;
+	}
+
+
+	if (!mf.esFechaConvecional("12-11-2000")) {
+		errores++;
+		cout << "Error: en no validar fecha correcta, 12-11-2000" << endl;
+	}
+
+	if (mf.esFechaConvecional("--")) {
+		errores++;
+		cout << "Error: validar fecha vacia" << endl;
+	}
+
+
+	if (mf.esFechaConvecional("-asd-asd")) {
+		errores++;
+		cout << "Error: en validad cualquier cosa" << endl;
+	}
+
+
+
+	Fecha fanio = mf.anio("2012");
+	mf.desarmar(fanio, f1, f2);
+
+	if (!mf.esRango(fanio) || f1 !="20120101" || f2 != "20130101") {
+		errores++;
+		cout << "Error en fecha anio" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fanio = mf.anio("2000");
+	mf.desarmar(fanio, f1, f2);
+	if (!mf.esRango(fanio) || f1 !="20000101" || f2 != "20010101") {
+		errores++;
+		cout << "Error en fecha anio" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	if (errores == 0) {
+		cout << "TEST SIN ERRORES++"<< endl;
+	}
+	else {
+		cout << "TEST CON ERRORES: "<< errores << endl;
+		exit(0);
+	}
+
+	cout << endl << "FIN DE TEST DE M_Fechas" << endl;
+
+}
+
+void testIndFechas() {
+	cout << "=================================================" << endl;
+	cout << "Inicia el test para IndiceDeFechas" << endl;
+	int errores = 0;
+
+
+	IndiceDeFechas indice;
+
+#define F1 19900110
+#define F2 19900210
+#define F3 19900212
+#define F4 19900220
+#define F5 19900301
+#define F6 19900620
+#define F7 19900601
+#define F8 19901001
+#define F9 19901223
+
+	cout << "Fecha F1 " << endl;
+
+	M_Fechas mf;
+
+	indice.guardarFecha(mf.convertir(F1),F1);
+	indice.guardarFecha(mf.convertir(F2),F2);
+	indice.guardarFecha(mf.convertir(F3),F3);
+	indice.guardarFecha(mf.convertir(F4),F4);
+	indice.guardarFecha(mf.convertir(F5),F5);
+	indice.guardarFecha(mf.convertir(F6),F6);
+	indice.guardarFecha(mf.convertir(F7),F7);
+	indice.guardarFecha(mf.convertir(F8),F8);
+	indice.guardarFecha(mf.convertir(F9),F9);
+
+	Fecha consulta = mf.cuatrimestre(1, "1990");
+	Lista_Id::const_iterator it;
+	const Lista_Id &lista = indice.recuperar(consulta);
+
+	cout << "Fechas del 1 cuatrimestre de 1990" << endl;
+	for ( it = lista.begin() ; it != lista.end() ; ++it) {
+		cout << "Fecha: " << *it << endl;
+	}
+
+	consulta = mf.semestre(2, "1990");
+	indice.recuperar(consulta);
+	cout << endl <<"Fechas del 2 semestre de 1990" << endl;
+	for ( it = lista.begin() ; it != lista.end() ; ++it) {
+		cout << "Fecha: " << *it << endl;
+	}
+
+	consulta = mf.mes(3, "1990");
+	indice.recuperar(consulta);
+	cout << endl <<"Fechas del 3 mes de 1990" << endl;
+	for ( it = lista.begin() ; it != lista.end() ; ++it) {
+		cout << "Fecha: " << *it << endl;
+	}
+
+	consulta = mf.mes(10, "1990");
+	indice.recuperar(consulta);
+	cout << endl <<"Fechas del 10 mes de 1990" << endl;
+	for ( it = lista.begin() ; it != lista.end() ; ++it) {
+		cout << "Fecha: " << *it << endl;
+	}
+
+	consulta = mf.mes(7, "1990");
+	indice.recuperar(consulta);
+	cout << endl <<"Fechas del 7 mes de 1990" << endl;
+	for ( it = lista.begin() ; it != lista.end() ; ++it) {
+		cout << "Fecha: " << *it << endl;
+	}
+
+	consulta = mf.mes(2, "1990");
+	indice.recuperar(consulta);
+	cout << endl <<"Fechas del 2 mes de 1990" << endl;
+	for ( it = lista.begin() ; it != lista.end() ; ++it) {
+		cout << "Fecha: " << *it << endl;
+	}
+
+
+
+	if (errores == 0) {
+		cout << "TEST SIN ERRORES++" << endl;
+	}
+	else {
+		cout << "TEST CON ERRORES: " << errores << endl;
+		exit(0);
+	}
+
+	cout << "FIN DE TEST DE IndiceDeFechas." << endl;
 }

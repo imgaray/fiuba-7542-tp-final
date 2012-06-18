@@ -49,6 +49,11 @@ public:
      */
     bool corriendo();
 
+    /*
+     * Retorna un bool indicando si el Hilo a sido sincronizado
+     */
+    bool sincronizado();
+
 private:
     /*
      * Constructor copia privado
@@ -63,6 +68,7 @@ private:
     
     pthread_t hilo;
     bool _correr;
+    bool _sincronizado;
 };
 
 #endif	/* HILO_H */

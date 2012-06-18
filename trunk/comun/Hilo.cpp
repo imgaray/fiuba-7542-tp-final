@@ -9,6 +9,7 @@
 
 Hilo::Hilo() {
     this->_correr = false;
+    this->_sincronizado = false;
 }
 
 Hilo::~Hilo() {
@@ -29,9 +30,16 @@ void Hilo::parar() {
 }
 
 void Hilo::sincronizar() {
-   pthread_join(this->hilo, NULL);
+	if (_sincronizado == false) {
+		pthread_join(this->hilo, NULL);
+		_sincronizado = true;
+	}
 }
 
 bool Hilo::corriendo() {
     return this->_correr;
+}
+
+bool Hilo::sincronizado() {
+	return this->_sincronizado;
 }

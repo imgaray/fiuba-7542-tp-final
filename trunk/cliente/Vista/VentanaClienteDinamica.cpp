@@ -30,3 +30,25 @@ void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
 
     (*it)->hacerConsulta(server);
 }
+
+
+void VentanaClienteDinamica::agregarConsultante(Consultante *cons) {
+	if (cons == NULL) {
+		throw ExcepcionConsultanteNoExiste("Consultante Nulo en agregarConsultante");
+	}
+
+	_mConsultas[cons->getID()] = cons;
+}
+
+Consultante* VentanaClienteDinamica::devolverConsultante(Id_Mensaje id) {
+	MapaConsultantesNB::iterator it;
+
+	it = _mConsultas.find(id);
+
+	if (it != _mConsultas.end()) {
+		return it->second;
+	}
+	else {
+		return NULL;
+	}
+}

@@ -13,13 +13,14 @@
 #define MUl_MES 	100
 #define MUL_DIA		1
 
-#define F_MES 'M'
-#define F_BIMES 'B'
-#define F_TRIMES 'T'
-#define F_CUAT 'C'
-#define F_SEMES 'S'
-#define F_ANIO 'Z'
-#define F_RANGO 'R'
+#define F_SEMANA 	'X'
+#define F_MES 		'M'
+#define F_BIMES 	'B'
+#define F_TRIMES 	'T'
+#define F_CUAT 		'C'
+#define F_SEMES 	'S'
+#define F_ANIO 		'Z'
+#define F_RANGO 	'R'
 
 Fecha M_Fechas::fecha(const std::string& fechaComun) {
 	Fecha fecha;
@@ -126,6 +127,7 @@ Fecha M_Fechas::convertir(const FechaNumerica& fecha) {
 bool M_Fechas::esRango(const Fecha& fecha) {
 	bool res;
 	switch (fecha[0]) {
+	case F_SEMANA:
 	case F_MES:
 	case F_BIMES:
 	case F_TRIMES:
@@ -166,8 +168,8 @@ Fecha M_Fechas::rango(const Fecha &f1, const Fecha& f2) {
 }
 
 void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
-	if (esRango(rango) == false)
-		return;
+//	if (esRango(rango) == false)
+//		return;
 
 	Fecha nf1,nf2;
 
@@ -189,7 +191,10 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
 					nf2 = u.separar(rango, sep_fecha, 2);
 					f1 = nf1; f2 = nf2;
 				break;
-		default: break;
+		default:
+					f1 = STR_NULA;
+					f2 = STR_NULA;
+				break;
 	}
 }
 
@@ -211,6 +216,101 @@ Fecha M_Fechas::anio(const std::string& anio) {
 	}
 	else {
 		return STR_NULA;
+	}
+}
+
+Fecha M_Fechas::semana(int semana, const std::string& anio) {
+	FechaNumerica nAnio = this->u.convertirAEntero(anio);
+	bool esBisiesto = ((nAnio % 4) == 0);
+	bool anioNuevo = false;
+
+	if (semana > 53 || semana <= 0) {
+		return STR_NULA;
+	}
+
+	int dia,mes;
+	int diaInf, diaSup;
+
+	diaInf = (semana - 1) * 7 + 1;
+
+	if (semana <= 52){
+		diaSup = semana * 7 + 1;
+	}
+	else {
+		if (esBisiesto)
+			diaSup = 366;
+		else
+			diaSup = 365;
+		anioNuevo = true;
+
+	}
+
+//	std::cout << "Dia INf: " << diaInf << std::endl;
+//	std::cout << "Dia Sup: " << diaSup << std::endl;
+
+	calcularDia(diaInf, nAnio, dia, mes);
+	Fecha fechaInf = fecha(dia, mes, nAnio);
+
+	if (anioNuevo) {
+		nAnio++;
+		dia = 1;
+		mes = 1;
+	}
+	else {
+		calcularDia(diaSup, nAnio, dia, mes);
+	}
+	Fecha fechaSup = fecha(dia, mes, nAnio);
+
+
+	Fecha fechaRes = rango(fechaInf, fechaSup);
+
+	return fechaRes;
+}
+
+
+void M_Fechas::calcularDia(const int& diaAnio,
+		const FechaNumerica& anio,
+		int& dia,
+		int& mes) {
+	bool esBisiesto = ((anio % 4) == 0);
+	bool calHecho = false;
+	int sumMeses[12]={31,59,90,120,151,181,212,243,273,304,334,365};
+
+
+	if (esBisiesto) {
+		if (diaAnio <= (sumMeses[1] + 1)) {
+			if (diaAnio <= sumMeses[0]) {
+				mes = 1;
+				dia = diaAnio;
+			}
+			else {
+				mes = 2;
+				dia = diaAnio - sumMeses[0];
+			}
+		}
+		else {
+			for (int i = 2; i < 12 && !calHecho ; i++) {
+				if (diaAnio <= (sumMeses[i] + 1)) {
+					mes = i + 1;
+					dia = diaAnio - sumMeses[i - 1] - 1;
+					calHecho = true;
+				}
+			}
+		}
+	}
+	else {
+		for (int i = 0; i < 12 && !calHecho ; i++) {
+			if (diaAnio <= sumMeses[i]) {
+				mes = i + 1;
+				if (i > 0) {
+					dia = diaAnio - sumMeses[i - 1];
+				}
+				else {
+					dia = diaAnio;
+				}
+				calHecho = true;
+			}
+		}
 	}
 }
 

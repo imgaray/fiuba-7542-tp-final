@@ -26,6 +26,7 @@ class VentanaCliente : public Gtk::Window {
         void on_configurar_button_clicked();
         void on_salir_button_clicked();
         bool on_timeout();
+        bool on_idle();
 };
 
 #endif  // VENTANA_CLIENTE_H

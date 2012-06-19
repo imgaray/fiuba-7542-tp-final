@@ -9,6 +9,7 @@ unsigned Consultante::generadorID = 0;
 Consultante::Consultante() {
     ID = generadorID++;
     esperandoRespuesta = false;
+    consulta.definirID(ID);
 }
 
 Consultante::~Consultante() {}

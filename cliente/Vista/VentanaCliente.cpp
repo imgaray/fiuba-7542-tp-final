@@ -5,6 +5,7 @@
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
 #include "VentanaClienteDinamica.h"
+#include "ExcepcionConsultanteNoExiste.h"
 
 #define TIMEOUT 10000
 
@@ -15,6 +16,8 @@
 #define BOTON_CONFIGURAR "HerramientaConfigurar"
 #define BOTON_SALIR "HerramientaSalir"
 #define BOTON_CONECTAR "HerramientaConectar"
+
+#define CANT_MAX_RESP_PROC 10
 
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     const Glib::RefPtr< Gtk::Builder >& _builder)
@@ -72,6 +75,8 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
 
     Glib::signal_timeout().connect(sigc::mem_fun(*this,
                                     &VentanaCliente::on_timeout), TIMEOUT);
+    Glib::signal_idle().connect(sigc::mem_fun(*this,
+    		&VentanaCliente::on_idle));
 }
 
 VentanaCliente::~VentanaCliente() {}
@@ -126,5 +131,36 @@ void VentanaCliente::on_salir_button_clicked() {
 
 bool VentanaCliente::on_timeout() {
 //    pVDinamica->hacerConsulta(server);
+    return true;
+}
+
+bool VentanaCliente::on_idle() {
+    //std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
+
+	throw "Faltan implementar Metodos de servidor Remoto";
+
+    bool hayRespuestas;
+    //hayRespuestas = (this->server.cantidadRespuestas() > 0);
+    Respuesta resp;
+    Consultante *consActual = NULL;
+
+    for (int i = 0; i < CANT_MAX_RESP_PROC && hayRespuestas ; i++) {
+    	//resp = this->server.obtenerRespuesta();
+
+    	consActual = this->pVDinamica->devolverConsultante(resp.devolverID());
+
+
+    	if (consActual != NULL) {
+    		consActual->recibirRespuesta(resp);
+    	}
+    	else {
+    		throw ExcepcionConsultanteNoExiste("No Corresponde a ninguna Respuesta");
+    	}
+
+    	//hayRespuestas = (this->server.cantidadRespuestas() > 0);
+    }
+
+
+
     return true;
 }

@@ -29,11 +29,11 @@ void testOrganizacion() {
 	int errores = 0;
 	cout << endl <<"Inicia Test Para Organizacion" << endl;
 
-	char *ruta = "./Fuente/org.txt";
-	char *c1 = "Dimensiones = { Marca,  Fecha, Bonificacion, Producto, Vendedor,HOGAR, Organizacion}";
-	char *c2 = "Hechos = { Precio, PrecioVenta ,PrecioLista }";
+	string ruta = "./Fuente/org.txt";
+	string c1 = "Dimensiones = { Marca,  Fecha, Bonificacion, Producto, Vendedor,HOGAR, Organizacion}";
+	string c2 = "Hechos = { Precio, PrecioVenta ,PrecioLista }";
 
-	std::fstream arch(ruta, fstream::out);
+	std::fstream arch(ruta.c_str(), fstream::out);
 	arch << c1;
 	arch << std::endl;
 	arch << c2;
@@ -143,11 +143,11 @@ void testValidadorConsulta() {
 	cout << "Inicia el Test para el Verificador de Consulta."<< endl;
 
 	// Creo y configuro la organizacion.
-	char* rutaOrganizacion = "./organizacion.txt";
+	string rutaOrganizacion = "./organizacion.txt";
 	{
-		char* dimensiones = "Dimensiones = { Sucursal, Vendedor, Producto}";
-		char* hechos = "Hechos = {PrecioLista, PrecioFinal}";
-		fstream archOrg(rutaOrganizacion, fstream::out);
+		string dimensiones = "Dimensiones = { Sucursal, Vendedor, Producto}";
+		string hechos = "Hechos = {PrecioLista, PrecioFinal}";
+		fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
 
 		archOrg << dimensiones;
 		archOrg << endl;
@@ -432,11 +432,11 @@ void testFiltrar() {
 	cout << "Inicio de Test para BaseDeDatos::Filtrar" << endl;
 
 	// Creo y configuro la organizacion.
-	char* rutaOrganizacion = "./organizacion.txt";
+	string rutaOrganizacion = "./organizacion.txt";
 	{
-		char* dimensiones = "Dimensiones = { Sucursal, Vendedor, Producto}";
-		char* hechos = "Hechos = {PrecioLista}";
-		fstream archOrg(rutaOrganizacion, fstream::out);
+		string dimensiones = "Dimensiones = { Sucursal, Vendedor, Producto}";
+		string hechos = "Hechos = {PrecioLista}";
+		fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
 
 		archOrg << dimensiones;
 		archOrg << endl;
@@ -538,7 +538,6 @@ void imprimirRespuesta(Respuesta& resp, const string& comentario) {
 		cout << "::";
 		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
 			cout.width(14);
-			cout.left;
 			cout.fill('.');
 			cout<< resp.dato(i,j) << "|";
 		}
@@ -555,12 +554,12 @@ void testBaseDeDatos() {
 
 
 	// Creo y configuro la organizacion.
-	char* rutaOrganizacion = "./organizacion.txt";
+	string rutaOrganizacion = "./organizacion.txt";
 	{
 
 	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
 	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
-	fstream archOrg(rutaOrganizacion, fstream::out);
+	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
 
 
 	archOrg << dimensiones;
@@ -637,7 +636,6 @@ void testBaseDeDatos() {
 		cout << "::";
 		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
 			cout.width(11);
-			cout.left;
 			cout.fill('.');
 			cout<< resp.dato(i,j) << "|";
 		}
@@ -937,12 +935,12 @@ void testBaseDeDatos() {
 
 void testGeneradorRegistros() {
 	// Creo y configuro la organizacion.
-	char* rutaOrganizacion = "./organizacion.txt";
+	string rutaOrganizacion = "./organizacion.txt";
 	{
 
 	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
 	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
-	fstream archOrg(rutaOrganizacion, fstream::out);
+	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
 
 
 	archOrg << dimensiones;
@@ -958,7 +956,6 @@ void testGeneradorRegistros() {
 	cout << "====================================================" << endl;
 	cout << "Inicia el Test de Generador De Registros." << endl;
 
-	int errores = 0;
 
 	string rutaDatos = "./datosRegGen.dat";
 	BaseDeDatos bdd(rutaDatos);
@@ -1870,8 +1867,6 @@ void testMFechas() {
 	}
 
 
-
-
 	fecha = mf.mes(1, "1999");
 	mf.desarmar(fecha, f1, f2);
 	cout << endl;
@@ -2002,6 +1997,368 @@ void testMFechas() {
 	}
 
 
+	/*
+	 * Pruebas para semanas
+	 */
+
+	Fecha fsemana = mf.semana(1,"2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120101" || f2 != "20120108") {
+		errores++;
+		cout << "Error en fecha de semana 1" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(2, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120108" || f2 != "20120115") {
+		errores++;
+		cout << "Error en fecha de semana 2" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(3, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120115" || f2 != "20120122") {
+		errores++;
+		cout << "Error en fecha de semana 3" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(4, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120122" || f2 != "20120129") {
+		errores++;
+		cout << "Error en fecha de semana 4" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(5, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120129" || f2 != "20120205") {
+		errores++;
+		cout << "Error en fecha de semana 5" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(5, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120129" || f2 != "20120205") {
+		errores++;
+		cout << "Error en fecha de semana 5" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(5, "2013");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20130129" || f2 != "20130205") {
+		errores++;
+		cout << "Error en fecha de semana 5 no bisiesto" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(6, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120205" || f2 != "20120212") {
+		errores++;
+		cout << "Error en fecha de semana 6" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(7, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120212" || f2 != "20120219") {
+		errores++;
+		cout << "Error en fecha de semana 7" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(8, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120219" || f2 != "20120226") {
+		errores++;
+		cout << "Error en fecha de semana 8" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(9, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120226" || f2 != "20120304") {
+		errores++;
+		cout << "Error en fecha de semana 9" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(9, "2013");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20130226" || f2 != "20130305") {
+		errores++;
+		cout << "Error en fecha de semana 9 no bisiesto" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(10, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120304" || f2 != "20120311") {
+		errores++;
+		cout << "Error en fecha de semana 10" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(11, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120311" || f2 != "20120318") {
+		errores++;
+		cout << "Error en fecha de semana 11" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(12, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120318" || f2 != "20120325") {
+		errores++;
+		cout << "Error en fecha de semana 12" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(13, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120325" || f2 != "20120401") {
+		errores++;
+		cout << "Error en fecha de semana 13" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(13, "2013");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20130326" || f2 != "20130402") {
+		errores++;
+		cout << "Error en fecha de semana 13 no bisiesto" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(14, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120401" || f2 != "20120408") {
+		errores++;
+		cout << "Error en fecha de semana 14" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(15, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120408" || f2 != "20120415") {
+		errores++;
+		cout << "Error en fecha de semana 15" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(18, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120429" || f2 != "20120506") {
+		errores++;
+		cout << "Error en fecha de semana 18" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(21, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120520" || f2 != "20120527") {
+		errores++;
+		cout << "Error en fecha de semana 21" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(22, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120527" || f2 != "20120603") {
+		errores++;
+		cout << "Error en fecha de semana 22" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(26, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120624" || f2 != "20120701") {
+		errores++;
+		cout << "Error en fecha de semana 25" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(31, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120729" || f2 != "20120805") {
+		errores++;
+		cout << "Error en fecha de semana 31" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(32, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120805" || f2 != "20120812") {
+		errores++;
+		cout << "Error en fecha de semana 32" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(35, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120826" || f2 != "20120902") {
+		errores++;
+		cout << "Error en fecha de semana 35" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(37, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120909" || f2 != "20120916") {
+		errores++;
+		cout << "Error en fecha de semana 37" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(40, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20120930" || f2 != "20121007") {
+		errores++;
+		cout << "Error en fecha de semana 40" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(41, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121007" || f2 != "20121014") {
+		errores++;
+		cout << "Error en fecha de semana 41" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(43, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121021" || f2 != "20121028") {
+		errores++;
+		cout << "Error en fecha de semana 43" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(44, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121028" || f2 != "20121104") {
+		errores++;
+		cout << "Error en fecha de semana 44" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(48, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121125" || f2 != "20121202") {
+		errores++;
+		cout << "Error en fecha de semana 48" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(49, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121202" || f2 != "20121209") {
+		errores++;
+		cout << "Error en fecha de semana 49" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(51, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121216" || f2 != "20121223") {
+		errores++;
+		cout << "Error en fecha de semana 51" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(52, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121223" || f2 != "20121230") {
+		errores++;
+		cout << "Error en fecha de semana 52" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(53, "2012");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20121230" || f2 != "20130101") {
+		errores++;
+		cout << "Error en fecha de semana 53" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+	fsemana = mf.semana(53, "2013");
+	mf.desarmar(fsemana, f1, f2);
+	if (!mf.esRango(fsemana) || f1 != "20131231" || f2 != "20140101") {
+		errores++;
+		cout << "Error en fecha de semana 53 no bisiesto" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
+	fsemana = mf.semana(78, "2000");
+	mf.desarmar(fsemana, f1, f2);
+	if (mf.esRango(fsemana) || f1 != "" || f2 != "") {
+		errores++;
+		cout << "Error en fecha de semana 78 no bisiesto" << endl;
+		cout << "Inf: " << f1 << endl;
+		cout << "Sup: " << f2 << endl;
+	}
+
+
 	if (errores == 0) {
 		cout << "TEST SIN ERRORES++"<< endl;
 	}
@@ -2089,7 +2446,6 @@ void testIndFechas() {
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
 		cout << "Fecha: " << *it << endl;
 	}
-
 
 
 	if (errores == 0) {

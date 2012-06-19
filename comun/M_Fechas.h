@@ -35,6 +35,7 @@ public:
 	Fecha trimestre(int tri, const std::string& anio);
 	Fecha bimestre(int bim, const std::string& anio);
 	Fecha mes(int mes, const std::string& anio);
+	Fecha semana(int semana, const std::string& anio);
 
 	bool esRango(const Fecha& fecha);
 
@@ -61,6 +62,8 @@ private:
 	void desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul);
 	void armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha);
 
+
+	void calcularDia(const int& diaAnio,const FechaNumerica& anio, int& dia, int& mes);
 };
 
 #endif /* M_FECHAS_H_ */

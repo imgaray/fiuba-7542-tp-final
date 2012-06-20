@@ -44,7 +44,6 @@ void VentanaClienteDinamica::agregarConsultanteConcreto(Consultante *cons) {
 
 Consultante* VentanaClienteDinamica::devolverConsultante(Id_Mensaje id) {
 	MapaConsultantesNB::iterator it;
-
 	it = _mConsultas.find(id);
 
 	if (it != _mConsultas.end()) {

@@ -1,5 +1,7 @@
 #include "VentanaClienteDinamica.h"
 #include "Tab.h"
+#include "Consultante.h"
+#include "ExcepcionConsultanteNoExiste.h"
 #include <iostream>
 
 VentanaClienteDinamica::VentanaClienteDinamica(BaseObjectType* cobject,
@@ -32,7 +34,7 @@ void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
 }
 
 
-void VentanaClienteDinamica::agregarConsultante(Consultante *cons) {
+void VentanaClienteDinamica::agregarConsultanteConcreto(Consultante *cons) {
 	if (cons == NULL) {
 		throw ExcepcionConsultanteNoExiste("Consultante Nulo en agregarConsultante");
 	}

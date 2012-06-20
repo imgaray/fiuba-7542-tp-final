@@ -22,7 +22,7 @@ class VentanaClienteDinamica
 
         void hacerConsulta(ServidorRemoto& server);
 
-        void agregarConsultante(Consultante *cons);
+        void agregarConsultanteConcreto(Consultante *cons);
 
         Consultante* devolverConsultante(Id_Mensaje id);
     private:

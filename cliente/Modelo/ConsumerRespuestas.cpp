@@ -14,6 +14,8 @@ void ConsumerRespuesta::correr() {
 								cancelados[r.first]) {
 					cancelados[r.first] = false;
 			} else {
+				std::cout << "recibi una respuesta para el id " << r.first << std::endl;
+				std::cout << "serializacion = " << r.second.serializar() << std::endl;
 				respuestas.push(r);
 			}
 		} else {

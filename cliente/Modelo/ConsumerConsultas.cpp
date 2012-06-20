@@ -14,6 +14,8 @@ void ConsumerConsulta::correr() {
 				} else {
 					if (!servidor->enviar(pconsulta.second))
 						parar();
+					std::cout << "envie una consulta para el id " << pconsulta.first << std::endl;
+					std::cout << "serializacion = " << pconsulta.second.serializar() << std::endl;
 				}
 			} catch(BLQueueException& e) {
 				parar();

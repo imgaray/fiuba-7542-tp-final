@@ -23,8 +23,8 @@ void Consultante::hacerConsulta(ServidorRemoto& server) {
         std::cout << "OK" << std::endl;
     else
         std::cout << "NO OK" << std::endl;
-
-    server.enviarConsulta(this, consulta);
+	
+	server.enviarConsulta(this, consulta);
     padre->informarConsultaIniciada();
     correrSpinner();
 }

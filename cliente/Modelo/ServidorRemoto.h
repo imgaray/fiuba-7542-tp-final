@@ -32,7 +32,9 @@ public:
 	ServidorRemoto();
 	~ServidorRemoto();
 	void conectar() throw();
-	void enviarConsulta(Consultante* consultante, Consulta consulta);
+	void enviarConsulta(Consultante* consultante, Consulta& consulta);
+	unsigned cantidadRespuestas();
+	Respuesta obtenerRespuesta();
 	void cancelarConsulta(unsigned IDcons);
 };
 

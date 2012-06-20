@@ -11,7 +11,7 @@
 #include "FiltradoresPanel.h"
 #include "Organizacion.h"
 
-Personalizador::Personalizador() {
+Personalizador::Personalizador(VentanaClienteDinamica& _v) : v(_v) {
     Organizacion::cargarDefiniciones();
 }
 
@@ -54,6 +54,7 @@ void Personalizador::construir() {
 
     FiltradoresTab* fTab1 = new FiltradoresTab();
     fTab1->agregarEntrada("Vendedor");
+    
 
     hijos.push_back(fTab1);
     pTab1->pack_start(*fTab1, false, false);
@@ -61,7 +62,7 @@ void Personalizador::construir() {
     pTab1->agregarConsultante(fTab1);
 
     tabs.push_back(pTab1);
-
+/*
     // Tab 2 - test gráfico de torta con input
     Tab* pTab2 = new Tab(0, "Tab 2 - Torta+filtro");
     FiltradoresTab* fTab2 = new FiltradoresTab();
@@ -75,6 +76,7 @@ void Personalizador::construir() {
 
     Gtk::HSeparator* sep2 = new Gtk::HSeparator();
     Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
+    pTable2->attach(*pPanelTorta2, 0, 1, 0, 1);
 
     hijos.push_back(fTab2);
     hijos.push_back(fPanel2);
@@ -91,7 +93,7 @@ void Personalizador::construir() {
     pTab2->agregarConsultante(pPanelTorta2);
 
     tabs.push_back(pTab2);
-
+*/
 //    // Tab 3 -
 //    fPanel1->agregarEntrada("Marca");
 //    FiltradoresPanel* fPanel1_1 = new FiltradoresPanel(*fTab1);

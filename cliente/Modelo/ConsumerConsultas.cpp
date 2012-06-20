@@ -23,7 +23,7 @@ void ConsumerConsulta::correr() {
 }
 
 ConsumerConsulta::ConsumerConsulta(ColaConsultas& cons,
-		ColaRespuestas& resp, Socket* conex, BitmapCancelados& canc):
+		ColaRespuestas& resp, Socket*& conex, BitmapCancelados& canc):
 				consultas(cons),
 				respuestas(resp),
 				servidor(conex),

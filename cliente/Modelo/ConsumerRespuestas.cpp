@@ -23,11 +23,12 @@ void ConsumerRespuesta::correr() {
 }
 
 ConsumerRespuesta::ConsumerRespuesta(ColaRespuestas& cresp,
-			MapaConsultantes& mcons, Socket* conex, BitmapCancelados& canc):
+			MapaConsultantes& mcons, Socket*& conex, BitmapCancelados& canc):
 		respuestas(cresp),
 		consultantes(mcons),
 		servidor(conex),
 		cancelados(canc) {
+	
 }
 
 ConsumerRespuesta::~ConsumerRespuesta() {

@@ -19,12 +19,12 @@ class ConsumerConsulta: public Hilo {
 private:
 	ColaConsultas& consultas;
 	ColaRespuestas& respuestas;
-	Socket* servidor;
+	Socket*& servidor;
 	BitmapCancelados& cancelados;
 public:
 	void correr();
 	ConsumerConsulta(ColaConsultas& cons, ColaRespuestas& resp,
-							Socket* conexion, BitmapCancelados& canc);
+							Socket*& conexion, BitmapCancelados& canc);
 	~ConsumerConsulta();
 };
 

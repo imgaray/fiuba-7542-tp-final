@@ -57,18 +57,30 @@ void ServidorRemoto::conectar() throw() {
 }
 
 void ServidorRemoto::enviarConsulta(Consultante* consultante, 
-												Consulta consulta) {
+												Consulta& consulta) {
 	if (!consultantes.has(consultante->getID())) {
 		consultantes[consultante->getID()] = consultante;
 	}
+	/// sdf
 	ParConsulta par;
 	par.first = consultante->getID();
+	par.second = consulta;
 	par.second.definirID(par.first);
 	consultas.push(par);
 }
 
 void ServidorRemoto::cancelarConsulta(unsigned IDcons) {
 	cancelados[IDcons] = true;
+}
+
+unsigned ServidorRemoto::cantidadRespuestas() {
+	return respuestas.size();
+}
+
+Respuesta ServidorRemoto::obtenerRespuesta() {
+	Respuesta ret = respuestas.front().second;
+	respuestas.pop();
+	return ret;
 }
 
 ServidorRemoto::~ServidorRemoto() {

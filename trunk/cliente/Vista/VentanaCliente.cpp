@@ -6,6 +6,7 @@
 #include <gtkmm/messagedialog.h>
 #include "VentanaClienteDinamica.h"
 #include "ExcepcionConsultanteNoExiste.h"
+#include "Consultante.h"
 
 #define TIMEOUT 10000
 
@@ -135,17 +136,17 @@ bool VentanaCliente::on_timeout() {
 }
 
 bool VentanaCliente::on_idle() {
-    //std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
+    std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
 
-	throw "Faltan implementar Metodos de servidor Remoto";
+	//throw "Faltan implementar Metodos de servidor Remoto";
 
     bool hayRespuestas;
-    //hayRespuestas = (this->server.cantidadRespuestas() > 0);
+    hayRespuestas = (this->server.cantidadRespuestas() > 0);
     Respuesta resp;
     Consultante *consActual = NULL;
 
     for (int i = 0; i < CANT_MAX_RESP_PROC && hayRespuestas ; i++) {
-    	//resp = this->server.obtenerRespuesta();
+    	resp = this->server.obtenerRespuesta();
 
     	consActual = this->pVDinamica->devolverConsultante(resp.devolverID());
 
@@ -157,9 +158,8 @@ bool VentanaCliente::on_idle() {
     		throw ExcepcionConsultanteNoExiste("No Corresponde a ninguna Respuesta");
     	}
 
-    	//hayRespuestas = (this->server.cantidadRespuestas() > 0);
+    	hayRespuestas = (this->server.cantidadRespuestas() > 0);
     }
-
 
 
     return true;

@@ -18,7 +18,7 @@ public:
 
     virtual void hacerConsulta(ServidorRemoto& server) = 0;
 
-    void actualizarTamanioMinimo(double x, double y) = 0;
+    virtual void actualizarTamanioMinimo(double x, double y) = 0;
 
     virtual FiltradoresPanel& getFiltrador() const = 0;
 

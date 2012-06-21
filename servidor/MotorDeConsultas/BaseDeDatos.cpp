@@ -14,13 +14,22 @@
 
 BaseDeDatos::BaseDeDatos(const std::string rutaArchivo) :
 	_archDatos(rutaArchivo) {
-	unsigned cantDimSimples =Organizacion::cantidadDimensionesSimples();
+	_cantDimensionesSimples =Organizacion::cantidadDimensionesSimples();
 
-	if (cantDimSimples == 0)
+	if (_cantDimensionesSimples == 0)
 		throw ErrorOrganizacion();
 
-	_indDimensiones = new Indice<Dimension> [cantDimSimples];
-	//_cnjDimensiones = new ConjuntoValoresDimension [Organizacion::cantidadDimensionesSimples()];
+	_indDimensiones = new Indice<Dimension> [_cantDimensionesSimples];
+
+	cargarIndices();
+}
+
+void BaseDeDatos::cargarIndices() {
+	std::string reg;
+	for (Id_Registro id = 0; id < _archDatos.cantidadRegistros() ; id++) {
+		reg = _archDatos.obtenerRegistro(id);
+		actualizarIndices(reg, id);
+	}
 }
 
 BaseDeDatos::~BaseDeDatos() {
@@ -407,20 +416,24 @@ Respuesta BaseDeDatos::agregarEntrada(const Consulta& entrada) {
 
 void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registro& id) {
 	std::string dimension;
+	std::string nomDimension;
 	// indice de dimension de la clase Organizacion
 	int indd = 0;
+	int indice;
 
 	for (unsigned i = 0 ; i < Organizacion::cantidadDimensionesTotal() ; i++) {
 		dimension = u.separar(entrada, sep_datos, i);
+		nomDimension = Organizacion::nombreDimension(i);
+
 
 		if (dimension.empty() == false) {
-			if (Organizacion::esDimensionEspecial(Organizacion::nombreDimension(i))) {
+			if (Organizacion::esDimensionEspecial(nomDimension)) {
 				_indFechas.guardarFecha(dimension, id);
 			}
 			else {
-				_indDimensiones[Organizacion::indiceDeCampoSimple(Organizacion::nombreCampoSimple(indd))].agregar(dimension, id);
+				indice = Organizacion::indiceDeCampoSimple(nomDimension);
+				_indDimensiones[indice].agregar(dimension, id);
 				indd++;
-
 			}
 		}
 	}

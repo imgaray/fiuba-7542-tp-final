@@ -4,7 +4,7 @@ void ThreadEntradaAgentes::correr() {
 	while (corriendo()) {
 		Socket* sagente = entradaAgentes->escucharConexion();
 		if (sagente) {	
-			AgenteRemoto* ag = new AgenteRemoto(sagente, re);
+			AgenteRemoto* ag = new AgenteRemoto(sagente, re, centradas);
 			ca.agregarAgente(ag);
 			ag->iniciar();
 		} else {
@@ -21,8 +21,10 @@ void ThreadEntradaAgentes::detener_entrada() {
 	this->parar();
 }
 
-ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent, Puerto pag):
-	ca(cag), re(rent), pagentes(pag) {
+ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag, 
+	ResolvedorEntradas& rent, Puerto pag,
+					ConsultasAgentesServidor& cagt):
+	ca(cag), re(rent), pagentes(pag), centradas(cagt) {
 	entradaAgentes = new Socket(pagentes);
 	entradaAgentes->enlazar();
 }

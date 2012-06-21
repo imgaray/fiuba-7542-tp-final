@@ -14,6 +14,7 @@ private:
 	ContenedorAgentes& ca;	
 	ResolvedorEntradas& re;
 	Puerto pagentes;
+	ConsultasAgentesServidor& centradas;
 public:
 
 	// metodo que se queda pendiente de la conexion de nuevos agentes. 
@@ -27,7 +28,8 @@ public:
 	// constructor. Recibe un ContenedorAgentes valido y un ResolvedorEntradas.
 	// El primero sera el que contenga todos los AgenteRemoto. El segundo
 	// el que resuelva las entradas que reciba de cada AgenteRemoto
-	ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent, Puerto pagentes);
+	ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent,
+					Puerto pagentes, ConsultasAgentesServidor& centr);
 	
 	// destructor. Detiene la entrada. Si sigue conectado, desconecta.
 	~ThreadEntradaAgentes();

@@ -30,7 +30,7 @@ void Hilo::parar() {
 }
 
 void Hilo::sincronizar() {
-	if (_sincronizado == false) {
+	if (!_sincronizado) {
 		pthread_join(this->hilo, NULL);
 		_sincronizado = true;
 	}

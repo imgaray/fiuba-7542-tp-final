@@ -18,6 +18,8 @@
 class Consulta;
 class Respuesta;
 class Consultante;
+class AgenteRemoto;
+class ClienteRemoto;
 
 /*
  * Identificador para los mensajes tanto Consulta como Respuesta
@@ -142,8 +144,10 @@ typedef std::vector < Fila > DatosDeRespuesta;
 //
 /////////////////////////////////////////////////////////
 
-typedef BLQueue<Consulta> ConsultasServidor;
-typedef BLQueue<Respuesta> RespuestasServidor;
+typedef std::pair<AgenteRemoto*, Consulta> ConsultaAgenteServidor;
+typedef std::pair<ClienteRemoto*, Consulta> ConsultaClienteServidor;
+typedef BLQueue<ConsultaAgenteServidor> ConsultasAgentesServidor;
+typedef BLQueue<ConsultaClienteServidor> ConsultasClientesServidor;
 
 /////////////////////////////////////////////////////////
 //

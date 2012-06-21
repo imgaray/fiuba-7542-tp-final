@@ -1,29 +1,39 @@
 #include "AgenteRemoto.h"
 
-void AgenteRemoto::iniciar() {
-	hce.iniciar();
-	hcr.iniciar();
-	hcre.iniciar();
-}
-
 void AgenteRemoto::detener_agente() {
+	parar();
 	agente->desconectar();
-	cconsultas.close();
-	crespuestas.close();
-	hce.parar();
-	hcr.parar();
-	hcre.parar();
 }
 
-AgenteRemoto::AgenteRemoto(Socket* agt, ResolvedorEntradas& rentr):
-		agente(agt), blresolvedor(rentr), hcr(agt, cconsultas),
-		hce(agt, crespuestas), hcre(cconsultas, crespuestas, rentr) {
+void AgenteRemoto::enviarRespuesta(Respuesta& r) {
+	if (agente && agente->conectado()) {
+		if (!agente->enviar(r)) {
+			detener_agente();
+		}
+	}
+}
+
+void AgenteRemoto::correr() {
+	while (corriendo()) {
+		if (agente && agente->conectado()) {
+			ConsultaAgenteServidor parConsulta;
+			parConsulta.first = this;
+			if (agente->recibir(parConsulta.second)) {
+				cconsultas.push(parConsulta);
+			} else {
+				parar();
+			}
+		} else {
+			parar();
+		}
+	}
+}
+
+AgenteRemoto::AgenteRemoto(Socket* agt, ResolvedorEntradas& rentr, ConsultasAgentesServidor& cons):
+		agente(agt), blresolvedor(rentr), cconsultas(cons) {
 }
 
 AgenteRemoto::~AgenteRemoto() {
 	detener_agente();
-	hce.sincronizar();
-	hcr.sincronizar();
-	hcre.sincronizar();
 	delete agente;
 }

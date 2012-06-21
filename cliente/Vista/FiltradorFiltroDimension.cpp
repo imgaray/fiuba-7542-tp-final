@@ -10,5 +10,4 @@ FiltradorFiltroDimension::~FiltradorFiltroDimension() {}
 
 void FiltradorFiltroDimension::filtrar(Consulta& c) {
     c.agregarFiltro(getFiltro(), getValor());
-    return c;
 }

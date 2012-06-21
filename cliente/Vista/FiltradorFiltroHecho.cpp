@@ -31,6 +31,5 @@ FiltradorFiltroHecho::~FiltradorFiltroHecho() {}
 
 void FiltradorFiltroHecho::filtrar(Consulta& c) {
     c.agregarFiltro(getFiltro(), valorHecho);
-    return c;
 }
 

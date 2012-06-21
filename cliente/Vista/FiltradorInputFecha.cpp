@@ -94,5 +94,9 @@ Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor) {
 
 void FiltradorInputFecha::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), f);
-    return c;
+}
+
+void FiltradorInputFecha::recibirNavegacionSeleccionada(
+    const Glib::ustring& input, const Glib::ustring& valor) {
+
 }

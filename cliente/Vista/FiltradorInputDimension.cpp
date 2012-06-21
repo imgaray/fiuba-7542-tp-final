@@ -1,6 +1,7 @@
 #include "FiltradorInputDimension.h"
 #include "Respuesta.h"
 #include "Consulta.h"
+#include "Tab.h"
 #include <iostream>
 #include <exception>
 #include <cassert>
@@ -36,7 +37,6 @@ void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
 
 void FiltradorInputDimension::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), valores.get_active_text());
-    return c;
 }
 
 void FiltradorInputDimension::recibirNavegacionSeleccionada(

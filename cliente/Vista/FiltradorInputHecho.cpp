@@ -53,6 +53,9 @@ void FiltradorInputHecho::on_entry_activated() {
 
 void FiltradorInputHecho::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), valorHecho);
-    return c;
 }
 
+void FiltradorInputHecho::recibirNavegacionSeleccionada(
+    const Glib::ustring& input, const Glib::ustring& valor) {
+
+}

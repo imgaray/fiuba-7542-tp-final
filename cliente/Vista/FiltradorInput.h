@@ -10,6 +10,8 @@ class FiltradorInput : public Filtrador {
         FiltradorInput(const Glib::ustring& input);
         virtual ~FiltradorInput();
 
+        virtual void recibirNavegacionSeleccionada(const Glib::ustring& input,
+                                            const Glib::ustring& valor) = 0;
     protected:
         Gtk::ComboBoxText valores;
 

@@ -54,7 +54,7 @@ Tab& Personalizador::siguiente() {
 
 void Personalizador::construir() {
     // Tab 1 - test filtrador tab
-    Tab* pTab1 = new Tab("Tab 1 - FiltradorTab");
+    Tab* pTab1 = new Tab("Tab 1 - FiltradorTab 1");
 
     FiltradoresTab* fTab1 = new FiltradoresTab();
     fTab1->agregarEntrada("Vendedor");
@@ -63,12 +63,15 @@ void Personalizador::construir() {
     hijos.push_back(fTab1);
     pTab1->pack_start(*fTab1, false, false);
     while (fTab1->tieneFiltrosConsultantes())
-        pTab1->agregarFiltroConsultante(fTab1->getFiltroConsultante());
+        pTab1->agregarConsultante(fTab1->getFiltroConsultante());
+    while (fTab1->tieneFiltrosNavegables())
+        pTab1->agregarFiltroNavegable(fTab1->getFiltroNavegable());
 
     tabs.push_back(pTab1);
-/*
+
+
     // Tab 2 - test gráfico de torta con input
-    Tab* pTab2 = new Tab(0, "Tab 2 - Torta+filtro");
+    Tab* pTab2 = new Tab("Tab 2 - Torta+filtro");
     FiltradoresTab* fTab2 = new FiltradoresTab();
     FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab1);
     fPanel2->agregarFiltro("Sucursal", "San Julian");
@@ -89,15 +92,13 @@ void Personalizador::construir() {
     hijos.push_back(sep2);
     hijos.push_back(pTable2);
 
-    pTab2->pack_start(*pPanelTorta2, false, false);
+    pTab2->pack_start(*fTab2, false, false);
     pTab2->pack_start(*sep2, false, false);
     pTab2->pack_start(*pTable2, true, true);
 
-    pTab2->agregarConsultante(fTab2);
-    pTab2->agregarConsultante(pPanelTorta2);
 
     tabs.push_back(pTab2);
-*/
+
 //    // Tab 3 -
 //    fPanel1->agregarEntrada("Marca");
 //    FiltradoresPanel* fPanel1_1 = new FiltradoresPanel(*fTab1);

@@ -15,6 +15,9 @@ class FiltradorInputFecha : public FiltradorInput {
         FiltradorInputFecha(const Glib::ustring& input);
         ~FiltradorInputFecha();
 
+        void recibirNavegacionSeleccionada(const Glib::ustring& input,
+                                           const Glib::ustring& valor);
+
         static int perteneceAlCombobox(const Glib::ustring& valor);
         /** Validador de la entrada (Gtk::Entry)
          * i: el iésimo valor del combobox
@@ -22,7 +25,7 @@ class FiltradorInputFecha : public FiltradorInput {
          */
         static Fecha validar(int i, const Glib::ustring& valor);
 
-        (Consulta& c);
+        void filtrar(Consulta& c);
     private:
         static Utilitario u;
         static M_Fechas m_fechas;

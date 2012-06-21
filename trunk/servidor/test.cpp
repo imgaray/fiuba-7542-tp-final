@@ -16,8 +16,8 @@
 #define DEFAULTAGENTE 6000
 #define DEFAULTCLIENTE 5000
 
-#define MAX_CLIENTES_SIMULTANEOS 2
-#define MAX_AGENTES_SIMULTANEOS 2
+#define MAX_CLIENTES_SIMULTANEOS 1
+#define MAX_AGENTES_SIMULTANEOS 1
 
 #define PUERTO_CLIENTE 5000
 #define PUERTO_AGENTE 6000
@@ -281,12 +281,12 @@ int main(int argc, char **argv) {
 	cout << "===================================================" << endl;
 	pruebaAgentes();
 	cout << "===================================================" << endl;
-	pruebaClientes();
+//	pruebaClientes();
 	cout << "===================================================" << endl;
 	pruebaAgentesMultiples();
 	cout << "===================================================" << endl;
-	pruebaClientesMultiples();
+//	pruebaClientesMultiples();
 	cout << "===================================================" << endl;
-	pruebaAmbosMultiples();
+//	pruebaAmbosMultiples();
 	return 0;
 }

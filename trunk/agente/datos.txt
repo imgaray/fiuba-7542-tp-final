@@ -1,15 +1,2 @@
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
-San Julian  Jose    20001010    IBM KKI 386 100 200
+San Julian	Jose	20001010	IBM	KKI	386	100	200
+

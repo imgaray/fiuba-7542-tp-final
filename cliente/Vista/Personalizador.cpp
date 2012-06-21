@@ -80,6 +80,7 @@ void Personalizador::construir() {
 
     Panel* pPanelTorta2 = new Panel();
     FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab2);
+    fPanel2->agregarFiltro("Sucursal", "San Julian");
     fPanel2->agregarResultado("Producto");
     fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
     while (fPanel2->tieneFiltrosConsultantes())
@@ -109,7 +110,45 @@ void Personalizador::construir() {
 
     tabs.push_back(pTab2);
 
-//    // Tab 3 -
+//    // Tab 3 - Barras simple
+//    Tab* pTab3 = new Tab("Tab 2 - Barras simple");
+//    FiltradoresTab* fTab3 = new FiltradoresTab();
+//    fTab3->agregarEntrada("Producto");
+//    while (fTab3->tieneFiltrosConsultantes())
+//        pTab3->agregarConsultante(fTab3->getFiltroConsultante());
+//    while (fTab3->tieneFiltrosNavegables())
+//        pTab3->agregarFiltroNavegable(fTab3->getFiltroNavegable());
+//
+//    Panel* pPanelBarras3 = new Panel();
+//    FiltradoresPanel* fPanel3 = new FiltradoresPanel(*fTab2);
+//    fPanel3->agregarResultado("Marca");
+//    fPanel3->agregarResultado(Organizacion::nombreHecho(1), "CONT");
+//    while (fPanel3->tieneFiltrosConsultantes())
+//        pTab3->agregarConsultante(fPanel3->getFiltroConsultante());
+//    while (fPanel3->tieneFiltrosNavegables())
+//        pTab3->agregarFiltroNavegable(fPanel3->getFiltroNavegable());
+//
+//    Grafico* pGraficoBarras3 = new GraficoDeBarras(*fPanel3);
+//    pTab3->agregarConsultante(pGraficoBarras3);
+//    pPanelBarras3->setContenido(*pGraficoBarras3);
+//
+//    Gtk::HSeparator* sep3 = new Gtk::HSeparator();
+//    Gtk::Table* pTable3 = new Gtk::Table(1, 1, true);
+//    pTable3->attach(*pPanelBarras3, 0, 1, 0, 1);
+//
+//    hijos.push_back(fTab3);
+//    hijos.push_back(fPanel3);
+//    hijos.push_back(pGraficoBarras3);
+//    hijos.push_back(pPanelBarras3);
+//    hijos.push_back(sep3);
+//    hijos.push_back(pTable3);
+//
+//    pTab3->pack_start(*fTab3, false, false);
+//    pTab3->pack_start(*sep3, false, false);
+//    pTab3->pack_start(*pTable3, true, true);
+//
+//    tabs.push_back(pTab3);
+
 //    fPanel1->agregarEntrada("Marca");
 //    FiltradoresPanel* fPanel1_1 = new FiltradoresPanel(*fTab1);
 //    FiltradoresPanel* fPanel1_2 = new FiltradoresPanel(*fTab1);

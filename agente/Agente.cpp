@@ -46,7 +46,7 @@ void Agente::cargarConfiguracion(const std::string& rutaConfig) {
 			if (linea.empty() == false) {
 
 				cabecera = util.separar(linea, '=' , 0);
-				Utilitario::borrarCaracter(cabecera, ' ');
+				util.borrarCaracter(cabecera, ' ');
 
 				if (cabecera == "PUERTO") {
 					arg = util.separar(linea, '=' , 1);

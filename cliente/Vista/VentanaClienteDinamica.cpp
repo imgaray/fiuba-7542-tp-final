@@ -77,6 +77,8 @@ bool VentanaClienteDinamica::retirarRespuestasFiltros(ServidorRemoto& server) {
         it->second->recibirRespuesta(resp);
 
         hayRespuestas = server.cantidadRespuestas() > 0;
+        /** @todo que la tab avise que debe remover sus filtros */
+        filtros.erase(it);
     }
 
     return filtros.size() == 0;

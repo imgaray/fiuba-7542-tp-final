@@ -58,7 +58,10 @@ void Tab::cancelarConsulta(ServidorRemoto& server) {
 }
 
 void Tab::recibirRespuesta(const Respuesta& rta) {
+    if (pConsultantesActivos == &filtrosConsultantes)
+        pConsultantesActivos = &consultantes;
     std::cout << "Recibiendo respuesta id: " << rta.devolverID() << " . Pasando al consultante." << std::endl;
+    (*pConsultantesActivos)[rta.devolverID()]->recibirRespuesta(rta);
 }
 
 void Tab::informarConsultaIniciada() {

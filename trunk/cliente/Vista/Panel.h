@@ -11,12 +11,12 @@ class FiltradoresPanel;
 
 class Panel : public Gtk::VBox {
     public:
-        Panel(Grafico& g, FiltradoresPanel& f);
+        Panel();
         ~Panel();
 
+        // Agrega también a los filtradores, pidiéndoselos al gráfico
+        void setContenido(Grafico& g);
     private:
-        Grafico& grafico;
-        FiltradoresPanel& filtrador;
         Gtk::ScrolledWindow scrWin;
         Gtk::Viewport* pViewport;
 };

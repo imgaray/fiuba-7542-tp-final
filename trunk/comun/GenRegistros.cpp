@@ -35,10 +35,16 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 	"San Miguel", "San Gabriel", "San Julian", "San Mateo", "Avellaneda"
 	};
 
+	int cantMarcas= 10;
+	std::string marcas[] = {
+	"laptop", "Samsung", "Iphone", "Hp", "Marcapaso",
+	"intel","IBM", "Commodore", "Genius", "MS"
+	};
+
 	int cantProductos = 10;
 	std::string productos[] = {
-	"laptop e221", "IBM 386", "Iphone Xirix", "boligrafo Hp", "Marcapaso x86",
-	"notebook intel","IBM Litium", "Commodore i400", "Mouse optico", "Teclado MS"
+	"e221", "Galaxy SII", "Xirix", "boligrafo", "x86",
+	"notebook","Lithium", "i400", "Mouse optico", "Teclado"
 	};
 
 	int cantFechas = 20;
@@ -63,6 +69,8 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 				ca.agregarCampo(sucursales[generarRandom(cantSucursales)]);
 			else if (nomCampo == "Fecha")
 				ca.agregarCampo(fechas[generarRandom(cantFechas)]);
+			else if (nomCampo == "Marca")
+				ca.agregarCampo(marcas[generarRandom(cantMarcas)]);
 			else if (nomCampo == "Producto")
 				ca.agregarCampo(productos[generarRandom(cantProductos)]);
 			else if (nomCampo == "PrecioLista" || nomCampo == "PrecioFinal" || Organizacion::esHecho(nomCampo))

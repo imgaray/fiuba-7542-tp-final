@@ -159,18 +159,18 @@ public:
 	bool aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice);
 
 
+	void cargarIndices();
+
 private:
 
 	Lista_Id _interseccion; // no puedo tenerla tengo que hacer instancias
 							// porque tiene que ser concurrente
 	Indice <Dimension> *_indDimensiones;
-	ConjuntoValoresDimension *_cnjDimensiones;
-	// Indice <Hecho> *_indHechos;
 
 	IndiceDeFechas _indFechas;
 
 	ArchivoDeDatos _archDatos;
-
+	unsigned _cantDimensionesSimples;
 	Utilitario u;
 };
 

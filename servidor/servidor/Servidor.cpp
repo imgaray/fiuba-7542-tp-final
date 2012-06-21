@@ -7,7 +7,9 @@ using namespace std;
 
 Respuesta Servidor::resolverEntrada(Consulta& entrada) {
 	if (vde.verificarEntrada(entrada)) {
-		return bdd->agregarEntrada(entrada);
+		Respuesta r = bdd->agregarEntrada(entrada);
+		r.definirID(entrada.devolverID());
+		return r;
 	}
 	// TODO: al integrar, habria que reformular esto
 	return Respuesta("ERROR");
@@ -15,8 +17,10 @@ Respuesta Servidor::resolverEntrada(Consulta& entrada) {
 
 Respuesta Servidor::resolver(Consulta& consulta) {
 	if (vdc.verificarConsulta(consulta)) {
-	    std::cout << "Consulta OK" << std::endl;
-		return bdd->resolverConsulta(consulta);
+	   	Respuesta r = bdd->resolverConsulta(consulta);
+		r.definirID(consulta.devolverID());
+		std::cout << "ID respuesta = " << r.devolverID() << std::endl;
+		return r;
 	}
 	    std::cout << "Consulta NO OK" << std::endl;
 	// TODO: al integrar, habria que reformular esto

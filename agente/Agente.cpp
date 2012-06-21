@@ -88,10 +88,11 @@ void Agente::cargarDesdeConsola() {
 
 	while (seguirCargando) {
 		cons.limpiar();
+        cons.definirComoConsultaAgente();
 		for (unsigned i = 0; i < Organizacion::cantidadCampos() ; i++) {
 			std::cout << "-";
 			std::cout << Organizacion::nombreCampo(i) << ":";
-			std::cin >> campo;
+			std::getline(std::cin, campo);
 
 			cons.agregarCampo(campo);
 		}
@@ -103,9 +104,9 @@ void Agente::cargarDesdeConsola() {
 		std::cout << "¿Ingresar otra Entrada? S/N" << std::endl;
 
 
-		char aux;
-		std::cin >> aux;
-		seguirCargando = (aux == 's' || aux == 'S');
+		std::string aux;
+		std::getline(std::cin, aux);
+		seguirCargando = (aux == "s" || aux == "S");
 	}
 }
 

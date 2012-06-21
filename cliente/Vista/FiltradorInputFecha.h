@@ -22,7 +22,7 @@ class FiltradorInputFecha : public FiltradorInput {
          */
         static Fecha validar(int i, const Glib::ustring& valor);
 
-        Consulta& filtrar(Consulta& c);
+        (Consulta& c);
     private:
         static Utilitario u;
         static M_Fechas m_fechas;

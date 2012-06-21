@@ -8,7 +8,7 @@ FiltradorFiltroDimension::FiltradorFiltroDimension(const Glib::ustring& filtro,
 FiltradorFiltroDimension::~FiltradorFiltroDimension() {}
 
 
-Consulta&  FiltradorFiltroDimension::filtrar(Consulta& c) {
+void FiltradorFiltroDimension::filtrar(Consulta& c) {
     c.agregarFiltro(getFiltro(), getValor());
     return c;
 }

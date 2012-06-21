@@ -18,8 +18,6 @@
 #define BOTON_SALIR "HerramientaSalir"
 #define BOTON_CONECTAR "HerramientaConectar"
 
-#define CANT_MAX_RESP_PROC 10
-
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     const Glib::RefPtr< Gtk::Builder >& _builder)
     : Gtk::Window(cobject), builder(_builder) {
@@ -74,10 +72,6 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
             &VentanaCliente::on_salir_button_clicked));
     }
 
-    Glib::signal_timeout().connect(sigc::mem_fun(*this,
-                                    &VentanaCliente::on_timeout), TIMEOUT);
-    Glib::signal_idle().connect(sigc::mem_fun(*this,
-    		&VentanaCliente::on_idle));
 }
 
 VentanaCliente::~VentanaCliente() {}
@@ -90,10 +84,16 @@ void VentanaCliente::on_conectar_button_clicked() {
     std::cout << BOTON_CONECTAR " clicked." << std::endl;
     try {
         server.conectar();
+        pVDinamica->hacerConsultaFiltros(server);
         botones[BOTON_ACTUALIZAR]->set_sensitive();
         botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive();
         botones[BOTON_EXPORTAR_PDF]->set_sensitive();
         botones[BOTON_CONECTAR]->set_sensitive(false);
+
+        Glib::signal_timeout().connect(sigc::mem_fun(*this,
+                    &VentanaCliente::on_timeout), TIMEOUT);
+        Glib::signal_idle().connect(sigc::mem_fun(*this,
+                    &VentanaCliente::on_idle));
     }
     catch (const char* msj) {
         Gtk::MessageDialog dialog(*this,
@@ -136,31 +136,9 @@ bool VentanaCliente::on_timeout() {
 }
 
 bool VentanaCliente::on_idle() {
-    std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
+//    std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
 
-	//throw "Faltan implementar Metodos de servidor Remoto";
-
-    bool hayRespuestas;
-    hayRespuestas = (this->server.cantidadRespuestas() > 0);
-    Respuesta resp;
-    Consultante *consActual = NULL;
-
-    for (int i = 0; i < CANT_MAX_RESP_PROC && hayRespuestas ; i++) {
-    	resp = this->server.obtenerRespuesta();
-
-    	consActual = this->pVDinamica->devolverConsultante(resp.devolverID());
-
-
-    	if (consActual != NULL) {
-    		consActual->recibirRespuesta(resp);
-    	}
-    	else {
-    		throw ExcepcionConsultanteNoExiste("No Corresponde a ninguna Respuesta");
-    	}
-
-    	hayRespuestas = (this->server.cantidadRespuestas() > 0);
-    }
-
+	pVDinamica->retirarRespuestasFiltros(server);
 
     return true;
 }

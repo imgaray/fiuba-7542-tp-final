@@ -10,7 +10,7 @@ class FiltradorFiltroFecha : public FiltradorFiltro {
                              const std::string& valorEntrada);
         ~FiltradorFiltroFecha();
 
-        Consulta& filtrar(Consulta& c);
+        (Consulta& c);
 
     private:
         Glib::ustring valorCombo;

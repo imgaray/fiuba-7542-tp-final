@@ -51,7 +51,7 @@ void FiltradorInputHecho::on_entry_activated() {
         entrada.set_text(MSJ_ERROR);
 }
 
-Consulta& FiltradorInputHecho::filtrar(Consulta& c) {
+void FiltradorInputHecho::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), valorHecho);
     return c;
 }

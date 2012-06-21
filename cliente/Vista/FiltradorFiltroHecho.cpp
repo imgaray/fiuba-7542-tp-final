@@ -29,7 +29,7 @@ FiltradorFiltroHecho::FiltradorFiltroHecho(const Glib::ustring& hecho,
 
 FiltradorFiltroHecho::~FiltradorFiltroHecho() {}
 
-Consulta& FiltradorFiltroHecho::filtrar(Consulta& c) {
+void FiltradorFiltroHecho::filtrar(Consulta& c) {
     c.agregarFiltro(getFiltro(), valorHecho);
     return c;
 }

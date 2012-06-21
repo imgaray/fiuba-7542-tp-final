@@ -28,10 +28,10 @@ private:
 	std::string sdireccion;
 
 public:
-	
+
 	ServidorRemoto();
 	~ServidorRemoto();
-	void conectar() throw();
+	void conectar() throw(char* );
 	void enviarConsulta(Consultante* consultante, Consulta& consulta);
 	unsigned cantidadRespuestas();
 	Respuesta obtenerRespuesta();

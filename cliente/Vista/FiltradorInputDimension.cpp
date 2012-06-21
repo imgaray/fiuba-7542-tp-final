@@ -5,9 +5,8 @@
 #include <exception>
 #include <cassert>
 
-FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input,
-    PadreDeConsultantes* padre) : FiltradorInput(input) {
-    padre->agregarConsultante(this);
+FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input)
+: FiltradorInput(input) {
     setSpinner(&s);
     centradorDerecho.pack_start(s, false, false);
     s.hide();
@@ -32,9 +31,10 @@ void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
         valores.append_text(rta.dato(i, 0));
 
     valores.set_active(0);
+    padre->removerConsultante(getID());
 }
 
-Consulta& FiltradorInputDimension::filtrar(Consulta& c) {
+void FiltradorInputDimension::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), valores.get_active_text());
     return c;
 }

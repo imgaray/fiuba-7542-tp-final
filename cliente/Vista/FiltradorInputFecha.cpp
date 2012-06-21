@@ -92,7 +92,7 @@ Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor) {
     return f_validada;
 }
 
-Consulta& FiltradorInputFecha::filtrar(Consulta& c) {
+void FiltradorInputFecha::filtrar(Consulta& c) {
     c.agregarEntrada(getFiltro(), f);
     return c;
 }

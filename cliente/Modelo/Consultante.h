@@ -1,14 +1,16 @@
 #ifndef CONSULTANTE_H
 #define CONSULTANTE_H
 
-#include "PadreDeConsultantes.h"
+#include <gtkmm/spinner.h>
 #include "Consulta.h"
 #include "VerificadorConsultasH.h"
 
 class Respuesta;
 class ServidorRemoto;
+class PadreDeConsultantes;
+class Tab;
 
-class Consultante : public PadreDeConsultantes {
+class Consultante {
     public:
         Consultante();
         ~Consultante();
@@ -18,9 +20,16 @@ class Consultante : public PadreDeConsultantes {
         virtual void recibirRespuesta(const Respuesta& rta);
 
         virtual unsigned getID() const;
+
+        void setSpinner(Gtk::Spinner* s);
+        void setPadre(Tab* padre);
     protected:
         Consulta consulta;
         virtual void procesarRespuesta(const Respuesta& rta) = 0;
+        Tab* padre;
+        Gtk::Spinner* spinner;
+        void correrSpinner();
+        void detenerSpinner();
     private:
         VerificadorConsultasH verificador;
         static unsigned generadorID;

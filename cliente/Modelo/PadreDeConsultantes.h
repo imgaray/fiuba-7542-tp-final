@@ -5,7 +5,7 @@
 #include "Mutex.h"
 
 class ServidorRemoto;
-
+/** @deprecated */
 class PadreDeConsultantes {
     public:
         PadreDeConsultantes();

@@ -1,20 +1,23 @@
 #ifndef FILTRADORES_PANEL_H
 #define FILTRADORES_PANEL_H
 
+#include <list>
+#include <queue>
 #include <gtkmm/box.h>
-#include "PadreDeConsultantes.h"
 
 class FiltradoresTab;
 class Filtrador;
+class FiltradorInput;
+class FiltradorInputDimension;
 class Consulta;
 
-class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
+class FiltradoresPanel : public Gtk::VBox {
     public:
         /** @todo agregar agregaciones */
         FiltradoresPanel(FiltradoresTab& filtTab);
         ~FiltradoresPanel();
 
-        Consulta& filtrar(Consulta& c);
+        void filtrar(Consulta& c);
 
         /// este método no verifica que el filtro sea dimensión
         void agregarFiltro(const std::string& dimension,
@@ -34,9 +37,18 @@ class FiltradoresPanel : public Gtk::VBox, public PadreDeConsultantes {
                               const std::string& valorEntrada);
         void agregarResultado(const std::string& hecho,
                               const std::string& agregacion);
+
+        bool tieneFiltrosNavegables();
+        bool tieneFiltrosConsultantes();
+
+        FiltradorInput* getFiltroNavegable();
+        FiltradorInputDimension* getFiltroConsultante();
+
     private:
         FiltradoresTab& filtrosHeredados;
         std::list< Filtrador* > filtradores;
+        std::queue< FiltradorInput* > filtrosNavegables;
+        std::queue< FiltradorInputDimension* > filtrosConsultantes;
 };
 
 #endif  // FILTRADORES_PANEL_H

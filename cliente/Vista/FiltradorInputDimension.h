@@ -9,11 +9,10 @@ class Respuesta;
 
 class FiltradorInputDimension : public FiltradorInput, public Consultante {
     public:
-        FiltradorInputDimension(const Glib::ustring& input,
-                                PadreDeConsultantes* padre);
+        FiltradorInputDimension(const Glib::ustring& input);
         ~FiltradorInputDimension();
 
-        Consulta& filtrar(Consulta& c);
+        void filtrar(Consulta& c);
 
         void recibirNavegacionSeleccionada(const Glib::ustring& input,
                                            const Glib::ustring& valor);

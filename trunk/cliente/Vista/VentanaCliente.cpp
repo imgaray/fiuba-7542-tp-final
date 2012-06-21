@@ -71,7 +71,7 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_salir_button_clicked));
     }
-
+terminoConLosFiltros = false;
 }
 
 VentanaCliente::~VentanaCliente() {}
@@ -137,8 +137,10 @@ bool VentanaCliente::on_timeout() {
 
 bool VentanaCliente::on_idle() {
 //    std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
-
-	pVDinamica->retirarRespuestasFiltros(server);
+    if (!terminoConLosFiltros)
+        terminoConLosFiltros = pVDinamica->retirarRespuestasFiltros(server);
+    else
+        pVDinamica->retirarRespuestas(server);
 
     return true;
 }

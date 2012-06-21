@@ -8,6 +8,7 @@
 
 #define MIN_LADO 200
 #define COL_RESULTADO 0  // constante que hace que siempre se tome la columna 0 de la respuesta para dar nombre a las áreas del gráfico
+#define SIN_DATOS "No hay resultados para mostrar"
 
 Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
@@ -120,9 +121,17 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
 }
 
 void Grafico::dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx) {
-    std::list< Area* >::iterator it = areas.begin();
-    for ( ; it != areas.end(); ++it)
-        offset = (*it)->dibujar(ctx, offset);
+    if (areas.empty()) {
+        ctx->save();
+            ctx->move_to(0.1, 0.5);
+            ctx->set_font_size(0.08);
+            ctx->show_text(SIN_DATOS);
+        ctx->restore();
+    } else {
+        std::list< Area* >::iterator it = areas.begin();
+        for ( ; it != areas.end(); ++it)
+            offset = (*it)->dibujar(ctx, offset);
+    }
 }
 
 void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {

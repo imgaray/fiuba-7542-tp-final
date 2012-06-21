@@ -37,6 +37,8 @@ void VentanaClienteDinamica::hacerConsultaFiltros(ServidorRemoto& server) {
 }
 
 void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
+    std::cout << "Cantidad de consultantes concretos totales: " << consultas.size() << std::endl;
+    std::cout << "Tab: " << get_current_page() << ". ";
     tabs[get_current_page()]->hacerConsulta(server);
 }
 
@@ -60,7 +62,7 @@ void VentanaClienteDinamica::agregarData(Tab* t, unsigned i) {
     tabs.push_back(t);
 }
 
-void VentanaClienteDinamica::retirarRespuestasFiltros(ServidorRemoto& server) {
+bool VentanaClienteDinamica::retirarRespuestasFiltros(ServidorRemoto& server) {
     bool hayRespuestas = server.cantidadRespuestas() > 0;
     Respuesta resp;
     std::map< unsigned, Consultante* >::iterator it;
@@ -76,8 +78,8 @@ void VentanaClienteDinamica::retirarRespuestasFiltros(ServidorRemoto& server) {
 
         hayRespuestas = server.cantidadRespuestas() > 0;
     }
-    if (filtros.size() == 0)
-        std::cout << "Terminé con los filtros" << std::endl;
+
+    return filtros.size() == 0;
 }
 
 void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {

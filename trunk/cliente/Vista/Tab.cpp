@@ -40,12 +40,17 @@ void Tab::removerConsultante(unsigned ID) {
     bool consultanteInexistente = tt != ttNuevo;
     assert(consultanteInexistente);
 
-    if (ttNuevo == 0)
+    if (ttNuevo == 0) {
+        std::cout << this << " no tengo más combobox para popular, cambio mi mapa de consultantes al de consultantes concretos" << std::endl;
         pConsultantesActivos = &consultantes;
+    }
 }
 
 void Tab::hacerConsulta(ServidorRemoto& server) {
     std::cout << "Haciendo consultas..." << std::endl;
+    std::map< unsigned, Consultante* >::iterator it;
+    for (it = consultantes.begin(); it != consultantes.end(); ++it)
+        it->second->hacerConsulta(server);
 }
 
 void Tab::cancelarConsulta(ServidorRemoto& server) {
@@ -80,7 +85,9 @@ void Tab::recibirNavegacionSeleccionada(const Glib::ustring& input,
 
 std::list< unsigned > Tab::getIDs() {
     std::list< unsigned > ids;
-
+    std::map< unsigned, Consultante* >::const_iterator it;
+    for (it = consultantes.begin(); it != consultantes.end(); ++it)
+        ids.push_back(it->first);
     return ids;
 }
 

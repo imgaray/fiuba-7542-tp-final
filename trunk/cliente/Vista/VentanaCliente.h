@@ -4,7 +4,7 @@
 #include <gtkmm/window.h>
 #include <gtkmm/builder.h>
 #include <gtkmm/toolbutton.h>
-#include "ServidorRemoto.h"
+#include "../Modelo/ServidorRemoto.h"
 
 class VentanaClienteDinamica;
 

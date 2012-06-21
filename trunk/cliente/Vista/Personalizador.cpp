@@ -70,7 +70,7 @@ void Personalizador::construir() {
     tabs.push_back(pTab1);
 
 
-    // Tab 2 - test gráfico de torta con input
+    // Tab 2 - test gráfico de torta simple
     Tab* pTab2 = new Tab("Tab 2 - Torta simple");
     FiltradoresTab* fTab2 = new FiltradoresTab();
     while (fTab2->tieneFiltrosConsultantes())

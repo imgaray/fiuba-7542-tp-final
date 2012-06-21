@@ -8,7 +8,7 @@
 #include "ExhibidorRespuesta.h"
 
 
-ExhibidorRespuesta::ExhibidorRespuesta() {
+ExhibidorRespuesta::ExhibidorRespuesta(FiltradoresPanel& filtrador) {
 	// TODO Auto-generated constructor stub
 
 }

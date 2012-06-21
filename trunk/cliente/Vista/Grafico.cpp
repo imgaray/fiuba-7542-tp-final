@@ -21,6 +21,7 @@ Grafico::~Grafico() {
 }
 
 void Grafico::hacerConsulta(ServidorRemoto& server) {
+    consulta.limpiar();
     f.filtrar(consulta);
     Consultante::hacerConsulta(server);
 }
@@ -143,10 +144,31 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
     }
 }
 
+using std::string; using std::cout; using std::endl;
+void imprimirRespuesta(const Respuesta& resp, const string& comentario) {
+	cout << endl;
+	cout << "Comentario: " << comentario << endl;
+	cout << "Estado Resp: " << resp.mensajeInterno() << endl;
+	cout << "Cantidad Filas: " << resp.cantidadFilas() << endl;
+	cout << "Cantidad Columnas: " << resp.cantidadColumnas() << endl;
+	cout << "Datos Recibidos:" << endl;
+	for (unsigned i = 0; i < resp.cantidadFilas() ; i++)  {
+		cout << "::";
+		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
+			cout.width(14);
+			cout.fill('.');
+			cout<< resp.dato(i,j) << "|";
+		}
+		cout << endl;
+	}
+}
+
 void Grafico::procesarRespuesta(const Respuesta& rta) {
     std::cout << "cantidad de columnas " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 2)
         throw "Respuesta para grafico con más o menos de dos columnas";
+
+    imprimirRespuesta(rta, "Tu hermana");
 
     double valor;
     std::stringstream ss;

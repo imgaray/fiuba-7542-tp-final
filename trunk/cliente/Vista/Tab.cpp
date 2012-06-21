@@ -22,7 +22,7 @@ Gtk::HBox& Tab::getEtiqueta() {
 }
 
 
-void Tab::agregarFiltroConsultante(FiltradorInputDimension* f) {
+void Tab::agregarConsultante(FiltradorInputDimension* f) {
     filtrosConsultantes[f->getID()] = f;
     std::cout << this << " agregado filtro: id = " << f->getID() << ", dimensión = " << f->getFiltro() << std::endl;
     f->setPadre(this);
@@ -62,6 +62,10 @@ void Tab::informarConsultaIniciada() {
 
 void Tab::informarConsultaTerminada() {
     --hijosActualizando;
+}
+
+void Tab::agregarFiltroNavegable(FiltradorInput* f) {
+    filtrosNavegables.push_back(f);
 }
 
 void Tab::difundirNavegacionSeleccionada(const Glib::ustring& input,

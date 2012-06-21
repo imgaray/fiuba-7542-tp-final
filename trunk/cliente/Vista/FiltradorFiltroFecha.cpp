@@ -31,5 +31,4 @@ FiltradorFiltroFecha::~FiltradorFiltroFecha() {}
 
 void FiltradorFiltroFecha::filtrar(Consulta& c) {
     c.agregarFiltro(getFiltro(), f);
-    return c;
 }

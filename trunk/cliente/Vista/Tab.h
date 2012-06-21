@@ -21,7 +21,7 @@ class Tab : public Gtk::VBox {
         Gtk::HBox& getEtiqueta();
 
         /** modelo */
-        void agregarFiltroConsultante(FiltradorInputDimension* f);
+        void agregarConsultante(FiltradorInputDimension* f);
         void agregarConsultante(Consultante* c);
         void removerConsultante(unsigned ID);
 
@@ -31,6 +31,8 @@ class Tab : public Gtk::VBox {
 
         void informarConsultaIniciada();
         void informarConsultaTerminada();
+
+        void agregarFiltroNavegable(FiltradorInput* f);
 
         void difundirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);

@@ -8,5 +8,4 @@ FiltradorResultadoDimension::~FiltradorResultadoDimension() {}
 
 void FiltradorResultadoDimension::filtrar(Consulta& c) {
     c.agregarResultado(getResultado());
-    return c;
 }

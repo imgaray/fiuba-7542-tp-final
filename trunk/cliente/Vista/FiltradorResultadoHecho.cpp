@@ -42,6 +42,5 @@ FiltradorResultadoHecho::~FiltradorResultadoHecho() {}
 
 void FiltradorResultadoHecho::filtrar(Consulta& c) {
     c.defininirAgregacion(agregacion, hecho);
-    return c;
 }
 

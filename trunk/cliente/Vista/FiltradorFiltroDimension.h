@@ -10,7 +10,7 @@ class FiltradorFiltroDimension : public FiltradorFiltro {
                                  const Glib::ustring& valor);
         ~FiltradorFiltroDimension();
 
-        (Consulta& c);
+        void filtrar(Consulta& c);
 };
 
 #endif  // FILTRADOR_FILTRO_DIMENSION_H

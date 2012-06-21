@@ -10,7 +10,7 @@
 #include "../../comun/Respuesta.h"
 #include "../../comun/Organizacion.h"
 #include "ComparadorHechos.h"
-#include "../Errores/ErrorOrganizacion.h"
+#include "../../comun/ErrorOrganizacion.h"
 
 BaseDeDatos::BaseDeDatos(const std::string rutaArchivo) :
 	_archDatos(rutaArchivo) {

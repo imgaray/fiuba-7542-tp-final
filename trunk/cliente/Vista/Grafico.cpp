@@ -4,6 +4,7 @@
 #include "Area.h"
 #include "FiltradoresPanel.h"
 #include "Respuesta.h"
+#include "Tab.h"
 
 #define MIN_LADO 200
 #define COL_RESULTADO 0  // constante que hace que siempre se tome la columna 0 de la respuesta para dar nombre a las áreas del gráfico

@@ -6,7 +6,7 @@ FiltradorResultadoDimension::FiltradorResultadoDimension(
 
 FiltradorResultadoDimension::~FiltradorResultadoDimension() {}
 
-Consulta& FiltradorResultadoDimension::filtrar(Consulta& c) {
+void FiltradorResultadoDimension::filtrar(Consulta& c) {
     c.agregarResultado(getResultado());
     return c;
 }

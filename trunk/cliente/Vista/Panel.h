@@ -9,7 +9,7 @@
 class Grafico;
 class FiltradoresPanel;
 
-class Panel : public Gtk::VBox, public PadreDeConsultantes {
+class Panel : public Gtk::VBox {
     public:
         Panel(Grafico& g, FiltradoresPanel& f);
         ~Panel();

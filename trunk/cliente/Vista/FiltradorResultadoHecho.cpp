@@ -40,7 +40,7 @@ FiltradorResultadoHecho::FiltradorResultadoHecho(const Glib::ustring& _hecho,
 
 FiltradorResultadoHecho::~FiltradorResultadoHecho() {}
 
-Consulta& FiltradorResultadoHecho::filtrar(Consulta& c) {
+void FiltradorResultadoHecho::filtrar(Consulta& c) {
     c.defininirAgregacion(agregacion, hecho);
     return c;
 }

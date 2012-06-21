@@ -18,7 +18,7 @@ class FiltradorInputHecho : public FiltradorInput {
         /// Validador de la entrada (Gtk::Entry)
         static Glib::ustring validar(int i, const Glib::ustring& valor);
 
-        Consulta& filtrar(Consulta& c);
+        (Consulta& c);
     private:
         static Utilitario u;
         Gtk::Entry entrada;

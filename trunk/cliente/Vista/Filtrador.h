@@ -14,7 +14,7 @@ class Filtrador : public Gtk::HBox {
 
         Glib::ustring getFiltro();
 
-        virtual Consulta& filtrar(Consulta& c) = 0;
+        virtual (Consulta& c) = 0;
 
     protected:
         Gtk::HBox centradorDerecho;

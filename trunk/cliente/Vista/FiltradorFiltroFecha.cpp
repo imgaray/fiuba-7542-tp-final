@@ -29,7 +29,7 @@ FiltradorFiltroFecha::FiltradorFiltroFecha(const Glib::ustring& fecha,
 
 FiltradorFiltroFecha::~FiltradorFiltroFecha() {}
 
-Consulta& FiltradorFiltroFecha::filtrar(Consulta& c) {
+void FiltradorFiltroFecha::filtrar(Consulta& c) {
     c.agregarFiltro(getFiltro(), f);
     return c;
 }

@@ -4,20 +4,20 @@
 #include <fstream>
 #include <list>
 #include <gtkmm/object.h>
-#include "VentanaClienteDinamica.h"
 
 class Tab;
+class VentanaClienteDinamica;
 
 class Personalizador {
     public:
-        Personalizador(VentanaClienteDinamica& v);
+        Personalizador();
         ~Personalizador();
         bool personalizarDesdeArchivo(const char* nombreArch);
         bool tieneSiguiente();
         Tab& siguiente();
     private:
         std::ifstream archivo;
-        VentanaClienteDinamica& v;
+//        VentanaClienteDinamica& v;
         std::list< Tab* > tabs;
         std::list< Tab* >::iterator it;
         std::list< Gtk::Object* > hijos;

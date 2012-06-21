@@ -30,7 +30,7 @@ FiltradorResultadoFecha::FiltradorResultadoFecha(const Glib::ustring& fecha,
 
 FiltradorResultadoFecha::~FiltradorResultadoFecha() {}
 
-Consulta& FiltradorResultadoFecha::filtrar(Consulta& c) {
+void FiltradorResultadoFecha::filtrar(Consulta& c) {
     c.agregarResultado(getResultado());
     return c;
 }

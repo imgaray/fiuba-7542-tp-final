@@ -32,7 +32,7 @@ void Cliente::run() {
 }
 
 void Cliente::initGtk(int argc, char* argv[]) {
-    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
+    Glib::RefPtr< Gtk::Builder > builder = Gtk::Builder::create();
     try {
         builder->add_from_file(UI_ESTATICA);
     }

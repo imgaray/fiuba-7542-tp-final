@@ -10,7 +10,7 @@ class FiltradorResultadoFecha : public FiltradorResultado {
                                 const Glib::ustring& valorEntrada);
         virtual ~FiltradorResultadoFecha();
 
-        Consulta& filtrar(Consulta& c);
+        (Consulta& c);
 
     private:
         Glib::ustring valorCombo;

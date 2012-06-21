@@ -47,7 +47,7 @@ ServidorRemoto::ServidorRemoto():
 	sock = new Socket(puerto);
 }
 
-void ServidorRemoto::conectar() throw() {	
+void ServidorRemoto::conectar() throw(char* ) {
 	sock->conectar(sdireccion);
 	if (!sock->conectado()) {
 		throw strerror(errno);
@@ -56,7 +56,7 @@ void ServidorRemoto::conectar() throw() {
 	crespuesta.iniciar();
 }
 
-void ServidorRemoto::enviarConsulta(Consultante* consultante, 
+void ServidorRemoto::enviarConsulta(Consultante* consultante,
 												Consulta& consulta) {
 	if (!consultantes.has(consultante->getID())) {
 		consultantes[consultante->getID()] = consultante;
@@ -89,7 +89,7 @@ ServidorRemoto::~ServidorRemoto() {
 	respuestas.close();
 	if (cconsulta.corriendo())
 		cconsulta.sincronizar();
-	if (crespuesta.corriendo())	
+	if (crespuesta.corriendo())
 		crespuesta.sincronizar();
 	delete sock;
 }

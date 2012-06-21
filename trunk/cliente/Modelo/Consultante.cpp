@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Consulta.h"
 #include "ServidorRemoto.h"
+#include "Tab.h"
 
 unsigned Consultante::generadorID = 0;
 
@@ -14,6 +15,10 @@ Consultante::Consultante() {
 
 Consultante::~Consultante() {}
 
+void Consultante::setPadre(Tab* _padre) {
+    padre = _padre;
+}
+
 void Consultante::hacerConsulta(ServidorRemoto& server) {
     cancelarConsulta(server);
 
@@ -23,7 +28,7 @@ void Consultante::hacerConsulta(ServidorRemoto& server) {
         std::cout << "OK" << std::endl;
     else
         std::cout << "NO OK" << std::endl;
-	
+
 	server.enviarConsulta(this, consulta);
     padre->informarConsultaIniciada();
     correrSpinner();
@@ -52,4 +57,23 @@ void Consultante::recibirRespuesta(const Respuesta& rta) {
 
 unsigned Consultante::getID() const {
     return ID;
+}
+
+
+void Consultante::setSpinner(Gtk::Spinner* s) {
+    spinner = s;
+}
+
+void Consultante::correrSpinner() {
+    if (spinner) {
+        spinner->show();
+        spinner->start();
+    }
+}
+
+void Consultante::detenerSpinner() {
+    if (spinner) {
+        spinner->stop();
+        spinner->hide();
+    }
 }

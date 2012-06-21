@@ -1,18 +1,19 @@
 #ifndef VENTANA_CLIENTE_DINAMICA_H
 #define VENTANA_CLIENTE_DINAMICA_H
 
+#include <map>
 #include <gtkmm/builder.h>
 #include <gtkmm/notebook.h>
-#include "PadreDeConsultantes.h"
 #include "Personalizador.h"
-#include "../../comun/Definiciones.h"
-#include <map>
 
-typedef std::map < Id_Mensaje, Consultante* > MapaConsultantesNB;
-typedef std::pair < Id_Mensaje, Consultante* > parMapaConsultas;
+class Tab;
+class ServidorRemoto;
+class Consultante;
 
-class VentanaClienteDinamica
-: public Gtk::Notebook, public PadreDeConsultantes {
+typedef std::map < unsigned, unsigned > MapaConsultantesTab;
+typedef std::pair < unsigned, unsigned > parMapaConsultasTab;
+
+class VentanaClienteDinamica : public Gtk::Notebook {
     public:
         VentanaClienteDinamica(BaseObjectType* cobject,
                                const Glib::RefPtr< Gtk::Builder >& builder);
@@ -20,14 +21,20 @@ class VentanaClienteDinamica
 
         void personalizar(const char* archivo);
 
+        void hacerConsultaFiltros(ServidorRemoto& server);
         void hacerConsulta(ServidorRemoto& server);
+        void cancelarConsulta(ServidorRemoto& server);
 
-        void agregarConsultanteConcreto(Consultante *cons);
+        void retirarRespuestasFiltros(ServidorRemoto& server);
+        void retirarRespuestas(ServidorRemoto& server);
 
-        Consultante* devolverConsultante(Id_Mensaje id);
     private:
         Personalizador dynBuilder;
-        MapaConsultantesNB _mConsultas;
+        MapaConsultantesTab consultas;
+        std::map< unsigned, Consultante* > filtros;
+        std::vector< Tab* > tabs;
+
+        void agregarData(Tab* t, unsigned i);
 };
 
 #endif  // VENTANA_CLIENTE_DINAMICA_H

@@ -59,8 +59,10 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
         if (Organizacion::esDimension(entrada)) {
             if (Organizacion::esDimensionEspecial(entrada))
                 f = new FiltradorInputFecha(entrada);
-            else
-                f = new FiltradorInputDimension(entrada, this);
+            else {
+                f = new FiltradorInputDimension(entrada);
+                filtrosConsultantes.push((FiltradorInputDimension* ) f);
+            }
         } else {
             if (Organizacion::esHecho(entrada))
                 f = new FiltradorInputHecho(entrada);
@@ -69,6 +71,7 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
         }
         add(*f);
         filtradores.push_back(f);
+        filtrosNavegables.push(f);
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
@@ -108,11 +111,29 @@ void FiltradoresPanel::agregarResultado(const std::string& hecho,
     }
 }
 
-Consulta& FiltradoresPanel::filtrar(Consulta& c) {
+void FiltradoresPanel::filtrar(Consulta& c) {
     filtrosHeredados.filtrar(c);
     std::list< Filtrador* >::iterator it = filtradores.begin();
     for ( ; it != filtradores.end(); ++it)
         (*it)->filtrar(c);
-    return c;
 }
 
+bool FiltradoresPanel::tieneFiltrosNavegables() {
+    return !filtrosNavegables.empty();
+}
+
+bool FiltradoresPanel::tieneFiltrosConsultantes() {
+    return !filtrosConsultantes.empty();
+}
+
+FiltradorInput* FiltradoresPanel::getFiltroNavegable() {
+    FiltradorInput* f = filtrosNavegables.front();
+    filtrosNavegables.pop();
+    return f;
+}
+
+FiltradorInputDimension* FiltradoresPanel::getFiltroConsultante() {
+    FiltradorInputDimension* f = filtrosConsultantes.front();
+    filtrosConsultantes.pop();
+    return f;
+}

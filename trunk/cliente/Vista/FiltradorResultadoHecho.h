@@ -10,7 +10,7 @@ class FiltradorResultadoHecho : public FiltradorResultado {
                                 const Glib::ustring& agregacion);
         virtual ~FiltradorResultadoHecho();
 
-        Consulta& filtrar(Consulta& c);
+        (Consulta& c);
 
     private:
         int i;

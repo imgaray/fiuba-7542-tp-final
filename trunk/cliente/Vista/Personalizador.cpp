@@ -10,8 +10,12 @@
 #include "FiltradoresTab.h"
 #include "FiltradoresPanel.h"
 #include "Organizacion.h"
+#include "VentanaClienteDinamica.h"
 
-Personalizador::Personalizador(VentanaClienteDinamica& _v) : v(_v) {
+//Personalizador::Personalizador(VentanaClienteDinamica& _v) : v(_v) {
+//    Organizacion::cargarDefiniciones();
+//}
+Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
 }
 
@@ -50,16 +54,16 @@ Tab& Personalizador::siguiente() {
 
 void Personalizador::construir() {
     // Tab 1 - test filtrador tab
-    Tab* pTab1 = new Tab(0, "Tab 1 - FiltradorTab");
+    Tab* pTab1 = new Tab("Tab 1 - FiltradorTab");
 
     FiltradoresTab* fTab1 = new FiltradoresTab();
     fTab1->agregarEntrada("Vendedor");
-    
+
 
     hijos.push_back(fTab1);
     pTab1->pack_start(*fTab1, false, false);
-
-    pTab1->agregarConsultante(fTab1);
+    while (fTab1->tieneFiltrosConsultantes())
+        pTab1->agregarFiltroConsultante(fTab1->getFiltroConsultante());
 
     tabs.push_back(pTab1);
 /*

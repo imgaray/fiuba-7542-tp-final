@@ -1,30 +1,42 @@
 #include "ClienteRemoto.h"
 #include <iostream>
 
-void ClienteRemoto::iniciar() {
-	hce.iniciar();
-	hcr.iniciar();
-	hcrc.iniciar();
+void ClienteRemoto::correr() {
+	while (corriendo()) {
+		if (cliente && cliente->conectado()) {
+			ConsultaClienteServidor parConsulta;
+			parConsulta.first = this;
+			if (cliente->recibir(parConsulta.second)) {
+				cs.push(parConsulta);
+			}
+			else {
+				parar();
+			}
+		} else {
+			parar();
+		}
+	}
 }
+
+void ClienteRemoto::enviarRespuesta(Respuesta& r) {
+	if (cliente && cliente->conectado()) {
+		if (!cliente->enviar(r)) {
+			detener_cliente();
+		}
+	}
+}
+
 
 void ClienteRemoto::detener_cliente() {
+	parar();
 	cliente->desconectar();
-	cconsultas.close();
-	crespuestas.close();
-	hce.parar();
-	hcr.parar();
-	hcrc.parar();
 }
 
-ClienteRemoto::ClienteRemoto(Socket* cl, ResolvedorConsultas& rcons):
-	cliente(cl), blresolvedor(rcons), hce(cl, crespuestas),
-	 hcr(cl, cconsultas), hcrc(cconsultas, crespuestas, rcons) {
+ClienteRemoto::ClienteRemoto(Socket* cl, ResolvedorConsultas& rcons, ConsultasClientesServidor& cons):
+	cliente(cl), blresolvedor(rcons), cs(cons) {
 }
 
 ClienteRemoto::~ClienteRemoto() {
 	detener_cliente();
-	hce.sincronizar();
-	hcr.sincronizar();
-	hcrc.sincronizar();
 	delete cliente;
 }

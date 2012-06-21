@@ -11,13 +11,14 @@
 #include "ContenedorClientes.h"
 #include "ResolvedorConsultas.h"
 #include "ResolvedorEntradas.h"
-#include "../../comun/Consulta.h"
+#include "Consulta.h"
 #include "ThreadEntradaAgentes.h"
 #include "ThreadEntradaClientes.h"
 #include "Mutex.h"
-#include "../../comun/Definiciones.h"
 #include <iostream>
-#include "../../comun/Definiciones.h"
+#include "Definiciones.h"
+#include "PoolClientes.h"
+#include "PoolAgentes.h"
 using namespace std;
 
 class ControladorServidor:  public ResolvedorConsultas, 
@@ -26,9 +27,8 @@ class ControladorServidor:  public ResolvedorConsultas,
 							public ContenedorAgentes {
 private:
 	// atributos
-//	typedef std::pair<unsigned, Consulta> parConsulta;
-//	BLQueue<parConsulta> consultas;
-//	BLQueue<parConsulta> actualizaciones;
+	ConsultasAgentesServidor centradas;
+	ConsultasClientesServidor cconsultas;
 	typedef std::list<ClienteRemoto*> lclientes;
 	typedef std::list<AgenteRemoto*> lagentes;
 	unsigned int ncons;
@@ -41,6 +41,8 @@ private:
 	ResolvedorEntradas& rentr;
 	ThreadEntradaAgentes* tagentes;
 	ThreadEntradaClientes* tclientes;
+	PoolClientes poolclientes;
+	PoolAgentes poolagentes;
 	Mutex m;
 public:
 	Respuesta resolverEntrada(Consulta& entrada);

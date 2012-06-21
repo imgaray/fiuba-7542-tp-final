@@ -27,6 +27,8 @@ class VentanaCliente : public Gtk::Window {
         void on_salir_button_clicked();
         bool on_timeout();
         bool on_idle();
+        /**@todo elegancia, gente, esto no puede quedar!*/
+        bool terminoConLosFiltros;
 };
 
 #endif  // VENTANA_CLIENTE_H

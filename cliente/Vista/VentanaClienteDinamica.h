@@ -25,7 +25,7 @@ class VentanaClienteDinamica : public Gtk::Notebook {
         void hacerConsulta(ServidorRemoto& server);
         void cancelarConsulta(ServidorRemoto& server);
 
-        void retirarRespuestasFiltros(ServidorRemoto& server);
+        bool retirarRespuestasFiltros(ServidorRemoto& server);
         void retirarRespuestas(ServidorRemoto& server);
 
     private:

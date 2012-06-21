@@ -8,11 +8,11 @@
 
 GraficoDeTorta::GraficoDeTorta(FiltradoresPanel& _f) : Grafico(_f) {
     offset = 0.0;
-    Hecho juan("Samsung", 10.13);
-    Hecho carlos("Apple", 7.5);
-    areas.push_back(new PorcionCircular(juan, 17.63, 0, X_0, Y_0, RADIO));
-    areas.push_back(new PorcionCircular(carlos, 17.63, 1, X_0, Y_0, RADIO));
-    regenerarReferencias();
+//    Hecho juan("Samsung", 10.13);
+//    Hecho carlos("Apple", 7.5);
+//    areas.push_back(new PorcionCircular(juan, 17.63, 0, X_0, Y_0, RADIO));
+//    areas.push_back(new PorcionCircular(carlos, 17.63, 1, X_0, Y_0, RADIO));
+//    regenerarReferencias();
 }
 
 GraficoDeTorta::~GraficoDeTorta() {}

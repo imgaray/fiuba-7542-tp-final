@@ -71,15 +71,24 @@ void Personalizador::construir() {
 
 
     // Tab 2 - test gráfico de torta con input
-    Tab* pTab2 = new Tab("Tab 2 - Torta+filtro");
+    Tab* pTab2 = new Tab("Tab 2 - Torta simple");
     FiltradoresTab* fTab2 = new FiltradoresTab();
+    while (fTab2->tieneFiltrosConsultantes())
+        pTab2->agregarConsultante(fTab2->getFiltroConsultante());
+    while (fTab2->tieneFiltrosNavegables())
+        pTab2->agregarFiltroNavegable(fTab2->getFiltroNavegable());
+
     Panel* pPanelTorta2 = new Panel();
-    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab1);
-    fPanel2->agregarFiltro("Sucursal", "San Julian");
+    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab2);
     fPanel2->agregarResultado("Producto");
     fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
+    while (fPanel2->tieneFiltrosConsultantes())
+        pTab2->agregarConsultante(fPanel2->getFiltroConsultante());
+    while (fPanel2->tieneFiltrosNavegables())
+        pTab2->agregarFiltroNavegable(fPanel2->getFiltroNavegable());
 
     Grafico* pGraficoTorta2 = new GraficoDeTorta(*fPanel2);
+    pTab2->agregarConsultante(pGraficoTorta2);
     pPanelTorta2->setContenido(*pGraficoTorta2);
 
     Gtk::HSeparator* sep2 = new Gtk::HSeparator();

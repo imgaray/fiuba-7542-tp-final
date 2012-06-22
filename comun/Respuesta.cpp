@@ -25,6 +25,7 @@ Respuesta::Respuesta() {
 }
 
 Respuesta::Respuesta(const Respuesta& original) {
+	this->_msjInterno = original._msjInterno;
 	this->_datos = original._datos;
 	this->_columnas = original._columnas;
 	this->_filaActual = original._filaActual;
@@ -41,6 +42,7 @@ Respuesta::~Respuesta() {
 }
 
 Respuesta& Respuesta::operator=(const Respuesta& resp) {
+	this->_msjInterno = resp._msjInterno;
 	this->_datos = resp._datos;
 	this->_columnas = resp._columnas;
 	this->_filaActual = resp._filaActual;

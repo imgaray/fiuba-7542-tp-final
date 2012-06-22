@@ -303,7 +303,7 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 		std::string filtro = consulta.filtro(j);
 		std::string valor = consulta.valorFiltro(j);
 
-		int indice = Organizacion::indiceDeCampoSimple(filtro);
+		int indice;
 
 		if (Organizacion::esDimensionEspecial(filtro)) {
 			_indFechas.recuperar(valor, listaAux1);
@@ -311,6 +311,7 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 			cantFiltrosSimples++;
 		}
 		else if (Organizacion::esDimension(filtro)) {
+			indice = Organizacion::indiceDeCampoSimple(filtro);
 			_indDimensiones[indice].recuperar(valor, listaAux1);
 			hayDimension = true;
 			cantFiltrosSimples++;
@@ -320,13 +321,13 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 			if (Organizacion::esDimension(consulta.filtro(i))) {
 				filtro = consulta.filtro(i);
 				valor = consulta.valorFiltro(filtro);
-				indice = Organizacion::indiceDeCampo(filtro);
 
 				if (Organizacion::esDimensionEspecial(filtro)) {
 					_indFechas.recuperar(valor, listaAux2);
 					cantFiltrosSimples++;
 				}
 				else {
+					indice = Organizacion::indiceDeCampoSimple(filtro);
 					_indDimensiones[indice].recuperar(valor, listaAux2);
 					cantFiltrosSimples++;
 				}
@@ -349,8 +350,7 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 		Lista_Id listaAux1, listaAux2;
 		std::string entrada = consulta.entrada(j);
 		std::string valor = consulta.valorEntrada(j);
-
-		int indice = Organizacion::indiceDeCampoSimple(entrada);
+		int indice;
 
 		if (Organizacion::esDimensionEspecial(entrada)) {
 			_indFechas.recuperar(valor, listaAux1);
@@ -358,6 +358,7 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 			cantEntradasSimples++;
 		}
 		else if (Organizacion::esDimension(entrada)) {
+			indice = Organizacion::indiceDeCampoSimple(entrada);
 			_indDimensiones[indice].recuperar(valor, listaAux1);
 			hayDimension = true;
 			cantEntradasSimples++;
@@ -367,13 +368,13 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 			entrada = consulta.entrada(i);
 			if (Organizacion::esDimension(entrada)) {
 				valor = consulta.valorEntrada(entrada);
-				indice = Organizacion::indiceDeCampo(entrada);
 
 				if (Organizacion::esDimensionEspecial(entrada)) {
 					_indFechas.recuperar(valor, listaAux2);
 					cantEntradasSimples++;
 				}
 				else {
+					indice = Organizacion::indiceDeCampoSimple(entrada);
 					_indDimensiones[indice].recuperar(valor, listaAux2);
 					cantEntradasSimples++;
 				}

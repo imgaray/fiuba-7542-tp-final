@@ -63,6 +63,7 @@
                     <property name="label" translatable="yes">toolbutton1</property>
                     <property name="use_underline">True</property>
                     <property name="stock_id">gtk-stop</property>
+                    <accelerator key="Escape" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>

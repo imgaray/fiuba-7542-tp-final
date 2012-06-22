@@ -59,7 +59,10 @@ void Tab::hacerConsulta(ServidorRemoto& server) {
 }
 
 void Tab::cancelarConsulta(ServidorRemoto& server) {
-    std::cout << "Cancelando consultas... (@todo)" << std::endl;
+    std::cout << "Cancelando consultas..." << std::endl;
+    std::map< unsigned, Consultante* >::iterator it;
+    for (it = pConsultantesActivos->begin(); it != pConsultantesActivos->end(); ++it)
+        it->second->cancelarConsulta(server);
 }
 
 void Tab::informarConsultaIniciada() {

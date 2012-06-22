@@ -4,6 +4,7 @@
 #include "../comun/Definiciones.h"
 #include "ArchivoConfiguracion.h"
 #include <sstream>
+#include <csignal>
 
 
 #define RUTACONFIGSERV "servidor.conf"
@@ -20,6 +21,7 @@ void convertir(T& objetivo, Y& destino) {
 }
 
 int main(int argc, char **argv) {
+    signal(SIGPIPE, SIG_IGN);
 	std::string aux = RUTACONFIGSERV;
 	ArchivoConfiguracion archivo(aux.c_str());
 	aux = PUERTOCLIENTE;

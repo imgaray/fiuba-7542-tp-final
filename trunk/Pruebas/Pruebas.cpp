@@ -24,6 +24,191 @@
 
 using namespace std;
 
+void imprimirRespuesta(Respuesta& resp, const string& comentario) {
+	cout << endl;
+	cout << "Comentario: " << comentario << endl;
+	cout << "Estado Resp: " << resp.mensajeInterno() << endl;
+	cout << "Cantidad Filas: " << resp.cantidadFilas() << endl;
+	cout << "Cantidad Columnas: " << resp.cantidadColumnas() << endl;
+	cout << "Datos Recibidos:" << endl;
+	for (unsigned i = 0; i < resp.cantidadFilas() ; i++)  {
+		cout << "::";
+		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
+			cout.width(14);
+			cout.fill('.');
+			cout<< resp.dato(i,j) << "|";
+		}
+		cout << endl;
+	}
+}
+
+
+
+void testBaseDeDatosReal() {
+	cout << "================================================="<< endl;
+	cout << "Inicia Test para BaseDeDatos \"Real\"" << endl;
+
+	Organizacion::cargarDefiniciones("./Fuente/modelo.config");
+	BaseDeDatos bdd("./Fuente/BDD.dat");
+
+
+	Consulta c;
+	Respuesta r;
+
+	c.agregarEntrada("Producto", "Galaxy SII");
+	c.agregarEntrada("Sucursal", "Avellaneda");
+
+	c.agregarResultado("Vendedor");
+	c.defininirAgregacion(CONT, "PrecioVenta");
+
+	VerificadorConsultasH verif;
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 1" << endl;
+		exit(0);
+	}
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Consulta 2");
+
+	// Segunda Consulta
+	c.limpiar();
+
+	c.agregarEntrada("Sucursal", "San Miguel");
+	c.agregarEntrada("Vendedor", "Juan");
+	c.agregarFiltro("Producto", "Galaxy SII");
+
+	c.agregarResultado("Marca");
+	c.defininirAgregacion(CONT, "PrecioLista");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 2" << endl;
+		exit(0);
+	}
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Primer COnsulta Verdadera");
+
+	// Tercera Consulta
+
+	c.limpiar();
+
+	c.agregarEntrada("Sucursal", "Avellaneda");
+	c.agregarEntrada("Vendedor", "Juan");
+	c.agregarFiltro("PrecioLista", ">500");
+
+	c.agregarResultado("Marca");
+	c.defininirAgregacion(CONT, "PrecioLista");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 3" << endl;
+		exit(0);
+	}
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Primer COnsulta Verdadera");
+
+
+	// Cuarta Consulta
+
+	c.limpiar();
+
+	c.agregarEntrada("PrecioLista", "=500");
+
+	c.agregarResultado("Marca");
+	c.agregarResultado("Vendedor");
+	c.defininirAgregacion(CONT, "PrecioLista");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 2" << endl;
+		exit(0);
+	}
+
+
+
+	// Quinta Consulta
+
+	c.limpiar();
+
+	c.agregarEntrada("Sucursal", "San Salvador");
+	//c.agregarEntrada("Vendedor", "Juan");
+	c.agregarFiltro("PrecioLista", "<100");
+
+	c.agregarResultado("Marca");
+	c.defininirAgregacion(CONT, "PrecioLista");
+	c.agregarResultado("Vendedor");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 5" << endl;
+		exit(0);
+	}
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Primer COnsulta Verdadera");
+
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Primer COnsulta Verdadera");
+
+
+
+	// Primer Tabla Pivote
+
+	c.limpiar();
+	c.definirConsultaDeTablaPivote();
+
+	c.agregarEntrada("Sucursal", "San Miguel");
+	//c.agregarFiltro("Producto", "Galaxy SII");
+
+	c.agregarXTablaP("Vendedor");
+	c.agregarYTablaP("Marca");
+
+	//c.agregarResultado("Marca");
+	c.defininirAgregacion(CONT, "PrecioLista");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 2" << endl;
+		exit(0);
+	}
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Primer COnsulta Verdadera");
+
+	// Segunda Tabla Pivote
+
+
+	c.limpiar();
+	c.definirConsultaDeTablaPivote();
+
+	c.agregarEntrada("Sucursal", "Avellaneda");
+	//c.agregarFiltro("Producto", "Galaxy SII");
+
+	c.agregarXTablaP("Vendedor");
+	//c.agregarXTablaP("Fecha");
+	c.agregarYTablaP("Marca");
+	c.agregarYTablaP("Producto");
+
+	//c.agregarResultado("Marca");
+	c.defininirAgregacion(CONT, "PrecioLista");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida 2" << endl;
+		exit(0);
+	}
+
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Segunda Tabla Pivote Verdadera");
+
+	cout << "Fin de Test de BaseDeDatos Real."<< endl;
+}
+
 void testOrganizacion() {
 	cout << "=================================================" << endl;
 	int errores = 0;
@@ -526,24 +711,6 @@ void testAgregacion() {
 	cout << "La agregacion Funciona!!!" << endl;
 }
 
-
-void imprimirRespuesta(Respuesta& resp, const string& comentario) {
-	cout << endl;
-	cout << "Comentario: " << comentario << endl;
-	cout << "Estado Resp: " << resp.mensajeInterno() << endl;
-	cout << "Cantidad Filas: " << resp.cantidadFilas() << endl;
-	cout << "Cantidad Columnas: " << resp.cantidadColumnas() << endl;
-	cout << "Datos Recibidos:" << endl;
-	for (unsigned i = 0; i < resp.cantidadFilas() ; i++)  {
-		cout << "::";
-		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
-			cout.width(14);
-			cout.fill('.');
-			cout<< resp.dato(i,j) << "|";
-		}
-		cout << endl;
-	}
-}
 
 void testBaseDeDatos() {
 	cout << "=================================================" << endl;

@@ -16,11 +16,11 @@ class ExhibidorRespuesta : public Consultante {
 public:
 	ExhibidorRespuesta(FiltradoresPanel& filtrador);
 
-    virtual void hacerConsulta(ServidorRemoto& server) = 0;
+    virtual void hacerConsulta(ServidorRemoto& server);
 
     virtual void actualizarTamanioMinimo(double x, double y) = 0;
 
-    virtual FiltradoresPanel& getFiltrador() const = 0;
+    virtual FiltradoresPanel& getFiltrador();
 
 	virtual ~ExhibidorRespuesta();
 protected:

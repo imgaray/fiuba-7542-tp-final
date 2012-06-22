@@ -109,6 +109,17 @@ void Personalizador::construir() {
     Gtk::Table* pTable3 = new Gtk::Table(1, 1, true);
     pTable3->attach(*pPanelTorta3, 0, 1, 0, 1);
 
+
+    // Agrego una Tabla
+    // Panel *pPanelTablaComun = new Panel();
+    //TablaComun tablaComun = new TablaComun(*pPanelsTablaComun);
+    //
+    // COmo hago para mostrarla??
+
+
+
+
+
     hijos.push_back(fTab3);
     hijos.push_back(fPanel3);
     hijos.push_back(pGraficoTorta3);

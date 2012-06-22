@@ -8,8 +8,9 @@
 #include "Tabla.h"
 #include <iostream>
 
-Tabla::Tabla() {
+Tabla::Tabla(FiltradoresPanel& filtradores) : ExhibidorRespuesta(filtradores) {
 	_colModelo = NULL;
+
 }
 
 Tabla::~Tabla() {

@@ -9,7 +9,7 @@
 
 
 
-TablaComun::TablaComun() {
+TablaComun::TablaComun(FiltradoresPanel& filtradores) : Tabla(filtradores) {
 
 }
 

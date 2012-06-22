@@ -1,6 +1,6 @@
 #include "Panel.h"
 #include "Grafico.h"
-//#include "Tabla.h"
+#include "Tabla.h" // linea descomentada
 #include "FiltradoresPanel.h"
 #include "Respuesta.h"
 
@@ -20,7 +20,7 @@ void Panel::setContenido(Grafico& g) {
 }
 
 void Panel::setContenido(Tabla& t) {
-//    pack_start(t.getFiltrador(), false, false);
-//    pViewport->add(t);
+    pack_start(t.getFiltrador(), false, false); // linea descomentada
+    pViewport->add(t);	// linea descomentada
     add(scrWin);
 }

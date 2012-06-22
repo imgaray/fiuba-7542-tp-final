@@ -13,6 +13,7 @@
 // #include "common-Mensaje.h"
 #include <cstring>
 #include <cerrno>
+#include <csignal>
 #define MYPRINT(c) std::cout << "SOCKET DEBUG " <<(c) << std::endl
 
 

@@ -5,13 +5,12 @@
 
 Panel::Panel() {
     scrWin.set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
-    pViewport = new Gtk::Viewport(*scrWin.get_hadjustment(), *scrWin.get_vadjustment());
+    pViewport = manage(new Gtk::Viewport(*scrWin.get_hadjustment(),
+                                         *scrWin.get_vadjustment()));
     scrWin.add(*pViewport);
 }
 
-Panel::~Panel() {
-    delete pViewport;
-}
+Panel::~Panel() {}
 
 void Panel::setContenido(Grafico& g) {
     pack_start(g.getFiltrador(), false, false);

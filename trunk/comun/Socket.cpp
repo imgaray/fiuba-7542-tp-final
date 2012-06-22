@@ -148,12 +148,18 @@ bool Socket::enviar(const Mensaje& mensaje) {
     const char* datos = s_datos.c_str(); // consulta.datos();
     size_t tam_datos = s_datos.size(); // consulta.tamanio();
     size_t cant_enviada = 0;
+    int envActual = 0;
     
     while (cant_enviada < tam_datos && _conectado) {
-        cant_enviada += send(_fd, 
+        envActual = send(_fd, 
                 datos + cant_enviada, 
                 (tam_datos - cant_enviada), 
                 0);
+        if (envActual < 0) {
+			 _conectado = false;
+		} else {
+			cant_enviada += envActual;
+		}
       //  std::cout << "cantidad enviada = " << cant_enviada << std::endl;
     }
 

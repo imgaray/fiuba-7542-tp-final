@@ -8,11 +8,20 @@
 #include "ExhibidorRespuesta.h"
 
 
-ExhibidorRespuesta::ExhibidorRespuesta(FiltradoresPanel& filtrador) {
-	// TODO Auto-generated constructor stub
+ExhibidorRespuesta::ExhibidorRespuesta(FiltradoresPanel& filtrador) :
+	_filtradores(filtrador){
 
 }
 
 ExhibidorRespuesta::~ExhibidorRespuesta() {
-	// TODO Auto-generated destructor stub
+}
+
+void ExhibidorRespuesta::hacerConsulta(ServidorRemoto& servidor) {
+	this->consulta.limpiar();
+	this->_filtradores.filtrar(this->consulta);
+	servidor.enviarConsulta(this, this->consulta);
+}
+
+FiltradoresPanel& ExhibidorRespuesta::getFiltrador() {
+	return this->_filtradores;
 }

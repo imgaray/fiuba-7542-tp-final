@@ -14,7 +14,11 @@
 
 class Tabla : public ExhibidorRespuesta, public Gtk::TreeView {
 public:
-	Tabla();
+	Tabla(FiltradoresPanel& filtradores);
+	virtual void actualizarTamanioMinimo(double x, double y) {
+		// @parahacer Completar este metodo SEBAAAAAAAAAA!!!!!!
+	}
+
 	virtual ~Tabla();
 
 protected:

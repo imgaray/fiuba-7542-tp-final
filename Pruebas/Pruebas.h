@@ -34,6 +34,8 @@ void testIndFechas();
 
 void pruebaArchivos();
 
+void testBaseDeDatosReal();
+
 
 
 #endif /* PRUEBAS_H_ */

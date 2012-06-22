@@ -13,7 +13,7 @@
 
 class TablaComun : public Tabla {
 public:
-	TablaComun();
+	TablaComun(FiltradoresPanel& filtradores);
 	virtual ~TablaComun();
 
 

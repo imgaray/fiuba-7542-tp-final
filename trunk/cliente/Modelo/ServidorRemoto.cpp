@@ -57,7 +57,7 @@ void ServidorRemoto::conectar() throw(char* ) {
 }
 
 void ServidorRemoto::enviarConsulta(Consultante* consultante,
-												Consulta& consulta) {
+												Consulta consulta) {
 	if (!consultantes.has(consultante->getID())) {
 		consultantes[consultante->getID()] = consultante;
 	}

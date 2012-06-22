@@ -20,6 +20,7 @@ void ClienteRemoto::correr() {
 
 void ClienteRemoto::enviarRespuesta(Respuesta& r) {
 	if (cliente && cliente->conectado()) {
+	    std::cout << "Antes de enviar la respuesta, serialización: " << r.serializar() << std::endl;
 		if (!cliente->enviar(r)) {
 			detener_cliente();
 		}

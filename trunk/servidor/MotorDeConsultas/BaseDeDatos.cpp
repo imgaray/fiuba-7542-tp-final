@@ -489,6 +489,8 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 	else {
 		respuesta.mensajeInterno(Respuesta::respuestaValida);
 	}
+
+
 }
 
 bool BaseDeDatos::aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice) {

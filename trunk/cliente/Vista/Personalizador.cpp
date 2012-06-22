@@ -12,16 +12,11 @@
 #include "Organizacion.h"
 #include "VentanaClienteDinamica.h"
 
-//Personalizador::Personalizador(VentanaClienteDinamica& _v) : v(_v) {
-//    Organizacion::cargarDefiniciones();
-//}
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
 }
 
 Personalizador::~Personalizador() {
-    if (archivo.is_open())
-        archivo.close();
     /** @todo quizás haya que sacarle el padre a los widgets */
     it = tabs.begin();
     for ( ; it != tabs.end(); ++it)
@@ -70,45 +65,60 @@ void Personalizador::construir() {
     tabs.push_back(pTab1);
 
 
-    // Tab 2 - test gráfico de torta simple
-    Tab* pTab2 = new Tab("Tab 2 - Torta simple");
+    // Tab 2 - test dos inputs
+    Tab* pTab2 = new Tab("Tab 2 - input");
     FiltradoresTab* fTab2 = new FiltradoresTab();
+    fTab2->agregarEntrada("Sucursal");
     while (fTab2->tieneFiltrosConsultantes())
         pTab2->agregarConsultante(fTab2->getFiltroConsultante());
     while (fTab2->tieneFiltrosNavegables())
         pTab2->agregarFiltroNavegable(fTab2->getFiltroNavegable());
 
-    Panel* pPanelTorta2 = new Panel();
-    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab2);
-    fPanel2->agregarFiltro("Sucursal", "San Julian");
-    fPanel2->agregarResultado("Producto");
-    fPanel2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
-    while (fPanel2->tieneFiltrosConsultantes())
-        pTab2->agregarConsultante(fPanel2->getFiltroConsultante());
-    while (fPanel2->tieneFiltrosNavegables())
-        pTab2->agregarFiltroNavegable(fPanel2->getFiltroNavegable());
-
-    Grafico* pGraficoTorta2 = new GraficoDeTorta(*fPanel2);
-    pTab2->agregarConsultante(pGraficoTorta2);
-    pPanelTorta2->setContenido(*pGraficoTorta2);
-
-    Gtk::HSeparator* sep2 = new Gtk::HSeparator();
-    Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
-    pTable2->attach(*pPanelTorta2, 0, 1, 0, 1);
-
     hijos.push_back(fTab2);
-    hijos.push_back(fPanel2);
-    hijos.push_back(pGraficoTorta2);
-    hijos.push_back(pPanelTorta2);
-    hijos.push_back(sep2);
-    hijos.push_back(pTable2);
 
     pTab2->pack_start(*fTab2, false, false);
-    pTab2->pack_start(*sep2, false, false);
-    pTab2->pack_start(*pTable2, true, true);
-
 
     tabs.push_back(pTab2);
+
+    // Tab 3 - test gráfico de torta simple
+    Tab* pTab3 = new Tab("Tab 3 - Torta simple");
+    FiltradoresTab* fTab3 = new FiltradoresTab();
+    while (fTab3->tieneFiltrosConsultantes())
+        pTab3->agregarConsultante(fTab3->getFiltroConsultante());
+    while (fTab3->tieneFiltrosNavegables())
+        pTab3->agregarFiltroNavegable(fTab3->getFiltroNavegable());
+
+    Panel* pPanelTorta3 = new Panel();
+    FiltradoresPanel* fPanel3 = new FiltradoresPanel(*fTab3);
+    fPanel3->agregarFiltro("Sucursal", "San Julian");
+    fPanel3->agregarResultado("Producto");
+    fPanel3->agregarResultado(Organizacion::nombreHecho(0), "CONT");
+    while (fPanel3->tieneFiltrosConsultantes())
+        pTab3->agregarConsultante(fPanel3->getFiltroConsultante());
+    while (fPanel3->tieneFiltrosNavegables())
+        pTab3->agregarFiltroNavegable(fPanel3->getFiltroNavegable());
+
+    Grafico* pGraficoTorta3 = new GraficoDeTorta(*fPanel3);
+    pTab3->agregarConsultante(pGraficoTorta3);
+    pPanelTorta3->setContenido(*pGraficoTorta3);
+
+    Gtk::HSeparator* sep3 = new Gtk::HSeparator();
+    Gtk::Table* pTable3 = new Gtk::Table(1, 1, true);
+    pTable3->attach(*pPanelTorta3, 0, 1, 0, 1);
+
+    hijos.push_back(fTab3);
+    hijos.push_back(fPanel3);
+    hijos.push_back(pGraficoTorta3);
+    hijos.push_back(pPanelTorta3);
+    hijos.push_back(sep3);
+    hijos.push_back(pTable3);
+
+    pTab3->pack_start(*fTab3, false, false);
+    pTab3->pack_start(*sep3, false, false);
+    pTab3->pack_start(*pTable3, true, true);
+
+
+    tabs.push_back(pTab3);
 
 //    // Tab 3 - Barras simple
 //    Tab* pTab3 = new Tab("Tab 2 - Barras simple");
@@ -248,4 +258,7 @@ void Personalizador::construir() {
 //    tabs.push_back(pTab2);
 
     it = tabs.begin();
+
+    if (archivo.is_open())
+        archivo.close();
 }

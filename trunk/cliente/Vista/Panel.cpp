@@ -1,5 +1,6 @@
 #include "Panel.h"
 #include "Grafico.h"
+//#include "Tabla.h"
 #include "FiltradoresPanel.h"
 #include "Respuesta.h"
 
@@ -15,5 +16,11 @@ Panel::~Panel() {}
 void Panel::setContenido(Grafico& g) {
     pack_start(g.getFiltrador(), false, false);
     pViewport->add(g);
+    add(scrWin);
+}
+
+void Panel::setContenido(Tabla& t) {
+//    pack_start(t.getFiltrador(), false, false);
+//    pViewport->add(t);
     add(scrWin);
 }

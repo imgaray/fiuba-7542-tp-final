@@ -7,6 +7,7 @@
 #include "PadreDeConsultantes.h"
 
 class Grafico;
+class Tabla;
 class FiltradoresPanel;
 
 class Panel : public Gtk::VBox {
@@ -16,6 +17,7 @@ class Panel : public Gtk::VBox {
 
         // Agrega también a los filtradores, pidiéndoselos al gráfico
         void setContenido(Grafico& g);
+        void setContenido(Tabla& t);
     private:
         Gtk::ScrolledWindow scrWin;
         Gtk::Viewport* pViewport;

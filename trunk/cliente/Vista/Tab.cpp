@@ -13,6 +13,7 @@ Tab::Tab(const Glib::ustring& _etiqueta): etiqueta(_etiqueta) {
 
     pConsultantesActivos = &filtrosConsultantes;
     hijosActualizando = 0;
+    inputsDisponibles = 0;
     puedeActualizar = false;
 }
 
@@ -81,12 +82,16 @@ void Tab::informarConsultaTerminada() {
 
 void Tab::informarInputDisponible() {
     ++inputsDisponibles;
+    std::cout << this << " inputs disponibles: " << inputsDisponibles
+                      << " inputs totales: " << filtrosNavegables.size() << std::endl;
     if (inputsDisponibles == filtrosNavegables.size())
         puedeActualizar = true;
 }
 
 void Tab::informarInputNoDisponible() {
     --inputsDisponibles;
+    std::cout << this << " inputs disponibles: " << inputsDisponibles
+                      << " inputs totales: " << filtrosNavegables.size() << std::endl;
     if (inputsDisponibles < filtrosNavegables.size())
         puedeActualizar = false;
 }
@@ -109,12 +114,10 @@ bool Tab::disponibleParaActualizacion() {
 
 void Tab::difundirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor) {
-    std::cout << "Difundiendo navegación seleccionada... (@todo)" << std::endl;
-}
-
-void Tab::recibirNavegacionSeleccionada(const Glib::ustring& input,
-                                        const Glib::ustring& valor) {
-    std::cout << "Recibiendo navegación seleccionada... (@todo)" << std::endl;
+    std::cout << this << " difundiendo navegación seleccionada... (@todo)" << std::endl;
+    std::list< FiltradorInput* >::iterator it = filtrosNavegables.begin();
+    for ( ; it != filtrosNavegables.end(); ++it)
+        (*it)->recibirNavegacionSeleccionada(input, valor);
 }
 
 const std::map< unsigned, Consultante* >& Tab::getConsultantes() {

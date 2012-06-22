@@ -109,5 +109,6 @@ void FiltradorInputFecha::filtrar(Consulta& c) {
 
 void FiltradorInputFecha::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
+    std::cout << "@todo void FiltradorInputFecha::recibirNavegacionSeleccionada(const Glib::ustring& , const Glib::ustring& )" << std::endl;
 
 }

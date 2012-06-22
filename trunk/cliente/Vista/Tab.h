@@ -39,8 +39,6 @@ class Tab : public Gtk::VBox {
 
         void difundirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);
-        void recibirNavegacionSeleccionada(const Glib::ustring& input,
-                                            const Glib::ustring& valor);
 
         bool disponibleParaActualizacion();
 

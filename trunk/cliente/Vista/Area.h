@@ -5,9 +5,7 @@
 #include <glibmm/ustring.h>
 #include "Hecho.h"
 
-#ifndef MAX_VALORES
-#define MAX_VALORES 9
-#endif
+#define MAX_VALORES 15
 
 #define DEFAULT_LINE_WIDTH  0.01
 #define SELEC_LINE_WIDTH    1.5*DEFAULT_LINE_WIDTH

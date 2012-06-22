@@ -1,12 +1,12 @@
 #include "Barra.h"
 
 #define SEP_TECHO 0.1
-
+#include <iostream>
 Barra::Barra(const Hecho& dato, double maximo, unsigned i,
              double separacion, double _ancho) : Area(dato, maximo, i) {
     sep = separacion;
     ancho = _ancho;
-    hasta = dato.getValor() / max - SEP_TECHO;
+    hasta = (dato.getValor() / max) * (1-SEP_TECHO);
     y0 = 1.0;
     x0 = 0.0;
 }

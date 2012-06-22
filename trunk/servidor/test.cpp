@@ -13,14 +13,14 @@
 #define RUTACONFIGSERV "servidor.conf"
 #define PUERTOCLIENTE "puerto_cliente"
 #define PUERTOAGENTE "puerto_agente"
-#define DEFAULTAGENTE 6000
-#define DEFAULTCLIENTE 5000
+#define DEFAULTAGENTE 6002
+#define DEFAULTCLIENTE 5002
 
-#define MAX_CLIENTES_SIMULTANEOS 1
-#define MAX_AGENTES_SIMULTANEOS 1
+#define MAX_CLIENTES_SIMULTANEOS 3
+#define MAX_AGENTES_SIMULTANEOS 10
 
-#define PUERTO_CLIENTE 5000
-#define PUERTO_AGENTE 6000
+#define PUERTO_CLIENTE 5002
+#define PUERTO_AGENTE 6002
 
 Mutex MUTEX;
 
@@ -32,7 +32,7 @@ void convertir(T& objetivo, Y& destino) {
 }
 
 std::string vendedores[] = {"Seba", "Migue", "Piba", "Chabon", "Nacho"};
-std::string sucursales[] = {"Mordor", "Varela", "Moron", "Venus", "Lomas"};
+std::string sucursales[] = {"San Julian", "San Miguel", "San Agustin", "San Nicolas", "San Remo"};
 std::string fechas[] = {"20111212", "20080909", "20081230", "20120101", "19900502" };
 std::string productos[] = {"chupetin", "notebook", "ferrari", "felicidad", "titulos de ingeniero"};
 
@@ -70,8 +70,10 @@ public:
 		sock = new Socket((Puerto)PUERTO_CLIENTE);
 		if (sock) {
 			std::string host("localhost");
-			//while (!sock->conectado())
+			for (unsigned i = 0; !sock->conectado() && i < 3; ++i) {
+				std::cout << "intento conectar por " << i << "vez" << std::endl;
 				sock->conectar(host);
+			}
 		}
 		id = ++instancias;
 	}
@@ -83,18 +85,17 @@ public:
 		Consulta c[5];
 		for (unsigned i = 0; i < 5; ++i) {
 			c[i].definirComoConsultaCliente();
-			c[i].agregarFiltro("Vendedor", vendedores[i].c_str());
 			c[i].agregarFiltro("Sucursal", sucursales[i].c_str());
 			c[i].agregarResultado(Organizacion::nombreCampo(i));
 		}
 		std::string host("localhost");
 		Respuesta r;
 		for (unsigned i = 0; i < 5; ++i) {
-			std::cout << "conectando con el servidor:" << std::endl;
+			//std::cout << "conectando con el servidor:" << std::endl;
 			assert_prueba(sock? sock->conectado(): false);
-			std::cout << "mandando dato " << i << std::endl;
+			//std::cout << "mandando dato " << i << std::endl;
 			assert_prueba(sock? sock->enviar(c[i]) : false);
-			std::cout << "esperando respuesta " << i << std::endl;
+			//std::cout << "esperando respuesta " << i << std::endl;
 			assert_prueba(sock? sock->recibir(r) : false);
 			imprimirRespuesta(r);
 		}
@@ -116,8 +117,7 @@ public:
 		sock = new Socket((Puerto)PUERTO_AGENTE);
 		if (sock) {
 			std::string host("localhost");
-		//	while (!sock->conectado())
-				sock->conectar(host);
+			sock->conectar(host);
 		}
 		id = ++instancias;
 	}
@@ -274,18 +274,18 @@ void pruebaClientesMultiples() {
 
 int main(int argc, char **argv) {
 	inicializar();
-	Servidor servidor((Puerto)PUERTO_CLIENTE, (Puerto)PUERTO_AGENTE);
+//	Servidor servidor((Puerto)PUERTO_CLIENTE, (Puerto)PUERTO_AGENTE);
 
 	//generarRegistros(servidor.baseDeDatos(), 1000);
 
 	cout << "===================================================" << endl;
-	pruebaAgentes();
+//	pruebaAgentes();
 	cout << "===================================================" << endl;
 //	pruebaClientes();
 	cout << "===================================================" << endl;
-	pruebaAgentesMultiples();
+//	pruebaAgentesMultiples();
 	cout << "===================================================" << endl;
-//	pruebaClientesMultiples();
+	pruebaClientesMultiples();
 	cout << "===================================================" << endl;
 //	pruebaAmbosMultiples();
 	return 0;

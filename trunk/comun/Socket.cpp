@@ -11,6 +11,8 @@
 #include "Definiciones.h"
 #include <iostream>
 // #include "common-Mensaje.h"
+#include <cstring>
+#include <cerrno>
 #define MYPRINT(c) std::cout << "SOCKET DEBUG " <<(c) << std::endl
 
 
@@ -25,7 +27,7 @@ Socket::Socket(Puerto puerto) {
     
     if (this->_fd == -1) {
         perror("Error al crear el fd de Socket.");
-        // printf(" Error: %s\n", strerror(errno));
+        printf(" Error: %s\n", strerror(errno));
     }
     
     this->_puerto = puerto;
@@ -62,7 +64,7 @@ void Socket::enlazar() {
     }
     else {
         perror("Enlace de Socket fallido. ");
-        // printf("Error: %s\n", strerror(errno));
+         printf("Error: %s\n", strerror(errno));
     }
 }
 
@@ -95,11 +97,11 @@ void Socket::conectar(const std::string& huesped) {
     he = gethostbyname(huesped.c_str());
     if (he == NULL) {
         perror("Error al obtener le Host. ");
-       // printf("Error: %s \n", strerror(errno));
+        printf("Error: %s \n", strerror(errno));
         _conectado = true;
         return;
     }
-    else {
+//    else {
 //    	this->_timeout.tv_sec = 100;
 //    	this->_timeout.tv_usec = 0;
 //
@@ -107,7 +109,7 @@ void Socket::conectar(const std::string& huesped) {
 //    		desconectar();
 //    		return;
 //    	}
-    }
+//   }
         
     _direccion.sin_family = AF_INET; 
     _direccion.sin_port = htons(_puerto); 
@@ -121,7 +123,7 @@ void Socket::conectar(const std::string& huesped) {
     
     if (resConexion == -1) {
         perror("Error al conectar. ");
-        // printf(" Error: %s\n", strerror(errno));
+         printf(" Error: %s\n", strerror(errno));
         _conectado = false;
         return;
     }
@@ -141,7 +143,7 @@ void Socket::desconectar() {
 
 bool Socket::enviar(const Mensaje& mensaje) {
 	std::string s_datos = mensaje.serializar();
-	// std::cout << "Socket--Datos a enviar: \"" << s_datos <<"\"" <<std::endl;
+	std::cout << "Socket--Datos a enviar: \"" << s_datos <<"\"" <<std::endl;
 
     const char* datos = s_datos.c_str(); // consulta.datos();
     size_t tam_datos = s_datos.size(); // consulta.tamanio();
@@ -152,9 +154,10 @@ bool Socket::enviar(const Mensaje& mensaje) {
                 datos + cant_enviada, 
                 (tam_datos - cant_enviada), 
                 0);
+      //  std::cout << "cantidad enviada = " << cant_enviada << std::endl;
     }
 
-   // std::cout << "Socket--TODOS LOS DATOS ENVIADOS******" << std::endl;
+    std::cout << "Socket--TODOS LOS DATOS ENVIADOS******" << std::endl;
 
     return _conectado;
 }
@@ -165,7 +168,7 @@ bool Socket::recibir(Mensaje& mensaje) {
 	datos.clear();
 	bool ok = recibirDatos(datos);
 
-	//( std::cout << "Socket---Datos que llegaron: \"" << datos << "\"" << std::endl;
+	std::cout << "Socket---Datos que llegaron: \"" << datos << "\"" << std::endl;
 
 	if (ok) {
 		mensaje.deserializar(datos);
@@ -176,9 +179,9 @@ bool Socket::recibir(Mensaje& mensaje) {
 }
 
 bool Socket::recibirDatos(std::string& datos){
-	std::string aux;
+//	std::string aux;
 
-	size_t recibidos = 0;
+	int recibidos = 0;
 	bool finDeMensaje = false;
 	char buff;
 	datos.clear();
@@ -186,12 +189,12 @@ bool Socket::recibirDatos(std::string& datos){
 	while (finDeMensaje == false && _conectado) {
 		//recibidos = recv(_fd, _buffer,sizeof(char)*TAM_BUFFER, 0);
 		recibidos = recv(_fd, &buff,sizeof(char), 0);
-		if (recibidos == (size_t)(-1)) {
+		if (recibidos < 0) {
 			perror("Error al recibir. ");
-			// printf("Error: %s\n", strerror(errno));
+			printf("Error: %s\n", strerror(errno));
 			_conectado = false;
 		} else if (recibidos > 0) {
-			aux.clear();
+			//aux.clear();
 			//aux.append(_buffer, recibidos);
 
 		//	MYPRINT(recibidos);
@@ -199,12 +202,12 @@ bool Socket::recibirDatos(std::string& datos){
 
 			finDeMensaje = (buff == sep_fin);
 
-		} else if (recibidos == 0) {
-			_conectado = false;
-		}
-		// std::cout << "Socket-Tanda de datos recibidas..." << std::endl;
+		} //else if (recibidos == 0) {
+		//	_conectado = false;
+	//	}
+	//	std::cout << "Socket-Tanda de datos recibidas..." << std::endl;
 	}
-
+	std::cout << "Socket- Recibido "<< datos << std::endl;
 	return _conectado;
 }
 

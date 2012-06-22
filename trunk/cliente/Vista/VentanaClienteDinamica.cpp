@@ -43,7 +43,7 @@ void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
 }
 
 void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
-    std::cout << "cancelar consultas de la tab activa" << std::endl;
+    std::cout << "cancelar consultas de la tab activa (@todo)" << std::endl;
 
 }
 
@@ -58,7 +58,10 @@ void VentanaClienteDinamica::agregarData(Tab* t, unsigned i) {
     std::map< unsigned, Consultante* > filtrosTab = t->getConsultantesFiltros();
     filtros.insert(filtrosTab.begin(), filtrosTab.end());
 
-    // Tab
+    // Set padre
+    t->setPadre(this);
+
+    // vector< Tab* >
     tabs.push_back(t);
 }
 

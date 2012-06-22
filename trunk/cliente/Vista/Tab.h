@@ -12,6 +12,7 @@ class Consultante;
 class Respuesta;
 class FiltradorInput;
 class FiltradorInputDimension;
+class VentanaClienteDinamica;
 
 class Tab : public Gtk::VBox {
     public:
@@ -41,6 +42,7 @@ class Tab : public Gtk::VBox {
 
         std::list< unsigned > getIDs();
         const std::map< unsigned, Consultante* >& getConsultantesFiltros();
+        void setPadre(VentanaClienteDinamica* padre);
     private:
         Gtk::HBox etiquetaCompuesta;
         Gtk::Label etiqueta;
@@ -55,6 +57,7 @@ class Tab : public Gtk::VBox {
         unsigned hijosActualizando;
         void correrSpinner();
         void detenerSpinner();
+        VentanaClienteDinamica* padre;
 };
 
 #endif  // TAB_H__

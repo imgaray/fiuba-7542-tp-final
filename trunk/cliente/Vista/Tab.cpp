@@ -54,7 +54,7 @@ void Tab::hacerConsulta(ServidorRemoto& server) {
 }
 
 void Tab::cancelarConsulta(ServidorRemoto& server) {
-    std::cout << "Cancelando consultas..." << std::endl;
+    std::cout << "Cancelando consultas... (@todo)" << std::endl;
 }
 
 void Tab::recibirRespuesta(const Respuesta& rta) {
@@ -78,12 +78,12 @@ void Tab::agregarFiltroNavegable(FiltradorInput* f) {
 
 void Tab::difundirNavegacionSeleccionada(const Glib::ustring& input,
                                          const Glib::ustring& valor) {
-    std::cout << "Difundiendo navegación seleccionada..." << std::endl;
+    std::cout << "Difundiendo navegación seleccionada... (@todo)" << std::endl;
 }
 
 void Tab::recibirNavegacionSeleccionada(const Glib::ustring& input,
                                         const Glib::ustring& valor) {
-    std::cout << "Recibiendo navegación seleccionada..." << std::endl;
+    std::cout << "Recibiendo navegación seleccionada... (@todo)" << std::endl;
 }
 
 std::list< unsigned > Tab::getIDs() {
@@ -108,3 +108,6 @@ void Tab::detenerSpinner() {
     spinner.hide();
 }
 
+void Tab::setPadre(VentanaClienteDinamica* _padre) {
+    padre = _padre;
+}

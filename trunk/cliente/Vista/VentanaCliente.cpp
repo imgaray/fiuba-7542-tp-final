@@ -138,7 +138,7 @@ void VentanaCliente::on_detenerActualizar_button_clicked() {
 }
 
 void VentanaCliente::on_exportarPDF_button_clicked() {
-    std::cout << BOTON_EXPORTAR_PDF " clicked." << std::endl;
+    std::cout << BOTON_EXPORTAR_PDF " clicked. (@todo)" << std::endl;
 }
 
 void VentanaCliente::on_configurar_button_clicked() {

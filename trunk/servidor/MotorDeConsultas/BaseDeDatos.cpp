@@ -457,7 +457,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 	if (huboFiltrado) {
 
 		if (listaReg.size() == 0) {
-			respuesta = Respuesta(Respuesta::respuestaVacia);
+			respuesta.mensajeInterno(Respuesta::respuestaVacia);
     std::cout << "cantidad de columnas con que quedó la respuesta: " << respuesta.cantidadColumnas() << std::endl;
 		}
 		else if (hayDimEnResultados) {

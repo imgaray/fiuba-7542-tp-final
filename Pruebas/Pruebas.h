@@ -19,6 +19,7 @@ void testAgregacion();
 void testGeneradorRegistros();
 
 void testValidadorConsulta();
+void testValidadorEntrada();
 
 void testBaseDeDatos();
 

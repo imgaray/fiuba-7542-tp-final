@@ -946,3 +946,21 @@ void BaseDeDatos::__guardarRegistros(const Consulta& cons, Respuesta& resp) {
 		resp.filaCompletada();
 	}
 }
+
+void BaseDeDatos::imprimirRegistro(Id_Registro id) {
+	if (id >= _archDatos.cantidadRegistros()) {
+		std::cout << "REGISTRO NO EXISTE PARA ID: " << id << std::endl;
+		return;
+	}
+
+	std::string reg = _archDatos.obtenerRegistro(id);
+
+	for (unsigned i = 0; i < Organizacion::cantidadCampos() ; i++) {
+		std::cout.width(15);
+		std::cout << Organizacion::nombreCampo(i) << ": ";
+		std::cout.width(15);
+		std::cout << u.separar(reg,sep_campos,i);
+		std::cout << "||";
+	}
+	std::cout << std::endl;
+}

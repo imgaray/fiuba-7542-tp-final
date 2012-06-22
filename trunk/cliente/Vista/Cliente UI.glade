@@ -259,7 +259,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="BotonCancelar">
+              <object class="GtkButton" id="BotonCancelarAutentif">
                 <property name="label" translatable="yes">Cancelar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -282,27 +282,25 @@
     </child>
     <action-widgets>
       <action-widget response="0">BotonAceptar</action-widget>
-      <action-widget response="0">BotonCancelar</action-widget>
+      <action-widget response="0">BotonCancelarAutentif</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkDialog" id="ConfiguracionAdmin">
-    <property name="border_width">5</property>
+  <object class="GtkWindow" id="ConfiguracionAdmin">
     <property name="type">popup</property>
     <property name="modal">True</property>
-    <property name="type_hint">normal</property>
+    <property name="window_position">center-always</property>
     <property name="transient_for">VentanaCliente</property>
-    <property name="has_separator">False</property>
-    <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox1">
+    <child>
+      <object class="GtkVBox" id="vbox6">
         <property name="visible">True</property>
         <property name="spacing">2</property>
         <child>
-          <object class="GtkNotebook" id="notebook1">
+          <object class="GtkNotebook" id="notebook2">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="extension_events">cursor</property>
             <child>
-              <object class="GtkVBox" id="vbox5">
+              <object class="GtkVBox" id="vbox7">
                 <property name="visible">True</property>
                 <child>
                   <placeholder/>
@@ -313,7 +311,7 @@
               </object>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="Conexion">
+              <object class="GtkLabel" id="Conexion1">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Conexi&#xF3;n</property>
               </object>
@@ -322,13 +320,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox3">
+              <object class="GtkVBox" id="vbox8">
                 <property name="visible">True</property>
                 <child>
-                  <object class="GtkHBox" id="hbox2">
+                  <object class="GtkHBox" id="hbox3">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkLabel" id="label2">
+                      <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Cantidad de pesta&#xF1;as: </property>
                       </object>
@@ -337,7 +335,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entry2">
+                      <object class="GtkEntry" id="entry1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>
@@ -356,15 +354,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTable" id="table1">
+                  <object class="GtkTable" id="table2">
                     <property name="visible">True</property>
                     <property name="n_rows">2</property>
                     <property name="n_columns">2</property>
                     <child>
-                      <object class="GtkVBox" id="vbox4">
+                      <object class="GtkVBox" id="vbox9">
                         <property name="visible">True</property>
                         <child>
-                          <object class="GtkLabel" id="label3">
+                          <object class="GtkLabel" id="label6">
                             <property name="visible">True</property>
                             <property name="label" translatable="yes">Vista previa</property>
                           </object>
@@ -374,7 +372,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkDrawingArea" id="drawingarea1">
+                          <object class="GtkDrawingArea" id="drawingarea2">
                             <property name="visible">True</property>
                           </object>
                           <packing>
@@ -405,7 +403,7 @@
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="label4">
+              <object class="GtkLabel" id="label7">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Consultas</property>
               </object>
@@ -422,15 +420,16 @@
             </child>
           </object>
           <packing>
-            <property name="position">1</property>
+            <property name="position">0</property>
           </packing>
         </child>
-        <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area1">
+        <child>
+          <object class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
+            <property name="spacing">11</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button3">
+              <object class="GtkButton" id="BotonAplicarConfig">
                 <property name="label" translatable="yes">Aplicar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -443,7 +442,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button4">
+              <object class="GtkButton" id="BotonCancelarConfig">
                 <property name="label" translatable="yes">Cancelar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -458,15 +457,12 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
+            <property name="fill">False</property>
+            <property name="padding">8</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
     </child>
-    <action-widgets>
-      <action-widget response="0">button3</action-widget>
-      <action-widget response="0">button4</action-widget>
-    </action-widgets>
   </object>
 </interface>

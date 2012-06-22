@@ -9,6 +9,7 @@
 #include <iostream>
 #include <gtkmm/main.h>
 #include "VentanaCliente.h"
+#include "ExcepcionArchivoGladeCorrupto.h"
 
 #define UI_ESTATICA "Vista/Cliente UI.glade"
 #define UI_DINAMICA "ventanaPersonalizada.xml"
@@ -24,11 +25,7 @@ Cliente::~Cliente() {
 }
 
 void Cliente::run() {
-    if (pVentana)
-        Gtk::Main::run(*pVentana);
-    else
-        std::cerr << "Gtk::Builder::get_derived_widget(...) error"
-                  << std::endl;
+    Gtk::Main::run(*pVentana);
 }
 
 void Cliente::initGtk(int argc, char* argv[]) {
@@ -53,5 +50,7 @@ void Cliente::initGtk(int argc, char* argv[]) {
     if (pVentana) {
         pVentana->personalizar(UI_DINAMICA);
         pVentana->show_all();
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(VENTANA_CLIENTE);
+
 }

@@ -6,7 +6,7 @@
 #include <gtkmm/messagedialog.h>
 #include "VentanaClienteDinamica.h"
 #include "DialogoAutentif.h"
-//#include "VentanaAdminConfiguracion.h"
+#include "VentanaAdminConfiguracion.h"
 #include "ExcepcionConsultanteNoExiste.h"
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "Consultante.h"
@@ -15,6 +15,7 @@
 
 #define V_DINAMICA "VentanaDinamica"
 #define AUTENTIF_ADMIN "AutentificacionAdmin"
+#define CONFIG_ADMIN "ConfiguracionAdmin"
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
 #define BOTON_DETENER_ACTUALIZAR "HerramientaDetenerActualizar"
 #define BOTON_EXPORTAR_PDF "HerramientaExportarPDF"
@@ -26,17 +27,21 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
 : Gtk::Window(cobject), builder(_builder) {
     srand(time(NULL));
-    Gtk::ToolButton* pAux;
 
     builder->get_widget_derived(V_DINAMICA, pVDinamica);
     if (!pVDinamica)
         throw ExcepcionArchivoGladeCorrupto(V_DINAMICA);
 
     builder->get_widget_derived(AUTENTIF_ADMIN, pDAutentifAdmin);
-    if (!pVDinamica)
-        throw ExcepcionArchivoGladeCorrupto(V_DINAMICA);
+    if (!pDAutentifAdmin)
+        throw ExcepcionArchivoGladeCorrupto(AUTENTIF_ADMIN);
+
+    builder->get_widget_derived(CONFIG_ADMIN, pVAdminConfig);
+    if (!pVAdminConfig)
+        throw ExcepcionArchivoGladeCorrupto(CONFIG_ADMIN);
 
 
+    Gtk::ToolButton* pAux;
     builder->get_widget(BOTON_CONECTAR, pAux);
     if (pAux) {
         botones[BOTON_CONECTAR] = pAux;
@@ -140,7 +145,7 @@ void VentanaCliente::on_configurar_button_clicked() {
     std::cout << BOTON_CONFIGURAR " clicked." << std::endl;
     if (pDAutentifAdmin->run() == Gtk::RESPONSE_OK) {
         pDAutentifAdmin->hide();
-        // abrir la ventana de config
+        pVAdminConfig->show();
     } else
         pDAutentifAdmin->hide();
 }

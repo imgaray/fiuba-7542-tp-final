@@ -303,7 +303,7 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 		std::string filtro = consulta.filtro(j);
 		std::string valor = consulta.valorFiltro(j);
 
-		int indice = Organizacion::indiceDeCampo(filtro);
+		int indice = Organizacion::indiceDeCampoSimple(filtro);
 
 		if (Organizacion::esDimensionEspecial(filtro)) {
 			_indFechas.recuperar(valor, listaAux1);
@@ -350,7 +350,7 @@ void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
 		std::string entrada = consulta.entrada(j);
 		std::string valor = consulta.valorEntrada(j);
 
-		int indice = Organizacion::indiceDeCampo(entrada);
+		int indice = Organizacion::indiceDeCampoSimple(entrada);
 
 		if (Organizacion::esDimensionEspecial(entrada)) {
 			_indFechas.recuperar(valor, listaAux1);

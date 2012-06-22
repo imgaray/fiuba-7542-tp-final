@@ -26,7 +26,6 @@ private:
 	ConsumerConsulta cconsulta;
 	Socket* sock;
 	std::string sdireccion;
-	bool _conectado;
 
 public:
 

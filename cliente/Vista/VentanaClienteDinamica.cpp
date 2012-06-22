@@ -40,7 +40,8 @@ void VentanaClienteDinamica::hacerConsultaInicial(ServidorRemoto& server) {
 }
 
 void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
-    std::cout << "cancelar consultas de la tab activa (@todo)" << std::endl;
+    std::cout << "Tab: " << get_current_page() << ". ";
+    tabs[get_current_page()]->cancelarConsulta(server);
 
 }
 

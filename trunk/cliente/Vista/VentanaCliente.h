@@ -23,6 +23,7 @@ class VentanaCliente : public Gtk::Window {
         VentanaAdminConfiguracion* pVAdminConfig;
         std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
+
         void on_conectar_button_clicked();
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();

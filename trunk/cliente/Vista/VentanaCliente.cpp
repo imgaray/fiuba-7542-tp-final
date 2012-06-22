@@ -5,12 +5,16 @@
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
 #include "VentanaClienteDinamica.h"
+#include "DialogoAutentif.h"
+//#include "VentanaAdminConfiguracion.h"
 #include "ExcepcionConsultanteNoExiste.h"
+#include "ExcepcionArchivoGladeCorrupto.h"
 #include "Consultante.h"
 
 #define TIMEOUT 10000
 
 #define V_DINAMICA "VentanaDinamica"
+#define AUTENTIF_ADMIN "AutentificacionAdmin"
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
 #define BOTON_DETENER_ACTUALIZAR "HerramientaDetenerActualizar"
 #define BOTON_EXPORTAR_PDF "HerramientaExportarPDF"
@@ -19,58 +23,68 @@
 #define BOTON_CONECTAR "HerramientaConectar"
 
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
-    const Glib::RefPtr< Gtk::Builder >& _builder)
-    : Gtk::Window(cobject), builder(_builder) {
+            const Glib::RefPtr< Gtk::Builder >& _builder)
+: Gtk::Window(cobject), builder(_builder) {
     srand(time(NULL));
     Gtk::ToolButton* pAux;
 
     builder->get_widget_derived(V_DINAMICA, pVDinamica);
-    if (!pVDinamica) {
-        std::cout << "Se rompió algo" << std::endl;
-        return;
-    }
+    if (!pVDinamica)
+        throw ExcepcionArchivoGladeCorrupto(V_DINAMICA);
+
+    builder->get_widget_derived(AUTENTIF_ADMIN, pDAutentifAdmin);
+    if (!pVDinamica)
+        throw ExcepcionArchivoGladeCorrupto(V_DINAMICA);
+
 
     builder->get_widget(BOTON_CONECTAR, pAux);
     if (pAux) {
         botones[BOTON_CONECTAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_conectar_button_clicked));
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(BOTON_CONECTAR);
 
     builder->get_widget(BOTON_ACTUALIZAR, pAux);
     if (pAux) {
         botones[BOTON_ACTUALIZAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_actualizar_button_clicked));
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(BOTON_ACTUALIZAR);
 
     builder->get_widget(BOTON_DETENER_ACTUALIZAR, pAux);
     if (pAux) {
         botones[BOTON_DETENER_ACTUALIZAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_detenerActualizar_button_clicked));
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(BOTON_DETENER_ACTUALIZAR);
 
     builder->get_widget(BOTON_EXPORTAR_PDF, pAux);
     if (pAux) {
         botones[BOTON_EXPORTAR_PDF] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_exportarPDF_button_clicked));
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(BOTON_EXPORTAR_PDF);
 
     builder->get_widget(BOTON_CONFIGURAR, pAux);
     if (pAux) {
         botones[BOTON_CONFIGURAR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_configurar_button_clicked));
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(BOTON_CONFIGURAR);
 
     builder->get_widget(BOTON_SALIR, pAux);
     if (pAux) {
         botones[BOTON_SALIR] = pAux;
         pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_salir_button_clicked));
-    }
+    } else
+        throw ExcepcionArchivoGladeCorrupto(BOTON_SALIR);
+
 terminoConLosFiltros = false;
 }
 
@@ -124,6 +138,11 @@ void VentanaCliente::on_exportarPDF_button_clicked() {
 
 void VentanaCliente::on_configurar_button_clicked() {
     std::cout << BOTON_CONFIGURAR " clicked." << std::endl;
+    if (pDAutentifAdmin->run() == Gtk::RESPONSE_OK) {
+        pDAutentifAdmin->hide();
+        // abrir la ventana de config
+    } else
+        pDAutentifAdmin->hide();
 }
 
 void VentanaCliente::on_salir_button_clicked() {

@@ -161,6 +161,8 @@ public:
 
 	void cargarIndices();
 
+	void imprimirRegistro(Id_Registro id);
+
 private:
 
 	Lista_Id _interseccion; // no puedo tenerla tengo que hacer instancias

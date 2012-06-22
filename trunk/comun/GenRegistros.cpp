@@ -80,7 +80,7 @@ void generarRegistros(BaseDeDatos& bdd, long cantReg) {
 
 		}
 		Respuesta res = bdd.agregarEntrada(ca);
-		std::cout << res.mensajeInterno();
+		//std::cout << res.mensajeInterno();
 
 /*
 		std::cout << "RegNuevo: ";

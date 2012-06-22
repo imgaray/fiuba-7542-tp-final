@@ -2458,3 +2458,45 @@ void testIndFechas() {
 
 	cout << "FIN DE TEST DE IndiceDeFechas." << endl;
 }
+
+#include "../servidor/servidor/VerificadorEntradasH.h"
+
+void testValidadorEntrada() {
+	cout << "====================================" << endl;
+	cout << "Inicia test para validador Entrada" << endl;
+
+int errores = 0;
+	VerificadorEntradasH verif;
+
+	Consulta c;
+	Organizacion::cargarDefiniciones("Fuente/modelo.config");
+
+	c.definirComoConsultaAgente();
+
+	c.agregarCampo("SucursalX");
+	c.agregarCampo("VendedorX");
+	c.agregarCampo("FechaX");
+	c.agregarCampo("MarcaX");
+	c.agregarCampo("ProductoX");
+
+	c.agregarCampo("PrecioListaX");
+	c.agregarCampo("PrecioVentaX");
+
+
+	if (verif.verificarEntrada(c) == false) {
+		cout << "Error en entrada correcta" << endl;
+		errores++;
+	}
+
+
+	if (errores == 0) {
+		cout << "Test sin Errores++"<< endl;
+	}
+	else {
+		cout << "Test con Errores: "<< errores << endl;
+		exit(0);
+	}
+
+	cout << "Fin De Test para Verificador Entrada" << endl;
+
+}

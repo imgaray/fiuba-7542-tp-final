@@ -10,7 +10,7 @@
 
 #define TIMEOUT 10000
 
-#define NOTEBOOK "Notebook"
+#define V_DINAMICA "VentanaDinamica"
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
 #define BOTON_DETENER_ACTUALIZAR "HerramientaDetenerActualizar"
 #define BOTON_EXPORTAR_PDF "HerramientaExportarPDF"
@@ -24,7 +24,7 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     srand(time(NULL));
     Gtk::ToolButton* pAux;
 
-    builder->get_widget_derived(NOTEBOOK, pVDinamica);
+    builder->get_widget_derived(V_DINAMICA, pVDinamica);
     if (!pVDinamica) {
         std::cout << "Se rompió algo" << std::endl;
         return;

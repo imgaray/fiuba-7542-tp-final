@@ -7,6 +7,8 @@
 #include "../Modelo/ServidorRemoto.h"
 
 class VentanaClienteDinamica;
+class DialogoAutentif;
+class VentanaAdminConfiguracion;
 
 class VentanaCliente : public Gtk::Window {
     public:
@@ -17,6 +19,8 @@ class VentanaCliente : public Gtk::Window {
     private:
         Glib::RefPtr< Gtk::Builder > builder;
         VentanaClienteDinamica* pVDinamica;
+        DialogoAutentif* pDAutentifAdmin;
+        VentanaAdminConfiguracion* pVAdminConfig;
         std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
         void on_conectar_button_clicked();

@@ -46,20 +46,30 @@ bool VerificadorConsultasH::cClienteValida(const Consulta& cons) {
 	bool _hayDimEnRes = hayDimesionesEnRes(cons);
 	bool _hayHechosEnRes = hayHechosEnRes(cons);
 
-	if (hayCamposNulos(cons))
+	if (hayCamposNulos(cons)){
+		std::cout << "Hay campos Nulos" << std::endl;
 		return false;
+	}
 
-	if (!filtrosCorrectos(cons))
+	if (!filtrosCorrectos(cons)) {
+		std::cout << "No hay Filtros Correctos" << std::endl;
 		return false;
+	}
 
-	if (!entradasCorrectos(cons))
+	if (!entradasCorrectos(cons)){
+		std::cout << "No hay Entradas Correctos" << std::endl;
 		return false;
+	}
 
-	if (!resultadoCorrectos(cons))
+	if (!resultadoCorrectos(cons)){
+		std::cout << "No hay Resultados Correctos" << std::endl;
 		return false;
+	}
 
-	if ((_hayDimEnRes && _hayHechosEnRes) && !_hayAgreEnHechos)
+	if ((_hayDimEnRes && _hayHechosEnRes) && !_hayAgreEnHechos){
+		std::cout << "Hay dim y hechos en resultados y no hay agregaciones para los hechos" << std::endl;
 		return false;
+	}
 
 	return true;
 }

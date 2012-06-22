@@ -129,6 +129,7 @@ void VentanaCliente::on_conectar_button_clicked() {
                                   Gtk::MESSAGE_ERROR,
                                   Gtk::BUTTONS_OK,
                                   true);
+        dialog.set_title("Error al conectar");
         dialog.run();
     }
 }

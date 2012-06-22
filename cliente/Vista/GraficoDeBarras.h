@@ -3,10 +3,6 @@
 
 #include "Grafico.h"
 
-#ifndef MAX_VALORES
-#define MAX_VALORES 9
-#endif
-
 class GraficoDeBarras : public Grafico {
     public:
         GraficoDeBarras(FiltradoresPanel& f);

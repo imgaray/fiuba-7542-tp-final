@@ -11,11 +11,6 @@ GraficoDeBarras::GraficoDeBarras(FiltradoresPanel& _f) : Grafico(_f) {
     offset = INIT_OFFSET;
     separacion = SEPARACION_BASE/MIN_SIZE;
     ancho = ANCHO_BASE/MIN_SIZE;
-//    Hecho juan("Galaxy SII", 10.13);
-//    Hecho carlos("iPad", 7.5);
-//    areas.push_back(new Barra(juan, 10.13, 0, separacion, ancho));
-//    areas.push_back(new Barra(carlos, 10.13, 1, separacion, ancho));
-//    regenerarReferencias();
 }
 
 GraficoDeBarras::~GraficoDeBarras() {}
@@ -57,7 +52,7 @@ void GraficoDeBarras::dibujarEspecializacion(GdkEventExpose* ev,
 
 void GraficoDeBarras::dibujarEspecializacionReferencias(
         Cairo::RefPtr< Cairo::Context >& ctx) {
-    ctx->move_to(SEPARACION_BASE+ANCHO_BASE+0.05, 0.1);
+    ctx->move_to(SEPARACION_BASE+ANCHO_BASE+0.1, 0.1);
 }
 
 double GraficoDeBarras::getOffset() {

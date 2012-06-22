@@ -50,6 +50,10 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
+        double furthest_p;
+        void resize();
+
+        /** modelo */
         FiltradoresPanel& f;
         void procesarRespuesta(const Respuesta& rta);
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;

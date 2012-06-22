@@ -23,6 +23,7 @@ void ClienteRemoto::correr() {
 }
 
 void ClienteRemoto::enviarRespuesta(Respuesta& r) {
+    Lock l(m);
 	if (cliente && cliente->conectado()) {
 	    std::cout << "CLIENTE REMOTO:Antes de enviar la respuesta, serialización: " << r.serializar() << std::endl;
 		if (!cliente->enviar(r)) {

@@ -62,6 +62,8 @@ void Personalizador::construir() {
     while (fTab1->tieneFiltrosNavegables())
         pTab1->agregarFiltroNavegable(fTab1->getFiltroNavegable());
 
+    pTab1->informarFinCreacion();
+
     tabs.push_back(pTab1);
 
 
@@ -77,6 +79,8 @@ void Personalizador::construir() {
     hijos.push_back(fTab2);
 
     pTab2->pack_start(*fTab2, false, false);
+
+    pTab2->informarFinCreacion();
 
     tabs.push_back(pTab2);
 
@@ -117,6 +121,7 @@ void Personalizador::construir() {
     pTab3->pack_start(*sep3, false, false);
     pTab3->pack_start(*pTable3, true, true);
 
+    pTab3->informarFinCreacion();
 
     tabs.push_back(pTab3);
 

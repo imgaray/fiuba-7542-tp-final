@@ -10,8 +10,8 @@ class Tab;
 class ServidorRemoto;
 class Consultante;
 
-typedef std::map < unsigned, unsigned > MapaConsultantesTab;
-typedef std::pair < unsigned, unsigned > parMapaConsultasTab;
+typedef std::map < unsigned, Consultante* > MapaConsultantesTab;
+typedef std::pair < unsigned, Consultante* > parMapaConsultas;
 
 class VentanaClienteDinamica : public Gtk::Notebook {
     public:
@@ -21,20 +21,23 @@ class VentanaClienteDinamica : public Gtk::Notebook {
 
         void personalizar(const char* archivo);
 
-        void hacerConsultaFiltros(ServidorRemoto& server);
         void hacerConsulta(ServidorRemoto& server);
+        void hacerConsultaInicial(ServidorRemoto& server);
         void cancelarConsulta(ServidorRemoto& server);
 
-        bool retirarRespuestasFiltros(ServidorRemoto& server);
+        void removerConsultante(unsigned ID);
+        void agregarConsultantesTab(const MapaConsultantesTab& consultantes);
+
         void retirarRespuestas(ServidorRemoto& server);
+
+        bool disponibleParaActualizacion(guint pag);
 
     private:
         Personalizador dynBuilder;
         MapaConsultantesTab consultas;
-        std::map< unsigned, Consultante* > filtros;
         std::vector< Tab* > tabs;
 
-        void agregarData(Tab* t, unsigned i);
+        void agregarData(Tab& t);
 };
 
 #endif  // VENTANA_CLIENTE_DINAMICA_H

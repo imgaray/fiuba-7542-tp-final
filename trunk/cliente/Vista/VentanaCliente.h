@@ -24,16 +24,17 @@ class VentanaCliente : public Gtk::Window {
         std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
 
+        void on_page_switched(GtkNotebookPage* page, guint page_num);
+
         void on_conectar_button_clicked();
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();
         void on_exportarPDF_button_clicked();
         void on_configurar_button_clicked();
         void on_salir_button_clicked();
+
         bool on_timeout();
         bool on_idle();
-        /**@todo elegancia, gente, esto no puede quedar!*/
-        bool terminoConLosFiltros;
 };
 
 #endif  // VENTANA_CLIENTE_H

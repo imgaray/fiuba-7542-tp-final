@@ -36,6 +36,7 @@ void imprimirRespuesta(Respuesta& r) {
 ServidorRemoto::ServidorRemoto():
 		crespuesta(respuestas, consultantes, sock, cancelados),
 		cconsulta(consultas, respuestas, sock, cancelados) {
+    _conectado = false;
 	std::string aux = RUTACONFIGURACIONSR;
 	ArchivoConfiguracion archivo(aux.c_str());
 	aux = ATRIBPUERTO;
@@ -54,6 +55,7 @@ void ServidorRemoto::conectar() throw(char* ) {
 	}
 	cconsulta.iniciar();
 	crespuesta.iniciar();
+	_conectado = true;
 }
 
 void ServidorRemoto::enviarConsulta(Consultante* consultante,
@@ -83,6 +85,9 @@ Respuesta ServidorRemoto::obtenerRespuesta() {
 	return ret;
 }
 
+bool ServidorRemoto::conectado() {
+    return _conectado;
+}
 ServidorRemoto::~ServidorRemoto() {
 	sock->desconectar();
 	consultas.close();
@@ -92,4 +97,5 @@ ServidorRemoto::~ServidorRemoto() {
 	if (crespuesta.corriendo())
 		crespuesta.sincronizar();
 	delete sock;
+	_conectado = false;
 }

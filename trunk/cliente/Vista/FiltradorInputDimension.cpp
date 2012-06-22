@@ -33,6 +33,7 @@ void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
 
     valores.set_active(0);
     padre->removerConsultante(getID());
+    padre->informarInputDisponible();
 }
 
 void FiltradorInputDimension::filtrar(Consulta& c) {

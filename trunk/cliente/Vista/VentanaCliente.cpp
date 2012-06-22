@@ -41,6 +41,9 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
         throw ExcepcionArchivoGladeCorrupto(CONFIG_ADMIN);
 
 
+    pVDinamica->signal_switch_page().connect(sigc::mem_fun(*this,
+        &VentanaCliente::on_page_switched));
+
     Gtk::ToolButton* pAux;
     builder->get_widget(BOTON_CONECTAR, pAux);
     if (pAux) {
@@ -89,8 +92,6 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
             &VentanaCliente::on_salir_button_clicked));
     } else
         throw ExcepcionArchivoGladeCorrupto(BOTON_SALIR);
-
-terminoConLosFiltros = false;
 }
 
 VentanaCliente::~VentanaCliente() {}
@@ -99,13 +100,20 @@ void VentanaCliente::personalizar(const char* archivo) {
     pVDinamica->personalizar(archivo);
 }
 
+void VentanaCliente::on_page_switched(GtkNotebookPage* page, guint page_num) {
+    if (server.conectado()) {
+        bool actualizable = pVDinamica->disponibleParaActualizacion(page_num);
+
+        botones[BOTON_ACTUALIZAR]->set_sensitive(actualizable);
+        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(actualizable);
+    }
+}
+
 void VentanaCliente::on_conectar_button_clicked() {
     std::cout << BOTON_CONECTAR " clicked." << std::endl;
     try {
         server.conectar();
-        pVDinamica->hacerConsultaFiltros(server);
-        botones[BOTON_ACTUALIZAR]->set_sensitive();
-        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive();
+        pVDinamica->hacerConsultaInicial(server);
         botones[BOTON_EXPORTAR_PDF]->set_sensitive();
         botones[BOTON_CONECTAR]->set_sensitive(false);
 
@@ -161,10 +169,7 @@ bool VentanaCliente::on_timeout() {
 
 bool VentanaCliente::on_idle() {
 //    std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
-    if (!terminoConLosFiltros)
-        terminoConLosFiltros = pVDinamica->retirarRespuestasFiltros(server);
-    else
-        pVDinamica->retirarRespuestas(server);
+    pVDinamica->retirarRespuestas(server);
 
     return true;
 }

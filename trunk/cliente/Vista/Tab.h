@@ -28,10 +28,12 @@ class Tab : public Gtk::VBox {
 
         void hacerConsulta(ServidorRemoto& server);
         void cancelarConsulta(ServidorRemoto& server);
-        void recibirRespuesta(const Respuesta& rta);
 
         void informarConsultaIniciada();
         void informarConsultaTerminada();
+        void informarInputDisponible();
+        void informarInputNoDisponible();
+        void informarFinCreacion();
 
         void agregarFiltroNavegable(FiltradorInput* f);
 
@@ -40,8 +42,9 @@ class Tab : public Gtk::VBox {
         void recibirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);
 
-        std::list< unsigned > getIDs();
-        const std::map< unsigned, Consultante* >& getConsultantesFiltros();
+        bool disponibleParaActualizacion();
+
+        const std::map< unsigned, Consultante* >& getConsultantes();
         void setPadre(VentanaClienteDinamica* padre);
     private:
         Gtk::HBox etiquetaCompuesta;
@@ -55,9 +58,11 @@ class Tab : public Gtk::VBox {
         std::list< FiltradorInput* > filtrosNavegables;
 
         unsigned hijosActualizando;
+        unsigned inputsDisponibles;
         void correrSpinner();
         void detenerSpinner();
         VentanaClienteDinamica* padre;
+        bool puedeActualizar;
 };
 
 #endif  // TAB_H__

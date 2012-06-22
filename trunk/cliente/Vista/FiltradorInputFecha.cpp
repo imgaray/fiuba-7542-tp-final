@@ -1,5 +1,6 @@
 #include "FiltradorInputFecha.h"
 #include "Consulta.h"
+#include "Tab.h"
 
 #define MSJ_ERROR "Fecha inválida"
 #define CANT_COMBO 8
@@ -48,8 +49,18 @@ void FiltradorInputFecha::on_combo_changed() {
 
 void FiltradorInputFecha::on_entry_activated() {
     f = validar(i, entrada.get_text());
-    if (f == STR_NULA)
+    if (f == STR_NULA) {
         entrada.set_text(MSJ_ERROR);
+        if (valido) {
+            valido = false;
+            tabPadre->informarInputNoDisponible();
+        }
+    } else {
+        if (!valido) {
+            valido = true;
+            tabPadre->informarInputDisponible();
+        }
+    }
 }
 
 

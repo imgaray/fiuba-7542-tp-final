@@ -21,25 +21,22 @@ void VentanaClienteDinamica::personalizar(const char* archivo) {
         return;
     }
 
-    unsigned i = 0;
     while (dynBuilder.tieneSiguiente()) {
         Tab& t = dynBuilder.siguiente();
-        agregarData(&t, i++);
+        agregarData(t);
         append_page(t, t.getEtiqueta());
     }
 }
 
-void VentanaClienteDinamica::hacerConsultaFiltros(ServidorRemoto& server) {
-    std::cout << "Popular combobox" << std::endl;
-    std::map< unsigned, Consultante* >::iterator it = filtros.begin();
-    for ( ; it != filtros.end(); ++it)
-        it->second->hacerConsulta(server);
-}
-
 void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
-    std::cout << "Cantidad de consultantes concretos totales: " << consultas.size() << std::endl;
     std::cout << "Tab: " << get_current_page() << ". ";
     tabs[get_current_page()]->hacerConsulta(server);
+}
+
+void VentanaClienteDinamica::hacerConsultaInicial(ServidorRemoto& server) {
+    MapaConsultantesTab::iterator it = consultas.begin();
+    for ( ; it != consultas.end(); ++it)
+        it->second->hacerConsulta(server);
 }
 
 void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
@@ -47,44 +44,28 @@ void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
 
 }
 
-void VentanaClienteDinamica::agregarData(Tab* t, unsigned i) {
-    // Mapa de consultas (par ID consulta, i-tab)
-    std::list< unsigned > idsConsultantes = t->getIDs();
-    std::list< unsigned >::iterator it = idsConsultantes.begin();
-    for ( ; it != idsConsultantes.end(); ++it)
-        consultas[*it] = i;
-
-    // Mapa de filtros con consulta
-    std::map< unsigned, Consultante* > filtrosTab = t->getConsultantesFiltros();
-    filtros.insert(filtrosTab.begin(), filtrosTab.end());
+void VentanaClienteDinamica::agregarData(Tab& t) {
+    // Mapa de consultas
+    agregarConsultantesTab(t.getConsultantes());
 
     // Set padre
-    t->setPadre(this);
+    t.setPadre(this);
 
     // vector< Tab* >
-    tabs.push_back(t);
+    tabs.push_back(&t);
 }
 
-bool VentanaClienteDinamica::retirarRespuestasFiltros(ServidorRemoto& server) {
-    bool hayRespuestas = server.cantidadRespuestas() > 0;
-    Respuesta resp;
-    std::map< unsigned, Consultante* >::iterator it;
-    bool consultanteExistente;
+void VentanaClienteDinamica::removerConsultante(unsigned ID) {
+    unsigned tt = consultas.size();
+    consultas.erase(consultas.find(ID));
+    unsigned ttNuevo = consultas.size();
+    bool consultanteInexistente = tt != ttNuevo;
+    assert(consultanteInexistente);
+}
 
-    for (int i = 0; i < CANT_MAX_RESP_PROC && hayRespuestas ; i++) {
-        resp = server.obtenerRespuesta();
-        it = filtros.find(resp.devolverID());
-        consultanteExistente = it != filtros.end();
-        assert(consultanteExistente);
-
-        it->second->recibirRespuesta(resp);
-
-        hayRespuestas = server.cantidadRespuestas() > 0;
-        /** @todo que la tab avise que debe remover sus filtros */
-        filtros.erase(it);
-    }
-
-    return filtros.size() == 0;
+void VentanaClienteDinamica::agregarConsultantesTab(
+    const MapaConsultantesTab& consultantes) {
+    consultas.insert(consultantes.begin(), consultantes.end());
 }
 
 void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
@@ -99,8 +80,12 @@ void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
         consultanteExistente = it != consultas.end();
         assert(consultanteExistente);
 
-        tabs[it->second]->recibirRespuesta(resp);
+        it->second->recibirRespuesta(resp);
 
         hayRespuestas = server.cantidadRespuestas() > 0;
     }
+}
+
+bool VentanaClienteDinamica::disponibleParaActualizacion(guint pag) {
+    return tabs[pag]->disponibleParaActualizacion();
 }

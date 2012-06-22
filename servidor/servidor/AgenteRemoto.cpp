@@ -6,6 +6,7 @@ void AgenteRemoto::detener_agente() {
 }
 
 void AgenteRemoto::enviarRespuesta(Respuesta& r) {
+    Lock l(m);
 	if (agente && agente->conectado()) {
 		if (!agente->enviar(r)) {
 			detener_agente();

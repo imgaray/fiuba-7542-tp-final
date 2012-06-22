@@ -26,6 +26,7 @@ private:
 	ConsumerConsulta cconsulta;
 	Socket* sock;
 	std::string sdireccion;
+	bool _conectado;
 
 public:
 
@@ -36,6 +37,7 @@ public:
 	unsigned cantidadRespuestas();
 	Respuesta obtenerRespuesta();
 	void cancelarConsulta(unsigned IDcons);
+	bool conectado();
 };
 
 #endif

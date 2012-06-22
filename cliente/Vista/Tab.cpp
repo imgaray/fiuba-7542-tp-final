@@ -1,5 +1,6 @@
 #include "Tab.h"
 #include "FiltradorInputDimension.h"
+#include "VentanaClienteDinamica.h"
 #include "Respuesta.h"
 #include <iostream>
 #include <cassert>
@@ -12,6 +13,7 @@ Tab::Tab(const Glib::ustring& _etiqueta): etiqueta(_etiqueta) {
 
     pConsultantesActivos = &filtrosConsultantes;
     hijosActualizando = 0;
+    puedeActualizar = false;
 }
 
 
@@ -40,16 +42,19 @@ void Tab::removerConsultante(unsigned ID) {
     bool consultanteInexistente = tt != ttNuevo;
     assert(consultanteInexistente);
 
+    padre->removerConsultante(ID);
+
     if (ttNuevo == 0) {
         std::cout << this << " no tengo más combobox para popular, cambio mi mapa de consultantes al de consultantes concretos" << std::endl;
         pConsultantesActivos = &consultantes;
+        padre->agregarConsultantesTab(*pConsultantesActivos);
     }
 }
 
 void Tab::hacerConsulta(ServidorRemoto& server) {
     std::cout << "Haciendo consultas..." << std::endl;
     std::map< unsigned, Consultante* >::iterator it;
-    for (it = consultantes.begin(); it != consultantes.end(); ++it)
+    for (it = pConsultantesActivos->begin(); it != pConsultantesActivos->end(); ++it)
         it->second->hacerConsulta(server);
 }
 
@@ -57,27 +62,50 @@ void Tab::cancelarConsulta(ServidorRemoto& server) {
     std::cout << "Cancelando consultas... (@todo)" << std::endl;
 }
 
-void Tab::recibirRespuesta(const Respuesta& rta) {
-    if (pConsultantesActivos == &filtrosConsultantes)
-        pConsultantesActivos = &consultantes;
-    std::cout << "Recibiendo respuesta id: " << rta.devolverID() << " . Pasando al consultante." << std::endl;
-    (*pConsultantesActivos)[rta.devolverID()]->recibirRespuesta(rta);
-}
-
 void Tab::informarConsultaIniciada() {
     ++hijosActualizando;
+    std::cout << this << " hijos actualizando: " << hijosActualizando << std::endl;
+    if (hijosActualizando > 0)
+        correrSpinner();
 }
 
 void Tab::informarConsultaTerminada() {
     --hijosActualizando;
+    std::cout << this << " hijos actualizando: " << hijosActualizando << std::endl;
+    if (hijosActualizando == 0)
+        detenerSpinner();
+}
+
+void Tab::informarInputDisponible() {
+    ++inputsDisponibles;
+    if (inputsDisponibles == filtrosNavegables.size())
+        puedeActualizar = true;
+}
+
+void Tab::informarInputNoDisponible() {
+    --inputsDisponibles;
+    if (inputsDisponibles < filtrosNavegables.size())
+        puedeActualizar = false;
+}
+
+void Tab::informarFinCreacion() {
+    if (filtrosNavegables.size() == 0)
+        puedeActualizar = true;
+    if (filtrosConsultantes.size() == 0)
+        pConsultantesActivos = &consultantes;
 }
 
 void Tab::agregarFiltroNavegable(FiltradorInput* f) {
     filtrosNavegables.push_back(f);
+    f->setTabPadre(this);
+}
+
+bool Tab::disponibleParaActualizacion() {
+    return puedeActualizar;
 }
 
 void Tab::difundirNavegacionSeleccionada(const Glib::ustring& input,
-                                         const Glib::ustring& valor) {
+                                            const Glib::ustring& valor) {
     std::cout << "Difundiendo navegación seleccionada... (@todo)" << std::endl;
 }
 
@@ -86,16 +114,8 @@ void Tab::recibirNavegacionSeleccionada(const Glib::ustring& input,
     std::cout << "Recibiendo navegación seleccionada... (@todo)" << std::endl;
 }
 
-std::list< unsigned > Tab::getIDs() {
-    std::list< unsigned > ids;
-    std::map< unsigned, Consultante* >::const_iterator it;
-    for (it = consultantes.begin(); it != consultantes.end(); ++it)
-        ids.push_back(it->first);
-    return ids;
-}
-
-const std::map< unsigned, Consultante* >& Tab::getConsultantesFiltros() {
-    return filtrosConsultantes;
+const std::map< unsigned, Consultante* >& Tab::getConsultantes() {
+    return *pConsultantesActivos;
 }
 
 void Tab::correrSpinner() {

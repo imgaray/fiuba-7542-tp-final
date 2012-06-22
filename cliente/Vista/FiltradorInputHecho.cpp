@@ -1,5 +1,6 @@
 #include "FiltradorInputHecho.h"
 #include "Consulta.h"
+#include "Tab.h"
 
 #define MSJ_ERROR "Sólo números"
 #define CANT_COMBO 2
@@ -47,8 +48,18 @@ void FiltradorInputHecho::on_combo_changed() {
 
 void FiltradorInputHecho::on_entry_activated() {
     valorHecho = validar(i, entrada.get_text());
-    if (valorHecho == STR_NULA)
+    if (valorHecho == STR_NULA) {
         entrada.set_text(MSJ_ERROR);
+        if (valido) {
+            valido = false;
+            tabPadre->informarInputNoDisponible();
+        }
+    } else {
+        if (!valido) {
+            valido = true;
+            tabPadre->informarInputDisponible();
+        }
+    }
 }
 
 void FiltradorInputHecho::filtrar(Consulta& c) {

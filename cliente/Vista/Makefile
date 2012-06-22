@@ -10,7 +10,7 @@ archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
 
 # EN ESTA VARIABLE SE DEFINEN TODAS LAS CARPETAS QUE TENGAN .H
 # EXTERNOS QUE ESTEN USANDO
-INCLUDES = ../../comun ../Modelo
+INCLUDES = ../../comun ../Modelo ../Excepcion
 
 I-INCLUDES = $(addprefix -I, $(INCLUDES))
 
@@ -27,7 +27,7 @@ binaries: $(bin)
 
 test: $(bin)
 	$(CC) $(CXXFLAGS) $(bin) test.cpp  -o test
-	
+
 clean:
 	rm $(robjs)
 

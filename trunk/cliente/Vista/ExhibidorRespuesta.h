@@ -24,6 +24,7 @@ public:
 
 	virtual ~ExhibidorRespuesta();
 protected:
+	FiltradoresPanel &_filtradores;
 };
 
 #endif /* EXHIBIDORRESPUESTA_H_ */

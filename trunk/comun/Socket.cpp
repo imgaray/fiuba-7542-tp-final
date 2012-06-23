@@ -156,7 +156,7 @@ bool Socket::enviar(const Mensaje& mensaje) {
                 datos + cant_enviada, 
                 (tam_datos - cant_enviada), 
                 0);
-        if (envActual < 0) {
+        if (envActual <= 0) {
 			 _conectado = false;
 		} else {
 			cant_enviada += envActual;
@@ -199,6 +199,8 @@ bool Socket::recibirDatos(std::string& datos){
 		if (recibidos < 0) {
 			perror("Error al recibir. ");
 			printf("Error: %s\n", strerror(errno));
+			_conectado = false;
+		} else if (recibidos == 0) {
 			_conectado = false;
 		} else if (recibidos > 0) {
 			//aux.clear();

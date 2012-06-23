@@ -7,7 +7,7 @@
 
 #ifndef TABLA_H_
 #define TABLA_H_
-#include <gtkmm.h>
+#include <gtkmm/treeview.h>
 #include "ExhibidorRespuesta.h"
 #include <string>
 
@@ -16,16 +16,16 @@ class Tabla : public ExhibidorRespuesta, public Gtk::TreeView {
 public:
 	Tabla(FiltradoresPanel& filtradores);
 	virtual void actualizarTamanioMinimo(double x, double y) {
-		// @parahacer Completar este metodo SEBAAAAAAAAAA!!!!!!
+		// @todo Completar este metodo SEBAAAAAAAAAA!!!!!!
 	}
 
 	virtual ~Tabla();
 
 protected:
 
-	virtual void procesarRespuesta(const Respuesta& rta);
+	virtual void procesarRespuesta(const Respuesta& rta) = 0;
 
-	class ColumnasModelo : public Gtk::TreeModel::ColumnRecord {
+	class ColumnasModelo : public Gtk::TreeModelColumnRecord {
 	public:
 		ColumnasModelo(int cantidadColumnas){
 			_columnas = NULL;

@@ -23,12 +23,12 @@ void TablaComun::procesarRespuesta(const Respuesta& rta) {
 
 	_colModelo = new ColumnasModelo(rta.cantidadColumnas());
 
-	 _refTreeModel = Gtk::ListStore::create(_colModelo);
+	 _refTreeModel = Gtk::ListStore::create(*_colModelo);
 	 this->set_model(_refTreeModel);
 
 
-	 for (int i = 0; i < rta.cantidadFilas() ; i++) {
-		 agregarFila(i, resp);
+	 for (unsigned i = 0; i < rta.cantidadFilas() ; i++) {
+		 agregarFila(i, rta);
 	 }
 
 	agregarColumnas();
@@ -37,7 +37,7 @@ void TablaComun::procesarRespuesta(const Respuesta& rta) {
 void TablaComun::agregarFila(int numFila, const Respuesta& resp) {
 	 Gtk::TreeModel::Row filaNueva = *(_refTreeModel->append());
 
-	 for (int i = 0; i < resp.cantidadColumnas() ; i++) {
+	 for (unsigned i = 0; i < resp.cantidadColumnas() ; i++) {
 		 filaNueva[_colModelo->_columnas[i]] = resp.dato(numFila, i);
 	 }
 }

@@ -13,3 +13,7 @@ FiltradorInput::~FiltradorInput() {}
 void FiltradorInput::setTabPadre(Tab* padre) {
     tabPadre = padre;
 }
+
+sigc::signal< void > FiltradorInput::signal_navegabilidad() {
+    return signal_navegabilidad_seleccionada;
+}

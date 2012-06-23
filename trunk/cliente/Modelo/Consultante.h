@@ -23,6 +23,7 @@ class Consultante {
 
         void setSpinner(Gtk::Spinner* s);
         void setPadre(Tab* padre);
+        void on_navegabilidad_seleccionada();
     protected:
         Consulta consulta;
         virtual void procesarRespuesta(const Respuesta& rta) = 0;

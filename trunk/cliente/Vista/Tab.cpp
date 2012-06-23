@@ -66,6 +66,10 @@ void Tab::cancelarConsulta(ServidorRemoto& server) {
         it->second->cancelarConsulta(server);
 }
 
+void Tab::actualizarConsulta(Consultante* c) {
+    padre->actualizarConsulta(c);
+}
+
 void Tab::informarConsultaIniciada() {
     ++hijosActualizando;
     std::cout << this << " hijos actualizando: " << hijosActualizando << std::endl;
@@ -84,16 +88,20 @@ void Tab::informarInputDisponible() {
     ++inputsDisponibles;
     std::cout << this << " inputs disponibles: " << inputsDisponibles
                       << " inputs totales: " << filtrosNavegables.size() << std::endl;
-    if (inputsDisponibles == filtrosNavegables.size())
+    if (inputsDisponibles == filtrosNavegables.size()) {
         puedeActualizar = true;
+        padre->refresh();
+    }
 }
 
 void Tab::informarInputNoDisponible() {
     --inputsDisponibles;
     std::cout << this << " inputs disponibles: " << inputsDisponibles
                       << " inputs totales: " << filtrosNavegables.size() << std::endl;
-    if (inputsDisponibles < filtrosNavegables.size())
+    if (inputsDisponibles < filtrosNavegables.size()) {
         puedeActualizar = false;
+        padre->refresh();
+    }
 }
 
 void Tab::informarFinCreacion() {

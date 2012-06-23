@@ -11,6 +11,8 @@
 #define SIN_DATOS "No hay resultados para mostrar"
 
 Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
+    f.signal_navegabilidad().connect(sigc::mem_fun(*this,
+        &Consultante::on_navegabilidad_seleccionada));
     add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
     set_size_request(MIN_LADO, MIN_LADO);
     setSpinner(&s);

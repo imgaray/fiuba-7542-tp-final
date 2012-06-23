@@ -59,6 +59,9 @@ unsigned Consultante::getID() const {
     return ID;
 }
 
+void Consultante::on_navegabilidad_seleccionada() {
+    padre->actualizarConsulta(this);
+}
 
 void Consultante::setSpinner(Gtk::Spinner* s) {
     spinner = s;

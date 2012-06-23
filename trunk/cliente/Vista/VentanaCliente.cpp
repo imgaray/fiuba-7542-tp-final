@@ -43,6 +43,8 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
 
     pVDinamica->signal_switch_page().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_page_switched));
+    pVDinamica->signal_actualizacion().connect(sigc::mem_fun(*this,
+        &VentanaCliente::on_actualizacion_solicitada));
 
     Gtk::ToolButton* pAux;
     builder->get_widget(BOTON_CONECTAR, pAux);
@@ -101,12 +103,18 @@ void VentanaCliente::personalizar(const char* archivo) {
 }
 
 void VentanaCliente::on_page_switched(GtkNotebookPage* page, guint page_num) {
+    std::cout << "Notebook page switched" << std::endl;
     if (server.conectado()) {
         bool actualizable = pVDinamica->disponibleParaActualizacion(page_num);
 
         botones[BOTON_ACTUALIZAR]->set_sensitive(actualizable);
         botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(actualizable);
     }
+}
+
+void VentanaCliente::on_actualizacion_solicitada(Consultante* c) {
+    if (server.conectado())
+        c->hacerConsulta(server);
 }
 
 void VentanaCliente::on_conectar_button_clicked() {

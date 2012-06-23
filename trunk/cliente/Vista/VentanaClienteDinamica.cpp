@@ -45,6 +45,10 @@ void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
 
 }
 
+void VentanaClienteDinamica::actualizarConsulta(Consultante* c) {
+    solicitudDeActualizacion.emit(c);
+}
+
 void VentanaClienteDinamica::agregarData(Tab& t) {
     // Mapa de consultas
     agregarConsultantesTab(t.getConsultantes());
@@ -89,4 +93,13 @@ void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
 
 bool VentanaClienteDinamica::disponibleParaActualizacion(guint pag) {
     return tabs[pag]->disponibleParaActualizacion();
+}
+
+void VentanaClienteDinamica::refresh() {
+    int p = get_current_page();
+    set_current_page(p-1);
+    set_current_page(p);
+}
+sigc::signal< void, Consultante* > VentanaClienteDinamica::signal_actualizacion() {
+    return solicitudDeActualizacion;
 }

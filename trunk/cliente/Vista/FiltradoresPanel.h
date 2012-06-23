@@ -44,11 +44,15 @@ class FiltradoresPanel : public Gtk::VBox {
         FiltradorInput* getFiltroNavegable();
         FiltradorInputDimension* getFiltroConsultante();
 
+        sigc::signal< void > signal_navegabilidad();
+
     private:
         FiltradoresTab& filtrosHeredados;
         std::list< Filtrador* > filtradores;
         std::queue< FiltradorInput* > filtrosNavegables;
         std::queue< FiltradorInputDimension* > filtrosConsultantes;
+        sigc::signal< void > signal_navegabilidad_seleccionada;
+        void on_signal_navegabilidad();
 };
 
 #endif  // FILTRADORES_PANEL_H

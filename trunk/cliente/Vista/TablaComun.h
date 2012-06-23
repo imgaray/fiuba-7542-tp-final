@@ -8,6 +8,7 @@
 #ifndef TABLACOMUN_H_
 #define TABLACOMUN_H_
 
+#include <gtkmm/liststore.h>
 #include "Tabla.h"
 #include "Respuesta.h"
 

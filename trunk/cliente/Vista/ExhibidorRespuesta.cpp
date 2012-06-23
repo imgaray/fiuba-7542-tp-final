@@ -6,6 +6,8 @@
  */
 
 #include "ExhibidorRespuesta.h"
+#include "FiltradoresPanel.h"
+#include "ServidorRemoto.h"
 
 
 ExhibidorRespuesta::ExhibidorRespuesta(FiltradoresPanel& filtrador) :

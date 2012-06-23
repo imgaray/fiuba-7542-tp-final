@@ -25,6 +25,7 @@ class VentanaCliente : public Gtk::Window {
         ServidorRemoto server;
 
         void on_page_switched(GtkNotebookPage* page, guint page_num);
+        void on_actualizacion_solicitada(Consultante* c);
 
         void on_conectar_button_clicked();
         void on_actualizar_button_clicked();

@@ -72,6 +72,8 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
         add(*f);
         filtradores.push_back(f);
         filtrosNavegables.push(f);
+        f->signal_navegabilidad().connect(sigc::mem_fun(*this,
+            &FiltradoresPanel::on_signal_navegabilidad));
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
@@ -136,4 +138,12 @@ FiltradorInputDimension* FiltradoresPanel::getFiltroConsultante() {
     FiltradorInputDimension* f = filtrosConsultantes.front();
     filtrosConsultantes.pop();
     return f;
+}
+
+sigc::signal< void > FiltradoresPanel::signal_navegabilidad() {
+    return signal_navegabilidad_seleccionada;
+}
+
+void FiltradoresPanel::on_signal_navegabilidad() {
+    signal_navegabilidad_seleccionada.emit();
 }

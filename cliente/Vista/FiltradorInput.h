@@ -15,10 +15,13 @@ class FiltradorInput : public Filtrador {
         virtual void recibirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor) = 0;
         void setTabPadre(Tab* padre);
+         sigc::signal< void > signal_navegabilidad();
     protected:
         Gtk::ComboBoxText valores;
         bool valido;
         Tab* tabPadre;
+
+        sigc::signal< void > signal_navegabilidad_seleccionada;
 
     private:
         Gtk::VSeparator sep;

@@ -28,6 +28,8 @@ class Tab : public Gtk::VBox {
 
         void hacerConsulta(ServidorRemoto& server);
         void cancelarConsulta(ServidorRemoto& server);
+        // actualiza una consulta en particular, a pedido
+        void actualizarConsulta(Consultante* c);
 
         void informarConsultaIniciada();
         void informarConsultaTerminada();

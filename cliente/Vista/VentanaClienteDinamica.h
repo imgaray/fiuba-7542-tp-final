@@ -24,6 +24,8 @@ class VentanaClienteDinamica : public Gtk::Notebook {
         void hacerConsulta(ServidorRemoto& server);
         void hacerConsultaInicial(ServidorRemoto& server);
         void cancelarConsulta(ServidorRemoto& server);
+        // actualiza una consulta en particular, a pedido
+        void actualizarConsulta(Consultante* c);
 
         void removerConsultante(unsigned ID);
         void agregarConsultantesTab(const MapaConsultantesTab& consultantes);
@@ -32,12 +34,20 @@ class VentanaClienteDinamica : public Gtk::Notebook {
 
         bool disponibleParaActualizacion(guint pag);
 
+        // fuerza un refresh
+        void refresh();
+
+        sigc::signal< void, Consultante* > signal_actualizacion();
+
     private:
         Personalizador dynBuilder;
         MapaConsultantesTab consultas;
         std::vector< Tab* > tabs;
 
         void agregarData(Tab& t);
+
+        /** señal para evitar setearle el padre (es una prueba) */
+        sigc::signal< void, Consultante* > solicitudDeActualizacion;
 };
 
 #endif  // VENTANA_CLIENTE_DINAMICA_H

@@ -43,7 +43,9 @@ void FiltradorInputDimension::filtrar(Consulta& c) {
 void FiltradorInputDimension::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
     std::cout << this << " recibiendo navegación ( " << input << ", " << valor << ")" << std::endl;
-    if (input == getFiltro())
+    if (input == getFiltro()) {
         valores.set_active_text(valor);
+        signal_navegabilidad_seleccionada.emit();
+    }
 }
 

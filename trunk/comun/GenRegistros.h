@@ -17,4 +17,6 @@ int generarRandom (int cantMax);
 
 void generarRegistros(BaseDeDatos& bdd, long cantReg);
 
+void generarArchivoRegistros(const std::string& ruta, long cantReg);
+
 #endif /* GENREGISTROS_H_ */

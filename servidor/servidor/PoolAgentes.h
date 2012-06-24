@@ -1,7 +1,7 @@
 #ifndef _POOLAGENTES_H
 #define _POOLAGENTES_H
 
-#define MAX_HILOS 5
+#define MAX_HILOS 1
 
 #include "Definiciones.h"
 #include <list>

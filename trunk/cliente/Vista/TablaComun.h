@@ -17,7 +17,6 @@ public:
 	TablaComun(FiltradoresPanel& filtradores);
 	virtual ~TablaComun();
 
-
 protected:
 	virtual void procesarRespuesta(const Respuesta& rta);
 

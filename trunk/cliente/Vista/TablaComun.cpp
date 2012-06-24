@@ -6,32 +6,74 @@
  */
 
 #include "TablaComun.h"
+#include <iostream>
+#include <string>
 
+void mensaje(const std::string& msj) {
+	std::cout << "++++++++++++++++++++++++CLIENTE: " << msj << std::endl;
+}
 
 
 TablaComun::TablaComun(FiltradoresPanel& filtradores) : Tabla(filtradores) {
+	/*
+	mensaje("Se crea la Tabla Comun");
 
+	Respuesta respEj;
+	respEj.definirColumnas(3);
+
+	this->consulta.agregarResultado("COLumna 1");
+	this->consulta.agregarResultado("COLumna 2");
+	this->consulta.agregarResultado("COLumna 3");
+
+	respEj.agregar("Col 1-1");
+	respEj.agregar("Col 2-1");
+	respEj.agregar("Col 3-1");
+	respEj.filaCompletada();
+
+	respEj.agregar("Col 1-2");
+	respEj.agregar("Col 2-2");
+	respEj.agregar("Col 3-2");
+	respEj.filaCompletada();
+
+	respEj.agregar("Col 1-3");
+	respEj.agregar("Col 2-3");
+	respEj.agregar("Col 3-3");
+	respEj.filaCompletada();
+
+	respEj.agregar("Col 1-4");
+	respEj.agregar("Col 2-4");
+	respEj.agregar("Col 3-4");
+	respEj.filaCompletada();
+
+	procesarRespuesta(respEj);
+	*/
 }
 
 TablaComun::~TablaComun() {
-
+	mensaje("Se Destruye la Tabla Comun");
 }
 
 void TablaComun::procesarRespuesta(const Respuesta& rta) {
-	if (_colModelo != NULL)
+	mensaje("Se entro a procesar la Respuesta");
+
+	if (_colModelo != NULL) {
+		this->remove_all_columns();
 		delete _colModelo;
+		//_refTreeModel.clear();
+	}
 
 	_colModelo = new ColumnasModelo(rta.cantidadColumnas());
 
 	 _refTreeModel = Gtk::ListStore::create(*_colModelo);
 	 this->set_model(_refTreeModel);
 
-
-	 for (unsigned i = 0; i < rta.cantidadFilas() ; i++) {
+	 for (int i = 0; i < rta.cantidadFilas() ; i++) {
 		 agregarFila(i, rta);
 	 }
 
 	agregarColumnas();
+
+	mensaje("Se termino el procesarRespuesta");
 }
 
 void TablaComun::agregarFila(int numFila, const Respuesta& resp) {
@@ -39,9 +81,9 @@ void TablaComun::agregarFila(int numFila, const Respuesta& resp) {
 
 	 for (unsigned i = 0; i < resp.cantidadColumnas() ; i++) {
 		 filaNueva[_colModelo->_columnas[i]] = resp.dato(numFila, i);
+		 mensaje("Se agrego el dato: " + resp.dato(numFila, i));
 	 }
 }
-
 
 void TablaComun::agregarColumnas() {
 	for (int i = 0; i < _colModelo->_cantCol ; i++) {

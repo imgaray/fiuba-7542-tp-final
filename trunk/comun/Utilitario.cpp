@@ -23,9 +23,10 @@ std::string Utilitario::separar(const std::string& datos,
 	size_t pos_sep = -1;
 	size_t cant_sep = 0;
 
-	if (s_anterior != datos) {
+	if (s_anterior != datos || sep_anterior != separador) {
 		_posiciones.clear();
 		s_anterior = datos;
+		sep_anterior = separador;
 		bool hayMasSeparadores = true;
 		while (hayMasSeparadores) {
 			pos_sep = datos.find(separador, pos_sep + 1);

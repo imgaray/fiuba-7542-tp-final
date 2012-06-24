@@ -127,8 +127,24 @@ void testBaseDeDatosReal() {
 		exit(0);
 	}
 
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Cuarta Consulta Verdadera");
+
+	// Consulta de Vendedores
+	c.limpiar();
+
+	c.agregarResultado("Vendedor");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta Invalida" << endl;
+		exit(0);
+	}
 
 
+	r = bdd.resolverConsulta(c);
+
+	imprimirRespuesta(r, "Vendedores");
 	// Quinta Consulta
 
 	c.limpiar();
@@ -205,6 +221,32 @@ void testBaseDeDatosReal() {
 	r = bdd.resolverConsulta(c);
 
 	imprimirRespuesta(r, "Segunda Tabla Pivote Verdadera");
+
+
+
+	// Consulta de un Registro
+
+
+	c.limpiar();
+
+	c.agregarEntrada("Vendedor", "Evelyn Magaly");
+	c.agregarEntrada("Sucursal", "San Nicolas");
+
+	c.agregarResultado("Vendedor");
+	c.agregarResultado("Marca");
+	c.defininirAgregacion(CONT, "PrecioLista");
+
+	if (!verif.verificarConsulta(c)) {
+		cout << "Consulta de Evelyn Invalida " << endl;
+		exit(0);
+	}
+
+
+	r = bdd.resolverConsulta(c);
+
+	r.deserializar(r.serializar());
+
+	imprimirRespuesta(r, "Consulta de Evelyn");
 
 	cout << "Fin de Test de BaseDeDatos Real."<< endl;
 }
@@ -1860,6 +1902,27 @@ void testRespuesta() {
 		cout << "Orig: "<< r4.serializar() << endl;
 		cout << "Cop:  "<< r5.serializar() << endl;
 				errores++;
+	}
+
+
+
+	Respuesta r1Fila;
+
+	r1Fila.definirColumnas(3);
+	r1Fila.agregar("asd");
+	r1Fila.agregar("asd");
+	r1Fila.agregar("asd");
+	r1Fila.filaCompletada();
+
+	string sr1Fila = r1Fila.serializar();
+
+	r4.deserializar(sr1Fila);
+
+	if (r4.serializar() != r1Fila.serializar()) {
+		cout << "Error en serializacion para Respuesta de Una Fila"<< endl;
+		cout << "Orig: "<< r1Fila.serializar() << endl;
+		cout << "Cop:  "<< r4.serializar() << endl;
+		errores++;
 	}
 
 

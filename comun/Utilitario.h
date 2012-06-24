@@ -26,6 +26,7 @@ public:
 private:
 	std::vector<size_t> _posiciones;
 	std::string s_anterior;
+	char sep_anterior;
 };
 
 #endif /* UTILITARIO_H_ */

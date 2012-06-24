@@ -9,8 +9,10 @@
 #define EXHIBIDORRESPUESTA_H_
 
 #include "Consultante.h"
+#include "FiltradoresPanel.h"
 
-class FiltradoresPanel;
+//class FiltradoresPanel;
+#include "ServidorRemoto.h"
 
 class ExhibidorRespuesta : public Consultante {
 public:

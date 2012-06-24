@@ -16,7 +16,8 @@ class Personalizador {
         bool tieneSiguiente();
         Tab& siguiente();
     private:
-        std::ifstream archivo;
+		std::string nombreArchivo;
+//        std::ifstream archivo;
 //        VentanaClienteDinamica& v;
         std::list< Tab* > tabs;
         std::list< Tab* >::iterator it;

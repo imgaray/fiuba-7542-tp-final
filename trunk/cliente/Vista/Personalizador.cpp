@@ -12,6 +12,7 @@
 #include "Organizacion.h"
 #include "VentanaClienteDinamica.h"
 #include "TablaComun.h"
+//#include <libxml++/libxml++.h>
 
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
@@ -30,7 +31,7 @@ Personalizador::~Personalizador() {
 
 /** @todo hacerlo con archivo!!! */
 bool Personalizador::personalizarDesdeArchivo(const char* nombreArch) {
-//    ifstream.open(nombreArch);
+//    nombreArchivo = nombreArch;
 //    if (ifstrea.is_open()) {
     if (true) { // mientras no haya archivo
         construir();
@@ -48,6 +49,125 @@ Tab& Personalizador::siguiente() {
     return **it++;
 }
 
+/*
+void construir_filtro(xmlpp::Node& filtro) {
+	
+}
+
+void construir_panel(xmlpp::Node& panel) {
+	
+}
+
+void Personalizador::construir_tab(xmlpp::Node& tab) {
+	// esta lista tiene <filtros>
+	Glib::ustring tfiltros = "filtros";
+	xmlpp::Node::NodeList nodoFiltros = tab.get_children(tfiltros);
+	// esta lista tiene <paneles>
+	Glib::ustring tpaneles = "paneles";
+	xmlpp::Node::NodeList nodoPaneles = tab.get_children(tpaneles);
+	
+	// esta lista tiene todos los filtros hijos de <filtros>
+	xmlpp::Node::NodeList filtros = nodoFiltros.get_childrem();
+	xmlpp::Node::NodeList::iterator iterFiltros;
+	for (iterFiltros = filtros..begin(); iterFiltros != filtros.end(); ++iterFiltros) {
+		construir_filtro(*iterFiltros);
+	}
+	
+	xmlpp::Node::NodeList paneles = nodoPaneles.get_children();
+	xmlpp::Node::NodeList::iterator iterPaneles;
+	for (iterPaneles = paneles.begin(); iterPaneles != paneles.end(); ++iterPaneles) {
+		construir_panel(*iterPaneles);
+	}
+}
+ 
+void Personalizador::construir_desde_nodo(const xmlpp::Node* nodo) {
+	// esta lista tiene todos los hijos <tab>
+	xmlpp::Node::NodeList tabs = node->get_children();
+	xmlpp::Node::NodeList::iterator iter;
+	for (iter = tabs.begin(); iter != tabs.end(); ++iter) {
+		construir_tab(*iter);
+	}
+}
+	const xmlpp::ContentNode* nodeContent = dynamic_cast<const xmlpp::ContentNode*>(node);
+	const xmlpp::TextNode* nodeText = dynamic_cast<const xmlpp::TextNode*>(node);
+	const xmlpp::CommentNode* nodeComment = dynamic_cast<const xmlpp::CommentNode*>(node);
+	
+	if(nodeText && nodeText->is_white_space())
+		return;
+	
+	Glib::ustring nodename = node->get_name();
+	
+	if(!nodeText && !nodeComment && !nodename.empty()) {
+		print_indentation(indentation);
+		std::cout << "Node name = " << node->get_name() << std::endl;
+		std::cout << "Node name = " << nodename << std::endl;
+	}
+	else if(nodeText) {
+		print_indentation(indentation);
+		std::cout << "Text Node" << std::endl;
+	}
+	
+	//Treat the various node types differently: 
+	if(nodeText) {
+		print_indentation(indentation);
+		std::cout << "text = \"" << nodeText->get_content() << "\"" << std::endl;
+	}
+	else if(nodeComment) {
+		print_indentation(indentation);
+		std::cout << "comment = " << nodeComment->get_content() << std::endl;
+	}
+	else if(nodeContent) {
+		print_indentation(indentation);
+		std::cout << "content = " << nodeContent->get_content() << std::endl;
+	}
+	else if(const xmlpp::Element* nodeElement = dynamic_cast<const xmlpp::Element*>(node)) {
+		//A normal Element node:
+		
+		//line() works only for ElementNodes.
+		print_indentation(indentation);
+		std::cout << "     line = " << node->get_line() << std::endl;
+		
+		//Print attributes:
+		const xmlpp::Element::AttributeList& attributes = nodeElement->get_attributes();
+		for(xmlpp::Element::AttributeList::const_iterator iter = attributes.begin(); iter != attributes.end(); ++iter) {
+			const xmlpp::Attribute* attribute = *iter;
+			print_indentation(indentation);
+			std::cout << "  Attribute " << attribute->get_name() << " = " << attribute->get_value() << std::endl;
+		}
+		const xmlpp::Attribute* attribute = nodeElement->get_attribute("title");
+		if(attribute) {
+		  std::cout << "title found: =" << attribute->get_value() << std::endl; 
+		}
+	}
+	
+	if(!nodeContent) {
+		//Recurse through child nodes:
+		
+		for(xmlpp::Node::NodeList::iterator iter = list.begin(); iter != list.end(); ++iter) {
+			print_node(*iter, indentation + 2); //recursive
+		}
+	}
+}
+
+
+/*
+void Personalizador::construir() {
+	try {
+		xmlpp::DomParser parser;
+		parser.set_validate();
+		// la linea de abajo es para que haga sustituciones de caracteres especiales
+		parser.set_substitute_entities();
+		parser.parse_file(nombreArchivo);
+		if(parser) {
+		  const xmlpp::Node* nodo = parser.get_document()->get_root_node(); //deleted by DomParser.
+		  construir_desde_nodo(nodo);
+		}
+	} catch(const std::exception& ex) {
+		std::cout << "error en personalizacion de cliente: " << ex.what() << std::endl;
+	}
+}
+*/
+
 void Personalizador::construir() {
 
     // Tab 1 - test filtrador tab
@@ -55,8 +175,6 @@ void Personalizador::construir() {
 
     FiltradoresTab* fTab1 = new FiltradoresTab();
     fTab1->agregarEntrada("Vendedor");
-
-
     hijos.push_back(fTab1);
     pTab1->pack_start(*fTab1, false, false);
     while (fTab1->tieneFiltrosConsultantes())

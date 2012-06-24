@@ -85,6 +85,6 @@ void TablaComun::agregarColumnas() {
 		this->append_column(this->consulta.resultado(i),_colModelo->_columnas[i] );
 	}
 }
-void TablaComun::fila_activada(const TreeModel::Path& path, TreeViewColumn* column) {
+void TablaComun::fila_activada(const Gtk::TreeModel::Path& path, Gtk::TreeViewColumn* column) {
 	std::cout << "/////////////////////////////SE ACTIVO UNA FILA//////////////////" << std::endl;
 }

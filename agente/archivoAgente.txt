@@ -1,0 +1,2000 @@
+San Julian	Leonardo	20011021	Commodore	Teclado	197	335	
+San Gabriel	Augusto	20020120	Marcapaso	Lithium	364	513	
+Avellaneda	Joaquin 	20050708	Commodore	Galaxy SII	606	16	
+San Martin	Sebastian	20050107	Samsung	x86	129	108	
+Avellaneda	Ricardo	20011110	Genius	Lithium	296	637	
+San Escoliozios	Oscar	20040502	Iphone	i400	526	769	
+San Nicolas	Joaquin 	20011101	Hp	Mouse optico	919	69	
+Avellaneda	Oscar	20020508	Samsung	Lithium	890	348	
+San Justo	Luciano	20040752	laptop	Xirix	970	902	
+San Julian	Ricardo	20011110	Hp	i400	512	667	
+San Escoliozios	Luciano	20020405	MS	Teclado	720	284	
+San Gabriel	Alberto	20020701	IBM	Galaxy SII	440	880	
+San Julian	Augusto	20040702	Genius	boligrafo	686	956	
+San Remo	Alberto	20010505	Marcapaso	Teclado	398	814	
+San Miguel	Joaquin 	20040752	Iphone	Teclado	920	147	
+San Mateo	Alberto	20020405	IBM	Xirix	786	307	
+San Nicolas	Ricardo	20030205	Iphone	notebook	416	169	
+San Mateo	Francisco	20000501	Marcapaso	i400	984	935	
+San Miguel	Leonardo	20030702	Hp	Xirix	232	584	
+San Martin	Sebastian	20030702	Samsung	i400	164	745	
+San Pedro	Pedro	20020508	intel	Galaxy SII	240	797	
+San Miguel	Alberto	20040502	IBM	i400	93	134	
+San Escoliozios	Francisco	20020508	Iphone	x86	819	573	
+San Gabriel	Luciano	20030205	MS	Xirix	889	125	
+Avellaneda	Luciano	20010505	laptop	e221	923	593	
+San Salvador	Sebastian	20020701	MS	Mouse optico	359	552	
+San Remo	Ezequiel	20030206	laptop	notebook	757	304	
+Avellaneda	Miguel	20010505	Commodore	Lithium	35	747	
+San Julian	Joaquin 	20010505	Genius	Teclado	743	903	
+Avellaneda	Juan	20040752	Samsung	Mouse optico	888	76	
+San Procto	Ricardo	20050708	Iphone	i400	316	328	
+San Martin	Francisco	20050708	Iphone	Lithium	510	971	
+Santo Thomas	Miguel	20030702	Samsung	x86	592	944	
+San Nicolas	Leonardo	20050107	Marcapaso	e221	344	598	
+San Julian	Ricardo	20030206	Marcapaso	x86	304	712	
+San Salvador	Alberto	20002005	Marcapaso	Lithium	673	637	
+San Agustin	Sebastian	20050708	IBM	i400	328	740	
+San Martin	Joaquin 	20030206	IBM	Xirix	532	87	
+San Martin	Joaquin 	20030206	laptop	Galaxy SII	361	576	
+San Remo	Alberto	20011101	Commodore	Xirix	329	189	
+Avellaneda	Luciano	20050107	Hp	Galaxy SII	436	958	
+San Mateo	Santiago	20030206	Samsung	Lithium	383	774	
+Avellaneda	Joaquin 	20010505	Iphone	i400	548	297	
+San Mateo	Joaquin 	20010505	Marcapaso	notebook	162	273	
+San Julian	Oscar	20040752	Genius	x86	291	180	
+San Miguel	Juan	20000501	IBM	x86	838	724	
+San Salvador	Ricardo	20040752	Samsung	Galaxy SII	360	324	
+San Mateo	Joaquin 	20050708	Genius	Mouse optico	496	334	
+San Agustin	Alberto	20050708	Iphone	Galaxy SII	72	107	
+San Procto	Leonardo	20011101	Hp	e221	427	934	
+San Remo	Ricardo	20030206	Commodore	x86	157	883	
+San Procto	Oscar	20040702	intel	x86	829	394	
+San Martin	Augusto	20030702	IBM	Teclado	338	897	
+San Salvador	Ezequiel	20002005	Commodore	i400	293	114	
+San Julian	Juan	20002005	Marcapaso	Teclado	707	210	
+San Escoliozios	Ignacio	20020508	laptop	boligrafo	301	657	
+San Julian	Francisco	20020508	laptop	x86	780	692	
+San Nicolas	Francisco	20020120	intel	notebook	595	361	
+Santo Thomas	Joaquin 	20040752	Samsung	Lithium	525	618	
+San Remo	Ricardo	20050107	laptop	e221	923	169	
+San Escoliozios	Ricardo	20050107	Iphone	boligrafo	878	344	
+San Julian	Alberto	20002005	Iphone	i400	625	836	
+Santo Thomas	Ricardo	20030205	IBM	Galaxy SII	674	782	
+San Miguel	Ricardo	20020405	Hp	x86	230	385	
+San Escoliozios	Sebastian	20020120	laptop	boligrafo	382	305	
+San Gabriel	Ricardo	20050708	intel	Teclado	685	809	
+San Miguel	Augusto	20050708	laptop	notebook	843	618	
+San Procto	Oscar	20020405	Hp	i400	801	677	
+San Salvador	Luciano	20020508	IBM	Galaxy SII	618	700	
+San Remo	Luciano	20002005	Hp	Xirix	655	857	
+San Salvador	Leonardo	20030206	Genius	Lithium	313	885	
+San Salvador	Sebastian	20011110	Genius	Lithium	904	191	
+San Agustin	Juan	20010505	intel	i400	932	233	
+San Mateo	Miguel	20030505	Marcapaso	notebook	939	799	
+San Julian	Miguel	20030206	MS	Teclado	324	874	
+San Remo	Alberto	20011021	Commodore	i400	262	604	
+San Escoliozios	Sebastian	20011021	Genius	Mouse optico	664	412	
+San Procto	Miguel	20050708	intel	Galaxy SII	579	32	
+San Miguel	Oscar	20050107	intel	Galaxy SII	489	510	
+San Justo	Ignacio	20020701	IBM	x86	143	413	
+San Martin	Ezequiel	20002005	Commodore	notebook	812	582	
+San Nicolas	Oscar	20040502	laptop	e221	640	597	
+San Martin	Ricardo	20050708	MS	i400	462	438	
+San Julian	Pedro	20030505	Genius	i400	333	536	
+San Martin	Oscar	20030505	Marcapaso	Mouse optico	967	183	
+San Nicolas	Santiago	20011021	MS	Xirix	761	963	
+Santo Thomas	Ezequiel	20020120	intel	Lithium	191	477	
+San Agustin	Alberto	20030505	Iphone	Lithium	865	109	
+San Agustin	Sebastian	20050708	intel	Lithium	596	58	
+San Remo	Miguel	20040702	laptop	boligrafo	9	923	
+San Procto	Santiago	20010505	MS	Galaxy SII	447	487	
+San Gabriel	Alberto	20040502	Samsung	Xirix	882	366	
+San Mateo	Santiago	20040752	Iphone	Teclado	122	865	
+San Procto	Juan	20030505	Samsung	Xirix	167	202	
+San Procto	Sebastian	20000501	Iphone	Teclado	13	160	
+San Pedro	Ezequiel	20050708	MS	Galaxy SII	614	70	
+San Agustin	Oscar	20020405	Iphone	Xirix	912	566	
+San Salvador	Luciano	20020405	Genius	i400	356	997	
+San Justo	Oscar	20040702	IBM	Lithium	327	889	
+San Procto	Leonardo	20020508	Commodore	Mouse optico	698	681	
+San Mateo	Augusto	20011021	Iphone	Mouse optico	189	591	
+San Justo	Francisco	20030205	Iphone	Galaxy SII	589	58	
+San Mateo	Pedro	20020508	MS	x86	256	587	
+San Salvador	Miguel	20040752	Genius	Teclado	526	582	
+San Miguel	Ricardo	20011101	IBM	notebook	16	931	
+San Agustin	Ricardo	20011110	Marcapaso	boligrafo	679	645	
+San Nicolas	Augusto	20030702	Hp	Xirix	759	258	
+San Miguel	Luciano	20050107	Genius	Lithium	321	667	
+San Escoliozios	Ignacio	20011101	Iphone	e221	514	889	
+San Procto	Oscar	20050107	MS	i400	343	359	
+San Justo	Luciano	20002005	Marcapaso	Xirix	708	820	
+San Escoliozios	Oscar	20020508	Samsung	x86	923	43	
+San Pedro	Ricardo	20030702	IBM	e221	961	867	
+San Salvador	Oscar	20011021	Commodore	e221	578	736	
+San Gabriel	Joaquin 	20020508	Commodore	Teclado	101	274	
+San Martin	Ignacio	20020508	Commodore	Xirix	173	937	
+San Gabriel	Francisco	20040502	Genius	boligrafo	692	456	
+San Nicolas	Alberto	20030119	IBM	Galaxy SII	81	377	
+San Salvador	Alberto	20000501	Genius	notebook	210	668	
+San Escoliozios	Augusto	20030505	Commodore	Galaxy SII	38	514	
+San Agustin	Ricardo	20040752	Samsung	boligrafo	433	5	
+San Procto	Francisco	20040752	laptop	i400	785	684	
+San Mateo	Joaquin 	20020508	laptop	notebook	177	927	
+San Pedro	Leonardo	20020120	IBM	i400	539	406	
+San Julian	Miguel	20030505	Iphone	i400	374	381	
+San Pedro	Ignacio	20020701	Commodore	Teclado	849	831	
+San Miguel	Alberto	20011110	IBM	notebook	578	671	
+San Justo	Santiago	20020120	Samsung	Galaxy SII	195	777	
+San Julian	Santiago	20030205	IBM	boligrafo	105	888	
+San Pedro	Oscar	20011101	Samsung	Xirix	657	947	
+San Martin	Oscar	20011021	MS	Galaxy SII	294	561	
+San Procto	Joaquin 	20040702	IBM	Lithium	832	812	
+San Gabriel	Luciano	20020120	IBM	i400	774	284	
+San Pedro	Joaquin 	20030205	Samsung	boligrafo	443	378	
+San Procto	Francisco	20030119	Genius	Lithium	104	805	
+San Gabriel	Leonardo	20020701	Hp	Xirix	599	68	
+San Mateo	Ezequiel	20010505	IBM	x86	471	292	
+San Martin	Ricardo	20020120	Hp	Galaxy SII	749	480	
+San Escoliozios	Sebastian	20010505	Samsung	Xirix	184	2	
+San Mateo	Augusto	20050107	IBM	Lithium	175	44	
+Avellaneda	Santiago	20000501	Genius	Xirix	994	536	
+San Miguel	Ezequiel	20050107	Genius	i400	405	193	
+San Julian	Sebastian	20030206	Hp	boligrafo	532	457	
+San Procto	Juan	20040752	intel	e221	268	191	
+San Miguel	Ezequiel	20040702	IBM	Xirix	349	514	
+San Nicolas	Leonardo	20020508	laptop	Mouse optico	879	986	
+San Escoliozios	Augusto	20030205	Hp	x86	853	683	
+San Gabriel	Leonardo	20000501	Marcapaso	Galaxy SII	600	967	
+San Pedro	Joaquin 	20030205	Genius	boligrafo	395	455	
+San Escoliozios	Santiago	20040502	MS	e221	20	53	
+San Mateo	Joaquin 	20002005	Marcapaso	Galaxy SII	219	778	
+San Procto	Francisco	20040752	Marcapaso	x86	601	835	
+San Remo	Ricardo	20050107	IBM	e221	962	475	
+San Agustin	Leonardo	20030505	MS	Galaxy SII	900	875	
+San Salvador	Joaquin 	20030505	laptop	Mouse optico	968	508	
+San Justo	Sebastian	20011101	IBM	Xirix	748	36	
+San Miguel	Leonardo	20010505	Iphone	notebook	675	957	
+San Procto	Alberto	20020405	laptop	Teclado	363	925	
+San Pedro	Ricardo	20050107	Iphone	Galaxy SII	729	380	
+San Justo	Juan	20010505	laptop	Mouse optico	176	639	
+San Salvador	Joaquin 	20030206	Genius	Xirix	547	155	
+San Julian	Ricardo	20000501	Marcapaso	Mouse optico	545	461	
+San Julian	Joaquin 	20020701	MS	Galaxy SII	187	247	
+San Agustin	Joaquin 	20050708	Hp	Lithium	517	378	
+San Escoliozios	Juan	20002005	IBM	Lithium	693	520	
+San Mateo	Ricardo	20030206	Commodore	x86	788	176	
+Santo Thomas	Leonardo	20050708	Samsung	Xirix	24	138	
+San Nicolas	Ricardo	20020701	Commodore	Galaxy SII	13	144	
+San Gabriel	Oscar	20011110	Iphone	Xirix	541	897	
+San Julian	Ricardo	20020405	Commodore	x86	92	463	
+Avellaneda	Joaquin 	20050708	Iphone	Xirix	278	448	
+San Nicolas	Augusto	20020120	Genius	notebook	971	653	
+San Procto	Pedro	20011021	Hp	notebook	322	636	
+San Gabriel	Ignacio	20011110	intel	e221	950	323	
+San Remo	Luciano	20011021	intel	Teclado	427	784	
+San Salvador	Juan	20040702	intel	e221	819	473	
+San Escoliozios	Santiago	20000501	Samsung	i400	925	556	
+Santo Thomas	Ricardo	20030205	laptop	Galaxy SII	727	615	
+San Martin	Juan	20030505	Commodore	i400	726	305	
+San Procto	Sebastian	20020508	Commodore	Mouse optico	322	381	
+San Mateo	Sebastian	20010505	Hp	Teclado	981	557	
+San Miguel	Joaquin 	20000501	laptop	Galaxy SII	307	31	
+Santo Thomas	Luciano	20050708	Marcapaso	i400	587	267	
+San Nicolas	Augusto	20020120	laptop	x86	663	864	
+Santo Thomas	Pedro	20040702	Samsung	Galaxy SII	101	584	
+San Justo	Francisco	20000501	Commodore	Teclado	256	769	
+San Salvador	Miguel	20050107	Marcapaso	notebook	448	890	
+Santo Thomas	Luciano	20030205	Commodore	boligrafo	730	827	
+San Julian	Leonardo	20030206	Samsung	boligrafo	938	340	
+San Escoliozios	Luciano	20030505	intel	Galaxy SII	67	337	
+San Pedro	Augusto	20000501	Iphone	Mouse optico	907	668	
+San Escoliozios	Leonardo	20020120	Genius	boligrafo	716	547	
+San Gabriel	Ezequiel	20020701	intel	Mouse optico	67	703	
+San Martin	Luciano	20002005	Commodore	e221	969	296	
+San Salvador	Luciano	20050708	Iphone	boligrafo	739	538	
+San Martin	Alberto	20040702	Commodore	e221	764	537	
+San Agustin	Oscar	20020508	Samsung	Teclado	459	691	
+San Gabriel	Oscar	20020701	MS	notebook	439	717	
+San Remo	Ezequiel	20002005	Commodore	x86	647	30	
+San Julian	Leonardo	20020120	laptop	e221	774	792	
+San Justo	Miguel	20030119	Marcapaso	e221	413	563	
+Avellaneda	Joaquin 	20011101	Commodore	boligrafo	650	706	
+San Mateo	Francisco	20020405	intel	x86	438	261	
+Avellaneda	Francisco	20011101	Commodore	x86	860	804	
+San Escoliozios	Alberto	20020120	intel	Galaxy SII	926	974	
+San Salvador	Leonardo	20011110	Samsung	Xirix	792	861	
+San Procto	Ezequiel	20020120	intel	notebook	993	59	
+San Justo	Ezequiel	20030119	MS	notebook	613	722	
+Avellaneda	Oscar	20011110	intel	Galaxy SII	123	46	
+Santo Thomas	Luciano	20002005	Marcapaso	boligrafo	558	623	
+San Procto	Leonardo	20040752	Iphone	i400	54	762	
+Santo Thomas	Luciano	20050107	Hp	x86	142	329	
+Avellaneda	Santiago	20020508	MS	Xirix	578	493	
+San Agustin	Juan	20011110	IBM	i400	561	102	
+San Salvador	Francisco	20030702	Commodore	x86	211	963	
+San Martin	Ricardo	20030702	intel	boligrafo	547	946	
+San Gabriel	Juan	20011101	Commodore	x86	327	785	
+San Miguel	Joaquin 	20011101	laptop	Lithium	819	638	
+San Agustin	Leonardo	20030702	intel	notebook	467	251	
+Avellaneda	Juan	20040702	Iphone	Teclado	940	825	
+San Martin	Oscar	20011021	laptop	Galaxy SII	48	845	
+San Procto	Leonardo	20050708	Hp	Xirix	909	317	
+San Mateo	Juan	20040502	Iphone	Galaxy SII	697	759	
+San Procto	Sebastian	20002005	intel	Mouse optico	226	815	
+San Gabriel	Sebastian	20050708	laptop	Lithium	413	98	
+San Julian	Ezequiel	20030505	Marcapaso	Mouse optico	574	762	
+San Pedro	Oscar	20020508	laptop	Xirix	37	269	
+Santo Thomas	Santiago	20002005	MS	Teclado	40	511	
+San Gabriel	Augusto	20030119	intel	x86	967	579	
+San Pedro	Leonardo	20030206	MS	Mouse optico	622	387	
+San Miguel	Sebastian	20000501	Genius	Lithium	230	821	
+San Mateo	Augusto	20020508	Iphone	e221	119	146	
+San Mateo	Sebastian	20030206	IBM	x86	984	180	
+San Julian	Pedro	20011021	MS	boligrafo	437	880	
+San Salvador	Luciano	20011101	Genius	Xirix	417	668	
+Avellaneda	Alberto	20040752	Genius	Teclado	579	44	
+San Mateo	Juan	20030205	Genius	Mouse optico	848	470	
+Santo Thomas	Ignacio	20030206	Samsung	i400	410	104	
+San Pedro	Ignacio	20040502	Iphone	Teclado	252	158	
+San Salvador	Juan	20050107	Samsung	boligrafo	316	931	
+San Martin	Joaquin 	20040502	Samsung	notebook	165	976	
+San Nicolas	Luciano	20020405	Commodore	Mouse optico	97	892	
+San Procto	Oscar	20040502	Commodore	boligrafo	981	44	
+San Martin	Ricardo	20040702	Marcapaso	Teclado	30	529	
+San Martin	Leonardo	20040752	Marcapaso	Xirix	436	611	
+San Julian	Alberto	20020120	Iphone	Lithium	35	37	
+San Nicolas	Francisco	20030505	laptop	Lithium	927	841	
+Avellaneda	Joaquin 	20010505	Iphone	Galaxy SII	89	687	
+San Justo	Francisco	20040702	Iphone	x86	678	728	
+San Miguel	Francisco	20030119	intel	i400	927	846	
+Santo Thomas	Pedro	20010505	Commodore	e221	815	886	
+San Gabriel	Santiago	20030702	Commodore	Lithium	613	990	
+San Gabriel	Juan	20030206	Genius	Mouse optico	895	116	
+Santo Thomas	Miguel	20050107	laptop	Lithium	185	553	
+San Nicolas	Francisco	20020405	Commodore	e221	285	529	
+San Salvador	Francisco	20020405	MS	Mouse optico	144	637	
+San Escoliozios	Santiago	20050708	Iphone	x86	304	138	
+Santo Thomas	Sebastian	20011101	intel	i400	100	579	
+San Nicolas	Augusto	20000501	Genius	boligrafo	533	599	
+San Escoliozios	Ignacio	20000501	IBM	Teclado	546	551	
+San Gabriel	Juan	20030205	Iphone	x86	815	550	
+San Mateo	Francisco	20030206	Samsung	boligrafo	943	772	
+San Pedro	Luciano	20020701	intel	boligrafo	484	417	
+San Miguel	Luciano	20002005	Iphone	Mouse optico	147	849	
+San Gabriel	Juan	20020405	intel	boligrafo	590	776	
+San Julian	Ezequiel	20030119	Commodore	notebook	15	939	
+San Julian	Pedro	20030702	MS	e221	64	495	
+San Agustin	Miguel	20030505	laptop	notebook	930	267	
+San Nicolas	Francisco	20000501	Samsung	i400	518	679	
+San Salvador	Francisco	20040752	MS	notebook	783	732	
+San Justo	Santiago	20030206	Genius	i400	384	830	
+San Gabriel	Ezequiel	20030119	laptop	Teclado	238	158	
+San Remo	Sebastian	20020405	MS	Xirix	543	132	
+San Justo	Luciano	20050107	Samsung	Galaxy SII	268	162	
+San Miguel	Luciano	20010505	Commodore	Mouse optico	566	614	
+San Procto	Pedro	20020405	Hp	x86	770	463	
+San Agustin	Luciano	20050708	MS	Galaxy SII	47	935	
+San Nicolas	Miguel	20020508	Marcapaso	Lithium	879	620	
+San Julian	Sebastian	20011021	intel	Galaxy SII	677	233	
+San Justo	Ricardo	20050107	IBM	Galaxy SII	293	25	
+San Remo	Luciano	20040752	MS	e221	110	958	
+San Martin	Sebastian	20010505	IBM	i400	961	126	
+San Nicolas	Ignacio	20030702	Iphone	Teclado	528	731	
+San Salvador	Ricardo	20040502	Iphone	x86	814	895	
+San Procto	Francisco	20030505	Iphone	Galaxy SII	409	234	
+San Martin	Oscar	20030205	intel	Lithium	86	180	
+San Nicolas	Luciano	20030119	Genius	Mouse optico	52	51	
+San Mateo	Miguel	20011021	laptop	i400	749	304	
+San Martin	Miguel	20030205	Genius	Lithium	119	124	
+San Julian	Oscar	20020701	laptop	e221	551	594	
+San Miguel	Alberto	20011021	Samsung	Lithium	82	980	
+San Remo	Sebastian	20002005	Marcapaso	i400	815	515	
+San Escoliozios	Miguel	20050107	Commodore	Galaxy SII	18	626	
+San Julian	Sebastian	20011021	IBM	Lithium	109	744	
+San Miguel	Alberto	20030119	Marcapaso	Xirix	114	594	
+Avellaneda	Sebastian	20020120	intel	boligrafo	607	6	
+San Justo	Ezequiel	20011110	intel	Teclado	341	297	
+San Pedro	Leonardo	20030505	MS	x86	674	572	
+San Salvador	Santiago	20030119	Genius	x86	655	325	
+San Gabriel	Santiago	20030505	Commodore	Teclado	495	282	
+Santo Thomas	Francisco	20011101	Hp	notebook	810	905	
+San Escoliozios	Sebastian	20040702	IBM	notebook	126	557	
+San Justo	Ignacio	20000501	Samsung	notebook	446	62	
+San Justo	Francisco	20020701	Commodore	Mouse optico	307	498	
+San Julian	Ignacio	20011021	Samsung	Teclado	69	490	
+San Nicolas	Joaquin 	20020701	MS	e221	598	580	
+San Remo	Juan	20000501	intel	notebook	267	737	
+San Pedro	Juan	20011021	Samsung	Mouse optico	186	910	
+San Miguel	Oscar	20020405	intel	Xirix	189	670	
+San Martin	Ricardo	20030205	IBM	Galaxy SII	557	580	
+San Salvador	Sebastian	20030205	Commodore	Mouse optico	299	277	
+San Nicolas	Miguel	20002005	intel	Xirix	815	656	
+San Pedro	Luciano	20020120	Commodore	x86	975	316	
+San Gabriel	Sebastian	20040502	MS	x86	149	629	
+San Remo	Juan	20040702	Commodore	Mouse optico	370	456	
+San Gabriel	Juan	20030702	Samsung	Xirix	750	669	
+San Escoliozios	Miguel	20030119	IBM	notebook	893	401	
+San Justo	Joaquin 	20030702	Genius	e221	706	852	
+San Nicolas	Ignacio	20040752	laptop	notebook	692	758	
+San Nicolas	Luciano	20040702	Samsung	i400	949	321	
+Avellaneda	Juan	20040502	Marcapaso	Xirix	317	101	
+San Julian	Ricardo	20011110	Genius	e221	222	752	
+San Pedro	Joaquin 	20050708	intel	i400	88	590	
+San Agustin	Santiago	20030119	Commodore	Mouse optico	563	939	
+San Remo	Oscar	20011101	intel	Xirix	252	32	
+San Escoliozios	Miguel	20000501	Hp	i400	636	205	
+San Julian	Ignacio	20040502	MS	i400	564	541	
+San Remo	Alberto	20000501	MS	x86	480	688	
+Santo Thomas	Luciano	20050708	Genius	notebook	889	397	
+San Gabriel	Sebastian	20020405	Iphone	i400	563	559	
+San Escoliozios	Ricardo	20011021	Hp	e221	723	322	
+San Julian	Augusto	20010505	Marcapaso	Teclado	996	336	
+San Agustin	Oscar	20002005	IBM	notebook	653	503	
+San Pedro	Miguel	20030505	Genius	Lithium	330	101	
+San Agustin	Joaquin 	20030206	Genius	e221	425	236	
+San Salvador	Sebastian	20020120	laptop	x86	423	419	
+San Agustin	Ezequiel	20011021	Commodore	Mouse optico	780	404	
+San Nicolas	Ezequiel	20030505	intel	Teclado	808	351	
+San Procto	Sebastian	20040752	laptop	e221	113	939	
+San Pedro	Miguel	20030205	Iphone	Lithium	734	280	
+San Pedro	Sebastian	20030206	intel	notebook	455	257	
+San Escoliozios	Ricardo	20030206	Genius	Lithium	569	396	
+San Procto	Leonardo	20030702	Hp	notebook	200	358	
+San Remo	Augusto	20011101	IBM	Mouse optico	473	955	
+San Remo	Ricardo	20040702	IBM	boligrafo	936	170	
+Avellaneda	Leonardo	20020405	Marcapaso	Lithium	89	318	
+Santo Thomas	Alberto	20030702	MS	e221	462	248	
+San Remo	Alberto	20050708	Samsung	Teclado	904	777	
+San Julian	Leonardo	20030702	Hp	notebook	969	35	
+Avellaneda	Joaquin 	20040702	Genius	Xirix	633	320	
+San Mateo	Juan	20050708	Iphone	boligrafo	352	166	
+San Nicolas	Ignacio	20020405	MS	x86	22	73	
+San Nicolas	Joaquin 	20010505	Iphone	boligrafo	584	654	
+San Mateo	Miguel	20030206	Genius	x86	896	744	
+San Gabriel	Oscar	20020508	IBM	Xirix	703	907	
+San Procto	Luciano	20020508	laptop	Mouse optico	489	28	
+San Agustin	Oscar	20000501	Genius	x86	953	88	
+San Gabriel	Miguel	20030702	IBM	e221	433	482	
+San Remo	Augusto	20040702	Hp	Mouse optico	291	995	
+San Pedro	Pedro	20030505	Commodore	e221	978	806	
+San Mateo	Oscar	20050107	Iphone	Teclado	937	78	
+San Nicolas	Joaquin 	20030205	Samsung	x86	910	800	
+San Escoliozios	Leonardo	20011101	laptop	Lithium	508	387	
+San Escoliozios	Ignacio	20020701	IBM	i400	286	395	
+San Julian	Ricardo	20040702	Commodore	i400	37	45	
+San Miguel	Pedro	20000501	Samsung	Mouse optico	290	294	
+Santo Thomas	Ricardo	20020508	Genius	notebook	377	894	
+San Martin	Joaquin 	20011101	Commodore	Lithium	664	394	
+San Escoliozios	Pedro	20011021	Hp	Xirix	992	101	
+Avellaneda	Luciano	20000501	IBM	e221	271	791	
+San Mateo	Miguel	20020508	Samsung	i400	182	988	
+Santo Thomas	Miguel	20010505	intel	x86	164	274	
+San Salvador	Ignacio	20030206	IBM	i400	459	946	
+Avellaneda	Ezequiel	20002005	MS	x86	195	603	
+San Escoliozios	Oscar	20020701	Hp	e221	482	531	
+San Gabriel	Alberto	20011110	laptop	Xirix	402	624	
+San Miguel	Miguel	20010505	Genius	boligrafo	567	420	
+San Salvador	Luciano	20020701	Samsung	x86	415	114	
+Avellaneda	Alberto	20030702	Marcapaso	e221	114	812	
+San Pedro	Miguel	20030119	Genius	Xirix	864	997	
+San Escoliozios	Augusto	20050708	Samsung	Mouse optico	520	960	
+San Martin	Francisco	20020701	Marcapaso	Galaxy SII	748	576	
+San Remo	Sebastian	20030206	intel	i400	409	8	
+San Julian	Oscar	20050107	MS	Galaxy SII	165	859	
+San Agustin	Luciano	20010505	Genius	Xirix	479	22	
+San Pedro	Pedro	20040502	Hp	e221	364	766	
+San Martin	Francisco	20030119	Commodore	Xirix	34	355	
+San Justo	Ezequiel	20020701	MS	Teclado	186	867	
+San Pedro	Leonardo	20030702	Marcapaso	boligrafo	584	333	
+San Miguel	Luciano	20020701	Genius	e221	338	171	
+San Salvador	Juan	20030505	Hp	Mouse optico	281	152	
+San Pedro	Augusto	20011110	Samsung	i400	873	55	
+San Miguel	Luciano	20030505	Genius	x86	650	280	
+San Gabriel	Ricardo	20050708	Marcapaso	Xirix	969	284	
+San Agustin	Augusto	20040752	intel	e221	393	867	
+San Julian	Juan	20002005	MS	Teclado	528	69	
+San Gabriel	Ezequiel	20000501	Marcapaso	x86	48	291	
+San Mateo	Juan	20020120	IBM	Teclado	185	142	
+San Martin	Sebastian	20020405	intel	x86	882	107	
+San Escoliozios	Augusto	20040502	Iphone	Teclado	994	221	
+Avellaneda	Oscar	20011101	IBM	Teclado	416	173	
+San Agustin	Ezequiel	20040752	Iphone	Galaxy SII	35	926	
+San Pedro	Ricardo	20020508	Hp	boligrafo	495	926	
+San Julian	Leonardo	20002005	Hp	Lithium	9	609	
+San Procto	Luciano	20050107	intel	notebook	122	244	
+San Nicolas	Miguel	20020405	Genius	e221	881	93	
+San Salvador	Joaquin 	20002005	Iphone	Galaxy SII	89	600	
+San Escoliozios	Miguel	20011110	Hp	Teclado	561	661	
+San Procto	Miguel	20011101	Iphone	notebook	102	770	
+San Pedro	Ricardo	20002005	intel	i400	432	387	
+San Gabriel	Augusto	20040752	MS	Xirix	501	208	
+San Agustin	Miguel	20050107	Genius	Galaxy SII	335	235	
+San Salvador	Joaquin 	20010505	Commodore	x86	168	974	
+San Justo	Augusto	20030702	Samsung	x86	760	696	
+San Martin	Sebastian	20020508	laptop	notebook	564	970	
+San Gabriel	Luciano	20030205	Samsung	Lithium	986	991	
+San Julian	Augusto	20040702	MS	Xirix	123	720	
+San Miguel	Augusto	20030206	Commodore	notebook	440	876	
+San Justo	Ricardo	20020120	Hp	boligrafo	656	351	
+San Mateo	Ricardo	20030119	IBM	Xirix	499	744	
+Avellaneda	Oscar	20030702	Commodore	Mouse optico	962	741	
+San Justo	Francisco	20040752	Commodore	boligrafo	156	450	
+Avellaneda	Miguel	20030119	laptop	i400	900	320	
+San Salvador	Miguel	20030206	laptop	i400	993	726	
+San Justo	Oscar	20040752	laptop	Teclado	207	781	
+San Gabriel	Sebastian	20011110	Genius	Xirix	984	537	
+San Procto	Sebastian	20040502	intel	i400	314	578	
+San Remo	Ricardo	20010505	Commodore	i400	571	815	
+San Remo	Miguel	20011110	IBM	e221	13	622	
+San Justo	Ricardo	20020405	Genius	boligrafo	925	648	
+San Procto	Joaquin 	20030205	Iphone	e221	173	863	
+San Gabriel	Oscar	20020405	Hp	i400	342	50	
+San Escoliozios	Joaquin 	20010505	laptop	x86	407	637	
+San Remo	Ezequiel	20011101	intel	Lithium	663	406	
+San Justo	Miguel	20020508	IBM	x86	240	971	
+San Remo	Ezequiel	20050107	Hp	Teclado	277	664	
+San Procto	Alberto	20030702	laptop	notebook	580	101	
+San Justo	Pedro	20030702	intel	x86	999	128	
+San Justo	Alberto	20011110	laptop	Xirix	589	774	
+San Gabriel	Ignacio	20030702	Hp	Xirix	580	642	
+San Salvador	Ignacio	20030119	Commodore	x86	21	829	
+San Justo	Alberto	20030505	laptop	notebook	671	576	
+San Justo	Juan	20030702	laptop	boligrafo	240	143	
+San Remo	Ignacio	20030505	Hp	Lithium	663	640	
+San Mateo	Ricardo	20011101	laptop	Galaxy SII	590	802	
+San Remo	Alberto	20050708	intel	Xirix	563	616	
+San Julian	Ricardo	20030205	Genius	Teclado	899	860	
+San Martin	Sebastian	20002005	Genius	Teclado	921	163	
+San Procto	Miguel	20050107	intel	Mouse optico	87	584	
+San Mateo	Juan	20020701	intel	Xirix	18	102	
+San Escoliozios	Miguel	20030702	Hp	Mouse optico	912	115	
+San Miguel	Ignacio	20040502	MS	Teclado	979	787	
+San Mateo	Joaquin 	20040502	intel	x86	755	81	
+Santo Thomas	Ignacio	20030206	Iphone	notebook	52	756	
+San Julian	Francisco	20010505	Hp	Lithium	577	626	
+San Escoliozios	Oscar	20030702	Samsung	boligrafo	717	152	
+San Martin	Juan	20030505	Samsung	notebook	890	721	
+San Pedro	Alberto	20050107	Marcapaso	x86	469	648	
+San Justo	Oscar	20020405	Genius	notebook	263	139	
+San Martin	Ignacio	20011021	Commodore	boligrafo	508	906	
+San Procto	Ricardo	20020508	Genius	Teclado	999	60	
+San Escoliozios	Joaquin 	20011021	IBM	notebook	586	10	
+San Justo	Luciano	20030206	laptop	notebook	63	859	
+San Salvador	Augusto	20040502	Marcapaso	Galaxy SII	765	131	
+San Escoliozios	Augusto	20002005	Samsung	notebook	97	23	
+San Nicolas	Francisco	20020508	MS	Teclado	866	557	
+San Escoliozios	Ezequiel	20020120	intel	notebook	226	585	
+San Pedro	Augusto	20020405	Iphone	Lithium	445	674	
+San Gabriel	Ricardo	20050107	Iphone	x86	844	423	
+Avellaneda	Pedro	20020405	Marcapaso	e221	530	359	
+San Justo	Leonardo	20030505	intel	Mouse optico	484	99	
+San Agustin	Juan	20030206	Marcapaso	e221	130	705	
+San Procto	Miguel	20020701	Marcapaso	i400	186	692	
+Santo Thomas	Luciano	20000501	Iphone	Teclado	562	669	
+San Justo	Francisco	20002005	laptop	x86	945	590	
+San Agustin	Ezequiel	20030206	Commodore	Galaxy SII	375	150	
+San Salvador	Oscar	20010505	Commodore	e221	236	166	
+San Mateo	Ezequiel	20010505	Samsung	x86	974	399	
+San Nicolas	Miguel	20020508	Marcapaso	Lithium	98	483	
+San Pedro	Luciano	20020508	Marcapaso	x86	763	166	
+San Procto	Sebastian	20030119	Commodore	Lithium	173	520	
+San Miguel	Ezequiel	20030206	intel	Mouse optico	546	737	
+Santo Thomas	Oscar	20000501	Commodore	e221	205	160	
+San Miguel	Augusto	20050708	Genius	boligrafo	717	275	
+San Julian	Oscar	20020405	Marcapaso	Lithium	760	196	
+San Martin	Joaquin 	20030702	MS	boligrafo	404	589	
+San Salvador	Pedro	20030119	Marcapaso	x86	464	182	
+San Escoliozios	Juan	20030119	Iphone	Teclado	985	32	
+Santo Thomas	Juan	20030119	Samsung	Galaxy SII	750	582	
+San Julian	Oscar	20011021	laptop	x86	495	62	
+San Gabriel	Joaquin 	20030206	MS	Mouse optico	979	428	
+Santo Thomas	Ezequiel	20050708	Genius	Galaxy SII	952	74	
+San Pedro	Pedro	20000501	Marcapaso	Lithium	414	553	
+San Julian	Sebastian	20000501	IBM	Lithium	914	696	
+San Pedro	Ezequiel	20011021	MS	boligrafo	410	871	
+San Salvador	Leonardo	20011101	Marcapaso	Mouse optico	909	339	
+Avellaneda	Ignacio	20020405	laptop	i400	520	443	
+San Nicolas	Pedro	20040502	Iphone	e221	133	892	
+San Gabriel	Luciano	20020120	Genius	x86	347	805	
+San Gabriel	Santiago	20030206	MS	Galaxy SII	976	416	
+Avellaneda	Joaquin 	20011021	MS	i400	169	962	
+San Remo	Juan	20020405	MS	Lithium	403	253	
+San Miguel	Miguel	20000501	Marcapaso	notebook	733	396	
+San Justo	Francisco	20040702	Genius	Mouse optico	878	744	
+Avellaneda	Ignacio	20030205	MS	i400	916	898	
+San Escoliozios	Francisco	20010505	laptop	i400	266	25	
+San Agustin	Juan	20011101	Samsung	Xirix	423	621	
+San Gabriel	Sebastian	20002005	Genius	Xirix	220	647	
+San Pedro	Francisco	20020701	laptop	Teclado	552	39	
+San Miguel	Oscar	20030505	Samsung	notebook	799	222	
+Santo Thomas	Luciano	20040702	Commodore	i400	526	850	
+Avellaneda	Pedro	20040752	Commodore	Galaxy SII	491	567	
+San Agustin	Juan	20040702	Marcapaso	Mouse optico	605	497	
+San Gabriel	Sebastian	20011110	Marcapaso	Lithium	476	646	
+San Salvador	Augusto	20010505	intel	boligrafo	116	240	
+San Pedro	Alberto	20020508	laptop	notebook	564	752	
+San Miguel	Luciano	20030119	laptop	i400	534	480	
+San Remo	Sebastian	20040502	Hp	Xirix	515	806	
+San Mateo	Pedro	20040752	Samsung	Xirix	321	619	
+San Procto	Ezequiel	20010505	IBM	e221	951	704	
+San Miguel	Oscar	20040752	Hp	notebook	776	430	
+San Agustin	Augusto	20030505	MS	x86	889	264	
+San Gabriel	Ezequiel	20020508	IBM	boligrafo	524	782	
+San Procto	Ignacio	20020405	Iphone	Xirix	262	958	
+San Agustin	Ricardo	20030206	laptop	i400	120	421	
+Santo Thomas	Joaquin 	20010505	IBM	Xirix	763	560	
+San Procto	Alberto	20050107	Marcapaso	e221	896	83	
+San Nicolas	Ezequiel	20010505	Samsung	Xirix	268	391	
+San Remo	Oscar	20030119	MS	i400	12	961	
+San Escoliozios	Francisco	20020701	Commodore	e221	235	417	
+San Martin	Pedro	20040502	Genius	Lithium	802	306	
+San Miguel	Juan	20020701	Samsung	Galaxy SII	256	281	
+San Agustin	Oscar	20030206	MS	e221	22	860	
+San Julian	Luciano	20050107	Iphone	Galaxy SII	205	51	
+San Salvador	Ezequiel	20040752	Marcapaso	x86	446	335	
+San Pedro	Ricardo	20050708	Commodore	Teclado	32	961	
+San Justo	Augusto	20040702	Marcapaso	Mouse optico	916	395	
+San Mateo	Pedro	20011101	IBM	Teclado	77	947	
+San Salvador	Augusto	20040502	Hp	i400	468	780	
+San Salvador	Joaquin 	20000501	Iphone	Galaxy SII	757	52	
+San Pedro	Santiago	20002005	Samsung	e221	257	630	
+San Mateo	Sebastian	20002005	Commodore	Galaxy SII	282	437	
+San Pedro	Leonardo	20020701	Iphone	Lithium	385	574	
+San Agustin	Ignacio	20020701	intel	i400	470	784	
+San Mateo	Ricardo	20050107	laptop	e221	851	216	
+San Pedro	Francisco	20050107	MS	Xirix	873	757	
+San Agustin	Sebastian	20030205	Marcapaso	notebook	581	715	
+San Salvador	Pedro	20011101	intel	Mouse optico	644	57	
+San Remo	Francisco	20050107	intel	boligrafo	679	560	
+San Agustin	Oscar	20011021	Marcapaso	Lithium	623	450	
+San Mateo	Oscar	20040702	Hp	Lithium	403	801	
+San Salvador	Pedro	20011110	Hp	Teclado	807	852	
+San Gabriel	Ezequiel	20030505	Hp	notebook	751	880	
+San Mateo	Ezequiel	20020405	Iphone	Teclado	216	728	
+San Procto	Ignacio	20030205	intel	boligrafo	386	842	
+Avellaneda	Santiago	20050708	Samsung	i400	161	482	
+San Miguel	Pedro	20030119	Marcapaso	x86	243	856	
+Avellaneda	Pedro	20030702	Genius	x86	176	167	
+San Agustin	Leonardo	20010505	MS	Xirix	73	515	
+San Remo	Ezequiel	20020701	intel	Xirix	3	716	
+San Justo	Sebastian	20030205	Commodore	Galaxy SII	533	243	
+San Remo	Santiago	20020508	intel	i400	835	438	
+San Salvador	Luciano	20050708	intel	x86	500	578	
+San Procto	Miguel	20020508	Iphone	e221	453	769	
+Santo Thomas	Ezequiel	20040752	Hp	Lithium	684	52	
+San Gabriel	Ricardo	20011101	Hp	Teclado	395	849	
+San Gabriel	Ricardo	20011101	MS	Xirix	893	554	
+San Procto	Leonardo	20000501	Iphone	Teclado	227	495	
+San Justo	Juan	20011101	Iphone	Galaxy SII	750	591	
+San Gabriel	Ezequiel	20050708	intel	Lithium	940	824	
+San Procto	Leonardo	20030206	Marcapaso	notebook	961	382	
+San Julian	Ignacio	20030505	Marcapaso	Xirix	69	742	
+San Martin	Augusto	20040702	Iphone	Teclado	501	504	
+San Pedro	Ricardo	20020508	Genius	Lithium	740	393	
+San Agustin	Juan	20040702	MS	e221	891	405	
+San Remo	Ignacio	20011021	Hp	i400	724	847	
+Avellaneda	Santiago	20020120	Samsung	e221	826	393	
+San Pedro	Augusto	20010505	Samsung	notebook	994	68	
+Santo Thomas	Santiago	20040752	IBM	x86	680	598	
+San Nicolas	Miguel	20002005	laptop	x86	791	405	
+San Salvador	Oscar	20011101	laptop	boligrafo	842	266	
+San Nicolas	Juan	20030206	Marcapaso	Teclado	558	665	
+San Remo	Miguel	20030702	Genius	Xirix	197	455	
+San Miguel	Joaquin 	20020508	Samsung	x86	56	149	
+San Mateo	Ignacio	20020120	laptop	boligrafo	808	101	
+San Miguel	Alberto	20020701	laptop	boligrafo	27	554	
+Santo Thomas	Miguel	20040702	Genius	Galaxy SII	954	742	
+San Nicolas	Sebastian	20030205	Samsung	e221	251	266	
+San Escoliozios	Augusto	20020405	Hp	Galaxy SII	971	364	
+San Escoliozios	Santiago	20040752	Samsung	x86	834	274	
+San Gabriel	Ignacio	20050107	laptop	x86	48	964	
+San Remo	Luciano	20030702	laptop	Galaxy SII	904	145	
+San Salvador	Sebastian	20020405	IBM	x86	827	17	
+San Procto	Santiago	20020701	Samsung	notebook	848	338	
+San Justo	Juan	20050708	Commodore	notebook	440	829	
+Avellaneda	Oscar	20011021	intel	x86	499	594	
+San Procto	Ezequiel	20030702	Genius	notebook	151	494	
+San Justo	Pedro	20011110	IBM	i400	894	789	
+San Agustin	Santiago	20000501	Hp	x86	740	129	
+Avellaneda	Sebastian	20040502	MS	Lithium	752	544	
+San Salvador	Ricardo	20000501	Genius	Lithium	878	640	
+San Martin	Luciano	20000501	Iphone	e221	647	890	
+San Gabriel	Miguel	20030206	Samsung	Xirix	807	512	
+San Miguel	Miguel	20050708	IBM	i400	601	645	
+San Agustin	Leonardo	20030205	intel	Lithium	328	368	
+San Martin	Ricardo	20002005	Marcapaso	Xirix	144	721	
+San Martin	Santiago	20050708	laptop	boligrafo	291	176	
+San Procto	Francisco	20030206	Hp	Lithium	332	11	
+San Agustin	Joaquin 	20030206	Commodore	Xirix	846	331	
+San Mateo	Sebastian	20030206	Samsung	boligrafo	708	632	
+San Procto	Ignacio	20020701	Genius	Lithium	966	897	
+Avellaneda	Ricardo	20020508	intel	boligrafo	764	926	
+San Justo	Francisco	20030505	Hp	e221	595	147	
+Santo Thomas	Ezequiel	20040752	Iphone	Lithium	178	360	
+San Justo	Joaquin 	20040502	IBM	i400	347	486	
+San Agustin	Augusto	20020701	Hp	notebook	458	959	
+San Mateo	Ricardo	20010505	MS	boligrafo	824	306	
+San Agustin	Ezequiel	20040752	IBM	Mouse optico	931	872	
+San Escoliozios	Francisco	20040702	Marcapaso	Teclado	226	102	
+San Gabriel	Miguel	20020120	Samsung	Mouse optico	972	482	
+San Nicolas	Ezequiel	20020405	Hp	Lithium	327	317	
+Avellaneda	Sebastian	20050708	Hp	notebook	76	986	
+San Nicolas	Luciano	20010505	MS	Galaxy SII	93	396	
+San Pedro	Augusto	20040752	Genius	Mouse optico	86	971	
+San Gabriel	Luciano	20040752	Iphone	x86	895	628	
+San Salvador	Ricardo	20030505	Samsung	boligrafo	568	437	
+Avellaneda	Alberto	20020405	Hp	Lithium	284	294	
+San Gabriel	Leonardo	20030206	Genius	Lithium	189	735	
+San Remo	Augusto	20030702	Hp	boligrafo	160	617	
+San Julian	Luciano	20040702	MS	Xirix	191	83	
+San Procto	Santiago	20011110	IBM	x86	945	981	
+San Justo	Ricardo	20011101	Genius	Lithium	967	713	
+Santo Thomas	Sebastian	20020405	Genius	x86	156	275	
+San Gabriel	Augusto	20010505	intel	boligrafo	138	558	
+San Procto	Augusto	20050708	Hp	e221	163	909	
+San Escoliozios	Francisco	20010505	intel	boligrafo	167	384	
+Avellaneda	Sebastian	20020508	Iphone	Xirix	547	150	
+San Miguel	Juan	20020405	Marcapaso	e221	318	81	
+San Agustin	Ezequiel	20050708	laptop	i400	282	356	
+San Mateo	Ezequiel	20011101	Hp	notebook	157	931	
+San Mateo	Augusto	20030119	Genius	x86	414	89	
+San Gabriel	Pedro	20040702	Marcapaso	Lithium	666	964	
+San Miguel	Pedro	20002005	laptop	x86	686	129	
+San Martin	Pedro	20040752	Samsung	x86	751	486	
+Avellaneda	Joaquin 	20020405	Genius	Xirix	733	700	
+San Miguel	Sebastian	20011021	Marcapaso	Galaxy SII	30	918	
+San Gabriel	Juan	20010505	Marcapaso	Lithium	928	542	
+San Pedro	Alberto	20030206	Hp	notebook	157	464	
+San Justo	Joaquin 	20040502	MS	Mouse optico	368	832	
+San Justo	Francisco	20011110	Commodore	Xirix	323	189	
+San Agustin	Leonardo	20000501	Samsung	e221	990	594	
+San Miguel	Joaquin 	20000501	Genius	notebook	809	211	
+San Pedro	Pedro	20030206	Samsung	Mouse optico	627	89	
+San Miguel	Pedro	20030505	Commodore	e221	455	489	
+San Agustin	Santiago	20030206	Commodore	Galaxy SII	787	838	
+San Salvador	Santiago	20020405	MS	Lithium	570	771	
+San Martin	Leonardo	20040502	Hp	boligrafo	659	469	
+San Martin	Augusto	20020120	MS	Xirix	482	658	
+San Agustin	Pedro	20000501	Commodore	i400	827	432	
+San Julian	Alberto	20011101	laptop	boligrafo	703	946	
+San Pedro	Augusto	20030702	Hp	Lithium	702	669	
+Avellaneda	Leonardo	20000501	Iphone	Lithium	698	134	
+San Mateo	Sebastian	20011021	Hp	Galaxy SII	941	39	
+San Julian	Santiago	20040752	IBM	boligrafo	742	715	
+San Gabriel	Ezequiel	20030206	Genius	i400	380	184	
+San Agustin	Francisco	20010505	Hp	x86	994	592	
+San Pedro	Juan	20030702	laptop	Mouse optico	518	336	
+Avellaneda	Ezequiel	20020701	Genius	Xirix	847	511	
+San Procto	Miguel	20040702	Hp	e221	889	252	
+San Gabriel	Augusto	20020405	Samsung	boligrafo	292	499	
+San Gabriel	Augusto	20020508	Genius	Teclado	818	916	
+San Julian	Leonardo	20011101	Genius	i400	628	674	
+San Justo	Oscar	20030205	IBM	e221	413	25	
+San Pedro	Augusto	20011101	Genius	notebook	715	982	
+San Mateo	Luciano	20040752	Commodore	Xirix	574	617	
+Santo Thomas	Leonardo	20011110	Samsung	i400	786	972	
+San Escoliozios	Ezequiel	20050708	intel	Mouse optico	832	189	
+Avellaneda	Ricardo	20040702	laptop	notebook	493	912	
+San Pedro	Ricardo	20010505	laptop	Xirix	378	776	
+San Escoliozios	Pedro	20020701	Commodore	boligrafo	926	910	
+San Pedro	Juan	20010505	IBM	Galaxy SII	529	152	
+San Justo	Leonardo	20030119	MS	Lithium	557	35	
+San Salvador	Luciano	20030505	Iphone	Xirix	843	330	
+San Escoliozios	Ricardo	20000501	MS	Galaxy SII	499	773	
+San Escoliozios	Ezequiel	20030206	intel	Galaxy SII	567	195	
+Santo Thomas	Francisco	20030119	Iphone	x86	690	268	
+San Pedro	Ricardo	20030119	Iphone	Xirix	252	504	
+San Remo	Francisco	20050107	laptop	boligrafo	941	24	
+San Escoliozios	Ezequiel	20011021	laptop	Mouse optico	481	605	
+San Justo	Luciano	20050107	Iphone	Galaxy SII	148	568	
+San Procto	Ignacio	20050107	IBM	e221	142	894	
+San Agustin	Leonardo	20020701	MS	x86	233	979	
+San Julian	Sebastian	20002005	Iphone	Lithium	800	309	
+San Escoliozios	Augusto	20030505	Marcapaso	boligrafo	714	771	
+San Escoliozios	Ignacio	20030119	laptop	i400	177	750	
+San Gabriel	Augusto	20050708	Samsung	i400	42	119	
+San Martin	Augusto	20020508	laptop	x86	102	310	
+San Pedro	Joaquin 	20050708	intel	Galaxy SII	534	44	
+San Escoliozios	Ricardo	20050107	MS	Galaxy SII	155	70	
+San Julian	Leonardo	20050107	IBM	Lithium	465	782	
+San Agustin	Oscar	20030505	intel	i400	1	585	
+San Martin	Francisco	20010505	Hp	e221	516	854	
+San Salvador	Luciano	20010505	Commodore	boligrafo	715	698	
+San Nicolas	Joaquin 	20011021	Iphone	Xirix	590	838	
+San Julian	Luciano	20050708	Iphone	notebook	523	798	
+San Agustin	Oscar	20020701	intel	Lithium	280	887	
+San Procto	Santiago	20030702	Genius	Mouse optico	641	534	
+San Salvador	Leonardo	20040702	intel	Xirix	2	794	
+San Nicolas	Miguel	20050708	Iphone	Lithium	253	516	
+San Martin	Santiago	20030119	intel	boligrafo	699	145	
+San Mateo	Pedro	20002005	intel	i400	774	390	
+San Procto	Ezequiel	20030505	Commodore	i400	158	335	
+San Justo	Sebastian	20000501	Marcapaso	i400	762	723	
+San Nicolas	Luciano	20040702	IBM	i400	555	177	
+San Pedro	Ricardo	20030119	laptop	Xirix	354	586	
+San Justo	Francisco	20040502	IBM	notebook	901	407	
+Santo Thomas	Luciano	20030702	Hp	Xirix	872	752	
+Avellaneda	Alberto	20040752	Hp	Lithium	716	994	
+San Nicolas	Augusto	20030205	intel	notebook	493	558	
+San Gabriel	Ignacio	20000501	Commodore	Teclado	121	407	
+San Escoliozios	Luciano	20050107	Genius	e221	557	159	
+Santo Thomas	Ezequiel	20030505	Iphone	e221	388	657	
+San Miguel	Francisco	20030206	Samsung	boligrafo	823	696	
+San Mateo	Augusto	20011101	IBM	Galaxy SII	400	438	
+San Salvador	Oscar	20050107	IBM	notebook	660	507	
+San Procto	Ricardo	20030206	MS	Lithium	579	210	
+San Miguel	Pedro	20010505	Marcapaso	e221	519	592	
+San Nicolas	Leonardo	20011101	Hp	Lithium	544	17	
+San Julian	Pedro	20040752	MS	x86	301	636	
+San Justo	Pedro	20000501	IBM	Galaxy SII	812	569	
+San Julian	Leonardo	20011021	intel	boligrafo	646	976	
+San Nicolas	Sebastian	20020120	Genius	notebook	858	232	
+San Salvador	Ezequiel	20011101	MS	boligrafo	705	964	
+San Julian	Luciano	20050708	Genius	Teclado	746	462	
+San Salvador	Miguel	20002005	MS	Teclado	811	524	
+Santo Thomas	Ezequiel	20011110	Commodore	Lithium	70	623	
+San Pedro	Joaquin 	20010505	Hp	boligrafo	105	296	
+San Miguel	Ignacio	20011101	Marcapaso	Mouse optico	863	320	
+San Gabriel	Alberto	20011021	MS	Galaxy SII	815	917	
+San Pedro	Alberto	20020405	Marcapaso	e221	942	170	
+San Miguel	Luciano	20011021	Genius	Teclado	649	143	
+Santo Thomas	Santiago	20020405	MS	notebook	701	449	
+San Agustin	Miguel	20011021	Samsung	Galaxy SII	552	111	
+San Agustin	Leonardo	20002005	Marcapaso	Teclado	470	886	
+San Pedro	Ezequiel	20020508	Commodore	x86	851	628	
+San Agustin	Oscar	20011021	IBM	Xirix	211	594	
+San Julian	Joaquin 	20002005	Iphone	x86	813	383	
+San Procto	Leonardo	20040752	MS	i400	524	449	
+San Miguel	Pedro	20030119	Genius	x86	393	595	
+San Julian	Ricardo	20040702	Iphone	i400	995	840	
+San Justo	Ricardo	20020405	Genius	Galaxy SII	479	35	
+San Remo	Augusto	20020405	Iphone	Lithium	914	235	
+San Agustin	Ezequiel	20030206	Samsung	x86	21	930	
+San Julian	Ezequiel	20011110	IBM	Lithium	749	874	
+San Nicolas	Santiago	20030702	Marcapaso	Teclado	150	236	
+San Pedro	Alberto	20011101	IBM	Teclado	691	910	
+San Remo	Alberto	20000501	MS	e221	830	99	
+San Escoliozios	Ignacio	20002005	Hp	Xirix	556	993	
+San Mateo	Augusto	20010505	Hp	e221	583	744	
+San Justo	Santiago	20040502	laptop	boligrafo	252	738	
+Santo Thomas	Pedro	20050708	Genius	notebook	794	845	
+San Remo	Alberto	20030505	laptop	x86	975	389	
+San Gabriel	Oscar	20020701	IBM	Mouse optico	250	7	
+San Mateo	Ignacio	20011021	Genius	notebook	732	963	
+San Mateo	Pedro	20030702	Iphone	Teclado	350	86	
+San Escoliozios	Sebastian	20030505	laptop	i400	876	144	
+San Martin	Ignacio	20011110	MS	boligrafo	916	665	
+San Martin	Sebastian	20030206	Samsung	e221	423	0	
+San Remo	Sebastian	20040502	Marcapaso	Galaxy SII	666	716	
+San Pedro	Luciano	20050107	intel	Galaxy SII	733	623	
+San Mateo	Alberto	20011021	Samsung	x86	301	173	
+San Julian	Ricardo	20050107	laptop	boligrafo	511	174	
+San Agustin	Pedro	20030205	MS	e221	139	455	
+San Martin	Ignacio	20030205	Hp	Mouse optico	974	852	
+Avellaneda	Juan	20040752	MS	boligrafo	243	98	
+San Gabriel	Miguel	20011101	IBM	i400	111	689	
+San Salvador	Alberto	20010505	intel	notebook	39	492	
+San Procto	Sebastian	20030505	Genius	Teclado	120	185	
+San Julian	Francisco	20002005	Commodore	Mouse optico	513	711	
+San Pedro	Santiago	20050107	MS	boligrafo	82	527	
+San Justo	Sebastian	20040702	Iphone	Mouse optico	81	752	
+San Agustin	Francisco	20040702	laptop	boligrafo	193	908	
+Santo Thomas	Augusto	20020508	laptop	x86	131	886	
+San Martin	Alberto	20020120	Hp	x86	407	238	
+San Miguel	Oscar	20011021	Commodore	Lithium	983	984	
+San Escoliozios	Luciano	20030702	Genius	Galaxy SII	982	904	
+San Escoliozios	Sebastian	20050107	Commodore	x86	905	866	
+San Mateo	Luciano	20011021	Samsung	Lithium	351	446	
+San Pedro	Santiago	20030206	Commodore	Xirix	451	558	
+Avellaneda	Ezequiel	20011110	Marcapaso	notebook	280	313	
+San Miguel	Ricardo	20040702	Samsung	x86	30	946	
+San Mateo	Pedro	20050107	Genius	Teclado	566	934	
+San Procto	Joaquin 	20020701	Commodore	Lithium	65	528	
+San Mateo	Oscar	20020508	Genius	Teclado	629	297	
+San Nicolas	Joaquin 	20050708	Samsung	Galaxy SII	829	312	
+San Procto	Ignacio	20011101	intel	i400	72	358	
+San Gabriel	Alberto	20011101	Marcapaso	notebook	673	165	
+San Martin	Santiago	20030206	Samsung	Xirix	780	24	
+San Martin	Ezequiel	20030119	IBM	boligrafo	932	794	
+San Escoliozios	Santiago	20000501	laptop	Lithium	365	634	
+San Nicolas	Ezequiel	20040502	Samsung	e221	286	613	
+San Procto	Pedro	20011021	Genius	Lithium	473	34	
+Avellaneda	Ricardo	20020508	Samsung	Lithium	379	814	
+Avellaneda	Augusto	20050708	Marcapaso	e221	716	573	
+San Miguel	Francisco	20040702	Samsung	notebook	200	299	
+San Remo	Oscar	20030505	Iphone	x86	691	104	
+San Salvador	Sebastian	20000501	laptop	x86	197	254	
+San Pedro	Miguel	20020508	laptop	Mouse optico	678	539	
+Avellaneda	Leonardo	20000501	IBM	x86	320	769	
+Avellaneda	Oscar	20020508	intel	e221	980	829	
+San Nicolas	Juan	20030505	intel	Mouse optico	72	695	
+San Martin	Augusto	20040502	Hp	Mouse optico	19	404	
+San Gabriel	Juan	20030505	IBM	e221	56	356	
+San Remo	Leonardo	20000501	intel	Mouse optico	194	161	
+San Mateo	Sebastian	20040502	Hp	Mouse optico	924	959	
+San Miguel	Pedro	20030206	MS	Xirix	605	279	
+San Pedro	Alberto	20030206	Genius	boligrafo	627	550	
+San Nicolas	Juan	20030505	MS	e221	33	548	
+Avellaneda	Ricardo	20030702	Genius	x86	699	224	
+San Martin	Alberto	20030205	MS	Lithium	837	876	
+San Mateo	Ezequiel	20030205	laptop	e221	840	853	
+San Agustin	Oscar	20020405	Genius	Galaxy SII	310	785	
+San Martin	Leonardo	20030119	Samsung	notebook	43	36	
+Avellaneda	Santiago	20011101	Iphone	boligrafo	444	161	
+Avellaneda	Augusto	20002005	Genius	i400	195	878	
+San Gabriel	Luciano	20030702	Samsung	notebook	135	984	
+San Procto	Ezequiel	20011021	Genius	i400	104	44	
+San Agustin	Sebastian	20020508	Hp	Mouse optico	342	562	
+San Martin	Santiago	20030702	Iphone	e221	762	124	
+San Gabriel	Pedro	20002005	intel	Teclado	735	766	
+San Escoliozios	Joaquin 	20011021	Samsung	boligrafo	521	28	
+San Pedro	Alberto	20020508	Marcapaso	i400	153	807	
+San Procto	Oscar	20020701	MS	Xirix	95	173	
+San Agustin	Ignacio	20011101	Samsung	Mouse optico	302	728	
+San Julian	Luciano	20040752	Hp	Teclado	245	464	
+San Martin	Santiago	20040752	Hp	boligrafo	564	805	
+San Salvador	Juan	20050708	Genius	Xirix	983	757	
+San Escoliozios	Francisco	20030505	Genius	Teclado	230	990	
+San Gabriel	Oscar	20030702	intel	notebook	213	870	
+San Escoliozios	Ezequiel	20030119	Commodore	Xirix	827	42	
+San Procto	Leonardo	20050107	Commodore	Galaxy SII	461	615	
+Santo Thomas	Ezequiel	20020701	Genius	notebook	303	670	
+San Nicolas	Miguel	20030206	Iphone	e221	379	777	
+San Procto	Miguel	20050708	Samsung	e221	983	825	
+Santo Thomas	Ignacio	20010505	Genius	Xirix	715	678	
+Santo Thomas	Sebastian	20011101	IBM	Lithium	666	464	
+San Salvador	Pedro	20000501	IBM	notebook	797	822	
+San Remo	Sebastian	20020120	Iphone	i400	247	324	
+San Julian	Ricardo	20030205	laptop	e221	17	994	
+San Martin	Santiago	20030206	intel	Teclado	965	201	
+San Remo	Alberto	20030206	IBM	Lithium	802	287	
+San Pedro	Miguel	20000501	IBM	i400	709	882	
+San Remo	Pedro	20040702	Hp	Galaxy SII	356	467	
+San Martin	Leonardo	20040752	Marcapaso	Galaxy SII	133	36	
+San Justo	Francisco	20040702	intel	i400	904	232	
+San Agustin	Juan	20011110	Marcapaso	boligrafo	630	113	
+San Pedro	Leonardo	20040502	IBM	Xirix	202	997	
+San Escoliozios	Miguel	20040752	Commodore	Teclado	926	192	
+San Justo	Luciano	20040702	laptop	Galaxy SII	467	614	
+San Mateo	Leonardo	20050107	Iphone	e221	367	664	
+San Agustin	Pedro	20011021	Marcapaso	boligrafo	773	97	
+San Procto	Pedro	20020508	Samsung	notebook	559	838	
+San Escoliozios	Oscar	20002005	intel	notebook	259	573	
+San Miguel	Juan	20030205	intel	e221	35	825	
+San Salvador	Ezequiel	20040752	intel	x86	267	32	
+San Gabriel	Luciano	20000501	Hp	e221	224	498	
+San Remo	Santiago	20030119	laptop	Xirix	367	532	
+San Julian	Alberto	20000501	intel	boligrafo	294	124	
+San Nicolas	Augusto	20030505	IBM	i400	438	195	
+San Salvador	Juan	20040702	Genius	i400	356	253	
+San Gabriel	Miguel	20011021	Hp	boligrafo	88	334	
+San Procto	Ezequiel	20010505	Marcapaso	e221	972	977	
+San Nicolas	Ricardo	20000501	Genius	notebook	51	520	
+Santo Thomas	Oscar	20030702	Marcapaso	Galaxy SII	943	343	
+Avellaneda	Augusto	20020120	Commodore	Mouse optico	349	19	
+San Martin	Ezequiel	20020701	Genius	Mouse optico	221	335	
+Avellaneda	Sebastian	20030119	Marcapaso	x86	414	301	
+San Justo	Ezequiel	20050107	Hp	Teclado	538	854	
+San Salvador	Oscar	20030205	laptop	i400	796	800	
+San Procto	Sebastian	20050107	MS	notebook	174	790	
+San Escoliozios	Leonardo	20000501	Marcapaso	notebook	438	863	
+San Justo	Ignacio	20030205	Samsung	boligrafo	986	493	
+Santo Thomas	Oscar	20030119	Marcapaso	e221	547	522	
+San Gabriel	Leonardo	20030119	Marcapaso	x86	143	359	
+San Pedro	Augusto	20030205	intel	i400	276	998	
+Santo Thomas	Juan	20010505	Hp	notebook	26	459	
+San Mateo	Luciano	20040502	Samsung	notebook	301	593	
+San Remo	Ignacio	20000501	Hp	Galaxy SII	439	782	
+San Miguel	Miguel	20000501	Commodore	Teclado	293	299	
+San Procto	Miguel	20011101	MS	Xirix	160	272	
+San Julian	Sebastian	20030702	Commodore	Galaxy SII	685	909	
+San Gabriel	Pedro	20011110	Iphone	Mouse optico	619	613	
+San Justo	Luciano	20020701	Commodore	Lithium	538	460	
+San Remo	Ignacio	20011021	Samsung	x86	58	77	
+San Miguel	Ricardo	20030119	intel	x86	81	286	
+San Procto	Santiago	20030205	Hp	i400	699	624	
+San Remo	Augusto	20040702	IBM	boligrafo	634	326	
+San Justo	Sebastian	20011021	intel	e221	547	721	
+San Nicolas	Alberto	20011021	laptop	Mouse optico	148	636	
+San Martin	Ricardo	20030505	Genius	Teclado	120	179	
+San Gabriel	Ignacio	20050107	Hp	Galaxy SII	42	958	
+San Escoliozios	Juan	20011101	intel	Mouse optico	72	99	
+San Julian	Alberto	20050107	Iphone	Xirix	619	355	
+San Justo	Santiago	20040502	Iphone	Teclado	916	116	
+Avellaneda	Luciano	20011101	Commodore	Mouse optico	99	84	
+Avellaneda	Sebastian	20002005	intel	Mouse optico	328	49	
+San Miguel	Ezequiel	20000501	intel	e221	969	783	
+San Martin	Miguel	20000501	Iphone	boligrafo	132	577	
+San Agustin	Luciano	20030206	Hp	e221	988	91	
+Avellaneda	Francisco	20030205	MS	Xirix	218	450	
+San Justo	Miguel	20040752	Commodore	Teclado	648	236	
+Avellaneda	Alberto	20002005	Iphone	Xirix	160	513	
+San Remo	Augusto	20020508	MS	boligrafo	784	261	
+San Nicolas	Santiago	20020701	Hp	Mouse optico	527	305	
+San Pedro	Santiago	20011021	Samsung	Xirix	256	851	
+San Martin	Joaquin 	20020508	Iphone	notebook	109	425	
+San Miguel	Augusto	20030505	Iphone	notebook	29	203	
+San Mateo	Ignacio	20040752	Hp	notebook	817	698	
+San Nicolas	Leonardo	20002005	intel	e221	760	674	
+San Agustin	Luciano	20011110	IBM	Teclado	615	835	
+San Nicolas	Juan	20011101	Samsung	Teclado	200	461	
+San Remo	Ricardo	20030206	Marcapaso	e221	130	789	
+San Procto	Pedro	20040752	laptop	Xirix	491	615	
+San Agustin	Ricardo	20011101	Commodore	Xirix	817	393	
+San Salvador	Ezequiel	20040702	IBM	Galaxy SII	489	806	
+San Salvador	Juan	20011101	Commodore	Teclado	932	166	
+Avellaneda	Luciano	20040502	intel	e221	444	671	
+Santo Thomas	Pedro	20011101	IBM	Galaxy SII	577	453	
+San Nicolas	Leonardo	20050107	IBM	Mouse optico	74	281	
+Avellaneda	Miguel	20020508	Samsung	Xirix	355	840	
+San Salvador	Augusto	20002005	Samsung	boligrafo	962	731	
+San Agustin	Ezequiel	20020405	IBM	boligrafo	689	349	
+San Escoliozios	Augusto	20050107	MS	Lithium	649	636	
+San Escoliozios	Juan	20030505	Marcapaso	Xirix	6	606	
+San Remo	Leonardo	20020405	Commodore	Lithium	453	854	
+San Justo	Ezequiel	20020120	Hp	Mouse optico	988	25	
+San Salvador	Juan	20020701	IBM	Teclado	177	687	
+San Procto	Ignacio	20030119	laptop	notebook	242	570	
+San Julian	Ricardo	20030205	Hp	Lithium	623	100	
+San Martin	Francisco	20040502	Iphone	x86	540	623	
+Santo Thomas	Oscar	20050708	Marcapaso	Xirix	24	181	
+San Salvador	Ricardo	20010505	Commodore	e221	193	858	
+San Remo	Ezequiel	20020405	Marcapaso	Lithium	606	802	
+Santo Thomas	Ricardo	20030505	intel	boligrafo	857	814	
+San Julian	Leonardo	20020405	Samsung	Teclado	87	601	
+San Pedro	Francisco	20011021	Iphone	boligrafo	652	46	
+San Agustin	Ignacio	20030505	MS	Xirix	334	340	
+Avellaneda	Pedro	20000501	Iphone	Galaxy SII	46	813	
+San Escoliozios	Joaquin 	20050708	Iphone	boligrafo	67	398	
+San Martin	Sebastian	20002005	Hp	Xirix	784	646	
+San Remo	Ezequiel	20030206	MS	Xirix	597	842	
+San Remo	Joaquin 	20030205	intel	Mouse optico	326	790	
+San Justo	Leonardo	20050708	intel	Xirix	233	804	
+San Remo	Augusto	20040702	Genius	x86	203	166	
+San Miguel	Pedro	20050107	Iphone	x86	505	220	
+San Miguel	Francisco	20020508	Iphone	e221	244	803	
+San Mateo	Miguel	20020120	MS	Teclado	197	477	
+San Martin	Ezequiel	20011101	Commodore	i400	485	602	
+San Salvador	Juan	20011021	MS	Lithium	581	205	
+San Pedro	Francisco	20020405	Genius	Galaxy SII	487	82	
+San Martin	Juan	20010505	Samsung	boligrafo	479	87	
+San Martin	Juan	20020120	Marcapaso	Galaxy SII	846	264	
+San Julian	Augusto	20010505	laptop	e221	635	930	
+San Miguel	Ricardo	20000501	Commodore	boligrafo	561	609	
+San Escoliozios	Luciano	20030206	Commodore	i400	578	854	
+San Pedro	Luciano	20030505	Hp	i400	507	800	
+San Julian	Leonardo	20020508	IBM	Lithium	931	706	
+San Miguel	Miguel	20050708	Marcapaso	i400	773	204	
+San Pedro	Leonardo	20050107	intel	boligrafo	506	304	
+San Salvador	Francisco	20030205	Iphone	Galaxy SII	101	584	
+San Mateo	Alberto	20020701	Commodore	Teclado	449	402	
+San Procto	Leonardo	20000501	Hp	Teclado	745	760	
+San Gabriel	Oscar	20040502	Genius	Mouse optico	779	409	
+San Martin	Augusto	20030702	Marcapaso	boligrafo	873	655	
+San Escoliozios	Pedro	20040702	Hp	notebook	624	111	
+San Remo	Francisco	20011110	Samsung	x86	621	549	
+San Nicolas	Leonardo	20030119	Samsung	Mouse optico	274	965	
+San Gabriel	Luciano	20020701	MS	boligrafo	89	382	
+San Miguel	Pedro	20002005	Iphone	Teclado	277	615	
+San Escoliozios	Joaquin 	20030702	laptop	Teclado	240	262	
+San Nicolas	Ignacio	20050107	Genius	Xirix	122	978	
+San Pedro	Leonardo	20030505	Genius	x86	318	836	
+San Gabriel	Ezequiel	20040702	intel	boligrafo	257	727	
+Santo Thomas	Miguel	20030119	Genius	x86	70	897	
+San Nicolas	Augusto	20030205	Genius	Galaxy SII	972	684	
+San Nicolas	Francisco	20030206	intel	x86	606	375	
+Avellaneda	Joaquin 	20040702	Commodore	boligrafo	431	236	
+San Miguel	Juan	20040502	laptop	Xirix	306	843	
+San Procto	Leonardo	20030702	laptop	Lithium	901	921	
+San Julian	Joaquin 	20050708	Iphone	Teclado	268	779	
+San Nicolas	Joaquin 	20030205	Marcapaso	Mouse optico	367	134	
+San Salvador	Santiago	20020701	Genius	x86	334	850	
+San Miguel	Alberto	20030206	Hp	e221	435	446	
+San Miguel	Leonardo	20020701	intel	Xirix	973	826	
+San Salvador	Ricardo	20050708	IBM	Galaxy SII	760	38	
+San Mateo	Francisco	20030205	laptop	Teclado	544	888	
+San Nicolas	Joaquin 	20030702	Samsung	notebook	432	493	
+San Remo	Joaquin 	20030505	Iphone	Xirix	308	808	
+San Nicolas	Augusto	20050708	intel	notebook	240	229	
+San Procto	Luciano	20011101	intel	Galaxy SII	441	609	
+San Justo	Pedro	20040752	Marcapaso	Mouse optico	235	589	
+San Agustin	Juan	20020508	MS	notebook	24	167	
+San Gabriel	Augusto	20040502	Samsung	Lithium	611	748	
+San Salvador	Ignacio	20040502	Commodore	Mouse optico	246	339	
+Avellaneda	Juan	20030505	laptop	Lithium	445	504	
+San Remo	Juan	20020508	MS	boligrafo	178	846	
+San Mateo	Ricardo	20002005	IBM	notebook	989	784	
+San Salvador	Alberto	20011110	Iphone	x86	511	70	
+Santo Thomas	Santiago	20020405	Iphone	x86	358	326	
+San Pedro	Ignacio	20050107	IBM	x86	926	581	
+San Julian	Francisco	20020405	Commodore	boligrafo	441	352	
+San Julian	Ezequiel	20000501	MS	e221	669	282	
+San Escoliozios	Sebastian	20020701	Commodore	Teclado	763	81	
+San Agustin	Francisco	20020405	intel	Teclado	239	163	
+San Nicolas	Sebastian	20030702	Iphone	Xirix	172	974	
+San Remo	Alberto	20030119	Marcapaso	e221	463	416	
+San Pedro	Francisco	20030206	intel	boligrafo	53	355	
+San Martin	Ignacio	20020405	IBM	Teclado	844	139	
+San Julian	Francisco	20030119	Iphone	Xirix	47	529	
+San Escoliozios	Ricardo	20011110	Samsung	Mouse optico	831	526	
+San Mateo	Augusto	20030505	MS	x86	643	519	
+San Gabriel	Juan	20010505	MS	notebook	312	625	
+San Nicolas	Sebastian	20011021	Hp	Xirix	67	596	
+San Escoliozios	Francisco	20000501	laptop	boligrafo	629	118	
+San Salvador	Ezequiel	20050708	laptop	i400	588	4	
+San Salvador	Ricardo	20011110	MS	Teclado	399	914	
+San Nicolas	Juan	20011110	Genius	Mouse optico	304	209	
+San Pedro	Leonardo	20050107	IBM	x86	931	618	
+San Julian	Miguel	20030702	MS	e221	383	37	
+San Gabriel	Pedro	20002005	MS	Xirix	565	884	
+San Pedro	Pedro	20011021	intel	Lithium	338	465	
+San Remo	Alberto	20030206	IBM	e221	480	258	
+San Escoliozios	Ezequiel	20010505	Hp	Teclado	615	313	
+Avellaneda	Pedro	20020701	Commodore	Teclado	391	733	
+San Salvador	Pedro	20050708	Hp	Teclado	416	877	
+San Remo	Santiago	20030119	Samsung	boligrafo	17	801	
+San Nicolas	Oscar	20020508	MS	Teclado	936	238	
+San Mateo	Miguel	20020120	Genius	notebook	901	647	
+San Escoliozios	Augusto	20020701	IBM	Xirix	998	998	
+San Salvador	Ezequiel	20010505	Commodore	Galaxy SII	219	919	
+San Remo	Ricardo	20030702	MS	i400	780	895	
+San Procto	Juan	20000501	intel	Xirix	685	401	
+San Julian	Miguel	20002005	Hp	Mouse optico	430	33	
+San Pedro	Ezequiel	20002005	Hp	Mouse optico	908	81	
+San Justo	Francisco	20002005	intel	boligrafo	722	561	
+San Pedro	Oscar	20040752	Commodore	Xirix	590	271	
+San Escoliozios	Augusto	20030206	Hp	Mouse optico	721	648	
+San Gabriel	Sebastian	20030206	Genius	notebook	713	184	
+San Nicolas	Alberto	20011101	Marcapaso	i400	267	21	
+San Pedro	Pedro	20020120	Iphone	x86	40	962	
+San Miguel	Alberto	20040702	Iphone	Teclado	906	511	
+San Gabriel	Alberto	20030205	intel	i400	840	392	
+San Agustin	Miguel	20020120	Commodore	Galaxy SII	841	227	
+San Mateo	Francisco	20040702	laptop	e221	831	259	
+San Remo	Joaquin 	20040702	Hp	notebook	454	505	
+San Nicolas	Leonardo	20002005	Samsung	Teclado	176	696	
+San Gabriel	Luciano	20020508	Samsung	notebook	665	918	
+San Gabriel	Oscar	20000501	IBM	Lithium	393	714	
+San Miguel	Ricardo	20040502	Hp	e221	195	608	
+San Procto	Alberto	20000501	laptop	e221	130	194	
+San Justo	Augusto	20010505	Commodore	boligrafo	979	900	
+San Mateo	Alberto	20050107	IBM	Galaxy SII	963	312	
+San Gabriel	Leonardo	20002005	Marcapaso	notebook	0	786	
+San Miguel	Sebastian	20020701	Iphone	Mouse optico	509	294	
+San Julian	Alberto	20040752	Genius	Teclado	379	626	
+Santo Thomas	Leonardo	20011110	Samsung	e221	345	804	
+San Salvador	Augusto	20000501	MS	Lithium	143	407	
+San Martin	Sebastian	20030205	MS	boligrafo	589	213	
+San Salvador	Francisco	20011110	laptop	i400	997	896	
+San Miguel	Leonardo	20011110	MS	i400	48	120	
+San Gabriel	Leonardo	20030505	Genius	i400	41	823	
+San Agustin	Sebastian	20040702	IBM	boligrafo	425	552	
+San Procto	Luciano	20011021	Genius	Galaxy SII	274	889	
+San Julian	Augusto	20011021	intel	Lithium	308	494	
+San Agustin	Leonardo	20050708	Samsung	i400	539	26	
+San Nicolas	Miguel	20010505	Genius	i400	81	447	
+San Pedro	Oscar	20040502	Commodore	notebook	765	610	
+San Procto	Luciano	20011110	Marcapaso	boligrafo	286	24	
+Avellaneda	Miguel	20011110	Hp	Teclado	133	475	
+San Miguel	Juan	20011110	Samsung	Xirix	352	985	
+San Justo	Ezequiel	20020405	Samsung	Teclado	431	876	
+San Nicolas	Sebastian	20040752	laptop	Xirix	987	582	
+San Remo	Augusto	20050708	intel	Mouse optico	125	858	
+San Julian	Ricardo	20030119	intel	Teclado	836	682	
+San Salvador	Sebastian	20030206	Iphone	Lithium	100	322	
+San Remo	Oscar	20030205	laptop	i400	685	124	
+Avellaneda	Juan	20030702	intel	Teclado	314	26	
+San Julian	Ezequiel	20010505	IBM	Lithium	219	158	
+San Procto	Luciano	20050107	Genius	Xirix	509	22	
+San Mateo	Alberto	20030119	Marcapaso	Galaxy SII	542	462	
+San Mateo	Ricardo	20020120	Genius	Teclado	294	351	
+San Julian	Alberto	20020701	IBM	e221	263	294	
+San Gabriel	Oscar	20040752	Hp	notebook	294	191	
+San Gabriel	Ignacio	20040702	IBM	x86	558	91	
+San Remo	Francisco	20020120	Marcapaso	boligrafo	141	259	
+San Martin	Ezequiel	20050708	laptop	e221	988	736	
+San Pedro	Ricardo	20002005	Genius	i400	483	213	
+Santo Thomas	Santiago	20020405	laptop	notebook	619	718	
+Avellaneda	Sebastian	20050107	intel	Xirix	365	972	
+San Procto	Oscar	20040702	Genius	Teclado	842	915	
+Avellaneda	Ignacio	20030206	laptop	e221	681	917	
+San Julian	Sebastian	20000501	laptop	Teclado	536	159	
+San Escoliozios	Sebastian	20010505	intel	boligrafo	688	67	
+San Procto	Luciano	20002005	Iphone	notebook	271	61	
+San Escoliozios	Francisco	20040502	Marcapaso	Teclado	627	569	
+San Justo	Augusto	20040752	Genius	x86	617	946	
+San Nicolas	Sebastian	20000501	MS	boligrafo	983	459	
+San Procto	Juan	20011110	Iphone	i400	566	477	
+Santo Thomas	Ignacio	20011110	Commodore	Teclado	514	282	
+San Mateo	Sebastian	20010505	MS	x86	339	777	
+San Mateo	Pedro	20030702	Hp	Galaxy SII	830	283	
+San Nicolas	Ignacio	20030702	laptop	x86	270	317	
+San Martin	Ignacio	20011021	intel	Lithium	333	292	
+San Procto	Ignacio	20020120	intel	Teclado	427	454	
+San Nicolas	Santiago	20040702	Hp	i400	956	709	
+San Julian	Santiago	20040502	Iphone	Lithium	735	318	
+San Pedro	Luciano	20050708	Hp	Mouse optico	431	801	
+San Escoliozios	Santiago	20020508	Samsung	Lithium	668	675	
+San Procto	Francisco	20000501	laptop	Mouse optico	361	411	
+San Remo	Augusto	20000501	Marcapaso	Galaxy SII	113	678	
+San Miguel	Ignacio	20040502	Commodore	Mouse optico	634	95	
+San Miguel	Luciano	20010505	Iphone	Mouse optico	990	368	
+San Nicolas	Alberto	20002005	laptop	i400	173	93	
+San Procto	Miguel	20011110	Iphone	Mouse optico	626	626	
+Avellaneda	Santiago	20030119	IBM	notebook	303	463	
+San Nicolas	Pedro	20020120	Samsung	e221	456	364	
+San Julian	Ezequiel	20030702	Iphone	Galaxy SII	777	329	
+San Julian	Pedro	20020405	Marcapaso	x86	928	682	
+San Agustin	Miguel	20030119	Hp	Xirix	614	970	
+San Mateo	Joaquin 	20020405	Hp	Mouse optico	993	472	
+San Julian	Ezequiel	20050107	IBM	Mouse optico	570	975	
+San Justo	Leonardo	20030119	Genius	Xirix	728	342	
+San Gabriel	Alberto	20002005	Samsung	Xirix	334	431	
+San Escoliozios	Pedro	20020405	Hp	Mouse optico	836	718	
+San Miguel	Ignacio	20030205	intel	Xirix	28	276	
+San Salvador	Miguel	20011101	Samsung	Teclado	557	43	
+San Martin	Augusto	20020701	laptop	Teclado	411	161	
+San Salvador	Santiago	20020120	IBM	Lithium	995	54	
+San Remo	Ignacio	20011021	Iphone	Lithium	964	864	
+Avellaneda	Pedro	20000501	Samsung	notebook	392	297	
+San Remo	Pedro	20030119	Commodore	Xirix	727	816	
+San Salvador	Sebastian	20040502	Hp	Mouse optico	571	998	
+San Remo	Miguel	20020508	Samsung	x86	826	424	
+San Justo	Santiago	20011101	laptop	i400	429	122	
+San Agustin	Ignacio	20020405	MS	i400	760	696	
+San Justo	Oscar	20011110	Samsung	Lithium	491	521	
+San Escoliozios	Luciano	20011110	laptop	Lithium	572	230	
+San Justo	Leonardo	20030206	laptop	Galaxy SII	943	98	
+Avellaneda	Leonardo	20040702	Hp	Galaxy SII	639	262	
+Avellaneda	Leonardo	20040502	MS	Mouse optico	472	162	
+San Escoliozios	Pedro	20030206	laptop	e221	203	111	
+San Procto	Santiago	20030119	IBM	Galaxy SII	996	783	
+San Agustin	Pedro	20010505	Hp	boligrafo	101	690	
+San Escoliozios	Santiago	20040502	Marcapaso	Galaxy SII	912	454	
+San Justo	Leonardo	20050708	intel	boligrafo	300	560	
+San Agustin	Oscar	20030206	laptop	Xirix	14	723	
+San Nicolas	Luciano	20011110	Genius	Teclado	388	165	
+Santo Thomas	Oscar	20010505	Commodore	Xirix	809	256	
+San Agustin	Juan	20030702	Hp	Galaxy SII	327	935	
+San Nicolas	Alberto	20040752	Genius	Galaxy SII	169	864	
+San Nicolas	Sebastian	20020120	Genius	Galaxy SII	95	696	
+San Salvador	Oscar	20010505	Marcapaso	Teclado	717	191	
+San Martin	Oscar	20020405	intel	Xirix	158	972	
+San Agustin	Oscar	20030505	Genius	Galaxy SII	405	638	
+San Martin	Miguel	20011110	IBM	i400	91	534	
+Avellaneda	Sebastian	20040702	Samsung	Lithium	91	516	
+San Procto	Ignacio	20030702	Genius	boligrafo	156	424	
+San Remo	Augusto	20020701	MS	Mouse optico	305	746	
+San Mateo	Juan	20020701	Samsung	Xirix	887	826	
+San Justo	Pedro	20020701	MS	Galaxy SII	590	101	
+San Julian	Juan	20050708	Marcapaso	x86	327	328	
+San Julian	Oscar	20011021	Marcapaso	i400	150	350	
+San Remo	Ezequiel	20020508	intel	Galaxy SII	481	678	
+San Nicolas	Leonardo	20011110	Marcapaso	boligrafo	865	498	
+San Escoliozios	Ezequiel	20050708	Hp	Galaxy SII	219	830	
+San Procto	Miguel	20030205	Marcapaso	e221	912	871	
+San Julian	Luciano	20040702	Marcapaso	notebook	318	942	
+San Miguel	Santiago	20050708	Samsung	Galaxy SII	125	639	
+San Escoliozios	Pedro	20000501	laptop	x86	739	381	
+San Remo	Pedro	20040702	Iphone	notebook	371	674	
+San Remo	Augusto	20011110	Hp	boligrafo	767	791	
+San Julian	Francisco	20030702	intel	Mouse optico	354	692	
+San Justo	Oscar	20030119	intel	x86	470	603	
+San Mateo	Ricardo	20040502	intel	Galaxy SII	197	718	
+San Miguel	Miguel	20020701	Iphone	Mouse optico	939	574	
+San Salvador	Juan	20020701	laptop	i400	98	615	
+San Miguel	Ezequiel	20030119	Commodore	Teclado	639	302	
+San Nicolas	Francisco	20030505	Hp	boligrafo	892	823	
+San Escoliozios	Francisco	20011110	Samsung	Lithium	935	375	
+San Escoliozios	Joaquin 	20030505	Commodore	notebook	315	772	
+San Agustin	Ezequiel	20020701	laptop	Mouse optico	694	780	
+San Julian	Leonardo	20020508	Iphone	x86	990	525	
+San Gabriel	Joaquin 	20030119	Iphone	Teclado	891	418	
+San Procto	Ignacio	20011021	Samsung	i400	743	850	
+Santo Thomas	Luciano	20050708	IBM	x86	9	703	
+San Agustin	Juan	20040752	Samsung	e221	568	345	
+San Escoliozios	Miguel	20010505	Iphone	x86	220	500	
+San Nicolas	Francisco	20030505	laptop	Teclado	712	185	
+San Procto	Ezequiel	20002005	MS	notebook	658	574	
+Avellaneda	Juan	20011101	Hp	boligrafo	763	470	
+San Nicolas	Augusto	20050107	Genius	Mouse optico	687	139	
+Santo Thomas	Joaquin 	20050708	Commodore	e221	557	791	
+Avellaneda	Augusto	20040502	intel	i400	13	516	
+San Martin	Juan	20020508	Iphone	boligrafo	368	559	
+San Miguel	Francisco	20002005	Samsung	x86	845	15	
+San Agustin	Oscar	20030205	IBM	x86	794	434	
+San Nicolas	Leonardo	20040702	Marcapaso	Lithium	202	12	
+San Agustin	Ricardo	20011110	intel	Mouse optico	618	819	
+San Martin	Pedro	20020701	MS	Galaxy SII	407	62	
+San Remo	Ricardo	20020508	MS	i400	233	623	
+San Martin	Luciano	20020508	IBM	boligrafo	283	99	
+San Justo	Oscar	20000501	Hp	i400	639	939	
+San Remo	Ricardo	20011021	Genius	Xirix	137	757	
+San Agustin	Miguel	20050107	MS	i400	899	881	
+San Remo	Francisco	20011110	Genius	Galaxy SII	563	492	
+San Remo	Ignacio	20020120	intel	boligrafo	703	891	
+San Justo	Leonardo	20050107	IBM	Lithium	590	444	
+San Julian	Juan	20040702	Iphone	Xirix	22	156	
+San Pedro	Joaquin 	20002005	IBM	e221	543	466	
+San Martin	Francisco	20040502	Commodore	Teclado	550	296	
+Santo Thomas	Ricardo	20030205	Hp	notebook	19	948	
+San Martin	Alberto	20020701	laptop	boligrafo	594	258	
+San Procto	Alberto	20020405	IBM	notebook	453	343	
+San Remo	Pedro	20050107	Genius	Galaxy SII	767	560	
+San Justo	Augusto	20010505	Hp	notebook	46	663	
+San Salvador	Luciano	20050708	Hp	Lithium	4	419	
+San Justo	Miguel	20030206	IBM	Xirix	93	314	
+San Gabriel	Miguel	20030206	Hp	notebook	466	148	
+San Procto	Ricardo	20030702	Commodore	notebook	566	43	
+San Pedro	Alberto	20030702	Iphone	Lithium	319	670	
+San Agustin	Augusto	20020508	Hp	Teclado	768	999	
+San Salvador	Ignacio	20030119	Genius	x86	970	231	
+Avellaneda	Ezequiel	20020701	intel	Lithium	89	300	
+San Martin	Alberto	20030119	Hp	Xirix	51	650	
+Avellaneda	Leonardo	20030119	Hp	Lithium	411	675	
+San Procto	Sebastian	20030206	Commodore	e221	987	642	
+San Nicolas	Pedro	20010505	Marcapaso	boligrafo	254	2	
+San Pedro	Leonardo	20030119	Iphone	e221	647	646	
+Santo Thomas	Juan	20011101	Iphone	e221	618	524	
+San Gabriel	Luciano	20030205	Hp	Xirix	874	134	
+San Martin	Ignacio	20011021	Commodore	Mouse optico	651	107	
+San Martin	Joaquin 	20000501	Iphone	Xirix	413	579	
+San Martin	Luciano	20040702	intel	i400	523	741	
+San Julian	Sebastian	20011101	intel	Galaxy SII	465	972	
+San Agustin	Leonardo	20000501	IBM	Xirix	884	336	
+San Justo	Miguel	20020405	Iphone	x86	553	524	
+San Miguel	Pedro	20000501	MS	e221	329	465	
+San Gabriel	Ignacio	20040702	IBM	Teclado	472	205	
+San Salvador	Pedro	20030205	intel	Xirix	285	180	
+San Escoliozios	Sebastian	20011110	intel	i400	959	740	
+San Salvador	Oscar	20011101	Genius	x86	368	781	
+San Escoliozios	Juan	20040702	Iphone	notebook	454	906	
+San Remo	Joaquin 	20000501	Commodore	Mouse optico	291	257	
+San Salvador	Miguel	20020405	IBM	i400	954	125	
+San Nicolas	Joaquin 	20010505	intel	x86	130	436	
+San Mateo	Oscar	20040702	Marcapaso	Galaxy SII	466	706	
+San Gabriel	Joaquin 	20050708	Iphone	Mouse optico	726	0	
+San Miguel	Luciano	20011101	Genius	notebook	696	480	
+San Agustin	Alberto	20050708	Commodore	notebook	471	390	
+Avellaneda	Alberto	20050107	Genius	Galaxy SII	45	313	
+Santo Thomas	Oscar	20002005	laptop	x86	633	333	
+Santo Thomas	Leonardo	20030119	MS	boligrafo	592	850	
+Avellaneda	Augusto	20030119	Hp	Teclado	937	105	
+San Escoliozios	Ezequiel	20040752	Marcapaso	e221	323	396	
+San Pedro	Leonardo	20030702	Marcapaso	Mouse optico	729	452	
+Santo Thomas	Leonardo	20011021	intel	i400	120	586	
+San Pedro	Juan	20020405	laptop	e221	767	385	
+Avellaneda	Juan	20040752	Marcapaso	Galaxy SII	986	946	
+San Pedro	Augusto	20030119	Iphone	Lithium	52	648	
+San Remo	Santiago	20000501	Genius	Galaxy SII	887	466	
+San Julian	Luciano	20020508	MS	i400	489	38	
+San Miguel	Ricardo	20020405	IBM	Teclado	915	117	
+San Pedro	Joaquin 	20020508	Iphone	Xirix	405	440	
+San Mateo	Ezequiel	20020508	Marcapaso	Xirix	189	324	
+San Agustin	Francisco	20011021	Iphone	e221	843	216	
+San Julian	Leonardo	20011101	intel	notebook	679	200	
+San Remo	Miguel	20030119	IBM	x86	380	832	
+San Miguel	Santiago	20011101	intel	Xirix	360	50	
+San Escoliozios	Miguel	20020701	Genius	Lithium	165	118	
+San Miguel	Luciano	20030119	intel	boligrafo	590	51	
+Avellaneda	Augusto	20011101	Marcapaso	Mouse optico	570	118	
+San Agustin	Pedro	20040502	laptop	i400	223	667	
+Avellaneda	Miguel	20030702	Marcapaso	Galaxy SII	92	334	
+San Gabriel	Ricardo	20040752	Marcapaso	Xirix	788	992	
+San Procto	Leonardo	20002005	intel	Lithium	296	34	
+San Escoliozios	Ignacio	20030205	Genius	Mouse optico	103	940	
+San Remo	Augusto	20050708	intel	Teclado	325	3	
+San Justo	Ezequiel	20030119	Genius	Lithium	791	278	
+Avellaneda	Miguel	20011101	intel	Teclado	315	103	
+San Procto	Alberto	20000501	Samsung	x86	291	992	
+Santo Thomas	Leonardo	20030505	Genius	i400	540	387	
+San Procto	Ignacio	20020701	IBM	Xirix	728	483	
+Avellaneda	Oscar	20011021	MS	Galaxy SII	33	463	
+San Justo	Leonardo	20020120	IBM	Teclado	705	788	
+San Nicolas	Pedro	20011021	Commodore	boligrafo	714	585	
+San Pedro	Ricardo	20040502	Commodore	Galaxy SII	363	427	
+San Nicolas	Francisco	20030505	Hp	Lithium	673	270	
+San Miguel	Juan	20030702	Commodore	e221	301	439	
+San Justo	Luciano	20040702	Marcapaso	e221	10	190	
+San Agustin	Juan	20011021	intel	Teclado	748	263	
+San Pedro	Francisco	20030206	intel	Xirix	602	869	
+San Julian	Augusto	20000501	intel	Teclado	874	298	
+San Justo	Sebastian	20030702	laptop	Galaxy SII	966	508	
+San Salvador	Pedro	20030206	intel	i400	474	102	
+San Miguel	Ricardo	20020701	Commodore	boligrafo	57	288	
+San Remo	Alberto	20030205	Hp	Teclado	297	879	
+San Mateo	Sebastian	20030205	MS	boligrafo	915	8	
+San Escoliozios	Joaquin 	20011110	Commodore	Mouse optico	216	309	
+San Remo	Juan	20020405	Iphone	Teclado	777	28	
+San Martin	Ignacio	20030119	Commodore	x86	474	138	
+San Nicolas	Santiago	20002005	Hp	Teclado	195	300	
+Santo Thomas	Francisco	20030119	Genius	Teclado	827	543	
+San Julian	Luciano	20010505	Marcapaso	i400	264	658	
+San Procto	Luciano	20030206	Genius	Mouse optico	3	682	
+San Agustin	Oscar	20050107	Commodore	Xirix	839	144	
+San Salvador	Luciano	20020405	Marcapaso	Galaxy SII	755	307	
+San Salvador	Miguel	20010505	MS	Lithium	704	402	
+San Agustin	Pedro	20020508	laptop	e221	747	906	
+San Mateo	Santiago	20020120	Iphone	Xirix	410	56	
+San Escoliozios	Ricardo	20040702	IBM	Xirix	646	158	
+San Nicolas	Ezequiel	20040752	intel	Teclado	317	555	
+San Procto	Luciano	20040502	MS	Teclado	18	981	
+San Justo	Santiago	20010505	Genius	notebook	476	145	
+San Gabriel	Joaquin 	20040702	Iphone	Galaxy SII	402	899	
+San Nicolas	Luciano	20020508	Genius	x86	524	416	
+San Nicolas	Ignacio	20040502	laptop	Mouse optico	929	17	
+San Julian	Pedro	20040502	Genius	i400	886	744	
+San Martin	Leonardo	20010505	MS	Xirix	90	202	
+San Agustin	Oscar	20000501	Genius	notebook	161	654	
+Avellaneda	Juan	20020508	Marcapaso	notebook	42	473	
+San Agustin	Pedro	20040752	Iphone	Teclado	489	104	
+San Procto	Leonardo	20050107	Genius	i400	737	842	
+Avellaneda	Ignacio	20002005	Hp	boligrafo	147	175	
+San Julian	Augusto	20050107	Genius	Teclado	899	282	
+San Escoliozios	Pedro	20011021	MS	Teclado	246	164	
+San Julian	Santiago	20011101	Marcapaso	Galaxy SII	117	334	
+San Julian	Ignacio	20030205	Genius	Lithium	221	208	
+San Justo	Leonardo	20020701	Genius	Lithium	213	722	
+San Miguel	Francisco	20002005	Samsung	e221	760	112	
+Avellaneda	Luciano	20011101	Genius	i400	546	273	
+San Julian	Alberto	20050708	Commodore	notebook	783	543	
+San Martin	Luciano	20011021	Iphone	boligrafo	135	76	
+San Justo	Leonardo	20011021	Commodore	x86	803	922	
+San Escoliozios	Miguel	20002005	Marcapaso	notebook	312	291	
+Santo Thomas	Ignacio	20020120	Samsung	notebook	172	877	
+San Justo	Pedro	20020405	Iphone	Teclado	172	453	
+San Agustin	Augusto	20011110	Hp	Lithium	328	116	
+San Pedro	Francisco	20002005	IBM	Lithium	74	124	
+Santo Thomas	Leonardo	20020405	intel	Xirix	981	755	
+San Gabriel	Sebastian	20050708	Genius	Galaxy SII	53	56	
+San Pedro	Ricardo	20011110	Marcapaso	notebook	40	799	
+San Salvador	Leonardo	20030505	Hp	notebook	955	945	
+San Salvador	Luciano	20020508	Marcapaso	x86	485	51	
+San Procto	Oscar	20050107	Marcapaso	Lithium	439	243	
+San Miguel	Oscar	20030119	Genius	i400	810	212	
+San Martin	Ignacio	20002005	Marcapaso	Xirix	928	752	
+San Miguel	Joaquin 	20030206	MS	Teclado	768	388	
+Santo Thomas	Ricardo	20020405	MS	i400	246	426	
+San Agustin	Juan	20030206	laptop	Galaxy SII	970	876	
+San Mateo	Santiago	20020508	Samsung	Lithium	101	594	
+San Julian	Luciano	20030119	intel	Teclado	45	494	
+San Julian	Ignacio	20010505	Samsung	e221	322	150	
+San Gabriel	Miguel	20020120	Samsung	Xirix	246	204	
+San Nicolas	Ricardo	20020508	Hp	Teclado	170	481	
+San Procto	Augusto	20020508	Marcapaso	boligrafo	422	57	
+San Martin	Oscar	20020120	laptop	Xirix	434	198	
+San Agustin	Santiago	20030119	Samsung	boligrafo	925	269	
+San Remo	Sebastian	20040752	laptop	boligrafo	555	342	
+San Agustin	Juan	20050107	laptop	Teclado	900	502	
+Santo Thomas	Augusto	20020120	intel	i400	111	556	
+San Pedro	Miguel	20011021	Marcapaso	boligrafo	103	557	
+San Procto	Luciano	20050107	Iphone	Xirix	301	216	
+San Remo	Ignacio	20020120	MS	notebook	383	998	
+San Remo	Augusto	20011110	Genius	Lithium	60	395	
+San Agustin	Sebastian	20040502	Marcapaso	i400	706	886	
+San Justo	Ignacio	20020405	IBM	Mouse optico	271	850	
+San Justo	Miguel	20020508	IBM	x86	626	610	
+San Justo	Luciano	20050708	intel	Xirix	109	471	
+San Mateo	Sebastian	20010505	Iphone	boligrafo	818	762	
+San Justo	Oscar	20050708	laptop	boligrafo	92	725	
+San Salvador	Leonardo	20020120	Iphone	Teclado	644	847	
+San Agustin	Augusto	20040752	Hp	Xirix	67	968	
+San Remo	Sebastian	20020405	Marcapaso	boligrafo	306	769	
+San Miguel	Francisco	20011110	Commodore	Lithium	179	831	
+Avellaneda	Augusto	20020120	Samsung	Lithium	133	376	
+San Remo	Santiago	20040702	MS	e221	682	313	
+Santo Thomas	Santiago	20011101	MS	Teclado	720	378	
+Santo Thomas	Luciano	20000501	MS	Galaxy SII	679	716	
+San Julian	Ignacio	20011110	Commodore	Galaxy SII	104	946	
+San Gabriel	Ricardo	20030119	Hp	e221	547	275	
+San Justo	Ricardo	20020120	Hp	Teclado	869	299	
+San Mateo	Miguel	20030206	Samsung	Lithium	825	149	
+San Gabriel	Oscar	20010505	intel	boligrafo	413	356	
+San Escoliozios	Oscar	20030119	Iphone	i400	626	601	
+San Gabriel	Sebastian	20010505	Genius	x86	465	233	
+San Agustin	Leonardo	20011110	Iphone	Teclado	210	474	
+San Remo	Luciano	20050708	Hp	notebook	489	882	
+San Mateo	Joaquin 	20040702	Marcapaso	x86	543	664	
+San Salvador	Sebastian	20011101	MS	boligrafo	143	792	
+San Gabriel	Alberto	20002005	Samsung	Teclado	559	421	
+San Mateo	Santiago	20010505	Marcapaso	Mouse optico	519	723	
+San Agustin	Luciano	20050708	Iphone	Teclado	845	653	
+San Agustin	Leonardo	20030119	intel	notebook	584	467	
+San Mateo	Juan	20011101	IBM	boligrafo	285	777	
+Santo Thomas	Ignacio	20030205	Samsung	Lithium	94	558	
+San Nicolas	Alberto	20011101	Commodore	Lithium	887	17	
+San Remo	Juan	20030206	Genius	Galaxy SII	988	386	
+San Miguel	Miguel	20010505	intel	boligrafo	112	228	
+San Procto	Leonardo	20002005	MS	Xirix	204	64	
+San Julian	Augusto	20050708	Iphone	Teclado	904	41	
+San Remo	Santiago	20020508	laptop	notebook	729	946	
+San Procto	Juan	20030119	Hp	Xirix	186	906	
+San Remo	Augusto	20000501	Iphone	Lithium	139	148	
+Avellaneda	Leonardo	20040702	Commodore	Lithium	836	72	
+San Remo	Santiago	20000501	laptop	notebook	172	169	
+San Justo	Joaquin 	20000501	Commodore	Lithium	448	29	
+San Mateo	Alberto	20030505	intel	Teclado	70	739	
+San Procto	Ricardo	20010505	intel	notebook	102	366	
+San Salvador	Pedro	20020405	Commodore	Lithium	552	849	
+San Martin	Juan	20002005	Iphone	Lithium	134	975	
+San Martin	Miguel	20002005	Samsung	Xirix	941	672	
+San Salvador	Luciano	20020405	Commodore	Xirix	301	351	
+San Gabriel	Ezequiel	20030702	MS	boligrafo	155	727	
+San Justo	Juan	20020120	Iphone	x86	595	507	
+San Justo	Juan	20040752	Hp	boligrafo	488	474	
+San Escoliozios	Ezequiel	20000501	IBM	x86	559	464	
+San Procto	Ignacio	20050107	Marcapaso	Xirix	532	410	
+San Procto	Juan	20000501	IBM	boligrafo	715	865	
+San Julian	Augusto	20020701	Genius	e221	856	199	
+San Agustin	Leonardo	20030206	Genius	i400	820	569	
+San Martin	Leonardo	20002005	Genius	Xirix	848	316	
+San Escoliozios	Leonardo	20030702	Samsung	e221	865	741	
+San Nicolas	Miguel	20050708	Iphone	Mouse optico	979	181	
+San Mateo	Ignacio	20020701	Iphone	Galaxy SII	54	174	
+Avellaneda	Joaquin 	20030702	Samsung	Xirix	777	53	
+San Escoliozios	Alberto	20020701	laptop	e221	97	114	
+San Pedro	Pedro	20010505	intel	notebook	462	832	
+San Nicolas	Ezequiel	20002005	Hp	Xirix	394	654	
+San Nicolas	Ezequiel	20050107	Marcapaso	boligrafo	572	593	
+San Remo	Leonardo	20050708	laptop	Teclado	17	79	
+Avellaneda	Francisco	20030205	laptop	e221	49	596	
+San Procto	Oscar	20020405	laptop	Teclado	443	418	
+San Martin	Ignacio	20020508	IBM	Xirix	901	111	
+San Procto	Oscar	20030702	Samsung	Mouse optico	352	268	
+San Gabriel	Leonardo	20030119	Commodore	x86	542	837	
+San Remo	Miguel	20020405	Samsung	Galaxy SII	864	232	
+San Justo	Augusto	20030206	Iphone	Galaxy SII	724	983	
+San Nicolas	Alberto	20020508	laptop	Galaxy SII	799	233	
+San Mateo	Sebastian	20011110	Commodore	notebook	849	503	
+San Justo	Leonardo	20030119	intel	Teclado	775	748	
+San Pedro	Alberto	20040502	Samsung	Teclado	632	436	
+San Pedro	Leonardo	20020405	intel	Teclado	514	566	
+San Pedro	Augusto	20050107	laptop	x86	302	730	
+Avellaneda	Sebastian	20040702	MS	notebook	574	562	
+San Escoliozios	Leonardo	20030119	IBM	Teclado	291	763	
+Avellaneda	Joaquin 	20040702	laptop	Xirix	621	552	
+San Martin	Sebastian	20000501	Hp	x86	919	355	
+San Mateo	Ricardo	20020508	MS	boligrafo	320	898	
+San Mateo	Joaquin 	20040752	Marcapaso	Xirix	772	65	
+San Martin	Luciano	20050107	Samsung	Teclado	30	198	
+Santo Thomas	Alberto	20011021	intel	i400	869	882	
+San Martin	Santiago	20040702	Samsung	e221	324	57	
+San Agustin	Alberto	20040502	Hp	notebook	417	753	
+San Gabriel	Sebastian	20050107	laptop	Xirix	648	187	
+San Martin	Juan	20020701	intel	boligrafo	137	43	
+San Pedro	Luciano	20030505	Hp	i400	163	507	
+San Julian	Oscar	20020120	Samsung	Galaxy SII	520	500	
+San Miguel	Pedro	20011101	Marcapaso	Galaxy SII	73	472	
+San Agustin	Juan	20030206	IBM	x86	46	131	
+San Miguel	Sebastian	20030205	Genius	Galaxy SII	101	204	
+Avellaneda	Ricardo	20030702	Commodore	i400	276	990	
+San Mateo	Santiago	20040752	intel	i400	745	11	
+San Julian	Ignacio	20040752	Iphone	notebook	143	865	
+Avellaneda	Sebastian	20040502	IBM	boligrafo	173	526	
+San Remo	Augusto	20030702	intel	notebook	442	346	
+Santo Thomas	Juan	20030119	Samsung	notebook	828	735	
+San Martin	Miguel	20030702	Samsung	boligrafo	230	360	
+Avellaneda	Leonardo	20040702	Genius	notebook	224	554	
+Avellaneda	Leonardo	20020508	intel	Lithium	811	53	
+San Martin	Ricardo	20020405	intel	Teclado	737	683	
+San Escoliozios	Miguel	20020405	Commodore	Galaxy SII	165	860	
+San Escoliozios	Leonardo	20040702	Marcapaso	i400	448	345	
+San Agustin	Juan	20030505	Iphone	e221	980	773	
+San Gabriel	Santiago	20050107	MS	e221	227	458	
+San Justo	Pedro	20000501	intel	notebook	560	253	
+San Miguel	Juan	20000501	Iphone	Galaxy SII	334	668	
+San Mateo	Santiago	20002005	Iphone	x86	914	498	
+San Escoliozios	Joaquin 	20011101	Iphone	Lithium	99	221	
+San Gabriel	Augusto	20030206	Commodore	Xirix	822	262	
+San Julian	Leonardo	20011110	Marcapaso	Galaxy SII	629	695	
+San Martin	Pedro	20020701	Samsung	i400	378	350	
+San Martin	Augusto	20050107	Commodore	Galaxy SII	120	993	
+San Mateo	Ricardo	20040702	IBM	notebook	895	361	
+San Julian	Juan	20050708	IBM	Galaxy SII	139	156	
+San Martin	Santiago	20010505	Marcapaso	i400	215	568	
+San Escoliozios	Miguel	20030505	IBM	Mouse optico	766	405	
+San Pedro	Joaquin 	20020701	MS	Galaxy SII	614	558	
+San Procto	Oscar	20030505	Marcapaso	Xirix	544	157	
+Santo Thomas	Juan	20030119	intel	x86	165	987	
+San Salvador	Leonardo	20020120	IBM	Teclado	474	343	
+San Julian	Ricardo	20030702	MS	Galaxy SII	147	886	
+San Martin	Santiago	20020405	Genius	Xirix	364	384	
+San Escoliozios	Joaquin 	20011110	Genius	notebook	855	374	
+San Justo	Luciano	20020701	Iphone	x86	917	894	
+San Agustin	Leonardo	20040702	Iphone	Lithium	986	178	
+San Gabriel	Sebastian	20020508	MS	Mouse optico	508	886	
+San Salvador	Joaquin 	20011101	IBM	i400	812	499	
+San Agustin	Juan	20010505	Marcapaso	Lithium	235	648	
+San Pedro	Sebastian	20011110	Marcapaso	notebook	780	713	
+San Salvador	Santiago	20010505	MS	Teclado	956	933	
+San Gabriel	Ezequiel	20050107	MS	boligrafo	91	631	
+San Pedro	Joaquin 	20000501	Marcapaso	notebook	4	910	
+San Martin	Ricardo	20020120	Hp	boligrafo	102	828	
+Avellaneda	Joaquin 	20011110	Samsung	Lithium	433	51	
+San Remo	Leonardo	20040502	Hp	Mouse optico	805	309	
+San Salvador	Joaquin 	20030505	Hp	Mouse optico	71	803	
+San Agustin	Francisco	20030702	IBM	boligrafo	273	992	
+San Miguel	Leonardo	20050107	IBM	Xirix	362	761	
+San Mateo	Santiago	20050107	Marcapaso	Galaxy SII	799	807	
+San Justo	Alberto	20000501	Iphone	notebook	58	543	
+Santo Thomas	Francisco	20030119	IBM	Xirix	61	314	
+San Escoliozios	Leonardo	20030119	Iphone	i400	128	879	
+Avellaneda	Oscar	20050708	Genius	Xirix	454	340	
+San Escoliozios	Ricardo	20000501	intel	Mouse optico	265	746	
+San Agustin	Augusto	20011101	IBM	x86	637	341	
+San Procto	Juan	20030206	Samsung	e221	962	412	
+San Gabriel	Francisco	20011101	Commodore	notebook	933	594	
+San Mateo	Leonardo	20030505	Hp	Lithium	83	857	
+San Escoliozios	Leonardo	20050708	Genius	Lithium	895	525	
+San Pedro	Oscar	20010505	Commodore	Xirix	522	965	
+San Martin	Oscar	20020701	laptop	notebook	670	723	
+San Salvador	Alberto	20030119	laptop	Teclado	253	372	
+San Procto	Leonardo	20040702	Samsung	Lithium	834	995	
+San Agustin	Juan	20011110	Marcapaso	Xirix	387	267	
+San Escoliozios	Joaquin 	20040702	Commodore	boligrafo	611	769	
+Avellaneda	Augusto	20040752	Samsung	Mouse optico	812	158	
+San Mateo	Luciano	20011110	intel	x86	760	643	
+San Pedro	Miguel	20050708	Marcapaso	boligrafo	160	930	
+San Remo	Miguel	20030205	laptop	x86	431	842	
+San Julian	Luciano	20050708	Genius	boligrafo	106	953	
+San Martin	Joaquin 	20000501	laptop	Teclado	642	595	
+San Agustin	Ezequiel	20040702	Marcapaso	Teclado	878	923	
+Santo Thomas	Luciano	20010505	MS	notebook	53	992	
+San Justo	Oscar	20050107	Genius	notebook	448	723	
+San Julian	Miguel	20030206	laptop	x86	789	147	
+San Nicolas	Ezequiel	20030702	Genius	Mouse optico	982	321	
+San Julian	Ignacio	20040702	Samsung	Teclado	100	65	
+San Escoliozios	Sebastian	20020508	intel	Lithium	894	433	
+San Salvador	Leonardo	20030205	laptop	Mouse optico	833	82	
+San Agustin	Alberto	20040702	Genius	e221	973	673	
+San Mateo	Pedro	20040502	Commodore	Mouse optico	241	877	
+San Miguel	Leonardo	20030505	Iphone	x86	1	742	
+San Salvador	Joaquin 	20030205	Hp	Xirix	331	323	
+San Salvador	Sebastian	20020405	intel	i400	636	334	
+San Julian	Alberto	20002005	Commodore	notebook	3	451	
+San Agustin	Ricardo	20030119	Samsung	notebook	271	312	
+San Pedro	Augusto	20020508	Iphone	Galaxy SII	229	523	
+San Nicolas	Miguel	20050107	intel	i400	253	47	
+San Escoliozios	Joaquin 	20020701	Hp	notebook	390	85	
+San Pedro	Leonardo	20011110	Marcapaso	Lithium	866	557	
+San Martin	Sebastian	20010505	Hp	x86	923	531	
+San Remo	Sebastian	20020508	MS	i400	901	529	
+San Nicolas	Sebastian	20020120	MS	e221	959	310	
+San Remo	Leonardo	20020701	IBM	i400	934	67	
+San Agustin	Ignacio	20050708	IBM	Teclado	494	922	
+San Agustin	Ezequiel	20040752	MS	notebook	507	919	
+Santo Thomas	Ezequiel	20020405	Commodore	notebook	26	684	
+San Procto	Pedro	20040502	Samsung	boligrafo	391	772	
+San Pedro	Augusto	20050107	Marcapaso	Galaxy SII	465	74	
+San Pedro	Pedro	20040502	Marcapaso	boligrafo	450	350	
+Avellaneda	Pedro	20011101	Iphone	boligrafo	718	966	
+San Mateo	Santiago	20030206	intel	i400	646	700	
+San Pedro	Luciano	20040752	Samsung	boligrafo	313	611	
+San Escoliozios	Santiago	20030206	intel	i400	683	976	
+San Pedro	Francisco	20030119	laptop	e221	596	308	
+San Nicolas	Augusto	20011101	Hp	e221	926	933	
+San Gabriel	Miguel	20050708	Genius	Lithium	107	7	
+Avellaneda	Ezequiel	20050708	Marcapaso	Xirix	305	25	
+Avellaneda	Pedro	20002005	laptop	Galaxy SII	329	131	
+San Martin	Joaquin 	20020405	IBM	Xirix	715	60	
+Santo Thomas	Alberto	20040502	laptop	Xirix	628	953	
+San Julian	Santiago	20040502	Genius	Galaxy SII	579	268	
+San Agustin	Joaquin 	20011101	Hp	Mouse optico	297	362	
+Avellaneda	Alberto	20040752	Iphone	notebook	933	877	
+San Gabriel	Alberto	20030505	laptop	Xirix	932	191	
+San Escoliozios	Miguel	20000501	Hp	Xirix	105	135	
+San Nicolas	Juan	20020405	Genius	notebook	698	116	
+San Nicolas	Pedro	20040752	Marcapaso	Lithium	972	644	
+San Salvador	Joaquin 	20011110	MS	notebook	459	67	
+San Julian	Leonardo	20011101	Hp	Teclado	403	688	
+San Martin	Oscar	20050107	Commodore	Galaxy SII	228	520	
+San Gabriel	Joaquin 	20050708	Iphone	Teclado	116	645	
+San Remo	Francisco	20011101	Commodore	Teclado	811	691	
+San Remo	Augusto	20011021	Hp	Lithium	17	752	
+San Procto	Ezequiel	20020405	Genius	Teclado	265	568	
+San Pedro	Oscar	20020508	Genius	x86	725	94	
+San Agustin	Ignacio	20030702	Genius	Teclado	28	609	
+San Mateo	Ignacio	20030119	Marcapaso	Galaxy SII	59	873	
+San Gabriel	Francisco	20050708	Hp	x86	68	250	
+San Nicolas	Leonardo	20050107	intel	Mouse optico	907	435	
+San Martin	Alberto	20011110	intel	x86	268	481	
+San Nicolas	Augusto	20020508	Hp	Galaxy SII	391	807	
+San Martin	Ezequiel	20030206	laptop	notebook	308	407	
+San Justo	Leonardo	20030206	Marcapaso	i400	477	998	
+San Remo	Leonardo	20020405	Commodore	e221	963	382	
+San Escoliozios	Ricardo	20010505	MS	notebook	955	232	
+San Miguel	Leonardo	20002005	MS	i400	722	937	
+Santo Thomas	Luciano	20030119	Hp	x86	2	798	
+San Pedro	Oscar	20011021	IBM	Mouse optico	231	447	
+San Mateo	Sebastian	20050107	Hp	x86	695	279	
+Avellaneda	Alberto	20011110	IBM	Teclado	552	543	
+San Gabriel	Augusto	20040752	Samsung	boligrafo	824	471	
+San Miguel	Ignacio	20011101	Genius	boligrafo	68	490	
+San Salvador	Augusto	20030505	laptop	x86	769	434	
+San Mateo	Ezequiel	20030702	Genius	Galaxy SII	225	507	
+San Pedro	Santiago	20020508	MS	e221	531	35	
+San Agustin	Leonardo	20011110	laptop	Galaxy SII	778	905	
+San Escoliozios	Ignacio	20020701	IBM	Galaxy SII	334	719	
+San Procto	Francisco	20030205	intel	notebook	866	444	
+San Miguel	Francisco	20040502	Genius	Mouse optico	3	714	
+San Mateo	Miguel	20030702	Iphone	Mouse optico	257	356	
+San Pedro	Luciano	20011101	intel	Mouse optico	658	229	
+San Justo	Pedro	20030505	IBM	e221	102	231	
+San Procto	Pedro	20030206	Hp	e221	627	151	
+San Mateo	Alberto	20010505	Genius	Galaxy SII	614	139	
+San Justo	Joaquin 	20040752	Samsung	Teclado	758	697	
+San Gabriel	Ezequiel	20030505	Genius	x86	876	484	
+San Escoliozios	Pedro	20030702	Samsung	Teclado	391	519	
+San Justo	Luciano	20030206	MS	Lithium	535	799	
+San Julian	Sebastian	20030505	Genius	e221	434	5	
+San Mateo	Sebastian	20030702	Commodore	Lithium	631	535	
+San Justo	Oscar	20002005	intel	x86	735	692	
+San Nicolas	Francisco	20040702	Marcapaso	Galaxy SII	882	391	
+San Gabriel	Ezequiel	20030205	IBM	notebook	128	486	
+San Remo	Miguel	20040752	intel	i400	195	241	
+San Agustin	Ignacio	20011021	Hp	boligrafo	796	903	
+San Julian	Oscar	20020120	Iphone	Lithium	807	707	
+San Julian	Juan	20020508	IBM	Galaxy SII	288	216	
+San Miguel	Ezequiel	20030702	Iphone	Teclado	195	791	
+San Gabriel	Leonardo	20002005	Samsung	Xirix	809	481	
+San Remo	Alberto	20020701	Hp	Galaxy SII	981	632	
+San Gabriel	Santiago	20030119	IBM	x86	438	208	
+San Remo	Juan	20020405	Iphone	Galaxy SII	127	536	
+San Pedro	Augusto	20030119	Genius	i400	360	960	
+San Mateo	Sebastian	20020405	Marcapaso	i400	827	854	
+San Mateo	Ignacio	20040752	Commodore	notebook	827	318	
+San Pedro	Ricardo	20011110	IBM	Teclado	951	934	
+San Salvador	Francisco	20040752	Iphone	x86	798	122	
+San Pedro	Sebastian	20020508	laptop	boligrafo	525	527	
+San Pedro	Leonardo	20020701	laptop	Galaxy SII	869	732	
+San Gabriel	Juan	20020508	Genius	Teclado	579	509	
+Avellaneda	Oscar	20020405	laptop	Lithium	913	354	
+San Justo	Juan	20040752	Samsung	Mouse optico	561	173	
+San Salvador	Francisco	20030702	Hp	x86	82	322	
+San Procto	Pedro	20020508	Hp	Lithium	107	207	
+San Procto	Juan	20030702	intel	Xirix	160	658	
+San Julian	Francisco	20002005	Genius	i400	491	968	
+San Procto	Luciano	20000501	Genius	Galaxy SII	842	159	
+San Remo	Joaquin 	20040752	Samsung	Mouse optico	538	551	
+San Escoliozios	Alberto	20011021	Samsung	boligrafo	476	703	
+San Remo	Alberto	20020701	Hp	i400	376	216	
+San Escoliozios	Joaquin 	20030205	Samsung	Teclado	326	9	
+San Justo	Sebastian	20030205	IBM	e221	652	825	
+Avellaneda	Sebastian	20020701	Marcapaso	Mouse optico	135	637	
+San Salvador	Alberto	20030119	Commodore	Xirix	703	92	
+Avellaneda	Francisco	20030119	Marcapaso	Teclado	493	608	
+San Mateo	Ignacio	20050708	MS	Teclado	788	569	
+San Pedro	Ezequiel	20020701	laptop	Lithium	771	557	
+San Nicolas	Joaquin 	20030205	IBM	notebook	535	349	
+San Gabriel	Ricardo	20020405	Commodore	boligrafo	750	179	
+San Martin	Ricardo	20011021	Samsung	e221	405	64	
+San Justo	Sebastian	20050708	Samsung	Lithium	29	194	
+San Martin	Ignacio	20011021	Commodore	i400	946	364	
+San Martin	Oscar	20030702	MS	i400	155	715	
+San Justo	Joaquin 	20010505	Hp	Galaxy SII	682	441	
+San Martin	Francisco	20011110	Iphone	Xirix	139	400	
+San Mateo	Sebastian	20020120	Samsung	Teclado	346	911	
+San Miguel	Augusto	20011101	MS	i400	989	893	
+San Escoliozios	Sebastian	20050708	intel	e221	503	839	
+San Salvador	Sebastian	20011101	Marcapaso	Xirix	785	675	
+San Remo	Joaquin 	20020508	Marcapaso	e221	670	650	
+San Justo	Luciano	20020120	Commodore	boligrafo	837	640	
+San Pedro	Ignacio	20011110	intel	Teclado	141	110	
+San Justo	Alberto	20040502	Iphone	Mouse optico	230	631	
+San Pedro	Luciano	20030119	IBM	Teclado	381	129	
+San Justo	Luciano	20011021	laptop	e221	341	835	
+San Agustin	Sebastian	20040752	Marcapaso	e221	8	38	
+Avellaneda	Sebastian	20000501	MS	i400	99	216	
+San Procto	Augusto	20050107	Commodore	boligrafo	154	388	
+Santo Thomas	Miguel	20011110	Hp	notebook	297	418	
+San Procto	Alberto	20011101	laptop	Mouse optico	728	495	
+San Julian	Santiago	20011110	Commodore	Mouse optico	681	792	
+San Miguel	Santiago	20002005	Hp	Galaxy SII	856	36	
+San Nicolas	Luciano	20020405	Commodore	notebook	943	65	
+San Salvador	Ricardo	20040752	Commodore	Mouse optico	736	825	
+San Miguel	Ezequiel	20030119	intel	Xirix	853	314	
+San Pedro	Miguel	20000501	Commodore	boligrafo	115	74	
+San Nicolas	Pedro	20000501	Genius	Teclado	537	628	
+San Escoliozios	Oscar	20030206	IBM	i400	176	454	
+San Procto	Joaquin 	20011101	Iphone	boligrafo	600	815	
+San Remo	Ezequiel	20000501	IBM	Teclado	236	431	
+Santo Thomas	Leonardo	20011110	Commodore	boligrafo	617	620	
+Santo Thomas	Sebastian	20040702	Genius	Lithium	942	496	
+San Agustin	Francisco	20040502	MS	e221	230	257	
+San Nicolas	Ignacio	20020508	MS	Xirix	202	650	
+Santo Thomas	Ezequiel	20020508	intel	i400	588	320	
+San Pedro	Ricardo	20030505	Marcapaso	boligrafo	188	251	
+Avellaneda	Francisco	20030702	Hp	Xirix	699	315	
+Santo Thomas	Joaquin 	20020120	IBM	i400	645	678	
+San Justo	Ignacio	20030119	Hp	Xirix	411	910	
+San Pedro	Pedro	20040702	Samsung	Xirix	170	608	
+San Remo	Leonardo	20010505	intel	x86	608	922	
+San Gabriel	Augusto	20040702	laptop	Xirix	811	713	
+Avellaneda	Ezequiel	20020701	laptop	boligrafo	720	372	
+San Remo	Francisco	20011101	IBM	Galaxy SII	513	859	
+San Agustin	Juan	20040752	MS	e221	327	473	
+San Escoliozios	Pedro	20020701	Iphone	Xirix	634	295	
+San Escoliozios	Ezequiel	20002005	Marcapaso	Teclado	401	526	
+San Martin	Francisco	20010505	Genius	Xirix	182	469	
+San Agustin	Juan	20030119	Commodore	boligrafo	796	630	
+San Nicolas	Francisco	20000501	MS	e221	500	228	
+Santo Thomas	Sebastian	20011110	Commodore	notebook	533	260	
+San Escoliozios	Pedro	20011021	IBM	e221	686	491	
+Santo Thomas	Joaquin 	20040502	IBM	notebook	290	419	
+Avellaneda	Francisco	20020508	Hp	Xirix	154	319	
+Santo Thomas	Alberto	20011110	intel	i400	72	354	
+San Agustin	Alberto	20050708	Genius	notebook	402	544	
+San Remo	Francisco	20002005	MS	Teclado	997	605	
+San Escoliozios	Augusto	20002005	Marcapaso	boligrafo	75	830	
+San Remo	Ricardo	20030205	Genius	Mouse optico	698	432	
+San Miguel	Santiago	20011021	laptop	boligrafo	403	900	
+San Mateo	Ignacio	20020405	intel	Mouse optico	480	426	
+San Julian	Oscar	20002005	Hp	i400	57	841	
+San Salvador	Francisco	20030206	Commodore	boligrafo	822	588	
+San Martin	Oscar	20002005	MS	Xirix	808	972	
+San Miguel	Ricardo	20010505	intel	e221	317	107	
+San Mateo	Santiago	20011110	Commodore	Xirix	566	140	
+San Justo	Alberto	20040502	Samsung	i400	653	912	
+San Pedro	Oscar	20011110	Hp	Teclado	522	294	
+Santo Thomas	Augusto	20011101	MS	notebook	139	549	
+San Remo	Ezequiel	20030206	Marcapaso	Xirix	190	238	
+San Escoliozios	Santiago	20020701	intel	boligrafo	360	755	
+San Salvador	Luciano	20030206	Iphone	x86	169	625	
+San Escoliozios	Juan	20030505	Commodore	e221	187	737	
+San Remo	Augusto	20011101	Samsung	i400	943	602	
+San Justo	Sebastian	20050107	intel	Mouse optico	220	140	
+Santo Thomas	Miguel	20010505	Marcapaso	notebook	564	664	
+San Pedro	Santiago	20011101	intel	x86	209	348	
+San Nicolas	Leonardo	20020508	laptop	i400	373	149	
+San Escoliozios	Augusto	20011021	intel	x86	593	114	
+San Agustin	Ignacio	20011101	IBM	boligrafo	151	23	
+Avellaneda	Juan	20030206	laptop	x86	977	645	
+San Mateo	Sebastian	20040502	Hp	notebook	80	349	
+Santo Thomas	Ezequiel	20040752	Genius	i400	251	361	
+San Martin	Ignacio	20040752	intel	Lithium	731	180	
+San Justo	Joaquin 	20040702	laptop	notebook	891	115	
+San Justo	Joaquin 	20011021	MS	e221	756	255	
+San Procto	Ignacio	20050708	MS	Xirix	103	763	
+San Justo	Leonardo	20000501	Iphone	Xirix	601	849	
+San Julian	Augusto	20002005	MS	Xirix	234	953	
+San Julian	Francisco	20020508	Genius	Teclado	831	788	
+San Justo	Miguel	20002005	IBM	x86	648	639	
+San Miguel	Santiago	20020405	Commodore	Galaxy SII	528	62	
+Santo Thomas	Francisco	20030505	Samsung	x86	942	78	
+San Miguel	Sebastian	20002005	Marcapaso	boligrafo	101	353	
+Santo Thomas	Joaquin 	20000501	Hp	notebook	185	38	
+Avellaneda	Ignacio	20030206	IBM	notebook	81	439	
+San Miguel	Alberto	20011110	laptop	i400	413	167	
+San Martin	Leonardo	20040702	Genius	notebook	277	369	
+San Julian	Leonardo	20030702	Samsung	boligrafo	864	479	
+San Julian	Luciano	20011110	Commodore	Mouse optico	196	439	
+San Escoliozios	Augusto	20010505	Samsung	Mouse optico	380	163	
+San Procto	Santiago	20030119	Genius	Galaxy SII	576	707	
+San Miguel	Ignacio	20020508	intel	Xirix	799	650	
+San Remo	Alberto	20000501	Hp	i400	647	154	
+San Remo	Ignacio	20020120	laptop	Galaxy SII	472	230	
+San Justo	Ignacio	20020701	IBM	Lithium	725	468	
+San Gabriel	Augusto	20030205	Marcapaso	Galaxy SII	253	998	
+San Agustin	Luciano	20050708	MS	i400	777	308	
+San Nicolas	Ezequiel	20040752	laptop	Xirix	56	98	
+San Agustin	Oscar	20030119	Marcapaso	boligrafo	722	42	
+San Justo	Ezequiel	20011110	Genius	i400	687	303	
+San Mateo	Pedro	20030119	Iphone	Teclado	950	222	
+San Miguel	Juan	20011110	Samsung	Galaxy SII	993	175	
+San Nicolas	Luciano	20011101	Genius	notebook	602	219	
+Avellaneda	Augusto	20011101	MS	i400	773	810	
+San Escoliozios	Ezequiel	20000501	Marcapaso	x86	416	717	
+San Agustin	Leonardo	20030505	Samsung	e221	471	255	
+San Martin	Ezequiel	20020405	IBM	notebook	704	487	
+San Pedro	Augusto	20030702	laptop	Lithium	969	41	
+San Nicolas	Santiago	20010505	MS	Xirix	967	355	
+San Procto	Leonardo	20020508	laptop	i400	13	115	
+San Julian	Oscar	20020701	laptop	Teclado	801	766	
+San Escoliozios	Oscar	20011101	intel	Mouse optico	960	617	
+San Nicolas	Joaquin 	20030206	Genius	Lithium	511	780	
+San Mateo	Oscar	20000501	Marcapaso	Mouse optico	208	489	
+San Procto	Ricardo	20050708	Marcapaso	i400	975	554	
+San Procto	Santiago	20030119	Samsung	Xirix	574	689	
+San Pedro	Miguel	20030119	intel	x86	966	395	
+San Salvador	Oscar	20030205	laptop	Teclado	311	499	
+San Julian	Oscar	20040502	Marcapaso	i400	593	894	
+San Nicolas	Miguel	20020405	Samsung	boligrafo	769	239	
+San Procto	Leonardo	20030505	Commodore	Mouse optico	236	270	
+San Agustin	Ricardo	20030206	Marcapaso	Lithium	841	497	
+San Procto	Sebastian	20040502	Marcapaso	Lithium	984	892	
+San Nicolas	Miguel	20011021	Genius	Galaxy SII	235	982	
+San Escoliozios	Luciano	20040702	Samsung	boligrafo	150	852	
+San Martin	Leonardo	20000501	intel	notebook	788	55	
+Santo Thomas	Alberto	20020120	MS	i400	548	366	
+San Nicolas	Miguel	20011101	Genius	Galaxy SII	46	747	
+San Martin	Augusto	20030702	Commodore	Xirix	951	879	
+San Procto	Francisco	20030702	Genius	x86	854	436	
+San Pedro	Alberto	20040752	Hp	Xirix	44	255	
+San Justo	Miguel	20050708	intel	Galaxy SII	880	391	
+San Martin	Joaquin 	20000501	Marcapaso	Xirix	868	253	
+San Escoliozios	Ignacio	20000501	Samsung	Teclado	865	994	
+San Nicolas	Juan	20020405	Marcapaso	boligrafo	923	834	
+San Procto	Pedro	20020508	IBM	notebook	712	205	
+San Miguel	Miguel	20020120	MS	notebook	735	424	
+San Miguel	Alberto	20030206	Iphone	x86	812	354	
+San Agustin	Juan	20030119	Commodore	boligrafo	781	240	
+San Gabriel	Juan	20020508	Hp	Lithium	165	84	
+San Martin	Joaquin 	20011101	MS	x86	886	846	
+Avellaneda	Alberto	20011101	Commodore	Xirix	949	943	
+San Procto	Santiago	20011101	MS	x86	648	744	
+San Julian	Ezequiel	20040502	intel	Galaxy SII	60	990	
+San Julian	Ricardo	20020508	laptop	Galaxy SII	365	960	
+San Remo	Ricardo	20050107	intel	Mouse optico	78	285	
+San Pedro	Luciano	20040702	Commodore	i400	527	739	
+San Martin	Sebastian	20040752	laptop	Lithium	469	663	
+San Gabriel	Oscar	20030206	intel	i400	729	585	
+San Julian	Francisco	20011110	Marcapaso	boligrafo	353	2	
+San Martin	Ezequiel	20011101	Hp	x86	517	70	
+San Martin	Luciano	20050107	Marcapaso	Xirix	293	547	
+San Julian	Santiago	20040702	intel	Xirix	865	111	
+San Justo	Miguel	20030206	MS	Lithium	243	349	
+San Justo	Miguel	20020701	Iphone	e221	640	582	
+San Escoliozios	Sebastian	20030206	Commodore	Xirix	461	218	
+San Nicolas	Santiago	20011021	Iphone	notebook	976	817	
+San Julian	Ignacio	20030505	Genius	x86	626	777	
+San Pedro	Joaquin 	20000501	Samsung	x86	478	424	
+San Escoliozios	Francisco	20002005	MS	Xirix	659	724	
+San Escoliozios	Francisco	20030505	MS	Mouse optico	708	153	
+San Agustin	Juan	20040502	Iphone	notebook	900	73	
+Avellaneda	Oscar	20010505	laptop	boligrafo	977	257	
+San Julian	Ezequiel	20030206	Hp	notebook	689	348	
+San Julian	Leonardo	20020508	Hp	x86	15	229	
+San Agustin	Juan	20020701	Commodore	x86	355	951	
+Avellaneda	Ricardo	20002005	MS	i400	876	995	
+San Salvador	Ignacio	20011101	laptop	boligrafo	934	409	
+San Mateo	Alberto	20011021	Commodore	Teclado	829	57	
+San Nicolas	Ignacio	20011101	Commodore	notebook	671	528	
+Avellaneda	Luciano	20040752	MS	Xirix	504	819	
+San Justo	Leonardo	20050107	Iphone	Xirix	67	291	
+San Remo	Luciano	20030702	Marcapaso	Lithium	457	154	
+San Remo	Augusto	20040702	laptop	Galaxy SII	499	825	
+San Miguel	Sebastian	20020701	IBM	Galaxy SII	833	596	
+San Escoliozios	Leonardo	20020405	intel	i400	231	788	
+Avellaneda	Augusto	20020508	Marcapaso	boligrafo	779	918	
+San Mateo	Ricardo	20020508	intel	notebook	284	564	
+San Procto	Santiago	20020701	Hp	Teclado	743	37	
+San Salvador	Miguel	20050708	IBM	Teclado	51	175	
+San Procto	Augusto	20040502	intel	notebook	43	78	
+San Mateo	Ignacio	20040502	Genius	e221	69	334	
+San Remo	Leonardo	20010505	Iphone	Galaxy SII	288	597	
+San Pedro	Luciano	20050708	Iphone	Lithium	269	875	
+San Escoliozios	Augusto	20020508	Samsung	Lithium	15	739	
+San Salvador	Luciano	20050107	laptop	Mouse optico	814	875	
+Avellaneda	Joaquin 	20040702	intel	Xirix	109	764	
+San Agustin	Leonardo	20020701	Marcapaso	x86	997	710	
+San Justo	Augusto	20020120	intel	notebook	637	715	
+San Salvador	Alberto	20040752	Hp	i400	273	442	
+San Remo	Francisco	20030119	intel	Teclado	528	57	
+San Martin	Alberto	20050107	intel	e221	184	50	
+San Nicolas	Sebastian	20011021	intel	x86	347	65	
+San Justo	Pedro	20011021	Iphone	Lithium	235	605	
+San Agustin	Oscar	20002005	MS	notebook	366	475	
+San Remo	Joaquin 	20011110	Commodore	notebook	355	362	
+San Remo	Miguel	20020405	laptop	i400	173	540	
+San Salvador	Oscar	20050708	Iphone	notebook	385	440	
+San Salvador	Alberto	20002005	Marcapaso	Galaxy SII	94	438	
+San Miguel	Ezequiel	20030505	Iphone	boligrafo	447	73	
+San Mateo	Ignacio	20020405	Marcapaso	boligrafo	848	495	
+San Pedro	Luciano	20002005	Iphone	notebook	640	450	
+San Justo	Luciano	20010505	Samsung	Lithium	937	693	
+San Gabriel	Luciano	20000501	intel	x86	46	801	
+San Julian	Oscar	20010505	Commodore	Xirix	311	197	
+San Procto	Sebastian	20030206	Commodore	Galaxy SII	727	950	
+San Miguel	Leonardo	20020405	Commodore	boligrafo	292	973	
+San Justo	Ricardo	20030206	Genius	Xirix	798	326	
+San Gabriel	Ignacio	20000501	IBM	boligrafo	2	337	
+San Procto	Augusto	20011110	Iphone	x86	227	989	
+San Procto	Pedro	20030505	Hp	boligrafo	340	156	
+San Miguel	Alberto	20000501	Commodore	Mouse optico	795	581	
+San Pedro	Miguel	20030505	Genius	x86	35	475	
+San Gabriel	Luciano	20050107	Marcapaso	boligrafo	348	691	
+San Julian	Miguel	20030206	Marcapaso	notebook	620	858	
+San Julian	Pedro	20002005	intel	notebook	144	334	
+San Nicolas	Pedro	20030505	intel	notebook	823	453	
+Avellaneda	Ignacio	20030505	Commodore	Mouse optico	741	159	
+San Martin	Francisco	20010505	laptop	Lithium	532	548	
+San Salvador	Sebastian	20020405	laptop	Galaxy SII	422	624	
+San Miguel	Miguel	20040502	Samsung	notebook	874	739	
+San Justo	Juan	20030205	laptop	notebook	121	757	
+San Nicolas	Ignacio	20030505	IBM	Teclado	768	770	
+San Procto	Augusto	20030119	Genius	x86	726	868	
+San Remo	Sebastian	20040752	Iphone	i400	451	433	
+San Martin	Augusto	20030205	Iphone	e221	365	271	
+San Remo	Oscar	20002005	laptop	boligrafo	945	733	
+Santo Thomas	Juan	20011110	MS	e221	822	738	
+San Nicolas	Miguel	20050708	laptop	Lithium	99	303	
+San Nicolas	Miguel	20030702	IBM	Mouse optico	909	898	
+San Mateo	Augusto	20030205	Marcapaso	i400	198	516	
+San Pedro	Sebastian	20040702	Marcapaso	Mouse optico	753	336	
+San Mateo	Miguel	20020508	Hp	Galaxy SII	682	368	
+San Julian	Santiago	20030206	Iphone	boligrafo	407	875	
+San Martin	Augusto	20011021	Samsung	notebook	943	594	
+San Agustin	Sebastian	20000501	Marcapaso	Xirix	360	878	
+San Salvador	Francisco	20040702	laptop	Lithium	291	349	
+San Julian	Pedro	20030702	IBM	i400	388	879	
+San Pedro	Santiago	20011021	Hp	Galaxy SII	529	413	
+San Miguel	Oscar	20002005	laptop	Lithium	119	522	
+San Mateo	Oscar	20020405	laptop	notebook	617	55	
+Santo Thomas	Joaquin 	20020405	Samsung	Mouse optico	122	743	
+San Procto	Oscar	20050708	Commodore	boligrafo	378	32	
+San Nicolas	Joaquin 	20020405	Samsung	boligrafo	454	184	
+Avellaneda	Miguel	20030702	Genius	e221	109	938	
+San Procto	Juan	20040502	MS	Lithium	399	37	
+San Escoliozios	Oscar	20011021	Samsung	e221	403	889	
+San Agustin	Santiago	20030505	Commodore	Lithium	368	888	
+San Pedro	Ignacio	20020508	laptop	boligrafo	780	963	
+San Nicolas	Joaquin 	20030505	laptop	Lithium	896	34	
+San Martin	Augusto	20020508	Commodore	Mouse optico	851	929	
+San Julian	Ricardo	20050107	Samsung	e221	741	952	
+San Miguel	Francisco	20050107	Genius	Teclado	913	868	
+Santo Thomas	Juan	20050107	Commodore	notebook	734	880	
+San Martin	Alberto	20030505	Marcapaso	Teclado	986	222	
+San Gabriel	Ignacio	20030205	intel	e221	971	786	
+San Pedro	Juan	20030702	Genius	Mouse optico	579	662	
+San Gabriel	Oscar	20011110	laptop	Galaxy SII	362	866	
+San Gabriel	Francisco	20030702	MS	i400	661	424	
+San Procto	Alberto	20050708	Marcapaso	x86	799	995	
+San Remo	Santiago	20011021	Commodore	x86	520	573	
+Santo Thomas	Francisco	20040702	laptop	notebook	766	149	
+San Gabriel	Francisco	20002005	intel	Xirix	763	521	
+Avellaneda	Ezequiel	20030505	IBM	e221	593	9	
+San Remo	Leonardo	20002005	Samsung	Galaxy SII	787	849	
+San Procto	Augusto	20020405	MS	x86	657	18	
+Avellaneda	Ezequiel	20030205	Commodore	notebook	184	328	
+San Gabriel	Pedro	20010505	Commodore	boligrafo	796	342	
+San Nicolas	Leonardo	20020701	laptop	i400	357	140	
+Avellaneda	Sebastian	20040502	intel	x86	412	548	
+San Julian	Francisco	20020120	Genius	x86	735	636	
+San Justo	Joaquin 	20040502	Genius	Mouse optico	815	559	
+San Martin	Alberto	20030505	IBM	e221	255	688	
+San Gabriel	Alberto	20050107	Commodore	i400	819	321	
+San Martin	Ricardo	20010505	laptop	boligrafo	436	928	
+San Gabriel	Sebastian	20020120	Genius	e221	529	669	
+Avellaneda	Leonardo	20040702	Iphone	Teclado	131	885	
+Avellaneda	Leonardo	20020120	Commodore	Teclado	403	467	
+San Gabriel	Ricardo	20011021	MS	x86	658	36	
+San Gabriel	Francisco	20040502	intel	Xirix	529	394	
+San Agustin	Luciano	20020508	Hp	x86	292	518	
+San Agustin	Ezequiel	20020405	Hp	Mouse optico	977	56	
+San Julian	Leonardo	20011110	intel	Lithium	312	534	
+San Justo	Pedro	20020120	Genius	e221	536	363	
+Santo Thomas	Luciano	20011021	IBM	Galaxy SII	821	7	
+San Escoliozios	Francisco	20011110	Genius	notebook	930	207	
+San Agustin	Joaquin 	20011101	Samsung	Xirix	787	726	
+San Mateo	Francisco	20011101	MS	e221	832	760	
+San Salvador	Leonardo	20000501	Marcapaso	x86	881	156	
+San Remo	Juan	20030205	laptop	Mouse optico	690	979	
+San Agustin	Alberto	20030205	Commodore	notebook	451	863	
+San Julian	Ricardo	20020120	Commodore	boligrafo	851	658	
+San Nicolas	Juan	20020405	intel	e221	542	12	
+San Escoliozios	Ezequiel	20030205	laptop	Galaxy SII	333	134	
+Avellaneda	Luciano	20000501	Iphone	Lithium	301	3	
+San Salvador	Santiago	20010505	MS	Teclado	456	701	
+Santo Thomas	Augusto	20020701	Commodore	Teclado	778	288	
+San Justo	Augusto	20030119	intel	i400	470	573	
+San Mateo	Ignacio	20030702	Genius	Mouse optico	821	114	
+San Escoliozios	Francisco	20000501	IBM	Mouse optico	984	640	
+San Mateo	Ezequiel	20030119	Iphone	i400	701	942	
+San Gabriel	Oscar	20040702	Commodore	Mouse optico	531	310	
+San Remo	Luciano	20010505	Marcapaso	Mouse optico	591	232	
+San Procto	Ezequiel	20030119	Samsung	notebook	464	756	
+San Nicolas	Ezequiel	20020701	Iphone	Mouse optico	738	481	
+San Procto	Ezequiel	20020405	Hp	Teclado	654	159	
+San Miguel	Sebastian	20040752	Iphone	Galaxy SII	353	683	
+Avellaneda	Pedro	20030505	IBM	boligrafo	263	735	
+San Mateo	Juan	20040752	Hp	Galaxy SII	887	588	
+San Justo	Alberto	20020508	Commodore	e221	494	80	
+Avellaneda	Sebastian	20040702	Commodore	boligrafo	710	973	
+San Escoliozios	Luciano	20030206	intel	e221	572	144	
+San Agustin	Ignacio	20010505	Iphone	notebook	371	570	
+San Gabriel	Ricardo	20030205	Genius	Mouse optico	229	509	
+Avellaneda	Juan	20020120	MS	Mouse optico	830	644	
+San Martin	Miguel	20050708	Commodore	Lithium	274	249	
+San Procto	Ignacio	20020701	MS	Lithium	274	244	
+San Martin	Alberto	20050107	MS	Teclado	974	793	

@@ -11,6 +11,7 @@
 #include "FiltradoresPanel.h"
 #include "Organizacion.h"
 #include "VentanaClienteDinamica.h"
+#include "TablaComun.h"
 
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
@@ -48,6 +49,7 @@ Tab& Personalizador::siguiente() {
 }
 
 void Personalizador::construir() {
+
     // Tab 1 - test filtrador tab
     Tab* pTab1 = new Tab("Tab 1 - FiltradorTab 1");
 
@@ -61,6 +63,7 @@ void Personalizador::construir() {
         pTab1->agregarConsultante(fTab1->getFiltroConsultante());
     while (fTab1->tieneFiltrosNavegables())
         pTab1->agregarFiltroNavegable(fTab1->getFiltroNavegable());
+
 
     pTab1->informarFinCreacion();
 
@@ -86,6 +89,7 @@ void Personalizador::construir() {
 
     // Tab 3 - test gráfico de torta simple
     Tab* pTab3 = new Tab("Tab 3 - Torta simple");
+
     FiltradoresTab* fTab3 = new FiltradoresTab();
     while (fTab3->tieneFiltrosConsultantes())
         pTab3->agregarConsultante(fTab3->getFiltroConsultante());
@@ -93,9 +97,11 @@ void Personalizador::construir() {
         pTab3->agregarFiltroNavegable(fTab3->getFiltroNavegable());
 
     Panel* pPanelTorta3 = new Panel();
+
     FiltradoresPanel* fPanel3 = new FiltradoresPanel(*fTab3);
     fPanel3->agregarResultado("Producto");
     fPanel3->agregarResultado(Organizacion::nombreHecho(0), "CONT");
+
     while (fPanel3->tieneFiltrosConsultantes())
         pTab3->agregarConsultante(fPanel3->getFiltroConsultante());
     while (fPanel3->tieneFiltrosNavegables())
@@ -108,16 +114,6 @@ void Personalizador::construir() {
     Gtk::HSeparator* sep3 = new Gtk::HSeparator();
     Gtk::Table* pTable3 = new Gtk::Table(1, 1, true);
     pTable3->attach(*pPanelTorta3, 0, 1, 0, 1);
-
-
-    // Agrego una Tabla
-    // Panel *pPanelTablaComun = new Panel();
-    //TablaComun tablaComun = new TablaComun(*pPanelsTablaComun);
-    //
-    // COmo hago para mostrarla??
-
-
-
 
 
     hijos.push_back(fTab3);
@@ -134,6 +130,57 @@ void Personalizador::construir() {
     pTab3->informarFinCreacion();
 
     tabs.push_back(pTab3);
+
+
+    // Tab 3.1 con con TablaComun
+
+    Tab* pTab3_2 = new Tab("Tab 3_2 - Tabla Comun");
+
+    FiltradoresTab* fTab3_2 = new FiltradoresTab();
+    fTab3_2->agregarEntrada("Vendedor");
+    fTab3_2->agregarEntrada("Sucursal");
+    while (fTab3_2->tieneFiltrosConsultantes())
+        pTab3_2->agregarConsultante(fTab3_2->getFiltroConsultante());
+    while (fTab3_2->tieneFiltrosNavegables())
+        pTab3_2->agregarFiltroNavegable(fTab3_2->getFiltroNavegable());
+
+    Panel* pPanelTorta3_2 = new Panel();
+
+    FiltradoresPanel* fPanel3_2 = new FiltradoresPanel(*fTab3_2);
+    fPanel3_2->agregarResultado("Vendedor");
+    fPanel3_2->agregarResultado("Marca");
+    //fPanel3_2->agregarResultado("Producto");
+    fPanel3_2->agregarResultado(Organizacion::nombreHecho(0), "CONT");
+
+    while (fPanel3_2->tieneFiltrosConsultantes())
+        pTab3_2->agregarConsultante(fPanel3_2->getFiltroConsultante());
+    while (fPanel3_2->tieneFiltrosNavegables())
+        pTab3_2->agregarFiltroNavegable(fPanel3_2->getFiltroNavegable());
+
+    //Grafico* pGraficoTorta3_2 = new GraficoDeTorta(*fPanel3_2);
+    TablaComun* tablaComun = new TablaComun(*fPanel3_2);
+    pTab3_2->agregarConsultante(tablaComun);
+    pPanelTorta3_2->setContenido(*tablaComun);
+
+    Gtk::HSeparator* sep3_2 = new Gtk::HSeparator();
+    Gtk::Table* pTable3_2 = new Gtk::Table(1, 1, true);
+    pTable3_2->attach(*pPanelTorta3_2, 0, 1, 0, 1);
+
+
+    hijos.push_back(fTab3_2);
+    hijos.push_back(fPanel3_2);
+    hijos.push_back(tablaComun);
+    hijos.push_back(pPanelTorta3_2);
+    hijos.push_back(sep3_2);
+    hijos.push_back(pTable3_2);
+
+    pTab3_2->pack_start(*fTab3_2, false, false);
+    pTab3_2->pack_start(*sep3_2, false, false);
+    pTab3_2->pack_start(*pTable3_2, true, true);
+
+    pTab3_2->informarFinCreacion();
+
+    tabs.push_back(pTab3_2);
 
     // Tab 4 - Barras simple
     Tab* pTab4 = new Tab("Tab 4 - Barras simple");
@@ -401,6 +448,7 @@ void Personalizador::construir() {
     pTab9->informarFinCreacion();
 
     tabs.push_back(pTab9);
+
 
 //    fPanel1->agregarEntrada("Marca");
 //    FiltradoresPanel* fPanel1_1 = new FiltradoresPanel(*fTab1);

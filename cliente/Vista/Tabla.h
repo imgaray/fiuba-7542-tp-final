@@ -22,8 +22,7 @@ public:
 	virtual ~Tabla();
 
 protected:
-
-	virtual void procesarRespuesta(const Respuesta& rta) = 0;
+	//virtual void procesarRespuesta(const Respuesta& rta) = 0;
 
 	class ColumnasModelo : public Gtk::TreeModelColumnRecord {
 	public:
@@ -32,6 +31,10 @@ protected:
 			if (cantidadColumnas > 0) {
 				_cantCol = cantidadColumnas;
 				_columnas = new Gtk::TreeModelColumn<std::string>[_cantCol];
+
+				for (int i = 0 ; i < _cantCol ; i++) {
+					this->add(_columnas[i]);
+				}
 			}
 			else {
 				throw "Cantidad Columnas Insuficiente";

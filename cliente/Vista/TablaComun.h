@@ -23,6 +23,8 @@ protected:
 	void agregarFila(int numFila, const Respuesta& resp);
 	void agregarColumnas();
 
+	void fila_activada(const TreeModel::Path& path, TreeViewColumn* column);
+
 	Glib::RefPtr<Gtk::ListStore> _refTreeModel;
 };
 

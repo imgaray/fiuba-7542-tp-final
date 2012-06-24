@@ -96,14 +96,16 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
         throw ExcepcionArchivoGladeCorrupto(BOTON_SALIR);
 }
 
-VentanaCliente::~VentanaCliente() {}
+VentanaCliente::~VentanaCliente() {
+    delete pDAutentifAdmin;
+    delete pVAdminConfig;
+}
 
 void VentanaCliente::personalizar(const char* archivo) {
     pVDinamica->personalizar(archivo);
 }
 
 void VentanaCliente::on_page_switched(GtkNotebookPage* page, guint page_num) {
-    std::cout << "Notebook page switched" << std::endl;
     if (server.conectado()) {
         bool actualizable = pVDinamica->disponibleParaActualizacion(page_num);
 

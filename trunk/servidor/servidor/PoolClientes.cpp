@@ -4,7 +4,7 @@
 
 PoolClientes::PoolClientes(ResolvedorConsultas& resolvedor,
 							ConsultasClientesServidor& consultas) {
-	for (unsigned i = 0; i < MAX_HILOS; i++) {
+	for (unsigned i = 0; i < MAX_HILOS_CLIENTE; i++) {
 		hilos.push_back(new HiloResponderConsulta(consultas,resolvedor));
 	}
 }

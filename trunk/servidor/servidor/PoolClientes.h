@@ -1,7 +1,7 @@
 #ifndef _POOLCLIENTES_H
 #define _POOLCLIENTES_H
 
-// #define MAX_HILOS 5 pongo esta linea en el .cpp
+#define MAX_HILOS_CLIENTE 3
 
 #include "Definiciones.h"
 #include <list>

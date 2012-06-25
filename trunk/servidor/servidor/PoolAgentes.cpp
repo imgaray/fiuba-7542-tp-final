@@ -4,7 +4,7 @@
 
 PoolAgentes::PoolAgentes(ResolvedorEntradas& resolvedor,
 							ConsultasAgentesServidor& entradas) {
-	for (unsigned i = 0; i < MAX_HILOS; i++) {
+	for (unsigned i = 0; i < MAX_HILOS_AGENTE; i++) {
 		hilos.push_back(new HiloResponderEntrada(entradas,resolvedor));
 	}
 }

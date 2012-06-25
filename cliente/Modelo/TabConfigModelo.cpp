@@ -2,6 +2,7 @@
 
 TabConfigModelo::TabConfigModelo()
 : ConfigModelo(NOMBRE_TAB_POR_DEFECTO),
+  panelManager(NULL),
   pSpinButtonFilas(NULL), pSpinButtonCols(NULL) {
     filas = 1; cols = 1;
     min_fila = 1; min_col = 1;

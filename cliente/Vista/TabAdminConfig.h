@@ -4,7 +4,6 @@
 #include <gtkmm/box.h>
 #include <gtkmm/builder.h>
 
-
 class TabAdminConfig : public Gtk::VBox {
     public:
         TabAdminConfig(BaseObjectType* cobject,

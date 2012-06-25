@@ -3,8 +3,12 @@
 
 #include <gtkmm/button.h>
 #include <gtkmm/comboboxtext.h>
-class TabConfigModelo;
+class ConfigModelo;
 
+enum t_Objeto {
+    OBJ_TAB,
+    OBJ_PANEL
+};
 /** @class clase encargada de manejar la parte de agregado de objetos dinámicos
  * por el admin (pestañas y paneles)
  * Emite la señal signal_model_changed cuando el modelo que está detrás de la
@@ -12,23 +16,27 @@ class TabConfigModelo;
  */
 class AdminConfigObjManager : public sigc::trackable {
     public:
-        AdminConfigObjManager(Gtk::ComboBoxText* cbtext,
+        AdminConfigObjManager(t_Objeto tipo,
+                              Gtk::ComboBoxText* cbtext,
                               Gtk::Button* pAceptar,
                               Gtk::Button* pGuardarCambios,
                               Gtk::Button* pEliminar,
                               const Glib::ustring& def);
         ~AdminConfigObjManager();
 
-        TabConfigModelo* getModelo() const;
+        ConfigModelo* getModelo() const;
 
-        sigc::signal< void, TabConfigModelo* > signal_model_changed();
+        sigc::signal< void, ConfigModelo* > signal_model_changed();
     private:
-        sigc::signal< void, TabConfigModelo* > _signal_model_changed;
+        sigc::signal< void, ConfigModelo* > _signal_model_changed;
         enum t_boton {
             B_ACEPTAR,
             B_GUARDAR,
             B_ELIMINAR
         };
+
+        t_Objeto tipo;
+        ConfigModelo* new_modelo();
 
         std::map< t_boton, Gtk::Button* > botones;
 
@@ -38,10 +46,10 @@ class AdminConfigObjManager : public sigc::trackable {
 
         Glib::ustring nombre_por_defecto;
 
-        std::list< TabConfigModelo* > consultasConfiguradas;
+        std::list< ConfigModelo* > consultasConfiguradas;
         // para una búsqueda más rápida
-        std::map< Glib::ustring, TabConfigModelo* > mapaConsultasConfiguradas;
-        TabConfigModelo* pTabModeloActual;
+        std::map< Glib::ustring, ConfigModelo* > mapaConsultasConfiguradas;
+        ConfigModelo* pModeloActual;
         bool guardandoCambios;
         void on_combo_selec_changed();
         Gtk::ComboBoxText* comboSelec;

@@ -137,15 +137,18 @@ void Consulta::cargarVarDeTabla(std::string& datos) const {
 }
 
 void Consulta::cargarID(std::string& datos) const {
+	Utilitario u;
 	datos += u.convertirAString(this->_id);
 	datos += sep_tipo;
 }
 
 void Consulta::guardarID(const std::string& id) {
+	Utilitario u;
 	_id = u.convertirAEntero(id);
 }
 
 void Consulta::guardarVarDeTabla(const std::string& variables) {
+	Utilitario u;
 	std::string x_Tabla = u.separar(variables, sep_datos, 0);
 	std::string y_Tabla = u.separar(variables, sep_datos, 1);
 
@@ -235,6 +238,7 @@ void Consulta::cargarResultados(std::string& datos) const {
 }
 
 void Consulta::deserializar(const std::string& consulta) {
+	Utilitario u;
 	limpiar();
 	_consultaValida = true;
 
@@ -283,6 +287,7 @@ void Consulta::deserializar(const std::string& consulta) {
 }
 
 void Consulta::guardarFiltros(const std::string& filtros) {
+	Utilitario u;
 	size_t ind = 0;
 	std::string filtroEntero;
 	std::string filtro;
@@ -306,6 +311,7 @@ void Consulta::guardarFiltros(const std::string& filtros) {
 
 
 void Consulta::guardarResultados(const std::string& resultados){
+	Utilitario u;
 	size_t ind = 0;
 	std::string resCompleto, resNuevo, agregacion;
 
@@ -335,6 +341,7 @@ void Consulta::guardarResultados(const std::string& resultados){
 }
 
 void Consulta::guardarEntradas(const std::string& entradas) {
+	Utilitario u;
 	size_t ind = 0;
 	std::string entradaCompleta, entrada, valor;
 	bool seguirGuardando = true;

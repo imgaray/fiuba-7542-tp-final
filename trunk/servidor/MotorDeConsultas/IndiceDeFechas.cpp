@@ -16,7 +16,7 @@ IndiceDeFechas::~IndiceDeFechas() {
 	// TODO Auto-generated destructor stub
 }
 
-void IndiceDeFechas::recuperar(const Fecha& fecha, Lista_Id& ids) {
+void IndiceDeFechas::recuperar(const Fecha& fecha, Lista_Id& ids) const{
 	ids.clear();
 
 	if (m_fechas.esRango(fecha)) {
@@ -91,8 +91,8 @@ void IndiceDeFechas::limpiar() {
 }
 
 void IndiceDeFechas::guardarIDs(const FechaNumerica& fecha) {
-	std::pair < MapaDeFechas::iterator , MapaDeFechas::iterator > ret;
-	MapaDeFechas::iterator it;
+	std::pair < MapaDeFechas::const_iterator , MapaDeFechas::const_iterator > ret;
+	MapaDeFechas::const_iterator it;
 	ret = _fechas.equal_range(fecha);
 
 	for (it = ret.first ; it != ret.second ; ++it) {
@@ -100,9 +100,9 @@ void IndiceDeFechas::guardarIDs(const FechaNumerica& fecha) {
 	}
 }
 
-void IndiceDeFechas::guardarIDs(const FechaNumerica& fecha, Lista_Id& ids) {
-	std::pair < MapaDeFechas::iterator , MapaDeFechas::iterator > ret;
-	MapaDeFechas::iterator it;
+void IndiceDeFechas::guardarIDs(const FechaNumerica& fecha, Lista_Id& ids) const{
+	std::pair < MapaDeFechas::const_iterator , MapaDeFechas::const_iterator > ret;
+	MapaDeFechas::const_iterator it;
 	ret = _fechas.equal_range(fecha);
 
 	for (it = ret.first ; it != ret.second ; ++it) {
@@ -111,21 +111,21 @@ void IndiceDeFechas::guardarIDs(const FechaNumerica& fecha, Lista_Id& ids) {
 }
 
 void IndiceDeFechas::guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2) {
-	MapaDeFechas::iterator itf1 = _fechas.lower_bound(f1);
-	MapaDeFechas::iterator itf2 = _fechas.lower_bound(f2);
+	MapaDeFechas::const_iterator itf1 = _fechas.lower_bound(f1);
+	MapaDeFechas::const_iterator itf2 = _fechas.lower_bound(f2);
 
-	MapaDeFechas::iterator it;
+	MapaDeFechas::const_iterator it;
 
 	for (it = itf1 ; it != itf2 ; it++) {
 		_res.push_back(it->second);
 	}
 }
 
-void IndiceDeFechas::guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2, Lista_Id& ids) {
-	MapaDeFechas::iterator itf1 = _fechas.lower_bound(f1);
-	MapaDeFechas::iterator itf2 = _fechas.lower_bound(f2);
+void IndiceDeFechas::guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2, Lista_Id& ids) const {
+	MapaDeFechas::const_iterator itf1 = _fechas.lower_bound(f1);
+	MapaDeFechas::const_iterator itf2 = _fechas.lower_bound(f2);
 
-	MapaDeFechas::iterator it;
+	MapaDeFechas::const_iterator it;
 
 	for (it = itf1 ; it != itf2 ; it++) {
 		ids.push_back(it->second);

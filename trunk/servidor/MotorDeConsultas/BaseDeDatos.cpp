@@ -40,8 +40,7 @@ BaseDeDatos::~BaseDeDatos() {
 
 Respuesta BaseDeDatos::resolverConsulta(const Consulta& consulta) {
 	Respuesta resp;
-	_mutex.lock();
-	//resolverConsultaNormal(consulta,resp);
+	//_mutex.lock();
 
 	if (consulta.esConsultaDeTablaPivote()) {
 		resolverTablaPivote(consulta, resp);
@@ -50,12 +49,12 @@ Respuesta BaseDeDatos::resolverConsulta(const Consulta& consulta) {
 		resolverConsultaNormal(consulta,resp);
 	}
 
-	_mutex.unlock();
+	//_mutex.unlock();
 	return resp;
 }
 
 
-void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, Lista_Id& destino) {
+void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, Lista_Id& destino) const {
 	Lista_Id::const_iterator it1 = l1.begin();
 	Lista_Id::const_iterator it2 = l2.begin();
 
@@ -76,7 +75,7 @@ void BaseDeDatos::calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, L
 	}
 }
 
-void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp){
+void BaseDeDatos::resolverTablaPivote(const Consulta& consulta, Respuesta& resp) {
 	Lista_Id listaReg;
 	bool huboFiltrado = filtrarDatos(consulta,listaReg);
 /*  comentada esta variable porque no se usa
@@ -298,7 +297,8 @@ void BaseDeDatos::guardarCombinacionesTP(const Consulta& consulta,
 }
 
 
-void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
+void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) const {
+	std::cout << "::::::::::::BDD se entro a calcularFiltros" << std::endl;
 	bool hayDimension = false;
 	unsigned cantFiltrosSimples = 0;
 	for (unsigned j = 0 ; j < consulta.cantidadFiltros() && !hayDimension; j++){
@@ -346,7 +346,8 @@ void BaseDeDatos::calcularFiltros(const Consulta& consulta, Lista_Id& lista) {
 	}
 }
 
-void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) {
+void BaseDeDatos::calcularEntradas(const Consulta& consulta, Lista_Id& lista) const {
+	std::cout << "::::::::::::BDD se entro a calcularEntradas" << std::endl;
 	bool hayDimension = false;
 	unsigned cantEntradasSimples = 0;
 	for (unsigned j = 0 ; j < consulta.cantidadEntradas() && !hayDimension; j++){
@@ -450,6 +451,9 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
     std::cout << "cantidad de columnas para la respuesta: " << consulta.cantidadResultados() << std::endl;
 	respuesta.definirColumnas(consulta.cantidadResultados());
     std::cout << "cantidad de columnas con que se creó la respuesta: " << respuesta.cantidadColumnas() << std::endl;
+
+    std::cout << "::::::::::::BDD se entroa a resolver una consultaNormal" << std::endl;
+
 	Lista_Id listaReg;
 	bool huboFiltrado = filtrarDatos(consulta,listaReg);
 	bool hayDimEnResultados = hayResultadosDeDimensiones(consulta);
@@ -499,7 +503,8 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 
 }
 
-bool BaseDeDatos::aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice) {
+bool BaseDeDatos::aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice) const {
+	std::cout << "::::::::::::BDD se entro a aplicarAgregacionesHechos" << std::endl;
 	bool hacerAgregacion = true;
 	for (unsigned i = 0; i < cons.cantidadResultados() && hacerAgregacion; i++) {
 		hacerAgregacion = hacerAgregacion && (cons.agregacionDeResultado(i) != NADA);
@@ -510,6 +515,7 @@ bool BaseDeDatos::aplicarAgregacionHechos(const Consulta& cons, std::vector <uns
 }
 
 void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
+	std::cout << "::::::::::::BDD se entro a guardarHechos 2" << std::endl;
 	Utilitario u;
 	resp.definirColumnas(cons.cantidadResultados());
 
@@ -556,6 +562,7 @@ void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
 
 
 void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respuesta& resp) {
+	std::cout << "::::::::::::BDD se entro a guardarHechos 2" << std::endl;
 	Utilitario u;
 	resp.definirColumnas(cons.cantidadResultados());
 
@@ -604,6 +611,7 @@ void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respue
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg, MapaCombinaciones& mComb, bool filtrarHechos) {
+	std::cout << "::::::::::::BDD se entro a guardarCombinaciones 1" << std::endl;
 	Utilitario u;
 	std::string reg;
 	Lista_Id::iterator it;
@@ -636,6 +644,7 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg,
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, MapaCombinaciones& mComb, bool filtrarHechos) {
+	std::cout << "::::::::::::BDD se entro a guardarCombinaciones 2" << std::endl;
 	Utilitario u;
 	std::string reg;
 	std::string combinacion;
@@ -657,7 +666,7 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, MapaCombinacion
 	}
 }
 
-bool BaseDeDatos::hayFiltrosDeHechos(const Consulta& consulta) {
+bool BaseDeDatos::hayFiltrosDeHechos(const Consulta& consulta) const {
 	for (unsigned i = 0 ; i < consulta.cantidadFiltros() ; i++) {
 		if (Organizacion::esHecho(consulta.filtro(i)))
 			return true;
@@ -670,7 +679,7 @@ bool BaseDeDatos::hayFiltrosDeHechos(const Consulta& consulta) {
 	return false;
 }
 
-bool BaseDeDatos::hayResultadosDeDimensiones(const Consulta& consulta) {
+bool BaseDeDatos::hayResultadosDeDimensiones(const Consulta& consulta) const {
 	for (unsigned i = 0 ; i < consulta.cantidadResultados() ; i++) {
 		if (Organizacion::esDimension((consulta.resultado(i))))
 			return true;
@@ -678,7 +687,7 @@ bool BaseDeDatos::hayResultadosDeDimensiones(const Consulta& consulta) {
 	return false;
 }
 
-bool BaseDeDatos::filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) {
+bool BaseDeDatos::filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) const {
 	unsigned cantFiltrosS = 0;
 	for (unsigned i=0 ; i < consulta.cantidadFiltros() ; i++) {
 		if (Organizacion::esDimension(consulta.filtro(i)))
@@ -718,6 +727,7 @@ bool BaseDeDatos::filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) {
 }
 
 void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinaciones& mComb, Respuesta& resp) {
+	std::cout << "::::::::::::BDD se entro a hacerAgregaciones 1" << std::endl;
     MapaCombinaciones::const_iterator it, itActual, itAux;
     itActual = mComb.begin();
     Lista_Id ids_aAgregar;
@@ -731,7 +741,9 @@ void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinac
         else {
 
             // hacer una agregacion individual para la lista
+        	//_mutex.lock();
             agregaParaFila(consulta, itActual->first, ids_aAgregar, resp);
+            //_mutex.unlock();
             ids_aAgregar.clear();
             itActual = it;
             --it;
@@ -740,7 +752,9 @@ void BaseDeDatos::hacerAgregaciones(const Consulta& consulta, const MapaCombinac
     }
 
     if (mComb.size() > 0 && ultimoHecho == false) {
+    	//_mutex.lock();
     	 agregaParaFila(consulta, itActual->first, ids_aAgregar, resp);
+    	//_mutex.unlock();
     }
 }
 
@@ -748,7 +762,7 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
         const Combinacion& combinacion,
         const Lista_Id& ids,
         Respuesta& resp) {
-
+	std::cout << ":::::::::::::::::::::::::BDD se entroa agregarParaFila" << std::endl;
 	Utilitario u;
 
     std::string nomCampoRes;
@@ -890,7 +904,7 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
 }
 
 
-void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, unsigned aAgregar) {
+void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, unsigned aAgregar) const {
 	switch (agre) {
 	case NADA:
 		// Imprmir error;
@@ -921,7 +935,7 @@ void BaseDeDatos::calcularAgregacion(const Agregacion& agre, unsigned& acum, uns
 	}
 }
 
-void BaseDeDatos::calcularPromedio(unsigned& acum, unsigned& cant, const unsigned& nuevoHecho) {
+void BaseDeDatos::calcularPromedio(unsigned& acum, unsigned& cant, const unsigned& nuevoHecho) const {
 	if (cant == 0) {
 		cant = 1;
 		acum = nuevoHecho;

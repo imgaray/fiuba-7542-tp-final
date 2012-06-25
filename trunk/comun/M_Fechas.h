@@ -23,47 +23,47 @@ public:
 	 * Se ingresa fecha como "12-12-2012" y se retorna en el formato
 	 * correcto utilazado para el indice
 	 */
-	Fecha fecha(const std::string& fechaComun);
-	bool esFechaConvecional(const std::string& fecha);
+	Fecha fecha(const std::string& fechaComun)  const;
+	bool esFechaConvecional(const std::string& fecha)  const;
 
-	Fecha rango(const Fecha& f1,const Fecha& f2);
-	Fecha fecha(int dia, int mes, int anio);
+	Fecha rango(const Fecha& f1,const Fecha& f2) const;
+	Fecha fecha(int dia, int mes, int anio) const;
 
-    Fecha anio(const std::string& anio);
-	Fecha semestre(int sem, const std::string& anio);
-	Fecha cuatrimestre(int cuat, const std::string& anio);
-	Fecha trimestre(int tri, const std::string& anio);
-	Fecha bimestre(int bim, const std::string& anio);
-	Fecha mes(int mes, const std::string& anio);
-	Fecha semana(int semana, const std::string& anio);
+    Fecha anio(const std::string& anio) const;
+	Fecha semestre(int sem, const std::string& anio) const;
+	Fecha cuatrimestre(int cuat, const std::string& anio) const;
+	Fecha trimestre(int tri, const std::string& anio) const;
+	Fecha bimestre(int bim, const std::string& anio) const;
+	Fecha mes(int mes, const std::string& anio) const;
+	Fecha semana(int semana, const std::string& anio) const;
 
-	bool esRango(const Fecha& fecha);
+	bool esRango(const Fecha& fecha) const;
 
-	bool esSimple(const Fecha& fecha);
+	bool esSimple(const Fecha& fecha) const;
 
-	void desarmar(const Fecha& rango, Fecha& f1, Fecha& f2);
+	void desarmar(const Fecha& rango, Fecha& f1, Fecha& f2) const;
 	/*
 	 * Solo para fecha Normal
 	 */
-	FechaNumerica convertir(const Fecha& fecha);
-	Fecha convertir(const FechaNumerica& fecha);
-	Fecha convertir(const FechaNumerica& fecha, int ancho);
+	FechaNumerica convertir(const Fecha& fecha) const;
+	Fecha convertir(const FechaNumerica& fecha) const;
+	Fecha convertir(const FechaNumerica& fecha, int ancho) const;
 private:
-    Utilitario u;
+    //Utilitario u;
 
-	void desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2);
-	void desarmarBimes(const Fecha& rango, Fecha& f1, Fecha& f2);
-	void desarmarTrimes(const Fecha& rango, Fecha& f1, Fecha& f2);
-	void desarmarCuatrimes(const Fecha& rango, Fecha& f1, Fecha& f2);
-	void desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2);
-	void desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2);
-
-
-	void desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul);
-	void armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha);
+	void desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2) const;
+	void desarmarBimes(const Fecha& rango, Fecha& f1, Fecha& f2) const;
+	void desarmarTrimes(const Fecha& rango, Fecha& f1, Fecha& f2) const;
+	void desarmarCuatrimes(const Fecha& rango, Fecha& f1, Fecha& f2)  const;
+	void desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2)  const;
+	void desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2)  const;
 
 
-	void calcularDia(const int& diaAnio,const FechaNumerica& anio, int& dia, int& mes);
+	void desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul)  const;
+	void armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha)  const;
+
+
+	void calcularDia(const int& diaAnio,const FechaNumerica& anio, int& dia, int& mes) const;
 };
 
 #endif /* M_FECHAS_H_ */

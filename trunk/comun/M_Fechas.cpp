@@ -22,7 +22,8 @@
 #define F_ANIO 		'Z'
 #define F_RANGO 	'R'
 
-Fecha M_Fechas::fecha(const std::string& fechaComun) {
+Fecha M_Fechas::fecha(const std::string& fechaComun) const {
+	Utilitario u;
 	Fecha fecha;
 
 	if (!esFechaConvecional(fechaComun))
@@ -35,7 +36,8 @@ Fecha M_Fechas::fecha(const std::string& fechaComun) {
 }
 
 
-bool M_Fechas::esFechaConvecional(const std::string& fecha) {
+bool M_Fechas::esFechaConvecional(const std::string& fecha) const {
+	Utilitario u;
 	bool resParcial;
 
 	size_t pos;
@@ -85,7 +87,7 @@ bool M_Fechas::esFechaConvecional(const std::string& fecha) {
 	return resFinal;
 }
 
-Fecha M_Fechas::fecha(int dia, int mes, int anio) {
+Fecha M_Fechas::fecha(int dia, int mes, int anio) const {
 	Fecha fecha;
 	FechaNumerica nfecha = 0;
 	std::stringstream sstream;
@@ -97,7 +99,7 @@ Fecha M_Fechas::fecha(int dia, int mes, int anio) {
 	return fecha;
 }
 
-FechaNumerica M_Fechas::convertir(const Fecha& fecha) {
+FechaNumerica M_Fechas::convertir(const Fecha& fecha) const {
 	std::stringstream sstream;
 	sstream << fecha;
 
@@ -106,7 +108,7 @@ FechaNumerica M_Fechas::convertir(const Fecha& fecha) {
 	return nfecha;
 }
 
-Fecha M_Fechas::convertir(const FechaNumerica& fecha, int ancho) {
+Fecha M_Fechas::convertir(const FechaNumerica& fecha, int ancho) const {
 	std::stringstream sstream;
     sstream.width(ancho);
     sstream.fill('0');
@@ -117,14 +119,14 @@ Fecha M_Fechas::convertir(const FechaNumerica& fecha, int ancho) {
 }
 
 
-Fecha M_Fechas::convertir(const FechaNumerica& fecha) {
+Fecha M_Fechas::convertir(const FechaNumerica& fecha) const {
 	std::stringstream sstream;
 	sstream << fecha;
 	Fecha nfecha;
 	sstream >> nfecha;
 	return nfecha;
 }
-bool M_Fechas::esRango(const Fecha& fecha) {
+bool M_Fechas::esRango(const Fecha& fecha) const {
 	bool res;
 	switch (fecha[0]) {
 	case F_SEMANA:
@@ -142,11 +144,11 @@ bool M_Fechas::esRango(const Fecha& fecha) {
 	return res;
 }
 
-bool M_Fechas::esSimple(const Fecha& fecha) {
+bool M_Fechas::esSimple(const Fecha& fecha) const {
 	return !esRango(fecha);
 }
 
-Fecha M_Fechas::rango(const Fecha &f1, const Fecha& f2) {
+Fecha M_Fechas::rango(const Fecha &f1, const Fecha& f2) const {
 	if (esRango(f1) || esRango(f2))
 		return STR_NULA;
 
@@ -167,10 +169,10 @@ Fecha M_Fechas::rango(const Fecha &f1, const Fecha& f2) {
 	return fecha;
 }
 
-void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
+void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) const {
 //	if (esRango(rango) == false)
 //		return;
-
+	Utilitario u;
 	Fecha nf1,nf2;
 
 	switch (rango[0]) {
@@ -198,7 +200,7 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) {
 	}
 }
 
-void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha) {
+void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha) const {
 	fecha += sep_fecha;
 	fecha += convertir(x, 2);
 	// std::cout << "NUMERO : " << x <<" STRING: \"" <<M_Fechas::convertir(x, 2)  << "\""<< std::endl;
@@ -207,7 +209,8 @@ void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha
 
 }
 
-Fecha M_Fechas::anio(const std::string& anio) {
+Fecha M_Fechas::anio(const std::string& anio) const {
+	Utilitario u;
 	if (u.convertirAEntero(anio) > 0) {
 		Fecha fecha;
 		fecha = F_ANIO;
@@ -219,8 +222,9 @@ Fecha M_Fechas::anio(const std::string& anio) {
 	}
 }
 
-Fecha M_Fechas::semana(int semana, const std::string& anio) {
-	FechaNumerica nAnio = this->u.convertirAEntero(anio);
+Fecha M_Fechas::semana(int semana, const std::string& anio) const {
+	Utilitario u;
+	FechaNumerica nAnio = u.convertirAEntero(anio);
 	bool esBisiesto = ((nAnio % 4) == 0);
 	bool anioNuevo = false;
 
@@ -271,7 +275,7 @@ Fecha M_Fechas::semana(int semana, const std::string& anio) {
 void M_Fechas::calcularDia(const int& diaAnio,
 		const FechaNumerica& anio,
 		int& dia,
-		int& mes) {
+		int& mes) const {
 	bool esBisiesto = ((anio % 4) == 0);
 	bool calHecho = false;
 	int sumMeses[12]={31,59,90,120,151,181,212,243,273,304,334,365};
@@ -314,7 +318,7 @@ void M_Fechas::calcularDia(const int& diaAnio,
 	}
 }
 
-Fecha M_Fechas::mes(int mes, const std::string& anio) {
+Fecha M_Fechas::mes(int mes, const std::string& anio) const {
 	if (mes > 0 && mes <= 12) {
 		Fecha fecha;
 		fecha = F_MES;
@@ -326,7 +330,7 @@ Fecha M_Fechas::mes(int mes, const std::string& anio) {
 	}
 }
 
-Fecha M_Fechas::bimestre(int bim, const std::string& anio) {
+Fecha M_Fechas::bimestre(int bim, const std::string& anio) const {
 	if (bim > 0 && bim <= 6) {
 		Fecha fecha;
 		fecha = F_BIMES;
@@ -338,7 +342,7 @@ Fecha M_Fechas::bimestre(int bim, const std::string& anio) {
 	}
 }
 
-Fecha M_Fechas::trimestre(int tri, const std::string& anio) {
+Fecha M_Fechas::trimestre(int tri, const std::string& anio) const {
 	if (tri > 0 && tri <= 4) {
 		Fecha fecha;
 		fecha = F_TRIMES;
@@ -350,7 +354,7 @@ Fecha M_Fechas::trimestre(int tri, const std::string& anio) {
 	}
 }
 
-Fecha M_Fechas::cuatrimestre(int cuat, const std::string& anio) {
+Fecha M_Fechas::cuatrimestre(int cuat, const std::string& anio) const {
 	if (cuat > 0 && cuat <= 3) {
 		Fecha fecha;
 		fecha = F_CUAT;
@@ -362,7 +366,7 @@ Fecha M_Fechas::cuatrimestre(int cuat, const std::string& anio) {
 	}
 }
 
-Fecha M_Fechas::semestre(int sem, const std::string& anio) {
+Fecha M_Fechas::semestre(int sem, const std::string& anio) const {
 	if (sem > 0 && sem <= 2) {
 		Fecha fecha;
 		fecha = F_SEMES;
@@ -374,7 +378,8 @@ Fecha M_Fechas::semestre(int sem, const std::string& anio) {
 	}
 }
 
-void M_Fechas::desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul){
+void M_Fechas::desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned mul) const {
+	Utilitario u;
 	FechaNumerica coef = convertir(u.separar(rango, sep_fecha, 1));
 	FechaNumerica anio = convertir(u.separar(rango, sep_fecha, 2));
 
@@ -389,26 +394,26 @@ void M_Fechas::desarmarFechas(const Fecha& rango, Fecha& f1, Fecha& f2, unsigned
 		f2 = convertir(anio + (1 + coef *(mul))*MUl_MES + 1*MUL_DIA);
 }
 
-void M_Fechas::desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2) {
+void M_Fechas::desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2) const {
 	desarmarFechas(rango, f1, f2, 1);
 }
 
-void M_Fechas::desarmarBimes(const Fecha& rango, Fecha& f1, Fecha& f2) {
+void M_Fechas::desarmarBimes(const Fecha& rango, Fecha& f1, Fecha& f2) const {
 	desarmarFechas(rango, f1, f2, 2);
 }
 
-void M_Fechas::desarmarTrimes(const Fecha& rango, Fecha& f1, Fecha& f2) {
+void M_Fechas::desarmarTrimes(const Fecha& rango, Fecha& f1, Fecha& f2) const {
 	desarmarFechas(rango, f1, f2, 3);
 }
 
-void M_Fechas::desarmarCuatrimes(const Fecha& rango, Fecha& f1, Fecha& f2) {
+void M_Fechas::desarmarCuatrimes(const Fecha& rango, Fecha& f1, Fecha& f2) const {
 	desarmarFechas(rango, f1, f2, 4);
 }
 
-void M_Fechas::desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2) {
+void M_Fechas::desarmarSemes(const Fecha& rango, Fecha& f1, Fecha& f2) const {
 	desarmarFechas(rango, f1, f2, 6);
 }
 
-void M_Fechas::desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2) {
+void M_Fechas::desarmarAnio(const Fecha& rango, Fecha& f1, Fecha& f2) const {
 	desarmarFechas(rango, f1, f2, 12);
 }

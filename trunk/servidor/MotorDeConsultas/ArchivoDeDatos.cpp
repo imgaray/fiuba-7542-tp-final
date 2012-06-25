@@ -39,11 +39,12 @@ ArchivoDeDatos::~ArchivoDeDatos() {
 }
 
 
-size_t ArchivoDeDatos::cantidadRegistros() {
+size_t ArchivoDeDatos::cantidadRegistros() const {
 	return _ultimoID;
 }
 
 Id_Registro ArchivoDeDatos::guardarRegistro(const std::string & registro) {
+	Lock l(_mutex);
 	std::string regAGuardar = registro;
 	regAGuardar += fin_reg;
 	size_t tamRegNuevo = regAGuardar.size();
@@ -73,6 +74,7 @@ Id_Registro ArchivoDeDatos::guardarRegistro(const std::string & registro) {
 }
 
 std::string ArchivoDeDatos::obtenerRegistro(Id_Registro id) {
+	Lock l(_mutex);
 	if (id < _ultimoID) {
 		size_t posicion;
 		if (_posRelativas.fail())

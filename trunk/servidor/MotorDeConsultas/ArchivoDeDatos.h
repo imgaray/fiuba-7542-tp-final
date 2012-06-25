@@ -10,6 +10,7 @@
 
 #include <string>
 #include <fstream>
+#include "Mutex.h"
 
 typedef unsigned int Id_Registro;
 
@@ -31,7 +32,7 @@ public:
 	/*
 	 * Retorna la cantidad de registros que estan guardados en el archivo
 	 */
-	size_t cantidadRegistros();
+	size_t cantidadRegistros() const;
 
 	/*
 	 * Borra todo el contenido de los datos
@@ -57,6 +58,8 @@ private:
 
 	std::string _rutaArchivoPrin;
 	std::string _rutaArchivoSec;
+
+	Mutex _mutex;
 };
 
 #endif /* ARCHIVODEDATOS_H_ */

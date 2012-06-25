@@ -57,31 +57,31 @@ public:
 	/*
 	 * Calcula interseccion de dos lista l1 y l2, y almacena el resultado en destino
 	 */
-	void calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, Lista_Id& destino);
+	void calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, Lista_Id& destino) const;
 
 	/*
 	 * Calcula los Filtros de una consulta y guarda los id filtrados en lista
 	 */
-	void calcularFiltros(const Consulta& consulta, Lista_Id& lista);
+	void calcularFiltros(const Consulta& consulta, Lista_Id& lista) const;
 
 	/*
 	 * Calcula las Entradas de una consulta y guarda los id filtrados en lista
 	 */
-	void calcularEntradas(const Consulta& consulta, Lista_Id& lista);
+	void calcularEntradas(const Consulta& consulta, Lista_Id& lista) const;
 
 
 	/*
 	 * Retorna un bool indicando si hubo filtrado de datos y si es asi
 	 * se guardan se los ids filtrados en listaReg
 	 */
-	bool filtrarDatos(const Consulta& consulta, Lista_Id& listaReg);
+	bool filtrarDatos(const Consulta& consulta, Lista_Id& listaReg) const;
 
 	/*
 	 * Retorna un bool indicando si se tienen que filtrar datos de hechos
 	 * (desde Filtros o desde Entradas).
 	 */
-	bool hayFiltrosDeHechos(const Consulta& consulta);
-	bool hayResultadosDeDimensiones(const Consulta& consulta);
+	bool hayFiltrosDeHechos(const Consulta& consulta) const;
+	bool hayResultadosDeDimensiones(const Consulta& consulta) const;
 
 	/*
 	 * Guarda las distintans combinaciones de dimensiones en MapaCombinacions y guardando
@@ -131,11 +131,11 @@ public:
 	/*
 	 * Calcula la agragacion para un hecho almacenandola en "acumulador"
 	 */
-	void calcularAgregacion(const Agregacion& agregacion, unsigned& acumulador, unsigned aAgregar);
+	void calcularAgregacion(const Agregacion& agregacion, unsigned& acumulador, unsigned aAgregar) const;
 	/*
 	 * Calcula la agregacion de PROM para un hecho guardando el resultado parcial en "acumulador"
 	 */
-	void calcularPromedio(unsigned& acumulador, unsigned& cantidad, const unsigned& nuevoHecho);
+	void calcularPromedio(unsigned& acumulador, unsigned& cantidad, const unsigned& nuevoHecho) const;
 
 
 	// metodo simple para resolver una consulta rapido
@@ -157,7 +157,7 @@ public:
 	 * Retorna un bool indicando si se tienen que agregar los hechos en los
 	 * resultados
 	 */
-	bool aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice);
+	bool aplicarAgregacionHechos(const Consulta& cons, std::vector <unsigned>& indice) const;
 
 
 	void cargarIndices();

@@ -1,6 +1,6 @@
 #include "PoolAgentes.h"
 
-#define MAX_HILOS 1
+#define MAX_HILOS_AGENTE 3
 
 PoolAgentes::PoolAgentes(ResolvedorEntradas& resolvedor,
 							ConsultasAgentesServidor& entradas) {

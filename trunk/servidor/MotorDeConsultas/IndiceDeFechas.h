@@ -26,7 +26,7 @@ public:
 	 * Se recupera una lista con Ids que corresponden
 	 * a la fecha pasada como argumento.
 	 */
-	void recuperar(const Fecha& fecha, Lista_Id& ids);
+	void recuperar(const Fecha& fecha, Lista_Id& ids) const;
 
 	/*
 	 * Se guarda una fecha al indice con su id correspondiente
@@ -43,13 +43,13 @@ private:
 	 * hasta la fecha f2.
 	 */
 	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2);
-	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2, Lista_Id& ids);
+	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2, Lista_Id& ids) const;
 
 	/*
 	 * Almacena en la lista los Ids que corresponden a una fecha.
 	 */
 	void guardarIDs(const FechaNumerica& fecha);
-	void guardarIDs(const FechaNumerica& fecha, Lista_Id& ids);
+	void guardarIDs(const FechaNumerica& fecha, Lista_Id& ids) const;
 
 	MapaDeFechas _fechas;
 	M_Fechas m_fechas;

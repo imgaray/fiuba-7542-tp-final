@@ -7,8 +7,6 @@
 #define NOMBRE_TAB_POR_DEFECTO "Nueva pestaña"
 #define MAX_GRILLA 99
 
-class TabConfigVista;
-
 class TabConfigModelo {
     public:
         TabConfigModelo();

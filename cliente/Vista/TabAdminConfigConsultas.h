@@ -9,6 +9,7 @@
 
 class TabConfigModelo;
 class TabConfigVista;
+class AdminConfigObjManager;
 
 class TabAdminConfigConsultas : public TabAdminConfig {
     public:
@@ -18,24 +19,15 @@ class TabAdminConfigConsultas : public TabAdminConfig {
 
         bool aplicarCambios();
     private:
-        /** botones */
+        AdminConfigObjManager* objManager;
+        void on_tab_model_changed(TabConfigModelo* m);
+
         void initBotones();
-        std::map< const char*, Gtk::Button* > botones;
-        void on_agregar_tab_button_clicked();
-        void on_guardar_cambios_tab_button_clicked();
-        void on_eliminar_tab_button_clicked();
-
-
         void initTabConfig();
-        Gtk::ComboBoxText comboTabSelec;
 
-        std::list< TabConfigModelo* > consultasConfiguradas;
-        // para una búsqueda más rápida
-        std::map< Glib::ustring, TabConfigModelo* > mapaConsultasConfiguradas;
-        TabConfigModelo* pTabModeloActual;
+        std::map< const char*, Gtk::Button* > botones;
+        Gtk::ComboBoxText comboTabSelec;
         TabConfigVista* pTabVista;
-        bool guardandoCambios;
-        void on_combo_tab_selec_changed();
 };
 
 #endif  // TAB_ADMIN_CONFIG_CONSULTAS_H

@@ -31,6 +31,10 @@ Consulta::Consulta(const Consulta& original) :
 	this->_agregaciones = original._agregaciones;
 	this->_filtros = original._filtros;
 
+	// atributos para la tablaPivote
+	this->_xTabla = original._xTabla;
+	this->_yTabla = original._yTabla;
+
 	this->_id = original._id;
 }
 
@@ -45,6 +49,11 @@ Consulta& Consulta::operator=(const Consulta& original) {
 	this->_resultados = original._resultados;
 	this->_agregaciones = original._agregaciones;
 	this->_filtros = original._filtros;
+
+	// atributos de para la TablaPivote
+	this->_xTabla = original._xTabla;
+	this->_yTabla = original._yTabla;
+
 
 	this->_id = original._id;
 

@@ -1,4 +1,5 @@
 #include "AgenteRemoto.h"
+#include <iostream>
 
 void AgenteRemoto::detener_agente() {
 	parar();

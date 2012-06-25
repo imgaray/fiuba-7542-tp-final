@@ -40,7 +40,7 @@ BaseDeDatos::~BaseDeDatos() {
 
 Respuesta BaseDeDatos::resolverConsulta(const Consulta& consulta) {
 	Respuesta resp;
-
+	_mutex.lock();
 	//resolverConsultaNormal(consulta,resp);
 
 	if (consulta.esConsultaDeTablaPivote()) {
@@ -50,6 +50,7 @@ Respuesta BaseDeDatos::resolverConsulta(const Consulta& consulta) {
 		resolverConsultaNormal(consulta,resp);
 	}
 
+	_mutex.unlock();
 	return resp;
 }
 
@@ -120,6 +121,7 @@ void BaseDeDatos::hacerAgregacionesTP(const Consulta& cX,
 		const MapaCombinaciones& mCombY,
 		const Consulta& cons,
 		Respuesta& resp) {
+	Utilitario u;
 	Lista_Id interseccionXY , lauxX, lauxY;
 
 	parItMapaCombinaciones rango;
@@ -215,6 +217,8 @@ void BaseDeDatos::calcularAgregacionTP(const Lista_Id& ids, const Consulta& cons
 	unsigned hechoNumerico = 0 , acum = 0, auxProm = 0;
 	unsigned indHecho = Organizacion::indiceDeCampo(cons.resultado(0));
 	Agregacion agre = cons.agregacionDeResultado(0);
+	Utilitario u;
+
 
 	for (it = ids.begin(); it != ids.end(); ++it) {
 		reg = _archDatos.obtenerRegistro(*it);
@@ -240,7 +244,7 @@ void BaseDeDatos::guardarCombinacionesTP(const Consulta& consulta,
 		bool filtrarHechos,
 		Lista_Id* lReg) {
 
-
+	Utilitario u;
 	bool iterarPorLista = (lReg != NULL);
 
 	std::string reg;
@@ -416,6 +420,7 @@ Respuesta BaseDeDatos::agregarEntrada(const Consulta& entrada) {
 }
 
 void BaseDeDatos::actualizarIndices(const std::string& entrada, const Id_Registro& id) {
+	Utilitario u;
 	std::string dimension;
 	std::string nomDimension;
 	// indice de dimension de la clase Organizacion
@@ -505,6 +510,7 @@ bool BaseDeDatos::aplicarAgregacionHechos(const Consulta& cons, std::vector <uns
 }
 
 void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
+	Utilitario u;
 	resp.definirColumnas(cons.cantidadResultados());
 
 	std::vector <unsigned> _indHechos;
@@ -550,6 +556,7 @@ void BaseDeDatos::guardarHechos(const Consulta& cons, Respuesta& resp) {
 
 
 void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respuesta& resp) {
+	Utilitario u;
 	resp.definirColumnas(cons.cantidadResultados());
 
 	std::vector <unsigned> _indHechos;
@@ -597,6 +604,7 @@ void BaseDeDatos::guardarHechos(const Consulta& cons,const Lista_Id& ids, Respue
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg, MapaCombinaciones& mComb, bool filtrarHechos) {
+	Utilitario u;
 	std::string reg;
 	Lista_Id::iterator it;
 
@@ -628,6 +636,7 @@ void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg,
 }
 
 void BaseDeDatos::guardarCombinaciones(const Consulta& consulta, MapaCombinaciones& mComb, bool filtrarHechos) {
+	Utilitario u;
 	std::string reg;
 	std::string combinacion;
 	ComparadorHechos compHechos(filtrarHechos, consulta);
@@ -739,6 +748,8 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
         const Combinacion& combinacion,
         const Lista_Id& ids,
         Respuesta& resp) {
+
+	Utilitario u;
 
     std::string nomCampoRes;
     unsigned cantDim = 0;
@@ -932,6 +943,7 @@ void BaseDeDatos::borrarDatos() {
 }
 
 void BaseDeDatos::__guardarRegistros(const Consulta& cons, Respuesta& resp) {
+	Utilitario u;
 	resp.limpiar();
 	resp.definirColumnas(cons.cantidadResultados());
 
@@ -951,6 +963,8 @@ void BaseDeDatos::__guardarRegistros(const Consulta& cons, Respuesta& resp) {
 }
 
 void BaseDeDatos::imprimirRegistro(Id_Registro id) {
+	Utilitario u;
+
 	if (id >= _archDatos.cantidadRegistros()) {
 		std::cout << "REGISTRO NO EXISTE PARA ID: " << id << std::endl;
 		return;

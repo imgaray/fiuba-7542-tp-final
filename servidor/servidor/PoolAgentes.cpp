@@ -1,5 +1,7 @@
 #include "PoolAgentes.h"
 
+#define MAX_HILOS 1
+
 PoolAgentes::PoolAgentes(ResolvedorEntradas& resolvedor,
 							ConsultasAgentesServidor& entradas) {
 	for (unsigned i = 0; i < MAX_HILOS; i++) {

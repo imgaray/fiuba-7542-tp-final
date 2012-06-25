@@ -104,14 +104,14 @@ void AdminConfigObjManager::on_eliminar_button_clicked() {
 
     if (encontrado)
         consultasConfiguradas.erase(--it);
-    delete pTabModeloActual;
 
+    TabConfigModelo* bckup = pTabModeloActual;
     guardandoCambios = true;
         int pos = comboSelec->get_active_row_number();
         comboSelec->remove_text(label);
     guardandoCambios = false;
     comboSelec->set_active(pos-1);
-
+    delete bckup;
 }
 
 void AdminConfigObjManager::on_combo_selec_changed() {

@@ -7,6 +7,8 @@
 #define NOMBRE_TAB_POR_DEFECTO "Nueva pestaña"
 #define MAX_GRILLA 99
 
+class AdminConfigObjManager;
+
 class TabConfigModelo : public ConfigModelo {
     public:
         TabConfigModelo();
@@ -20,6 +22,7 @@ class TabConfigModelo : public ConfigModelo {
         unsigned filas, cols;
         unsigned min_fila, min_col;
         bool ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
+        AdminConfigObjManager* panelManager;
 
         /** conexiones a las señales de la vista */
         sigc::connection connectionSpinButtonFilas, connectionSpinButtonCols;

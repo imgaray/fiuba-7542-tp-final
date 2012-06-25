@@ -1,13 +1,16 @@
 #include "AdminConfigObjManager.h"
 #include "TabConfigModelo.h"
+#include "PanelConfigModelo.h"
 
-AdminConfigObjManager::AdminConfigObjManager(Gtk::ComboBoxText* cbtext,
+AdminConfigObjManager::AdminConfigObjManager(t_Objeto _tipo,
+                                             Gtk::ComboBoxText* cbtext,
                                              Gtk::Button* pAceptar,
                                              Gtk::Button* pGuardarCambios,
                                              Gtk::Button* pEliminar,
                                              const Glib::ustring& def)
-: nombre_por_defecto(def),
-  pTabModeloActual(NULL),
+: tipo(_tipo),
+  nombre_por_defecto(def),
+  pModeloActual(NULL),
   comboSelec(cbtext) {
     guardandoCambios = false;
 
@@ -26,8 +29,8 @@ AdminConfigObjManager::AdminConfigObjManager(Gtk::ComboBoxText* cbtext,
     comboSelec->signal_changed().connect(sigc::mem_fun(*this,
         &AdminConfigObjManager::on_combo_selec_changed));
 
-    pTabModeloActual = new TabConfigModelo();
-    mapaConsultasConfiguradas[nombre_por_defecto] = pTabModeloActual;
+    pModeloActual = new_modelo();
+    mapaConsultasConfiguradas[nombre_por_defecto] = pModeloActual;
 
     comboSelec->append_text(nombre_por_defecto);
     comboSelec->set_active(0);
@@ -35,19 +38,19 @@ AdminConfigObjManager::AdminConfigObjManager(Gtk::ComboBoxText* cbtext,
 
 AdminConfigObjManager::~AdminConfigObjManager() {
     // lo agrego por ser más simple y óptimo iterar sobre una lista que un mapa
-    pTabModeloActual = mapaConsultasConfiguradas[nombre_por_defecto];
-    consultasConfiguradas.push_back(pTabModeloActual);
+    pModeloActual = mapaConsultasConfiguradas[nombre_por_defecto];
+    consultasConfiguradas.push_back(pModeloActual);
 
-    std::list< TabConfigModelo* >::iterator it = consultasConfiguradas.begin();
+    std::list< ConfigModelo* >::iterator it = consultasConfiguradas.begin();
     for ( ; it != consultasConfiguradas.end(); ++it) {
-        pTabModeloActual = *it; // para evitar un warning del compilador
-        delete pTabModeloActual;
+        pModeloActual = *it; // para evitar un warning del compilador
+        delete pModeloActual;
     }
 }
-TabConfigModelo* AdminConfigObjManager::getModelo() const {
-    return pTabModeloActual;
+ConfigModelo* AdminConfigObjManager::getModelo() const {
+    return pModeloActual;
 }
-sigc::signal< void, TabConfigModelo* > AdminConfigObjManager::signal_model_changed() {
+sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_changed() {
     return _signal_model_changed;
 }
 
@@ -58,19 +61,19 @@ void AdminConfigObjManager::on_agregar_button_clicked() {
     // como la entrada mapaConsultasConfiguradas[NOMBRE_TAB_POR_DEFECTO] ya existe, se pisa ese valor con el nuevo
     // y se agrega la entrada según el nombre en el mapa, en la lista el puntero, y en el combobox ese nombre y se
     // pone como activo
-    Glib::ustring tabLabel = pTabModeloActual->getTabLabelNueva();
+    Glib::ustring tabLabel = pModeloActual->getTabLabelNueva();
     if (mapaConsultasConfiguradas.find(tabLabel) == mapaConsultasConfiguradas.end()) {
-        pTabModeloActual->setTabLabelNuevaComoValida();
-        mapaConsultasConfiguradas[tabLabel] = pTabModeloActual;
-        consultasConfiguradas.push_back(pTabModeloActual);
+        pModeloActual->setTabLabelNuevaComoValida();
+        mapaConsultasConfiguradas[tabLabel] = pModeloActual;
+        consultasConfiguradas.push_back(pModeloActual);
         comboSelec->append_text(tabLabel);
         comboSelec->set_active_text(tabLabel);
-        mapaConsultasConfiguradas[nombre_por_defecto] = new TabConfigModelo();
+        mapaConsultasConfiguradas[nombre_por_defecto] = new_modelo();
     }
 }
 
 void AdminConfigObjManager::on_guardar_cambios_button_clicked() {
-    Glib::ustring tabLabelNueva = pTabModeloActual->getTabLabelNueva();
+    Glib::ustring tabLabelNueva = pModeloActual->getTabLabelNueva();
     // si lo encuentra en el mapa, es porque ya existe y no es válido
     if (mapaConsultasConfiguradas.find(tabLabelNueva) != mapaConsultasConfiguradas.end())
         return;
@@ -79,11 +82,11 @@ void AdminConfigObjManager::on_guardar_cambios_button_clicked() {
 
     guardandoCambios = true;
         int pos = comboSelec->get_active_row_number();
-        Glib::ustring labelVieja = pTabModeloActual->getTabLabel();
+        Glib::ustring labelVieja = pModeloActual->getTabLabel();
         comboSelec->remove_text(labelVieja);
         mapaConsultasConfiguradas.erase(mapaConsultasConfiguradas.find(labelVieja));
-        mapaConsultasConfiguradas[tabLabelNueva] = pTabModeloActual;
-        pTabModeloActual->setTabLabelNuevaComoValida();
+        mapaConsultasConfiguradas[tabLabelNueva] = pModeloActual;
+        pModeloActual->setTabLabelNuevaComoValida();
         comboSelec->insert_text(pos, tabLabelNueva);
     guardandoCambios = false;
     comboSelec->set_active(pos);
@@ -94,18 +97,18 @@ void AdminConfigObjManager::on_eliminar_button_clicked() {
     // eliminar modelo seleccionado, remover del mapa, la lista y del combobox
     // busco por el label viejo porque es con el que está en el mapa hasta que se aplican los cambios
 
-    Glib::ustring label = pTabModeloActual->getTabLabel();
+    Glib::ustring label = pModeloActual->getTabLabel();
     mapaConsultasConfiguradas.erase(mapaConsultasConfiguradas.find(label));
 
-    std::list< TabConfigModelo* >::iterator it = consultasConfiguradas.begin();
+    std::list< ConfigModelo* >::iterator it = consultasConfiguradas.begin();
     bool encontrado = false;
     while (!encontrado && it != consultasConfiguradas.end())
-        encontrado = (*(it++)) == pTabModeloActual;
+        encontrado = (*(it++)) == pModeloActual;
 
     if (encontrado)
         consultasConfiguradas.erase(--it);
 
-    TabConfigModelo* bckup = pTabModeloActual;
+    ConfigModelo* bckup = pModeloActual;
     guardandoCambios = true;
         int pos = comboSelec->get_active_row_number();
         comboSelec->remove_text(label);
@@ -128,6 +131,14 @@ void AdminConfigObjManager::on_combo_selec_changed() {
         botones[B_ELIMINAR]->show();
     }
 
-    pTabModeloActual = mapaConsultasConfiguradas[tabLabel];
-    _signal_model_changed.emit(pTabModeloActual);
+    pModeloActual = mapaConsultasConfiguradas[tabLabel];
+    _signal_model_changed.emit(pModeloActual);
+}
+
+ConfigModelo* AdminConfigObjManager::new_modelo() {
+    switch (tipo) {
+        case OBJ_TAB:   return new TabConfigModelo();
+        case OBJ_PANEL: return new PanelConfigModelo();
+        default: return NULL;
+    }
 }

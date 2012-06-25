@@ -11,7 +11,7 @@
 
 // config tabs
 #define HBOX_TAB_SELEC "hboxTabSelec"
-#define TABLE_TAB_SELEC "tableTabSelec"
+#define TABLE_TAB_CONFIG "tableTabConfig"
 
 #include <iostream>
 TabAdminConfigConsultas::TabAdminConfigConsultas(BaseObjectType* cobject,
@@ -19,13 +19,14 @@ TabAdminConfigConsultas::TabAdminConfigConsultas(BaseObjectType* cobject,
 : TabAdminConfig(cobject, _builder) {
     initBotones();
     initTabConfig();
-    objManager = new AdminConfigObjManager(&comboTabSelec,
-                                            botones[BUTTON_AGREGAR_TAB],
-                                            botones[BUTTON_GUARDAR_CAMBIOS_TAB],
-                                            botones[BUTTON_ELIMINAR_TAB],
-                                            NOMBRE_TAB_POR_DEFECTO
-                                            );
-    pTabVista->setModelo(objManager->getModelo());
+    objManager = new AdminConfigObjManager(OBJ_TAB,
+                                           &comboTabSelec,
+                                           botones[BUTTON_AGREGAR_TAB],
+                                           botones[BUTTON_GUARDAR_CAMBIOS_TAB],
+                                           botones[BUTTON_ELIMINAR_TAB],
+                                           NOMBRE_TAB_POR_DEFECTO
+                                           );
+    on_tab_model_changed(objManager->getModelo());
     objManager->signal_model_changed().connect(sigc::mem_fun(*this,
         &TabAdminConfigConsultas::on_tab_model_changed));
 }
@@ -56,9 +57,9 @@ void TabAdminConfigConsultas::initBotones() {
 }
 
 void TabAdminConfigConsultas::initTabConfig() {
-    builder->get_widget_derived(TABLE_TAB_SELEC, pTabVista);
+    builder->get_widget_derived(TABLE_TAB_CONFIG, pTabVista);
     if (!pTabVista)
-        throw ExcepcionArchivoGladeCorrupto(TABLE_TAB_SELEC);
+        throw ExcepcionArchivoGladeCorrupto(TABLE_TAB_CONFIG);
 
     Gtk::HBox* pHBoxTabSelec;
     builder->get_widget(HBOX_TAB_SELEC, pHBoxTabSelec);
@@ -69,8 +70,12 @@ void TabAdminConfigConsultas::initTabConfig() {
         throw ExcepcionArchivoGladeCorrupto(HBOX_TAB_SELEC);
 }
 
-void TabAdminConfigConsultas::on_tab_model_changed(TabConfigModelo* m) {
-    pTabVista->setModelo(m);
+void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
+    TabConfigModelo* mTab = dynamic_cast< TabConfigModelo* >(m);
+    if (mTab)
+        pTabVista->setModelo(mTab);
+    else
+        throw "Vista y modelo incompatibles";
 }
 
 bool TabAdminConfigConsultas::aplicarCambios() {

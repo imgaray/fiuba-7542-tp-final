@@ -7,7 +7,7 @@
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/button.h>
 
-class TabConfigModelo;
+class ConfigModelo;
 class TabConfigVista;
 class AdminConfigObjManager;
 
@@ -20,7 +20,7 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         bool aplicarCambios();
     private:
         AdminConfigObjManager* objManager;
-        void on_tab_model_changed(TabConfigModelo* m);
+        void on_tab_model_changed(ConfigModelo* m);
 
         void initBotones();
         void initTabConfig();

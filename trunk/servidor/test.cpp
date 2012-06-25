@@ -22,6 +22,63 @@
 #define PUERTO_CLIENTE 5002
 #define PUERTO_AGENTE 6002
 
+typedef BLQueue<int> ColaPrueba;
+
+class Consumidor : public Hilo {
+public:
+	Consumidor(ColaPrueba& c, int id) : cola(c) { _id = id; }
+	virtual ~Consumidor() {}
+
+	virtual void correr() {
+		while (cola.open()){
+			int valor = cola.pop2();
+			std::cout << "Consumidor " << _id <<" SALIDA: "<< valor << std::endl;
+		}
+	}
+	int _id;
+	ColaPrueba& cola;
+};
+
+class Productor : public Hilo {
+public:
+	Productor(ColaPrueba& c) : cola(c) {}
+	virtual ~Productor() {}
+
+	virtual void correr() {
+		for (int i = 0; i < 5 ; i++)
+			cola.push(i);
+	}
+	ColaPrueba& cola;
+};
+
+
+void pruebaColaBLoqueante() {
+
+	ColaPrueba cola;
+	Consumidor c(cola, 0), c2(cola, 1), c3(cola, 2);
+	Productor p1(cola) ,p2(cola), p3(cola), p4(cola) , p5(cola);
+
+	p1.iniciar();
+	p2.iniciar();
+	p3.iniciar();
+	p4.iniciar();
+	p5.iniciar();
+
+	c.iniciar();
+	c2.iniciar();
+	c3.iniciar();
+
+	p1.sincronizar();
+	p2.sincronizar();
+	p3.sincronizar();
+
+	sleep(10);
+	cola.close();
+	c.sincronizar();
+	c2.sincronizar();
+	c3.sincronizar();
+}
+
 Mutex MUTEX;
 
 template <class T, class Y> 
@@ -272,8 +329,8 @@ void pruebaClientesMultiples() {
 #include "../Pruebas/GenRegistros.h"
 #include "servidor/Servidor.h"
 
-int main(int argc, char **argv) {
-	inicializar();
+int __main(int argc, char **argv) {
+	//inicializar();
 //	Servidor servidor((Puerto)PUERTO_CLIENTE, (Puerto)PUERTO_AGENTE);
 
 	//generarRegistros(servidor.baseDeDatos(), 1000);
@@ -285,8 +342,10 @@ int main(int argc, char **argv) {
 	cout << "===================================================" << endl;
 //	pruebaAgentesMultiples();
 	cout << "===================================================" << endl;
-	pruebaClientesMultiples();
+	//pruebaClientesMultiples();
 	cout << "===================================================" << endl;
 //	pruebaAmbosMultiples();
+
+	pruebaColaBLoqueante();
 	return 0;
 }

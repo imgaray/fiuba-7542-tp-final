@@ -106,6 +106,7 @@ ControladorServidor::ControladorServidor(ResolvedorConsultas& cons,
 				 rcons(cons), rentr(rent),
 				 poolclientes(*this, cconsultas),
 				 poolagentes(*this, centradas) {
+
 	ncons = 0;
 	nact = 0;
 	tagentes = new ThreadEntradaAgentes(*this, *this, puerto_agentes, centradas);

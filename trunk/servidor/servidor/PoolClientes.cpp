@@ -1,5 +1,7 @@
 #include "PoolClientes.h"
 
+#define MAX_HILOS 5
+
 PoolClientes::PoolClientes(ResolvedorConsultas& resolvedor,
 							ConsultasClientesServidor& consultas) {
 	for (unsigned i = 0; i < MAX_HILOS; i++) {

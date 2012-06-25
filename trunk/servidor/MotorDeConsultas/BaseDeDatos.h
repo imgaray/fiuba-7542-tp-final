@@ -13,6 +13,7 @@
 #include "ArchivoDeDatos.h"
 #include "../../comun/Utilitario.h"
 #include <map>
+#include "Mutex.h"
 
 class Respuesta;
 class Consulta;
@@ -173,7 +174,10 @@ private:
 
 	ArchivoDeDatos _archDatos;
 	unsigned _cantDimensionesSimples;
-	Utilitario u;
+	//Utilitario u;
+
+
+	Mutex _mutex;
 };
 
 #endif /* BASEDEDATOS_H_ */

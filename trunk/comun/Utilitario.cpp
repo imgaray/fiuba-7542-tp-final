@@ -25,6 +25,7 @@ std::string Utilitario::separar(const std::string& datos,
 
 	if (s_anterior != datos || sep_anterior != separador) {
 		_posiciones.clear();
+		s_anterior.clear();
 		s_anterior = datos;
 		sep_anterior = separador;
 		bool hayMasSeparadores = true;

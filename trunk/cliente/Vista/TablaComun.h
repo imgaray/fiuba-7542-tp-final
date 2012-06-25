@@ -26,6 +26,8 @@ protected:
 	void fila_activada(const Gtk::TreeModel::Path& path, Gtk::TreeViewColumn* column);
 
 	Glib::RefPtr<Gtk::ListStore> _refTreeModel;
+
+	Respuesta _respActual;
 };
 
 #endif /* TABLACOMUN_H_ */

@@ -8,7 +8,6 @@ def main():
 	if (len(sys.argv) < 2):
 		print "faltan argumentos al programa"
 	archivos = sys.argv[1:]
-	print archivos
 	for archivo in archivos:
 		try:
 			salida = open("Documentacion" + archivo + ".txt", 'w')
@@ -16,7 +15,6 @@ def main():
 			debeProcesar = False
 			output = ""
 			for linea in entrada:
-				print linea
 				if marcador_comienzo in linea:
 					debeProcesar = True
 					continue
@@ -24,7 +22,6 @@ def main():
 					debeProcesar = False
 					continue
 				if debeProcesar:
-					print linea
 					for caracter in ignorados:
 						linea = linea.replace(caracter, "")
 					output += linea

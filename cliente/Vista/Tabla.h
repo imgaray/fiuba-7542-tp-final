@@ -41,7 +41,7 @@ protected:
 			}
 		}
 
-		~ColumnasModelo() {
+		virtual ~ColumnasModelo() {
 			if (_columnas != NULL)
 				delete[] _columnas;
 		}

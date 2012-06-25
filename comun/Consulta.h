@@ -208,7 +208,7 @@ private:
 
 	static std::string s_nulo;
 
-	Utilitario u;
+	//Utilitario u;
 
 	Id_Mensaje _id;
 };

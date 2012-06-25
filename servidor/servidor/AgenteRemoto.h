@@ -10,33 +10,33 @@
 #include "Definiciones.h"
 
 /*
- * @DOC:
- * Clase AgenteRemoto
- * Esta clase es el proxy del agente. A traves de la misma el servidor
- * obtendra entradas de actualizacion y enviara respuestas. Es, a su vez,
- * producer que alimenta la cola de consultas del servidor. Se maneja
- * en un hilo aparte, dado que va a haber un AgenteRemoto por agente
- * conectado al servidor.
+ * @DOC
+							Clase AgenteRemoto
+	Esta clase es el proxy del agente. A traves de la misma el servidor
+obtendra entradas de actualizacion y enviara respuestas. Es, a su vez,
+producer que alimenta la cola de consultas del servidor. Se maneja
+en un hilo aparte, dado que va a haber un AgenteRemoto por agente
+conectado al servidor.
  * 
- * Atributos:
+Atributos:
  * 
- * Mutex m: es un mutex que se utiliza para manejar correctamente el envio
- * de respuestas a traves del socket al agente
+	Mutex m: es un mutex que se utiliza para manejar correctamente el envio
+	de respuestas a traves del socket al agente
  * 
- * Socket* agente: es el socket que se encuentra conectado al agente. El
- * AgenteRemoto se debe encargar de liberarlo y cerrarlo debidamente.
+	Socket* agente: es el socket que se encuentra conectado al agente. El
+	AgenteRemoto se debe encargar de liberarlo y cerrarlo debidamente.
  * 
- * ResolvedorEntradas& blresolvedor: la interfaz resolvedor entrada nos
- * permite desacoplarnos de lo que sea que haya abajo. El unico requisito
- * es que mantenta el invariante de que las entradas solo se resuelven
- * de a una
+	ResolvedorEntradas& blresolvedor: la interfaz resolvedor entrada nos
+	permite desacoplarnos de lo que sea que haya abajo. El unico requisito
+	es que mantenta el invariante de que las entradas solo se resuelven
+	de a una
  * 
- * unsigned id: un id de cliente remoto, que sirve para identificacion
+	unsigned id: un id de cliente remoto, que sirve para identificacion
  * 
- * ConsultasAgentesServidor& cconsultas: es una referencia a la cola de
- * consultas de los agentes del servidor. Es la cola que contiene todos
- * los pedidos de actualizacion que tiene el servidor. La misma debe ser
- * tread safe.
+	ConsultasAgentesServidor& cconsultas: es una referencia a la cola de
+	consultas de los agentes del servidor. Es la cola que contiene todos
+	los pedidos de actualizacion que tiene el servidor. La misma debe ser
+	tread safe.
  * @END
  * */
 
@@ -49,6 +49,10 @@ private:
 	unsigned id;
 	ConsultasAgentesServidor& cconsultas;
 public:
+/*@DOC
+Metodos publicos
+@END */
+
 
 	/* @DOC
 	 void correr()

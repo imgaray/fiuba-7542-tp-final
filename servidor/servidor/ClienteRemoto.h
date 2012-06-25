@@ -12,32 +12,33 @@ using namespace std;
 
 /*
  * @DOC:
- * Clase ClienteRemoto
- * Esta clase es el proxy del cliente. A traves de la misma el servidor
- * obtendra consultas realizadas y enviara respuestas. Es, a su vez,
- * producer que alimenta la cola de consultas del servidor. Se maneja
- * en un hilo aparte, dado que va a haber un ClienteRemoto por cliente
- * conectado al servidor.
+						Clase ClienteRemoto
+						 
+	Esta clase es el proxy del cliente. A traves de la misma el servidor
+obtendra consultas realizadas y enviara respuestas. Es, a su vez,
+producer que alimenta la cola de consultas del servidor. Se maneja
+en un hilo aparte, dado que va a haber un ClienteRemoto por cliente
+conectado al servidor.
+ 
+Atributos:
+
+	Mutex m: es un mutex que se utiliza para manejar correctamente el envio
+	de respuestas a traves del socket al cliente.
  * 
- * Atributos:
+	Socket* cliente: es el socket que se encuentra conectado al agente. El
+	ClienteRemoto se debe encargar de liberarlo y cerrarlo debidamente.
  * 
- * Mutex m: es un mutex que se utiliza para manejar correctamente el envio
- * de respuestas a traves del socket al cliente.
+	ResolvedorConsultas& blresolvedor: la interfaz resolvedor consultas nos
+	permite desacoplarnos de lo que sea que haya abajo. El unico requisito
+	es que mantenta el invariante de que las consultas se deben ejecutar
+	en paralelo.
  * 
- * Socket* cliente: es el socket que se encuentra conectado al agente. El
- * ClienteRemoto se debe encargar de liberarlo y cerrarlo debidamente.
+	unsigned id: un id de cliente remoto, que sirve para identificacion
  * 
- * ResolvedorConsultas& blresolvedor: la interfaz resolvedor consultas nos
- * permite desacoplarnos de lo que sea que haya abajo. El unico requisito
- * es que mantenta el invariante de que las consultas se deben ejecutar
- * en paralelo.
- * 
- * unsigned id: un id de cliente remoto, que sirve para identificacion
- * 
- * ConsultasClientesServidor& cconsultas: es una referencia a la cola de
- * consultas de los clientes del servidor. Es la cola que contiene todos
- * los pedidos de consulta que tiene el servidor. La misma debe ser
- * tread safe.
+	ConsultasClientesServidor& cconsultas: es una referencia a la cola de
+	consultas de los clientes del servidor. Es la cola que contiene todos
+	los pedidos de consulta que tiene el servidor. La misma debe ser
+	tread safe.
  * @END
  * */
 
@@ -50,6 +51,10 @@ private:
 	ConsultasClientesServidor& cs;
 
 public:
+/* @DOC
+Metodos publicos
+@END */
+
 
 	/* @DOC
 	 void correr()

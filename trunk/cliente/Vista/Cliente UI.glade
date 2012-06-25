@@ -554,6 +554,9 @@
                               </object>
                             </child>
                           </object>
+                          <packing>
+                            <property name="y_options">GTK_FILL</property>
+                          </packing>
                         </child>
                         <child>
                           <object class="GtkFrame" id="frame3">

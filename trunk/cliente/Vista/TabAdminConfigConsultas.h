@@ -34,7 +34,7 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         std::map< Glib::ustring, TabConfigModelo* > mapaConsultasConfiguradas;
         TabConfigModelo* pTabModeloActual;
         TabConfigVista* pTabVista;
-
+        bool guardandoCambios;
         void on_combo_tab_selec_changed();
 };
 

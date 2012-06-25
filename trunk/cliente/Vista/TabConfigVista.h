@@ -4,6 +4,7 @@
 #include <gtkmm/table.h>
 #include <gtkmm/builder.h>
 #include <gtkmm/entry.h>
+#include <gtkmm/spinbutton.h>
 
 class TabConfigModelo;
 
@@ -14,11 +15,11 @@ class TabConfigVista : public Gtk::Table {
         ~TabConfigVista();
 
         void setModelo(TabConfigModelo* pModeloNuevo);
-
-        Glib::ustring getTabLabel() const;
     private:
         Glib::RefPtr< Gtk::Builder > builder;
         Gtk::Entry* pEntryTabLabel;
+        Gtk::SpinButton* pSpinButtonFilas;
+        Gtk::SpinButton* pSpinButtonCols;
 
         TabConfigModelo* pModelo;
 };

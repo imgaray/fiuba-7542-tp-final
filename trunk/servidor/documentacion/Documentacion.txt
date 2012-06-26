@@ -1,0 +1,428 @@
+Seccion 1							Clase AgenteRemoto
+	Esta clase es el proxy del agente. A traves de la misma el servidor
+obtendra entradas de actualizacion y enviara respuestas. Es, a su vez,
+producer que alimenta la cola de consultas del servidor. Se maneja
+en un hilo aparte, dado que va a haber un AgenteRemoto por agente
+conectado al servidor.
+  
+Atributos:
+  
+	Mutex m: es un mutex que se utiliza para manejar correctamente el envio
+	de respuestas a traves del socket al agente
+  
+	Socket agente: es el socket que se encuentra conectado al agente. El
+	AgenteRemoto se debe encargar de liberarlo y cerrarlo debidamente.
+  
+	ResolvedorEntradas& blresolvedor: la interfaz resolvedor entrada nos
+	permite desacoplarnos de lo que sea que haya abajo. El unico requisito
+	es que mantenta el invariante de que las entradas solo se resuelven
+	de a una
+  
+	unsigned id: un id de cliente remoto, que sirve para identificacion
+  
+	ConsultasAgentesServidor& cconsultas: es una referencia a la cola de
+	consultas de los agentes del servidor. Es la cola que contiene todos
+	los pedidos de actualizacion que tiene el servidor. La misma debe ser
+	tread safe.
+Metodos publicos
+	 void correr()
+		Metodo que se ejecuta mientras este en ejecucion el hilo. Es el
+		encargado de recibir elementos del socket y encolarlos para que
+		responda el servidor
+	 void detener_agente()
+		Detiene la ejecucion del agente remoto. Cierra la conexion, detiene
+		y sincroniza
+	void enviarRespuesta(Respuesta& r)
+		Envia la respuesta obtenida del servidor al agente
+	AgenteRemoto(Socket agt, ResolvedorEntradas& rentr, ConsultasAgentesServidor& cons)
+		constructor del agente remoto. Recibe el socket activo conectado
+		con el servidor y un resolvedor de entradas
+	~AgenteRemoto()
+		destructor de agente remoto. Si esta corriendo, lo detiene. Si
+		esta conectado, lo desconecta
+
+
+Seccion 2						Clase ArchivoDeDatos
+
+	Esta clase es la encargada de almacenar todo tipo de registros guardandolos
+	en disco, permitiendo acceder a estos a partir de su id de registro.
+
+Atributos:
+
+	fstream _archivoPrincipal: stream que contiene los registros de tamanio variable
+	en disco.
+
+	fstream _posRelativas: stream que contiene las posiciones relativas de los registros
+	del _archivoPrincipal.
+
+	Id_Registro _ultimoID: variable numerica que representa la cantidad de registros que
+	se encuentran almacenados.
+
+	std::string _rutaArchivoPrin: string que guarda la ruta del archivo principal en disco.
+
+	std::string _rutaArchivoSec: string que guarda la ruta del archivo de posiciones relativas.
+
+	Mutex _mutex: utilizado para bloquear el acceso a disco para hacer la clase "Thread Safe".
+
+
+
+Seccion 3						Clase BaseDeDatos
+
+	Esta clase es la encargada de resolver las todos los tipos de consultas
+	hechas por un cliente yo agente.
+
+Atributos:
+
+	Indice <Dimension> _indDimensiones: es vector dinamico que contiene los
+	indices de ids de registro que se utilizaran para filtrar los datos en
+	la resolucion de una consulta.
+ 
+	IndiceDeFechas _indFechas: es un indice especial utilizado para guardar
+	los id de registros y filtrarlos a partir de una gran cantidad de
+	diferentes tipos de rangos.
+ 
+	ArchivoDeDatos _archDatos: clase que se encarga de almacenar los registros
+	en disco y permite acceder a estos a partir de su id cuando sea necesario
+ 
+	unsigned _cantDimensionesSimples: se utiliza para tener la cantidad de dimensiones
+	simples que poseen por parte del Modelo.
+
+
+Seccion 4						Clase ClienteRemoto
+						 
+	Esta clase es el proxy del cliente. A traves de la misma el servidor
+obtendra consultas realizadas y enviara respuestas. Es, a su vez,
+producer que alimenta la cola de consultas del servidor. Se maneja
+en un hilo aparte, dado que va a haber un ClienteRemoto por cliente
+conectado al servidor.
+ 
+Atributos:
+
+	Mutex m: es un mutex que se utiliza para manejar correctamente el envio
+	de respuestas a traves del socket al cliente.
+  
+	Socket cliente: es el socket que se encuentra conectado al agente. El
+	ClienteRemoto se debe encargar de liberarlo y cerrarlo debidamente.
+  
+	ResolvedorConsultas& blresolvedor: la interfaz resolvedor consultas nos
+	permite desacoplarnos de lo que sea que haya abajo. El unico requisito
+	es que mantenta el invariante de que las consultas se deben ejecutar
+	en paralelo.
+  
+	unsigned id: un id de cliente remoto, que sirve para identificacion
+  
+	ConsultasClientesServidor& cconsultas: es una referencia a la cola de
+	consultas de los clientes del servidor. Es la cola que contiene todos
+	los pedidos de consulta que tiene el servidor. La misma debe ser
+	tread safe.
+Metodos publicos
+	 void correr()
+		Metodo que se ejecuta mientras este en ejecucion el hilo. Es el
+		encargado de recibir elementos del socket y encolarlos para que
+		responda el servidor
+	 void detener_cliente()
+		Detiene la ejecucion del cliente remoto. Cierra la conexion, detiene
+		y sincroniza
+	void enviarRespuesta(Respuesta& r)
+		Envia la respuesta obtenida del servidor al cliente
+	ClienteRemoto(Socket cl, ResolvedorConsultas& rcons, ConsultasClientesServidor& cons)
+		constructor del servidor remoto. Recibe el socket activo conectado
+		con el cliente, un resolvedor de consultas y la cola.
+	~ClienteRemoto()
+		destructor de cliente remoto. Si esta corriendo, lo detiene. Si
+		esta conectado, lo desconecta
+
+
+Seccion 5						Clase ComparadorHechos
+
+	Esta clase es la encargada de decidir si un registro en particular debe o no
+	ser filtrado a partir de filtros de Hechos. Construyendose a partir un Consulta
+	en particular.
+
+Atributos:
+
+	bool _filtrarHechos: booleano indicando si debe comprobar el registro a analizar
+	o no, es decir, solo filtra si hay filtros o entradas de hechos.
+
+	std::vector <unsigned> _indHechos: Contenedor utilizado para guardar los indices de campo
+	(segun Organizacion) de los hechos que se tiene que filtrar.
+
+	std::vector <std::string> _valorHechos: Contenedor utilizado para guardar los valores por
+	los cual se tiene que filtrar los registros.
+
+	std::string _campoActual: string utilizado para guardar el campo de registro temporalmente.
+
+	Utilitario u: clase utilizada para hacer operaciones y calculos auxiliares.
+
+
+Seccion 6	Clase ContenedorAgentes
+ 
+	Es una clase que hace de interfaz a un objeto que pueda contener a los
+agentes remotos. La misma sera aplicada por el controlador del servidor
+que los contendra a todos. Sirve como para mitigar el acoplamiento.
+
+	virtual void agregarAgente(AgenteRemoto agt) = 0
+		Metodo virtual abstracto que debe implementar cada contenedor.
+
+
+Seccion 7	Clase ContenedorClientes
+ 
+	Es una clase que hace de interfaz a un objeto que pueda contener a los
+clientes remotos. La misma sera aplicada por el controlador del servidor
+que los contendra a todos. Sirve como para mitigar el acoplamiento.
+
+	virtual void agregarCliente(ClienteRemoto cli) = 0
+		Metodo virtual abstracto que debe implementar cada contenedor.
+
+
+Seccion 8	Clase ControladorServidor
+
+	Esta clase es fundamental. Su rol es controlar el flujo correcto de
+resolucion de consultas y actualizaciones. Se encarga de permitir que
+el servidor maneje multiples consultas, como tambien de frenarlas cuando
+se requiera de procesar actualizaciones. Contiene un Pool de workers, cada
+uno con una dedicacion a alguna de las tareas ya sean de actualizacion
+como de consultas. Implementa interfaces como ResolvedorConsultas, ResolvedorEntradas,
+ContenedorClientes y ContenedorAgentes, que hace que sus workers solo vean
+lo que necesiten ver de el.
+
+	Es el encargado tambien de leer la configuracion de puetos que va a tener
+el servidor, de manejar los hilos que se encargan de recibir clientes y
+agentes. En definitiva, es el encargado de la coordinacion de la concurrencia
+del servidor.
+
+Atributos:
+
+	ConsultasAgentesServidor centradas: es la cola que contendra todos los
+	pedidos de actualizacion recibidos de los agentes. Dicha cola es thread
+	safe y sera compartida con todos los workers que esten en el pool de
+	workers para agentes.
+	
+	ConsultasClientesServidor cconsultas: es la cola que contendra todos los
+	pedidos de consultas recibidos de los clientes. Dicha cola es thread safe
+	y sera compartida con todos los workers que esten en el pool de workers
+	para clientes.
+
+	unsigned int ncons: es un indicador de la cantidad de consultas en
+	proceso, que es distinto a la cantidad de consultas encoladas. Sirve
+	para poder coordinar las consultas y las actualizaciones.
+	
+	unsigned int nact: es un indicador de la cantidad de entradas en proceso,
+	que es distinto a la cantidad de entradas encoladas. Sirve para coordinar
+	el proceso de actualizacion con el de consulta. A diferencia de ncons,
+	nact debe ser o 1 o 0.
+
+	lclientes clientes: es la lista que contiene todos los proxy de los clientes
+	conectados. Se utiliza para poder detenerlos y eliminarlos en caso de que se
+	quiera cerrar el servidor.
+
+	Puerto puerto_clientes: es el numero de puerto por el cual se conectan
+	los clientes.
+
+	Puerto puerto_agentes: es el numero de puerto por el cual se conectan
+	los agentes.
+	
+	lagentes agentes: es la lista que contiene todos los proxy de los agentes
+	conectados. Se utiliza para poder detenerlos y eliminarlos en caso de que
+	se quiera cerrar el servidor.
+
+	ResolvedorConsultas& rcons: contiene una referencia al objeto que se
+	encargue de resolver las consultas.
+
+	ResolvedorEntradas& rentr: contiene una referencia al objeto que se
+	encargue de resolver las entradas.
+
+	ThreadEntradaAgentes tagentes: este hilo se encargara de recibir todas
+	las conexiones ingresantes de los agentes.
+
+	ThreadEntradaClientes tclientes: este hilo se encargara de recibir todas
+	las conexiones ingresantes de los clientes.
+	
+	PoolClientes poolclientes: este es el pool de workers que minara de
+	la cola de consultas de clientes.
+	
+	PoolAgentes poolagentes: este es el pool de workers que minara de la
+	cola de consultas de agentes.
+	
+	Mutex m: este mutex es el que se utilizara para coordinar las actualizaciones
+	y las consultas.
+	
+Metodos publicos
+	Respuesta resolverEntrada(Consulta& entrada)
+		Este metodo es el encargado de resolver las actualizaciones. Si
+		hay consultas resolviendose en el momento de la llamada, este metodo
+		quedara bloqueado hasta que pueda realizar la actualizacion.
+	Respuesta resolver(Consulta& entrada)
+		Este metodo es el encargado de resolver las consultas. Si
+		hay entradas resolviendose en el momento de la llamada, este metodo
+		quedara bloqueado hasta que pueda realizar la consulta. Sin embargo
+		este metodo no se bloqueara si ortas consultas estan en proceso,
+		permitiendo la resolucion de consultas de forma concurrente.
+	 ControladorServidor(ResolvedorConsultas& cons, ResolvedorEntradas& rent,
+								Puerto pclientes, Puerto pagentes)
+		Este es el constructor de controladorServidor. Debe recibir a los
+		resolvedores correspondientes y los puertos que seran utilizados
+		por los agentes.
+	 
+		bool activo();
+			Metodo utilizado para saber si las entradas siguen activas.
+	~ControladorServidor()
+		El destructor del controlador. Si esta en ejecucion, libera toda
+		la memoria que corresponda, cerrando conexiones y deteniendo hilos.
+	void agregarCliente(ClienteRemoto rem)
+		El metodo que permite agregar un cliente remoto a su lista. Es el
+		heredado de la interfaz ContenedorClientes.
+	void agregarAgente(AgenteRemoto rem)
+		El metodo que permite agregar un agente remoto a su lista. Es el
+		heredado de la interfaz ContenedorAgentes.
+	void comenzar()
+		Se encarga de inicar los hilos correspondientes a los que escuchan
+		conexiones y a los pools de workers.
+	void detener()
+		Se encarga de detener todos los hilos, tanto los workers como los
+		que escuchan conexiones ingresantes, cierra las colas de consultas y
+		realiza tareas varias previas a la destruccion del mismo.
+
+
+Seccion 9
+	Clase HiloResponderConsulta
+
+	Es la clase encargada de la resolucion de consultas del cliente. Es una
+clase heredera de hilo que hace las de consumer de la cola de consultas del
+servidor. A su vez, se encarga de enviar la consulta a traves del socket del
+cliente requerido.
+
+Atributos:
+	
+	ConsultasClientesServidor& cconsultas: es una referencia a la cola de
+	consultas del servidor. De aca obtendra las consultas a resolver. Notar
+	que esta cola debe ser bloqueante en el metodo pop2.
+	
+	ResolvedorConsultas& resolvedor: es una referencia al objeto que se
+	encargue de resolver las consultas.
+
+Metodos publicos:
+
+	HiloResponderConsulta(ConsultasClientesServidor& cconsultas, ResolvedorConsultas& rcons)
+		Constructor de HiloResponderconsulta. Recibe las referencias
+		correspondientes a la cola de consultas y al resolvedor.
+
+	void correr()
+		Es el metodo llamado por el callback del hilo. Es el encargado de
+		sacar consultas de la cola, pedir la respuesta y enviarla a traves
+		del ClienteRemoto correspondiente.		
+
+
+Seccion 10
+	Clase HiloResponderEntrada
+
+	Es la clase encargada de la resolucion de entradas del agente. Es una
+clase heredera de hilo que hace las de consumer de la cola de entradas del
+servidor. A su vez, se encarga de enviar la respuestas a traves del socket del
+agente pertinente.
+
+Atributos:
+	
+	ConsultasAgentesServidor& centradas: es una referencia a la cola de
+	entradas del servidor. De aca obtendra las entradas a resolver. Notar
+	que esta cola debe ser bloqueante en el metodo pop2.
+	
+	ResolvedorEntradas& resolvedor: es una referencia al objeto que se
+	encargue de resolver las entradas.
+
+Metodos publicos:
+
+	HiloResponderEntrada(ConsultasAgentesServidor& centr, ResolvedorEntadas& rentr)
+		Constructor de HiloResponderEntrada. Recibe las referencias
+		correspondientes a la cola de entradas y al resolvedor.
+
+	void correr()
+		Es el metodo llamado por el callback del hilo. Es el encargado de
+		sacar consultas de la cola, pedir la respuesta y enviarla a traves
+		del AgenteRemoto correspondiente.		
+
+
+Seccion 11						Clase IndiceDeFechas
+
+	Esta clase es la encargada de funcionar como un indice para las fechas, guardando los id
+	de registros, permitiendo que los ids sean recuperados por distintos tipos de rangos para
+	las fechas.
+
+Atributos:
+
+	MapaDeFechas _fechas: mapa que guarda conjuntos de id de registros
+	los valores de fechas que haya.
+
+	M_Fechas m_fechas: encargada de manejar y transformar formatos de fechas
+	para que sea facil de recuperar registros a partir de una fecha simple o compuesta.
+
+
+
+Seccion 12
+
+Seccion 13
+
+Seccion 14
+	Clase PoolAgentes
+	
+	Es una clase que tiene una determinada cantidad de workers que consumen
+de la cola de agentes. No es mas que una forma de encapsular una lista que
+contiene N instancias de HiloResponderEntrada.
+
+	Sus unicos metodos, detener() e iniciar() se encargan de detener e
+iniciar los hilos que contenga en su lista.
+
+
+Seccion 15
+	Clase PoolClientes
+	
+	Es una clase que tiene una determinada cantidad de workers que consumen
+de la cola de clientes. No es mas que una forma de encapsular una lista que
+contiene N instancias de HiloResponderConsulta.
+
+	Sus unicos metodos, detener() e iniciar() se encargan de detener e
+iniciar los hilos que contenga en su lista.
+
+
+Seccion 16
+
+Seccion 17
+
+Seccion 18
+	Clase Servidor
+
+	Esta clase es la que se maneja desde el programa principal. La clase
+contendra a la base de datos, los verificadores y al controlador. En si,
+es la clase que nuclea las funcionalidades necesarias para el funcionamiento.
+
+	Su funcion es basicamente iniciar la base de datos, los verificadores y
+el controlador. A su vez, tambien transmite las consultas y actualizaciones
+a la base de datos, haciendo previa verificacion de las mismas.
+
+Metodos publicos
+	Respuesta resolverEntrada(Consulta& entrada)
+		Es el metodo que realiza las actualizaciones. Antes de pasarle
+		la consulta a la base de datos, realiza una verificacion de la
+		entrada. Si es valida, pasara la entrada a la base de datos. En
+		caso contrario, devuelve un mensaje de error.
+	Respuesta resolver(Consulta& entrada)
+		Es el metodo que realiza las consultas. Antes de pasarle
+		la consulta a la base de datos, realiza una verificacion de la
+		misma. Si es valida, pasara la consulta a la base de datos, obteniendo
+		la respuesta a la misma. En	caso contrario, devuelve un mensaje de error.
+	bool funcional()
+		Evalua si el servidor esta funcional, es decir si los receptores
+		de conexino son validos 
+
+
+Seccion 19
+
+Seccion 20
+
+Seccion 21
+
+Seccion 22
+Seccion 23
+
+Seccion 24
+

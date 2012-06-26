@@ -35,6 +35,8 @@ class VentanaCliente : public Gtk::Window , public Buildable {
 
         bool on_timeout();
         bool on_idle();
+        void on_timeout_idle();
+        sigc::connection connOnIdle;
 };
 
 #endif  // VENTANA_CLIENTE_H

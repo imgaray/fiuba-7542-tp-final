@@ -10,7 +10,8 @@
 #include "ExcepcionConsultanteNoExiste.h"
 #include "Consultante.h"
 
-#define TIMEOUT 10000
+#define TIMEOUT 20000
+#define TIMEOUT_IDLE 100
 
 #define V_DINAMICA "VentanaDinamica"
 #define AUTENTIF_ADMIN "AutentificacionAdmin"
@@ -104,7 +105,7 @@ void VentanaCliente::on_conectar_button_clicked() {
 
         Glib::signal_timeout().connect(sigc::mem_fun(*this,
                     &VentanaCliente::on_timeout), TIMEOUT);
-        Glib::signal_idle().connect(sigc::mem_fun(*this,
+        connOnIdle = Glib::signal_idle().connect(sigc::mem_fun(*this,
                     &VentanaCliente::on_idle));
     }
     catch (const char* msj) {
@@ -120,14 +121,10 @@ void VentanaCliente::on_conectar_button_clicked() {
 }
 
 void VentanaCliente::on_actualizar_button_clicked() {
-    std::cout << BOTON_ACTUALIZAR " clicked." << std::endl;
-
     pVDinamica->hacerConsulta(server);
 }
 
 void VentanaCliente::on_detenerActualizar_button_clicked() {
-    std::cout << BOTON_DETENER_ACTUALIZAR " clicked." << std::endl;
-
     pVDinamica->cancelarConsulta(server);
 }
 
@@ -136,7 +133,6 @@ void VentanaCliente::on_exportarPDF_button_clicked() {
 }
 
 void VentanaCliente::on_configurar_button_clicked() {
-    std::cout << BOTON_CONFIGURAR " clicked." << std::endl;
     if (pDAutentifAdmin->run() == Gtk::RESPONSE_OK) {
         pDAutentifAdmin->hide();
         pVAdminConfig->show();
@@ -149,13 +145,20 @@ void VentanaCliente::on_salir_button_clicked() {
 }
 
 bool VentanaCliente::on_timeout() {
-//    pVDinamica->hacerConsulta(server);
     return true;
 }
 
 bool VentanaCliente::on_idle() {
-//    std::cout << "Inactivo... yendo a buscar respuestas..." << std::endl;
     pVDinamica->retirarRespuestas(server);
+    connOnIdle.disconnect();
+    Glib::signal_timeout().connect_once(sigc::mem_fun(*this,
+                &VentanaCliente::on_timeout_idle), TIMEOUT_IDLE);
 
     return true;
+}
+
+void VentanaCliente::on_timeout_idle() {
+
+        connOnIdle = Glib::signal_idle().connect(sigc::mem_fun(*this,
+                    &VentanaCliente::on_idle));
 }

@@ -71,9 +71,12 @@ void TabAdminConfigConsultas::initTabConfig() {
 }
 
 void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
+    std::cout << "TabAdminConfigConsultas( "<<this << " ) recibida la señal de modelo nuevo ";
     TabConfigModelo* mTab = dynamic_cast< TabConfigModelo* >(m);
-    if (mTab)
+    if (mTab) {
+        std::cout << "de tab: " << mTab << std::endl;
         pTabVista->setModelo(mTab);
+    }
     else
         throw "Vista y modelo incompatibles";
 }

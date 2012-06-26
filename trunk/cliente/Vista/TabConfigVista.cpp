@@ -2,12 +2,12 @@
 #include <gtkmm/box.h>
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "TabConfigModelo.h"
-//#include "PanelConfigVista.h"
+#include "PanelConfigVista.h"
 
 // botones
-#define BUTTON_AGREGAR_PANEL "buttonAgregarTab"
-#define BUTTON_GUARDAR_CAMBIOS_PANEL "buttonGuardarCambiosTab"
-#define BUTTON_ELIMINAR_PANEL "buttonEliminarTab"
+#define BUTTON_AGREGAR_PANEL "buttonAgregarPanel"
+#define BUTTON_GUARDAR_CAMBIOS_PANEL "buttonGuardarCambiosPanel"
+#define BUTTON_ELIMINAR_PANEL "buttonEliminarPanel"
 
 // config panels
 #define HBOX_PANEL_SELEC "hboxPanelSelec"
@@ -39,6 +39,7 @@ TabConfigVista::TabConfigVista(BaseObjectType* cobject,
 TabConfigVista::~TabConfigVista() {
 
 }
+
 void TabConfigVista::initBotones() {
     Gtk::Button* pAux;
     builder->get_widget(BUTTON_AGREGAR_PANEL, pAux);
@@ -61,9 +62,9 @@ void TabConfigVista::initBotones() {
 }
 
 void TabConfigVista::initPanelConfig() {
-//    builder->get_widget_derived(VBOX_PANEL_CONFIG, pPanelVista);
-//    if (!pPanelVista)
-//        throw ExcepcionArchivoGladeCorrupto(VBOX_PANEL_CONFIG);
+    builder->get_widget_derived(VBOX_PANEL_CONFIG, pPanelVista);
+    if (!pPanelVista)
+        throw ExcepcionArchivoGladeCorrupto(VBOX_PANEL_CONFIG);
 
     Gtk::HBox* pHBoxPanelSelec;
     builder->get_widget(HBOX_PANEL_SELEC, pHBoxPanelSelec);
@@ -83,10 +84,22 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
     if (pModelo)
         pModelo->desconectar();
 
-    std::cout << "Conectando modelo nuevo (@todo)" << std::endl;
+    std::cout << "TabConfigVista ( " << this << " ) seteando modelo nuevo de tab: " <<pModeloNuevo << std::endl;
     pModelo = pModeloNuevo;
-    pModelo->setEntryTabLabel(pEntryTabLabel);
+    pModelo->setObjManagerPanel(&comboPanelSelec,
+                                botones[BUTTON_AGREGAR_PANEL],
+                                botones[BUTTON_GUARDAR_CAMBIOS_PANEL],
+                                botones[BUTTON_ELIMINAR_PANEL]
+                                );
+    on_panel_model_changed(pModelo->getModeloPanel());
+    connectionTabModelo = pModelo->signal_panel_model_changed().connect(
+        sigc::mem_fun(*this, &TabConfigVista::on_panel_model_changed));
+    pModelo->setEntryLabel(pEntryTabLabel);
     pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
 }
 
 
+void TabConfigVista::on_panel_model_changed(PanelConfigModelo* m) {
+    std::cout << "TabConfigVista ( " << this << " ) recibida la señal de modelo nuevo de panel: " << m << std::endl;
+    pPanelVista->setModelo(m);
+}

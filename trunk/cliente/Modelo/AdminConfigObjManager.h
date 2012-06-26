@@ -24,6 +24,9 @@ class AdminConfigObjManager : public sigc::trackable {
                               const Glib::ustring& def);
         ~AdminConfigObjManager();
 
+        void desconectar();
+        void reconectar();
+
         ConfigModelo* getModelo() const;
 
         sigc::signal< void, ConfigModelo* > signal_model_changed();
@@ -38,8 +41,13 @@ class AdminConfigObjManager : public sigc::trackable {
         t_Objeto tipo;
         ConfigModelo* new_modelo();
 
-        std::map< t_boton, Gtk::Button* > botones;
+        /** conexiones a las señales */
+        sigc::connection connectionButtonAgregar;
+        sigc::connection connectionButtonGuardar;
+        sigc::connection connectionButtonEliminar;
+        sigc::connection connectionCombobox;
 
+        std::map< t_boton, Gtk::Button* > botones;
         void on_agregar_button_clicked();
         void on_guardar_cambios_button_clicked();
         void on_eliminar_button_clicked();

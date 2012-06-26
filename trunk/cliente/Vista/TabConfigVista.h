@@ -9,6 +9,7 @@
 #include <gtkmm/comboboxtext.h>
 
 class TabConfigModelo;
+class PanelConfigModelo;
 class PanelConfigVista;
 
 class TabConfigVista : public Gtk::Table {
@@ -19,19 +20,22 @@ class TabConfigVista : public Gtk::Table {
 
         void setModelo(TabConfigModelo* pModeloNuevo);
     private:
+        Glib::RefPtr< Gtk::Builder > builder;
         void initBotones();
         void initPanelConfig();
 
         std::map< const char*, Gtk::Button* > botones;
         Gtk::ComboBoxText comboPanelSelec;
 
-        Glib::RefPtr< Gtk::Builder > builder;
         Gtk::Entry* pEntryTabLabel;
         Gtk::SpinButton* pSpinButtonFilas;
         Gtk::SpinButton* pSpinButtonCols;
 
         TabConfigModelo* pModelo;
-//        PanelConfigVista* pPanelVista;
+        PanelConfigVista* pPanelVista;
+
+        sigc::connection connectionTabModelo;
+        void on_panel_model_changed(PanelConfigModelo* m);
 };
 
 #endif  // TAB_CONFIG_VISTA_H

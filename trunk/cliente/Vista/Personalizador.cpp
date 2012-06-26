@@ -12,6 +12,7 @@
 #include "Organizacion.h"
 #include "VentanaClienteDinamica.h"
 #include "TablaComun.h"
+#include "TablaPivote.h"
 //#include <libxml++/libxml++.h>
 
 Personalizador::Personalizador() {
@@ -188,8 +189,8 @@ void Personalizador::construir() {
     tabs.push_back(pTab1);
 
 
-    // Tab 2 - test dos inputs
-    Tab* pTab2 = new Tab("Tab 2 - input");
+    // Tab 2 - test tabla pivote
+    Tab* pTab2 = new Tab("Tab 2 - tabla pivote");
     FiltradoresTab* fTab2 = new FiltradoresTab();
     fTab2->agregarEntrada("Sucursal");
     while (fTab2->tieneFiltrosConsultantes())
@@ -197,9 +198,30 @@ void Personalizador::construir() {
     while (fTab2->tieneFiltrosNavegables())
         pTab2->agregarFiltroNavegable(fTab2->getFiltroNavegable());
 
+    Panel* pPanelTorta2 = new Panel();
+
+    FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab2);
+    fPanel2->agregarXTablaP("Producto");
+    fPanel2->agregarYTablaP("Vendedor");
+    fPanel2->agregarResultado("PrecioLista", "SUM");
+
+    while (fPanel2->tieneFiltrosConsultantes())
+        pTab2->agregarConsultante(fPanel2->getFiltroConsultante());
+    while (fPanel2->tieneFiltrosNavegables())
+        pTab2->agregarFiltroNavegable(fPanel2->getFiltroNavegable());
+
+    Tabla* pGraficoTorta2 = new TablaPivote(*fPanel2);
+    pTab2->agregarConsultante(pGraficoTorta2);
+    pPanelTorta2->setContenido(*pGraficoTorta2);
+
+    Gtk::HSeparator* sep2 = new Gtk::HSeparator();
+    Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
+    pTable2->attach(*pPanelTorta2, 0, 1, 0, 1);
     hijos.push_back(fTab2);
 
     pTab2->pack_start(*fTab2, false, false);
+    pTab2->pack_start(*sep2, false, false);
+    pTab2->pack_start(*pTable2, true, true);
 
     pTab2->informarFinCreacion();
 

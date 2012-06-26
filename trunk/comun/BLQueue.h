@@ -56,15 +56,11 @@ public:
 	// pop bloqueante. Cuando se cierra la cola, lanza la excepcion pertinente
 	T pop2() {
 		Lock l(m);
-//		std::cout << "entre al pop2" << std::endl;
 		while (c.size() == 0 && bopen) {
-//			std::cout << "estoy esperando en pop2" << std::endl;
 			m.wait();
 		}
-//		std::cout << "bloquee el hilo en pop2" << std::endl;
 		if (!open()) {
 			// aviso a los demas hilos que este se cayo
-			std::cout << "estoy por tirar una blqueueexception" << std::endl;
 			m.signal();
 			throw BLQueueException();
 			

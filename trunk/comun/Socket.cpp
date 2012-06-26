@@ -14,8 +14,6 @@
 #include <cstring>
 #include <cerrno>
 #include <csignal>
-#define MYPRINT(c) std::cout << "SOCKET DEBUG " <<(c) << std::endl
-
 
 // extern int errno;
 
@@ -145,7 +143,6 @@ void Socket::desconectar() {
 
 bool Socket::enviar(const Mensaje& mensaje) {
 	std::string s_datos = mensaje.serializar();
-	std::cout << "Socket--Datos a enviar: \"" << s_datos <<"\"" <<std::endl;
 
     const char* datos = s_datos.c_str(); // consulta.datos();
     size_t tam_datos = s_datos.size(); // consulta.tamanio();
@@ -162,10 +159,7 @@ bool Socket::enviar(const Mensaje& mensaje) {
 		} else {
 			cant_enviada += envActual;
 		}
-      //  std::cout << "cantidad enviada = " << cant_enviada << std::endl;
     }
-
-    std::cout << "Socket--TODOS LOS DATOS ENVIADOS******" << std::endl;
 
     return _conectado;
 }
@@ -175,9 +169,6 @@ bool Socket::recibir(Mensaje& mensaje) {
 	std::string datos;
 	datos.clear();
 	bool ok = recibirDatos(datos);
-
-	std::cout << "Socket---Datos que llegaron: \"" << datos << "\"" << std::endl;
-
 	if (ok) {
 		mensaje.deserializar(datos);
 	}
@@ -212,12 +203,8 @@ bool Socket::recibirDatos(std::string& datos){
 
 			finDeMensaje = (buff == sep_fin);
 
-		} //else if (recibidos == 0) {
-		//	_conectado = false;
-	//	}
-	//	std::cout << "Socket-Tanda de datos recibidas..." << std::endl;
+		}
 	}
-	std::cout << "Socket- Recibido "<< datos << std::endl;
 	return _conectado;
 }
 

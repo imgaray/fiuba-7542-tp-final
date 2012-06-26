@@ -34,7 +34,7 @@ class TabConfigModelo : public ConfigModelo {
         /** modelo mismo */
         unsigned filas, cols;
         unsigned min_fila, min_col;
-        std::list< Glib::ustring > filtradoresTab;
+        std::list< bool > filtradoresTab;
         PanelConfigModelo* ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
 
         /** vista */

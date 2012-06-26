@@ -184,7 +184,7 @@ void Grafico::resize() {
 //        ctx->scale(min_lado, min_lado);
 //    queue_draw_area( 0, 0, ancho_ventana, alto_ventana);
         int temp = MIN_LADO * furthest_p;
-        set_size_request(temp, temp);
+//        set_size_request(temp, temp);
 //        std::cout << "MIN_LADO nuevo: " << temp << std::endl;
         furthest_p = 1;
 

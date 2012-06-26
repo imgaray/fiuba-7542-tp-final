@@ -8,17 +8,22 @@ install_agente:
 	cd agente; make
 	cp agente/main apAgente
 	cp agente/*.conf apAgente
+	cp agente/*.config apAgente
+	
 install_cliente:
 	mkdir apCliente
 	cd cliente; make
 	cp cliente/main apCliente
 	cp cliente/*.conf apCliente
+	cp cliente/*.config apCliente
 
 install_servidor:
 	mkdir apServidor
 	cd servidor; make
 	cp servidor/main apServidor
 	cp servidor/*.conf apServidor
+	cp servidor/*.config apServidor
+	cp servidor/*.dat
 
 
 uninstall:

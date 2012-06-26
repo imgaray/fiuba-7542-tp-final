@@ -15,6 +15,10 @@
 #include "TablaPivote.h"
 //#include <libxml++/libxml++.h>
 
+#define SEP_INIT '{'
+#define SEP_END '}'
+#define SEP_MEDIO ','
+
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
 }
@@ -173,6 +177,16 @@ void Personalizador::construir() {
 	}
 }
 */
+/*
+void Personalizador::construir() {
+	std::fstream archivoConfiguracion("tabs.conf");
+	std::string aux;
+	Utilitario u;
+	while (archivoConfiguracion.good() && !archivoConfiguracion.eof()) {
+		
+		} 
+	}
+}*/
 
 void Personalizador::construir() {
     // Tab 2 - test tabla pivote

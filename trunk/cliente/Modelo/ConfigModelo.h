@@ -6,6 +6,7 @@
 class ConfigModelo : public sigc::trackable {
     public:
         ConfigModelo(const Glib::ustring& label);
+        ConfigModelo();
         ~ConfigModelo();
 
         void desconectar();

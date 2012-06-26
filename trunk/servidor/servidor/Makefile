@@ -27,6 +27,9 @@ test: $(bin)
 	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test
 	
 clean:
-	rm $(robjs)
+	rm -f $(robjs)
+	
+doc:
+	python documentador.py *.h
 
-.PHONY: clean all binaries
+.PHONY: clean all binaries doc

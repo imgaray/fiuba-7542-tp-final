@@ -1,0 +1,23 @@
+						Clase ArchivoDeDatos
+
+	Esta clase es la encargada de almacenar todo tipo de registros guardandolos
+	en disco, permitiendo acceder a estos a partir de su id de registro.
+
+Atributos:
+
+	fstream _archivoPrincipal: stream que contiene los registros de tamanio variable
+	en disco.
+
+	fstream _posRelativas: stream que contiene las posiciones relativas de los registros
+	del _archivoPrincipal.
+
+	Id_Registro _ultimoID: variable numerica que representa la cantidad de registros que
+	se encuentran almacenados.
+
+	std::string _rutaArchivoPrin: string que guarda la ruta del archivo principal en disco.
+
+	std::string _rutaArchivoSec: string que guarda la ruta del archivo de posiciones relativas.
+
+	Mutex _mutex: utilizado para bloquear el acceso a disco para hacer la clase "Thread Safe".
+
+

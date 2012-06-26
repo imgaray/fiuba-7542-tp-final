@@ -19,10 +19,14 @@ install_servidor:
 	cd servidor; make
 	cp servidor/main apServidor
 	cp servidor/*.conf apServidor
-	
+
+
 uninstall:
 	$(shell rm -f -r $(wildcard apCliente))
 	$(shell rm -f -r $(wildcard apServidor))
 	$(shell rm -f -r $(wildcard apAgente))
 
-.PHONY: all install	install_agente install_cliente install_servidor	uninstall
+doc:
+	
+
+.PHONY: all install	install_agente install_cliente install_servidor	uninstall doc

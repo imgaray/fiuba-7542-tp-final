@@ -7,7 +7,9 @@ marcador_fin = "@END"
 def main():
 	if (len(sys.argv) < 2):
 		print "faltan argumentos al programa"
-	archivos = sys.argv[1:]
+		return 1
+	archivos = sys.argv[:]
+	archivos.remove("documentador.py")
 	for archivo in archivos:
 		try:
 			salida = open("Documentacion" + archivo + ".txt", 'w')

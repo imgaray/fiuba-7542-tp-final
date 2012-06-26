@@ -65,7 +65,7 @@ void PanelConfigModelo::getPosicion(unsigned& _desdeFila, unsigned& _hastaFila,
     _hastaCol = hastaCol;
 }
 
-sigc::signal< void, PanelConfigModelo*,int, int, int, int >
+sigc::signal< void, PanelConfigModelo*, int, int, int, int >
     PanelConfigModelo::signal_posicion_changed() {
     return _signal_posicion_changed;
 }

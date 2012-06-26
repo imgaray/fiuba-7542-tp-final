@@ -10,12 +10,10 @@ void ConsumerRespuesta::correr() {
 		ParRespuesta r;
 		if (servidor->recibir(r.second)) {
 			r.first = r.second.devolverID();
-			if (cancelados.has(r.first) && 
+			if (cancelados.has(r.first) &&
 								cancelados[r.first]) {
 					cancelados[r.first] = false;
 			} else {
-				std::cout << "recibi una respuesta para el id " << r.first << std::endl;
-				std::cout << "serializacion = " << r.second.serializar() << std::endl;
 				respuestas.push(r);
 			}
 		} else {
@@ -30,9 +28,10 @@ ConsumerRespuesta::ConsumerRespuesta(ColaRespuestas& cresp,
 		consultantes(mcons),
 		servidor(conex),
 		cancelados(canc) {
-	
+
 }
 
 ConsumerRespuesta::~ConsumerRespuesta() {
 	parar();
 }
+

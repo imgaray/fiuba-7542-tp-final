@@ -37,6 +37,7 @@ private:
 	MapaConsultantes& consultantes;
 	Socket*& servidor;
 	BitmapCancelados& cancelados;
+
 public:
 /*
 @DOC
@@ -57,7 +58,6 @@ public:
 	ConsumerRespuesta(ColaRespuestas& cresp, MapaConsultantes& mcons,
 							Socket*& conexion, BitmapCancelados& canc);
 	~ConsumerRespuesta();
-
 };
 
 #endif

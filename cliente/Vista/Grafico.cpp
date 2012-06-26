@@ -18,6 +18,7 @@ Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     setSpinner(&s);
     furthest_p = 0;
     min_lado = 0;
+    diferencia = 0;
 }
 
 Grafico::~Grafico() {
@@ -124,7 +125,7 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
     Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
     Glib::ustring input = consulta.resultado(COL_RESULTADO);
     if (input == STR_NULA)
-        std::cout << "Hiciste algo mal" << std::endl;
+        throw "Error en los resultados de un gráfico";
 
     padre->difundirNavegacionSeleccionada(input, valor);
     return true;
@@ -153,32 +154,9 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
     }
 }
 
-/** @todo remover */
-using std::string; using std::cout; using std::endl;
-void imprimirRespuesta(const Respuesta& resp, const string& comentario) {
-	cout << endl;
-	cout << "Comentario: " << comentario << endl;
-	cout << "Estado Resp: " << resp.mensajeInterno() << endl;
-	cout << "Cantidad Filas: " << resp.cantidadFilas() << endl;
-	cout << "Cantidad Columnas: " << resp.cantidadColumnas() << endl;
-	cout << "Datos Recibidos:" << endl;
-	for (unsigned i = 0; i < resp.cantidadFilas() ; i++)  {
-		cout << "::";
-		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
-			cout.width(14);
-			cout.fill('.');
-			cout<< resp.dato(i,j) << "|";
-		}
-		cout << endl;
-	}
-}
-
 void Grafico::procesarRespuesta(const Respuesta& rta) {
-    std::cout << "cantidad de columnas " << rta.cantidadColumnas() << std::endl;
     if (rta.cantidadColumnas() != 2)
         throw "Respuesta para grafico con más o menos de dos columnas";
-
-    imprimirRespuesta(rta, "Tu hermana");
 
     double valor;
     std::stringstream ss;
@@ -195,21 +173,13 @@ void Grafico::procesarRespuesta(const Respuesta& rta) {
 }
 
 void Grafico::actualizarTamanioMinimo(double x, double y) {
-//    std::cout << "\n\n\nvoid Grafico:actualizarTamanioMinimo(double, double )" << std::endl
-//              << "Hay datos hasta: ( x, y ) == ( " << x << ", " << y << " )\n\n\n" << std::endl;
-//    int min_x, min_y;
-//    if (x > 1)
-//        min_x = MIN_LADO*x;
-//    if (y > 1)
-//        min_y = MIN_LADO*y;
-//    if (x > 1 && y > 1)
-//        set_size_request(min_x, min_y);
     furthest_p = x > furthest_p? x : furthest_p;
     furthest_p = y > furthest_p? y : furthest_p;
 }
 
 void Grafico::resize() {
     if (furthest_p > 1) {
+        diferencia = furthest_p -1;
 //        min_lado *= furthest_p;
 //        ctx->scale(min_lado, min_lado);
 //    queue_draw_area( 0, 0, ancho_ventana, alto_ventana);
@@ -217,5 +187,6 @@ void Grafico::resize() {
         set_size_request(temp, temp);
 //        std::cout << "MIN_LADO nuevo: " << temp << std::endl;
         furthest_p = 1;
+
     }
 }

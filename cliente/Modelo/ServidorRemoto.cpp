@@ -14,25 +14,6 @@ void convertir(T& objetivo, Y& destino) {
 	st >> destino;
 }
 
-void imprimirRespuesta(Respuesta& r) {
-
-	std::cout << ">>>Datos de Respuesta: " << r.serializar() << std::endl;
-	if (r.mensajeInterno() == Respuesta::respuestaValida) {
-		std::cout <<">>> Cant Filas: " << r.cantidadFilas()<< std::endl;
-		std::cout <<">>> Cant Columnas: " << r.cantidadColumnas()<< std::endl;
-	}
-	std::cout << std::endl << "Mensaje Respuesta: " << r.mensajeInterno() << std::endl;
-	for (unsigned i = 0; i < r.cantidadFilas(); i++) {
-		std::cout << "::";
-		for (unsigned j = 0; j < r.cantidadColumnas(); j++) {
-			std::cout.width(11);
-			std::cout.fill('.');
-			std::cout << r.dato(i,j) << "|";
-		}
-		std::cout << std::endl;
-	}
-}
-
 ServidorRemoto::ServidorRemoto():
 		crespuesta(respuestas, consultantes, sock, cancelados),
 		cconsulta(consultas, respuestas, sock, cancelados) {

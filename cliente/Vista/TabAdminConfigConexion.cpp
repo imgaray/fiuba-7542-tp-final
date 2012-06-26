@@ -17,6 +17,8 @@ TabAdminConfigConexion::TabAdminConfigConexion(BaseObjectType* cobject,
     builder->get_widget(SPIN_BUTTON_PUERTO, pSpinButtonPuerto);
     if (!pSpinButtonPuerto)
         throw ExcepcionArchivoGladeCorrupto(SPIN_BUTTON_PUERTO);
+//    pEntryIP->set_text(IP);
+//    pSpinButtonPuerto->set_value(puerto);
 }
 
 TabAdminConfigConexion::~TabAdminConfigConexion() {}
@@ -24,6 +26,8 @@ TabAdminConfigConexion::~TabAdminConfigConexion() {}
 #include <iostream>
 bool TabAdminConfigConexion::aplicarCambios() {
     std::cout << "bool TabAdminConfigConexion::aplicarCambios()... guardando en archivo (@todo)" << std::endl;
+    Glib::ustring IP = pEntryIP->get_text();
+    Glib::ustring puerto = pSpinButtonPuerto->get_value_as_int();
     return true;
 }
 

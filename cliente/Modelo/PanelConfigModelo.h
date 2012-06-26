@@ -2,6 +2,7 @@
 #define PANEL_CONFIG_MODELO_H
 
 #include <gtkmm/spinbutton.h>
+#include <gtkmm/comboboxtext.h>
 #include "ConfigModelo.h"
 
 #define NOMBRE_PANEL_POR_DEFECTO "Nuevo panel"
@@ -17,7 +18,7 @@ class PanelConfigModelo : public ConfigModelo {
                                     Gtk::SpinButton* pSpinbuttonDesdeCol,
                                     Gtk::SpinButton* pSpinbuttonHastaCol);
         void setPosicionNuevaComoValida(bool valida = true);
-
+        void setComboboxTipoGrafico(Gtk::ComboBoxText* pCombo);
         void getPosicion(unsigned& desdeFila, unsigned& hastaFila,
                          unsigned& desdeCol, unsigned& hastaCol);
 
@@ -29,6 +30,8 @@ class PanelConfigModelo : public ConfigModelo {
         unsigned desdeCol, hastaCol;
         bool posicionValida;
 
+        int indice_tipoGrafico;
+        static Glib::ustring tipoGrafico[];
         /** señales propias */
         sigc::signal< void, PanelConfigModelo*, int, int, int, int > _signal_posicion_changed;
 
@@ -39,12 +42,14 @@ class PanelConfigModelo : public ConfigModelo {
         sigc::connection connectionSpinButtonHastaFila;
         sigc::connection connectionSpinButtonDesdeCol;
         sigc::connection connectionSpinButtonHastaCol;
+        sigc::connection connectionComboboxTipoGrafico;
         void bloquearConnectionPosicion();
         void desbloquearConnectionPosicion();
 
 
         /** signal handlers*/
         void on_spinbuttons_posicion_changed();
+        void on_combobox_tipo_grafico_changed();
 
 
 
@@ -54,6 +59,7 @@ class PanelConfigModelo : public ConfigModelo {
         Gtk::SpinButton* pSpinButtonHastaFila;
         Gtk::SpinButton* pSpinButtonDesdeCol;
         Gtk::SpinButton* pSpinButtonHastaCol;
+        Gtk::ComboBoxText* pComboBoxTextTipoGrafico;
 };
 
 #endif  // PANEL_CONFIG_MODELO_H

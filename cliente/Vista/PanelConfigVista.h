@@ -26,6 +26,7 @@ class PanelConfigVista : public Gtk::VBox, public Buildable  {
         Gtk::SpinButton* pSpinbuttonHastaFila;
         Gtk::SpinButton* pSpinbuttonDesdeCol;
         Gtk::SpinButton* pSpinbuttonHastaCol;
+        Gtk::ComboBoxText comboTipoGrafico;
 };
 
 #endif  // PANEL_CONFIG_VISTA_H

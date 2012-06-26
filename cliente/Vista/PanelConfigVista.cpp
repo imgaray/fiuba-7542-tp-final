@@ -8,6 +8,7 @@
 #define SPINBUTTON_HASTA_FILA "spinbuttonPanelHastaFila"
 #define SPINBUTTON_DESDE_COL "spinbuttonPanelDesdeCol"
 #define SPINBUTTON_HASTA_COL "spinbuttonPanelHastaCol"
+#define HBOX_TIPO_GRAFICO "hboxTipoPanel"
 
 #include <iostream>
 PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
@@ -26,6 +27,12 @@ PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
     // spinners col
     get_widget(SPINBUTTON_DESDE_COL, pSpinbuttonDesdeCol);
     get_widget(SPINBUTTON_HASTA_COL, pSpinbuttonHastaCol);
+
+    // hbox que contiene el combo de tipo de gráfico
+    Gtk::HBox* pHBox;
+    get_widget(HBOX_TIPO_GRAFICO, pHBox);
+    pHBox->pack_start(comboTipoGrafico, false, false);
+    comboTipoGrafico.show();
 }
 
 PanelConfigVista::~PanelConfigVista() {}
@@ -44,6 +51,7 @@ void PanelConfigVista::setModelo(PanelConfigModelo* pModeloNuevo) {
     pModelo->setLabelPosicion(pLabelPosicion);
     pModelo->setSpinbuttonsPosicion(pSpinbuttonDesdeFila, pSpinbuttonHastaFila,
                                     pSpinbuttonDesdeCol, pSpinbuttonHastaCol);
+    pModelo->setComboboxTipoGrafico(&comboTipoGrafico);
 //    pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
 }
 

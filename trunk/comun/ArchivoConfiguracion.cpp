@@ -28,10 +28,14 @@ bool ArchivoConfiguracion::formatoCorrecto(std::string& linea) {
 	(linea.find_first_of(SEPARADOR) == linea.find_last_of(SEPARADOR)));
 }
 
+void ArchivoConfiguracion::setearAtributo(std::string& nombre, std::string& valor) {
+	atributos[nombre] = valor;
+}
+
 ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) {
 	std::fstream archivo(ruta);
 	if (!archivo) {
-		// manejar el caso de primer uso
+		archivo.open(ruta, std::fstream::out);
 	} else {
 		std::string aux;
 		while(!archivo.eof()) {
@@ -48,4 +52,11 @@ ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) 
 	archivo.close();
 }
 
-ArchivoConfiguracion::~ArchivoConfiguracion() {}
+ArchivoConfiguracion::~ArchivoConfiguracion() {
+	std::fstream archivo(rutaArchivo.c_str(), std::fstream::out);
+	ArchivoConfiguracion::iterator iter;
+	for (iter = begin(); iter != end(); ++iter) {
+		archivo << iter->first << "=" << iter->second << std::endl;
+	}
+	archivo.close();
+}

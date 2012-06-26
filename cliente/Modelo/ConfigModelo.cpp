@@ -1,5 +1,8 @@
 #include "ConfigModelo.h"
 
+ConfigModelo::ConfigModelo(): pEntryLabel(NULL) {
+}
+
 ConfigModelo::ConfigModelo(const Glib::ustring& label)
 : label(label),
   pEntryLabel(NULL) {}

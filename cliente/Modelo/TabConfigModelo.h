@@ -14,7 +14,7 @@ class PanelConfigModelo;
 
 class TabConfigModelo : public ConfigModelo {
     public:
-        TabConfigModelo();
+		TabConfigModelo();
         ~TabConfigModelo();
 
         void setObjManagerPanel(Gtk::ComboBoxText* cbtext,

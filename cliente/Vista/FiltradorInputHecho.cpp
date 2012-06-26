@@ -68,6 +68,5 @@ void FiltradorInputHecho::filtrar(Consulta& c) {
 
 void FiltradorInputHecho::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
-    std::cout << "@todo void FiltradorInputHecho::recibirNavegacionSeleccionada(const Glib::ustring& , const Glib::ustring& )" << std::endl;
 
 }

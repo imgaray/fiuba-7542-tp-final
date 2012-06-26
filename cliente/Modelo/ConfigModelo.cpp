@@ -6,12 +6,8 @@ ConfigModelo::ConfigModelo(const Glib::ustring& label)
 
 ConfigModelo::~ConfigModelo() {}
 
-#include <iostream>
 void ConfigModelo::desconectar() {
-    if (pEntryLabel) {
-        connectionEntryLabel.disconnect();
-        pEntryLabel = NULL;
-    }
+    desconectar(connectionEntryLabel, pEntryLabel);
 
     desconectarDeHijo();
 }
@@ -22,7 +18,6 @@ void ConfigModelo::setEntryLabel(Gtk::Entry* pEntry) {
     connectionEntryLabel = pEntryLabel->signal_changed().connect(
         sigc::mem_fun(*this, &ConfigModelo::on_entry_label_changed));
 }
-
 
 Glib::ustring ConfigModelo::getLabel() const {
     return label;

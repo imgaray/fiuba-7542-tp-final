@@ -12,7 +12,7 @@
 class AdminConfigObjManager;
 class PanelConfigModelo;
 
-class TabConfigModelo : public ConfigModelo, public sigc::trackable {
+class TabConfigModelo : public ConfigModelo {
     public:
         TabConfigModelo();
         ~TabConfigModelo();
@@ -33,25 +33,45 @@ class TabConfigModelo : public ConfigModelo, public sigc::trackable {
         /** modelo mismo */
         unsigned filas, cols;
         unsigned min_fila, min_col;
-        bool ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
+        PanelConfigModelo* ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
 
-        /** paneles */
-        sigc::signal< void, PanelConfigModelo* > _signal_panel_model_changed;
-        AdminConfigObjManager* panelManager;
-        PanelConfigModelo* pModeloPanel;
-        void on_panel_model_changed(ConfigModelo* m);
+        /** vista */
+            /** conexiones a las señales */
+            sigc::connection connectionSpinButtonFilas, connectionSpinButtonCols;
+            void desconectarDeHijo();
 
-        /** conexiones a las señales de la vista */
-        sigc::connection connectionSpinButtonFilas, connectionSpinButtonCols;
-        void desconectarDeHijo();
+            /** signal handlers */
+            void on_spinbutton_filas_value_changed();
+            void on_spinbutton_cols_value_changed();
 
-        /** signal handlers */
-        void on_spinbutton_filas_value_changed();
-        void on_spinbutton_cols_value_changed();
+            /** referencias */
+            Gtk::SpinButton* pSpinButtonFilas;
+            Gtk::SpinButton* pSpinButtonCols;
 
-        /** referencias a la vista */
-        Gtk::SpinButton* pSpinButtonFilas;
-        Gtk::SpinButton* pSpinButtonCols;
+        /** cosas de paneles */
+            /** señales */
+            sigc::signal< void, PanelConfigModelo* > _signal_panel_model_changed;
+
+            /** conexiones */
+            sigc::connection connectionPanelPosicion;
+
+            /** signal handlers */
+            void on_panel_solicita_validacion(PanelConfigModelo* pPanel,
+                                              int desdeFila,
+                                              int hastaFila,
+                                              int desdeCol,
+                                              int hastaCol);
+
+            /** modelo */
+            AdminConfigObjManager* panelManager;
+            PanelConfigModelo* pModeloPanel;
+            void ocuparGrilla(PanelConfigModelo* pModelo);
+            void desocuparGrilla(PanelConfigModelo* pModelo);
+            void on_panel_model_changed(ConfigModelo* m);
+            void on_panel_model_saved(ConfigModelo* m);
+            void on_panel_model_deleted(ConfigModelo* m);
+
+            void imprimirGrilla();
 };
 
 #endif  // TAB_CONFIG_MODELO_H

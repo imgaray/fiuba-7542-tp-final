@@ -30,8 +30,12 @@ class AdminConfigObjManager : public sigc::trackable {
         ConfigModelo* getModelo() const;
 
         sigc::signal< void, ConfigModelo* > signal_model_changed();
+        sigc::signal< void, ConfigModelo* > signal_model_saved();
+        sigc::signal< void, ConfigModelo* > signal_model_deleted();
     private:
         sigc::signal< void, ConfigModelo* > _signal_model_changed;
+        sigc::signal< void, ConfigModelo* > _signal_model_saved;
+        sigc::signal< void, ConfigModelo* > _signal_model_deleted;
         enum t_boton {
             B_ACEPTAR,
             B_GUARDAR,

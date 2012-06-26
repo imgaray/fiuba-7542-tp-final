@@ -4,14 +4,14 @@
 
 TabConfigModelo::TabConfigModelo()
 : ConfigModelo(NOMBRE_TAB_POR_DEFECTO),
+  pSpinButtonFilas(NULL), pSpinButtonCols(NULL),
   panelManager(NULL),
-  pModeloPanel(NULL),
-  pSpinButtonFilas(NULL), pSpinButtonCols(NULL) {
+  pModeloPanel(NULL) {
     filas = 1; cols = 1;
     min_fila = 1; min_col = 1;
     for (unsigned i = 0; i < MAX_GRILLA; ++i)
         for (unsigned j = 0; j < MAX_GRILLA; ++j)
-            ocupacionesGrilla[i][j] = false;
+            ocupacionesGrilla[i][j] = NULL;
 }
 
 TabConfigModelo::~TabConfigModelo() {
@@ -42,6 +42,10 @@ void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,
         on_panel_model_changed(panelManager->getModelo());
         panelManager->signal_model_changed().connect(sigc::mem_fun(*this,
             &TabConfigModelo::on_panel_model_changed));
+        panelManager->signal_model_saved().connect(sigc::mem_fun(*this,
+            &TabConfigModelo::on_panel_model_saved));
+        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+            &TabConfigModelo::on_panel_model_deleted));
     } else {
         panelManager->reconectar();
 
@@ -52,25 +56,71 @@ void TabConfigModelo::desconectarDeHijo() {
     if (panelManager)
         panelManager->desconectar();
 
-    if (pSpinButtonFilas) {
-        connectionSpinButtonFilas.disconnect();
-        pSpinButtonFilas = NULL;
-    }
-    if (pSpinButtonCols) {
-        connectionSpinButtonCols.disconnect();
-        pSpinButtonCols = NULL;
-    }
+    desconectar(connectionSpinButtonFilas, pSpinButtonFilas);
+    desconectar(connectionSpinButtonCols, pSpinButtonCols);
+    desconectar(connectionPanelPosicion, pModeloPanel);
+}
+
+void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
+    imprimirGrilla();
+
+    unsigned desdeFila, hastaFila;
+    unsigned desdeCol, hastaCol;
+    pModelo->getPosicion(desdeFila, hastaFila, desdeCol, hastaCol);
+
+    on_panel_solicita_validacion(pModelo,
+                                 desdeFila, hastaFila,
+                                 desdeCol, hastaCol);
+
+    for (unsigned i = desdeFila; i < hastaFila; ++i)
+        for (unsigned j = desdeCol; j < hastaCol; ++j)
+            ocupacionesGrilla[i][j] = pModelo;
+
+    imprimirGrilla();
+}
+
+void TabConfigModelo::desocuparGrilla(PanelConfigModelo* pModelo) {
+    imprimirGrilla();
+
+    for (unsigned i = 0; i < filas; ++i)
+        for (unsigned j = 0; j < cols; ++j)
+            if (ocupacionesGrilla[i][j] == pModelo)
+                ocupacionesGrilla[i][j] = NULL;
+
+    imprimirGrilla();
 }
 
 void TabConfigModelo::on_panel_model_changed(ConfigModelo* m) {
-    std::cout << "TabConfigModelo ( " << this << " ) recibida la señal de modelo nuevo ";
+//    std::cout << "TabConfigModelo ( " << this << " ) recibida la señal de modelo nuevo ";
     PanelConfigModelo* mPanel = dynamic_cast< PanelConfigModelo* >(m);
     if (mPanel) {
-        std::cout << "de panel: " << m << std::endl;
-        std::cout << "TabConfigModelo ( " << this << " ) emitiendo señal panel_model_changed, parám: " << m << std::endl;
+//        std::cout << "de panel: " << m << std::endl;
+//        std::cout << "TabConfigModelo ( " << this << " ) emitiendo señal panel_model_changed, parám: " << m << std::endl;
         pModeloPanel = mPanel;
+        ocuparGrilla(mPanel);
+        connectionPanelPosicion = pModeloPanel->signal_posicion_changed().connect(
+            sigc::mem_fun(*this, &TabConfigModelo::on_panel_solicita_validacion));
         _signal_panel_model_changed.emit(mPanel);
     }
+    else
+        throw "Vista y modelo incompatibles";
+}
+
+void TabConfigModelo::on_panel_model_saved(ConfigModelo* m) {
+//    std::cout << "TabConfigModelo ( " << this << " ) recibida la señal de modelo nuevo ";
+    PanelConfigModelo* mPanel = dynamic_cast< PanelConfigModelo* >(m);
+    if (mPanel) {
+        desocuparGrilla(mPanel);
+        ocuparGrilla(mPanel);
+    }
+    else
+        throw "Vista y modelo incompatibles";
+}
+
+void TabConfigModelo::on_panel_model_deleted(ConfigModelo* m) {
+    PanelConfigModelo* mPanel = dynamic_cast< PanelConfigModelo* >(m);
+    if (mPanel)
+        desocuparGrilla(mPanel);
     else
         throw "Vista y modelo incompatibles";
 }
@@ -91,9 +141,86 @@ void TabConfigModelo::setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
 }
 
 void TabConfigModelo::on_spinbutton_filas_value_changed() {
-    filas = pSpinButtonFilas->get_value_as_int();
+    unsigned filasNueva = pSpinButtonFilas->get_value_as_int();
+    if (filasNueva >= min_fila)
+        filas = filasNueva;
+    else
+        pSpinButtonFilas->set_value(min_fila);
 }
 
 void TabConfigModelo::on_spinbutton_cols_value_changed() {
-    cols = pSpinButtonCols->get_value_as_int();
+    unsigned colsNueva = pSpinButtonCols->get_value_as_int();
+    if (colsNueva >= min_col)
+        cols = colsNueva;
+    else
+        pSpinButtonFilas->set_value(min_col);
+}
+
+void TabConfigModelo::on_panel_solicita_validacion(PanelConfigModelo* pPanel,
+                                                   int desdeFila,
+                                                   int hastaFila,
+                                                   int desdeCol,
+                                                   int hastaCol) {
+    std::cout << "Revisando si el espacio"
+              << " desde fila: " << desdeFila
+              << " hasta fila: " << hastaFila
+              << " desde col: " << desdeCol
+              << " hasta col: " << hastaCol
+              << " está ocupado... grilla:" << std::endl;
+//
+//    for (int ii = 0; ii < filas; ++ii) {
+//        for (int ji = 0; ji < cols; ++ji)
+//            if (ocupacionesGrilla[ii][ji])
+//                if (ocupacionesGrilla[ii][ji] == pPanel)
+//                    std::cout << "=";
+//                else
+//                    std::cout << "!";
+//            else
+//                std::cout << ".";
+//        std::cout << std::endl;
+//    }
+
+    bool ocupado = hastaFila > filas || hastaCol > cols;
+    int i = desdeFila;
+    int j = desdeCol;
+    while (!ocupado && i < hastaFila) {
+        while (!ocupado && j < hastaCol) {
+            if (ocupacionesGrilla[i][j])
+                ocupado = ocupacionesGrilla[i][j] != pPanel;
+            ++j;
+        }
+        j = desdeCol;
+        ++i;
+    }
+
+//    if (!ocupado)
+//        for (i = desdeFila; i < hastaFila; ++i)
+//            for (j = desdeCol; j < hastaCol; ++j)
+//                ocupacionesGrilla[i][j] = pPanel;
+
+//    std::cout << "Nuevo estado de la grilla: " << std::endl;
+//    for (int ii = 0; ii < filas; ++ii) {
+//        for (int ji = 0; ji < cols; ++ji)
+//            if (ocupacionesGrilla[ii][ji])
+//                if (ocupacionesGrilla[ii][ji] == pPanel)
+//                    std::cout << "=";
+//                else
+//                    std::cout << "!";
+//            else
+//                std::cout << ".";
+//        std::cout << std::endl;
+//    }
+    pModeloPanel->setPosicionNuevaComoValida(!ocupado);
+}
+
+void TabConfigModelo::imprimirGrilla() {
+    std::cout << "Estado de la grilla" << std::endl;
+    for (int ii = 0; ii < filas; ++ii) {
+        for (int ji = 0; ji < cols; ++ji)
+            if (ocupacionesGrilla[ii][ji])
+                std::cout << "x";
+            else
+                std::cout << ".";
+        std::cout << std::endl;
+    }
 }

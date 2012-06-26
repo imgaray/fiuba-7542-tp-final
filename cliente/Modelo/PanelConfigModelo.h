@@ -11,24 +11,45 @@ class PanelConfigModelo : public ConfigModelo {
         PanelConfigModelo();
         ~PanelConfigModelo();
 
+        void setLabelPosicion(Gtk::Label* pLabel);
         void setSpinbuttonsPosicion(Gtk::SpinButton* pSpinbuttondesdeFila,
                                     Gtk::SpinButton* pSpinbuttonhastaFila,
                                     Gtk::SpinButton* pSpinbuttonDesdeCol,
                                     Gtk::SpinButton* pSpinbuttonHastaCol);
+        void setPosicionNuevaComoValida(bool valida = true);
+
+        void getPosicion(unsigned& desdeFila, unsigned& hastaFila,
+                         unsigned& desdeCol, unsigned& hastaCol);
+
+        sigc::signal< void, PanelConfigModelo*, int, int, int, int > signal_posicion_changed();
 
     private:
         /** modelo mismo */
         unsigned desdeFila, hastaFila;
         unsigned desdeCol, hastaCol;
+        bool posicionValida;
 
-        /** conexiones a las señales de la vista */
+        /** señales propias */
+        sigc::signal< void, PanelConfigModelo*, int, int, int, int > _signal_posicion_changed;
 
         void desconectarDeHijo();
+        /** conexiones a las señales de la vista */
+        sigc::connection connectionLabelPosicion;
+        sigc::connection connectionSpinButtonDesdeFila;
+        sigc::connection connectionSpinButtonHastaFila;
+        sigc::connection connectionSpinButtonDesdeCol;
+        sigc::connection connectionSpinButtonHastaCol;
+        void bloquearConnectionPosicion();
+        void desbloquearConnectionPosicion();
 
-        /** signal handlers */
+
+        /** signal handlers*/
+        void on_spinbuttons_posicion_changed();
+
 
 
         /** referencias a la vista */
+        Gtk::Label* pLabelPosicion;
         Gtk::SpinButton* pSpinButtonDesdeFila;
         Gtk::SpinButton* pSpinButtonHastaFila;
         Gtk::SpinButton* pSpinButtonDesdeCol;

@@ -51,17 +51,21 @@ Tab& Personalizador::siguiente() {
 }
 
 /*
-void construir_filtro(xmlpp::Node& filtro) {
+void construir_filtro(xmlpp::Node* filtro) {
 
 }
 
-void construir_panel(xmlpp::Node& panel) {
+void construir_panel(xmlpp::Node* panel) {
 
 }
 
-void Personalizador::construir_tab(xmlpp::Node& tab) {
-	// esta lista tiene <filtros>
+void Personalizador::construir_tab(xmlpp::Node* tab) {
+	const xmlpp::Element* nodoElement = dynamic_cast<const xmlpp::Element*>(node)
+	if(!nodoElement)
+		return;
+	Tab* nuevoTab = new Tab(nodoElement->get_attribute("nombre"));
 	Glib::ustring tfiltros = "filtros";
+	// esta lista tiene <filtros>
 	xmlpp::Node::NodeList nodoFiltros = tab.get_children(tfiltros);
 	// esta lista tiene <paneles>
 	Glib::ustring tpaneles = "paneles";
@@ -71,14 +75,15 @@ void Personalizador::construir_tab(xmlpp::Node& tab) {
 	xmlpp::Node::NodeList filtros = nodoFiltros.get_childrem();
 	xmlpp::Node::NodeList::iterator iterFiltros;
 	for (iterFiltros = filtros..begin(); iterFiltros != filtros.end(); ++iterFiltros) {
-		construir_filtro(*iterFiltros);
+		construir_filtro(*iterFiltros, nuevoTab);
 	}
-
 	xmlpp::Node::NodeList paneles = nodoPaneles.get_children();
 	xmlpp::Node::NodeList::iterator iterPaneles;
 	for (iterPaneles = paneles.begin(); iterPaneles != paneles.end(); ++iterPaneles) {
-		construir_panel(*iterPaneles);
+		construir_panel(*iterPaneles, nuevoTab);
 	}
+	pTab1->informarFinCreacion();
+	tabs.push_back(nuevaTab);
 }
 
 void Personalizador::construir_desde_nodo(const xmlpp::Node* nodo) {

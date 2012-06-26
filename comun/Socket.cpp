@@ -61,6 +61,7 @@ void Socket::enlazar() {
         (struct sockaddr *)&_direccion,
         (socklen_t)sizeof(struct sockaddr)) >= 0 ) {
         _enlazado = true;
+        _conectado = true;
         listen(_fd, CONEX_EN_ESPERA);
     }
     else {

@@ -43,32 +43,32 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
     get_widget(BOTON_CONECTAR, pAux);
     botones[BOTON_CONECTAR] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
-            &VentanaCliente::on_conectar_button_clicked));
+        &VentanaCliente::on_conectar_button_clicked));
 
     get_widget(BOTON_ACTUALIZAR, pAux);
     botones[BOTON_ACTUALIZAR] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
-            &VentanaCliente::on_actualizar_button_clicked));
+        &VentanaCliente::on_actualizar_button_clicked));
 
     get_widget(BOTON_DETENER_ACTUALIZAR, pAux);
     botones[BOTON_DETENER_ACTUALIZAR] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
-            &VentanaCliente::on_detenerActualizar_button_clicked));
+        &VentanaCliente::on_detenerActualizar_button_clicked));
 
     get_widget(BOTON_EXPORTAR_PDF, pAux);
     botones[BOTON_EXPORTAR_PDF] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
-            &VentanaCliente::on_exportarPDF_button_clicked));
+        &VentanaCliente::on_exportarPDF_button_clicked));
 
     get_widget(BOTON_CONFIGURAR, pAux);
     botones[BOTON_CONFIGURAR] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
-            &VentanaCliente::on_configurar_button_clicked));
+        &VentanaCliente::on_configurar_button_clicked));
 
     get_widget(BOTON_SALIR, pAux);
     botones[BOTON_SALIR] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
-            &VentanaCliente::on_salir_button_clicked));
+        &VentanaCliente::on_salir_button_clicked));
 }
 
 VentanaCliente::~VentanaCliente() {

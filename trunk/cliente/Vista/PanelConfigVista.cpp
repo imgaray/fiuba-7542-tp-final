@@ -37,6 +37,8 @@ void PanelConfigVista::setModelo(PanelConfigModelo* pModeloNuevo) {
 
     pModelo = pModeloNuevo;
     pModelo->setEntryLabel(pEntryPanelLabel);
+    pModelo->setSpinbuttonsPosicion(pSpinbuttonDesdeFila, pSpinbuttonHastaFila,
+                                    pSpinbuttonDesdeCol, pSpinbuttonHastaCol);
 //    pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
 }
 

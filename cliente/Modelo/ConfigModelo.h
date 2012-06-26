@@ -9,16 +9,16 @@ class ConfigModelo {
         ~ConfigModelo();
 
         void desconectar();
-        void setEntryTabLabel(Gtk::Entry* pEntry);
+        void setEntryLabel(Gtk::Entry* pEntry);
 
-        Glib::ustring getTabLabel() const;
-        Glib::ustring getTabLabelNueva() const;
-        void setTabLabelNuevaComoValida();
+        Glib::ustring getLabel() const;
+        Glib::ustring getLabelNueva() const;
+        void setLabelNuevaComoValida();
     private:
-        Glib::ustring tabLabel;
-        sigc::connection connectionEntryTabLabel;
-        virtual void on_entry_tab_label_changed();
-        Gtk::Entry* pEntryTabLabel;
+        Glib::ustring label;
+        sigc::connection connectionEntryLabel;
+        virtual void on_entry_label_changed();
+        Gtk::Entry* pEntryLabel;
 
         virtual void desconectarDeHijo() = 0;
 };

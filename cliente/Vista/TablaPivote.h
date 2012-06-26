@@ -14,6 +14,8 @@ class TablaPivote : public Tabla {
 public:
 	TablaPivote(FiltradoresPanel& filtradores);
 	virtual ~TablaPivote();
+
+	void hacerConsulta(ServidorRemoto& server);
 protected:
 	virtual void procesarRespuesta(const Respuesta& resp);
 

@@ -14,12 +14,16 @@
 #include "FiltradorResultadoDimension.h"
 #include "FiltradorResultadoFecha.h"
 #include "FiltradorResultadoHecho.h"
+#include "FiltradorPivoteX.h"
+#include "FiltradorPivoteY.h"
 
 #define EXCEP_MSJ_FILTRO_MAL    "El campo solicitado para el filtro no es dimensión ni hecho"
 #define EXCEP_MSJ_INPUT_MAL     "El campo solicitado para el input no es dimensión ni hecho"
+#define EXCEP_MSJ_TABLA_P_MAL     "El campo solicitado para la tabla pivote no es dimensión ni hecho"
 
 FiltradoresPanel::FiltradoresPanel(FiltradoresTab& filtTab)
-: filtrosHeredados(filtTab) {}
+: filtrosHeredados(filtTab),
+  esParaTablaPivote(false) {}
 
 FiltradoresPanel::~FiltradoresPanel() {
     std::list< Filtrador* >::iterator it = filtradores.begin();
@@ -107,6 +111,40 @@ void FiltradoresPanel::agregarResultado(const std::string& hecho,
         f = new FiltradorResultadoHecho(hecho, agregacion);
         add(*f);
         filtradores.push_back(f);
+    }
+    catch (const ExcepcionFiltradorMalConstruido& e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void FiltradoresPanel::agregarXTablaP(const std::string& valor) {
+    FiltradorPivoteX* f;
+    try {
+        if (!Organizacion::esDimension(valor) &&
+            !Organizacion::esHecho(valor))
+            throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_MAL);
+
+        f = new FiltradorPivoteX(valor);
+        add(*f);
+        filtradores.push_back(f);
+        esParaTablaPivote = true;
+    }
+    catch (const ExcepcionFiltradorMalConstruido& e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void FiltradoresPanel::agregarYTablaP(const std::string& valor) {
+    FiltradorPivoteY* f;
+    try {
+        if (!Organizacion::esDimension(valor) &&
+            !Organizacion::esHecho(valor))
+            throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_MAL);
+
+        f = new FiltradorPivoteY(valor);
+        add(*f);
+        filtradores.push_back(f);
+        esParaTablaPivote = true;
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;

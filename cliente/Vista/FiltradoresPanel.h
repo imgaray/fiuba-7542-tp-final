@@ -29,6 +29,9 @@ class FiltradoresPanel : public Gtk::VBox {
 
         void agregarEntrada(const std::string& entrada);
 
+        void agregarXTablaP(const std::string& valor);
+        void agregarYTablaP(const std::string& valor);
+
         /// estos tres métodos no verifican que el primer parámetro sea
         /// dimensión, fecha o hecho
         void agregarResultado(const std::string& dimension);
@@ -40,6 +43,8 @@ class FiltradoresPanel : public Gtk::VBox {
 
         bool tieneFiltrosNavegables();
         bool tieneFiltrosConsultantes();
+        bool tieneFiltrosParaTablaPivote();
+
 
         FiltradorInput* getFiltroNavegable();
         FiltradorInputDimension* getFiltroConsultante();
@@ -53,6 +58,8 @@ class FiltradoresPanel : public Gtk::VBox {
         std::queue< FiltradorInputDimension* > filtrosConsultantes;
         sigc::signal< void > signal_navegabilidad_seleccionada;
         void on_signal_navegabilidad();
+
+        bool esParaTablaPivote;
 };
 
 #endif  // FILTRADORES_PANEL_H

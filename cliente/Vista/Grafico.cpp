@@ -58,8 +58,9 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
         alto_ventana = allocation.get_height();
         Cairo::RefPtr<Cairo::Context> ctx = window->create_cairo_context();
         ctx->set_source_rgba(1.0, 1.0, 1.0, 1.0);
-        int min_lado_nuevo = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
-        min_lado = min_lado > min_lado_nuevo? min_lado : min_lado_nuevo;
+//        int min_lado_nuevo = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
+//        min_lado = min_lado > min_lado_nuevo? min_lado : min_lado_nuevo;
+        min_lado = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
         ctx->rectangle(ev->area.x, ev->area.y, ev->area.width, ev->area.height);
         ctx->fill_preserve();
         ctx->clip();
@@ -115,6 +116,8 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
 }
 
 bool Grafico::on_button_press_event(GdkEventButton* ev) {
+    if (ev->button != 1)
+        return true;
     if (areaSeleccionada == areas.end())
         return true;
 

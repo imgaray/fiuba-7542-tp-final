@@ -5,7 +5,7 @@
   <object class="GtkWindow" id="VentanaCliente">
     <property name="window_position">center</property>
     <property name="default_width">800</property>
-    <property name="default_height">640</property>
+    <property name="default_height">480</property>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -293,7 +293,7 @@
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
     <property name="default_width">640</property>
-    <property name="default_height">512</property>
+    <property name="default_height">360</property>
     <property name="transient_for">VentanaCliente</property>
     <child>
       <object class="GtkVBox" id="vbox6">
@@ -782,7 +782,7 @@
                                                           </packing>
                                                         </child>
                                                         <child>
-                                                          <object class="GtkEntry" id="entryTabLabel1">
+                                                          <object class="GtkEntry" id="entryPanelLabel">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <property name="invisible_char">&#x25CF;</property>

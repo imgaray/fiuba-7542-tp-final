@@ -11,6 +11,26 @@
 #include "TiposDeDatos.h"
 #include "../../comun/M_Fechas.h"
 
+/*
+ * @DOC:
+						Clase IndiceDeFechas
+
+	Esta clase es la encargada de funcionar como un indice para las fechas, guardando los id
+	de registros, permitiendo que los ids sean recuperados por distintos tipos de rangos para
+	las fechas.
+
+Atributos:
+
+	MapaDeFechas _fechas: mapa que guarda conjuntos de id de registros
+	los valores de fechas que haya.
+*
+	M_Fechas m_fechas: encargada de manejar y transformar formatos de fechas
+	para que sea facil de recuperar registros a partir de una fecha simple o compuesta.
+
+ * @END
+ * */
+
+
 class IndiceDeFechas {
 public:
 	IndiceDeFechas();

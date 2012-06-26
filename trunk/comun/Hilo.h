@@ -11,6 +11,24 @@
 #include <pthread.h>
 #include <iostream>
 
+/*
+ * @DOC:
+						Clase Hilo
+
+	Esta clase abstracta, .
+
+Atributos:
+
+    pthread_t hilo:
+*
+    bool _correr: booleano que indica si esta en estado de "corriendo"
+*
+    bool _sincronizado: booleano que indica si el hilo a sido sincronizado.
+
+ * @END
+ * */
+
+
 class Hilo {
 public:
     /*

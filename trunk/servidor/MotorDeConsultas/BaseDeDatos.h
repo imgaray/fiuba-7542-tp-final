@@ -18,6 +18,32 @@
 class Respuesta;
 class Consulta;
 
+
+/*
+ * @DOC:
+						Clase BaseDeDatos
+
+	Esta clase es la encargada de resolver las todos los tipos de consultas
+	hechas por un cliente y/o agente.
+
+Atributos:
+
+	Indice <Dimension> *_indDimensiones: es vector dinamico que contiene los
+	indices de ids de registro que se utilizaran para filtrar los datos en
+	la resolucion de una consulta.
+ *
+	IndiceDeFechas _indFechas: es un indice especial utilizado para guardar
+	los id de registros y filtrarlos a partir de una gran cantidad de
+	diferentes tipos de rangos.
+ *
+	ArchivoDeDatos _archDatos: clase que se encarga de almacenar los registros
+	en disco y permite acceder a estos a partir de su id cuando sea necesario
+ *
+	unsigned _cantDimensionesSimples: se utiliza para tener la cantidad de dimensiones
+	simples que poseen por parte del Modelo.
+ * @END
+ * */
+
 class BaseDeDatos {
 public:
 	BaseDeDatos(const std::string rutaArchivo = "ruta.txt");
@@ -165,7 +191,6 @@ public:
 	void imprimirRegistro(Id_Registro id);
 
 private:
-
 	Lista_Id _interseccion; // no puedo tenerla tengo que hacer instancias
 							// porque tiene que ser concurrente
 	Indice <Dimension> *_indDimensiones;

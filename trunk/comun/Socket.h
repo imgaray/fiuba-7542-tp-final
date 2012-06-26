@@ -23,6 +23,31 @@ class Mensaje;
 class Consulta;
 class Respuesta;
 
+/*
+ * @DOC:
+						Clase Socket
+
+	Esta clase es la encarga de la comunicacion entre las distintas partes como
+	servidor, agente y cliente. Es la capa mas baja de comunicacion que hay en
+	este proyecto.
+
+Atributos:
+    struct timeval _timeout:
+*
+    int _fd: indica el file descriptor que representa al socket.
+*
+    struct sockaddr_in _direccion: estructura que guarda la
+*
+    Puerto _puerto: indica el puerto por el cual se conectara el socket
+*
+    bool _conectado: booleano que indica si el socket esta conectado.
+*
+    bool _enlazado: booleano que indica si el socket esta enlazado
+    para escuchar conexiones entrantes.
+
+ * @END
+ * */
+
 class Socket {
 public:
     /*
@@ -56,10 +81,6 @@ public:
      * Envia el mensaje atravez
      */
     bool enviar(const Mensaje& mensaje);
-
-    // bool recibir(Consulta& consulta);
-    
-    // bool recibir(Respuesta& respuesta);
 
     /*
 	 * Se pone en espera a recibir una respuesta.
@@ -104,8 +125,6 @@ private:
     Puerto _puerto;
     bool _conectado;
     bool _enlazado;
-    //char _buffer[TAM_BUFFER];
-    //std::string _datosRemanentes;
 };
 
 #endif	/* SOCKET_H */

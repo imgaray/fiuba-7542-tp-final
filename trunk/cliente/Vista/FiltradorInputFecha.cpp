@@ -65,7 +65,6 @@ void FiltradorInputFecha::on_entry_activated() {
 
 
 Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor) {
-    std::cout << "@todo Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor): terminar de implementar" << std::endl;
     Fecha f_validada;
     Glib::ustring pri_str = u.separar(valor, '-', 0);
     Glib::ustring seg_str = u.separar(valor, '-', 1);
@@ -95,10 +94,10 @@ Fecha FiltradorInputFecha::validar(int i, const Glib::ustring& valor) {
         // Semestre
         case 5: f_validada = m_fechas.semestre(pri_int, seg_str); break;
         // Semana del año
-        case 6: std::cout << "@todo FiltradorInputFecha::validar(...) por Semana del año" << std::endl; break;
+        case 6: f_validada = m_fechas.semana(pri_int, seg_str); break;
         // Día
         case 7: f_validada = m_fechas.fecha(pri_int, seg_int, terc_int); break;
-        default: std::cout << "FiltradorInputFecha::filtrar(...) se rompió algo, debugueá" << std::endl; break;
+        default: break;
     }
     return f_validada;
 }
@@ -109,6 +108,9 @@ void FiltradorInputFecha::filtrar(Consulta& c) {
 
 void FiltradorInputFecha::recibirNavegacionSeleccionada(
     const Glib::ustring& input, const Glib::ustring& valor) {
-    std::cout << "@todo void FiltradorInputFecha::recibirNavegacionSeleccionada(const Glib::ustring& , const Glib::ustring& )" << std::endl;
-
+    if (input == getFiltro()) {
+        valores.set_active_text("Dia");
+        entrada.set_text(valor);
+        signal_navegabilidad_seleccionada.emit();
+    }
 }

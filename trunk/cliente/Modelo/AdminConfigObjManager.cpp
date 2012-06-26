@@ -56,6 +56,14 @@ sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_changed(
     return _signal_model_changed;
 }
 
+sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_saved() {
+    return _signal_model_saved;
+}
+
+sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_deleted() {
+    return _signal_model_deleted;
+}
+
 void  AdminConfigObjManager::desconectar() {
     connectionButtonAgregar.disconnect();
     connectionButtonGuardar.disconnect();
@@ -106,11 +114,11 @@ void AdminConfigObjManager::on_agregar_button_clicked() {
 }
 
 void AdminConfigObjManager::on_guardar_cambios_button_clicked() {
+    _signal_model_saved.emit(pModeloActual);
+
     Glib::ustring labelNueva = pModeloActual->getLabelNueva();
     // si lo encuentra en el mapa, es porque ya existe y no es válido
     if (mapaConsultasConfiguradas.find(labelNueva) != mapaConsultasConfiguradas.end())
-        return;
-    if (labelNueva == nombre_por_defecto)
         return;
 
     guardandoCambios = true;
@@ -145,6 +153,7 @@ void AdminConfigObjManager::on_eliminar_button_clicked() {
     guardandoCambios = true;
         int pos = comboSelec->get_active_row_number();
         comboSelec->remove_text(label);
+        _signal_model_deleted.emit(pModeloActual);
     guardandoCambios = false;
     comboSelec->set_active(pos-1);
     delete bckup;
@@ -166,12 +175,12 @@ void AdminConfigObjManager::on_combo_selec_changed() {
 
     pModeloActual = mapaConsultasConfiguradas[label];
 
-    std::cout << "AdminConfigObjManager( " <<this << " ) emitiendo modelo ";
-    if (tipo == OBJ_TAB)
-        std::cout << "tab";
-    else
-        std::cout << "panel";
-    std::cout << " nuevo: " << pModeloActual << std::endl;
+//    std::cout << "AdminConfigObjManager( " <<this << " ) emitiendo modelo ";
+//    if (tipo == OBJ_TAB)
+//        std::cout << "tab";
+//    else
+//        std::cout << "panel";
+//    std::cout << " nuevo: " << pModeloActual << std::endl;
     _signal_model_changed.emit(pModeloActual);
 }
 

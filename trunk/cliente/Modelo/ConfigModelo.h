@@ -3,7 +3,7 @@
 
 #include <gtkmm/entry.h>
 
-class ConfigModelo {
+class ConfigModelo : public sigc::trackable {
     public:
         ConfigModelo(const Glib::ustring& label);
         ~ConfigModelo();
@@ -14,6 +14,15 @@ class ConfigModelo {
         Glib::ustring getLabel() const;
         Glib::ustring getLabelNueva() const;
         void setLabelNuevaComoValida();
+    protected:
+        template < typename T_Widget >
+        void desconectar(sigc::connection& conex, T_Widget*& pAlgo) {
+            if (pAlgo) {
+                conex.disconnect();
+                pAlgo = NULL;
+            }
+        }
+
     private:
         Glib::ustring label;
         sigc::connection connectionEntryLabel;

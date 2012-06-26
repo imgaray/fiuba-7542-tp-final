@@ -62,7 +62,7 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
     if (pModelo)
         pModelo->desconectar();
 
-    std::cout << "TabConfigVista ( " << this << " ) seteando modelo nuevo de tab: " <<pModeloNuevo << std::endl;
+//    std::cout << "TabConfigVista ( " << this << " ) seteando modelo nuevo de tab: " <<pModeloNuevo << std::endl;
     pModelo = pModeloNuevo;
     pModelo->setObjManagerPanel(&comboPanelSelec,
                                 botones[BUTTON_AGREGAR_PANEL],
@@ -78,6 +78,6 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
 
 
 void TabConfigVista::on_panel_model_changed(PanelConfigModelo* m) {
-    std::cout << "TabConfigVista ( " << this << " ) recibida la señal de modelo nuevo de panel: " << m << std::endl;
+//    std::cout << "TabConfigVista ( " << this << " ) recibida la señal de modelo nuevo de panel: " << m << std::endl;
     pPanelVista->setModelo(m);
 }

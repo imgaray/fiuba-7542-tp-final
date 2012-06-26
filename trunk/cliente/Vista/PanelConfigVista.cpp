@@ -3,6 +3,7 @@
 #include "PanelConfigModelo.h"
 
 #define ENTRY_PANEL_LABEL "entryPanelLabel"
+#define LABEL_POSICION "labelPanelPosicion"
 #define SPINBUTTON_DESDE_FILA "spinbuttonPanelDesdeFila"
 #define SPINBUTTON_HASTA_FILA "spinbuttonPanelHastaFila"
 #define SPINBUTTON_DESDE_COL "spinbuttonPanelDesdeCol"
@@ -12,8 +13,11 @@
 PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& _builder)
 : Gtk::VBox(cobject), Buildable(_builder), pModelo(NULL) {
-    // label
+    // label nombre
     get_widget(ENTRY_PANEL_LABEL, pEntryPanelLabel);
+
+    // label posicion
+    get_widget(LABEL_POSICION, pLabelPosicion);
 
     // spinners fila
     get_widget(SPINBUTTON_DESDE_FILA, pSpinbuttonDesdeFila);
@@ -31,12 +35,13 @@ void PanelConfigVista::setModelo(PanelConfigModelo* pModeloNuevo) {
     if (pModelo == pModeloNuevo)
         return;
 
-    std::cout << "PanelConfigVista ( " << this << " ) seteando modelo nuevo de panel: " <<pModeloNuevo << std::endl;
+//    std::cout << "PanelConfigVista ( " << this << " ) seteando modelo nuevo de panel: " <<pModeloNuevo << std::endl;
     if (pModelo)
         pModelo->desconectar();
 
     pModelo = pModeloNuevo;
     pModelo->setEntryLabel(pEntryPanelLabel);
+    pModelo->setLabelPosicion(pLabelPosicion);
     pModelo->setSpinbuttonsPosicion(pSpinbuttonDesdeFila, pSpinbuttonHastaFila,
                                     pSpinbuttonDesdeCol, pSpinbuttonHastaCol);
 //    pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);

@@ -21,6 +21,7 @@ class PanelConfigVista : public Gtk::VBox, public Buildable  {
         PanelConfigModelo* pModelo;
 
         Gtk::Entry* pEntryPanelLabel;
+        Gtk::Label* pLabelPosicion;
         Gtk::SpinButton* pSpinbuttonDesdeFila;
         Gtk::SpinButton* pSpinbuttonHastaFila;
         Gtk::SpinButton* pSpinbuttonDesdeCol;

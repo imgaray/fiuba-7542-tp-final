@@ -839,6 +839,7 @@
                                                             <property name="max_length">2</property>
                                                             <property name="invisible_char">&#x25CF;</property>
                                                             <property name="width_chars">2</property>
+                                                            <property name="adjustment">adjustment1</property>
                                                             </object>
                                                             <packing>
                                                             <property name="expand">False</property>
@@ -861,6 +862,7 @@
                                                             <property name="max_length">2</property>
                                                             <property name="invisible_char">&#x25CF;</property>
                                                             <property name="width_chars">2</property>
+                                                            <property name="adjustment">adjustment2</property>
                                                             </object>
                                                             <packing>
                                                             <property name="expand">False</property>
@@ -891,6 +893,7 @@
                                                             <property name="max_length">2</property>
                                                             <property name="invisible_char">&#x25CF;</property>
                                                             <property name="width_chars">2</property>
+                                                            <property name="adjustment">adjustment3</property>
                                                             </object>
                                                             <packing>
                                                             <property name="expand">False</property>
@@ -913,6 +916,7 @@
                                                             <property name="max_length">2</property>
                                                             <property name="invisible_char">&#x25CF;</property>
                                                             <property name="width_chars">2</property>
+                                                            <property name="adjustment">adjustment4</property>
                                                             </object>
                                                             <packing>
                                                             <property name="expand">False</property>
@@ -927,7 +931,7 @@
                                                             </object>
                                                             </child>
                                                             <child type="label">
-                                                            <object class="GtkLabel" id="label17">
+                                                            <object class="GtkLabel" id="labelPanelPosicion">
                                                             <property name="visible">True</property>
                                                             <property name="label" translatable="yes">Posici&#xF3;n en la grilla</property>
                                                             <property name="use_markup">True</property>
@@ -1307,6 +1311,30 @@
   </object>
   <object class="GtkAdjustment" id="adjustmentPuerto">
     <property name="upper">65535</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment2">
+    <property name="value">1</property>
+    <property name="lower">1</property>
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment3">
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment4">
+    <property name="value">1</property>
+    <property name="lower">1</property>
+    <property name="upper">99</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>

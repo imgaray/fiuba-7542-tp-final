@@ -4,7 +4,6 @@
 #include <gtkmm/box.h>
 #include <gtkmm/scrolledwindow.h>
 #include <gtkmm/viewport.h>
-#include "PadreDeConsultantes.h"
 
 class Grafico;
 class Tabla;

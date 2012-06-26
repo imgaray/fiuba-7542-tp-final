@@ -10,12 +10,14 @@ GTKFLAGS = `pkg-config gtkmm-2.4 --cflags --libs`
 # USAR EN LA COMPILACION DEL MAIN
 SUBDIRS = Vista Modelo  ../comun ../servidor/MotorDeConsultas
 
+SUBDIRSINCLUDE = Vista Modelo ../comun ../servidor/MotorDeConsultas Excepcion
+
 EXTERNOBJS =$(foreach path, $(SUBDIRS), $(addsuffix .o, $(basename  $(wildcard $(path)/*.cpp))))
 
 
 CC = g++
 
-I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
+I-SUBDIRS = $(addprefix -I, $(SUBDIRSINCLUDE))
 
 bin = $(archivos:.cpp=.o)
 

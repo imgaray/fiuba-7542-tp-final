@@ -52,6 +52,14 @@ Metodos publicos
 		la respuesta a la misma. En	caso contrario, devuelve un mensaje de error.
 	@END */
 	Respuesta resolver(Consulta& consulta);
+	
+	/* @DOC
+	bool funcional()
+		Evalua si el servidor esta funcional, es decir si los receptores
+		de conexino son validos 
+	@END */
+	bool funcional();
+	
 	Servidor(Puerto pclientes, Puerto pagentes);
 	~Servidor();
 	BaseDeDatos& baseDeDatos(){ return *this->bdd; }

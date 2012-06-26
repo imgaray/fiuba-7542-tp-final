@@ -16,6 +16,9 @@ private:
 	Puerto pclientes;
 	ConsultasClientesServidor& cconsultas;
 public:
+
+	bool activo();
+
 	// metodo que se encarga de escuchar las conexiones de clientes entrantes
 	// si encuentra un cliente, crea un ClienteRemoto y lo manda a correr
 	void correr();

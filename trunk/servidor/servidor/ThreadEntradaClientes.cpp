@@ -1,6 +1,10 @@
 #include "ThreadEntradaClientes.h"
 #include <iostream>
 
+bool ThreadEntradaClientes::activo() {
+	return entradaClientes->conectado();
+}
+
 void ThreadEntradaClientes::correr() {
 	while (corriendo()) {
 		Socket* scliente = entradaClientes->escucharConexion();

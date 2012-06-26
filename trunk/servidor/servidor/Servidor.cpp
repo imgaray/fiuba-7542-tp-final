@@ -29,6 +29,10 @@ Respuesta Servidor::resolver(Consulta& consulta) {
 	return Respuesta("ERROR");
 }
 
+bool Servidor::funcional() {
+	return cds.activo();
+}
+
 Servidor::Servidor(Puerto cliente, Puerto agente): cds(*this, *this,
 													cliente, agente) {
 	Organizacion::cargarDefiniciones(RUTA_ARCH_MODELO);

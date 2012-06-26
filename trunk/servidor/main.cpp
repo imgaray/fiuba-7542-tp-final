@@ -21,7 +21,6 @@ void convertir(T& objetivo, Y& destino) {
 }
 
 int main(int argc, char **argv) {
-    signal(SIGPIPE, SIG_IGN);
 	std::string aux = RUTACONFIGSERV;
 	ArchivoConfiguracion archivo(aux.c_str());
 	aux = PUERTOCLIENTE;
@@ -32,6 +31,10 @@ int main(int argc, char **argv) {
 	convertir(scliente, cliente);
 	convertir(sagente, agente);
 	Servidor serv(cliente, agente);
+	if (!serv.funcional()) {
+		std::cout << "puertos elegidos en uso, por favor espere 2 minutos e intente nuevamente" << std::endl;
+		return 1;
+	}
 	std::string a("");
 	std::string q("q");
 	while (a != q) {

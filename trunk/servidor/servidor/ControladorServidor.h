@@ -157,6 +157,13 @@ Metodos publicos
 	ControladorServidor(ResolvedorConsultas& cons, ResolvedorEntradas& rent,
 								Puerto pclientes, Puerto pagentes);
 	
+	/* @DOC
+		bool activo();
+			Metodo utilizado para saber si las entradas siguen activas.
+	@END*/
+	
+	bool activo();
+	
 	/*
 	 *@DOC
 	~ControladorServidor()

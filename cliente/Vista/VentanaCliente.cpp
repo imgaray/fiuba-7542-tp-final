@@ -96,7 +96,6 @@ void VentanaCliente::on_actualizacion_solicitada(Consultante* c) {
 }
 
 void VentanaCliente::on_conectar_button_clicked() {
-    std::cout << BOTON_CONECTAR " clicked." << std::endl;
     try {
         server.conectar();
         pVDinamica->hacerConsultaInicial(server);

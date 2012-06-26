@@ -16,9 +16,10 @@ VentanaClienteDinamica::~VentanaClienteDinamica() {}
 
 void VentanaClienteDinamica::personalizar(const char* archivo) {
     if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
-        std::cout << "Error al abrir el archivo de personalización " << archivo
-                  << ". Contáctese con el administrador." << std::endl;
-        return;
+        std::string msj = "Error al abrir el archivo de personalización ";
+        msj += archivo;
+        msj += ". Contáctese con el administrador.";
+        throw msj.c_str();
     }
 
     while (dynBuilder.tieneSiguiente()) {
@@ -29,7 +30,6 @@ void VentanaClienteDinamica::personalizar(const char* archivo) {
 }
 
 void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
-    std::cout << "Tab: " << get_current_page() << ". ";
     tabs[get_current_page()]->hacerConsulta(server);
 }
 
@@ -40,7 +40,6 @@ void VentanaClienteDinamica::hacerConsultaInicial(ServidorRemoto& server) {
 }
 
 void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
-    std::cout << "Tab: " << get_current_page() << ". ";
     tabs[get_current_page()]->cancelarConsulta(server);
 
 }

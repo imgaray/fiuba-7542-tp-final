@@ -22,16 +22,16 @@ TabAdminConfigConexion::TabAdminConfigConexion(BaseObjectType* cobject,
 	ArchivoConfiguracion::iterator iter;
 	std::string apertura = "servRemoto.conf";
 	ArchivoConfiguracion arch(apertura.c_str());
-	for (iter = arch.begin(); iter != arch.end(); ++iter) {
-		std::cout << iter->first << "=" << iter->second << std::endl;
-	}
+//	for (iter = arch.begin(); iter != arch.end(); ++iter) {
+//		std::cout << iter->first << "=" << iter->second << std::endl;
+//	}
 	std::string _ip = "direccion_servidor";
     pEntryIP->set_text(arch.obtenerAtributo(_ip));
-    std::cout << "direccion_servidor = " << arch.obtenerAtributo(_ip) << std::endl;
+//    std::cout << "direccion_servidor = " << arch.obtenerAtributo(_ip) << std::endl;
     std::string _puerto = "puerto_servidor";
     Utilitario u;
     double a = u.convertirAEntero(arch.obtenerAtributo(_puerto));
-    std::cout << "puerto_servidor = " << a << std::endl;
+//    std::cout << "puerto_servidor = " << a << std::endl;
     pSpinButtonPuerto->set_value(a);
 }
 
@@ -39,7 +39,6 @@ TabAdminConfigConexion::~TabAdminConfigConexion() {}
 
 #include <iostream>
 bool TabAdminConfigConexion::aplicarCambios() {
-    std::cout << "bool TabAdminConfigConexion::aplicarCambios()... guardando en archivo (@todo)" << std::endl;
     std::string IP = pEntryIP->get_text();
     std::string puerto = pSpinButtonPuerto->get_text();
     ArchivoConfiguracion arch("servidorRemoto.conf");
@@ -51,5 +50,5 @@ bool TabAdminConfigConexion::aplicarCambios() {
 }
 
 void TabAdminConfigConexion::on_entry_ip_changed() {
-    std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
+//    std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
 }

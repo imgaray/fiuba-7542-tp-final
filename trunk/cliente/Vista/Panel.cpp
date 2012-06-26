@@ -4,7 +4,9 @@
 #include "FiltradoresPanel.h"
 #include "Respuesta.h"
 
-Panel::Panel() {
+Panel::Panel(const Glib::ustring& label) : Gtk::Frame(label) {
+    set_label_align(0.5);
+    add(box);
     scrWin.set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
     pViewport = manage(new Gtk::Viewport(*scrWin.get_hadjustment(),
                                          *scrWin.get_vadjustment()));
@@ -14,13 +16,13 @@ Panel::Panel() {
 Panel::~Panel() {}
 
 void Panel::setContenido(Grafico& g) {
-    pack_start(g.getFiltrador(), false, false);
+    box.pack_start(g.getFiltrador(), false, false);
     pViewport->add(g);
-    add(scrWin);
+    box.add(scrWin);
 }
 
 void Panel::setContenido(Tabla& t) {
-    pack_start(t.getFiltrador(), false, false); // linea descomentada
+    box.pack_start(t.getFiltrador(), false, false); // linea descomentada
     pViewport->add(t);	// linea descomentada
-    add(scrWin);
+    box.add(scrWin);
 }

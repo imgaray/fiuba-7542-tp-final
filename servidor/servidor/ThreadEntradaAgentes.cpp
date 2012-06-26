@@ -1,5 +1,9 @@
 #include "ThreadEntradaAgentes.h"
 
+bool ThreadEntradaAgentes::activo() {
+	return entradaAgentes->conectado();
+}
+
 void ThreadEntradaAgentes::correr() {
 	while (corriendo()) {
 		Socket* sagente = entradaAgentes->escucharConexion();

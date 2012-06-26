@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+bool ControladorServidor::activo() {
+	return tagentes->activo() && tclientes->activo();
+}
+
 void ControladorServidor::comenzar() {
 	tagentes->iniciar();
 	tclientes->iniciar();

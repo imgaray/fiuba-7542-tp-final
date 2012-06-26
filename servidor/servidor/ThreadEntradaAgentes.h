@@ -17,6 +17,8 @@ private:
 	ConsultasAgentesServidor& centradas;
 public:
 
+	bool activo();
+
 	// metodo que se queda pendiente de la conexion de nuevos agentes. 
 	// Si llega un agente, crea un AgenteRemoto que procesa las consultas
 	void correr();

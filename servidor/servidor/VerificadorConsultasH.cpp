@@ -5,8 +5,7 @@
 #include <iostream>
 
 bool VerificadorConsultasH::verificarConsulta(const Consulta& consulta) {
-    std::cout << "Verificando consulta: " << consulta.serializar() << std::endl;
-	if (!consulta.esConsultaDeCliente())
+  	if (!consulta.esConsultaDeCliente())
 		return false;
 
 	if (consulta.esConsultaDeTablaPivote())
@@ -47,27 +46,22 @@ bool VerificadorConsultasH::cClienteValida(const Consulta& cons) {
 	bool _hayHechosEnRes = hayHechosEnRes(cons);
 
 	if (hayCamposNulos(cons)){
-		std::cout << "Hay campos Nulos" << std::endl;
 		return false;
 	}
 
 	if (!filtrosCorrectos(cons)) {
-		std::cout << "No hay Filtros Correctos" << std::endl;
 		return false;
 	}
 
 	if (!entradasCorrectos(cons)){
-		std::cout << "No hay Entradas Correctos" << std::endl;
 		return false;
 	}
 
 	if (!resultadoCorrectos(cons)){
-		std::cout << "No hay Resultados Correctos" << std::endl;
 		return false;
 	}
 
 	if ((_hayDimEnRes && _hayHechosEnRes) && !_hayAgreEnHechos){
-		std::cout << "Hay dim y hechos en resultados y no hay agregaciones para los hechos" << std::endl;
 		return false;
 	}
 
@@ -152,19 +146,14 @@ bool VerificadorConsultasH::hayCamposNulos(const Consulta& cons) {
 	bool hayNulos = false;
 	for (unsigned i = 0; i < cons.cantidadResultados() && !hayNulos; i++) {
 		hayNulos = cons.resultado(i).empty();
-		std::cout << "Res: " << cons.resultado(i) << std::endl;
 	}
 
 	for (unsigned i = 0; i < cons.cantidadFiltros() && !hayNulos; i++) {
 		hayNulos = cons.filtro(i).empty() || cons.valorFiltro(i).empty();
-		std::cout << "Filtro: " << cons.filtro(i) << std::endl;
-		std::cout << "valor Filtro: " << cons.valorFiltro(i) << std::endl;
 	}
 
 	for (unsigned i = 0; i < cons.cantidadEntradas() && !hayNulos; i++) {
 		hayNulos = cons.entrada(i).empty() || cons.valorEntrada(i).empty();
-		std::cout << "Entrada: " << cons.entrada(i) << std::endl;
-		std::cout << "Valor Entrada: " << cons.valorEntrada(i) << std::endl;
 	}
 
 

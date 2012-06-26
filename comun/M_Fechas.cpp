@@ -203,7 +203,6 @@ void M_Fechas::desarmar(const Fecha& rango, Fecha& f1 ,Fecha& f2) const {
 void M_Fechas::armarFecha(FechaNumerica x, const std::string& anio, Fecha& fecha) const {
 	fecha += sep_fecha;
 	fecha += convertir(x, 2);
-	// std::cout << "NUMERO : " << x <<" STRING: \"" <<M_Fechas::convertir(x, 2)  << "\""<< std::endl;
 	fecha += sep_fecha;
 	fecha += anio;
 
@@ -249,8 +248,6 @@ Fecha M_Fechas::semana(int semana, const std::string& anio) const {
 
 	}
 
-//	std::cout << "Dia INf: " << diaInf << std::endl;
-//	std::cout << "Dia Sup: " << diaSup << std::endl;
 
 	calcularDia(diaInf, nAnio, dia, mes);
 	Fecha fechaInf = fecha(dia, mes, nAnio);

@@ -46,7 +46,6 @@ Respuesta ControladorServidor::resolver(Consulta& consulta) {
 }
 
 ControladorServidor::~ControladorServidor() {
-	std::cout << "ENTRO AL DESTRUCTOR DE CONTROLADOR SERVIDOR" << std::endl;
 	lclientes::iterator iter_clientes;
 	for (iter_clientes = clientes.begin(); iter_clientes != clientes.end();
 												++iter_clientes) {

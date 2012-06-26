@@ -1,0 +1,21 @@
+						Clase ComparadorHechos
+
+	Esta clase es la encargada de decidir si un registro en particular debe o no
+	ser filtrado a partir de filtros de Hechos. Construyendose a partir un Consulta
+	en particular.
+
+Atributos:
+
+	bool _filtrarHechos: booleano indicando si debe comprobar el registro a analizar
+	o no, es decir, solo filtra si hay filtros o entradas de hechos.
+
+	std::vector <unsigned> _indHechos: Contenedor utilizado para guardar los indices de campo
+	(segun Organizacion) de los hechos que se tiene que filtrar.
+
+	std::vector <std::string> _valorHechos: Contenedor utilizado para guardar los valores por
+	los cual se tiene que filtrar los registros.
+
+	std::string _campoActual: string utilizado para guardar el campo de registro temporalmente.
+
+	Utilitario u: clase utilizada para hacer operaciones y calculos auxiliares.
+

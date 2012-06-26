@@ -12,6 +12,8 @@ EXTERNOBJS = $(addsuffix .o, $(basename  $(wildcard */*.cpp)))
 
 EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../comun/*.cpp)))
 
+DOCDIRS = servidor MotorDeConsultas
+
 CC = g++
 
 I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
@@ -38,5 +40,4 @@ clean: $(SUBDIRS)
 		$(MAKE) clean -C $$dir; \
 	done
 	
-
 .PHONY: all

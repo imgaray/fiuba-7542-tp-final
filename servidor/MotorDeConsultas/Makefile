@@ -25,4 +25,4 @@ test: $(bin)
 clean:
 	rm $(robjs)
 
-.PHONY: clean all binaries
+.PHONY: clean all binaries doc

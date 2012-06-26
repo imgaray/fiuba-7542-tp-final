@@ -12,6 +12,22 @@
 #include "TiposDeDatos.h"
 #include <algorithm>
 
+
+/*
+ * @DOC:
+						Clase Indice
+
+	Esta clase es un templete creada para funcionar como indice, que guarda los id
+	de registros para un valores del tipo _dato_.
+
+Atributos:
+
+	Mapa _mapa: mapa que utilizado para guardar los id.
+
+ * @END
+ * */
+
+
 template < class _dato_ >
 class Indice {
 public:

@@ -17,9 +17,35 @@
 #define RUTA_ARCH_MODELO "./modelo.config"
 
 /*
- * Clase encaragada de determinar y guardar los metadatos
- * refentes a la informacion guardada en el servidor.
- */
+ * @DOC:
+						Clase Organizacion
+
+	Esta clase estatica encargada de cargar, guardar el modole del Archivo,
+	pudiendo consultar sobre sus dimensiones, hechos, y cantidades que hay de estos,
+	es decir, se encarga de resolver toda cuestion que implicase al modelo.
+	El funcionamiento de esta clase es solo de consulta para cuestiones que
+	involucren al modelo de datos.
+
+Atributos:
+	static std::fstream _archModelo: stream que guarda los datos del modelo en disco
+*
+	static ConjuntoCampos _dimensiones: contenedor encargado de guardar las dimensiones.
+*
+	static ConjuntoCampos _hechos: contenedor encargado de guardar los hechos.
+*
+	static vectorCampos _campos: contenedor encargado de guardar todos los campos del modelo
+	(dimensiones y hechos).
+*
+	static std::string nombreNulo: string nulo para referenciarlo como un string vacio.
+*
+	static bool _existeCampoEspecial: booleano indicando si existe alguna Dimension Especial.
+*
+	static unsigned _indEspecial: posicion que indica en que campo esta la Dimension Especial.
+*
+    static Utilitario u: encargado de hacer operaciones y calculos auxiliares.
+
+ * @END
+ * */
 
 /*
  (Ej de archivo de Modelo)

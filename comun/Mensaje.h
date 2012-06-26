@@ -10,6 +10,16 @@
 
 #include <string>
 
+/*
+ * @DOC:
+						Clase Mensaje
+
+	Esta clase es abstracta y representa a la comunicacion habra entre un cliente con
+	un servidor o un agente con un servidor.
+
+ * @END
+ * */
+
 class Mensaje {
 public:
 	Mensaje();

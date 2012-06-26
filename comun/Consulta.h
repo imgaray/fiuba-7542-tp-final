@@ -12,6 +12,52 @@
 #include "Mensaje.h"
 #include "Utilitario.h"
 
+/*
+ * @DOC:
+						Clase Consulta
+
+	Esta clase es la encargada de guardar y administrar la consulta realizada
+	por un Cliente o Agente, para que sea enviada al servidor y sea resuelta
+	por este.
+
+Atributos:
+
+	Id_Mensaje _id: Id numerico para identificar univocamente a un Consulta
+*
+	Filtros _filtros: contenedor que almacena los filtros y sus valores para
+	una consulta
+*
+	Entradas _entradas: contenedor que almacena las entradas y sus valores para
+	una consulta.
+*
+	Resultados _resultados: contenedor que almacena los resultados que se quieren
+	obtener de la consulta.
+*
+	EntradasTabla _xTabla: contenedor utilizado para guardar el grupo X de dimensiones
+	y/o	hechos para una consulta de Tabla Pivote.
+*
+	EntradasTabla _yTabla: contenedor utilizado para guardar el grupo Y de dimensiones
+	y/o	hechos para una consulta de Tabla Pivote.
+*
+	bool _consultaTablaPivote: booleano que indica si la consulta es de tabla pivote o
+	es un a consulta normal.
+*
+	Campos &_campos: contenedor que guarda los campos para una consulta hecha por una
+	agente.
+*
+	Agregaciones _agregaciones: contenedor que guarda las agregaciones que tiene que hacerse
+	para en los resultados.
+*
+	bool _consultaDeCliente: booleano indicando si la consulta es de un cliente, en caso de que sea
+	false la consulta seria de un agente.
+*
+	bool _consultaValida: booleano indicando si la consulta es valida o correcta en su contenido.
+*
+	static std::string s_nulo: string utilizado como referencia a string vacia.
+ * @END
+ * */
+
+
 class Consulta : public Mensaje {
 public:
 	Consulta();

@@ -13,6 +13,31 @@
 #include "Utilitario.h"
 #include <string>
 
+/*
+ * @DOC:
+						Clase Respuesta
+
+	Esta clase se encarga guardar todo lo relacionado a la
+	resolucion de una consulta ya sea desde un agente o un servidor.
+
+Atributos:
+	Id_Mensaje _id: Id de la Respuesta que lo identifica univocamente.
+*
+	size_t _columnas: indica la cantidad de columnas que tiene tabla de la Respuesta
+*
+	DatosDeRespuesta _datos: contendor que guarda todo el contenido de la Tabla
+*
+	Fila _filaActual: contenedor que guarda el contenido para una fila, solo se utiliza
+	cuando se va generando la respuesta por parte del sevidor.
+*
+	std::string _msjInterno: string que guarda un mensaje para la Respuesta
+*
+	static Campo campo_nulo: string que para ser referenciado como string vacio
+*
+    Utilitario u: se encarga de hacer operaciones y calculos auxiliares.
+ * @END
+ * */
+
 class Respuesta : public Mensaje {
 public:
 	Respuesta();

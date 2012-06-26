@@ -9,6 +9,8 @@
 #define SPINBUTTON_DESDE_COL "spinbuttonPanelDesdeCol"
 #define SPINBUTTON_HASTA_COL "spinbuttonPanelHastaCol"
 #define HBOX_TIPO_GRAFICO "hboxTipoPanel"
+#define EXPANDER_X_PIVOTE "expanderPanelXPivote"
+#define EXPANDER_Y_PIVOTE "expanderPanelYPivote"
 
 #include <iostream>
 PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
@@ -33,6 +35,10 @@ PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
     get_widget(HBOX_TIPO_GRAFICO, pHBox);
     pHBox->pack_start(comboTipoGrafico, false, false);
     comboTipoGrafico.show();
+
+    // expanders de opciones tabla pivote
+    get_widget(EXPANDER_X_PIVOTE, pExpanderXPivote);
+    get_widget(EXPANDER_Y_PIVOTE, pExpanderYPivote);
 }
 
 PanelConfigVista::~PanelConfigVista() {}
@@ -51,8 +57,8 @@ void PanelConfigVista::setModelo(PanelConfigModelo* pModeloNuevo) {
     pModelo->setLabelPosicion(pLabelPosicion);
     pModelo->setSpinbuttonsPosicion(pSpinbuttonDesdeFila, pSpinbuttonHastaFila,
                                     pSpinbuttonDesdeCol, pSpinbuttonHastaCol);
+    pModelo->setExpandersPivote(pExpanderXPivote, pExpanderYPivote);
     pModelo->setComboboxTipoGrafico(&comboTipoGrafico);
-//    pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
 }
 
 

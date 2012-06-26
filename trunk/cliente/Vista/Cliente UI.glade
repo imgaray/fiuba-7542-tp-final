@@ -336,6 +336,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>
+                        <property name="activates_default">True</property>
                         <property name="width_chars">15</property>
                       </object>
                       <packing>
@@ -579,116 +580,29 @@
                                         <property name="visible">True</property>
                                         <property name="resize_mode">queue</property>
                                         <child>
-                                          <object class="GtkVBox" id="vbox4">
+                                          <object class="GtkVButtonBox" id="vbuttonboxTabFiltradores">
                                             <property name="visible">True</property>
+                                            <property name="layout_style">start</property>
                                             <child>
-                                              <object class="GtkVButtonBox" id="vbuttonbox1">
-                                                <property name="visible">True</property>
-                                                <property name="layout_style">start</property>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton1">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">0</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton2">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">1</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton3">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">2</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton4">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">3</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton5">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">4</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton6">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">5</property>
-                                                  </packing>
-                                                </child>
-                                                <child>
-                                                  <object class="GtkCheckButton" id="checkbutton7">
-                                                    <property name="label" translatable="yes">checkbutton</property>
-                                                    <property name="visible">True</property>
-                                                    <property name="can_focus">True</property>
-                                                    <property name="receives_default">False</property>
-                                                    <property name="draw_indicator">True</property>
-                                                  </object>
-                                                  <packing>
-                                                    <property name="expand">False</property>
-                                                    <property name="fill">False</property>
-                                                    <property name="position">6</property>
-                                                  </packing>
-                                                </child>
-                                              </object>
-                                              <packing>
-                                                <property name="expand">False</property>
-                                                <property name="fill">False</property>
-                                                <property name="position">0</property>
-                                              </packing>
+                                              <placeholder/>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
+                                            </child>
+                                            <child>
+                                              <placeholder/>
                                             </child>
                                           </object>
                                         </child>
@@ -945,6 +859,8 @@
                                                         </child>
                                                       </object>
                                                       <packing>
+                                                        <property name="expand">False</property>
+                                                        <property name="fill">False</property>
                                                         <property name="position">1</property>
                                                       </packing>
                                                     </child>
@@ -972,14 +888,29 @@
                                                     <property name="visible">True</property>
                                                     <property name="left_padding">12</property>
                                                     <child>
-                                                      <object class="GtkVBox" id="vbox10">
+                                                      <object class="GtkScrolledWindow" id="scrolledwindow2">
                                                         <property name="visible">True</property>
+                                                        <property name="can_focus">True</property>
+                                                        <property name="hscrollbar_policy">automatic</property>
+                                                        <property name="vscrollbar_policy">automatic</property>
                                                         <child>
-                                                          <object class="GtkExpander" id="expander2">
+                                                          <object class="GtkViewport" id="viewport2">
+                                                            <property name="visible">True</property>
+                                                            <property name="resize_mode">queue</property>
+                                                            <child>
+                                                            <object class="GtkVBox" id="vbox10">
+                                                            <property name="visible">True</property>
+                                                            <child>
+                                                            <object class="GtkExpander" id="expanderPanelFiltros">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
+                                                            <object class="GtkVBox" id="vbox11">
+                                                            <property name="visible">True</property>
+                                                            <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            </object>
                                                             </child>
                                                             <child type="label">
                                                             <object class="GtkLabel" id="label25">
@@ -987,17 +918,22 @@
                                                             <property name="label" translatable="yes">Filtros</property>
                                                             </object>
                                                             </child>
-                                                          </object>
-                                                          <packing>
+                                                            </object>
+                                                            <packing>
                                                             <property name="position">0</property>
-                                                          </packing>
-                                                        </child>
-                                                        <child>
-                                                          <object class="GtkExpander" id="expander3">
+                                                            </packing>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkExpander" id="expanderPanelInputs">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
+                                                            <object class="GtkVBox" id="vbox12">
+                                                            <property name="visible">True</property>
+                                                            <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            </object>
                                                             </child>
                                                             <child type="label">
                                                             <object class="GtkLabel" id="label26">
@@ -1005,17 +941,22 @@
                                                             <property name="label" translatable="yes">Inputs</property>
                                                             </object>
                                                             </child>
-                                                          </object>
-                                                          <packing>
+                                                            </object>
+                                                            <packing>
                                                             <property name="position">1</property>
-                                                          </packing>
-                                                        </child>
-                                                        <child>
-                                                          <object class="GtkExpander" id="expander5">
+                                                            </packing>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkExpander" id="expanderPanelXPivote">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
+                                                            <object class="GtkVBox" id="vbox13">
+                                                            <property name="visible">True</property>
+                                                            <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            </object>
                                                             </child>
                                                             <child type="label">
                                                             <object class="GtkLabel" id="label29">
@@ -1023,17 +964,22 @@
                                                             <property name="label" translatable="yes">X tabla pivote</property>
                                                             </object>
                                                             </child>
-                                                          </object>
-                                                          <packing>
+                                                            </object>
+                                                            <packing>
                                                             <property name="position">2</property>
-                                                          </packing>
-                                                        </child>
-                                                        <child>
-                                                          <object class="GtkExpander" id="expander6">
+                                                            </packing>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkExpander" id="expanderPanelYPivote">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
+                                                            <object class="GtkVBox" id="vbox14">
+                                                            <property name="visible">True</property>
+                                                            <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            </object>
                                                             </child>
                                                             <child type="label">
                                                             <object class="GtkLabel" id="label30">
@@ -1041,17 +987,22 @@
                                                             <property name="label" translatable="yes">Y tabla pivote</property>
                                                             </object>
                                                             </child>
-                                                          </object>
-                                                          <packing>
+                                                            </object>
+                                                            <packing>
                                                             <property name="position">3</property>
-                                                          </packing>
-                                                        </child>
-                                                        <child>
-                                                          <object class="GtkExpander" id="expander4">
+                                                            </packing>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkExpander" id="expanderPanelResultados">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
+                                                            <object class="GtkVBox" id="vbox15">
+                                                            <property name="visible">True</property>
+                                                            <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            </object>
                                                             </child>
                                                             <child type="label">
                                                             <object class="GtkLabel" id="label27">
@@ -1059,10 +1010,14 @@
                                                             <property name="label" translatable="yes">Resultados</property>
                                                             </object>
                                                             </child>
-                                                          </object>
-                                                          <packing>
+                                                            </object>
+                                                            <packing>
                                                             <property name="position">4</property>
-                                                          </packing>
+                                                            </packing>
+                                                            </child>
+                                                            </object>
+                                                            </child>
+                                                          </object>
                                                         </child>
                                                       </object>
                                                     </child>

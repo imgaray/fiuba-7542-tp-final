@@ -3,6 +3,7 @@
 
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/comboboxtext.h>
+#include <gtkmm/expander.h>
 #include "ConfigModelo.h"
 
 #define NOMBRE_PANEL_POR_DEFECTO "Nuevo panel"
@@ -19,6 +20,8 @@ class PanelConfigModelo : public ConfigModelo {
                                     Gtk::SpinButton* pSpinbuttonHastaCol);
         void setPosicionNuevaComoValida(bool valida = true);
         void setComboboxTipoGrafico(Gtk::ComboBoxText* pCombo);
+        void setExpandersPivote(Gtk::Expander* pXPivote, Gtk::Expander* pYPivote);
+
         void getPosicion(unsigned& desdeFila, unsigned& hastaFila,
                          unsigned& desdeCol, unsigned& hastaCol);
 
@@ -60,6 +63,8 @@ class PanelConfigModelo : public ConfigModelo {
         Gtk::SpinButton* pSpinButtonDesdeCol;
         Gtk::SpinButton* pSpinButtonHastaCol;
         Gtk::ComboBoxText* pComboBoxTextTipoGrafico;
+        Gtk::Expander* pExpanderXPivote;
+        Gtk::Expander* pExpanderYPivote;
 };
 
 #endif  // PANEL_CONFIG_MODELO_H

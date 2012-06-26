@@ -6,6 +6,7 @@
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/button.h>
 #include <gtkmm/comboboxtext.h>
+#include <gtkmm/expander.h>
 #include "Buildable.h"
 
 class PanelConfigModelo;
@@ -27,6 +28,8 @@ class PanelConfigVista : public Gtk::VBox, public Buildable  {
         Gtk::SpinButton* pSpinbuttonDesdeCol;
         Gtk::SpinButton* pSpinbuttonHastaCol;
         Gtk::ComboBoxText comboTipoGrafico;
+        Gtk::Expander* pExpanderXPivote;
+        Gtk::Expander* pExpanderYPivote;
 };
 
 #endif  // PANEL_CONFIG_VISTA_H

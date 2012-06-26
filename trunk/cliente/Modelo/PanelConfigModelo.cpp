@@ -6,7 +6,7 @@
 
 #define CANT_TIPOS 4
 #define TABLA_PIVOTE 1
-Glib::ustring PanelConfigModelo::tipoGrafico[CANT_TIPOS] {
+Glib::ustring PanelConfigModelo::tipoGrafico[CANT_TIPOS] =  {
     "Tabla", "Tabla pivote", "Gráfico de barras", "Gráfico de torta"
 };
 
@@ -14,7 +14,9 @@ PanelConfigModelo::PanelConfigModelo()
 : ConfigModelo(NOMBRE_PANEL_POR_DEFECTO),
   pLabelPosicion(NULL),
   pSpinButtonDesdeFila(NULL), pSpinButtonHastaFila(NULL),
-  pSpinButtonDesdeCol(NULL), pSpinButtonHastaCol(NULL) {
+  pSpinButtonDesdeCol(NULL), pSpinButtonHastaCol(NULL),
+  pComboBoxTextTipoGrafico(NULL),
+  pExpanderXPivote(NULL), pExpanderYPivote(NULL) {
     desdeFila = 0; hastaFila = 1;
     desdeCol = 0; hastaCol = 1;
     posicionValida = true;
@@ -30,6 +32,7 @@ void PanelConfigModelo::desconectarDeHijo() {
     desconectar(connectionSpinButtonHastaFila, pSpinButtonHastaFila);
     desconectar(connectionSpinButtonDesdeCol, pSpinButtonDesdeCol);
     desconectar(connectionSpinButtonHastaCol, pSpinButtonHastaCol);
+    desconectar(connectionComboboxTipoGrafico, pComboBoxTextTipoGrafico);
 }
 
 void PanelConfigModelo::bloquearConnectionPosicion() {
@@ -123,6 +126,12 @@ void PanelConfigModelo::setComboboxTipoGrafico(Gtk::ComboBoxText* pCombo) {
     pComboBoxTextTipoGrafico->set_active(indice_tipoGrafico);
 }
 
+void PanelConfigModelo::setExpandersPivote(Gtk::Expander* pXPivote,
+                                           Gtk::Expander* pYPivote) {
+    pExpanderXPivote = pXPivote;
+    pExpanderYPivote = pYPivote;
+}
+
 void PanelConfigModelo::on_spinbuttons_posicion_changed() {
     bloquearConnectionPosicion();
 
@@ -162,9 +171,12 @@ void PanelConfigModelo::on_spinbuttons_posicion_changed() {
 }
 
 void PanelConfigModelo::on_combobox_tipo_grafico_changed() {
-    if (pComboBoxTextTipoGrafico->get_active_text() == tipoGrafico[TABLA_PIVOTE])
-        std::cout << "mostrar X e Y" << std::endl;
-    else
-        std::cout << "ocultar X e Y" << std::endl;
+    if (pComboBoxTextTipoGrafico->get_active_text() == tipoGrafico[TABLA_PIVOTE]) {
+        pExpanderXPivote->show();
+        pExpanderYPivote->show();
+    } else {
+        pExpanderXPivote->hide();
+        pExpanderYPivote->hide();
+    }
 }
 

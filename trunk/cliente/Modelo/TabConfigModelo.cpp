@@ -59,6 +59,11 @@ void TabConfigModelo::desconectarDeHijo() {
     desconectar(connectionSpinButtonFilas, pSpinButtonFilas);
     desconectar(connectionSpinButtonCols, pSpinButtonCols);
     desconectar(connectionPanelPosicion, pModeloPanel);
+
+    std::list< sigc::connection >::iterator itConn = connectionCheckButtonsFiltradores.begin();
+    std::list< Gtk::CheckButton* >::iterator itP = pCheckButtonsFiltradores.begin();
+    for ( ; itConn != connectionCheckButtonsFiltradores.end(); ++itConn, ++itP)
+        desconectar(*itConn, *itP);
 }
 
 void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
@@ -140,6 +145,18 @@ void TabConfigModelo::setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
         sigc::mem_fun(*this, &TabConfigModelo::on_spinbutton_cols_value_changed));
 }
 
+void TabConfigModelo::setCheckButtonsFiltradores(
+    const std::list< Gtk::CheckButton* >& filtradores) {
+    pCheckButtonsFiltradores = filtradores;
+    std::list< Gtk::CheckButton* >::iterator it = pCheckButtonsFiltradores.begin();
+    for ( ; it != pCheckButtonsFiltradores.end(); ++it) {
+        Gtk::CheckButton* p = (*it);
+        sigc::connection c = p->signal_toggled().connect(
+            sigc::mem_fun(*this, &TabConfigModelo::on_filtradores_toggled));
+        connectionCheckButtonsFiltradores.push_back(c);
+    }
+}
+
 void TabConfigModelo::on_spinbutton_filas_value_changed() {
     unsigned filasNueva = pSpinButtonFilas->get_value_as_int();
     if (filasNueva >= min_fila)
@@ -161,12 +178,6 @@ void TabConfigModelo::on_panel_solicita_validacion(PanelConfigModelo* pPanel,
                                                    int hastaFila,
                                                    int desdeCol,
                                                    int hastaCol) {
-    std::cout << "Revisando si el espacio"
-              << " desde fila: " << desdeFila
-              << " hasta fila: " << hastaFila
-              << " desde col: " << desdeCol
-              << " hasta col: " << hastaCol
-              << " está ocupado... grilla:" << std::endl;
 //
 //    for (int ii = 0; ii < filas; ++ii) {
 //        for (int ji = 0; ji < cols; ++ji)
@@ -222,5 +233,15 @@ void TabConfigModelo::imprimirGrilla() {
             else
                 std::cout << ".";
         std::cout << std::endl;
+    }
+}
+
+void TabConfigModelo::on_filtradores_toggled() {
+    filtradoresTab.clear();
+    std::list< Gtk::CheckButton* >::const_iterator it = pCheckButtonsFiltradores.begin();
+    for ( ; it != pCheckButtonsFiltradores.end(); ++it) {
+        Gtk::CheckButton* p = *it;
+        if (p->get_active())
+            filtradoresTab.push_back(p->get_label());
     }
 }

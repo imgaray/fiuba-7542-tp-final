@@ -1,6 +1,7 @@
 #include "TabConfigModelo.h"
 #include "PanelConfigModelo.h"
 #include "AdminConfigObjManager.h"
+#include "Organizacion.h"
 
 TabConfigModelo::TabConfigModelo()
 : ConfigModelo(NOMBRE_TAB_POR_DEFECTO),
@@ -12,6 +13,12 @@ TabConfigModelo::TabConfigModelo()
     for (unsigned i = 0; i < MAX_GRILLA; ++i)
         for (unsigned j = 0; j < MAX_GRILLA; ++j)
             ocupacionesGrilla[i][j] = NULL;
+
+    for (unsigned i = 0; i < Organizacion::cantidadCampos(); ++i) {
+        filtradoresTab.push_back(false);
+        sigc::connection c;
+        connectionCheckButtonsFiltradores.push_back(c);
+    }
 }
 
 TabConfigModelo::~TabConfigModelo() {
@@ -62,7 +69,8 @@ void TabConfigModelo::desconectarDeHijo() {
 
     std::list< sigc::connection >::iterator itConn = connectionCheckButtonsFiltradores.begin();
     std::list< Gtk::CheckButton* >::iterator itP = pCheckButtonsFiltradores.begin();
-    for ( ; itConn != connectionCheckButtonsFiltradores.end(); ++itConn, ++itP)
+    for ( ; itConn != connectionCheckButtonsFiltradores.end(),
+            itP != pCheckButtonsFiltradores.end(); ++itConn, ++itP)
         desconectar(*itConn, *itP);
 }
 
@@ -96,11 +104,8 @@ void TabConfigModelo::desocuparGrilla(PanelConfigModelo* pModelo) {
 }
 
 void TabConfigModelo::on_panel_model_changed(ConfigModelo* m) {
-//    std::cout << "TabConfigModelo ( " << this << " ) recibida la señal de modelo nuevo ";
     PanelConfigModelo* mPanel = dynamic_cast< PanelConfigModelo* >(m);
     if (mPanel) {
-//        std::cout << "de panel: " << m << std::endl;
-//        std::cout << "TabConfigModelo ( " << this << " ) emitiendo señal panel_model_changed, parám: " << m << std::endl;
         pModeloPanel = mPanel;
         ocuparGrilla(mPanel);
         connectionPanelPosicion = pModeloPanel->signal_posicion_changed().connect(
@@ -147,13 +152,18 @@ void TabConfigModelo::setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
 
 void TabConfigModelo::setCheckButtonsFiltradores(
     const std::list< Gtk::CheckButton* >& filtradores) {
+
     pCheckButtonsFiltradores = filtradores;
     std::list< Gtk::CheckButton* >::iterator it = pCheckButtonsFiltradores.begin();
-    for ( ; it != pCheckButtonsFiltradores.end(); ++it) {
-        Gtk::CheckButton* p = (*it);
-        sigc::connection c = p->signal_toggled().connect(
+    std::list< bool >::iterator itFilt = filtradoresTab.begin();
+    std::list< sigc::connection >::iterator itFiltConn = connectionCheckButtonsFiltradores.begin();
+
+    for ( ; it != pCheckButtonsFiltradores.end(); ++it, ++itFilt, ++itFiltConn) {
+        Gtk::CheckButton* p = *it;
+        p->set_active(*itFilt);
+
+        *itFiltConn = p->signal_toggled().connect(
             sigc::mem_fun(*this, &TabConfigModelo::on_filtradores_toggled));
-        connectionCheckButtonsFiltradores.push_back(c);
     }
 }
 
@@ -241,7 +251,6 @@ void TabConfigModelo::on_filtradores_toggled() {
     std::list< Gtk::CheckButton* >::const_iterator it = pCheckButtonsFiltradores.begin();
     for ( ; it != pCheckButtonsFiltradores.end(); ++it) {
         Gtk::CheckButton* p = *it;
-        if (p->get_active())
-            filtradoresTab.push_back(p->get_label());
+        filtradoresTab.push_back(p->get_active());
     }
 }

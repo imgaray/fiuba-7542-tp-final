@@ -75,7 +75,7 @@ void TabConfigModelo::desconectarDeHijo() {
 }
 
 void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
-    imprimirGrilla();
+//    imprimirGrilla();
 
     unsigned desdeFila, hastaFila;
     unsigned desdeCol, hastaCol;
@@ -89,18 +89,18 @@ void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
         for (unsigned j = desdeCol; j < hastaCol; ++j)
             ocupacionesGrilla[i][j] = pModelo;
 
-    imprimirGrilla();
+//    imprimirGrilla();
 }
 
 void TabConfigModelo::desocuparGrilla(PanelConfigModelo* pModelo) {
-    imprimirGrilla();
+//    imprimirGrilla();
 
     for (unsigned i = 0; i < filas; ++i)
         for (unsigned j = 0; j < cols; ++j)
             if (ocupacionesGrilla[i][j] == pModelo)
                 ocupacionesGrilla[i][j] = NULL;
 
-    imprimirGrilla();
+//    imprimirGrilla();
 }
 
 void TabConfigModelo::on_panel_model_changed(ConfigModelo* m) {
@@ -236,9 +236,9 @@ void TabConfigModelo::on_panel_solicita_validacion(PanelConfigModelo* pPanel,
 
 void TabConfigModelo::imprimirGrilla() {
     std::cout << "Estado de la grilla" << std::endl;
-    for (int ii = 0; ii < filas; ++ii) {
-        for (int ji = 0; ji < cols; ++ji)
-            if (ocupacionesGrilla[ii][ji])
+    for (unsigned i = 0; i < filas; ++i) {
+        for (unsigned j = 0; j < cols; ++j)
+            if (ocupacionesGrilla[i][j])
                 std::cout << "x";
             else
                 std::cout << ".";

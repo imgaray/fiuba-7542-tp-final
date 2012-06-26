@@ -9,37 +9,6 @@
 #include "Tab.h"
 #include <iostream>
 #include <string>
-//#include <gtkmm-2.4/gtkmm/treepath.h>
-//#include <gtkmm-2.4/gtkmm/treeview.h>
-//#include <gtkmm-2.4/gtkmm/treeviewcolumn.h>
-//#include <gtkmm-2.4/gtkmm/treemodelcolumn.h>
-
-void mensaje(const std::string& msj) {
-	std::cout << "++++++++++++++++++++++++CLIENTE: " << msj << std::endl;
-}
-
-using std::cout;
-using std::endl;
-using std::string;
-
-void __imprimirRespuesta(const Respuesta& resp, const string& comentario) {
-	cout << endl;
-	cout << "Comentario: " << comentario << endl;
-	cout << "Estado Resp: " << resp.mensajeInterno() << endl;
-	cout << "Cantidad Filas: " << resp.cantidadFilas() << endl;
-	cout << "Cantidad Columnas: " << resp.cantidadColumnas() << endl;
-	cout << "Datos Recibidos:" << endl;
-	for (unsigned i = 0; i < resp.cantidadFilas() ; i++)  {
-		cout << "::";
-		for (unsigned j = 0 ; j < resp.cantidadColumnas() ; j++) {
-			cout.width(14);
-			cout.fill('.');
-			cout<< resp.dato(i,j) << "|";
-		}
-		cout << endl;
-	}
-}
-
 
 TablaComun::TablaComun(FiltradoresPanel& filtradores) : Tabla(filtradores) {
 
@@ -48,15 +17,9 @@ TablaComun::TablaComun(FiltradoresPanel& filtradores) : Tabla(filtradores) {
 
 }
 
-TablaComun::~TablaComun() {
-	mensaje("Se Destruye la Tabla Comun");
-}
+TablaComun::~TablaComun() {}
 
 void TablaComun::procesarRespuesta(const Respuesta& rta) {
-	mensaje("Se entro a procesar la Respuesta");
-
-	__imprimirRespuesta(rta, "Respuesta De TablaComun");
-
 	_respActual.limpiar();
 	_respActual = rta;
 
@@ -78,17 +41,13 @@ void TablaComun::procesarRespuesta(const Respuesta& rta) {
 	agregarColumnas();
 
 	this->columns_autosize();
-
-	mensaje("Se termino el procesarRespuesta");
 }
 
 void TablaComun::agregarFila(int numFila, const Respuesta& resp) {
 	 Gtk::TreeModel::Row filaNueva = *(_refTreeModel->append());
 
-	 for (unsigned i = 0; i < resp.cantidadColumnas() ; i++) {
+	 for (unsigned i = 0; i < resp.cantidadColumnas() ; i++)
 		 filaNueva[_colModelo->_columnas[i]] = resp.dato(numFila, i);
-		 mensaje("Se agrego el dato: " + resp.dato(numFila, i));
-	 }
 }
 
 void TablaComun::agregarColumnas() {
@@ -97,7 +56,6 @@ void TablaComun::agregarColumnas() {
 	}
 }
 void TablaComun::fila_activada(const Gtk::TreeModel::Path& path, Gtk::TreeViewColumn* column) {
-	std::cout << "/////////////////////////////SE ACTIVO UNA FILA//////////////////" << std::endl;
 
 //	std::cout << "Direccion de COlumna: "<< column << std::endl;
 //	std::cout << "Nombre COl: " <<column->get_title() << std::endl;

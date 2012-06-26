@@ -88,13 +88,6 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
         sigc::mem_fun(*this, &TabConfigVista::on_panel_model_changed));
     pModelo->setEntryLabel(pEntryTabLabel);
     pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
-
-    std::cout << "TabConfigVista " << this << " pasándole al modelo " << this;
-    std::list< Gtk::CheckButton* >::iterator it = pCheckButtonsFiltradores.begin();
-    for ( ; it != pCheckButtonsFiltradores.end(); ++it)
-        std::cout << " " << *it << std::endl;
-
-
     pModelo->setCheckButtonsFiltradores(pCheckButtonsFiltradores);
 }
 

@@ -24,6 +24,7 @@ class TabConfigModelo : public ConfigModelo {
                                 );
         void setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
                                   Gtk::SpinButton* pCols);
+        void setCheckButtonsFiltradores(const std::list< Gtk::CheckButton* >& filtradores);
 
         sigc::signal< void, PanelConfigModelo* > signal_panel_model_changed();
 
@@ -33,6 +34,7 @@ class TabConfigModelo : public ConfigModelo {
         /** modelo mismo */
         unsigned filas, cols;
         unsigned min_fila, min_col;
+        std::list< Glib::ustring > filtradoresTab;
         PanelConfigModelo* ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
 
         /** vista */
@@ -43,10 +45,12 @@ class TabConfigModelo : public ConfigModelo {
             /** signal handlers */
             void on_spinbutton_filas_value_changed();
             void on_spinbutton_cols_value_changed();
+            void on_filtradores_toggled();
 
             /** referencias */
             Gtk::SpinButton* pSpinButtonFilas;
             Gtk::SpinButton* pSpinButtonCols;
+            std::list< Gtk::CheckButton* > pCheckButtonsFiltradores;
 
         /** cosas de paneles */
             /** señales */
@@ -54,6 +58,7 @@ class TabConfigModelo : public ConfigModelo {
 
             /** conexiones */
             sigc::connection connectionPanelPosicion;
+            std::list< sigc::connection > connectionCheckButtonsFiltradores;
 
             /** signal handlers */
             void on_panel_solicita_validacion(PanelConfigModelo* pPanel,
@@ -70,6 +75,7 @@ class TabConfigModelo : public ConfigModelo {
             void on_panel_model_changed(ConfigModelo* m);
             void on_panel_model_saved(ConfigModelo* m);
             void on_panel_model_deleted(ConfigModelo* m);
+
 
             void imprimirGrilla();
 };

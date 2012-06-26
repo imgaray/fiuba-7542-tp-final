@@ -37,37 +37,23 @@ TabAdminConfigConsultas::~TabAdminConfigConsultas() {
 
 void TabAdminConfigConsultas::initBotones() {
     Gtk::Button* pAux;
-    builder->get_widget(BUTTON_AGREGAR_TAB, pAux);
-    if (pAux)
-        botones[BUTTON_AGREGAR_TAB] = pAux;
-    else
-        throw ExcepcionArchivoGladeCorrupto(BUTTON_AGREGAR_TAB);
+    get_widget(BUTTON_AGREGAR_TAB, pAux);
+    botones[BUTTON_AGREGAR_TAB] = pAux;
 
-    builder->get_widget(BUTTON_GUARDAR_CAMBIOS_TAB, pAux);
-    if (pAux)
-        botones[BUTTON_GUARDAR_CAMBIOS_TAB] = pAux;
-    else
-        throw ExcepcionArchivoGladeCorrupto(BUTTON_GUARDAR_CAMBIOS_TAB);
+    get_widget(BUTTON_GUARDAR_CAMBIOS_TAB, pAux);
+    botones[BUTTON_GUARDAR_CAMBIOS_TAB] = pAux;
 
-    builder->get_widget(BUTTON_ELIMINAR_TAB, pAux);
-    if (pAux)
-        botones[BUTTON_ELIMINAR_TAB] = pAux;
-    else
-        throw ExcepcionArchivoGladeCorrupto(BUTTON_ELIMINAR_TAB);
+    get_widget(BUTTON_ELIMINAR_TAB, pAux);
+    botones[BUTTON_ELIMINAR_TAB] = pAux;
 }
 
 void TabAdminConfigConsultas::initTabConfig() {
-    builder->get_widget_derived(TABLE_TAB_CONFIG, pTabVista);
-    if (!pTabVista)
-        throw ExcepcionArchivoGladeCorrupto(TABLE_TAB_CONFIG);
+    get_widget_derived(TABLE_TAB_CONFIG, pTabVista);
 
     Gtk::HBox* pHBoxTabSelec;
-    builder->get_widget(HBOX_TAB_SELEC, pHBoxTabSelec);
-    if (pHBoxTabSelec) {
-        pHBoxTabSelec->pack_start(comboTabSelec, false, false);
-        comboTabSelec.show();
-    } else
-        throw ExcepcionArchivoGladeCorrupto(HBOX_TAB_SELEC);
+    get_widget(HBOX_TAB_SELEC, pHBoxTabSelec);
+    pHBoxTabSelec->pack_start(comboTabSelec, false, false);
+    comboTabSelec.show();
 }
 
 void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {

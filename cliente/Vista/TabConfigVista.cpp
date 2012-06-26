@@ -1,8 +1,10 @@
 #include "TabConfigVista.h"
 #include <gtkmm/box.h>
+#include <gtkmm/buttonbox.h>
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "TabConfigModelo.h"
 #include "PanelConfigVista.h"
+#include "Organizacion.h"
 
 // botones
 #define BUTTON_AGREGAR_PANEL "buttonAgregarPanel"
@@ -17,6 +19,8 @@
 #define SPINBUTTON_FILAS "spinbuttonFilas"
 #define SPINBUTTON_COLS "spinbuttonCols"
 
+#define VBUTTONBOX_TAB_FILTRADORES "vbuttonboxTabFiltradores"
+
 TabConfigVista::TabConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& _builder)
 : Gtk::Table(cobject), Buildable(_builder),
@@ -27,6 +31,16 @@ TabConfigVista::TabConfigVista(BaseObjectType* cobject,
     get_widget(ENTRY_TAB_LABEL, pEntryTabLabel);
     get_widget(SPINBUTTON_FILAS, pSpinButtonFilas);
     get_widget(SPINBUTTON_COLS, pSpinButtonCols);
+
+    Gtk::VButtonBox* pFiltradores;
+    get_widget(VBUTTONBOX_TAB_FILTRADORES, pFiltradores);
+    for (unsigned i = 0; i < Organizacion::cantidadCampos(); ++i) {
+        Gtk::CheckButton* p = manage(new Gtk::CheckButton(Organizacion::nombreCampo(i)));
+        pCheckButtonsFiltradores.push_back(p);
+        pFiltradores->pack_start(*p, false, false);
+        p->show();
+    }
+
 }
 
 TabConfigVista::~TabConfigVista() {
@@ -74,6 +88,7 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
         sigc::mem_fun(*this, &TabConfigVista::on_panel_model_changed));
     pModelo->setEntryLabel(pEntryTabLabel);
     pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
+    pModelo->setCheckButtonsFiltradores(pCheckButtonsFiltradores);
 }
 
 

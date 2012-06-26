@@ -2,9 +2,9 @@
 #define VENTANA_CLIENTE_DINAMICA_H
 
 #include <map>
-#include <gtkmm/builder.h>
 #include <gtkmm/notebook.h>
 #include "Personalizador.h"
+#include "Buildable.h"
 
 class Tab;
 class ServidorRemoto;
@@ -13,7 +13,7 @@ class Consultante;
 typedef std::map < unsigned, Consultante* > MapaConsultantesTab;
 typedef std::pair < unsigned, Consultante* > parMapaConsultas;
 
-class VentanaClienteDinamica : public Gtk::Notebook {
+class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
     public:
         VentanaClienteDinamica(BaseObjectType* cobject,
                                const Glib::RefPtr< Gtk::Builder >& builder);

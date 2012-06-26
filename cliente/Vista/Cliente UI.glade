@@ -798,7 +798,7 @@
                                                       </packing>
                                                     </child>
                                                     <child>
-                                                      <object class="GtkHBox" id="hbox7">
+                                                      <object class="GtkHBox" id="hboxTipoPanel">
                                                         <property name="visible">True</property>
                                                         <child>
                                                           <object class="GtkLabel" id="label20">
@@ -833,7 +833,7 @@
                                                             </packing>
                                                             </child>
                                                             <child>
-                                                            <object class="GtkSpinButton" id="spinbutton1">
+                                                            <object class="GtkSpinButton" id="spinbuttonPanelDesdeFila">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <property name="max_length">2</property>
@@ -855,7 +855,7 @@
                                                             </packing>
                                                             </child>
                                                             <child>
-                                                            <object class="GtkSpinButton" id="spinbutton2">
+                                                            <object class="GtkSpinButton" id="spinbuttonPanelHastaFila">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <property name="max_length">2</property>
@@ -885,7 +885,7 @@
                                                             </packing>
                                                             </child>
                                                             <child>
-                                                            <object class="GtkSpinButton" id="spinbutton3">
+                                                            <object class="GtkSpinButton" id="spinbuttonPanelDesdeCol">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <property name="max_length">2</property>
@@ -907,7 +907,7 @@
                                                             </packing>
                                                             </child>
                                                             <child>
-                                                            <object class="GtkSpinButton" id="spinbutton4">
+                                                            <object class="GtkSpinButton" id="spinbuttonPanelHastaCol">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <property name="max_length">2</property>

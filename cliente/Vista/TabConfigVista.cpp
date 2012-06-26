@@ -19,21 +19,14 @@
 
 TabConfigVista::TabConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& _builder)
-: Gtk::Table(cobject), builder(_builder), pModelo(NULL) {
+: Gtk::Table(cobject), Buildable(_builder),
+  pModelo(NULL) {
     initBotones();
     initPanelConfig();
-    builder->get_widget(ENTRY_TAB_LABEL, pEntryTabLabel);
-    if (!pEntryTabLabel)
-        throw ExcepcionArchivoGladeCorrupto(ENTRY_TAB_LABEL);
 
-    builder->get_widget(SPINBUTTON_FILAS, pSpinButtonFilas);
-    if (!pSpinButtonFilas)
-        throw ExcepcionArchivoGladeCorrupto(SPINBUTTON_FILAS);
-
-    builder->get_widget(SPINBUTTON_COLS, pSpinButtonCols);
-    if (!pSpinButtonCols)
-        throw ExcepcionArchivoGladeCorrupto(SPINBUTTON_COLS);
-
+    get_widget(ENTRY_TAB_LABEL, pEntryTabLabel);
+    get_widget(SPINBUTTON_FILAS, pSpinButtonFilas);
+    get_widget(SPINBUTTON_COLS, pSpinButtonCols);
 }
 
 TabConfigVista::~TabConfigVista() {
@@ -42,38 +35,23 @@ TabConfigVista::~TabConfigVista() {
 
 void TabConfigVista::initBotones() {
     Gtk::Button* pAux;
-    builder->get_widget(BUTTON_AGREGAR_PANEL, pAux);
-    if (pAux)
-        botones[BUTTON_AGREGAR_PANEL] = pAux;
-    else
-        throw ExcepcionArchivoGladeCorrupto(BUTTON_AGREGAR_PANEL);
+    get_widget(BUTTON_AGREGAR_PANEL, pAux);
+    botones[BUTTON_AGREGAR_PANEL] = pAux;
 
-    builder->get_widget(BUTTON_GUARDAR_CAMBIOS_PANEL, pAux);
-    if (pAux)
-        botones[BUTTON_GUARDAR_CAMBIOS_PANEL] = pAux;
-    else
-        throw ExcepcionArchivoGladeCorrupto(BUTTON_GUARDAR_CAMBIOS_PANEL);
+    get_widget(BUTTON_GUARDAR_CAMBIOS_PANEL, pAux);
+    botones[BUTTON_GUARDAR_CAMBIOS_PANEL] = pAux;
 
-    builder->get_widget(BUTTON_ELIMINAR_PANEL, pAux);
-    if (pAux)
-        botones[BUTTON_ELIMINAR_PANEL] = pAux;
-    else
-        throw ExcepcionArchivoGladeCorrupto(BUTTON_ELIMINAR_PANEL);
+    get_widget(BUTTON_ELIMINAR_PANEL, pAux);
+    botones[BUTTON_ELIMINAR_PANEL] = pAux;
 }
 
 void TabConfigVista::initPanelConfig() {
-    builder->get_widget_derived(VBOX_PANEL_CONFIG, pPanelVista);
-    if (!pPanelVista)
-        throw ExcepcionArchivoGladeCorrupto(VBOX_PANEL_CONFIG);
+    get_widget_derived(VBOX_PANEL_CONFIG, pPanelVista);
 
     Gtk::HBox* pHBoxPanelSelec;
-    builder->get_widget(HBOX_PANEL_SELEC, pHBoxPanelSelec);
-    if (pHBoxPanelSelec) {
-        pHBoxPanelSelec->pack_start(comboPanelSelec, false, false);
-        comboPanelSelec.show();
-    } else
-        throw ExcepcionArchivoGladeCorrupto(HBOX_PANEL_SELEC);
-
+    get_widget(HBOX_PANEL_SELEC, pHBoxPanelSelec);
+    pHBoxPanelSelec->pack_start(comboPanelSelec, false, false);
+    comboPanelSelec.show();
 }
 
 #include <iostream>

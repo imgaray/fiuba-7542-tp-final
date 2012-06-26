@@ -3,18 +3,16 @@
 
 #include <list>
 #include <gtkmm/window.h>
-#include <gtkmm/builder.h>
+#include "Buildable.h"
 
 class TabAdminConfig;
 
-class VentanaAdminConfiguracion : public Gtk::Window {
+class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
     public:
         VentanaAdminConfiguracion(BaseObjectType* cobject,
                                   const Glib::RefPtr< Gtk::Builder >& builder);
         ~VentanaAdminConfiguracion();
     private:
-        Glib::RefPtr< Gtk::Builder > builder;
-
         std::list< TabAdminConfig* > tabs;
 
         void on_aplicar_button_clicked();

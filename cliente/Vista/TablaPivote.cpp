@@ -39,7 +39,7 @@ void TablaPivote::procesarRespuesta(const Respuesta& rta) {
 	 this->set_model(_refTreeModel);
 
 
-	 for (int i = 0; i < rta.cantidadFilas() ; i++) {
+	 for (unsigned i = 0; i < rta.cantidadFilas() ; i++) {
 		 agregarFila(i, rta);
 	 }
 
@@ -50,7 +50,7 @@ void TablaPivote::procesarRespuesta(const Respuesta& rta) {
 void TablaPivote::agregarFila(int numFila, const Respuesta& resp) {
 	 Gtk::TreeModel::Row filaNueva = *(_refTreeModel->append());
 
-	 for (int i = 0; i < resp.cantidadColumnas() ; i++) {
+	 for (unsigned i = 0; i < resp.cantidadColumnas() ; i++) {
 		 filaNueva[_colModelo->_columnas[i]] = resp.dato(numFila, i);
 	 }
 }

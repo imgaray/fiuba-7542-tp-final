@@ -2,22 +2,21 @@
 #define VENTANA_CLIENTE_H
 
 #include <gtkmm/window.h>
-#include <gtkmm/builder.h>
 #include <gtkmm/toolbutton.h>
 #include "../Modelo/ServidorRemoto.h"
+#include "Buildable.h"
 
 class VentanaClienteDinamica;
 class DialogoAutentif;
 class VentanaAdminConfiguracion;
 
-class VentanaCliente : public Gtk::Window {
+class VentanaCliente : public Gtk::Window , public Buildable {
     public:
         VentanaCliente(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& builder);
         ~VentanaCliente();
         void personalizar(const char* archivo);
     private:
-        Glib::RefPtr< Gtk::Builder > builder;
         VentanaClienteDinamica* pVDinamica;
         DialogoAutentif* pDAutentifAdmin;
         VentanaAdminConfiguracion* pVAdminConfig;

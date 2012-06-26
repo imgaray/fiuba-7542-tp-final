@@ -1,7 +1,14 @@
 #include "PanelConfigModelo.h"
+#include <iostream>
 
 #define LABEL_POSICION "Posición en la grilla"
 #define ERROR " - Error"
+
+#define CANT_TIPOS 4
+#define TABLA_PIVOTE 1
+Glib::ustring PanelConfigModelo::tipoGrafico[CANT_TIPOS] {
+    "Tabla", "Tabla pivote", "Gráfico de barras", "Gráfico de torta"
+};
 
 PanelConfigModelo::PanelConfigModelo()
 : ConfigModelo(NOMBRE_PANEL_POR_DEFECTO),
@@ -11,6 +18,7 @@ PanelConfigModelo::PanelConfigModelo()
     desdeFila = 0; hastaFila = 1;
     desdeCol = 0; hastaCol = 1;
     posicionValida = true;
+    indice_tipoGrafico = 0;
 }
 
 PanelConfigModelo::~PanelConfigModelo() {
@@ -104,6 +112,17 @@ void PanelConfigModelo::setSpinbuttonsPosicion(
         sigc::mem_fun(*this, &PanelConfigModelo::on_spinbuttons_posicion_changed));
 }
 
+void PanelConfigModelo::setComboboxTipoGrafico(Gtk::ComboBoxText* pCombo) {
+    if (pCombo->get_active_text() == "")
+        for (int i = 0; i < CANT_TIPOS; ++i)
+            pCombo->append_text(tipoGrafico[i]);
+
+    pComboBoxTextTipoGrafico = pCombo;
+    connectionComboboxTipoGrafico = pComboBoxTextTipoGrafico->signal_changed().connect(
+        sigc::mem_fun(*this, &PanelConfigModelo::on_combobox_tipo_grafico_changed));
+    pComboBoxTextTipoGrafico->set_active(indice_tipoGrafico);
+}
+
 void PanelConfigModelo::on_spinbuttons_posicion_changed() {
     bloquearConnectionPosicion();
 
@@ -140,5 +159,12 @@ void PanelConfigModelo::on_spinbuttons_posicion_changed() {
                                   desdeColNuevo, hastaColNuevo);
 
     desbloquearConnectionPosicion();
+}
+
+void PanelConfigModelo::on_combobox_tipo_grafico_changed() {
+    if (pComboBoxTextTipoGrafico->get_active_text() == tipoGrafico[TABLA_PIVOTE])
+        std::cout << "mostrar X e Y" << std::endl;
+    else
+        std::cout << "ocultar X e Y" << std::endl;
 }
 

@@ -9,8 +9,8 @@
 #define CANT_MAX_RESP_PROC 10
 
 VentanaClienteDinamica::VentanaClienteDinamica(BaseObjectType* cobject,
-                               const Glib::RefPtr< Gtk::Builder >& builder)
-    : Gtk::Notebook(cobject) {}
+                               const Glib::RefPtr< Gtk::Builder >& _builder)
+    : Gtk::Notebook(cobject), Buildable(_builder) {}
 
 VentanaClienteDinamica::~VentanaClienteDinamica() {}
 

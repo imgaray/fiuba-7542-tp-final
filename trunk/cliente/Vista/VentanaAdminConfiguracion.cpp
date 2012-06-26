@@ -11,39 +11,24 @@
 
 VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
-: Gtk::Window(cobject), builder(_builder) {
+: Gtk::Window(cobject), Buildable(_builder) {
     TabAdminConfigConexion* tabConexion;
-
-    builder->get_widget_derived(VBOX_TAB_CONEXION, tabConexion);
-    if (tabConexion)
-        tabs.push_back(tabConexion);
-    else
-        throw ExcepcionArchivoGladeCorrupto(VBOX_TAB_CONEXION);
+    get_widget_derived(VBOX_TAB_CONEXION, tabConexion);
+    tabs.push_back(tabConexion);
 
     TabAdminConfigConsultas* tabConsultas;
-    builder->get_widget_derived(VBOX_TAB_CONSULTAS, tabConsultas);
-    if (tabConsultas)
-        tabs.push_back(tabConsultas);
-    else
-        throw ExcepcionArchivoGladeCorrupto(VBOX_TAB_CONSULTAS);
+    get_widget_derived(VBOX_TAB_CONSULTAS, tabConsultas);
+    tabs.push_back(tabConsultas);
 
     Gtk::Button* pBotonAux;
 
-    builder->get_widget(BOTON_APLICAR_CONFIG, pBotonAux);
-    if (pBotonAux)
-        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_APLICAR_CONFIG, pBotonAux);
+    pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaAdminConfiguracion::on_aplicar_button_clicked));
-    else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_APLICAR_CONFIG);
 
-
-    builder->get_widget(BOTON_CANCELAR_CONFIG, pBotonAux);
-    if (pBotonAux)
-        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_CANCELAR_CONFIG, pBotonAux);
+    pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaAdminConfiguracion::on_cancelar_button_clicked));
-    else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_CANCELAR_CONFIG);
-
 }
 
 VentanaAdminConfiguracion::~VentanaAdminConfiguracion() {}

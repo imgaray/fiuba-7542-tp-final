@@ -71,7 +71,7 @@ void TablaComun::procesarRespuesta(const Respuesta& rta) {
 	 _refTreeModel = Gtk::ListStore::create(*_colModelo);
 	 this->set_model(_refTreeModel);
 
-	 for (int i = 0; i < rta.cantidadFilas() ; i++) {
+	 for (unsigned i = 0; i < rta.cantidadFilas() ; i++) {
 		 agregarFila(i, rta);
 	 }
 

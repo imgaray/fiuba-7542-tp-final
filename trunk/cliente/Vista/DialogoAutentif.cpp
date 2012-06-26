@@ -10,27 +10,40 @@
 
 DialogoAutentif::DialogoAutentif(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
-: Gtk::Dialog(cobject), builder(_builder) {
-    builder->get_widget(ENTRY_PASSWORD, pEntryPassword);
-    if (!pEntryPassword)
-        throw ExcepcionArchivoGladeCorrupto(ENTRY_PASSWORD);
+: Gtk::Dialog(cobject), Buildable(_builder) {
+
+    get_widget(ENTRY_PASSWORD, pEntryPassword);
 
     Gtk::Button* pBotonAux;
 
-    builder->get_widget(BOTON_ACEPTAR, pBotonAux);
-    if (pBotonAux)
-        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_ACEPTAR, pBotonAux);
+    pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
             &DialogoAutentif::on_aceptar_button_clicked));
-    else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_ACEPTAR);
 
-
-    builder->get_widget(BOTON_CANCELAR, pBotonAux);
-    if (pBotonAux)
-        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_CANCELAR, pBotonAux);
+    pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
             &DialogoAutentif::on_cancelar_button_clicked));
-    else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_CANCELAR);
+
+//    builder->get_widget(ENTRY_PASSWORD, pEntryPassword);
+//    if (!pEntryPassword)
+//        throw ExcepcionArchivoGladeCorrupto(ENTRY_PASSWORD);
+//
+//    Gtk::Button* pBotonAux;
+//
+//    builder->get_widget(BOTON_ACEPTAR, pBotonAux);
+//    if (pBotonAux)
+//        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
+//            &DialogoAutentif::on_aceptar_button_clicked));
+//    else
+//        throw ExcepcionArchivoGladeCorrupto(BOTON_ACEPTAR);
+//
+//
+//    builder->get_widget(BOTON_CANCELAR, pBotonAux);
+//    if (pBotonAux)
+//        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
+//            &DialogoAutentif::on_cancelar_button_clicked));
+//    else
+//        throw ExcepcionArchivoGladeCorrupto(BOTON_CANCELAR);
 
 }
 

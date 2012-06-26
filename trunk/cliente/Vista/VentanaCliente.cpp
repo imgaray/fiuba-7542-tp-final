@@ -8,7 +8,6 @@
 #include "DialogoAutentif.h"
 #include "VentanaAdminConfiguracion.h"
 #include "ExcepcionConsultanteNoExiste.h"
-#include "ExcepcionArchivoGladeCorrupto.h"
 #include "Consultante.h"
 
 #define TIMEOUT 10000
@@ -25,21 +24,14 @@
 
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
-: Gtk::Window(cobject), builder(_builder) {
+: Gtk::Window(cobject), Buildable(_builder) {
     srand(time(NULL));
 
-    builder->get_widget_derived(V_DINAMICA, pVDinamica);
-    if (!pVDinamica)
-        throw ExcepcionArchivoGladeCorrupto(V_DINAMICA);
+    get_widget_derived(V_DINAMICA, pVDinamica);
 
-    builder->get_widget_derived(AUTENTIF_ADMIN, pDAutentifAdmin);
-    if (!pDAutentifAdmin)
-        throw ExcepcionArchivoGladeCorrupto(AUTENTIF_ADMIN);
+    get_widget_derived(AUTENTIF_ADMIN, pDAutentifAdmin);
 
-    builder->get_widget_derived(CONFIG_ADMIN, pVAdminConfig);
-    if (!pVAdminConfig)
-        throw ExcepcionArchivoGladeCorrupto(CONFIG_ADMIN);
-
+    get_widget_derived(CONFIG_ADMIN, pVAdminConfig);
 
     pVDinamica->signal_switch_page().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_page_switched));
@@ -47,53 +39,36 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
         &VentanaCliente::on_actualizacion_solicitada));
 
     Gtk::ToolButton* pAux;
-    builder->get_widget(BOTON_CONECTAR, pAux);
-    if (pAux) {
-        botones[BOTON_CONECTAR] = pAux;
-        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+
+    get_widget(BOTON_CONECTAR, pAux);
+    botones[BOTON_CONECTAR] = pAux;
+    pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_conectar_button_clicked));
-    } else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_CONECTAR);
 
-    builder->get_widget(BOTON_ACTUALIZAR, pAux);
-    if (pAux) {
-        botones[BOTON_ACTUALIZAR] = pAux;
-        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_ACTUALIZAR, pAux);
+    botones[BOTON_ACTUALIZAR] = pAux;
+    pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_actualizar_button_clicked));
-    } else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_ACTUALIZAR);
 
-    builder->get_widget(BOTON_DETENER_ACTUALIZAR, pAux);
-    if (pAux) {
-        botones[BOTON_DETENER_ACTUALIZAR] = pAux;
-        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_DETENER_ACTUALIZAR, pAux);
+    botones[BOTON_DETENER_ACTUALIZAR] = pAux;
+    pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_detenerActualizar_button_clicked));
-    } else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_DETENER_ACTUALIZAR);
 
-    builder->get_widget(BOTON_EXPORTAR_PDF, pAux);
-    if (pAux) {
-        botones[BOTON_EXPORTAR_PDF] = pAux;
-        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_EXPORTAR_PDF, pAux);
+    botones[BOTON_EXPORTAR_PDF] = pAux;
+    pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_exportarPDF_button_clicked));
-    } else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_EXPORTAR_PDF);
 
-    builder->get_widget(BOTON_CONFIGURAR, pAux);
-    if (pAux) {
-        botones[BOTON_CONFIGURAR] = pAux;
-        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_CONFIGURAR, pAux);
+    botones[BOTON_CONFIGURAR] = pAux;
+    pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_configurar_button_clicked));
-    } else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_CONFIGURAR);
 
-    builder->get_widget(BOTON_SALIR, pAux);
-    if (pAux) {
-        botones[BOTON_SALIR] = pAux;
-        pAux->signal_clicked().connect(sigc::mem_fun(*this,
+    get_widget(BOTON_SALIR, pAux);
+    botones[BOTON_SALIR] = pAux;
+    pAux->signal_clicked().connect(sigc::mem_fun(*this,
             &VentanaCliente::on_salir_button_clicked));
-    } else
-        throw ExcepcionArchivoGladeCorrupto(BOTON_SALIR);
 }
 
 VentanaCliente::~VentanaCliente() {

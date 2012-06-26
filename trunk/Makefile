@@ -7,6 +7,7 @@ install_agente:
 	mkdir apAgente
 	cd agente; make
 	cp agente/main apAgente
+	cp agente/*.conf apAgente
 install_cliente:
 	mkdir apCliente
 	cd cliente; make

@@ -11,6 +11,18 @@
 #define HBOX_TIPO_GRAFICO "hboxTipoPanel"
 #define EXPANDER_X_PIVOTE "expanderPanelXPivote"
 #define EXPANDER_Y_PIVOTE "expanderPanelYPivote"
+// macros para los filtradores
+#define VBOX_PANEL_FILTROS "vboxPanelFiltros"
+#define TOOLBUTTON_PANEL_AGREGAR_FILTRO "toolbuttonPanelAgregarFiltro"
+#define VBOX_PANEL_INPUTS "vboxPanelInputs"
+#define TOOLBUTTON_PANEL_AGREGAR_INPUT "toolbuttonPanelAgregarInput"
+#define VBOX_PANEL_PIVOTE_XS "vboxPanelXPivote"
+#define TOOLBUTTON_PANEL_AGREGAR_PIVOTE_X "toolbuttonPanelAgregarXPivote"
+#define VBOX_PANEL_PIVOTE_YS "vboxPanelYPivote"
+#define TOOLBUTTON_PANEL_AGREGAR_PIVOTE_Y "toolbuttonPanelAgregarYPivote"
+#define VBOX_PANEL_RESULTADOS "vboxPanelResultados"
+#define TOOLBUTTON_PANEL_AGREGAR_RESULTADO "toolbuttonPanelAgregarResultado"
+
 
 #include <iostream>
 PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
@@ -39,9 +51,30 @@ PanelConfigVista::PanelConfigVista(BaseObjectType* cobject,
     // expanders de opciones tabla pivote
     get_widget(EXPANDER_X_PIVOTE, pExpanderXPivote);
     get_widget(EXPANDER_Y_PIVOTE, pExpanderYPivote);
+
+    // filtradores
+    initFiltradores(VBOX_PANEL_FILTROS, pFiltros,
+                    TOOLBUTTON_PANEL_AGREGAR_FILTRO, pBotonAgregarFiltro);
+    initFiltradores(VBOX_PANEL_INPUTS, pInputs,
+                    TOOLBUTTON_PANEL_AGREGAR_INPUT, pBotonAgregarInput);
+    initFiltradores(VBOX_PANEL_PIVOTE_XS, pPivoteXs,
+                    TOOLBUTTON_PANEL_AGREGAR_PIVOTE_X, pBotonAgregarPivoteX);
+    initFiltradores(VBOX_PANEL_PIVOTE_YS, pPivoteYs,
+                    TOOLBUTTON_PANEL_AGREGAR_PIVOTE_Y, pBotonAgregarPivoteY);
+    initFiltradores(VBOX_PANEL_RESULTADOS, pResultados,
+                    TOOLBUTTON_PANEL_AGREGAR_RESULTADO, pBotonAgregarResultado);
 }
 
 PanelConfigVista::~PanelConfigVista() {}
+
+
+void PanelConfigVista::initFiltradores(const Glib::ustring& nombreFilt,
+                                       Gtk::VBox*& pFilt,
+                                       const Glib::ustring& nombreBoton,
+                                       Gtk::ToolButton*& pAgregar) {
+    get_widget(nombreFilt, pFilt);
+    get_widget(nombreBoton, pAgregar);
+}
 
 #include <iostream>
 void PanelConfigVista::setModelo(PanelConfigModelo* pModeloNuevo) {
@@ -59,6 +92,12 @@ void PanelConfigVista::setModelo(PanelConfigModelo* pModeloNuevo) {
                                     pSpinbuttonDesdeCol, pSpinbuttonHastaCol);
     pModelo->setExpandersPivote(pExpanderXPivote, pExpanderYPivote);
     pModelo->setComboboxTipoGrafico(&comboTipoGrafico);
+
+    pModelo->setFiltrosHandlers(filtradoresHandlers(pFiltros, pBotonAgregarFiltro));
+    pModelo->setInputsHandlers(filtradoresHandlers(pInputs, pBotonAgregarInput));
+    pModelo->setPivoteXsHandlers(filtradoresHandlers(pPivoteXs, pBotonAgregarPivoteX));
+    pModelo->setPivoteYsHandlers(filtradoresHandlers(pPivoteYs, pBotonAgregarPivoteY));
+    pModelo->setResultadosHandlers(filtradoresHandlers(pResultados, pBotonAgregarResultado));
 }
 
 

@@ -5,7 +5,7 @@
 
 class ResultadoConfigModelo : public FiltradorConfigModelo {
     public:
-        ResultadoConfigModelo();
+        ResultadoConfigModelo(unsigned ID);
         ~ResultadoConfigModelo();
 
     private:

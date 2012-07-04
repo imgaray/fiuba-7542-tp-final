@@ -1,4 +1,5 @@
 #include "PanelConfigModelo.h"
+#include "FiltradorConfigManager.h"
 #include <iostream>
 
 #define LABEL_POSICION "Posición en la grilla"
@@ -12,6 +13,9 @@ Glib::ustring PanelConfigModelo::tipoGrafico[CANT_TIPOS] =  {
 
 PanelConfigModelo::PanelConfigModelo()
 : ConfigModelo(NOMBRE_PANEL_POR_DEFECTO),
+  filtrosManager(NULL), inputsManager(NULL),
+  pivoteXsManager(NULL), pivoteYsManager(NULL),
+  resutadosManager(NULL),
   pLabelPosicion(NULL),
   pSpinButtonDesdeFila(NULL), pSpinButtonHastaFila(NULL),
   pSpinButtonDesdeCol(NULL), pSpinButtonHastaCol(NULL),
@@ -28,6 +32,17 @@ PanelConfigModelo::~PanelConfigModelo() {
 }
 
 void PanelConfigModelo::desconectarDeHijo() {
+    if (filtrosManager)
+        filtrosManager->desconectar();
+    if (inputsManager)
+        inputsManager->desconectar();
+    if (pivoteXsManager)
+        pivoteXsManager->desconectar();
+    if (pivoteYsManager)
+        pivoteYsManager->desconectar();
+    if (resutadosManager)
+        resutadosManager->desconectar();
+
     desconectar(connectionSpinButtonDesdeFila, pSpinButtonDesdeFila);
     desconectar(connectionSpinButtonHastaFila, pSpinButtonHastaFila);
     desconectar(connectionSpinButtonDesdeCol, pSpinButtonDesdeCol);
@@ -132,6 +147,52 @@ void PanelConfigModelo::setExpandersPivote(Gtk::Expander* pXPivote,
     pExpanderYPivote = pYPivote;
 }
 
+
+void PanelConfigModelo::setFiltrosHandlers(const filtradoresHandlers& handlers) {
+    if (!filtrosManager) {
+        filtrosManager = new FiltradorConfigManager(FILT_FILTRO, handlers);
+//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_deleted));
+    } else
+        filtrosManager->reconectar();
+}
+
+void PanelConfigModelo::setInputsHandlers(const filtradoresHandlers& handlers) {
+    if (!inputsManager) {
+        inputsManager = new FiltradorConfigManager(FILT_INPUT, handlers);
+//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_deleted));
+    } else
+        inputsManager->reconectar();
+}
+
+void PanelConfigModelo::setPivoteXsHandlers(const filtradoresHandlers& handlers) {
+    if (!pivoteXsManager) {
+        pivoteXsManager = new FiltradorConfigManager(FILT_PIVOTE_X, handlers);
+//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_deleted));
+    } else
+        pivoteXsManager->reconectar();
+}
+
+void PanelConfigModelo::setPivoteYsHandlers(const filtradoresHandlers& handlers) {
+    if (!pivoteYsManager) {
+        pivoteYsManager = new FiltradorConfigManager(FILT_PIVOTE_Y, handlers);
+//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_deleted));
+    } else
+        pivoteYsManager->reconectar();
+}
+
+void PanelConfigModelo::setResultadosHandlers(const filtradoresHandlers& handlers) {
+    if (!resutadosManager) {
+        resutadosManager = new FiltradorConfigManager(FILT_RESULTADO, handlers);
+//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_deleted));
+    } else
+        resutadosManager->reconectar();
+}
+
 void PanelConfigModelo::on_spinbuttons_posicion_changed() {
     bloquearConnectionPosicion();
 
@@ -178,5 +239,6 @@ void PanelConfigModelo::on_combobox_tipo_grafico_changed() {
         pExpanderXPivote->hide();
         pExpanderYPivote->hide();
     }
+    indice_tipoGrafico = pComboBoxTextTipoGrafico->get_active_row_number();
 }
 

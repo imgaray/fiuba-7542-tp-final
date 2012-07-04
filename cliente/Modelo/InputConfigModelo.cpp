@@ -1,5 +1,6 @@
 #include "InputConfigModelo.h"
 
-InputConfigModelo::InputConfigModelo() {}
+InputConfigModelo::InputConfigModelo(unsigned _ID)
+: FiltradorSoloDimensionConfigModelo(_ID) {}
 
 InputConfigModelo::~InputConfigModelo() {}

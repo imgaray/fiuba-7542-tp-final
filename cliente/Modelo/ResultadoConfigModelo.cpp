@@ -1,7 +1,8 @@
 #include "ResultadoConfigModelo.h"
 #include "Organizacion.h"
 
-ResultadoConfigModelo::ResultadoConfigModelo() {}
+ResultadoConfigModelo::ResultadoConfigModelo(unsigned _ID)
+: FiltradorConfigModelo(_ID) {}
 
 ResultadoConfigModelo::~ResultadoConfigModelo() {}
 

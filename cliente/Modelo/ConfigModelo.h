@@ -2,6 +2,10 @@
 #define CONFIG_MODELO_H
 
 #include <gtkmm/entry.h>
+#include <gtkmm/box.h>
+#include <gtkmm/toolbutton.h>
+
+typedef std::pair< Gtk::VBox*, Gtk::ToolButton* > filtradoresHandlers;
 
 class ConfigModelo : public sigc::trackable {
     public:

@@ -7,7 +7,7 @@
 
 class FiltradorConfigModelo {
     public:
-        FiltradorConfigModelo();
+        FiltradorConfigModelo(unsigned ID);
         ~FiltradorConfigModelo();
 
         void setVista(Gtk::ComboBoxText* comboDimension,
@@ -15,6 +15,8 @@ class FiltradorConfigModelo {
                       Gtk::ComboBoxText* comboHecho,
                       Gtk::Entry* entryExtra,
                       Gtk::ToolButton* botonEliminar);
+
+        unsigned getID() const;
 
     protected:
         Gtk::ComboBoxText* comboDimension;
@@ -24,6 +26,9 @@ class FiltradorConfigModelo {
 
     private:
         Gtk::ToolButton* botonEliminar;
+
+        unsigned ID;
+
 
         void setComboDimension(Gtk::ComboBoxText* comboDim);
         void setComboFecha(Gtk::ComboBoxText* comboFecha);

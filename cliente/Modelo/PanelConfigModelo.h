@@ -8,6 +8,8 @@
 
 #define NOMBRE_PANEL_POR_DEFECTO "Nuevo panel"
 
+class FiltradorConfigManager;
+
 class PanelConfigModelo : public ConfigModelo {
     public:
         PanelConfigModelo();
@@ -22,6 +24,12 @@ class PanelConfigModelo : public ConfigModelo {
         void setComboboxTipoGrafico(Gtk::ComboBoxText* pCombo);
         void setExpandersPivote(Gtk::Expander* pXPivote, Gtk::Expander* pYPivote);
 
+        void setFiltrosHandlers(const filtradoresHandlers& handlers);
+        void setInputsHandlers(const filtradoresHandlers& handlers);
+        void setPivoteXsHandlers(const filtradoresHandlers& handlers);
+        void setPivoteYsHandlers(const filtradoresHandlers& handlers);
+        void setResultadosHandlers(const filtradoresHandlers& handlers);
+
         void getPosicion(unsigned& desdeFila, unsigned& hastaFila,
                          unsigned& desdeCol, unsigned& hastaCol);
 
@@ -32,6 +40,11 @@ class PanelConfigModelo : public ConfigModelo {
         unsigned desdeFila, hastaFila;
         unsigned desdeCol, hastaCol;
         bool posicionValida;
+        FiltradorConfigManager* filtrosManager;
+        FiltradorConfigManager* inputsManager;
+        FiltradorConfigManager* pivoteXsManager;
+        FiltradorConfigManager* pivoteYsManager;
+        FiltradorConfigManager* resutadosManager;
 
         int indice_tipoGrafico;
         static Glib::ustring tipoGrafico[];

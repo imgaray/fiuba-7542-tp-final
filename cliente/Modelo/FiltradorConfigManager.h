@@ -12,6 +12,7 @@ enum t_Filt {
 };
 
 class FiltradorConfigModelo;
+class FiltradorConfigVista;
 
 /** @class FiltradorConfigManager
  * clase encargada de manejar la parte de agregado de filtradores dinámicos
@@ -36,6 +37,8 @@ class FiltradorConfigManager : public sigc::trackable {
 //        sigc::signal< void, ConfigModelo* > _signal_model_deleted;
 
         t_Filt tipo;
+        Gtk::VBox* pVBoxFiltradores;
+        Gtk::ToolButton* pButtonAgregar;
         FiltradorConfigModelo* new_filtrador();
 
         /** conexiones a las señales */
@@ -45,11 +48,12 @@ class FiltradorConfigManager : public sigc::trackable {
 
 // la lista sería del par < FiltradorConfigVista* , FiltradorConfigModelo* >,
 // y el mapa de < id, par_anterior >
-
-        std::list< ConfigModelo* > consultasConfiguradas;
+        typedef std::pair< FiltradorConfigVista*, FiltradorConfigModelo* > filtrador;
+        std::list< filtrador > filtradores;
         // para una búsqueda más rápida
-        std::map< Glib::ustring, ConfigModelo* > mapaConsultasConfiguradas;
+        std::map< unsigned,  filtrador > mapaFiltradores;
         bool guardandoCambios;
+        static unsigned generadorID;
 };
 
 #endif  // FILTRADOR_CONFIG_MANAGER_H

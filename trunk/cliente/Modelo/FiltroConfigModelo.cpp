@@ -1,7 +1,8 @@
 #include "FiltroConfigModelo.h"
 #include "Organizacion.h"
 
-FiltroConfigModelo::FiltroConfigModelo() {}
+FiltroConfigModelo::FiltroConfigModelo(unsigned _ID)
+: FiltradorConfigModelo(_ID) {}
 
 FiltroConfigModelo::~FiltroConfigModelo() {}
 

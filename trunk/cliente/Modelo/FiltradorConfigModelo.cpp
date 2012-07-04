@@ -1,10 +1,11 @@
 #include "FiltradorConfigModelo.h"
 #include "Organizacion.h"
 
-FiltradorConfigModelo::FiltradorConfigModelo()
+FiltradorConfigModelo::FiltradorConfigModelo(unsigned _ID)
 : comboDimension(NULL), comboFecha(NULL), comboHecho(NULL),
   entryExtra(NULL),
-  botonEliminar(NULL) {
+  botonEliminar(NULL),
+  ID(_ID) {
 
 }
 
@@ -20,9 +21,13 @@ void FiltradorConfigModelo::setVista(Gtk::ComboBoxText* _comboDimension,
     setComboHecho(_comboHecho);
     setEntryExtra(_entryExtra);
     setBotonEliminar(_botonEliminar);
+    comboDimension->set_active(0);
     especializarVista();
 }
 
+unsigned FiltradorConfigModelo::getID() const {
+    return ID;
+}
 
 void FiltradorConfigModelo::setComboDimension(Gtk::ComboBoxText* comboDim) {
     comboDimension = comboDim;
@@ -32,8 +37,6 @@ void FiltradorConfigModelo::setComboDimension(Gtk::ComboBoxText* comboDim) {
 
     comboDimension->signal_changed().connect(sigc::mem_fun(*this,
         &FiltradorConfigModelo::on_combo_dimension_changed));
-
-    comboDimension->set_active(0);
 }
 
 void FiltradorConfigModelo::setComboFecha(Gtk::ComboBoxText* _comboFecha) {

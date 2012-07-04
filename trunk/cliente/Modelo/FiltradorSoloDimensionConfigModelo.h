@@ -5,7 +5,7 @@
 
 class FiltradorSoloDimensionConfigModelo : public FiltradorConfigModelo {
     public:
-        FiltradorSoloDimensionConfigModelo();
+        FiltradorSoloDimensionConfigModelo(unsigned ID);
         ~FiltradorSoloDimensionConfigModelo();
 
     private:

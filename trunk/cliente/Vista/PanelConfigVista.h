@@ -5,6 +5,7 @@
 #include <gtkmm/entry.h>
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/button.h>
+#include <gtkmm/toolbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/expander.h>
 #include "Buildable.h"
@@ -30,6 +31,23 @@ class PanelConfigVista : public Gtk::VBox, public Buildable  {
         Gtk::ComboBoxText comboTipoGrafico;
         Gtk::Expander* pExpanderXPivote;
         Gtk::Expander* pExpanderYPivote;
+
+        // filtradores
+        Gtk::VBox* pFiltros;
+        Gtk::ToolButton* pBotonAgregarFiltro;
+        Gtk::VBox* pInputs;
+        Gtk::ToolButton* pBotonAgregarInput;
+        Gtk::VBox* pPivoteXs;
+        Gtk::ToolButton* pBotonAgregarPivoteX;
+        Gtk::VBox* pPivoteYs;
+        Gtk::ToolButton* pBotonAgregarPivoteY;
+        Gtk::VBox* pResultados;
+        Gtk::ToolButton* pBotonAgregarResultado;
+
+        void initFiltradores(const Glib::ustring& nombreFilt,
+                             Gtk::VBox*& pFilt,
+                             const Glib::ustring& nombreBoton,
+                             Gtk::ToolButton*& pAgregar);
 };
 
 #endif  // PANEL_CONFIG_VISTA_H

@@ -57,12 +57,6 @@ void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,
 void TabConfigModelo::setInputsHandlers(const filtradoresHandlers& handlers) {
     if (!inputsManager) {
         inputsManager = new FiltradorConfigManager(FILT_INPUT, handlers);
-
-//        on_panel_model_changed(panelManager->getModelo());
-//        panelManager->signal_model_changed().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_changed));
-//        panelManager->signal_model_saved().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_saved));
 //        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
 //            &TabConfigModelo::on_panel_model_deleted));
     } else {

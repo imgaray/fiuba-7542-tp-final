@@ -5,7 +5,7 @@
 
 class PivoteYConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
-        PivoteYConfigModelo();
+        PivoteYConfigModelo(unsigned ID);
         ~PivoteYConfigModelo();
 };
 

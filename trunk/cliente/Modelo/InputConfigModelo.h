@@ -5,7 +5,7 @@
 
 class InputConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
-        InputConfigModelo();
+        InputConfigModelo(unsigned ID);
         ~InputConfigModelo();
 };
 

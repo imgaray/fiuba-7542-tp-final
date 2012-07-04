@@ -1,11 +1,9 @@
 #ifndef TAB_CONFIG_MODELO_H
 #define TAB_CONFIG_MODELO_H
 
-#include <gtkmm/box.h>
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/button.h>
-#include <gtkmm/toolbutton.h>
 #include "ConfigModelo.h"
 
 #define NOMBRE_TAB_POR_DEFECTO "Nueva pestaña"
@@ -14,8 +12,6 @@
 class AdminConfigObjManager;
 class FiltradorConfigManager;
 class PanelConfigModelo;
-
-typedef std::pair< Gtk::VBox*, Gtk::ToolButton* > filtradoresHandlers;
 
 class TabConfigModelo : public ConfigModelo {
     public:

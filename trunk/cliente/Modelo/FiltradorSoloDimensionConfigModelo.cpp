@@ -1,6 +1,7 @@
 #include "FiltradorSoloDimensionConfigModelo.h"
 
-FiltradorSoloDimensionConfigModelo::FiltradorSoloDimensionConfigModelo() {}
+FiltradorSoloDimensionConfigModelo::FiltradorSoloDimensionConfigModelo(unsigned _ID)
+: FiltradorConfigModelo(_ID) {}
 
 FiltradorSoloDimensionConfigModelo::~FiltradorSoloDimensionConfigModelo() {}
 

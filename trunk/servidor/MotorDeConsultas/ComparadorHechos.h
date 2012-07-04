@@ -39,24 +39,37 @@ Atributos:
  * */
 
 
+/**
+ * @class Esta clase es la encargada de decidir si un registro en particular
+ *  debe o no ser filtrado a partir de filtros de Hechos. Construyendose a
+ *  partir un Consulta en particular.
+ */
+
+
 class ComparadorHechos {
 public:
-	/*
-	 * Constructor que se indica si se tiene que filtrar los hechos y
-	 * la consulta con las caracterizticas del filtrado
+	/**
+	 * @brief Constructor que se indica si se tiene que filtrar los hechos y
+	 * la consulta con las caracterizticas del filtrado.
+	 * @param filtarHechos booleano indicando si hay filtrados de hechos.
+	 * @param consulta es la Consulta que contiene los datos por los cual filtrar
 	 */
 	ComparadorHechos(bool filtarHechos, const Consulta& consulta);
 	virtual ~ComparadorHechos();
 
-	/*
-	 * Retorna un bool indicando si el registro a aceptado filtrado o
-	 * si se debe descartar
+	/**
+	 * @brief Retorna un bool indicando si el registro a aceptado filtrado o
+	 * si se debe descartar.
+	 * @brief registro string que contiene el registro completo a analizar.
+	 * @return booleano indicando si el registro se debe filtrar o descartar.
 	 */
 	bool registroAceptado(const std::string& registro);
 private:
-	/*
-	 * Retorna un bool indicando si un hecho en especifico
+	/**
+	 * @brief Retorna un bool indicando si un hecho en especifico
 	 * tenga que ser filtrado o no.
+	 * @param hechoComparador string que contiene el valor un hecho con el cual comparar.
+	 * @param valorHecho string que contien el valor del hecho del registros a comparar.
 	 */
 	bool aceptarHecho(const std::string& hechoComparador, const std::string& valorHecho);
 

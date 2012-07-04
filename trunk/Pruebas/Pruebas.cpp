@@ -42,8 +42,6 @@ void imprimirRespuesta(Respuesta& resp, const string& comentario) {
 	}
 }
 
-
-
 void testBaseDeDatosReal() {
 	cout << "================================================="<< endl;
 	cout << "Inicia Test para BaseDeDatos \"Real\"" << endl;
@@ -2635,7 +2633,8 @@ void testIndFechas() {
 
 	Fecha consulta = mf.cuatrimestre(1, "1990");
 	Lista_Id::const_iterator it;
-	const Lista_Id &lista = indice.recuperar(consulta);
+	Lista_Id lista;
+	indice.recuperar(consulta, lista);
 
 	cout << "Fechas del 1 cuatrimestre de 1990" << endl;
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
@@ -2643,35 +2642,35 @@ void testIndFechas() {
 	}
 
 	consulta = mf.semestre(2, "1990");
-	indice.recuperar(consulta);
+	indice.recuperar(consulta, lista);
 	cout << endl <<"Fechas del 2 semestre de 1990" << endl;
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
 		cout << "Fecha: " << *it << endl;
 	}
 
 	consulta = mf.mes(3, "1990");
-	indice.recuperar(consulta);
+	indice.recuperar(consulta, lista);
 	cout << endl <<"Fechas del 3 mes de 1990" << endl;
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
 		cout << "Fecha: " << *it << endl;
 	}
 
 	consulta = mf.mes(10, "1990");
-	indice.recuperar(consulta);
+	indice.recuperar(consulta, lista);
 	cout << endl <<"Fechas del 10 mes de 1990" << endl;
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
 		cout << "Fecha: " << *it << endl;
 	}
 
 	consulta = mf.mes(7, "1990");
-	indice.recuperar(consulta);
+	indice.recuperar(consulta, lista);
 	cout << endl <<"Fechas del 7 mes de 1990" << endl;
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
 		cout << "Fecha: " << *it << endl;
 	}
 
 	consulta = mf.mes(2, "1990");
-	indice.recuperar(consulta);
+	indice.recuperar(consulta, lista);
 	cout << endl <<"Fechas del 2 mes de 1990" << endl;
 	for ( it = lista.begin() ; it != lista.end() ; ++it) {
 		cout << "Fecha: " << *it << endl;

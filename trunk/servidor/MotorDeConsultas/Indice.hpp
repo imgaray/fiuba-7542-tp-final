@@ -27,7 +27,10 @@ Atributos:
  * @END
  * */
 
-
+/**
+ * @class Esta clase es un templete creada para funcionar como indice, que guarda los id
+ * de registros para un valores del tipo _dato_.
+ */
 template < class _dato_ >
 class Indice {
 public:
@@ -35,10 +38,15 @@ public:
 	typedef typename Mapa::iterator Iterador;
 	typedef typename std::pair < Iterador, Iterador > Rango;
 
+	/**
+	 * @brief Constructor sin argumentos.
+	 */
 	Indice() { }
 
-	/*
-	 * Recupera una Lista de Ids que corresponde al valor "dato"
+	/**
+	 * @brief Recupera una Lista de Ids que corresponde al valor "dato".
+	 * @param dato valor del cual se va a recuperar la lista de ids
+	 * @return lista que contiene los ids recuperados
 	 */
 	Lista_Id recuperar(_dato_ dato) {
 		Iterador _it;
@@ -58,8 +66,10 @@ public:
 		return _res;
 	} ;
 
-	/*
-	 * Recupera una Lista de Ids que corresponde al valor "dato"
+	/**
+	 * @brief Recupera una Lista de Ids que corresponde al valor "dato".
+	 * @param dato valor del cual se va a recuperar la lista de ids.
+	 * @param lista es la lista donde se almacenaran los ids recuperados
 	 */
 	void recuperar(_dato_ dato, Lista_Id& lista) {
 			Iterador _it;
@@ -74,15 +84,17 @@ public:
 			lista.unique();
 		} ;
 
-	/*
-	 * Recupera una Lista de Ids que corresponde al valor "dato"
+	/**
+	 * @brief Recupera una Lista de Ids que corresponde al valor "dato"
+	 * @param dato valor que se guardara en el indice.
+	 * @param registro id del registro para el cual se guardara el dato
 	 */
 	void agregar(_dato_ dato, Id_Registro registro) {
 		_mapa.insert(std::pair< _dato_, Id_Registro > (dato, registro));
 	}
 
-	/*
-	 * Se borra y restablece el contenido del indice
+	/**
+	 * @brief Se borra y restablece el contenido del indice
 	 */
 	void limpiar() {
 		_mapa.clear();

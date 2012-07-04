@@ -31,49 +31,67 @@ Atributos:
  * */
 
 
+/**
+ * @class Esta clase es la encargada de funcionar como un indice para las fechas,
+ * guardando los id de registros, permitiendo que los ids sean recuperados
+ * por distintos tipos de rangos para las fechas.
+ */
 class IndiceDeFechas {
 public:
+	/**
+	 * @brief Constructor sin argumentos.
+	 */
 	IndiceDeFechas();
 	virtual ~IndiceDeFechas();
 
-	/*
-	 * Se recupera una lista con Ids que corresponden
+	/**
+	 * @brief Se recupera una lista con Ids que corresponden
 	 * a la fecha pasada como argumento.
+	 * @param fecha valor por el cual se van a recupara los ids
+	 * @return lista que contiene los ids recuperados
 	 */
-	const Lista_Id& recuperar(const Fecha& fecha);
+	//const Lista_Id& recuperar(const Fecha& fecha);
 
-	/*
-	 * Se recupera una lista con Ids que corresponden
+	/**
+	 * @brief Se recupera una lista con Ids que corresponden
 	 * a la fecha pasada como argumento.
+	 * @param fecha valor por el cual se van a recupara los ids
+	 * @param ids lista donde se guardaran los ids recuperados
 	 */
 	void recuperar(const Fecha& fecha, Lista_Id& ids) const;
 
-	/*
-	 * Se guarda una fecha al indice con su id correspondiente
+	/**
+	 * @brief Se guarda una fecha al indice con su id correspondiente.
+	 * @param fecha valor de fecha por que se va a guardar en el indice
+	 * @param id identificador de la fecha
 	 */
 	void guardarFecha(const Fecha& fecha, const Id_Registro& id);
 
-	/*
-	 * Se borra y reestablece el contenido del indice
+	/**
+	 * @brief Se borra y reestablece el contenido del indice
 	 */
 	void limpiar();
 private:
-	/*
-	 * Almacena en la lista los Ids que corresponden desde la fecha f1
+	/**
+	 * @brief Almacena en la lista los Ids que corresponden desde la fecha f1
 	 * hasta la fecha f2.
+	 * @param f1 fecha inferior del rango
+	 * @param f2 fecha superior del rango
 	 */
-	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2);
+	//void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2);
 	void guardarDesdeRango(const FechaNumerica& f1, const FechaNumerica& f2, Lista_Id& ids) const;
 
-	/*
-	 * Almacena en la lista los Ids que corresponden a una fecha.
+	/**
+	 * @brief Almacena en la lista los Ids que corresponden a una fecha.
+	 * @param fecha valor de fecha
+	 * @param ids lista donde se guardaran los ids segun la fecha
 	 */
-	void guardarIDs(const FechaNumerica& fecha);
+	//void guardarIDs(const FechaNumerica& fecha);
 	void guardarIDs(const FechaNumerica& fecha, Lista_Id& ids) const;
 
 	MapaDeFechas _fechas;
 	M_Fechas m_fechas;
-	Lista_Id _res;
+	//Lista_Id _res;
 };
 
 #endif /* INDICEDEFECHAS_H_ */

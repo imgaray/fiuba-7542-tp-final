@@ -27,6 +27,6 @@ test: $(bin)
 	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test
 	
 clean:
-	rm $(robjs)
+	rm -f $(robjs)
 
 .PHONY: clean all binaries

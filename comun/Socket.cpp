@@ -129,6 +129,8 @@ void Socket::conectar(const std::string& huesped) {
     }
     
     this->_conectado = true;
+
+    std::cout << "SOCKET CONECTADO" << std::endl;
 }
 
 void Socket::desconectar() {

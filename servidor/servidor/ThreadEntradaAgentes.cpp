@@ -18,11 +18,12 @@ void ThreadEntradaAgentes::correr() {
 }
 
 void ThreadEntradaAgentes::detener_entrada() {
-	if (corriendo())
+	//if (corriendo())
 		parar();
-	if (entradaAgentes)	
+	if (entradaAgentes)	{
 		entradaAgentes->desconectar();
-	this->parar();
+	}
+	//this->parar();
 }
 
 ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag, 

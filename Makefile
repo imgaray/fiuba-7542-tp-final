@@ -13,17 +13,18 @@ install_agente:
 install_cliente:
 	mkdir apCliente
 	cd cliente; make
-	cp cliente/main apCliente
-	cp cliente/*.conf apCliente
-	cp cliente/*.config apCliente
+	cp -f cliente/main apCliente
+	cp -f cliente/*.conf apCliente
+	cp -f cliente/*.config apCliente
+	cp -f cliente/Vista/*.glade apCliente
 
 install_servidor:
 	mkdir apServidor
 	cd servidor; make
-	cp servidor/main apServidor
-	cp servidor/*.conf apServidor
-	cp servidor/*.config apServidor
-	cp servidor/*.dat
+	cp -f servidor/main apServidor
+	cp -f servidor/*.conf apServidor
+	cp -f servidor/*.config apServidor
+	cp -f servidor/*.dat
 
 
 uninstall:

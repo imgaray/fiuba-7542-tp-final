@@ -20,19 +20,20 @@ void ThreadEntradaClientes::correr() {
 
 void ThreadEntradaClientes::detener_entrada() {
 	parar();
-	if (entradaClientes)
+	if (entradaClientes) {
 		entradaClientes->desconectar();
+	}
 }
 
 ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli,
 				ResolvedorConsultas& rcons, Puerto pcli, ConsultasClientesServidor& ccons):
 	cc(ccli), rc(rcons), pclientes(pcli), cconsultas(ccons) {
-	entradaClientes = new Socket(pclientes);
+	entradaClientes = new Socket(pcli);
 	entradaClientes->enlazar();
 }
 
 ThreadEntradaClientes::~ThreadEntradaClientes() {
-	if (corriendo())	
+	//if (corriendo())
 		detener_entrada();
 	if (entradaClientes)
 		delete entradaClientes;

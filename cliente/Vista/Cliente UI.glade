@@ -580,29 +580,35 @@
                                         <property name="visible">True</property>
                                         <property name="resize_mode">queue</property>
                                         <child>
-                                          <object class="GtkVButtonBox" id="vbuttonboxTabFiltradores">
+                                          <object class="GtkVBox" id="vboxTabInputs">
                                             <property name="visible">True</property>
-                                            <property name="layout_style">start</property>
                                             <child>
                                               <placeholder/>
                                             </child>
                                             <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
+                                              <object class="GtkToolbar" id="toolbar2">
+                                                <property name="visible">True</property>
+                                                <property name="icon_size">1</property>
+                                                <property name="icon_size_set">True</property>
+                                                <child>
+                                                  <object class="GtkToolButton" id="toolbuttonTabAgregarInput">
+                                                    <property name="visible">True</property>
+                                                    <property name="label" translatable="yes">toolbutton3</property>
+                                                    <property name="use_underline">True</property>
+                                                    <property name="stock_id">gtk-add</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">True</property>
+                                                    <property name="homogeneous">True</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">False</property>
+                                                <property name="pack_type">end</property>
+                                                <property name="position">1</property>
+                                              </packing>
                                             </child>
                                           </object>
                                         </child>
@@ -905,10 +911,35 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkVBox" id="vbox11">
+                                                            <object class="GtkVBox" id="vboxPanelFiltros">
                                                             <property name="visible">True</property>
                                                             <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkToolbar" id="toolbar3">
+                                                            <property name="visible">True</property>
+                                                            <property name="icon_size">1</property>
+                                                            <property name="icon_size_set">True</property>
+                                                            <child>
+                                                            <object class="GtkToolButton" id="toolbuttonPanelAgregarFiltro">
+                                                            <property name="visible">True</property>
+                                                            <property name="label" translatable="yes">toolbutton3</property>
+                                                            <property name="use_underline">True</property>
+                                                            <property name="stock_id">gtk-add</property>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">True</property>
+                                                            <property name="homogeneous">True</property>
+                                                            </packing>
+                                                            </child>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="pack_type">end</property>
+                                                            <property name="position">1</property>
+                                                            </packing>
                                                             </child>
                                                             </object>
                                                             </child>
@@ -928,10 +959,35 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkVBox" id="vbox12">
+                                                            <object class="GtkVBox" id="vboxPanelInputs">
                                                             <property name="visible">True</property>
                                                             <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkToolbar" id="toolbar4">
+                                                            <property name="visible">True</property>
+                                                            <property name="icon_size">1</property>
+                                                            <property name="icon_size_set">True</property>
+                                                            <child>
+                                                            <object class="GtkToolButton" id="toolbuttonPanelAgregarInput">
+                                                            <property name="visible">True</property>
+                                                            <property name="label" translatable="yes">toolbutton3</property>
+                                                            <property name="use_underline">True</property>
+                                                            <property name="stock_id">gtk-add</property>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">True</property>
+                                                            <property name="homogeneous">True</property>
+                                                            </packing>
+                                                            </child>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="pack_type">end</property>
+                                                            <property name="position">1</property>
+                                                            </packing>
                                                             </child>
                                                             </object>
                                                             </child>
@@ -951,10 +1007,35 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkVBox" id="vbox13">
+                                                            <object class="GtkVBox" id="vboxPanelXPivote">
                                                             <property name="visible">True</property>
                                                             <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkToolbar" id="toolbar5">
+                                                            <property name="visible">True</property>
+                                                            <property name="icon_size">1</property>
+                                                            <property name="icon_size_set">True</property>
+                                                            <child>
+                                                            <object class="GtkToolButton" id="toolbuttonPanelAgregarXPivote">
+                                                            <property name="visible">True</property>
+                                                            <property name="label" translatable="yes">toolbutton3</property>
+                                                            <property name="use_underline">True</property>
+                                                            <property name="stock_id">gtk-add</property>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">True</property>
+                                                            <property name="homogeneous">True</property>
+                                                            </packing>
+                                                            </child>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="pack_type">end</property>
+                                                            <property name="position">1</property>
+                                                            </packing>
                                                             </child>
                                                             </object>
                                                             </child>
@@ -974,10 +1055,35 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkVBox" id="vbox14">
+                                                            <object class="GtkVBox" id="vboxPanelYPivote">
                                                             <property name="visible">True</property>
                                                             <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkToolbar" id="toolbar6">
+                                                            <property name="visible">True</property>
+                                                            <property name="icon_size">1</property>
+                                                            <property name="icon_size_set">True</property>
+                                                            <child>
+                                                            <object class="GtkToolButton" id="toolbuttonPanelAgregarYPivote">
+                                                            <property name="visible">True</property>
+                                                            <property name="label" translatable="yes">toolbutton3</property>
+                                                            <property name="use_underline">True</property>
+                                                            <property name="stock_id">gtk-add</property>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">True</property>
+                                                            <property name="homogeneous">True</property>
+                                                            </packing>
+                                                            </child>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="pack_type">end</property>
+                                                            <property name="position">1</property>
+                                                            </packing>
                                                             </child>
                                                             </object>
                                                             </child>
@@ -997,10 +1103,35 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkVBox" id="vbox15">
+                                                            <object class="GtkVBox" id="vboxPanelResultados">
                                                             <property name="visible">True</property>
                                                             <child>
                                                             <placeholder/>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkToolbar" id="toolbar7">
+                                                            <property name="visible">True</property>
+                                                            <property name="icon_size">1</property>
+                                                            <property name="icon_size_set">True</property>
+                                                            <child>
+                                                            <object class="GtkToolButton" id="toolbuttonPanelAgregarResultado">
+                                                            <property name="visible">True</property>
+                                                            <property name="label" translatable="yes">toolbutton3</property>
+                                                            <property name="use_underline">True</property>
+                                                            <property name="stock_id">gtk-add</property>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">True</property>
+                                                            <property name="homogeneous">True</property>
+                                                            </packing>
+                                                            </child>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="pack_type">end</property>
+                                                            <property name="position">1</property>
+                                                            </packing>
                                                             </child>
                                                             </object>
                                                             </child>

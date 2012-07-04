@@ -3,8 +3,8 @@
 #include "Tab.h"
 
 #define MSJ_ERROR "Sólo números"
-#define CANT_COMBO 2
-Glib::ustring FiltradorInputHecho::valoresCombo[CANT_COMBO] = { ">", "<" };
+#define CANT_COMBO 3
+Glib::ustring FiltradorInputHecho::valoresCombo[CANT_COMBO] = { ">", "=", "<" };
 Utilitario FiltradorInputHecho::u;
 
 FiltradorInputHecho::FiltradorInputHecho(const Glib::ustring& input)
@@ -16,6 +16,11 @@ FiltradorInputHecho::FiltradorInputHecho(const Glib::ustring& input)
     valores.set_active(i);
 
     centradorDerecho.pack_end(entrada, false, false);
+
+    valores.signal_changed().connect(sigc::mem_fun(*this,
+        &FiltradorInputHecho::on_combo_changed));
+    entrada.signal_activate().connect(sigc::mem_fun(*this,
+        &FiltradorInputHecho::on_entry_activated));
 }
 
 FiltradorInputHecho::~FiltradorInputHecho() {}

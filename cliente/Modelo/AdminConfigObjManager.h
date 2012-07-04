@@ -9,7 +9,8 @@ enum t_Objeto {
     OBJ_TAB,
     OBJ_PANEL
 };
-/** @class clase encargada de manejar la parte de agregado de objetos dinámicos
+/** @class AdminConfigObjManager
+ * clase encargada de manejar la parte de agregado de objetos dinámicos
  * por el admin (pestañas y paneles)
  * Emite la señal signal_model_changed cuando el modelo que está detrás de la
  * vista cambia

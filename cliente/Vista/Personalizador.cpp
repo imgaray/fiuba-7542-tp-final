@@ -183,8 +183,8 @@ void Personalizador::construir() {
 	std::string aux;
 	Utilitario u;
 	while (archivoConfiguracion.good() && !archivoConfiguracion.eof()) {
-		
-		} 
+
+		}
 	}
 }*/
 
@@ -198,7 +198,7 @@ void Personalizador::construir() {
     while (fTab2->tieneFiltrosNavegables())
         pTab2->agregarFiltroNavegable(fTab2->getFiltroNavegable());
 
-    Panel* pPanelTorta2 = new Panel("Panel");
+    Panel* pPanelTorta2 = new Panel("Panel1");
 
     FiltradoresPanel* fPanel2 = new FiltradoresPanel(*fTab2);
     fPanel2->agregarXTablaP("Producto");
@@ -236,7 +236,7 @@ void Personalizador::construir() {
     while (fTab3->tieneFiltrosNavegables())
         pTab3->agregarFiltroNavegable(fTab3->getFiltroNavegable());
 
-    Panel* pPanelTorta3 = new Panel("Panel");
+    Panel* pPanelTorta3 = new Panel("Panel2");
 
     FiltradoresPanel* fPanel3 = new FiltradoresPanel(*fTab3);
     fPanel3->agregarResultado("Producto");
@@ -284,7 +284,7 @@ void Personalizador::construir() {
     while (fTab3_2->tieneFiltrosNavegables())
         pTab3_2->agregarFiltroNavegable(fTab3_2->getFiltroNavegable());
 
-    Panel* pPanelTorta3_2 = new Panel("Panel");
+    Panel* pPanelTorta3_2 = new Panel("Panel3");
 
     FiltradoresPanel* fPanel3_2 = new FiltradoresPanel(*fTab3_2);
     fPanel3_2->agregarResultado("Vendedor");
@@ -330,7 +330,7 @@ void Personalizador::construir() {
     while (fTab4->tieneFiltrosNavegables())
         pTab4->agregarFiltroNavegable(fTab4->getFiltroNavegable());
 
-    Panel* pPanelBarras4 = new Panel("Panel");
+    Panel* pPanelBarras4 = new Panel("Panel4");
     FiltradoresPanel* fPanel4 = new FiltradoresPanel(*fTab4);
     fPanel4->agregarResultado("Vendedor");
     fPanel4->agregarResultado(Organizacion::nombreHecho(1), "CONT");
@@ -370,7 +370,7 @@ void Personalizador::construir() {
     while (fTab5->tieneFiltrosNavegables())
         pTab5->agregarFiltroNavegable(fTab5->getFiltroNavegable());
 
-    Panel* pPanelTorta5 = new Panel("Panel");
+    Panel* pPanelTorta5 = new Panel("Panel5");
     FiltradoresPanel* fPanel5 = new FiltradoresPanel(*fTab5);
     fPanel5->agregarEntrada("Vendedor");
     fPanel5->agregarResultado("Producto");
@@ -411,7 +411,7 @@ void Personalizador::construir() {
     while (fTab6->tieneFiltrosNavegables())
         pTab6->agregarFiltroNavegable(fTab6->getFiltroNavegable());
 
-    Panel* pPanelBarras6 = new Panel("Panel");
+    Panel* pPanelBarras6 = new Panel("Panel6");
     FiltradoresPanel* fPanel6 = new FiltradoresPanel(*fTab6);
     fPanel6->agregarEntrada("Sucursal");
     fPanel6->agregarResultado("Vendedor");
@@ -453,7 +453,7 @@ void Personalizador::construir() {
     while (fTab7->tieneFiltrosNavegables())
         pTab7->agregarFiltroNavegable(fTab7->getFiltroNavegable());
 
-    Panel* pPanelTorta7 = new Panel("Panel");
+    Panel* pPanelTorta7 = new Panel("Panel7");
     FiltradoresPanel* fPanel7 = new FiltradoresPanel(*fTab7);
     fPanel7->agregarEntrada("Vendedor");
     fPanel7->agregarResultado("Producto");
@@ -495,7 +495,7 @@ void Personalizador::construir() {
     while (fTab8->tieneFiltrosNavegables())
         pTab8->agregarFiltroNavegable(fTab8->getFiltroNavegable());
 
-    Panel* pPanelBarras8 = new Panel("Panel");
+    Panel* pPanelBarras8 = new Panel("Panel8");
     FiltradoresPanel* fPanel8 = new FiltradoresPanel(*fTab8);
     fPanel8->agregarEntrada("Sucursal");
     fPanel8->agregarResultado("Vendedor");
@@ -536,7 +536,7 @@ void Personalizador::construir() {
     while (fTab9->tieneFiltrosNavegables())
         pTab9->agregarFiltroNavegable(fTab9->getFiltroNavegable());
 
-    Panel* pPanelTorta9 = new Panel("Panel");
+    Panel* pPanelTorta9 = new Panel("Panel9");
     FiltradoresPanel* fPanel9 = new FiltradoresPanel(*fTab9);
     fPanel9->agregarEntrada("Sucursal");
     fPanel9->agregarResultado("Vendedor");
@@ -552,7 +552,7 @@ void Personalizador::construir() {
 
     Gtk::HSeparator* sep9 = new Gtk::HSeparator();
 
-    Panel* pPanelBarras10 = new Panel("Panel");
+    Panel* pPanelBarras10 = new Panel("Panel10");
     FiltradoresPanel* fPanel10 = new FiltradoresPanel(*fTab9);
     fPanel10->agregarResultado("Sucursal");
     fPanel10->agregarResultado(Organizacion::nombreHecho(0), "CONT");

@@ -13,7 +13,6 @@ class Consulta;
 
 class FiltradoresPanel : public Gtk::VBox {
     public:
-        /** @todo agregar agregaciones */
         FiltradoresPanel(FiltradoresTab& filtTab);
         ~FiltradoresPanel();
 

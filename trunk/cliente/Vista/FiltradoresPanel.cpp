@@ -20,6 +20,7 @@
 #define EXCEP_MSJ_FILTRO_MAL    "El campo solicitado para el filtro no es dimensión ni hecho"
 #define EXCEP_MSJ_INPUT_MAL     "El campo solicitado para el input no es dimensión ni hecho"
 #define EXCEP_MSJ_TABLA_P_MAL     "El campo solicitado para la tabla pivote no es dimensión ni hecho"
+#define EXCEP_MSJ_TABLA_P_RESULTADO_MAL     "La tabla pivote sólo admite hechos en sus resultados"
 
 FiltradoresPanel::FiltradoresPanel(FiltradoresTab& filtTab)
 : filtrosHeredados(filtTab),
@@ -85,9 +86,17 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
 }
 
 void FiltradoresPanel::agregarResultado(const std::string& dimension) {
-    FiltradorResultadoDimension* f = new FiltradorResultadoDimension(dimension);
-    add(*f);
-    filtradores.push_back(f);
+    try {
+        if (esParaTablaPivote)
+            throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_RESULTADO_MAL);
+
+        FiltradorResultadoDimension* f = new FiltradorResultadoDimension(dimension);
+        add(*f);
+        filtradores.push_back(f);
+    }
+    catch (const ExcepcionFiltradorMalConstruido& e) {
+        std::cout << e.what() << std::endl;
+    }
 }
 
 void FiltradoresPanel::agregarResultado(const std::string& fecha,
@@ -95,6 +104,9 @@ void FiltradoresPanel::agregarResultado(const std::string& fecha,
                                         const std::string& valorEntrada) {
     FiltradorResultadoFecha* f;
     try {
+        if (esParaTablaPivote)
+            throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_RESULTADO_MAL);
+
         f = new FiltradorResultadoFecha(fecha, valorCombo, valorEntrada);
         add(*f);
         filtradores.push_back(f);

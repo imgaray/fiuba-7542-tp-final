@@ -1,16 +1,21 @@
 #ifndef TAB_CONFIG_MODELO_H
 #define TAB_CONFIG_MODELO_H
 
+#include <gtkmm/box.h>
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/button.h>
+#include <gtkmm/toolbutton.h>
 #include "ConfigModelo.h"
 
 #define NOMBRE_TAB_POR_DEFECTO "Nueva pestaña"
 #define MAX_GRILLA 99
 
 class AdminConfigObjManager;
+class FiltradorConfigManager;
 class PanelConfigModelo;
+
+typedef std::pair< Gtk::VBox*, Gtk::ToolButton* > filtradoresHandlers;
 
 class TabConfigModelo : public ConfigModelo {
     public:
@@ -24,7 +29,8 @@ class TabConfigModelo : public ConfigModelo {
                                 );
         void setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
                                   Gtk::SpinButton* pCols);
-        void setCheckButtonsFiltradores(const std::list< Gtk::CheckButton* >& filtradores);
+
+        void setInputsHandlers(const filtradoresHandlers& handlers);
 
         sigc::signal< void, PanelConfigModelo* > signal_panel_model_changed();
 
@@ -34,8 +40,9 @@ class TabConfigModelo : public ConfigModelo {
         /** modelo mismo */
         unsigned filas, cols;
         unsigned min_fila, min_col;
-        std::list< bool > filtradoresTab;
         PanelConfigModelo* ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
+        FiltradorConfigManager* inputsManager;
+
 
         /** vista */
             /** conexiones a las señales */
@@ -45,12 +52,10 @@ class TabConfigModelo : public ConfigModelo {
             /** signal handlers */
             void on_spinbutton_filas_value_changed();
             void on_spinbutton_cols_value_changed();
-            void on_filtradores_toggled();
 
             /** referencias */
             Gtk::SpinButton* pSpinButtonFilas;
             Gtk::SpinButton* pSpinButtonCols;
-            std::list< Gtk::CheckButton* > pCheckButtonsFiltradores;
 
         /** cosas de paneles */
             /** señales */
@@ -58,7 +63,6 @@ class TabConfigModelo : public ConfigModelo {
 
             /** conexiones */
             sigc::connection connectionPanelPosicion;
-            std::list< sigc::connection > connectionCheckButtonsFiltradores;
 
             /** signal handlers */
             void on_panel_solicita_validacion(PanelConfigModelo* pPanel,
@@ -76,7 +80,7 @@ class TabConfigModelo : public ConfigModelo {
             void on_panel_model_saved(ConfigModelo* m);
             void on_panel_model_deleted(ConfigModelo* m);
 
-
+            // helper
             void imprimirGrilla();
 };
 

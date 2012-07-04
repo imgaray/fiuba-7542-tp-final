@@ -1,10 +1,12 @@
 #include "TabConfigModelo.h"
 #include "PanelConfigModelo.h"
 #include "AdminConfigObjManager.h"
+#include "FiltradorConfigManager.h"
 #include "Organizacion.h"
 
 TabConfigModelo::TabConfigModelo()
 : ConfigModelo(NOMBRE_TAB_POR_DEFECTO),
+  inputsManager(NULL),
   pSpinButtonFilas(NULL), pSpinButtonCols(NULL),
   panelManager(NULL),
   pModeloPanel(NULL) {
@@ -13,12 +15,6 @@ TabConfigModelo::TabConfigModelo()
     for (unsigned i = 0; i < MAX_GRILLA; ++i)
         for (unsigned j = 0; j < MAX_GRILLA; ++j)
             ocupacionesGrilla[i][j] = NULL;
-
-    for (unsigned i = 0; i < Organizacion::cantidadCampos(); ++i) {
-        filtradoresTab.push_back(false);
-        sigc::connection c;
-        connectionCheckButtonsFiltradores.push_back(c);
-    }
 }
 
 TabConfigModelo::~TabConfigModelo() {
@@ -55,23 +51,35 @@ void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,
             &TabConfigModelo::on_panel_model_deleted));
     } else {
         panelManager->reconectar();
-
     }
 }
+
+void TabConfigModelo::setInputsHandlers(const filtradoresHandlers& handlers) {
+    if (!inputsManager) {
+        inputsManager = new FiltradorConfigManager(FILT_INPUT, handlers);
+
+//        on_panel_model_changed(panelManager->getModelo());
+//        panelManager->signal_model_changed().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_changed));
+//        panelManager->signal_model_saved().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_saved));
+//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
+//            &TabConfigModelo::on_panel_model_deleted));
+    } else {
+        inputsManager->reconectar();
+    }
+}
+
 #include <iostream>
 void TabConfigModelo::desconectarDeHijo() {
     if (panelManager)
         panelManager->desconectar();
+    if (inputsManager)
+        inputsManager->desconectar();
 
     desconectar(connectionSpinButtonFilas, pSpinButtonFilas);
     desconectar(connectionSpinButtonCols, pSpinButtonCols);
     desconectar(connectionPanelPosicion, pModeloPanel);
-
-    std::list< sigc::connection >::iterator itConn = connectionCheckButtonsFiltradores.begin();
-    std::list< Gtk::CheckButton* >::iterator itP = pCheckButtonsFiltradores.begin();
-    for ( ; itConn != connectionCheckButtonsFiltradores.end(),
-            itP != pCheckButtonsFiltradores.end(); ++itConn, ++itP)
-        desconectar(*itConn, *itP);
 }
 
 void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
@@ -150,23 +158,6 @@ void TabConfigModelo::setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
         sigc::mem_fun(*this, &TabConfigModelo::on_spinbutton_cols_value_changed));
 }
 
-void TabConfigModelo::setCheckButtonsFiltradores(
-    const std::list< Gtk::CheckButton* >& filtradores) {
-
-    pCheckButtonsFiltradores = filtradores;
-    std::list< Gtk::CheckButton* >::iterator it = pCheckButtonsFiltradores.begin();
-    std::list< bool >::iterator itFilt = filtradoresTab.begin();
-    std::list< sigc::connection >::iterator itFiltConn = connectionCheckButtonsFiltradores.begin();
-
-    for ( ; it != pCheckButtonsFiltradores.end(); ++it, ++itFilt, ++itFiltConn) {
-        Gtk::CheckButton* p = *it;
-        p->set_active(*itFilt);
-
-        *itFiltConn = p->signal_toggled().connect(
-            sigc::mem_fun(*this, &TabConfigModelo::on_filtradores_toggled));
-    }
-}
-
 void TabConfigModelo::on_spinbutton_filas_value_changed() {
     unsigned filasNueva = pSpinButtonFilas->get_value_as_int();
     if (filasNueva >= min_fila)
@@ -243,14 +234,5 @@ void TabConfigModelo::imprimirGrilla() {
             else
                 std::cout << ".";
         std::cout << std::endl;
-    }
-}
-
-void TabConfigModelo::on_filtradores_toggled() {
-    filtradoresTab.clear();
-    std::list< Gtk::CheckButton* >::const_iterator it = pCheckButtonsFiltradores.begin();
-    for ( ; it != pCheckButtonsFiltradores.end(); ++it) {
-        Gtk::CheckButton* p = *it;
-        filtradoresTab.push_back(p->get_active());
     }
 }

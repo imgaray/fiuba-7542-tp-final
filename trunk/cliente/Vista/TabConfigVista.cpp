@@ -19,7 +19,8 @@
 #define SPINBUTTON_FILAS "spinbuttonFilas"
 #define SPINBUTTON_COLS "spinbuttonCols"
 
-#define VBUTTONBOX_TAB_FILTRADORES "vbuttonboxTabFiltradores"
+#define VBOX_TAB_INPUTS "vboxTabInputs"
+#define TOOLBUTTON_TAB_AGREGAR_INPUT "toolbuttonTabAgregarInput"
 
 TabConfigVista::TabConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& _builder)
@@ -32,15 +33,8 @@ TabConfigVista::TabConfigVista(BaseObjectType* cobject,
     get_widget(SPINBUTTON_FILAS, pSpinButtonFilas);
     get_widget(SPINBUTTON_COLS, pSpinButtonCols);
 
-    Gtk::VButtonBox* pFiltradores;
-    get_widget(VBUTTONBOX_TAB_FILTRADORES, pFiltradores);
-    for (unsigned i = 0; i < Organizacion::cantidadCampos(); ++i) {
-        Gtk::CheckButton* p = manage(new Gtk::CheckButton(Organizacion::nombreCampo(i)));
-        pCheckButtonsFiltradores.push_back(p);
-        pFiltradores->pack_start(*p, false, false);
-        p->show();
-    }
-
+    get_widget(VBOX_TAB_INPUTS, pInputs);
+    get_widget(TOOLBUTTON_TAB_AGREGAR_INPUT, pBotonAgregarInput);
 }
 
 TabConfigVista::~TabConfigVista() {
@@ -88,7 +82,7 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
         sigc::mem_fun(*this, &TabConfigVista::on_panel_model_changed));
     pModelo->setEntryLabel(pEntryTabLabel);
     pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
-    pModelo->setCheckButtonsFiltradores(pCheckButtonsFiltradores);
+    pModelo->setInputsHandlers(filtradoresHandlers(pInputs, pBotonAgregarInput));
 }
 
 

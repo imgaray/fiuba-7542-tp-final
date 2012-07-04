@@ -2,9 +2,11 @@
 #define TAB_CONFIG_VISTA_H
 
 #include <gtkmm/table.h>
+#include <gtkmm/box.h>
 #include <gtkmm/entry.h>
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/button.h>
+#include <gtkmm/toolbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/checkbutton.h>
 #include "Buildable.h"
@@ -36,7 +38,9 @@ class TabConfigVista : public Gtk::Table, public Buildable  {
         Gtk::Entry* pEntryTabLabel;
         Gtk::SpinButton* pSpinButtonFilas;
         Gtk::SpinButton* pSpinButtonCols;
-        std::list< Gtk::CheckButton* > pCheckButtonsFiltradores;
+
+        Gtk::VBox* pInputs;
+        Gtk::ToolButton* pBotonAgregarInput;
 };
 
 #endif  // TAB_CONFIG_VISTA_H

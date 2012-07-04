@@ -45,9 +45,8 @@ class FiltradorConfigManager : public sigc::trackable {
         sigc::connection connectionButtonAgregar;
 
         void on_agregar_button_clicked();
+        void on_delete_filtrador(unsigned ID);
 
-// la lista sería del par < FiltradorConfigVista* , FiltradorConfigModelo* >,
-// y el mapa de < id, par_anterior >
         typedef std::pair< FiltradorConfigVista*, FiltradorConfigModelo* > filtrador;
         std::list< filtrador > filtradores;
         // para una búsqueda más rápida

@@ -66,6 +66,10 @@ void FiltradorConfigModelo::setBotonEliminar(Gtk::ToolButton* _botonEliminar) {
         &FiltradorConfigModelo::on_boton_eliminar_clicked));
 }
 
+sigc::signal< void, unsigned > FiltradorConfigModelo::signal_delete_filtrador() {
+    return _signal_delete_filtrador;
+}
+
 void FiltradorConfigModelo::on_boton_eliminar_clicked() {
-    std::cout << "Eliminando filtrador @todo" << std::endl;
+    _signal_delete_filtrador.emit(ID);
 }

@@ -43,7 +43,8 @@ Atributos:
 
 
 /**
- * @class Esta clase es la encargada de almacenar todo tipo de registros guardandolos
+ * @class ArchivoDeDatos
+ * Esta clase es la encargada de almacenar todo tipo de registros guardandolos
  * en disco, permitiendo acceder a estos a partir de su id de registro.
  */
 
@@ -91,10 +92,14 @@ private:
 	void leerRegistro(const size_t& posicion, std::string& reg);
 
 	/**
-	 * @brief Inicializa los archivos utilizados de la Clase
+	 * @brief Inicializa los archivos utilizados de la Clase}}}}
 	 */
 	void inicilizarArchivos();
 
+//! A public variable.
+/*!
+Details.
+*/
 	std::fstream _archivoPrincipal;
 	std::fstream _posRelativas;
 	Id_Registro _ultimoID;

@@ -18,6 +18,8 @@ class FiltradorConfigModelo {
 
         unsigned getID() const;
 
+        sigc::signal< void, unsigned > signal_delete_filtrador();
+
     protected:
         Gtk::ComboBoxText* comboDimension;
         Gtk::ComboBoxText* comboFecha;
@@ -29,6 +31,7 @@ class FiltradorConfigModelo {
 
         unsigned ID;
 
+        sigc::signal< void, unsigned > _signal_delete_filtrador;
 
         void setComboDimension(Gtk::ComboBoxText* comboDim);
         void setComboFecha(Gtk::ComboBoxText* comboFecha);

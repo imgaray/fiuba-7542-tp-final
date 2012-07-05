@@ -96,10 +96,13 @@ private:
 	 */
 	void inicilizarArchivos();
 
-//! A public variable.
-/*!
-Details.
-*/
+	/**
+	 * @brief comprueba si la posicion es valida, si no arroja una excepcion.
+	 * @throw ErrorArchivoCorrompido
+	 */
+	void posicionValida(size_t posicion);
+
+
 	std::fstream _archivoPrincipal;
 	std::fstream _posRelativas;
 	Id_Registro _ultimoID;

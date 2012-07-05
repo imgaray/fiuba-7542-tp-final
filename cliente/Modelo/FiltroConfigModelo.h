@@ -8,8 +8,10 @@ class FiltroConfigModelo : public FiltradorConfigModelo {
         FiltroConfigModelo(unsigned ID);
         ~FiltroConfigModelo();
 
+        virtual void deserializar(const NodoXml& nodo);
+
     private:
-        Glib::ustring campoSelecc;
+
         // mapa para poder recordar el ingreso en la Gtk::Entry del usuario
         // para cada campo del combobox
         std::map< Glib::ustring, Glib::ustring > entryPorCampo;

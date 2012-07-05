@@ -35,10 +35,13 @@ class PanelConfigModelo : public ConfigModelo {
 
         sigc::signal< void, PanelConfigModelo*, int, int, int, int > signal_posicion_changed();
 
+        virtual NodoXml serializar();
+        virtual void deserializar(const NodoXml& nodo);
+
     private:
         /** modelo mismo */
-        unsigned desdeFila, hastaFila;
-        unsigned desdeCol, hastaCol;
+        int desdeFila, hastaFila;
+        int desdeCol, hastaCol;
         bool posicionValida;
         FiltradorConfigManager* filtrosManager;
         FiltradorConfigManager* inputsManager;

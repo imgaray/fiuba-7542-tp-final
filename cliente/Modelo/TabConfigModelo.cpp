@@ -4,6 +4,12 @@
 #include "FiltradorConfigManager.h"
 #include "Organizacion.h"
 
+#define NOMBRE_NODO "Tab_Config_Modelo"
+#define ATR_NOMBRE "atr_nombre"
+#define ATR_FILAS_GRILLA "atr_filas_grilla"
+#define ATR_COLS_GRILLA "atr_cols_grilla"
+#define ATR_TIEMPO_REFRESCO "atr_tiempo_refresco"
+
 TabConfigModelo::TabConfigModelo()
 : ConfigModelo(NOMBRE_TAB_POR_DEFECTO),
   inputsManager(NULL),
@@ -229,4 +235,32 @@ void TabConfigModelo::imprimirGrilla() {
                 std::cout << ".";
         std::cout << std::endl;
     }
+}
+
+NodoXml TabConfigModelo::serializar() {
+	NodoXml nodo(NOMBRE_NODO);
+
+	nodo.SetAttribute(ATR_NOMBRE, this->getLabel().c_str());
+	nodo.SetAttribute(ATR_FILAS_GRILLA, this->filas);
+	nodo.SetAttribute(ATR_COLS_GRILLA, this->cols);
+
+	nodo.InsertEndChild(inputsManager->serializar());
+	nodo.InsertEndChild(panelManager->serializar());
+
+	return nodo;
+}
+
+void TabConfigModelo::deserializar(const NodoXml& nodo) {
+	bool infoOK = true;
+
+	infoOK = infoOK && nodo.Attribute(ATR_FILAS_GRILLA,&this->filas);
+	infoOK = infoOK && nodo.Attribute(ATR_COLS_GRILLA,&this->cols);
+
+	if (nodo.Attribute(ATR_NOMBRE)) {
+		this->setLabel(nodo.Attribute(ATR_NOMBRE));
+	}
+	else {
+		throw ErrorSerializacionXML();
+	}
+
 }

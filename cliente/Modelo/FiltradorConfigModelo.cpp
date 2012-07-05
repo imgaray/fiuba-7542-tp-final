@@ -2,6 +2,14 @@
 #include "Organizacion.h"
 #include "FiltradorHelper.h"
 
+
+#define NOMBRE_NODO "Filtrador_Config_Modelo"
+#define ATR_CAMPO "atr_campo"
+#define ATR_VALOR_CAMPO "atr_valor_campo"
+#define ATR_CAMPO_AUX "atr_campo_aux"
+
+
+
 FiltradorConfigModelo::FiltradorConfigModelo(unsigned _ID)
 : comboDimension(NULL), comboFecha(NULL), comboHecho(NULL),
   entryExtra(NULL),
@@ -74,3 +82,38 @@ sigc::signal< void, unsigned > FiltradorConfigModelo::signal_delete_filtrador() 
 void FiltradorConfigModelo::on_boton_eliminar_clicked() {
     _signal_delete_filtrador.emit(ID);
 }
+
+NodoXml FiltradorConfigModelo::serializar() {
+	NodoXml nodo(NOMBRE_NODO);
+
+	nodo.SetAttribute(ATR_CAMPO, campoSelecc.c_str());
+	nodo.SetAttribute(ATR_VALOR_CAMPO, _valorCampo.c_str());
+	nodo.SetAttribute(ATR_CAMPO_AUX, _campoAux.c_str());
+
+	return nodo;
+}
+
+void FiltradorConfigModelo::deserializar(const NodoXml& nodo) {
+
+	if (nodo.Attribute(ATR_CAMPO)) {
+		campoSelecc = nodo.Attribute(ATR_CAMPO);
+	}
+	else {
+		throw ErrorSerializacionXML();
+	}
+
+	if (nodo.Attribute(ATR_VALOR_CAMPO)) {
+		_valorCampo = nodo.Attribute(ATR_VALOR_CAMPO);
+	}
+	else {
+		_valorCampo = "";
+	}
+
+	if (nodo.Attribute(ATR_CAMPO_AUX)) {
+			_campoAux = nodo.Attribute(ATR_CAMPO_AUX);
+	}
+	else {
+		_campoAux = "";
+	}
+}
+

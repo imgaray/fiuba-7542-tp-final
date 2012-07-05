@@ -4,10 +4,11 @@
 #include <gtkmm/entry.h>
 #include <gtkmm/box.h>
 #include <gtkmm/toolbutton.h>
+#include "Serializable.h"
 
 typedef std::pair< Gtk::VBox*, Gtk::ToolButton* > filtradoresHandlers;
 
-class ConfigModelo : public sigc::trackable {
+class ConfigModelo : public sigc::trackable , public Serializable {
     public:
         ConfigModelo(const Glib::ustring& label);
         ConfigModelo();
@@ -19,6 +20,7 @@ class ConfigModelo : public sigc::trackable {
         Glib::ustring getLabel() const;
         Glib::ustring getLabelNueva() const;
         void setLabel(const Glib::ustring& label);
+
     protected:
         template < typename T_Widget >
         void desconectar(sigc::connection& conex, T_Widget*& pAlgo) {

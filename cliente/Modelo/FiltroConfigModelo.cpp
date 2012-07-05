@@ -32,3 +32,16 @@ void FiltroConfigModelo::on_entry_changed() {
     entryPorCampo[campoSelecc] = entryExtra->get_text();
 }
 
+void FiltroConfigModelo::deserializar(const NodoXml& nodo) {
+	FiltradorConfigModelo::deserializar(nodo);
+	entryPorCampo[campoSelecc] = _valorCampo;
+
+	if (Organizacion::esDimensionEspecial(campoSelecc)) {
+		comboFecha->set_active_text(_campoAux);
+	}
+	else {
+		comboHecho->set_active_text(_campoAux);
+	}
+
+	comboDimension->set_active_text(campoSelecc);
+}

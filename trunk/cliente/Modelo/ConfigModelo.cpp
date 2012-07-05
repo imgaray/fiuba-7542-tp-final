@@ -33,8 +33,8 @@ Glib::ustring ConfigModelo::getLabelNueva() const {
         return label;
 }
 
-void ConfigModelo::setLabelNuevaComoValida() {
-    label = pEntryLabel->get_text();
+void ConfigModelo::setLabel(const Glib::ustring& _label) {
+    label = _label;
 }
 
 void ConfigModelo::on_entry_label_changed() {

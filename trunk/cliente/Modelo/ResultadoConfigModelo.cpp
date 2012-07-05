@@ -27,9 +27,11 @@ void ResultadoConfigModelo::on_combo_dimension_changed() {
         comboHecho->hide();
     } else if (Organizacion::esHecho(combo)) {
         comboFecha->hide();
+        entryExtra->hide();
         comboHecho->show();
     } else {
         comboFecha->hide();
+        entryExtra->hide();
         comboHecho->hide();
     }
 }

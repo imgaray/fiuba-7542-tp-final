@@ -1,6 +1,7 @@
 #include "TabConfigVista.h"
 #include <gtkmm/box.h>
 #include <gtkmm/buttonbox.h>
+#include <gtkmm/paned.h>
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "TabConfigModelo.h"
 #include "PanelConfigVista.h"

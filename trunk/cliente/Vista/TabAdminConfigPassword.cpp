@@ -29,9 +29,11 @@ bool TabAdminConfigPassword::aplicarCambios() {
 void TabAdminConfigPassword::on_entry_pass_actual_changed() {
     std::cout << "void TabAdminConfigPassword::on_entry_pass_actual_changed()... cambio registrado."
               << "Si a nadie le importa registrar cada cambio que hace el usuario acá, desconectamos la señal. (@todo)" << std::endl;
+    // acá podría registrar lo que ingresó el usuario en una string, con el método pEntryPassActual->get_text()
 }
 
 void TabAdminConfigPassword::on_entry_pass_nueva_changed() {
     std::cout << "void TabAdminConfigPassword::on_entry_pass_nueva_changed()... cambio registrado. "
               << "Si a nadie le importa registrar cada cambio que hace el usuario acá, desconectamos la señal. (@todo)" << std::endl;
+    // acá podría registrar lo que ingresó el usuario en una string, con el método pEntryPassNueva->get_text()
 }

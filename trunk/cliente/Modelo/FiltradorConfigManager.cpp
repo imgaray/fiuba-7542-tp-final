@@ -62,18 +62,18 @@ FiltradorConfigModelo* FiltradorConfigManager::new_filtrador() {
 }
 #include <iostream>
 void FiltradorConfigManager::on_agregar_button_clicked() {
-    // creo el par vista/modelo
+    // crear el par vista/modelo
     FiltradorConfigModelo* filtModelo = new_filtrador();
     FiltradorConfigVista* filtVista = new FiltradorConfigVista(filtModelo);
 
-    // conecto señales
+    // conectar señales
     filtModelo->signal_delete_filtrador().connect(sigc::mem_fun(*this,
         &FiltradorConfigManager::on_delete_filtrador));
 
-    // agrego a la vista
+    // agregar a la vista
     pVBoxFiltradores->pack_start(*filtVista, false, false);
 
-    // agrego a los contenedores
+    // agregar a los contenedores
     filtrador f(filtVista, filtModelo);
     filtradores.push_back(f);
     mapaFiltradores[filtModelo->getID()] = f;
@@ -82,7 +82,7 @@ void FiltradorConfigManager::on_agregar_button_clicked() {
 void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
     filtrador f = mapaFiltradores[ID];
 
-    // busco en la lista y lo elimino
+    // buscar en la lista y eliminarlo
     std::list< filtrador >::iterator it = filtradores.begin();
     bool encontrado = false;
     while (!encontrado && it != filtradores.end())
@@ -93,13 +93,13 @@ void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
         filtradores.erase(--it);
     }
 
-    // lo saco de la vista
+    // sacarlo de la vista
     pVBoxFiltradores->remove(*(f.first));
 
-    // libero memoria
+    // liberar memoria
     delete f.first;
     delete f.second;
 
-    // lo saco del mapa
+    // sacarlo del mapa
     mapaFiltradores.erase(ID);
 }

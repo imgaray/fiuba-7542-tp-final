@@ -1331,7 +1331,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vboxAdminConfigPassword">
+              <object class="GtkVBox" id="vboxTabAdminConfigPassword">
                 <property name="visible">True</property>
                 <child>
                   <object class="GtkLabel" id="labelPassword">

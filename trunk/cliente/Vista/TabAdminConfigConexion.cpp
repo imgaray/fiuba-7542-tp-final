@@ -9,29 +9,21 @@
 TabAdminConfigConexion::TabAdminConfigConexion(BaseObjectType* cobject,
                                 const Glib::RefPtr< Gtk::Builder >& _builder)
 : TabAdminConfig(cobject, _builder) {
-	builder->get_widget(ENTRY_IP, pEntryIP);
-	if (pEntryIP)
-		pEntryIP->signal_changed().connect(sigc::mem_fun(*this,
-			&TabAdminConfigConexion::on_entry_ip_changed));
-	else
-		throw ExcepcionArchivoGladeCorrupto(ENTRY_IP);
+	get_widget(ENTRY_IP, pEntryIP);
+	pEntryIP->signal_changed().connect(sigc::mem_fun(*this,
+		&TabAdminConfigConexion::on_entry_ip_changed));
 
-	builder->get_widget(SPIN_BUTTON_PUERTO, pSpinButtonPuerto);
-	if (!pSpinButtonPuerto)
-		throw ExcepcionArchivoGladeCorrupto(SPIN_BUTTON_PUERTO);
+	get_widget(SPIN_BUTTON_PUERTO, pSpinButtonPuerto);
+
 	ArchivoConfiguracion::iterator iter;
 	std::string apertura = "servRemoto.conf";
 	ArchivoConfiguracion arch(apertura.c_str());
-//	for (iter = arch.begin(); iter != arch.end(); ++iter) {
-//		std::cout << iter->first << "=" << iter->second << std::endl;
-//	}
+
 	std::string _ip = "direccion_servidor";
     pEntryIP->set_text(arch.obtenerAtributo(_ip));
-//    std::cout << "direccion_servidor = " << arch.obtenerAtributo(_ip) << std::endl;
     std::string _puerto = "puerto_servidor";
     Utilitario u;
     double a = u.convertirAEntero(arch.obtenerAtributo(_puerto));
-//    std::cout << "puerto_servidor = " << a << std::endl;
     pSpinButtonPuerto->set_value(a);
 }
 
@@ -50,5 +42,5 @@ bool TabAdminConfigConexion::aplicarCambios() {
 }
 
 void TabAdminConfigConexion::on_entry_ip_changed() {
-//    std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
+    std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
 }

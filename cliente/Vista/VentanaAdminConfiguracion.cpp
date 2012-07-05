@@ -3,9 +3,11 @@
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "TabAdminConfigConexion.h"
 #include "TabAdminConfigConsultas.h"
+#include "TabAdminConfigPassword.h"
 
 #define VBOX_TAB_CONEXION "vboxTabAdminConfigConexion"
 #define VBOX_TAB_CONSULTAS "vboxTabAdminConfigConsultas"
+#define VBOX_TAB_PASSWORD "vboxTabAdminConfigPassword"
 #define BOTON_APLICAR_CONFIG "BotonAplicarConfig"
 #define BOTON_CANCELAR_CONFIG "BotonCancelarConfig"
 
@@ -19,6 +21,10 @@ VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
     TabAdminConfigConsultas* tabConsultas;
     get_widget_derived(VBOX_TAB_CONSULTAS, tabConsultas);
     tabs.push_back(tabConsultas);
+
+    TabAdminConfigPassword* tabPassword;
+    get_widget_derived(VBOX_TAB_PASSWORD, tabPassword);
+    tabs.push_back(tabPassword);
 
     Gtk::Button* pBotonAux;
 

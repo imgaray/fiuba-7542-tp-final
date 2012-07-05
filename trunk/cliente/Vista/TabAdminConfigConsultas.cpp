@@ -19,20 +19,20 @@ TabAdminConfigConsultas::TabAdminConfigConsultas(BaseObjectType* cobject,
 : TabAdminConfig(cobject, _builder) {
     initBotones();
     initTabConfig();
-    objManager = new AdminConfigObjManager(OBJ_TAB,
+    tabManager = new AdminConfigObjManager(OBJ_TAB,
                                            &comboTabSelec,
                                            botones[BUTTON_AGREGAR_TAB],
                                            botones[BUTTON_GUARDAR_CAMBIOS_TAB],
                                            botones[BUTTON_ELIMINAR_TAB],
                                            NOMBRE_TAB_POR_DEFECTO
                                            );
-    on_tab_model_changed(objManager->getModelo());
-    objManager->signal_model_changed().connect(sigc::mem_fun(*this,
+    on_tab_model_changed(tabManager->getModelo());
+    tabManager->signal_model_changed().connect(sigc::mem_fun(*this,
         &TabAdminConfigConsultas::on_tab_model_changed));
 }
 
 TabAdminConfigConsultas::~TabAdminConfigConsultas() {
-    delete objManager;
+    delete tabManager;
 }
 
 void TabAdminConfigConsultas::initBotones() {
@@ -54,6 +54,11 @@ void TabAdminConfigConsultas::initTabConfig() {
     get_widget(HBOX_TAB_SELEC, pHBoxTabSelec);
     pHBoxTabSelec->pack_start(comboTabSelec, false, false);
     comboTabSelec.show();
+}
+
+void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo) {
+    std::cout << "void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo)... deserializando... (@todo)" << std::endl;
+//    tabManager->deserializar();
 }
 
 void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {

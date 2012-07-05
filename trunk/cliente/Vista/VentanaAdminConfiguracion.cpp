@@ -18,7 +18,6 @@ VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
     get_widget_derived(VBOX_TAB_CONEXION, tabConexion);
     tabs.push_back(tabConexion);
 
-    TabAdminConfigConsultas* tabConsultas;
     get_widget_derived(VBOX_TAB_CONSULTAS, tabConsultas);
     tabs.push_back(tabConsultas);
 
@@ -38,6 +37,11 @@ VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
 }
 
 VentanaAdminConfiguracion::~VentanaAdminConfiguracion() {}
+
+
+void VentanaAdminConfiguracion::setArchivoPersonalizador(const char* archivo) {
+    tabConsultas->setArchivoPersonalizador(archivo);
+}
 
 void VentanaAdminConfiguracion::on_aplicar_button_clicked() {
     std::list< TabAdminConfig* >::iterator it = tabs.begin();

@@ -29,6 +29,11 @@ PanelConfigModelo::PanelConfigModelo()
 
 PanelConfigModelo::~PanelConfigModelo() {
     desconectar();
+    delete filtrosManager;
+    delete inputsManager;
+    delete pivoteXsManager;
+    delete pivoteYsManager;
+    delete resutadosManager;
 }
 
 void PanelConfigModelo::desconectarDeHijo() {

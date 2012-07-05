@@ -17,9 +17,11 @@ class TabAdminConfigConsultas : public TabAdminConfig {
                            const Glib::RefPtr< Gtk::Builder >& builder);
         ~TabAdminConfigConsultas();
 
+        void setArchivoPersonalizador(const char* archivo);
+
         bool aplicarCambios();
     private:
-        AdminConfigObjManager* objManager;
+        AdminConfigObjManager* tabManager;
         void on_tab_model_changed(ConfigModelo* m);
 
         void initBotones();

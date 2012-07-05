@@ -5,7 +5,11 @@
 #include <gtkmm/entry.h>
 #include <gtkmm/toolbutton.h>
 
-class FiltradorConfigModelo {
+#include "Serializable.h"
+
+
+
+class FiltradorConfigModelo : public Serializable {
     public:
         FiltradorConfigModelo(unsigned ID);
         ~FiltradorConfigModelo();
@@ -20,12 +24,19 @@ class FiltradorConfigModelo {
 
         sigc::signal< void, unsigned > signal_delete_filtrador();
 
+
+        virtual NodoXml serializar();
+        virtual void deserializar(const NodoXml& nodo);
+
     protected:
         Gtk::ComboBoxText* comboDimension;
         Gtk::ComboBoxText* comboFecha;
         Gtk::ComboBoxText* comboHecho;
         Gtk::Entry* entryExtra;
 
+        Glib::ustring campoSelecc;
+        Glib::ustring _valorCampo;
+        Glib::ustring _campoAux;
     private:
         Gtk::ToolButton* botonEliminar;
 

@@ -2,6 +2,7 @@
 #define FILTRADOR_CONFIG_MANAGER_H
 
 #include "TabConfigModelo.h"
+#include "DefinicionesXML.h"
 
 enum t_Filt {
     FILT_FILTRO,
@@ -18,7 +19,7 @@ class FiltradorConfigVista;
  * clase encargada de manejar la parte de agregado de filtradores dinámicos
  * por el admin (filtros, inputs, columna X e Y en tabla pivote, y resultados)
  */
-class FiltradorConfigManager : public sigc::trackable {
+class FiltradorConfigManager : public sigc::trackable, public Serializable {
     public:
         FiltradorConfigManager(t_Filt tipo,
                               const filtradoresHandlers& handlers);
@@ -26,6 +27,10 @@ class FiltradorConfigManager : public sigc::trackable {
 
         void desconectar();
         void reconectar();
+
+        virtual NodoXml serializar();
+        virtual void deserializar(const NodoXml& nodo);
+
 // podría haber una señal que indique qué dimensión o hecho fue agregado o eliminado para actualizar todos los restantes combobox
 
 //        sigc::signal< void, ConfigModelo* > signal_model_changed();

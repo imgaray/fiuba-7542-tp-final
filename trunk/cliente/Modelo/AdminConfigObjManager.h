@@ -3,6 +3,8 @@
 
 #include <gtkmm/button.h>
 #include <gtkmm/comboboxtext.h>
+#include "Serializable.h"
+
 class ConfigModelo;
 
 enum t_Objeto {
@@ -15,7 +17,7 @@ enum t_Objeto {
  * Emite la señal signal_model_changed cuando el modelo que está detrás de la
  * vista cambia
  */
-class AdminConfigObjManager : public sigc::trackable {
+class AdminConfigObjManager : public sigc::trackable , public Serializable {
     public:
         AdminConfigObjManager(t_Objeto tipo,
                               Gtk::ComboBoxText* cbtext,
@@ -33,6 +35,11 @@ class AdminConfigObjManager : public sigc::trackable {
         sigc::signal< void, ConfigModelo* > signal_model_changed();
         sigc::signal< void, ConfigModelo* > signal_model_saved();
         sigc::signal< void, ConfigModelo* > signal_model_deleted();
+
+
+        virtual NodoXml serializar();
+        virtual void deserializar(const NodoXml& nodo);
+
     private:
         sigc::signal< void, ConfigModelo* > _signal_model_changed;
         sigc::signal< void, ConfigModelo* > _signal_model_saved;

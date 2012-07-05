@@ -6,6 +6,11 @@
 #include "ResultadoConfigModelo.h"
 #include "FiltradorConfigVista.h"
 
+
+#define NOMBRE_NODO "Filtrador_Config_Manager"
+#define ATR_TIPO "atr_tipo"
+
+
 unsigned FiltradorConfigManager::generadorID = 0;
 
 FiltradorConfigManager::FiltradorConfigManager(t_Filt _tipo,
@@ -100,4 +105,38 @@ void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
 
     // sacarlo del mapa
     mapaFiltradores.erase(ID);
+}
+
+NodoXml FiltradorConfigManager::serializar() {
+	NodoXml nodo(NOMBRE_NODO);
+
+	std::list< filtrador >::iterator it;
+
+	int n_tipo = this->tipo;
+
+	nodo.SetAttribute(ATR_TIPO, n_tipo);
+
+	for (it = filtradores.begin(); it != filtradores.end(); ++it) {
+		nodo.InsertEndChild(it->second->serializar());
+	}
+
+	return nodo;
+}
+void FiltradorConfigManager::deserializar(const NodoXml& nodo) {
+
+	int n_tipo = 0;
+	if (!nodo.Attribute(ATR_TIPO, &n_tipo)) {
+		throw ErrorSerializacionXML();
+	}
+
+	tipo = t_Filt (n_tipo);
+
+	const NodoXml *nodoHijo = nodo.FirstChildElement();
+
+	for (; nodoHijo != NULL ; nodoHijo = nodoHijo->NextSiblingElement()) {
+		on_agregar_button_clicked();
+		(--this->filtradores.end())->second->deserializar(*nodoHijo);
+		//nodoHijo;
+	}
+
 }

@@ -32,10 +32,13 @@ class TabConfigModelo : public ConfigModelo {
 
         PanelConfigModelo* getModeloPanel() const;
 
+        virtual NodoXml serializar();
+        virtual void deserializar(const NodoXml& nodo);
+
     private:
         /** modelo mismo */
-        unsigned filas, cols;
-        unsigned min_fila, min_col;
+        int filas, cols;
+        int min_fila, min_col;
         PanelConfigModelo* ocupacionesGrilla[MAX_GRILLA][MAX_GRILLA];
         FiltradorConfigManager* inputsManager;
 

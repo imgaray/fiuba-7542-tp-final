@@ -2,6 +2,10 @@
 #include "TabConfigModelo.h"
 #include "PanelConfigModelo.h"
 
+#define NOMBRE_PANELES "Paneles"
+#define NOMBRE_TABS "Tabs"
+#define ATR_TIPO "atr_tipo"
+
 AdminConfigObjManager::AdminConfigObjManager(t_Objeto _tipo,
                                              Gtk::ComboBoxText* cbtext,
                                              Gtk::Button* pAceptar,
@@ -190,4 +194,43 @@ ConfigModelo* AdminConfigObjManager::new_modelo() {
         case OBJ_PANEL: return new PanelConfigModelo();
         default: return NULL;
     }
+}
+
+
+NodoXml AdminConfigObjManager::serializar() {
+	NodoXml nodo("_");
+
+	if (tipo == OBJ_TAB)
+		nodo.SetValue(NOMBRE_TABS);
+	else
+		nodo.SetValue(NOMBRE_PANELES);
+
+
+	int n_tipo = tipo;
+	nodo.SetAttribute(ATR_TIPO, n_tipo);
+
+	std::list < ConfigModelo* >::iterator it = consultasConfiguradas.begin();
+
+	for ( ; it != consultasConfiguradas.end() ; ++it) {
+		nodo.InsertEndChild((*it)->serializar());
+	}
+
+	return nodo;
+}
+void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
+	int n_tipo = 0;
+
+	if (nodo.Attribute(ATR_TIPO, &n_tipo)) {
+		tipo = t_Objeto (n_tipo);
+	}
+	else {
+		throw ErrorSerializacionXML();
+	}
+
+	const NodoXml *hijo = nodo.FirstChildElement();
+
+	for (;hijo != NULL; hijo = hijo->NextSiblingElement()) {
+		on_agregar_button_clicked();
+		(*(--this->consultasConfiguradas.end()))->deserializar(*hijo);
+	}
 }

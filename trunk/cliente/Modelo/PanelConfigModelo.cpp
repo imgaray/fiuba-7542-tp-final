@@ -7,6 +7,26 @@
 
 #define CANT_TIPOS 4
 #define TABLA_PIVOTE 1
+
+
+//Defines para Xml
+#define NOMBRE_NODO "Panel_Config_Modelo"
+#define ATR_NOMBRE "atr_nombre"
+#define ATR_TIPO_GRAF "atr_tipo_graf"
+
+#define ATR_DESDE_FILA "atr_desde_fila"
+#define ATR_DESDE_COL "atr_desde_col"
+#define ATR_HASTA_FILA "atr_hasta_fila"
+#define ATR_HASTA_COL "atr_hasta_fila"
+
+
+#define HIJO_FILTROS "hijos_filtros"
+#define HIJO_INPUTS "hijo_inputs"
+#define HIJO_X_PIV "hijo_x_piv"
+#define HIJO_Y_PIV "hijo_y_piv"
+#define HIJO_RES "hijo_res"
+
+
 Glib::ustring PanelConfigModelo::tipoGrafico[CANT_TIPOS] =  {
     "Tabla", "Tabla pivote", "Gráfico de barras", "Gráfico de torta"
 };
@@ -247,3 +267,94 @@ void PanelConfigModelo::on_combobox_tipo_grafico_changed() {
     indice_tipoGrafico = pComboBoxTextTipoGrafico->get_active_row_number();
 }
 
+NodoXml PanelConfigModelo::serializar(){
+	NodoXml nodo(NOMBRE_NODO);
+
+	nodo.SetAttribute(ATR_DESDE_FILA, this->desdeFila);
+	nodo.SetAttribute(ATR_DESDE_COL, this->desdeCol);
+
+	nodo.SetAttribute(ATR_HASTA_FILA, this->hastaFila);
+	nodo.SetAttribute(ATR_HASTA_COL, this->hastaCol);
+
+	nodo.SetAttribute(ATR_TIPO_GRAF, this->indice_tipoGrafico);
+	nodo.SetAttribute(ATR_NOMBRE, this->getLabel().c_str());
+
+	NodoXml nodoFiltros(filtrosManager->serializar());
+	nodoFiltros.SetValue(HIJO_FILTROS);
+	nodo.InsertEndChild(nodoFiltros);
+
+	NodoXml nodoInputs(inputsManager->serializar());
+	nodoInputs.SetValue(HIJO_INPUTS);
+	nodo.InsertEndChild(nodoInputs);
+
+	NodoXml nodoXP(pivoteXsManager->serializar());
+	nodoXP.SetValue(HIJO_X_PIV);
+	nodo.InsertEndChild(nodoXP);
+
+	NodoXml nodoYP(pivoteYsManager->serializar());
+	nodoYP.SetValue(HIJO_Y_PIV);
+	nodo.InsertEndChild(nodoYP);
+
+	NodoXml nodoRes(resutadosManager->serializar());
+	nodoRes.SetValue(HIJO_RES);
+	nodo.InsertEndChild(nodoRes);
+
+	return nodo;
+}
+
+void PanelConfigModelo::deserializar(const NodoXml& nodo){
+
+	// @todo cargar nombre
+
+	bool infoOK = true;
+
+	infoOK = infoOK && nodo.Attribute(ATR_DESDE_FILA, &desdeFila);
+	infoOK = infoOK && nodo.Attribute(ATR_DESDE_COL, &desdeCol);
+	infoOK = infoOK && nodo.Attribute(ATR_HASTA_FILA, &hastaFila);
+	infoOK = infoOK && nodo.Attribute(ATR_HASTA_COL, &hastaCol);
+
+	infoOK = infoOK && nodo.Attribute(ATR_TIPO_GRAF, &this->indice_tipoGrafico);
+
+	if (infoOK == false) {
+		throw ErrorSerializacionXML();
+	}
+
+	const NodoXml *hijo = NULL;
+
+	// Deserializo el Filtros
+	hijo = nodo.FirstChildElement(HIJO_FILTROS);
+	if (hijo != NULL)
+		filtrosManager->deserializar(*hijo);
+	else
+		throw ErrorSerializacionXML();
+
+	// Deserializos los Inputs
+	hijo = nodo.FirstChildElement(HIJO_INPUTS);
+	if (hijo != NULL)
+		inputsManager->deserializar(*hijo);
+	else
+		throw ErrorSerializacionXML();
+
+	// Deserializos el grupo X de la Tabla Pivote
+
+	hijo = nodo.FirstChildElement(HIJO_X_PIV);
+	if (hijo != NULL)
+		pivoteXsManager->deserializar(*hijo);
+	else
+		throw ErrorSerializacionXML();
+
+	// Deserializo el grupo Y de la Tabla Pivote
+
+	hijo = nodo.FirstChildElement(HIJO_Y_PIV);
+	if (hijo != NULL)
+		pivoteYsManager->deserializar(*hijo);
+	else
+		throw ErrorSerializacionXML();
+
+	// Deserializo los resultados
+	hijo = nodo.FirstChildElement(HIJO_RES);
+	if (hijo != NULL)
+		resutadosManager->deserializar(*hijo);
+	else
+		throw ErrorSerializacionXML();
+}

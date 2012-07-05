@@ -108,6 +108,7 @@ private:
 	typedef std::list<AgenteRemoto*> lagentes;
 	unsigned int ncons;
 	unsigned int nact;
+	bool corriendo;
 	lclientes clientes;
 	Puerto puerto_clientes;
 	Puerto puerto_agentes;

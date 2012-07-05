@@ -243,7 +243,6 @@ void Consulta::deserializar(const std::string& consulta) {
 	_consultaValida = true;
 
 	std::string cabecera = u.separar(consulta, sep_tipo, 0);
-	std::cout << "CONSULTA: cabecera  = " << cabecera << std::endl;
 	if (cabecera[0] == mensaje_agente) {
 		this->_consultaDeCliente = false;
 	}
@@ -265,13 +264,9 @@ void Consulta::deserializar(const std::string& consulta) {
 
 
 	std::string filtros = u.separar(consulta, sep_tipo , 1);
-	std::cout << "DESERIALIZAR: filtros = " << filtros << std::endl;
 	std::string entradas = u.separar(consulta, sep_tipo , 2);
-	std::cout << "DESERIALIZAR: filtros = " << entradas << std::endl;
 	std::string resultados = u.separar(consulta, sep_tipo , 3);
-	std::cout << "DESERIALIZAR: resultado = " << resultados << std::endl;
 	std::string id = u.separar(consulta, sep_tipo, 4);
-	std::cout << "DESERIALIZAR: id = " << id << std::endl;
 
 	guardarFiltros(filtros);
 
@@ -296,10 +291,8 @@ void Consulta::guardarFiltros(const std::string& filtros) {
 	std::string filtroEntero;
 	std::string filtro;
 	std::string valor;
-	std::cout << "filtros = " << filtros << std::endl;
 	bool hayMasFiltros = true;
 	while (hayMasFiltros) {
-		std::cout << "indice en separa de guardar Filtros = " << ind << std::endl; 
 		filtroEntero = u.separar(filtros, sep_datos, ind);
 		ind++;
 		filtro = u.separar(filtroEntero, sep_valor, 0);
@@ -350,9 +343,7 @@ void Consulta::guardarEntradas(const std::string& entradas) {
 	size_t ind = 0;
 	std::string entradaCompleta, entrada, valor;
 	bool seguirGuardando = true;
-	std::cout << "CONSULTA: entradas = " << entradas << std::endl;
 	while (seguirGuardando){
-		std::cout << "guardarEntradas: ind = " << ind << std::endl;
 		entradaCompleta = u.separar(entradas, sep_datos, ind);
 		ind++;
 

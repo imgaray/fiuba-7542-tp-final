@@ -20,9 +20,7 @@ void ThreadEntradaClientes::correr() {
 
 void ThreadEntradaClientes::detener_entrada() {
 	parar();
-	if (entradaClientes) {
-		entradaClientes->desconectar();
-	}
+	entradaClientes->desconectar();
 }
 
 ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli,

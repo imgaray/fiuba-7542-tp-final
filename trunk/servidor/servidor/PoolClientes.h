@@ -1,7 +1,7 @@
 #ifndef _POOLCLIENTES_H
 #define _POOLCLIENTES_H
 
-#define MAX_HILOS_CLIENTE 3
+#define MAX_HILOS_CLIENTE 5
 
 #include "Definiciones.h"
 #include <list>

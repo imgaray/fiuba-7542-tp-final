@@ -13,8 +13,7 @@ PoolClientes::~PoolClientes() {
 	detener();
 	std::list<HiloResponderConsulta*>::iterator iter;
 	for (iter = hilos.begin(); iter != hilos.end(); ++iter) {
-		(*iter)->sincronizar();
-		 delete (*iter);
+		delete (*iter);
 	}
 }
 
@@ -22,6 +21,7 @@ void PoolClientes::detener() {
 	std::list<HiloResponderConsulta*>::iterator iter;
 	for (iter = hilos.begin(); iter != hilos.end(); ++iter) {
 		(*iter)->parar();
+		(*iter)->sincronizar();
 	}
 }
 

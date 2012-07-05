@@ -70,12 +70,8 @@ void ControladorServidor::agregarCliente(ClienteRemoto* rem) {
 void ControladorServidor::detener() {
 	m.lock();
 	// detengo las entradas
-	centradas.close();
-	cconsultas.close();
 	tclientes->detener_entrada();
 	tagentes->detener_entrada();
-	poolagentes.detener();
-	poolclientes.detener();
 	tclientes->sincronizar();
 	tagentes->sincronizar();
 	// detengo los clientes
@@ -84,7 +80,6 @@ void ControladorServidor::detener() {
 												++iter_clientes) {
 		ClienteRemoto* crem = *iter_clientes;
 		crem->detener_cliente();
-		crem->sincronizar();
 	}
 	// detengo los agentes
 	lagentes::iterator iter_agentes;
@@ -92,8 +87,27 @@ void ControladorServidor::detener() {
 												++iter_agentes) {
 		AgenteRemoto* arem = *iter_agentes;
 		arem->detener_agente();
+	}
+	while (nact || ncons)
+		m.wait();
+	// desconecto los clientes y los sincronizo
+	for (iter_clientes = clientes.begin(); iter_clientes != clientes.end();
+												++iter_clientes) {
+		ClienteRemoto* crem = *iter_clientes;
+		crem->desconectar_cliente();
+		crem->sincronizar();
+	}
+	// desconecto los agentes y los sincronizo
+	for (iter_agentes = agentes.begin(); iter_agentes != agentes.end();
+												++iter_agentes) {
+		AgenteRemoto* arem = *iter_agentes;
+		arem->desconectar_agente();
 		arem->sincronizar();
 	}
+	centradas.close();
+	cconsultas.close();
+	poolagentes.detener();
+	poolclientes.detener();
 	m.unlock();
 }
 
@@ -109,7 +123,6 @@ ControladorServidor::ControladorServidor(ResolvedorConsultas& cons,
 				 rcons(cons), rentr(rent),
 				 poolclientes(*this, cconsultas),
 				 poolagentes(*this, centradas) {
-
 	ncons = 0;
 	nact = 0;
 	tagentes = new ThreadEntradaAgentes(*this, *this, puerto_agentes, centradas);

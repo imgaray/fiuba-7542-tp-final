@@ -843,23 +843,18 @@ void BaseDeDatos::agregaParaFila(const Consulta& cons,
     if (cantHechos > 0 && cantDim > 0) {
 		//agrego los campo en el orden correcta a la consulta
 		while (itd != indDim.end() || ith != indHechos.end()) {
-			if ((*itd > *ith) || itd == indDim.end()) {
+			if (itd == indDim.end() || (*itd > *ith)) {
 				// agrego el campo de hecho de resolucion a la respuesta
 				resp.agregar(*itrh);
 
 				++itrh;
 				++ith;
-			}else if ((*itd < *ith)  || ith == indHechos.end()) {
+			}else if (ith == indHechos.end() || (*itd < *ith)) {
 				// agregado el campo de dimension de resolucion a la respuesta
 				resp.agregar(*itrd);
 
 				++itrd;
 				++itd;
-			} else if (itd == indDim.end()) {
-
-
-			} else if (ith == indHechos.end()) {
-
 			}
 		}
     }

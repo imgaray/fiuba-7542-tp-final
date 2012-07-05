@@ -3,6 +3,9 @@
 
 void AgenteRemoto::detener_agente() {
 	parar();
+}
+
+void AgenteRemoto::desconectar_agente() {
 	agente->desconectar();
 }
 
@@ -37,5 +40,6 @@ AgenteRemoto::AgenteRemoto(Socket* agt, ResolvedorEntradas& rentr, ConsultasAgen
 
 AgenteRemoto::~AgenteRemoto() {
 	detener_agente();
+	desconectar_agente();
 	delete agente;
 }

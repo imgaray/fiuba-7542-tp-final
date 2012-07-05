@@ -7,7 +7,6 @@ FiltradorResultadoFecha::FiltradorResultadoFecha(const Glib::ustring& fecha,
     const Glib::ustring& _valorCombo, const Glib::ustring& _valorEntrada)
     : FiltradorResultado(fecha),
     valorCombo(_valorCombo), valorEntrada(_valorEntrada)  {
-    /** @deprecated todo esto */
     i = FiltradorInputFecha::perteneceAlCombobox(valorCombo);
     if (i == NO_PERTENECE) {
         std::string msj = "No pertenece al conjunto de valores posibles: ";

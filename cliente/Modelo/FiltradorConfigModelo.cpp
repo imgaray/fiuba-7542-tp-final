@@ -1,5 +1,6 @@
 #include "FiltradorConfigModelo.h"
 #include "Organizacion.h"
+#include "FiltradorHelper.h"
 
 FiltradorConfigModelo::FiltradorConfigModelo(unsigned _ID)
 : comboDimension(NULL), comboFecha(NULL), comboHecho(NULL),
@@ -41,16 +42,16 @@ void FiltradorConfigModelo::setComboDimension(Gtk::ComboBoxText* comboDim) {
 
 void FiltradorConfigModelo::setComboFecha(Gtk::ComboBoxText* _comboFecha) {
     comboFecha = _comboFecha;
-    comboFecha->clear_items();
-    comboFecha->append_text("Soy el combo de fecha");
+
+    FiltradorHelper::getInstancia().popularComboFecha(comboFecha);
 
     comboFecha->set_active(0);
 }
 
 void FiltradorConfigModelo::setComboHecho(Gtk::ComboBoxText* _comboHecho) {
     comboHecho = _comboHecho;
-    comboHecho->clear_items();
-    comboHecho->append_text("Soy el combo de hechos en general");
+
+    FiltradorHelper::getInstancia().popularComboHechoInput(comboHecho);
 
     comboHecho->set_active(0);
 }

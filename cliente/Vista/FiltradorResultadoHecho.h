@@ -14,7 +14,6 @@ class FiltradorResultadoHecho : public FiltradorResultado {
 
     private:
         int i;
-        static Glib::ustring agregPosibles[];
         Glib::ustring hecho;
         Agregacion agregacion;
 };

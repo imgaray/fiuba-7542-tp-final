@@ -2,7 +2,7 @@
 #include "FiltradorConfigModelo.h"
 #include <gtkmm/enums.h>
 
-#define LABEL_DIM "Dimensión o hecho: "
+#define LABEL_DIM "Campo: "
 #define ELIMINAR_STOCK "gtk-no"
 
 FiltradorConfigVista::FiltradorConfigVista(FiltradorConfigModelo* pModelo)

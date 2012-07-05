@@ -478,7 +478,7 @@ void BaseDeDatos::resolverConsultaNormal(const Consulta& consulta, Respuesta& re
 
 	if (respuesta.cantidadFilas() == 0) {
 		respuesta.mensajeInterno(Respuesta::respuestaVacia);
-  }
+	}
 	else {
 		respuesta.mensajeInterno(Respuesta::respuestaValida);
 	}

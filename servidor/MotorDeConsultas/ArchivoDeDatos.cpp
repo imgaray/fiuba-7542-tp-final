@@ -9,6 +9,7 @@
 #include <iostream>
 #include "../../comun/Definiciones.h"
 #include <cstring>
+#include "ErrorArchivoCorrompido.h"
 
 #define RUTA_POSCIONES_RELATIVAS "-id.dat"
 #define RUTA_ARCHIVO_DATOS "./datos.txt"
@@ -93,6 +94,8 @@ std::string ArchivoDeDatos::obtenerRegistro(Id_Registro id) {
 }
 
 void ArchivoDeDatos::leerRegistro(const size_t& posicion, std::string& reg) {
+	posicionValida(posicion);
+
 	char buffer[TAM_BUFFER];
 	memset(buffer,0,TAM_BUFFER);
 
@@ -105,6 +108,7 @@ void ArchivoDeDatos::leerRegistro(const size_t& posicion, std::string& reg) {
 	_archivoPrincipal.seekg(posicion, std::ios::beg);
 	do {
 		_archivoPrincipal.read(buffer, TAM_BUFFER);
+
 		reg += buffer;
 		bytesLeidos += _archivoPrincipal.gcount();
 		_archivoPrincipal.seekg(posicion + bytesLeidos, std::ios::beg);
@@ -176,5 +180,14 @@ void ArchivoDeDatos::inicilizarArchivos() {
 
 	} else {
 		_ultimoID = 0;
+	}
+}
+
+void ArchivoDeDatos::posicionValida(size_t posicion) {
+	_archivoPrincipal.seekg(0, std::fstream::end);
+	size_t tamArchivo = _archivoPrincipal.tellg();
+
+	if (posicion >= tamArchivo) {
+		throw ErrorArchivoCorrompido();
 	}
 }

@@ -15,7 +15,7 @@ AdminConfigObjManager::AdminConfigObjManager(t_Objeto _tipo,
     guardandoCambios = false;
 
     // botones
-    botones[B_ACEPTAR] = pAceptar;
+    botones[B_AGREGAR] = pAceptar;
     connectionButtonAgregar = pAceptar->signal_clicked().connect(
         sigc::mem_fun(*this, &AdminConfigObjManager::on_agregar_button_clicked));
     botones[B_GUARDAR] = pGuardarCambios;
@@ -74,7 +74,7 @@ void  AdminConfigObjManager::desconectar() {
 
 void  AdminConfigObjManager::reconectar() {
     // reconectar señales de botones
-    connectionButtonAgregar = botones[B_ACEPTAR]->signal_clicked().connect(
+    connectionButtonAgregar = botones[B_AGREGAR]->signal_clicked().connect(
         sigc::mem_fun(*this, &AdminConfigObjManager::on_agregar_button_clicked));
 
     connectionButtonGuardar = botones[B_GUARDAR]->signal_clicked().connect(
@@ -164,11 +164,11 @@ void AdminConfigObjManager::on_combo_selec_changed() {
         return;
     Glib::ustring label = comboSelec->get_active_text();
     if (label == nombre_por_defecto) {
-        botones[B_ACEPTAR]->show();
+        botones[B_AGREGAR]->show();
         botones[B_GUARDAR]->hide();
         botones[B_ELIMINAR]->hide();
     } else {
-        botones[B_ACEPTAR]->hide();
+        botones[B_AGREGAR]->hide();
         botones[B_GUARDAR]->show();
         botones[B_ELIMINAR]->show();
     }

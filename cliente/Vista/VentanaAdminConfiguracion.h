@@ -6,13 +6,17 @@
 #include "Buildable.h"
 
 class TabAdminConfig;
+class TabAdminConfigConsultas;
 
 class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
     public:
         VentanaAdminConfiguracion(BaseObjectType* cobject,
                                   const Glib::RefPtr< Gtk::Builder >& builder);
         ~VentanaAdminConfiguracion();
+
+        void setArchivoPersonalizador(const char* archivo);
     private:
+        TabAdminConfigConsultas* tabConsultas;
         std::list< TabAdminConfig* > tabs;
 
         void on_aplicar_button_clicked();

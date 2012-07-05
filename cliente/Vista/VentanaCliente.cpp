@@ -78,7 +78,7 @@ VentanaCliente::~VentanaCliente() {
 }
 
 void VentanaCliente::personalizar(const char* archivo) {
-    pVDinamica->personalizar(archivo);
+    pVAdminConfig->setArchivoPersonalizador(archivo);
 }
 
 void VentanaCliente::on_page_switched(GtkNotebookPage* page, guint page_num) {

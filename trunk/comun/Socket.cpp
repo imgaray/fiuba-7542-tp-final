@@ -172,6 +172,7 @@ bool Socket::recibir(Mensaje& mensaje) {
 	datos.clear();
 	bool ok = recibirDatos(datos);
 	if (ok) {
+		std::cout << "SOCKET: datos en recibir = " << datos << std::endl;
 		mensaje.deserializar(datos);
 	}
 

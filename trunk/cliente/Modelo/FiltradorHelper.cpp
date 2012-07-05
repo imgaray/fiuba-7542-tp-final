@@ -8,6 +8,7 @@ FiltradorHelper FiltradorHelper::instancia;
 #define CANT_COMBO_HECHO 3
 #define CANT_COMBO_AGREGACIONES 6
 
+#define VALOR_COMBO_FECHA_NAVEGACION 7
 Glib::ustring FiltradorHelper::comboFecha[CANT_COMBO_FECHA] = {
     "Año", "Mes", "Bimestre", "Trimestre", "Cuatrimestre", "Semestre",
     "Semana del año", "Día"
@@ -106,7 +107,21 @@ Glib::ustring FiltradorHelper::validarHecho(int i_combo,
     return val;
 }
 
+Agregacion FiltradorHelper::getAgregacion(int i_combo) const {
+    switch (i_combo) {
+        case 0:  return NADA;
+        case 1:  return SUM;
+        case 2:  return MAX;
+        case 3:  return MIN;
+        case 4:  return PROM;
+        case 5:  return CONT;
+        default: return NADA;
+    }
+}
 
+Glib::ustring FiltradorHelper::getValorComboFechaParaNavegacion() const {
+    return comboFecha[VALOR_COMBO_FECHA_NAVEGACION];
+}
 
 void FiltradorHelper::popularCombo(Gtk::ComboBoxText* combo,
                                    Glib::ustring valores[], int size) const {

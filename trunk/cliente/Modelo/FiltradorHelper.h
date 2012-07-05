@@ -21,6 +21,9 @@ class FiltradorHelper {
         Fecha validarFecha(int i_combo, const Glib::ustring& valor) const;
         Glib::ustring validarHecho(int i_combo, const Glib::ustring& valor) const;
 
+        Agregacion getAgregacion(int i_combo) const;
+        Glib::ustring getValorComboFechaParaNavegacion() const;
+
     private:
         FiltradorHelper();
         static FiltradorHelper instancia;

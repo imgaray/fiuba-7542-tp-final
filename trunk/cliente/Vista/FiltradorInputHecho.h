@@ -17,15 +17,9 @@ class FiltradorInputHecho : public FiltradorInput {
         void recibirNavegacionSeleccionada(const Glib::ustring& input,
                                            const Glib::ustring& valor);
 
-        static int perteneceAlCombobox(const Glib::ustring& valor);
-        /// Validador de la entrada (Gtk::Entry)
-        static Glib::ustring validar(int i, const Glib::ustring& valor);
-
         void filtrar(Consulta& c);
     private:
-        static Utilitario u;
         Gtk::Entry entrada;
-        static Glib::ustring valoresCombo[];
         int i;  // iésimo valor del combobox posible
         Glib::ustring valorHecho;
 

@@ -12,6 +12,7 @@
 Utilitario::Utilitario() {
 	s_anterior.clear();
 	_posiciones.clear();
+	sep_anterior = 0;
 }
 
 Utilitario::~Utilitario() {

@@ -16,7 +16,8 @@ install_cliente:
 	cp -f cliente/main apCliente
 	cp -f cliente/*.conf apCliente
 	cp -f cliente/*.config apCliente
-	cp -f cliente/Vista/*.glade apCliente
+	mkdir apCliente/Vista
+	cp -f cliente/Vista/*.glade apCliente/Vista
 
 install_servidor:
 	mkdir apServidor
@@ -28,9 +29,9 @@ install_servidor:
 
 
 uninstall:
-	$(shell rm -f -r $(wildcard apCliente))
-	$(shell rm -f -r $(wildcard apServidor))
-	$(shell rm -f -r $(wildcard apAgente))
+	rm -f -r apCliente
+	rm -f -r apServidor
+	rm -f -r apAgente
 
 doc:
 	

@@ -1,5 +1,6 @@
 #include "ResultadoConfigModelo.h"
 #include "Organizacion.h"
+#include "FiltradorHelper.h"
 
 ResultadoConfigModelo::ResultadoConfigModelo(unsigned _ID)
 : FiltradorConfigModelo(_ID) {}
@@ -12,8 +13,7 @@ void ResultadoConfigModelo::especializarVista() {
 
 void ResultadoConfigModelo::setComboHecho(Gtk::ComboBoxText* _comboHecho) {
     comboHecho = _comboHecho;
-    comboHecho->clear_items();
-    comboHecho->append_text("Soy el combo de hechos con agregaciones");
+    FiltradorHelper::getInstancia().popularComboAgregaciones(comboHecho);
 
     comboHecho->set_active(0);
 }

@@ -104,7 +104,7 @@ void AdminConfigObjManager::on_agregar_button_clicked() {
     // un modelo nuevo
     Glib::ustring label = pModeloActual->getLabelNueva();
     if (mapaConsultasConfiguradas.find(label) == mapaConsultasConfiguradas.end()) {
-        pModeloActual->setLabelNuevaComoValida();
+        pModeloActual->setLabel(label);
         mapaConsultasConfiguradas[label] = pModeloActual;
         consultasConfiguradas.push_back(pModeloActual);
         comboSelec->append_text(label);
@@ -127,7 +127,7 @@ void AdminConfigObjManager::on_guardar_cambios_button_clicked() {
         comboSelec->remove_text(labelVieja);
         mapaConsultasConfiguradas.erase(mapaConsultasConfiguradas.find(labelVieja));
         mapaConsultasConfiguradas[labelNueva] = pModeloActual;
-        pModeloActual->setLabelNuevaComoValida();
+        pModeloActual->setLabel(labelNueva);
         comboSelec->insert_text(pos, labelNueva);
     guardandoCambios = false;
     comboSelec->set_active(pos);

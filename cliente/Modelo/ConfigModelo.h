@@ -18,7 +18,7 @@ class ConfigModelo : public sigc::trackable {
 
         Glib::ustring getLabel() const;
         Glib::ustring getLabelNueva() const;
-        void setLabelNuevaComoValida();
+        void setLabel(const Glib::ustring& label);
     protected:
         template < typename T_Widget >
         void desconectar(sigc::connection& conex, T_Widget*& pAlgo) {

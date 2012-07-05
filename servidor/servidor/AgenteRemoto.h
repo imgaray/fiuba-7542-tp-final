@@ -76,6 +76,9 @@ Metodos publicos
 		Envia la respuesta obtenida del servidor al agente
 	@END
 	*/
+	
+	void desconectar_agente();
+	
 	void enviarRespuesta(Respuesta& r);
 
 	/* @DOC

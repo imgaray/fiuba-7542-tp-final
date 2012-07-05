@@ -129,8 +129,6 @@ void Socket::conectar(const std::string& huesped) {
     }
     
     this->_conectado = true;
-
-    std::cout << "SOCKET CONECTADO" << std::endl;
 }
 
 void Socket::desconectar() {
@@ -172,7 +170,6 @@ bool Socket::recibir(Mensaje& mensaje) {
 	datos.clear();
 	bool ok = recibirDatos(datos);
 	if (ok) {
-		std::cout << "SOCKET: datos en recibir = " << datos << std::endl;
 		mensaje.deserializar(datos);
 	}
 

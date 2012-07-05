@@ -25,7 +25,7 @@ install_servidor:
 	cp -f servidor/main apServidor
 	cp -f servidor/*.conf apServidor
 	cp -f servidor/*.config apServidor
-	cp -f servidor/*.dat
+	cp -f servidor/*.dat apServidor
 
 
 uninstall:

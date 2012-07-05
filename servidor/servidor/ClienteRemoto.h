@@ -73,6 +73,8 @@ Metodos publicos
 	*/
 	void detener_cliente();
 
+	void desconectar_cliente();
+
 	/* @DOC
 	void enviarRespuesta(Respuesta& r)
 		Envia la respuesta obtenida del servidor al cliente

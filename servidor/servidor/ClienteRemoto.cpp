@@ -27,10 +27,12 @@ void ClienteRemoto::enviarRespuesta(Respuesta& r) {
 	}
 }
 
+void ClienteRemoto::desconectar_cliente() {
+	cliente->desconectar();
+}
 
 void ClienteRemoto::detener_cliente() {
 	parar();
-	cliente->desconectar();
 }
 
 ClienteRemoto::ClienteRemoto(Socket* cl, ResolvedorConsultas& rcons, ConsultasClientesServidor& cons):
@@ -39,5 +41,6 @@ ClienteRemoto::ClienteRemoto(Socket* cl, ResolvedorConsultas& rcons, ConsultasCl
 
 ClienteRemoto::~ClienteRemoto() {
 	detener_cliente();
+	desconectar_cliente();
 	delete cliente;
 }

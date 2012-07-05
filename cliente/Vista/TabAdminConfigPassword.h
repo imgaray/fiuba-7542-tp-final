@@ -15,9 +15,6 @@ class TabAdminConfigPassword : public TabAdminConfig {
     private:
         Gtk::Entry* pEntryPassActual;
         Gtk::Entry* pEntryPassNueva;
-
-        void on_entry_pass_actual_changed();
-        void on_entry_pass_nueva_changed();
 };
 
 #endif  // TAB_ADMIN_CONFIG_PASSWORD_H

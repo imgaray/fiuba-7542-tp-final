@@ -88,10 +88,8 @@ void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
     while (!encontrado && it != filtradores.end())
         encontrado =  (*(it++)) == f;
 
-    if (encontrado) {
-        std::cout << "encontrado el filtrador de id: " << ID << ", removiéndolo" <<std::endl;
+    if (encontrado)
         filtradores.erase(--it);
-    }
 
     // sacarlo de la vista
     pVBoxFiltradores->remove(*(f.first));

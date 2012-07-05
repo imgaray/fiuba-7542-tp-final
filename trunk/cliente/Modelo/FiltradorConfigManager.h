@@ -29,13 +29,8 @@ class FiltradorConfigManager : public sigc::trackable {
 // podría haber una señal que indique qué dimensión o hecho fue agregado o eliminado para actualizar todos los restantes combobox
 
 //        sigc::signal< void, ConfigModelo* > signal_model_changed();
-//        sigc::signal< void, ConfigModelo* > signal_model_saved();
-//        sigc::signal< void, ConfigModelo* > signal_model_deleted();
     private:
 //        sigc::signal< void, ConfigModelo* > _signal_model_changed;
-//        sigc::signal< void, ConfigModelo* > _signal_model_saved;
-//        sigc::signal< void, ConfigModelo* > _signal_model_deleted;
-
         t_Filt tipo;
         Gtk::VBox* pVBoxFiltradores;
         Gtk::ToolButton* pButtonAgregar;

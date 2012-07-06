@@ -49,6 +49,7 @@ class FiltradorConfigManager : public sigc::trackable, public Serializable {
 
         typedef std::pair< FiltradorConfigVista*, FiltradorConfigModelo* > filtrador;
         std::list< filtrador > filtradores;
+        FiltradorConfigModelo* ulitmoFilConfigModelo;
         // para una búsqueda más rápida
         std::map< unsigned,  filtrador > mapaFiltradores;
         bool guardandoCambios;

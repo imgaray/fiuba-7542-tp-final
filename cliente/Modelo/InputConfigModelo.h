@@ -8,8 +8,6 @@ class InputConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
         InputConfigModelo(unsigned ID);
         ~InputConfigModelo();
-        virtual NodoXml serializar();
-        virtual void deserializar(const NodoXml& nodo);
 
 };
 

@@ -231,6 +231,13 @@ void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
 
 	for (;hijo != NULL; hijo = hijo->NextSiblingElement()) {
 		on_agregar_button_clicked();
-		(*(--this->consultasConfiguradas.end()))->deserializar(*hijo);
+//		if (this->consultasConfiguradas.back() != NULL) {
+//			std::cout << "Label: " << this->consultasConfiguradas.back()->getLabel() << std::endl;;
+//			this->consultasConfiguradas.back()->deserializar(*hijo);
+//		}
+//		else
+//			throw ErrorSerializacionXML();
+
+		pModeloActual->deserializar(*hijo);
 	}
 }

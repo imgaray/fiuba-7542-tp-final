@@ -82,6 +82,7 @@ void FiltradorConfigManager::on_agregar_button_clicked() {
     filtrador f(filtVista, filtModelo);
     filtradores.push_back(f);
     mapaFiltradores[filtModelo->getID()] = f;
+    ulitmoFilConfigModelo = filtModelo;
 }
 
 void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
@@ -135,8 +136,10 @@ void FiltradorConfigManager::deserializar(const NodoXml& nodo) {
 
 	for (; nodoHijo != NULL ; nodoHijo = nodoHijo->NextSiblingElement()) {
 		on_agregar_button_clicked();
-		(--this->filtradores.end())->second->deserializar(*nodoHijo);
-		//nodoHijo;
+		if (ulitmoFilConfigModelo != NULL)
+			ulitmoFilConfigModelo->deserializar(*nodoHijo);
+		else
+			throw ErrorSerializacionXML();
 	}
 
 }

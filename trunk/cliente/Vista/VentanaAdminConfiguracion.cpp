@@ -57,6 +57,8 @@ void VentanaAdminConfiguracion::on_aplicar_button_clicked() {
 
     if (pudoGuardar)
         tabConsultas->actualizarVDinamica(pVDinamica);
+    else
+        --it;
 
     if (it == tabs.end())
         hide();

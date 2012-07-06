@@ -41,6 +41,8 @@ class FiltradorConfigModelo : public Serializable {
         Gtk::ComboBoxText* comboHecho;
         Gtk::Entry* entryExtra;
 
+        void conectarComboHecho();
+
         Glib::ustring campoSelecc;
         Glib::ustring _valorCampo;
         Glib::ustring _campoAux;
@@ -59,6 +61,7 @@ class FiltradorConfigModelo : public Serializable {
         virtual void especializarVista() = 0;
 
         virtual void on_combo_dimension_changed() = 0;
+        void on_combo_aux_changed(Gtk::ComboBoxText* pCombo);
         void on_boton_eliminar_clicked();
 };
 

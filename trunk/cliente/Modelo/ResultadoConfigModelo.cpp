@@ -64,10 +64,10 @@ void ResultadoConfigModelo::completarAtributos() {
 //	}
 
 	comboDimension->set_active_text(campoSelecc);
+
 	if (Organizacion::esHecho(campoSelecc)) {
 		std::cout << ":::::::::::::::::::::::::::SE COmpleto el REsultado con un HECHO que es :" << _campoAux << ".  Campo: "<< campoSelecc <<  std::endl;
 
 		comboHecho->set_active_text(_campoAux);
 	}
-
 }

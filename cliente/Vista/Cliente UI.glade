@@ -427,9 +427,9 @@
   <object class="GtkWindow" id="ConfiguracionAdmin">
     <property name="title" translatable="yes">Configuraciones</property>
     <property name="modal">True</property>
-    <property name="window_position">center-always</property>
-    <property name="default_width">640</property>
-    <property name="default_height">360</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="default_width">672</property>
+    <property name="default_height">378</property>
     <property name="transient_for">VentanaCliente</property>
     <child>
       <object class="GtkVBox" id="vbox6">
@@ -814,7 +814,7 @@
                                       <object class="GtkScrolledWindow" id="scrolledwindow2">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="hscrollbar_policy">never</property>
+                                        <property name="hscrollbar_policy">automatic</property>
                                         <property name="vscrollbar_policy">automatic</property>
                                         <child>
                                           <object class="GtkViewport" id="viewport2">
@@ -1054,16 +1054,6 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkScrolledWindow" id="scrolledwindow3">
-                                                            <property name="visible">True</property>
-                                                            <property name="can_focus">True</property>
-                                                            <property name="hscrollbar_policy">automatic</property>
-                                                            <property name="vscrollbar_policy">never</property>
-                                                            <child>
-                                                            <object class="GtkViewport" id="viewport3">
-                                                            <property name="visible">True</property>
-                                                            <property name="resize_mode">queue</property>
-                                                            <child>
                                                             <object class="GtkVBox" id="vboxPanelFiltros">
                                                             <property name="visible">True</property>
                                                             <child>
@@ -1093,10 +1083,6 @@
                                                             <property name="pack_type">end</property>
                                                             <property name="position">1</property>
                                                             </packing>
-                                                            </child>
-                                                            </object>
-                                                            </child>
-                                                            </object>
                                                             </child>
                                                             </object>
                                                             </child>
@@ -1260,16 +1246,6 @@
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <child>
-                                                            <object class="GtkScrolledWindow" id="scrolledwindow4">
-                                                            <property name="visible">True</property>
-                                                            <property name="can_focus">True</property>
-                                                            <property name="hscrollbar_policy">automatic</property>
-                                                            <property name="vscrollbar_policy">never</property>
-                                                            <child>
-                                                            <object class="GtkViewport" id="viewport4">
-                                                            <property name="visible">True</property>
-                                                            <property name="resize_mode">queue</property>
-                                                            <child>
                                                             <object class="GtkVBox" id="vboxPanelResultados">
                                                             <property name="visible">True</property>
                                                             <child>
@@ -1299,10 +1275,6 @@
                                                             <property name="pack_type">end</property>
                                                             <property name="position">1</property>
                                                             </packing>
-                                                            </child>
-                                                            </object>
-                                                            </child>
-                                                            </object>
                                                             </child>
                                                             </object>
                                                             </child>

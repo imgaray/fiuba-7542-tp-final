@@ -34,8 +34,9 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         void initBotones();
         void initTabConfig();
 
-        std::map< const char*, Gtk::Button* > botones;
         Gtk::ComboBoxText comboTabSelec;
+        Gtk::Entry* pEntryTabLabel;
+        std::map< const char*, Gtk::Button* > botones;
         TabConfigVista* pTabVista;
 
         Glib::ustring rutaArchivo;

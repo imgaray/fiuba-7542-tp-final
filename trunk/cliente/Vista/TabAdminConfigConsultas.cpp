@@ -14,6 +14,7 @@
 // config tabs
 #define HBOX_TAB_SELEC "hboxTabSelec"
 #define TABLE_TAB_CONFIG "tableTabConfig"
+#define ENTRY_TAB_LABEL "entryTabLabel"
 
 #include <iostream>
 TabAdminConfigConsultas::TabAdminConfigConsultas(BaseObjectType* cobject,
@@ -23,6 +24,7 @@ TabAdminConfigConsultas::TabAdminConfigConsultas(BaseObjectType* cobject,
     initTabConfig();
     tabManager = new AdminConfigObjManager(OBJ_TAB,
                                            &comboTabSelec,
+                                           pEntryTabLabel,
                                            botones[BUTTON_AGREGAR_TAB],
                                            botones[BUTTON_GUARDAR_CAMBIOS_TAB],
                                            botones[BUTTON_ELIMINAR_TAB],
@@ -50,6 +52,7 @@ void TabAdminConfigConsultas::initBotones() {
 }
 
 void TabAdminConfigConsultas::initTabConfig() {
+    get_widget(ENTRY_TAB_LABEL, pEntryTabLabel);
     get_widget_derived(TABLE_TAB_CONFIG, pTabVista);
 
     Gtk::HBox* pHBoxTabSelec;
@@ -71,9 +74,10 @@ void TabAdminConfigConsultas::actualizarVDinamica(
 
 void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
     TabConfigModelo* mTab = dynamic_cast< TabConfigModelo* >(m);
-    if (mTab)
+    if (mTab) {
+        pEntryTabLabel->set_text(mTab->getLabel());
         pTabVista->setModelo(mTab);
-    else
+    } else
         throw "Vista y modelo incompatibles";
 }
 

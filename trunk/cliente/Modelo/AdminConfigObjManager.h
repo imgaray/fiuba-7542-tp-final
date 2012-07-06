@@ -3,6 +3,7 @@
 
 #include <gtkmm/button.h>
 #include <gtkmm/comboboxtext.h>
+#include <gtkmm/entry.h>
 #include "Serializable.h"
 
 class ConfigModelo;
@@ -22,6 +23,7 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
     public:
         AdminConfigObjManager(t_Objeto tipo,
                               Gtk::ComboBoxText* cbtext,
+                              Gtk::Entry* pEntry,
                               Gtk::Button* pAceptar,
                               Gtk::Button* pGuardarCambios,
                               Gtk::Button* pEliminar,
@@ -57,12 +59,18 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
         ConfigModelo* new_modelo();
 
         /** conexiones a las señales */
+        sigc::connection connectionCombobox;
+        sigc::connection connectionEntryLabel;
         sigc::connection connectionButtonAgregar;
         sigc::connection connectionButtonGuardar;
         sigc::connection connectionButtonEliminar;
-        sigc::connection connectionCombobox;
 
+        Gtk::ComboBoxText* comboSelec;
+        Gtk::Entry* pEntryLabel;
         std::map< t_boton, Gtk::Button* > botones;
+
+        void on_combo_selec_changed();
+        void on_entry_label_activate();
         void on_agregar_button_clicked();
         void on_guardar_cambios_button_clicked();
         void on_eliminar_button_clicked();
@@ -74,8 +82,6 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
         std::map< Glib::ustring, ConfigModelo* > mapaConsultasConfiguradas;
         ConfigModelo* pModeloActual;
         bool guardandoCambios;
-        void on_combo_selec_changed();
-        Gtk::ComboBoxText* comboSelec;
 };
 
 #endif  // ADMIN_CONFIG_OBJ_MANAGER_H

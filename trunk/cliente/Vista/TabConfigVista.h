@@ -35,7 +35,7 @@ class TabConfigVista : public Gtk::Table, public Buildable  {
         std::map< const char*, Gtk::Button* > botones;
         Gtk::ComboBoxText comboPanelSelec;
 
-        Gtk::Entry* pEntryTabLabel;
+        Gtk::Entry* pEntryPanelLabel;
         Gtk::SpinButton* pSpinButtonFilas;
         Gtk::SpinButton* pSpinButtonCols;
 

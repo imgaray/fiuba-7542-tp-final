@@ -1,10 +1,10 @@
 #include "TabConfigVista.h"
 #include <gtkmm/box.h>
 #include <gtkmm/buttonbox.h>
-#include <gtkmm/paned.h>
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "TabConfigModelo.h"
 #include "PanelConfigVista.h"
+#include "PanelConfigModelo.h"
 #include "Organizacion.h"
 
 // botones
@@ -15,8 +15,8 @@
 // config panels
 #define HBOX_PANEL_SELEC "hboxPanelSelec"
 #define VBOX_PANEL_CONFIG "vboxPanelConfig"
+#define ENTRY_PANEL_LABEL "entryPanelLabel"
 
-#define ENTRY_TAB_LABEL "entryTabLabel"
 #define SPINBUTTON_FILAS "spinbuttonFilas"
 #define SPINBUTTON_COLS "spinbuttonCols"
 
@@ -30,7 +30,6 @@ TabConfigVista::TabConfigVista(BaseObjectType* cobject,
     initBotones();
     initPanelConfig();
 
-    get_widget(ENTRY_TAB_LABEL, pEntryTabLabel);
     get_widget(SPINBUTTON_FILAS, pSpinButtonFilas);
     get_widget(SPINBUTTON_COLS, pSpinButtonCols);
 
@@ -55,6 +54,7 @@ void TabConfigVista::initBotones() {
 }
 
 void TabConfigVista::initPanelConfig() {
+    get_widget(ENTRY_PANEL_LABEL, pEntryPanelLabel);
     get_widget_derived(VBOX_PANEL_CONFIG, pPanelVista);
 
     Gtk::HBox* pHBoxPanelSelec;
@@ -74,6 +74,7 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
 //    std::cout << "TabConfigVista ( " << this << " ) seteando modelo nuevo de tab: " <<pModeloNuevo << std::endl;
     pModelo = pModeloNuevo;
     pModelo->setObjManagerPanel(&comboPanelSelec,
+                                pEntryPanelLabel,
                                 botones[BUTTON_AGREGAR_PANEL],
                                 botones[BUTTON_GUARDAR_CAMBIOS_PANEL],
                                 botones[BUTTON_ELIMINAR_PANEL]
@@ -81,13 +82,12 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
     on_panel_model_changed(pModelo->getModeloPanel());
     connectionTabModelo = pModelo->signal_panel_model_changed().connect(
         sigc::mem_fun(*this, &TabConfigVista::on_panel_model_changed));
-    pModelo->setEntryLabel(pEntryTabLabel);
     pModelo->setSpinButtonsGrilla(pSpinButtonFilas, pSpinButtonCols);
     pModelo->setInputsHandlers(filtradoresHandlers(pInputs, pBotonAgregarInput));
 }
 
 
 void TabConfigVista::on_panel_model_changed(PanelConfigModelo* m) {
-//    std::cout << "TabConfigVista ( " << this << " ) recibida la señal de modelo nuevo de panel: " << m << std::endl;
+    pEntryPanelLabel->set_text(m->getLabel());
     pPanelVista->setModelo(m);
 }

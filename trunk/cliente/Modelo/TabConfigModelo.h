@@ -20,6 +20,7 @@ class TabConfigModelo : public ConfigModelo {
         ~TabConfigModelo();
 
         void setObjManagerPanel(Gtk::ComboBoxText* cbtext,
+                                Gtk::Entry* pEntryPanelLabel,
                                 Gtk::Button* pAceptar,
                                 Gtk::Button* pGuardarCambios,
                                 Gtk::Button* pEliminar

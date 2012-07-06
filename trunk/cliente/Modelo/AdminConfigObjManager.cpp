@@ -8,14 +8,16 @@
 
 AdminConfigObjManager::AdminConfigObjManager(t_Objeto _tipo,
                                              Gtk::ComboBoxText* cbtext,
+                                             Gtk::Entry* pEntry,
                                              Gtk::Button* pAceptar,
                                              Gtk::Button* pGuardarCambios,
                                              Gtk::Button* pEliminar,
                                              const Glib::ustring& def)
 : tipo(_tipo),
+  comboSelec(cbtext),
+  pEntryLabel(pEntry),
   nombre_por_defecto(def),
-  pModeloActual(NULL),
-  comboSelec(cbtext) {
+  pModeloActual(NULL) {
     guardandoCambios = false;
 
     // botones
@@ -32,6 +34,10 @@ AdminConfigObjManager::AdminConfigObjManager(t_Objeto _tipo,
     // combobox
     connectionCombobox = comboSelec->signal_changed().connect(
         sigc::mem_fun(*this, &AdminConfigObjManager::on_combo_selec_changed));
+
+    // entry
+    connectionEntryLabel = pEntryLabel->signal_activate().connect(
+        sigc::mem_fun(*this, &AdminConfigObjManager::on_entry_label_activate));
 
     pModeloActual = new_modelo();
     mapaConsultasConfiguradas[nombre_por_defecto] = pModeloActual;
@@ -81,10 +87,11 @@ sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_deleted(
 }
 
 void  AdminConfigObjManager::desconectar() {
+    connectionCombobox.disconnect();
+    connectionEntryLabel.disconnect();
     connectionButtonAgregar.disconnect();
     connectionButtonGuardar.disconnect();
     connectionButtonEliminar.disconnect();
-    connectionCombobox.disconnect();
     comboSelec->clear_items();
 }
 
@@ -109,16 +116,48 @@ void  AdminConfigObjManager::reconectar() {
     connectionCombobox = comboSelec->signal_changed().connect(
         sigc::mem_fun(*this, &AdminConfigObjManager::on_combo_selec_changed));
     comboSelec->set_active_text(pModeloActual->getLabel());
+
+    // reconectar la señal de la entry
+    connectionEntryLabel = pEntryLabel->signal_activate().connect(
+        sigc::mem_fun(*this, &AdminConfigObjManager::on_entry_label_activate));
+
 }
 
 #include <iostream>
+void AdminConfigObjManager::on_combo_selec_changed() {
+    if (guardandoCambios)
+        return;
+    Glib::ustring label = comboSelec->get_active_text();
+    if (label == nombre_por_defecto) {
+        botones[B_AGREGAR]->show();
+        botones[B_GUARDAR]->hide();
+        botones[B_ELIMINAR]->hide();
+    } else {
+        botones[B_AGREGAR]->hide();
+        botones[B_GUARDAR]->show();
+        botones[B_ELIMINAR]->show();
+    }
+
+    pModeloActual = mapaConsultasConfiguradas[label];
+    _signal_model_changed.emit(pModeloActual);
+}
+
+void AdminConfigObjManager::on_entry_label_activate() {
+    // si el botón Agregar es visible, entonces es objeto nuevo
+    if (botones[B_AGREGAR]->get_visible())
+        on_agregar_button_clicked();
+    else
+    // de otra manera, se están guardando cambios
+        on_guardar_cambios_button_clicked();
+}
+
 void AdminConfigObjManager::on_agregar_button_clicked() {
     // Pedirle a ConfigModelo el título actual, verificar que no exista para
     // ver si se puede agregar. Si es válido, se agrega la entrada
     // mapaConsultasConfiguradas[título] = pModeloActual, y a la lista.
     // La entrada mapaConsultasConfiguradas[nombre_por_defecto] se pisa con
     // un modelo nuevo
-    Glib::ustring label = pModeloActual->getLabelNueva();
+    Glib::ustring label = pEntryLabel->get_text();
     if (mapaConsultasConfiguradas.find(label) == mapaConsultasConfiguradas.end()) {
         pModeloActual->setLabel(label);
         mapaConsultasConfiguradas[label] = pModeloActual;
@@ -132,8 +171,9 @@ void AdminConfigObjManager::on_agregar_button_clicked() {
 void AdminConfigObjManager::on_guardar_cambios_button_clicked() {
     _signal_model_saved.emit(pModeloActual);
 
-    Glib::ustring labelNueva = pModeloActual->getLabelNueva();
-    // si lo encuentra en el mapa, es porque ya existe y no es válido
+    Glib::ustring labelNueva = pEntryLabel->get_text();
+    // si lo encuentra en el mapa, es porque ya existe y no es válido,
+    // siendo que pertenece a otro objeto o al mismo
     if (mapaConsultasConfiguradas.find(labelNueva) != mapaConsultasConfiguradas.end())
         return;
 
@@ -147,7 +187,6 @@ void AdminConfigObjManager::on_guardar_cambios_button_clicked() {
         comboSelec->insert_text(pos, labelNueva);
     guardandoCambios = false;
     comboSelec->set_active(pos);
-
 }
 
 void AdminConfigObjManager::on_eliminar_button_clicked() {
@@ -173,31 +212,6 @@ void AdminConfigObjManager::on_eliminar_button_clicked() {
     guardandoCambios = false;
     comboSelec->set_active(pos-1);
     delete bckup;
-}
-
-void AdminConfigObjManager::on_combo_selec_changed() {
-    if (guardandoCambios)
-        return;
-    Glib::ustring label = comboSelec->get_active_text();
-    if (label == nombre_por_defecto) {
-        botones[B_AGREGAR]->show();
-        botones[B_GUARDAR]->hide();
-        botones[B_ELIMINAR]->hide();
-    } else {
-        botones[B_AGREGAR]->hide();
-        botones[B_GUARDAR]->show();
-        botones[B_ELIMINAR]->show();
-    }
-
-    pModeloActual = mapaConsultasConfiguradas[label];
-
-//    std::cout << "AdminConfigObjManager( " <<this << " ) emitiendo modelo ";
-//    if (tipo == OBJ_TAB)
-//        std::cout << "tab";
-//    else
-//        std::cout << "panel";
-//    std::cout << " nuevo: " << pModeloActual << std::endl;
-    _signal_model_changed.emit(pModeloActual);
 }
 
 ConfigModelo* AdminConfigObjManager::new_modelo() {

@@ -108,6 +108,12 @@ Glib::ustring FiltradorHelper::validarHecho(int i_combo,
 }
 
 Agregacion FiltradorHelper::getAgregacion(int i_combo) const {
+
+    //@todo sacar los cout
+    std::cout << "\n\n\n\n\n\n\n\n\n\n";
+    std::cout << "Valor i_combo: "<< i_combo <<std::endl;
+    std::cout << "\n\n\n\n\n\n\n\n\n\n";
+
     switch (i_combo) {
         case 0:  return NADA;
         case 1:  return SUM;
@@ -117,6 +123,7 @@ Agregacion FiltradorHelper::getAgregacion(int i_combo) const {
         case 5:  return CONT;
         default: return NADA;
     }
+
 }
 
 Glib::ustring FiltradorHelper::getValorComboFechaParaNavegacion() const {

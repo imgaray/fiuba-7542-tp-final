@@ -42,11 +42,12 @@ void FiltroConfigModelo::on_combo_dimension_changed() {
         comboFecha->hide();
         comboHecho->hide();
     }
-    entryExtra->set_text(entryPorCampo[campoSelecc]);
+    entryExtra->set_text(_valorCampo);
 }
 
 void FiltroConfigModelo::on_entry_changed() {
-    entryPorCampo[campoSelecc] = entryExtra->get_text();
+	_valorCampo = entryExtra->get_text();
+	entryPorCampo[campoSelecc] =_valorCampo;
 }
 
 void FiltroConfigModelo::deserializar(const NodoXml& nodo) {
@@ -61,4 +62,7 @@ void FiltroConfigModelo::deserializar(const NodoXml& nodo) {
 	}
 
 	comboDimension->set_active_text(campoSelecc);
+
+	// @todo sacar el cout
+	std::cout << "		FiltroConfigModeloConfigManager Deserializado******" << std::endl;
 }

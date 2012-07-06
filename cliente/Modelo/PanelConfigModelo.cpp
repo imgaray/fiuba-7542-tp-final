@@ -25,7 +25,7 @@
 #define ATR_DESDE_FILA "atr_desde_fila"
 #define ATR_DESDE_COL "atr_desde_col"
 #define ATR_HASTA_FILA "atr_hasta_fila"
-#define ATR_HASTA_COL "atr_hasta_fila"
+#define ATR_HASTA_COL "atr_hasta_col"
 
 
 #define HIJO_FILTROS "hijos_filtros"
@@ -341,12 +341,23 @@ NodoXml PanelConfigModelo::serializar(){
 	nodoRes.SetValue(HIJO_RES);
 	nodo.InsertEndChild(nodoRes);
 
+
+	// @todo sacar el cout
+	std::cout << "PanelConfigModelo Serializado******" << std::endl;
+
 	return nodo;
 }
 
 void PanelConfigModelo::deserializar(const NodoXml& nodo){
 
 	// @todo cargar nombre
+
+	if (nodo.Attribute(ATR_NOMBRE) != NULL) {
+		this->setLabel(nodo.Attribute(ATR_NOMBRE));
+	}
+	else {
+		throw ErrorSerializacionXML();
+	}
 
 	bool infoOK = true;
 
@@ -399,4 +410,7 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 		resutadosManager->deserializar(*hijo);
 	else
 		throw ErrorSerializacionXML();
+
+	// @todo sacar el cout
+	std::cout << "PanelConfigModelo Deserializado******" << std::endl;
 }

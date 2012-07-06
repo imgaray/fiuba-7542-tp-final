@@ -133,6 +133,9 @@ NodoXml FiltradorConfigManager::serializar() {
 		nodo.InsertEndChild(it->second->serializar());
 	}
 
+	// @todo sacar el cout
+	std::cout << "FiltradorConfigManager Serializado+++++++" << std::endl;
+
 	return nodo;
 }
 void FiltradorConfigManager::deserializar(const NodoXml& nodo) {
@@ -154,4 +157,6 @@ void FiltradorConfigManager::deserializar(const NodoXml& nodo) {
 			throw ErrorSerializacionXML();
 	}
 
+	// @todo sacar el cout
+	std::cout << "FiltradorConfigManager Deserializado******" << std::endl;
 }

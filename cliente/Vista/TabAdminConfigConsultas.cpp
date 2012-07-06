@@ -63,8 +63,11 @@ void TabAdminConfigConsultas::initTabConfig() {
 
 void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo) {
     std::cout << "void TabAdminConfigConsultas::setArchivoPersonalizador(const char* )... deserializando... (@todo)" << std::endl;
-    dynBuilder.construir(tabManager);
+
     this->cargarConsultas(archivo);
+
+    // @todo esta linea iva antes, comprobar funcionamiento
+    dynBuilder.construir(tabManager);
 }
 
 void TabAdminConfigConsultas::actualizarVDinamica(

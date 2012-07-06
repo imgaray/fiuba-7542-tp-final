@@ -37,6 +37,7 @@ void ArchivoConfiguracion::setearAtributo(std::string& nombre, std::string& valo
 ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) {
 	Cifrador c;
 	std::fstream archivo(ruta);
+	Utilitario u;
 	if (!archivo) {
 		archivo.open(ruta, std::fstream::out);
 	} else {
@@ -44,6 +45,7 @@ ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) 
 		while(!archivo.eof()) {
 			std::getline(archivo, aux);
 			c.descifrar(aux, CLAVE);
+			u.borrarCaracter(aux, ' ');
 			if (formatoCorrecto(aux)) {
 				unsigned int posSeparador = aux.find_first_of(SEPARADOR);
 				std::string nombre = aux.substr(0, posSeparador);

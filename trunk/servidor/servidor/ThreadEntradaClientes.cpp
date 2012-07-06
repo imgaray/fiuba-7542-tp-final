@@ -31,8 +31,7 @@ ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli,
 }
 
 ThreadEntradaClientes::~ThreadEntradaClientes() {
-	//if (corriendo())
-		detener_entrada();
+	detener_entrada();
 	if (entradaClientes)
 		delete entradaClientes;
 }

@@ -14,6 +14,7 @@
 #include "../comun/Respuesta.h"
 #include "../comun/Utilitario.h"
 #include <stdlib.h>
+#include "ArchivoConfiguracion.h"
 
 #define T_BUFFER 256
 #define TABULADOR '\t'
@@ -33,44 +34,26 @@ Agente::~Agente() {
 
 
 void Agente::cargarConfiguracion(const std::string& rutaConfig) {
-	std::fstream archConfig(rutaConfig.c_str(), std::fstream::in);
-	std::string linea;
-	std::string cabecera, arg;
 	Puerto puerto;
-	Utilitario util;
-
-	if (archConfig.good()) {
-		while (archConfig.good()) {
-			leerLinea(archConfig, linea);
-
-			if (linea.empty() == false) {
-
-				cabecera = util.separar(linea, '=' , 0);
-				util.borrarCaracter(cabecera, ' ');
-
-				if (cabecera == "PUERTO") {
-					arg = util.separar(linea, '=' , 1);
-					util.borrarCaracter(arg, ' ');
-					puerto = util.convertirAEntero(arg);
-				}
-				else if (cabecera == "HUESPED") {
-					arg = util.separar(linea, '=' , 1);
-					util.borrarCaracter(arg, ' ');
-					_huesped = arg;
-				}
-			}
-		}
+	ArchivoConfiguracion arch("agente.conf");
+	std::string atrpuerto = PUERTO_AGENTE_ATR;
+	std::string atrhuesped = HOST_AGENTE_ATR;
+	_huesped = arch.obtenerAtributo(atrhuesped);
+	if (_huesped.size() == 0) {
+		_huesped = "localhost";
+		std::cout << "entre al caso default del huesped"<<std::endl;
+	}
+	std::string spuerto = arch.obtenerAtributo(atrpuerto);
+	Utilitario u;
+	u.borrarCaracter(_huesped, '\n');
+	if (spuerto.size()) {
+		puerto = (Puerto) u.convertirAEntero(spuerto);
 	}
 	else {
-		// Cargar Configuracion Estandar
-
 		puerto = PUERTO_ESTANDAR_AGENTE;
-		_huesped = "localhost";
 	}
-
-
-	std::cout << "Puerto:  "<< puerto << std::endl;
-	std::cout << "Huesped: "<< _huesped << std::endl;
+	std::cout << "Puerto:  -"<< puerto <<"-"<< std::endl;
+	std::cout << "Huesped: -"<< _huesped<<"- size = " << _huesped.size() << std::endl;
 
 
 	this->_sck = new Socket(puerto);

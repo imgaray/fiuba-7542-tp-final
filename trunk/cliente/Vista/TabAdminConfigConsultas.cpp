@@ -3,6 +3,7 @@
 #include "TabConfigModelo.h"
 #include "TabConfigVista.h"
 #include "AdminConfigObjManager.h"
+#include "DefinicionesXML.h"
 
 // botones
 #define BUTTON_AGREGAR_TAB "buttonAgregarTab"
@@ -59,6 +60,7 @@ void TabAdminConfigConsultas::initTabConfig() {
 void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo) {
     std::cout << "void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo)... deserializando... (@todo)" << std::endl;
 //    tabManager->deserializar();
+    this->cargarConsultas(archivo);
 }
 
 void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
@@ -71,5 +73,27 @@ void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
 
 bool TabAdminConfigConsultas::aplicarCambios() {
     std::cout << "bool TabAdminConfigConsultas::aplicarCambios()... (@todo)" << std::endl;
+
+    TiXmlDocument docXml(rutaArchivo.c_str());
+
+    docXml.InsertEndChild(tabManager->serializar());
+
+    if (docXml.SaveFile()) {
+    	std::cout << "Xml guardado correctamente" << std::endl;
+    }
+    else {
+    	std::cout << "--------------Error al guardar en XML." << std::endl;
+    }
+
+
     return true;
+}
+
+void TabAdminConfigConsultas::cargarConsultas(const char* ruta) {
+	rutaArchivo = ruta;
+	TiXmlDocument docXml(ruta);
+	docXml.LoadFile();
+	if (docXml.RootElement() != NULL) {
+		tabManager->deserializar(*docXml.RootElement());
+	}
 }

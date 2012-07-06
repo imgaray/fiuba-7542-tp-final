@@ -103,8 +103,8 @@ void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
 void TabConfigModelo::desocuparGrilla(PanelConfigModelo* pModelo) {
 //    imprimirGrilla();
 
-    for (unsigned i = 0; i < filas; ++i)
-        for (unsigned j = 0; j < cols; ++j)
+    for (int i = 0; i < filas; ++i)
+        for (int j = 0; j < cols; ++j)
             if (ocupacionesGrilla[i][j] == pModelo)
                 ocupacionesGrilla[i][j] = NULL;
 
@@ -227,8 +227,8 @@ void TabConfigModelo::on_panel_solicita_validacion(PanelConfigModelo* pPanel,
 
 void TabConfigModelo::imprimirGrilla() {
     std::cout << "Estado de la grilla" << std::endl;
-    for (unsigned i = 0; i < filas; ++i) {
-        for (unsigned j = 0; j < cols; ++j)
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < cols; ++j)
             if (ocupacionesGrilla[i][j])
                 std::cout << "x";
             else

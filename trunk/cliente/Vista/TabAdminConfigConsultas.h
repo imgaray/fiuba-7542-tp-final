@@ -24,12 +24,17 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         AdminConfigObjManager* tabManager;
         void on_tab_model_changed(ConfigModelo* m);
 
+
+        void cargarConsultas(const char* ruta);
+
         void initBotones();
         void initTabConfig();
 
         std::map< const char*, Gtk::Button* > botones;
         Gtk::ComboBoxText comboTabSelec;
         TabConfigVista* pTabVista;
+
+        Glib::ustring rutaArchivo;
 };
 
 #endif  // TAB_ADMIN_CONFIG_CONSULTAS_H

@@ -8,6 +8,9 @@ class ResultadoConfigModelo : public FiltradorConfigModelo {
         ResultadoConfigModelo(unsigned ID);
         ~ResultadoConfigModelo();
 
+        void setFiltradorEn(FiltradoresTab* filtTab);
+        void setFiltradorEn(FiltradoresPanel* filtPanel);
+
     private:
         void especializarVista();
         void setComboHecho(Gtk::ComboBoxText* comboHecho);

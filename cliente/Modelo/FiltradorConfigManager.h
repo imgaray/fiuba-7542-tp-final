@@ -14,6 +14,8 @@ enum t_Filt {
 
 class FiltradorConfigModelo;
 class FiltradorConfigVista;
+class FiltradoresTab;
+class FiltradoresPanel;
 
 /** @class FiltradorConfigManager
  * clase encargada de manejar la parte de agregado de filtradores dinámicos
@@ -27,6 +29,9 @@ class FiltradorConfigManager : public sigc::trackable, public Serializable {
 
         void desconectar();
         void reconectar();
+
+        void setFiltradoresEn(FiltradoresTab* filtTab);
+        void setFiltradoresEn(FiltradoresPanel* filtPanel);
 
         virtual NodoXml serializar();
         virtual void deserializar(const NodoXml& nodo);

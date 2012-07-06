@@ -42,6 +42,7 @@ void FiltradoresTab::agregarEntrada(const std::string& entrada) {
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
+        std::cout << entrada << std::endl;
     }
 }
 

@@ -7,7 +7,6 @@
 #include "GraficoDeTorta.h"
 #include "Tab.h"
 #include "Panel.h"
-#include "FiltradoresTab.h"
 #include "FiltradoresPanel.h"
 #include "Organizacion.h"
 #include "VentanaClienteDinamica.h"

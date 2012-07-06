@@ -14,3 +14,7 @@ void FiltradorSoloDimensionConfigModelo::especializarVista() {
 void FiltradorSoloDimensionConfigModelo::on_combo_dimension_changed() {
     campoSelecc = comboDimension->get_active_text();
 }
+
+void FiltradorSoloDimensionConfigModelo::completarAtributos() {
+	comboDimension->set_active_text(campoSelecc);
+}

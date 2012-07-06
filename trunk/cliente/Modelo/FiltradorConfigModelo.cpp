@@ -86,6 +86,10 @@ void FiltradorConfigModelo::on_boton_eliminar_clicked() {
 NodoXml FiltradorConfigModelo::serializar() {
 	NodoXml nodo(NOMBRE_NODO);
 
+
+	// @todo ver si necesario sacar esta linea..
+	_campoAux = comboHecho->get_active_text();
+
 	nodo.SetAttribute(ATR_CAMPO, campoSelecc.c_str());
 	nodo.SetAttribute(ATR_VALOR_CAMPO, _valorCampo.c_str());
 	nodo.SetAttribute(ATR_CAMPO_AUX, _campoAux.c_str());
@@ -119,6 +123,7 @@ void FiltradorConfigModelo::deserializar(const NodoXml& nodo) {
 		_campoAux = "";
 	}
 
+	this->completarAtributos();
 	// @todo sacar el cout
 	std::cout << "FiltradorConfigModelo Deserializado******" << std::endl;
 }

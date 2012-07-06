@@ -33,6 +33,9 @@ class FiltradorConfigModelo : public Serializable {
         virtual void deserializar(const NodoXml& nodo);
 
     protected:
+
+        virtual void completarAtributos() = 0;
+
         Gtk::ComboBoxText* comboDimension;
         Gtk::ComboBoxText* comboFecha;
         Gtk::ComboBoxText* comboHecho;

@@ -50,14 +50,13 @@ void FiltroConfigModelo::on_entry_changed() {
 	entryPorCampo[campoSelecc] =_valorCampo;
 }
 
-void FiltroConfigModelo::deserializar(const NodoXml& nodo) {
-	FiltradorConfigModelo::deserializar(nodo);
+void FiltroConfigModelo::completarAtributos() {
 	entryPorCampo[campoSelecc] = _valorCampo;
 
 	if (Organizacion::esDimensionEspecial(campoSelecc)) {
 		comboFecha->set_active_text(_campoAux);
 	}
-	else {
+	else if (Organizacion::esHecho(campoSelecc)) {
 		comboHecho->set_active_text(_campoAux);
 	}
 

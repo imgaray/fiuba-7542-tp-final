@@ -52,3 +52,22 @@ void ResultadoConfigModelo::on_combo_dimension_changed() {
         comboHecho->hide();
     }
 }
+
+void ResultadoConfigModelo::completarAtributos() {
+//	entryPorCampo[campoSelecc] = _valorCampo;
+//
+//	if (Organizacion::esDimensionEspecial(campoSelecc)) {
+//		comboFecha->set_active_text(_campoAux);
+//	}
+//	else {
+//		comboHecho->set_active_text(_campoAux);
+//	}
+
+	comboDimension->set_active_text(campoSelecc);
+	if (Organizacion::esHecho(campoSelecc)) {
+		std::cout << ":::::::::::::::::::::::::::SE COmpleto el REsultado con un HECHO que es :" << _campoAux << ".  Campo: "<< campoSelecc <<  std::endl;
+
+		comboHecho->set_active_text(_campoAux);
+	}
+
+}

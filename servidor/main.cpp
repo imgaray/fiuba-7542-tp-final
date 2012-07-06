@@ -12,7 +12,6 @@
 #define PUERTOAGENTE "puerto_agente"
 #define DEFAULTAGENTE 4321
 #define DEFAULTCLIENTE 12345
-#define MAX_INTENTOS 3
 
 template <class T, class Y> 
 void convertir(T& objetivo, Y& destino) {
@@ -73,7 +72,7 @@ int configurar() {
 
 int main(int argc, char **argv) {
 	std::cout << "argc = " << argc << std::endl;
-	if (argc >= 1) {
+	if (argc > 1) {
 		if ((argc == 2) && (strcmp(argv[1], "-c") == 0)) {
 			return configurar();
 		} else {

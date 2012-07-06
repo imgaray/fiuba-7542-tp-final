@@ -178,6 +178,8 @@ typedef unsigned short int Puerto;
 //
 /////////////////////////////////////////////////////////
 
+#define MAX_INTENTOS 3
+
 #define CLAVE_ATR "claveAdmin"
 #define PUERTO_AGENTE_ATR "PUERTO"
 #define HOST_AGENTE_ATR "HUESPED"

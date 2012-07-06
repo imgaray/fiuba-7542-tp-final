@@ -29,6 +29,7 @@ void ResultadoConfigModelo::especializarVista() {
 void ResultadoConfigModelo::setComboHecho(Gtk::ComboBoxText* _comboHecho) {
     comboHecho = _comboHecho;
     FiltradorHelper::getInstancia().popularComboAgregaciones(comboHecho);
+    conectarComboHecho();
 
     comboHecho->set_active(0);
 }

@@ -51,5 +51,6 @@ protected:
 	};
 
 	ColumnasModelo *_colModelo;
+	Gtk::Spinner s;
 };
 #endif /* TABLA_H_ */

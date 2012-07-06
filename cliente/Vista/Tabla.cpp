@@ -10,6 +10,7 @@
 
 Tabla::Tabla(FiltradoresPanel& filtradores) : ExhibidorRespuesta(filtradores) {
 	_colModelo = NULL;
+	setSpinner(&s);
 
 }
 

@@ -53,6 +53,10 @@ void FiltradorConfigModelo::setComboFecha(Gtk::ComboBoxText* _comboFecha) {
 
     FiltradorHelper::getInstancia().popularComboFecha(comboFecha);
 
+    comboFecha->signal_changed().connect(sigc::bind< Gtk::ComboBoxText* >(
+        sigc::mem_fun(*this, &FiltradorConfigModelo::on_combo_aux_changed),
+        comboFecha));
+
     comboFecha->set_active(0);
 }
 
@@ -60,8 +64,15 @@ void FiltradorConfigModelo::setComboHecho(Gtk::ComboBoxText* _comboHecho) {
     comboHecho = _comboHecho;
 
     FiltradorHelper::getInstancia().popularComboHechoInput(comboHecho);
+    conectarComboHecho();
 
     comboHecho->set_active(0);
+}
+
+void FiltradorConfigModelo::conectarComboHecho() {
+    comboHecho->signal_changed().connect(sigc::bind< Gtk::ComboBoxText* >(
+        sigc::mem_fun(*this, &FiltradorConfigModelo::on_combo_aux_changed),
+        comboHecho));
 }
 
 void FiltradorConfigModelo::setEntryExtra(Gtk::Entry* _entryExtra) {
@@ -77,6 +88,10 @@ void FiltradorConfigModelo::setBotonEliminar(Gtk::ToolButton* _botonEliminar) {
 
 sigc::signal< void, unsigned > FiltradorConfigModelo::signal_delete_filtrador() {
     return _signal_delete_filtrador;
+}
+
+void FiltradorConfigModelo::on_combo_aux_changed(Gtk::ComboBoxText* pCombo) {
+    _campoAux = pCombo->get_active_text();
 }
 
 void FiltradorConfigModelo::on_boton_eliminar_clicked() {

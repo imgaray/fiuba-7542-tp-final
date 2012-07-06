@@ -9,6 +9,8 @@
 #define NOMBRE_PANEL_POR_DEFECTO "Nuevo panel"
 
 class FiltradorConfigManager;
+class Panel;
+class FiltradoresPanel;
 
 class PanelConfigModelo : public ConfigModelo {
     public:
@@ -30,10 +32,12 @@ class PanelConfigModelo : public ConfigModelo {
         void setPivoteYsHandlers(const filtradoresHandlers& handlers);
         void setResultadosHandlers(const filtradoresHandlers& handlers);
 
-        void getPosicion(unsigned& desdeFila, unsigned& hastaFila,
-                         unsigned& desdeCol, unsigned& hastaCol);
+        void getPosicion(int& desdeFila, int& hastaFila,
+                         int& desdeCol, int& hastaCol);
 
         sigc::signal< void, PanelConfigModelo*, int, int, int, int > signal_posicion_changed();
+
+        Panel* concretarConfig(FiltradoresPanel* filtPanel);
 
         virtual NodoXml serializar();
         virtual void deserializar(const NodoXml& nodo);
@@ -50,7 +54,7 @@ class PanelConfigModelo : public ConfigModelo {
         FiltradorConfigManager* resutadosManager;
 
         int indice_tipoGrafico;
-        static Glib::ustring tipoGrafico[];
+        static Glib::ustring tiposGrafico[];
         /** señales propias */
         sigc::signal< void, PanelConfigModelo*, int, int, int, int > _signal_posicion_changed;
 

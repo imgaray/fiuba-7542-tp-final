@@ -23,7 +23,7 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
 
-        void on_page_switched(GtkNotebookPage* page, guint page_num);
+        void on_puede_actualizar(bool puede);
         void on_actualizacion_solicitada(Consultante* c);
 
         void on_conectar_button_clicked();

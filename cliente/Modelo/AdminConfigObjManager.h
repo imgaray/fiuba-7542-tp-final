@@ -8,6 +8,7 @@
 
 class ConfigModelo;
 class TabConfigModelo;
+class PanelConfigModelo;
 
 enum t_Objeto {
     OBJ_TAB,
@@ -36,6 +37,7 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
         ConfigModelo* getModelo() const;
 
         std::list< TabConfigModelo* > getModelosComoTabs();
+        std::list< PanelConfigModelo* > getModelosComoPaneles();
 
         sigc::signal< void, ConfigModelo* > signal_model_changed();
         sigc::signal< void, ConfigModelo* > signal_model_saved();

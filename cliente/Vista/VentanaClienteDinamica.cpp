@@ -13,7 +13,6 @@ VentanaClienteDinamica::VentanaClienteDinamica(BaseObjectType* cobject,
 
 VentanaClienteDinamica::~VentanaClienteDinamica() {}
 
-#include <iostream>
 void VentanaClienteDinamica::personalizar(Personalizador& dynBuilder) {
     std::vector< Tab* >::iterator it = tabs.begin();
     for ( ; it != tabs.end(); ++it)
@@ -80,6 +79,7 @@ void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
     for (int i = 0; i < CANT_MAX_RESP_PROC && hayRespuestas ; i++) {
         resp = server.obtenerRespuesta();
         it = consultas.find(resp.devolverID());
+        std::cout << "Obtenida respuesta para consultante de ID: " << resp.devolverID() << std::endl;
         consultanteExistente = it != consultas.end();
         assert(consultanteExistente);
 
@@ -89,15 +89,10 @@ void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
     }
 }
 
-bool VentanaClienteDinamica::disponibleParaActualizacion(guint pag) {
-    return tabs[pag]->disponibleParaActualizacion();
+sigc::signal< void, bool > VentanaClienteDinamica::signal_puede_actualizar() {
+    return _signal_puede_actualizar;
 }
 
-void VentanaClienteDinamica::refresh() {
-    int p = get_current_page();
-    set_current_page(p-1);
-    set_current_page(p);
-}
 sigc::signal< void, Consultante* > VentanaClienteDinamica::signal_actualizacion() {
     return solicitudDeActualizacion;
 }

@@ -4,6 +4,7 @@
 #include "FiltradorConfigManager.h"
 #include "Organizacion.h"
 #include "Tab.h"
+#include "Panel.h"
 #include "FiltradoresTab.h"
 #include "FiltradoresPanel.h"
 #include <gtkmm/table.h>
@@ -44,7 +45,7 @@ Tab* TabConfigModelo::concretarConfig() {
     Tab* t = new Tab(getLabel());
     Gtk::Table* grilla = manage(new Gtk::Table(filas, cols, true));
 
-    // crear filtradores de la tab, y registrar consultantes y navegables
+    // crear filtradores de la tab, y registrar navegalbes y consultantes
     FiltradoresTab* filtTab = manage(new FiltradoresTab());
     inputsManager->setFiltradoresEn(filtTab);
     while (filtTab->tieneFiltrosConsultantes())
@@ -52,12 +53,33 @@ Tab* TabConfigModelo::concretarConfig() {
     while (filtTab->tieneFiltrosNavegables())
         t->agregarFiltroNavegable(filtTab->getFiltroNavegable());
 
+    // itero por cada panel
+    std::list< PanelConfigModelo* > paneles = panelManager->getModelosComoPaneles();
+    std::list< PanelConfigModelo* >::iterator it = paneles.begin();
+    int desdeFila, hastaFila, desdeCol, hastaCol;
+    for ( ; it != paneles.end(); ++it) {
+        // crear el conjunto de filtradores del panel
+        FiltradoresPanel* filtPanel = manage(new FiltradoresPanel(*filtTab));
+
+        // cargar el panel
+        Panel* panel = (*it)->concretarConfig(filtPanel);
+
+        // registrar consultantes y navegables
+        while (filtPanel->tieneFiltrosConsultantes())
+            t->agregarConsultante(filtPanel->getFiltroConsultante());
+        while (filtPanel->tieneFiltrosNavegables())
+            t->agregarFiltroNavegable(filtPanel->getFiltroNavegable());
+        t->agregarConsultante(panel->getConsultante());
+
+        // conseguir su posición y ponerlo en la grilla
+        (*it)->getPosicion(desdeFila, hastaFila, desdeCol, hastaCol);
+        grilla->attach(*panel, desdeFila, hastaFila, desdeCol, hastaCol);
+    }
 
     // agregar filtradores de la tab y la grilla
     t->pack_start(*filtTab, false, false);
     t->pack_start(*grilla, true, true);
 
-    t->show_all();
     t->informarFinCreacion();
 
     return t;
@@ -115,16 +137,16 @@ void TabConfigModelo::desconectarDeHijo() {
 void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
 //    imprimirGrilla();
 
-    unsigned desdeFila, hastaFila;
-    unsigned desdeCol, hastaCol;
+    int desdeFila, hastaFila;
+    int desdeCol, hastaCol;
     pModelo->getPosicion(desdeFila, hastaFila, desdeCol, hastaCol);
 
     on_panel_solicita_validacion(pModelo,
                                  desdeFila, hastaFila,
                                  desdeCol, hastaCol);
 
-    for (unsigned i = desdeFila; i < hastaFila; ++i)
-        for (unsigned j = desdeCol; j < hastaCol; ++j)
+    for (int i = desdeFila; i < hastaFila; ++i)
+        for (int j = desdeCol; j < hastaCol; ++j)
             ocupacionesGrilla[i][j] = pModelo;
 
 //    imprimirGrilla();

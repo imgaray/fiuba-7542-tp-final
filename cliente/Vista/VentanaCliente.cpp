@@ -34,8 +34,8 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
 
     get_widget_derived(CONFIG_ADMIN, pVAdminConfig);
 
-    pVDinamica->signal_switch_page().connect(sigc::mem_fun(*this,
-        &VentanaCliente::on_page_switched));
+    pVDinamica->signal_puede_actualizar().connect(sigc::mem_fun(*this,
+        &VentanaCliente::on_puede_actualizar));
     pVDinamica->signal_actualizacion().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_actualizacion_solicitada));
 
@@ -82,12 +82,10 @@ void VentanaCliente::personalizar(const char* archivo) {
     pVAdminConfig->setArchivoPersonalizador(archivo);
 }
 
-void VentanaCliente::on_page_switched(GtkNotebookPage* page, guint page_num) {
+void VentanaCliente::on_puede_actualizar(bool puede) {
     if (server.conectado()) {
-        bool actualizable = pVDinamica->disponibleParaActualizacion(page_num);
-
-        botones[BOTON_ACTUALIZAR]->set_sensitive(actualizable);
-        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(actualizable);
+        botones[BOTON_ACTUALIZAR]->set_sensitive(puede);
+        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(puede);
     }
 }
 

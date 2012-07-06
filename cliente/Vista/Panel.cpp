@@ -16,13 +16,19 @@ Panel::Panel(const Glib::ustring& label) : Gtk::Frame(label) {
 Panel::~Panel() {}
 
 void Panel::setContenido(Grafico& g) {
+    consultante = &g;
     box.pack_start(g.getFiltrador(), false, false);
     pViewport->add(g);
     box.add(scrWin);
 }
 
 void Panel::setContenido(Tabla& t) {
-    box.pack_start(t.getFiltrador(), false, false); // linea descomentada
-    pViewport->add(t);	// linea descomentada
+    consultante = &t;
+    box.pack_start(t.getFiltrador(), false, false);
+    pViewport->add(t);
     box.add(scrWin);
+}
+
+Consultante* Panel::getConsultante() {
+    return consultante;
 }

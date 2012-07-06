@@ -80,6 +80,18 @@ std::list< TabConfigModelo* > AdminConfigObjManager::getModelosComoTabs() {
     return tabs;
 }
 
+std::list< PanelConfigModelo* > AdminConfigObjManager::getModelosComoPaneles() {
+    std::list< PanelConfigModelo* > paneles;
+
+    if (tipo == OBJ_PANEL) {
+        std::list< ConfigModelo* >::const_iterator it = consultasConfiguradas.begin();
+        for ( ; it != consultasConfiguradas.end(); ++it)
+            paneles.push_back(dynamic_cast< PanelConfigModelo* >(*it));
+    }
+
+    return paneles;
+}
+
 sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_changed() {
     return _signal_model_changed;
 }

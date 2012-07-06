@@ -3,6 +3,7 @@
 #include "ArchivoConfiguracion.h"
 #include "Utilitario.h"
 #include "Definiciones.h"
+#include <gtkmm/paned.h>
 
 #define ENTRY_PASS_ACTUAL "entryPassActual"
 #define ENTRY_PASS_NUEVA "entryPassNueva"
@@ -19,17 +20,19 @@ TabAdminConfigPassword::TabAdminConfigPassword(BaseObjectType* cobject,
 
 TabAdminConfigPassword::~TabAdminConfigPassword() {}
 
-#include <iostream>
 bool TabAdminConfigPassword::aplicarCambios() {
-    std::cout << "bool TabAdminConfigPassword::aplicarCambios()... (@todo)" << std::endl;
     Glib::ustring passActual = pEntryPassActual->get_text();
     Glib::ustring passNueva = pEntryPassNueva->get_text();
-    std::string pactual = passActual.c_str();
-    std::string pnueva = passNueva.c_str();
+
+    // si están vacías, no se intentó modificar nada, termina el método
+    if (passActual == "" && passNueva == "")
+        return true;
+
     ArchivoConfiguracion arch("servRemoto.conf");
     std::string atr = CLAVE_ATR;
-    std::string pvieja = arch.obtenerAtributo(atr);
-    if (pvieja == pactual) {
+    Glib::ustring pvieja = arch.obtenerAtributo(atr);
+    if (pvieja == passActual) {
+        std::string pnueva(passNueva);
 		arch.setearAtributo(atr,pnueva);
 	} else {
 		return false;

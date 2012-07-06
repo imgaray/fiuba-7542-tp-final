@@ -113,7 +113,7 @@ void FiltradorConfigModelo::deserializar(const NodoXml& nodo) {
 	}
 
 	if (nodo.Attribute(ATR_CAMPO_AUX)) {
-			_campoAux = nodo.Attribute(ATR_CAMPO_AUX);
+        _campoAux = nodo.Attribute(ATR_CAMPO_AUX);
 	}
 	else {
 		_campoAux = "";

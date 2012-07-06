@@ -31,8 +31,7 @@ ThreadEntradaAgentes::ThreadEntradaAgentes(ContenedorAgentes& cag,
 }
 
 ThreadEntradaAgentes::~ThreadEntradaAgentes() {
-	if (corriendo())	
-		detener_entrada();
+	detener_entrada();
 	if (entradaAgentes)
 		delete entradaAgentes;
 }

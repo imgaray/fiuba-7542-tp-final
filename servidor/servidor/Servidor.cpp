@@ -12,7 +12,7 @@ Respuesta Servidor::resolverEntrada(Consulta& entrada) {
 		return r;
 	}
 	// TODO: al integrar, habria que reformular esto
-	return Respuesta("ERROR");
+	return Respuesta(Respuesta::mensajeError);
 }
 
 Respuesta Servidor::resolver(Consulta& consulta) {
@@ -22,7 +22,7 @@ Respuesta Servidor::resolver(Consulta& consulta) {
 		return r;
 	}
 	// TODO: al integrar, habria que reformular esto
-	return Respuesta("ERROR");
+	return Respuesta(Respuesta::mensajeError);
 }
 
 bool Servidor::funcional() {

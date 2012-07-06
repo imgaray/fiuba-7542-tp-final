@@ -174,10 +174,12 @@ typedef unsigned short int Puerto;
 
 /////////////////////////////////////////////////////////
 //
-//Definiciones de atributos de Archivo Configuracion cliente
+//Definiciones de atributos de Archivo Configuracion
 //
 /////////////////////////////////////////////////////////
 
 #define CLAVE_ATR "claveAdmin"
+#define PUERTO_AGENTE_ATR "PUERTO"
+#define HOST_AGENTE_ATR "HUESPED"
 
 #endif /* DEFINICIONES_H_ */

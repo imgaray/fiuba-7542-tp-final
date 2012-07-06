@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include "Utilitario.h"
 #define RUTA "archivo.configuracion"
 
 class ArchivoConfiguracion {

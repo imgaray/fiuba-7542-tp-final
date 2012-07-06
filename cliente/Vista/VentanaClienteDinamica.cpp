@@ -25,6 +25,7 @@ void VentanaClienteDinamica::personalizar(Personalizador& dynBuilder) {
         agregarData(t);
         append_page(t, t.getEtiqueta());
     }
+
     show_all();
 }
 

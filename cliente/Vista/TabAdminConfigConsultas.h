@@ -6,6 +6,7 @@
 #include <list>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/button.h>
+#include "Personalizador.h"
 
 class ConfigModelo;
 class TabConfigVista;
@@ -18,10 +19,13 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         ~TabAdminConfigConsultas();
 
         void setArchivoPersonalizador(const char* archivo);
+        void actualizarVDinamica(VentanaClienteDinamica* pVDinamica);
 
         bool aplicarCambios();
     private:
         AdminConfigObjManager* tabManager;
+        Personalizador dynBuilder;
+
         void on_tab_model_changed(ConfigModelo* m);
 
 

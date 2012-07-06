@@ -12,6 +12,7 @@
 class AdminConfigObjManager;
 class FiltradorConfigManager;
 class PanelConfigModelo;
+class Tab;
 
 class TabConfigModelo : public ConfigModelo {
     public:
@@ -31,6 +32,8 @@ class TabConfigModelo : public ConfigModelo {
         sigc::signal< void, PanelConfigModelo* > signal_panel_model_changed();
 
         PanelConfigModelo* getModeloPanel() const;
+
+        Tab* concretarConfig();
 
         virtual NodoXml serializar();
         virtual void deserializar(const NodoXml& nodo);

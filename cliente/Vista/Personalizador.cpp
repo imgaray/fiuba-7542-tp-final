@@ -13,40 +13,28 @@
 #include "VentanaClienteDinamica.h"
 #include "TablaComun.h"
 #include "TablaPivote.h"
-//#include <libxml++/libxml++.h>
-
-#define SEP_INIT '{'
-#define SEP_END '}'
-#define SEP_MEDIO ','
+#include "AdminConfigObjManager.h"
+#include "TabConfigModelo.h"
 
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
 }
 
 Personalizador::~Personalizador() {
-    /** @todo quizás haya que sacarle el padre a los widgets */
-    it = tabs.begin();
-    for ( ; it != tabs.end(); ++it)
+    deprecateTabs();
+    deleteTabs();
+}
+
+void Personalizador::deleteTabs() {
+    it = tabsViejas.begin();
+    for ( ; it != tabsViejas.end(); ++it)
         delete *it;
-
-    std::list< Gtk::Object* >::iterator itHijos = hijos.begin();
-    for ( ; itHijos != hijos.end(); ++itHijos)
-        delete *itHijos;
+}
+void Personalizador::deprecateTabs() {
+    tabsViejas.splice(tabsViejas.end(), tabs);
 }
 
-/** @todo hacerlo con archivo!!! */
-bool Personalizador::personalizarDesdeArchivo(const char* nombreArch) {
-//    nombreArchivo = nombreArch;
-//    if (ifstrea.is_open()) {
-    if (true) { // mientras no haya archivo
-        construir();
-        return true;
-    }
-    else
-        return false;
-}
-
-bool Personalizador::tieneSiguiente() {
+bool Personalizador::tieneSiguiente() const {
     return it != tabs.end();
 }
 
@@ -54,141 +42,14 @@ Tab& Personalizador::siguiente() {
     return **it++;
 }
 
+void Personalizador::construir(AdminConfigObjManager* tabManager) {
+    deprecateTabs();
+    std::list< TabConfigModelo* > tabsConfig(tabManager->getModelosComoTabs());
+
+    std::list< TabConfigModelo* >::iterator itConfig = tabsConfig.begin();
+    for ( ; itConfig != tabsConfig.end(); ++itConfig)
+        tabs.push_back((*itConfig)->concretarConfig());
 /*
-void construir_filtro(xmlpp::Node* filtro) {
-
-}
-
-void construir_panel(xmlpp::Node* panel) {
-
-}
-
-void Personalizador::construir_tab(xmlpp::Node* tab) {
-	const xmlpp::Element* nodoElement = dynamic_cast<const xmlpp::Element*>(node)
-	if(!nodoElement)
-		return;
-	Tab* nuevoTab = new Tab(nodoElement->get_attribute("nombre"));
-	Glib::ustring tfiltros = "filtros";
-	// esta lista tiene <filtros>
-	xmlpp::Node::NodeList nodoFiltros = tab.get_children(tfiltros);
-	// esta lista tiene <paneles>
-	Glib::ustring tpaneles = "paneles";
-	xmlpp::Node::NodeList nodoPaneles = tab.get_children(tpaneles);
-
-	// esta lista tiene todos los filtros hijos de <filtros>
-	xmlpp::Node::NodeList filtros = nodoFiltros.get_childrem();
-	xmlpp::Node::NodeList::iterator iterFiltros;
-	for (iterFiltros = filtros..begin(); iterFiltros != filtros.end(); ++iterFiltros) {
-		construir_filtro(*iterFiltros, nuevoTab);
-	}
-	xmlpp::Node::NodeList paneles = nodoPaneles.get_children();
-	xmlpp::Node::NodeList::iterator iterPaneles;
-	for (iterPaneles = paneles.begin(); iterPaneles != paneles.end(); ++iterPaneles) {
-		construir_panel(*iterPaneles, nuevoTab);
-	}
-	pTab1->informarFinCreacion();
-	tabs.push_back(nuevaTab);
-}
-
-void Personalizador::construir_desde_nodo(const xmlpp::Node* nodo) {
-	// esta lista tiene todos los hijos <tab>
-	xmlpp::Node::NodeList tabs = node->get_children();
-	xmlpp::Node::NodeList::iterator iter;
-	for (iter = tabs.begin(); iter != tabs.end(); ++iter) {
-		construir_tab(*iter);
-	}
-}
-	const xmlpp::ContentNode* nodeContent = dynamic_cast<const xmlpp::ContentNode*>(node);
-	const xmlpp::TextNode* nodeText = dynamic_cast<const xmlpp::TextNode*>(node);
-	const xmlpp::CommentNode* nodeComment = dynamic_cast<const xmlpp::CommentNode*>(node);
-
-	if(nodeText && nodeText->is_white_space())
-		return;
-
-	Glib::ustring nodename = node->get_name();
-
-	if(!nodeText && !nodeComment && !nodename.empty()) {
-		print_indentation(indentation);
-		std::cout << "Node name = " << node->get_name() << std::endl;
-		std::cout << "Node name = " << nodename << std::endl;
-	}
-	else if(nodeText) {
-		print_indentation(indentation);
-		std::cout << "Text Node" << std::endl;
-	}
-
-	//Treat the various node types differently:
-	if(nodeText) {
-		print_indentation(indentation);
-		std::cout << "text = \"" << nodeText->get_content() << "\"" << std::endl;
-	}
-	else if(nodeComment) {
-		print_indentation(indentation);
-		std::cout << "comment = " << nodeComment->get_content() << std::endl;
-	}
-	else if(nodeContent) {
-		print_indentation(indentation);
-		std::cout << "content = " << nodeContent->get_content() << std::endl;
-	}
-	else if(const xmlpp::Element* nodeElement = dynamic_cast<const xmlpp::Element*>(node)) {
-		//A normal Element node:
-
-		//line() works only for ElementNodes.
-		print_indentation(indentation);
-		std::cout << "     line = " << node->get_line() << std::endl;
-
-		//Print attributes:
-		const xmlpp::Element::AttributeList& attributes = nodeElement->get_attributes();
-		for(xmlpp::Element::AttributeList::const_iterator iter = attributes.begin(); iter != attributes.end(); ++iter) {
-			const xmlpp::Attribute* attribute = *iter;
-			print_indentation(indentation);
-			std::cout << "  Attribute " << attribute->get_name() << " = " << attribute->get_value() << std::endl;
-		}
-		const xmlpp::Attribute* attribute = nodeElement->get_attribute("title");
-		if(attribute) {
-		  std::cout << "title found: =" << attribute->get_value() << std::endl;
-		}
-	}
-
-	if(!nodeContent) {
-		//Recurse through child nodes:
-
-		for(xmlpp::Node::NodeList::iterator iter = list.begin(); iter != list.end(); ++iter) {
-			print_node(*iter, indentation + 2); //recursive
-		}
-	}
-}
-
-
-/*
-void Personalizador::construir() {
-	try {
-		xmlpp::DomParser parser;
-		parser.set_validate();
-		// la linea de abajo es para que haga sustituciones de caracteres especiales
-		parser.set_substitute_entities();
-		parser.parse_file(nombreArchivo);
-		if(parser) {
-		  const xmlpp::Node* nodo = parser.get_document()->get_root_node(); //deleted by DomParser.
-		  construir_desde_nodo(nodo);
-		}
-	} catch(const std::exception& ex) {
-		std::cout << "error en personalizacion de cliente: " << ex.what() << std::endl;
-	}
-}
-*/
-/*
-void Personalizador::construir() {
-	std::fstream archivoConfiguracion("tabs.conf");
-	std::string aux;
-	Utilitario u;
-	while (archivoConfiguracion.good() && !archivoConfiguracion.eof()) {
-
-		}
-	}
-}*/
-
-void Personalizador::construir() {
     // Tab 2 - test tabla pivote
     Tab* pTab2 = new Tab("Tab 2 - tabla pivote");
     FiltradoresTab* fTab2 = new FiltradoresTab();
@@ -217,7 +78,7 @@ void Personalizador::construir() {
     Gtk::HSeparator* sep2 = new Gtk::HSeparator();
     Gtk::Table* pTable2 = new Gtk::Table(1, 1, true);
     pTable2->attach(*pPanelTorta2, 0, 1, 0, 1);
-    hijos.push_back(fTab2);
+//    hijos.push_back(fTab2);
 
     pTab2->pack_start(*fTab2, false, false);
     pTab2->pack_start(*sep2, false, false);
@@ -255,13 +116,13 @@ void Personalizador::construir() {
     Gtk::Table* pTable3 = new Gtk::Table(1, 1, true);
     pTable3->attach(*pPanelTorta3, 0, 1, 0, 1);
 
-
-    hijos.push_back(fTab3);
-    hijos.push_back(fPanel3);
-    hijos.push_back(pGraficoTorta3);
-    hijos.push_back(pPanelTorta3);
-    hijos.push_back(sep3);
-    hijos.push_back(pTable3);
+//
+//    hijos.push_back(fTab3);
+//    hijos.push_back(fPanel3);
+//    hijos.push_back(pGraficoTorta3);
+//    hijos.push_back(pPanelTorta3);
+//    hijos.push_back(sep3);
+//    hijos.push_back(pTable3);
 
     pTab3->pack_start(*fTab3, false, false);
     pTab3->pack_start(*sep3, false, false);
@@ -306,13 +167,13 @@ void Personalizador::construir() {
     Gtk::Table* pTable3_2 = new Gtk::Table(1, 1, true);
     pTable3_2->attach(*pPanelTorta3_2, 0, 1, 0, 1);
 
-
-    hijos.push_back(fTab3_2);
-    hijos.push_back(fPanel3_2);
-    hijos.push_back(tablaComun);
-    hijos.push_back(pPanelTorta3_2);
-    hijos.push_back(sep3_2);
-    hijos.push_back(pTable3_2);
+//
+//    hijos.push_back(fTab3_2);
+//    hijos.push_back(fPanel3_2);
+//    hijos.push_back(tablaComun);
+//    hijos.push_back(pPanelTorta3_2);
+//    hijos.push_back(sep3_2);
+//    hijos.push_back(pTable3_2);
 
     pTab3_2->pack_start(*fTab3_2, false, false);
     pTab3_2->pack_start(*sep3_2, false, false);
@@ -346,13 +207,13 @@ void Personalizador::construir() {
     Gtk::HSeparator* sep4 = new Gtk::HSeparator();
     Gtk::Table* pTable4 = new Gtk::Table(1, 1, true);
     pTable4->attach(*pPanelBarras4, 0, 1, 0, 1);
-
-    hijos.push_back(fTab4);
-    hijos.push_back(fPanel4);
-    hijos.push_back(pGraficoBarras4);
-    hijos.push_back(pPanelBarras4);
-    hijos.push_back(sep4);
-    hijos.push_back(pTable4);
+//
+//    hijos.push_back(fTab4);
+//    hijos.push_back(fPanel4);
+//    hijos.push_back(pGraficoBarras4);
+//    hijos.push_back(pPanelBarras4);
+//    hijos.push_back(sep4);
+//    hijos.push_back(pTable4);
 
     pTab4->pack_start(*fTab4, false, false);
     pTab4->pack_start(*sep4, false, false);
@@ -387,13 +248,13 @@ void Personalizador::construir() {
     Gtk::HSeparator* sep5 = new Gtk::HSeparator();
     Gtk::Table* pTable5 = new Gtk::Table(1, 1, true);
     pTable5->attach(*pPanelTorta5, 0, 1, 0, 1);
-
-    hijos.push_back(fTab5);
-    hijos.push_back(fPanel5);
-    hijos.push_back(pGraficoTorta5);
-    hijos.push_back(pPanelTorta5);
-    hijos.push_back(sep5);
-    hijos.push_back(pTable5);
+//
+//    hijos.push_back(fTab5);
+//    hijos.push_back(fPanel5);
+//    hijos.push_back(pGraficoTorta5);
+//    hijos.push_back(pPanelTorta5);
+//    hijos.push_back(sep5);
+//    hijos.push_back(pTable5);
 
     pTab5->pack_start(*fTab5, false, false);
     pTab5->pack_start(*sep5, false, false);
@@ -428,13 +289,13 @@ void Personalizador::construir() {
     Gtk::HSeparator* sep6 = new Gtk::HSeparator();
     Gtk::Table* pTable6 = new Gtk::Table(1, 1, true);
     pTable6->attach(*pPanelBarras6, 0, 1, 0, 1);
-
-    hijos.push_back(fTab6);
-    hijos.push_back(fPanel6);
-    hijos.push_back(pGraficoBarras6);
-    hijos.push_back(pPanelBarras6);
-    hijos.push_back(sep6);
-    hijos.push_back(pTable6);
+//
+//    hijos.push_back(fTab6);
+//    hijos.push_back(fPanel6);
+//    hijos.push_back(pGraficoBarras6);
+//    hijos.push_back(pPanelBarras6);
+//    hijos.push_back(sep6);
+//    hijos.push_back(pTable6);
 
     pTab6->pack_start(*fTab6, false, false);
     pTab6->pack_start(*sep6, false, false);
@@ -470,13 +331,13 @@ void Personalizador::construir() {
     Gtk::HSeparator* sep7 = new Gtk::HSeparator();
     Gtk::Table* pTable7 = new Gtk::Table(1, 1, true);
     pTable7->attach(*pPanelTorta7, 0, 1, 0, 1);
-
-    hijos.push_back(fTab7);
-    hijos.push_back(fPanel7);
-    hijos.push_back(pGraficoTorta7);
-    hijos.push_back(pPanelTorta7);
-    hijos.push_back(sep7);
-    hijos.push_back(pTable7);
+//
+//    hijos.push_back(fTab7);
+//    hijos.push_back(fPanel7);
+//    hijos.push_back(pGraficoTorta7);
+//    hijos.push_back(pPanelTorta7);
+//    hijos.push_back(sep7);
+//    hijos.push_back(pTable7);
 
     pTab7->pack_start(*fTab7, false, false);
     pTab7->pack_start(*sep7, false, false);
@@ -513,12 +374,12 @@ void Personalizador::construir() {
     Gtk::Table* pTable8 = new Gtk::Table(1, 1, true);
     pTable8->attach(*pPanelBarras8, 0, 1, 0, 1);
 
-    hijos.push_back(fTab8);
-    hijos.push_back(fPanel8);
-    hijos.push_back(pGraficoBarras8);
-    hijos.push_back(pPanelBarras8);
-    hijos.push_back(sep8);
-    hijos.push_back(pTable8);
+//    hijos.push_back(fTab8);
+//    hijos.push_back(fPanel8);
+//    hijos.push_back(pGraficoBarras8);
+//    hijos.push_back(pPanelBarras8);
+//    hijos.push_back(sep8);
+//    hijos.push_back(pTable8);
 
     pTab8->pack_start(*fTab8, false, false);
     pTab8->pack_start(*sep8, false, false);
@@ -571,15 +432,15 @@ void Personalizador::construir() {
     pTable9->attach(*pPanelTorta9, 0, 1, 0, 2);
     pTable9->attach(*pPanelBarras10, 1, 2, 0, 2);
 
-    hijos.push_back(fTab9);
-    hijos.push_back(fPanel9);
-    hijos.push_back(pPanelTorta9);
-    hijos.push_back(sep9);
-    hijos.push_back(fPanel10);
-    hijos.push_back(pGraficoBarras10);
-    hijos.push_back(pPanelBarras10);
-    hijos.push_back(sep10);
-    hijos.push_back(pTable9);
+//    hijos.push_back(fTab9);
+//    hijos.push_back(fPanel9);
+//    hijos.push_back(pPanelTorta9);
+//    hijos.push_back(sep9);
+//    hijos.push_back(fPanel10);
+//    hijos.push_back(pGraficoBarras10);
+//    hijos.push_back(pPanelBarras10);
+//    hijos.push_back(sep10);
+//    hijos.push_back(pTable9);
 
     pTab9->pack_start(*fTab9, false, false);
     pTab9->pack_start(*sep9, false, false);
@@ -588,10 +449,8 @@ void Personalizador::construir() {
     pTab9->informarFinCreacion();
 
     tabs.push_back(pTab9);
-
+*/
 
     it = tabs.begin();
-
-//    if (archivo.is_open())
-//        archivo.close();
+    std::cout << "Tabs para agregar: " << tabs.size() << std::endl;
 }

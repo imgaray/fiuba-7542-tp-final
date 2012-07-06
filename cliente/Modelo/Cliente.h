@@ -8,8 +8,6 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
-#include "Personalizador.h"
-
 class VentanaCliente;
 
 class Cliente {

@@ -56,6 +56,18 @@ ConfigModelo* AdminConfigObjManager::getModelo() const {
     return pModeloActual;
 }
 
+std::list< TabConfigModelo* > AdminConfigObjManager::getModelosComoTabs() {
+    std::list< TabConfigModelo* > tabs;
+
+    if (tipo == OBJ_TAB) {
+        std::list< ConfigModelo* >::const_iterator it = consultasConfiguradas.begin();
+        for ( ; it != consultasConfiguradas.end(); ++it)
+            tabs.push_back(dynamic_cast< TabConfigModelo* >(*it));
+    }
+
+    return tabs;
+}
+
 sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_changed() {
     return _signal_model_changed;
 }

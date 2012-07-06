@@ -3,6 +3,7 @@
 #include "TabConfigModelo.h"
 #include "TabConfigVista.h"
 #include "AdminConfigObjManager.h"
+#include "VentanaClienteDinamica.h"
 #include "DefinicionesXML.h"
 
 // botones
@@ -58,9 +59,14 @@ void TabAdminConfigConsultas::initTabConfig() {
 }
 
 void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo) {
-    std::cout << "void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo)... deserializando... (@todo)" << std::endl;
-//    tabManager->deserializar();
+    std::cout << "void TabAdminConfigConsultas::setArchivoPersonalizador(const char* )... deserializando... (@todo)" << std::endl;
+    dynBuilder.construir(tabManager);
     this->cargarConsultas(archivo);
+}
+
+void TabAdminConfigConsultas::actualizarVDinamica(
+    VentanaClienteDinamica* pVDinamica) {
+    pVDinamica->personalizar(dynBuilder);
 }
 
 void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
@@ -73,6 +79,7 @@ void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
 
 bool TabAdminConfigConsultas::aplicarCambios() {
     std::cout << "bool TabAdminConfigConsultas::aplicarCambios()... (@todo)" << std::endl;
+    dynBuilder.construir(tabManager);
 
     TiXmlDocument docXml(rutaArchivo.c_str());
 
@@ -84,7 +91,6 @@ bool TabAdminConfigConsultas::aplicarCambios() {
     else {
     	std::cout << "--------------Error al guardar en XML." << std::endl;
     }
-
 
     return true;
 }

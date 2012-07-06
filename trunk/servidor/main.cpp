@@ -5,13 +5,14 @@
 #include "ArchivoConfiguracion.h"
 #include <sstream>
 #include <csignal>
-
+#include <cstring>
 
 #define RUTACONFIGSERV "servidor.conf"
 #define PUERTOCLIENTE "puerto_cliente"
 #define PUERTOAGENTE "puerto_agente"
 #define DEFAULTAGENTE 4321
 #define DEFAULTCLIENTE 12345
+#define MAX_INTENTOS 3
 
 template <class T, class Y> 
 void convertir(T& objetivo, Y& destino) {
@@ -20,7 +21,68 @@ void convertir(T& objetivo, Y& destino) {
 	st >> destino;
 }
 
+bool esPuerto(std::string& verificar) {
+	bool ret = true;
+	for(int i = 0; i <(int) verificar.size(); ++i) {
+		if (!isdigit(verificar[i])) {
+			ret = false;
+		}
+	}
+	return ret;
+}
+
+bool obtenerPuerto(std::string& puerto) {
+	int i = 0;
+	do {
+		std::getline(std::cin, puerto);
+		if (!esPuerto(puerto)) {
+			std::cout << "El puerto ingresado no es valido." << std::endl << 
+			"Por favor ingrese un numero de puerto: " << std::endl;
+		}
+		++i;
+	} while (!esPuerto(puerto) && i != MAX_INTENTOS);
+	return (i != MAX_INTENTOS);
+}
+
+int configurar() {
+	std::string puerto_agente;
+	std::cout << "1) ingrese el puerto del agente: ";
+	if (!obtenerPuerto(puerto_agente)) {
+		std::cout << "No se configuraron los puertos." << std::endl;
+		return 2;
+	}
+	std::string puerto_cliente;
+	std::cout << "2) ingrese el puerto del cliente: ";
+	if (!obtenerPuerto(puerto_cliente)) {
+		std::cout << "No se configuraron los puertos." << std::endl;
+		return 2;
+	}
+	if (puerto_cliente == puerto_agente) {
+		std::cout << "No se puede asignar el mismo puerto para entradas." << std::endl;
+		return 2;
+	}
+	std::string ruta = RUTACONFIGSERV;
+	ArchivoConfiguracion arch(ruta.c_str());
+	std::string atr_puerto_agente = PUERTOAGENTE;
+	std::string atr_puerto_cliente = PUERTOCLIENTE;
+	arch.setearAtributo(atr_puerto_agente, puerto_agente);
+	arch.setearAtributo(atr_puerto_cliente, puerto_cliente);
+	std::cout << "Configuracion realizada correctamente." << std::endl;
+	return 0;
+}
+
 int main(int argc, char **argv) {
+	std::cout << "argc = " << argc << std::endl;
+	if (argc >= 1) {
+		if ((argc == 2) && (strcmp(argv[1], "-c") == 0)) {
+			return configurar();
+		} else {
+			std::cout << "Parametros invalidos. Modo de uso: " << std::endl;
+			std::cout << "- ./main -c para entrar en modo configuracion. Luego de configurar, vuelva a ejecutar el servidor." << std::endl;
+			std::cout << "- ./main para correr el servidor. Asegurese de tenerlo correctamente configurado." << std::endl;
+			return 3;
+		}
+	}
 	std::string aux = RUTACONFIGSERV;
 	ArchivoConfiguracion archivo(aux.c_str());
 	aux = PUERTOCLIENTE;

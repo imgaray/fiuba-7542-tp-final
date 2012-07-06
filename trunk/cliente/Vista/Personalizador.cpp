@@ -15,6 +15,8 @@
 #include "AdminConfigObjManager.h"
 #include "TabConfigModelo.h"
 
+#include <iostream>
+
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();
 }
@@ -46,8 +48,10 @@ void Personalizador::construir(AdminConfigObjManager* tabManager) {
     std::list< TabConfigModelo* > tabsConfig(tabManager->getModelosComoTabs());
 
     std::list< TabConfigModelo* >::iterator itConfig = tabsConfig.begin();
-    for ( ; itConfig != tabsConfig.end(); ++itConfig)
+    for ( ; itConfig != tabsConfig.end(); ++itConfig) {
         tabs.push_back((*itConfig)->concretarConfig());
-
+        // @todo sacar el cout
+        std::cout << "TabConfigModelo construido desde Personalizador..." << std::endl;
+    }
     it = tabs.begin();
 }

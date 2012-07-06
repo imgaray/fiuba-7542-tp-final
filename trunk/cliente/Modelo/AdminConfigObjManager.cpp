@@ -72,9 +72,14 @@ std::list< TabConfigModelo* > AdminConfigObjManager::getModelosComoTabs() {
     std::list< TabConfigModelo* > tabs;
 
     if (tipo == OBJ_TAB) {
+
+    	std::cout << "entro en getModelosComoTab()  en AdminConfigObjManager...." <<std::endl;
         std::list< ConfigModelo* >::const_iterator it = consultasConfiguradas.begin();
-        for ( ; it != consultasConfiguradas.end(); ++it)
+        for ( ; it != consultasConfiguradas.end(); ++it) {
             tabs.push_back(dynamic_cast< TabConfigModelo* >(*it));
+            std::cout << "		TabConfigModelo agregado a lista, en AdminConfigObjManager...." <<std::endl;
+            std::cout << "Puntero TabConfig: " << dynamic_cast< TabConfigModelo* >(*it) << std::endl;
+        }
     }
 
     return tabs;
@@ -190,7 +195,7 @@ bool AdminConfigObjManager::on_entry_label_focus_out(GdkEventFocus* e) {
 }
 
 void AdminConfigObjManager::on_agregar_button_clicked() {
-    // Pedirle a ConfigModelo el título actual, verificar que no exista para
+    // Pedirle a pEntryLabel el título actual, verificar que no exista para
     // ver si se puede agregar. Si es válido, se agrega la entrada
     // mapaConsultasConfiguradas[título] = pModeloActual, y a la lista.
     // La entrada mapaConsultasConfiguradas[nombre_por_defecto] se pisa con
@@ -232,6 +237,8 @@ void AdminConfigObjManager::on_eliminar_button_clicked() {
     // busco por el label viejo porque es con el que está en el mapa hasta que se aplican los cambios
 
     Glib::ustring label = pModeloActual->getLabel();
+    if (label == nombre_por_defecto)
+    	std::cout << "intentando eliminar el por defecto, cuando el botón eliminar NO DEBERÍA APARECER" << std::endl;
     mapaConsultasConfiguradas.erase(mapaConsultasConfiguradas.find(label));
 
     std::list< ConfigModelo* >::iterator it = consultasConfiguradas.begin();
@@ -279,13 +286,22 @@ NodoXml AdminConfigObjManager::serializar() {
 		nodo.InsertEndChild((*it)->serializar());
 	}
 
+	// @todo sacar el cout
+	std::cout << "AdminConfigObjManager Serializado+++++++++" << std::endl;
+
 	return nodo;
 }
+
 void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
 	int n_tipo = 0;
 
 	if (nodo.Attribute(ATR_TIPO, &n_tipo)) {
 		tipo = t_Objeto (n_tipo);
+
+		// @todo sacar este if, solo para prueba
+		if (tipo != OBJ_TAB) {
+			std::cout << "No es OBJ_TAB !!!!!!!!!!!" << std::endl;
+		}
 	}
 	else {
 		throw ErrorSerializacionXML();
@@ -294,14 +310,22 @@ void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
 	const NodoXml *hijo = nodo.FirstChildElement();
 
 	for (;hijo != NULL; hijo = hijo->NextSiblingElement()) {
-		on_agregar_button_clicked();
-//		if (this->consultasConfiguradas.back() != NULL) {
-//			std::cout << "Label: " << this->consultasConfiguradas.back()->getLabel() << std::endl;;
-//			this->consultasConfiguradas.back()->deserializar(*hijo);
-//		}
-//		else
-//			throw ErrorSerializacionXML();
 
+		pModeloActual = new_modelo();
+
+		_signal_model_changed.emit(pModeloActual);
 		pModeloActual->deserializar(*hijo);
+
+		Glib::ustring label = pModeloActual->getLabel();
+		std::cout << "Label leída: " << label << std::endl;
+
+        mapaConsultasConfiguradas[label] = pModeloActual;
+        consultasConfiguradas.push_back(pModeloActual);
+        comboSelec->append_text(label);
+        comboSelec->set_active_text(label);
+
 	}
+
+	// @todo sacar el cout
+	std::cout << "AdminConfigObjManager Deserializado******" << std::endl;
 }

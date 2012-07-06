@@ -1539,6 +1539,7 @@
                       <object class="GtkEntry" id="entryPassActual">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="visibility">False</property>
                         <property name="invisible_char">&#x25CF;</property>
                         <property name="activates_default">True</property>
                       </object>
@@ -1571,6 +1572,7 @@
                       <object class="GtkEntry" id="entryPassNueva">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="visibility">False</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>

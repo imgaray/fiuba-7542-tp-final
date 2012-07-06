@@ -37,10 +37,13 @@ PanelConfigModelo* TabConfigModelo::getModeloPanel() const {
 }
 
 Tab* TabConfigModelo::concretarConfig() {
-    return new Tab("TAaaaabB");
+    Tab* t = new Tab(getLabel());
+
+    return t;
 }
 
 void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,
+                                        Gtk::Entry* pEntryPanelLabel,
                                         Gtk::Button* pAceptar,
                                         Gtk::Button* pGuardarCambios,
                                         Gtk::Button* pEliminar
@@ -48,6 +51,7 @@ void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,
     if (!panelManager) {
         panelManager = new AdminConfigObjManager(OBJ_PANEL,
                                                  cbtext,
+                                                 pEntryPanelLabel,
                                                  pAceptar,
                                                  pGuardarCambios,
                                                  pEliminar,

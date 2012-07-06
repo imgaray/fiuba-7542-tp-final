@@ -55,15 +55,6 @@ void ResultadoConfigModelo::on_combo_dimension_changed() {
 }
 
 void ResultadoConfigModelo::completarAtributos() {
-//	entryPorCampo[campoSelecc] = _valorCampo;
-//
-//	if (Organizacion::esDimensionEspecial(campoSelecc)) {
-//		comboFecha->set_active_text(_campoAux);
-//	}
-//	else {
-//		comboHecho->set_active_text(_campoAux);
-//	}
-
 	comboDimension->set_active_text(campoSelecc);
 
 	if (Organizacion::esHecho(campoSelecc)) {

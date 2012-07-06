@@ -286,9 +286,6 @@ NodoXml AdminConfigObjManager::serializar() {
 		nodo.InsertEndChild((*it)->serializar());
 	}
 
-	// @todo sacar el cout
-	std::cout << "AdminConfigObjManager Serializado+++++++++" << std::endl;
-
 	return nodo;
 }
 
@@ -325,7 +322,4 @@ void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
         comboSelec->set_active_text(label);
 
 	}
-
-	// @todo sacar el cout
-	std::cout << "AdminConfigObjManager Deserializado******" << std::endl;
 }

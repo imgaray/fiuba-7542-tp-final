@@ -11,7 +11,7 @@ FiltradorInputFecha::FiltradorInputFecha(const Glib::ustring& input)
     i = 0;
     valores.set_active(i);
 
-    centradorDerecho.pack_end(entrada, false, false);
+    centradorDerecho.pack_start(entrada, false, false);
 
     valores.signal_changed().connect(sigc::mem_fun(*this,
             &FiltradorInputFecha::on_combo_changed));

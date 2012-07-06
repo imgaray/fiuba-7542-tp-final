@@ -11,4 +11,6 @@ void FiltradorSoloDimensionConfigModelo::especializarVista() {
     comboHecho->hide();
 }
 
-void FiltradorSoloDimensionConfigModelo::on_combo_dimension_changed() {}
+void FiltradorSoloDimensionConfigModelo::on_combo_dimension_changed() {
+    campoSelecc = comboDimension->get_active_text();
+}

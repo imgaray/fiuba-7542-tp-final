@@ -7,7 +7,8 @@
 
 #include "Serializable.h"
 
-
+class FiltradoresTab;
+class FiltradoresPanel;
 
 class FiltradorConfigModelo : public Serializable {
     public:
@@ -23,6 +24,9 @@ class FiltradorConfigModelo : public Serializable {
         unsigned getID() const;
 
         sigc::signal< void, unsigned > signal_delete_filtrador();
+
+        virtual void setFiltradorEn(FiltradoresTab* filtTab) = 0;
+        virtual void setFiltradorEn(FiltradoresPanel* filtPanel) = 0;
 
 
         virtual NodoXml serializar();

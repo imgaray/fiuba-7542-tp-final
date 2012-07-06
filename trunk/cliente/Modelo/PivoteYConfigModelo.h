@@ -7,6 +7,9 @@ class PivoteYConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
         PivoteYConfigModelo(unsigned ID);
         ~PivoteYConfigModelo();
+
+        void setFiltradorEn(FiltradoresTab* filtTab);
+        void setFiltradorEn(FiltradoresPanel* filtPanel);
 };
 
 #endif  // PIVOTE_Y_CONFIG_MODELO_H

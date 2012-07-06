@@ -53,6 +53,18 @@ void FiltradorConfigManager::reconectar() {
                       &FiltradorConfigManager::on_agregar_button_clicked));
 }
 
+void FiltradorConfigManager::setFiltradoresEn(FiltradoresTab* filtTab) {
+    std::list< filtrador >::iterator it = filtradores.begin();
+    for ( ; it != filtradores.end(); ++it)
+        it->second->setFiltradorEn(filtTab);
+}
+
+void FiltradorConfigManager::setFiltradoresEn(FiltradoresPanel* filtPanel) {
+    std::list< filtrador >::iterator it = filtradores.begin();
+    for ( ; it != filtradores.end(); ++it)
+        it->second->setFiltradorEn(filtPanel);
+}
+
 FiltradorConfigModelo* FiltradorConfigManager::new_filtrador() {
     unsigned ID = generadorID++;
 

@@ -4,6 +4,9 @@
 #include "FiltradorConfigManager.h"
 #include "Organizacion.h"
 #include "Tab.h"
+#include "FiltradoresTab.h"
+#include "FiltradoresPanel.h"
+#include <gtkmm/table.h>
 
 #define NOMBRE_NODO "Tab_Config_Modelo"
 #define ATR_NOMBRE "atr_nombre"
@@ -37,7 +40,25 @@ PanelConfigModelo* TabConfigModelo::getModeloPanel() const {
 }
 
 Tab* TabConfigModelo::concretarConfig() {
+    // crear Tab y grilla
     Tab* t = new Tab(getLabel());
+    Gtk::Table* grilla = manage(new Gtk::Table(filas, cols, true));
+
+    // crear filtradores de la tab, y registrar consultantes y navegables
+    FiltradoresTab* filtTab = manage(new FiltradoresTab());
+    inputsManager->setFiltradoresEn(filtTab);
+    while (filtTab->tieneFiltrosConsultantes())
+        t->agregarConsultante(filtTab->getFiltroConsultante());
+    while (filtTab->tieneFiltrosNavegables())
+        t->agregarFiltroNavegable(filtTab->getFiltroNavegable());
+
+
+    // agregar filtradores de la tab y la grilla
+    t->pack_start(*filtTab, false, false);
+    t->pack_start(*grilla, true, true);
+
+    t->show_all();
+    t->informarFinCreacion();
 
     return t;
 }

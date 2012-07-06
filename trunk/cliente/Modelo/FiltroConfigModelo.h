@@ -8,6 +8,9 @@ class FiltroConfigModelo : public FiltradorConfigModelo {
         FiltroConfigModelo(unsigned ID);
         ~FiltroConfigModelo();
 
+        void setFiltradorEn(FiltradoresTab* filtTab);
+        void setFiltradorEn(FiltradoresPanel* filtPanel);
+
         virtual void deserializar(const NodoXml& nodo);
 
     private:

@@ -160,7 +160,7 @@ bool Socket::enviar(const Mensaje& mensaje) {
 			cant_enviada += envActual;
 		}
     }
-	std::cout << "Enviado por socket: " << s_datos << std::endl;
+
 
     return _conectado;
 }
@@ -174,13 +174,10 @@ bool Socket::recibir(Mensaje& mensaje) {
 		mensaje.deserializar(datos);
 	}
 
-
 	return ok;
 }
 
 bool Socket::recibirDatos(std::string& datos){
-//	std::string aux;
-
 	int recibidos = 0;
 	bool finDeMensaje = false;
 	char buff;
@@ -206,7 +203,6 @@ bool Socket::recibirDatos(std::string& datos){
 
 		}
 	}
-	std::cout << "Recibido por socket: " << datos << std::endl;
 	return _conectado;
 }
 

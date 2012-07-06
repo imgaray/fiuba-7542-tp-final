@@ -11,7 +11,9 @@ class FiltroConfigModelo : public FiltradorConfigModelo {
         void setFiltradorEn(FiltradoresTab* filtTab);
         void setFiltradorEn(FiltradoresPanel* filtPanel);
 
-        virtual void deserializar(const NodoXml& nodo);
+    protected:
+
+        virtual void completarAtributos();
 
     private:
 

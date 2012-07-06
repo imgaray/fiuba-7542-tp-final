@@ -11,6 +11,9 @@ class ResultadoConfigModelo : public FiltradorConfigModelo {
         void setFiltradorEn(FiltradoresTab* filtTab);
         void setFiltradorEn(FiltradoresPanel* filtPanel);
 
+    protected:
+        virtual void completarAtributos();
+
     private:
         void especializarVista();
         void setComboHecho(Gtk::ComboBoxText* comboHecho);

@@ -8,6 +8,9 @@ class FiltradorSoloDimensionConfigModelo : public FiltradorConfigModelo {
         FiltradorSoloDimensionConfigModelo(unsigned ID);
         ~FiltradorSoloDimensionConfigModelo();
 
+    protected:
+        virtual void completarAtributos();
+
     private:
         void especializarVista();
         void on_combo_dimension_changed();

@@ -54,13 +54,14 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
             B_GUARDAR,
             B_ELIMINAR
         };
-
         t_Objeto tipo;
         ConfigModelo* new_modelo();
 
         /** conexiones a las señales */
         sigc::connection connectionCombobox;
         sigc::connection connectionEntryLabel;
+        sigc::connection connectionEntryLabelFocusIn;
+        sigc::connection connectionEntryLabelFocusOut;
         sigc::connection connectionButtonAgregar;
         sigc::connection connectionButtonGuardar;
         sigc::connection connectionButtonEliminar;
@@ -71,6 +72,8 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
 
         void on_combo_selec_changed();
         void on_entry_label_activate();
+        bool on_entry_label_focus_in(GdkEventFocus* e);
+        bool on_entry_label_focus_out(GdkEventFocus* e);
         void on_agregar_button_clicked();
         void on_guardar_cambios_button_clicked();
         void on_eliminar_button_clicked();

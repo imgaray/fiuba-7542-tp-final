@@ -168,7 +168,7 @@ void TabConfigModelo::setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
 }
 
 void TabConfigModelo::on_spinbutton_filas_value_changed() {
-    unsigned filasNueva = pSpinButtonFilas->get_value_as_int();
+    int filasNueva = pSpinButtonFilas->get_value_as_int();
     if (filasNueva >= min_fila)
         filas = filasNueva;
     else
@@ -176,7 +176,7 @@ void TabConfigModelo::on_spinbutton_filas_value_changed() {
 }
 
 void TabConfigModelo::on_spinbutton_cols_value_changed() {
-    unsigned colsNueva = pSpinButtonCols->get_value_as_int();
+    int colsNueva = pSpinButtonCols->get_value_as_int();
     if (colsNueva >= min_col)
         cols = colsNueva;
     else

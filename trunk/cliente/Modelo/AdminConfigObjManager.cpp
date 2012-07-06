@@ -1,6 +1,7 @@
 #include "AdminConfigObjManager.h"
 #include "TabConfigModelo.h"
 #include "PanelConfigModelo.h"
+#include <iostream>
 
 #define NOMBRE_PANELES "Paneles"
 #define NOMBRE_TABS "Tabs"
@@ -38,6 +39,11 @@ AdminConfigObjManager::AdminConfigObjManager(t_Objeto _tipo,
     // entry
     connectionEntryLabel = pEntryLabel->signal_activate().connect(
         sigc::mem_fun(*this, &AdminConfigObjManager::on_entry_label_activate));
+    connectionEntryLabelFocusIn = pEntryLabel->signal_focus_in_event().connect(
+        sigc::mem_fun(*this, &AdminConfigObjManager::on_entry_label_focus_in));
+    connectionEntryLabelFocusOut = pEntryLabel->signal_focus_out_event().
+        connect(sigc::mem_fun(*this,
+            &AdminConfigObjManager::on_entry_label_focus_out));
 
     pModeloActual = new_modelo();
     mapaConsultasConfiguradas[nombre_por_defecto] = pModeloActual;
@@ -89,6 +95,8 @@ sigc::signal< void, ConfigModelo* > AdminConfigObjManager::signal_model_deleted(
 void  AdminConfigObjManager::desconectar() {
     connectionCombobox.disconnect();
     connectionEntryLabel.disconnect();
+    connectionEntryLabelFocusIn.disconnect();
+    connectionEntryLabelFocusOut.disconnect();
     connectionButtonAgregar.disconnect();
     connectionButtonGuardar.disconnect();
     connectionButtonEliminar.disconnect();
@@ -117,13 +125,16 @@ void  AdminConfigObjManager::reconectar() {
         sigc::mem_fun(*this, &AdminConfigObjManager::on_combo_selec_changed));
     comboSelec->set_active_text(pModeloActual->getLabel());
 
-    // reconectar la señal de la entry
+    // reconectar las señales de la entry
     connectionEntryLabel = pEntryLabel->signal_activate().connect(
         sigc::mem_fun(*this, &AdminConfigObjManager::on_entry_label_activate));
-
+    connectionEntryLabelFocusIn = pEntryLabel->signal_focus_in_event().connect(
+        sigc::mem_fun(*this, &AdminConfigObjManager::on_entry_label_focus_in));
+    connectionEntryLabelFocusOut = pEntryLabel->signal_focus_out_event().
+        connect(sigc::mem_fun(*this,
+            &AdminConfigObjManager::on_entry_label_focus_out));
 }
 
-#include <iostream>
 void AdminConfigObjManager::on_combo_selec_changed() {
     if (guardandoCambios)
         return;
@@ -149,6 +160,21 @@ void AdminConfigObjManager::on_entry_label_activate() {
     else
     // de otra manera, se están guardando cambios
         on_guardar_cambios_button_clicked();
+}
+
+bool AdminConfigObjManager::on_entry_label_focus_in(GdkEventFocus* e) {
+    if (pEntryLabel->get_text() == nombre_por_defecto)
+        pEntryLabel->set_text("");
+    return true;
+}
+
+bool AdminConfigObjManager::on_entry_label_focus_out(GdkEventFocus* e) {
+    // el nombre "" es válido, así que, si el botón Agregar es visible,
+    // entonces no es de una pestaña ya existente, y se pone de nuevo
+    // el nombre por defecto
+    if (pEntryLabel->get_text() == "" && botones[B_AGREGAR]->get_visible())
+        pEntryLabel->set_text(nombre_por_defecto);
+    return true;
 }
 
 void AdminConfigObjManager::on_agregar_button_clicked() {

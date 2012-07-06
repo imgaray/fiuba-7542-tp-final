@@ -33,7 +33,7 @@ TabAdminConfigConexion::~TabAdminConfigConexion() {}
 bool TabAdminConfigConexion::aplicarCambios() {
     std::string IP = pEntryIP->get_text();
     std::string puerto = pSpinButtonPuerto->get_text();
-    ArchivoConfiguracion arch("servidorRemoto.conf");
+    ArchivoConfiguracion arch("servRemoto.conf");
     std::string clave_ip = "direccion_servidor";
     std::string clave_puerto = "puerto_servidor";
     arch.setearAtributo(clave_ip, IP);

@@ -1,4 +1,6 @@
 #include "ArchivoConfiguracion.h"
+#include "Cifrador.hpp"
+#define CLAVE 123
 
 #define SEPARADOR '='
 
@@ -33,6 +35,7 @@ void ArchivoConfiguracion::setearAtributo(std::string& nombre, std::string& valo
 }
 
 ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) {
+	Cifrador c;
 	std::fstream archivo(ruta);
 	if (!archivo) {
 		archivo.open(ruta, std::fstream::out);
@@ -40,6 +43,7 @@ ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) 
 		std::string aux;
 		while(!archivo.eof()) {
 			std::getline(archivo, aux);
+			c.descifrar(aux, CLAVE);
 			if (formatoCorrecto(aux)) {
 				unsigned int posSeparador = aux.find_first_of(SEPARADOR);
 				std::string nombre = aux.substr(0, posSeparador);
@@ -55,8 +59,11 @@ ArchivoConfiguracion::ArchivoConfiguracion(const char* ruta): rutaArchivo(ruta) 
 ArchivoConfiguracion::~ArchivoConfiguracion() {
 	std::fstream archivo(rutaArchivo.c_str(), std::fstream::out);
 	ArchivoConfiguracion::iterator iter;
+	Cifrador c;
 	for (iter = begin(); iter != end(); ++iter) {
-		archivo << iter->first << "=" << iter->second << std::endl;
+		std::string aux = iter->first + "=" + iter->second;
+		c.cifrar(aux, CLAVE);
+		archivo << aux << std::endl;
 	}
 	archivo.close();
 }

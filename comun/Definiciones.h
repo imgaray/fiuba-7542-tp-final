@@ -172,5 +172,12 @@ typedef unsigned short int Puerto;
 
 #define PUERTO_ESTANDAR_AGENTE (Puerto)4321
 
+/////////////////////////////////////////////////////////
+//
+//Definiciones de atributos de Archivo Configuracion cliente
+//
+/////////////////////////////////////////////////////////
+
+#define CLAVE_ATR "claveAdmin"
 
 #endif /* DEFINICIONES_H_ */

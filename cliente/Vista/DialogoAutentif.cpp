@@ -1,12 +1,14 @@
 #include "DialogoAutentif.h"
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include <gtkmm/button.h>
+#include "ArchivoConfiguracion.h"
+#include "Cifrador.hpp"
+#include <iostream>
+#include "Definiciones.h"
 
 #define BOTON_ACEPTAR "BotonAceptar"
 #define BOTON_CANCELAR "BotonCancelarAutentif"
 #define ENTRY_PASSWORD "PasswordEntry"
-
-#define ADMIN_PASSWORD "7542"
 
 DialogoAutentif::DialogoAutentif(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
@@ -50,9 +52,15 @@ DialogoAutentif::DialogoAutentif(BaseObjectType* cobject,
 DialogoAutentif::~DialogoAutentif() {}
 
 void DialogoAutentif::on_aceptar_button_clicked() {
-    if (pEntryPassword->get_text() == ADMIN_PASSWORD)
+	ArchivoConfiguracion arch("servRemoto.conf");
+	std::string atr = CLAVE_ATR;
+	std::string clave = arch.obtenerAtributo(atr);
+	Glib::ustring uclave = pEntryPassword->get_text();
+	std::string usrclave = uclave.c_str();
+	 if (usrclave == clave) {
         response(Gtk::RESPONSE_OK);
-    else
+		std::cout << "DialogoAutentif::on_aceptar_button_clicked(): Tire RESPONSE_OK" << std::endl;
+    }else
         response(Gtk::RESPONSE_CANCEL);
 }
 

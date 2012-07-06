@@ -109,9 +109,6 @@ NodoXml FiltradorConfigModelo::serializar() {
 	nodo.SetAttribute(ATR_VALOR_CAMPO, _valorCampo.c_str());
 	nodo.SetAttribute(ATR_CAMPO_AUX, _campoAux.c_str());
 
-	// @todo sacar el cout
-	std::cout << "FiltradorConfigModelo Serializado++++++++" << std::endl;
-
 	return nodo;
 }
 
@@ -139,7 +136,5 @@ void FiltradorConfigModelo::deserializar(const NodoXml& nodo) {
 	}
 
 	this->completarAtributos();
-	// @todo sacar el cout
-	std::cout << "FiltradorConfigModelo Deserializado******" << std::endl;
 }
 

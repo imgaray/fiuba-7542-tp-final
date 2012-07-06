@@ -61,7 +61,4 @@ void FiltroConfigModelo::completarAtributos() {
 	}
 
 	comboDimension->set_active_text(campoSelecc);
-
-	// @todo sacar el cout
-	std::cout << "		FiltroConfigModeloConfigManager Deserializado******" << std::endl;
 }

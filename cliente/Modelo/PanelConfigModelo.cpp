@@ -341,10 +341,6 @@ NodoXml PanelConfigModelo::serializar(){
 	nodoRes.SetValue(HIJO_RES);
 	nodo.InsertEndChild(nodoRes);
 
-
-	// @todo sacar el cout
-	std::cout << "PanelConfigModelo Serializado******" << std::endl;
-
 	return nodo;
 }
 
@@ -368,9 +364,12 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 
 	infoOK = infoOK && nodo.Attribute(ATR_TIPO_GRAF, &this->indice_tipoGrafico);
 
+
 	if (infoOK == false) {
 		throw ErrorSerializacionXML();
 	}
+
+	this->pComboBoxTextTipoGrafico->set_active(indice_tipoGrafico);
 
 	const NodoXml *hijo = NULL;
 
@@ -410,7 +409,4 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 		resutadosManager->deserializar(*hijo);
 	else
 		throw ErrorSerializacionXML();
-
-	// @todo sacar el cout
-	std::cout << "PanelConfigModelo Deserializado******" << std::endl;
 }

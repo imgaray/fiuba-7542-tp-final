@@ -78,6 +78,7 @@ VentanaCliente::~VentanaCliente() {
 }
 
 void VentanaCliente::personalizar(const char* archivo) {
+    pVAdminConfig->setVDinamica(pVDinamica);
     pVAdminConfig->setArchivoPersonalizador(archivo);
 }
 

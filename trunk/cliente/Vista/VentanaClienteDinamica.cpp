@@ -4,7 +4,6 @@
 #include "Consultante.h"
 #include "ExcepcionConsultanteNoExiste.h"
 #include "ServidorRemoto.h"
-#include <iostream>
 
 #define CANT_MAX_RESP_PROC 10
 
@@ -14,19 +13,20 @@ VentanaClienteDinamica::VentanaClienteDinamica(BaseObjectType* cobject,
 
 VentanaClienteDinamica::~VentanaClienteDinamica() {}
 
-void VentanaClienteDinamica::personalizar(const char* archivo) {
-    if (!dynBuilder.personalizarDesdeArchivo(archivo)) {
-        std::string msj = "Error al abrir el archivo de personalización ";
-        msj += archivo;
-        msj += ". Contáctese con el administrador.";
-        throw msj.c_str();
-    }
+#include <iostream>
+void VentanaClienteDinamica::personalizar(Personalizador& dynBuilder) {
+    std::vector< Tab* >::iterator it = tabs.begin();
+    for ( ; it != tabs.end(); ++it)
+        remove(**it);
+    tabs.clear();
+    consultas.clear();
 
     while (dynBuilder.tieneSiguiente()) {
         Tab& t = dynBuilder.siguiente();
         agregarData(t);
         append_page(t, t.getEtiqueta());
     }
+    show_all();
 }
 
 void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
@@ -41,7 +41,6 @@ void VentanaClienteDinamica::hacerConsultaInicial(ServidorRemoto& server) {
 
 void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
     tabs[get_current_page()]->cancelarConsulta(server);
-
 }
 
 void VentanaClienteDinamica::actualizarConsulta(Consultante* c) {

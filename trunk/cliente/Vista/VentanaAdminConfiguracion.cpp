@@ -13,7 +13,8 @@
 
 VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
-: Gtk::Window(cobject), Buildable(_builder) {
+: Gtk::Window(cobject), Buildable(_builder),
+  pVDinamica(NULL) {
     TabAdminConfigConexion* tabConexion;
     get_widget_derived(VBOX_TAB_CONEXION, tabConexion);
     tabs.push_back(tabConexion);
@@ -41,6 +42,11 @@ VentanaAdminConfiguracion::~VentanaAdminConfiguracion() {}
 
 void VentanaAdminConfiguracion::setArchivoPersonalizador(const char* archivo) {
     tabConsultas->setArchivoPersonalizador(archivo);
+    tabConsultas->actualizarVDinamica(pVDinamica);
+}
+void VentanaAdminConfiguracion::setVDinamica(
+    VentanaClienteDinamica* _pVDinamica) {
+    pVDinamica = _pVDinamica;
 }
 
 void VentanaAdminConfiguracion::on_aplicar_button_clicked() {
@@ -48,6 +54,9 @@ void VentanaAdminConfiguracion::on_aplicar_button_clicked() {
     bool pudoGuardar = true;
     while (pudoGuardar && it != tabs.end())
         pudoGuardar = (*it++)->aplicarCambios();
+
+    if (pudoGuardar)
+        tabConsultas->actualizarVDinamica(pVDinamica);
 
     if (it == tabs.end())
         hide();

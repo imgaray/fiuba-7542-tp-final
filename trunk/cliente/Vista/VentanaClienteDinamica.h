@@ -19,7 +19,7 @@ class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
                                const Glib::RefPtr< Gtk::Builder >& builder);
         ~VentanaClienteDinamica();
 
-        void personalizar(const char* archivo);
+        void personalizar(Personalizador& dynBuilder);
 
         void hacerConsulta(ServidorRemoto& server);
         void hacerConsultaInicial(ServidorRemoto& server);
@@ -40,7 +40,6 @@ class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
         sigc::signal< void, Consultante* > signal_actualizacion();
 
     private:
-        Personalizador dynBuilder;
         MapaConsultantesTab consultas;
         std::vector< Tab* > tabs;
 

@@ -3,6 +3,7 @@
 #include "AdminConfigObjManager.h"
 #include "FiltradorConfigManager.h"
 #include "Organizacion.h"
+#include "Tab.h"
 
 #define NOMBRE_NODO "Tab_Config_Modelo"
 #define ATR_NOMBRE "atr_nombre"
@@ -33,6 +34,10 @@ sigc::signal< void, PanelConfigModelo* > TabConfigModelo::signal_panel_model_cha
 
 PanelConfigModelo* TabConfigModelo::getModeloPanel() const {
     return pModeloPanel;
+}
+
+Tab* TabConfigModelo::concretarConfig() {
+    return new Tab("TAaaaabB");
 }
 
 void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,

@@ -42,7 +42,7 @@ void ServidorRemoto::enviarConsulta(Consultante* consultante,
 	if (!consultantes.has(consultante->getID())) {
 		consultantes[consultante->getID()] = consultante;
 	}
-	/// sdf
+
 	ParConsulta par;
 	par.first = consultante->getID();
 	par.second = consulta;

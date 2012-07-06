@@ -11,7 +11,7 @@ bool VerificadorConsultasH::verificarConsulta(const Consulta& consulta) {
 	if (consulta.esConsultaDeTablaPivote())
 		return this->cClienteTP(consulta);
 	else
-		return this->cClienteValida(consulta);//return true;
+		return this->cClienteValida(consulta);
 }
 
 bool VerificadorConsultasH::hayDimesionesEnRes(const Consulta& cons) {

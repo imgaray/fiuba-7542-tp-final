@@ -9,6 +9,7 @@
 class Grafico;
 class Tabla;
 class FiltradoresPanel;
+class Consultante;
 
 class Panel : public Gtk::Frame {
     public:
@@ -18,10 +19,15 @@ class Panel : public Gtk::Frame {
         // Agrega también a los filtradores, pidiéndoselos al gráfico
         void setContenido(Grafico& g);
         void setContenido(Tabla& t);
+
+        Consultante* getConsultante();
+
     private:
         Gtk::VBox box;
         Gtk::ScrolledWindow scrWin;
         Gtk::Viewport* pViewport;
+
+        Consultante* consultante;
 };
 
 #endif  // PANEL_H__

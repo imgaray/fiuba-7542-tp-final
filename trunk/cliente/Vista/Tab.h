@@ -42,8 +42,6 @@ class Tab : public Gtk::VBox {
         void difundirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);
 
-        bool disponibleParaActualizacion();
-
         const std::map< unsigned, Consultante* >& getConsultantes();
         void setPadre(VentanaClienteDinamica* padre);
     private:

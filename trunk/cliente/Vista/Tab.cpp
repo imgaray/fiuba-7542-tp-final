@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cassert>
 
-Tab::Tab(const Glib::ustring& _etiqueta): etiqueta(_etiqueta) {
+Tab::Tab(const Glib::ustring& _etiqueta): etiqueta(_etiqueta), padre(NULL) {
     etiquetaCompuesta.pack_start(spinner, false, false);
     etiquetaCompuesta.pack_start(etiqueta, false, false);
     etiqueta.show();
@@ -82,7 +82,7 @@ void Tab::informarInputDisponible() {
     ++inputsDisponibles;
     if (inputsDisponibles == filtrosNavegables.size()) {
         puedeActualizar = true;
-        padre->refresh();
+        padre->signal_puede_actualizar().emit(puedeActualizar);
     }
 }
 
@@ -90,7 +90,7 @@ void Tab::informarInputNoDisponible() {
     --inputsDisponibles;
     if (inputsDisponibles < filtrosNavegables.size()) {
         puedeActualizar = false;
-        padre->refresh();
+        padre->signal_puede_actualizar().emit(puedeActualizar);
     }
 }
 
@@ -99,15 +99,13 @@ void Tab::informarFinCreacion() {
         puedeActualizar = true;
     if (filtrosConsultantes.size() == 0)
         pConsultantesActivos = &consultantes;
+    if (padre)
+        padre->signal_puede_actualizar().emit(puedeActualizar);
 }
 
 void Tab::agregarFiltroNavegable(FiltradorInput* f) {
     filtrosNavegables.push_back(f);
     f->setTabPadre(this);
-}
-
-bool Tab::disponibleParaActualizacion() {
-    return puedeActualizar;
 }
 
 void Tab::difundirNavegacionSeleccionada(const Glib::ustring& input,

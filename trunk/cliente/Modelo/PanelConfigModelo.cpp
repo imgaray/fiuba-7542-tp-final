@@ -1,12 +1,20 @@
 #include "PanelConfigModelo.h"
 #include "FiltradorConfigManager.h"
+#include "Panel.h"
+#include "TablaComun.h"
+#include "TablaPivote.h"
+#include "GraficoDeTorta.h"
+#include "GraficoDeBarras.h"
 #include <iostream>
 
 #define LABEL_POSICION "Posición en la grilla"
 #define ERROR " - Error"
 
+#define TABLA   0
+#define PIVOTE  1
+#define BARRAS  2
+#define TORTA   3
 #define CANT_TIPOS 4
-#define TABLA_PIVOTE 1
 
 
 //Defines para Xml
@@ -26,8 +34,7 @@
 #define HIJO_Y_PIV "hijo_y_piv"
 #define HIJO_RES "hijo_res"
 
-
-Glib::ustring PanelConfigModelo::tipoGrafico[CANT_TIPOS] =  {
+Glib::ustring PanelConfigModelo::tiposGrafico[CANT_TIPOS] = {
     "Tabla", "Tabla pivote", "Gráfico de barras", "Gráfico de torta"
 };
 
@@ -41,10 +48,11 @@ PanelConfigModelo::PanelConfigModelo()
   pSpinButtonDesdeCol(NULL), pSpinButtonHastaCol(NULL),
   pComboBoxTextTipoGrafico(NULL),
   pExpanderXPivote(NULL), pExpanderYPivote(NULL) {
+
     desdeFila = 0; hastaFila = 1;
     desdeCol = 0; hastaCol = 1;
     posicionValida = true;
-    indice_tipoGrafico = 0;
+    indice_tipoGrafico = TABLA;
 }
 
 PanelConfigModelo::~PanelConfigModelo() {
@@ -108,8 +116,8 @@ void PanelConfigModelo::setPosicionNuevaComoValida(bool valida) {
             pLabelPosicion->set_text(LABEL_POSICION ERROR);
 }
 
-void PanelConfigModelo::getPosicion(unsigned& _desdeFila, unsigned& _hastaFila,
-                                    unsigned& _desdeCol, unsigned& _hastaCol) {
+void PanelConfigModelo::getPosicion(int& _desdeFila, int& _hastaFila,
+                                    int& _desdeCol, int& _hastaCol) {
     _desdeFila = desdeFila;
     _hastaFila = hastaFila;
     _desdeCol = desdeCol;
@@ -158,7 +166,7 @@ void PanelConfigModelo::setSpinbuttonsPosicion(
 void PanelConfigModelo::setComboboxTipoGrafico(Gtk::ComboBoxText* pCombo) {
     if (pCombo->get_active_text() == "")
         for (int i = 0; i < CANT_TIPOS; ++i)
-            pCombo->append_text(tipoGrafico[i]);
+            pCombo->append_text(tiposGrafico[i]);
 
     pComboBoxTextTipoGrafico = pCombo;
     connectionComboboxTipoGrafico = pComboBoxTextTipoGrafico->signal_changed().connect(
@@ -218,6 +226,40 @@ void PanelConfigModelo::setResultadosHandlers(const filtradoresHandlers& handler
         resutadosManager->reconectar();
 }
 
+Panel* PanelConfigModelo::concretarConfig(FiltradoresPanel* filtPanel) {
+    // crear el panel
+    Panel* panel = manage(new Panel(getLabel()));
+
+    // cargar el conjunto de filtradores normales
+    filtrosManager->setFiltradoresEn(filtPanel);
+    inputsManager->setFiltradoresEn(filtPanel);
+    resutadosManager->setFiltradoresEn(filtPanel);
+
+    // crear el gráfico y agregarlo al panel
+    Tabla* tabla;
+    Grafico* grafico;
+    switch (indice_tipoGrafico) {
+        case TABLA:     tabla = manage(new TablaComun(*filtPanel));
+                        panel->setContenido(*tabla);
+                        break;
+        case PIVOTE:    // agregar filtradores para tabla pivote
+                        pivoteXsManager->setFiltradoresEn(filtPanel);
+                        pivoteYsManager->setFiltradoresEn(filtPanel);
+                        tabla = manage(new TablaPivote(*filtPanel));
+                        panel->setContenido(*tabla);
+                        break;
+        case BARRAS:    grafico = manage(new GraficoDeBarras(*filtPanel));
+                        panel->setContenido(*grafico);
+                        break;
+        case TORTA:     grafico = manage(new GraficoDeTorta(*filtPanel));
+                        panel->setContenido(*grafico);
+                        break;
+        default: break;
+    }
+
+    return panel;
+}
+
 void PanelConfigModelo::on_spinbuttons_posicion_changed() {
     bloquearConnectionPosicion();
 
@@ -257,14 +299,14 @@ void PanelConfigModelo::on_spinbuttons_posicion_changed() {
 }
 
 void PanelConfigModelo::on_combobox_tipo_grafico_changed() {
-    if (pComboBoxTextTipoGrafico->get_active_text() == tipoGrafico[TABLA_PIVOTE]) {
+    indice_tipoGrafico = pComboBoxTextTipoGrafico->get_active_row_number();
+    if (indice_tipoGrafico == PIVOTE) {
         pExpanderXPivote->show();
         pExpanderYPivote->show();
     } else {
         pExpanderXPivote->hide();
         pExpanderYPivote->hide();
     }
-    indice_tipoGrafico = pComboBoxTextTipoGrafico->get_active_row_number();
 }
 
 NodoXml PanelConfigModelo::serializar(){

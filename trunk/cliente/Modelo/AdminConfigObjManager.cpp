@@ -72,13 +72,9 @@ std::list< TabConfigModelo* > AdminConfigObjManager::getModelosComoTabs() {
     std::list< TabConfigModelo* > tabs;
 
     if (tipo == OBJ_TAB) {
-
-    	std::cout << "entro en getModelosComoTab()  en AdminConfigObjManager...." <<std::endl;
         std::list< ConfigModelo* >::const_iterator it = consultasConfiguradas.begin();
         for ( ; it != consultasConfiguradas.end(); ++it) {
             tabs.push_back(dynamic_cast< TabConfigModelo* >(*it));
-            std::cout << "		TabConfigModelo agregado a lista, en AdminConfigObjManager...." <<std::endl;
-            std::cout << "Puntero TabConfig: " << dynamic_cast< TabConfigModelo* >(*it) << std::endl;
         }
     }
 
@@ -237,8 +233,7 @@ void AdminConfigObjManager::on_eliminar_button_clicked() {
     // busco por el label viejo porque es con el que está en el mapa hasta que se aplican los cambios
 
     Glib::ustring label = pModeloActual->getLabel();
-    if (label == nombre_por_defecto)
-    	std::cout << "intentando eliminar el por defecto, cuando el botón eliminar NO DEBERÍA APARECER" << std::endl;
+
     mapaConsultasConfiguradas.erase(mapaConsultasConfiguradas.find(label));
 
     std::list< ConfigModelo* >::iterator it = consultasConfiguradas.begin();
@@ -294,11 +289,6 @@ void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
 
 	if (nodo.Attribute(ATR_TIPO, &n_tipo)) {
 		tipo = t_Objeto (n_tipo);
-
-		// @todo sacar este if, solo para prueba
-		if (tipo != OBJ_TAB) {
-			std::cout << "No es OBJ_TAB !!!!!!!!!!!" << std::endl;
-		}
 	}
 	else {
 		throw ErrorSerializacionXML();
@@ -314,7 +304,6 @@ void AdminConfigObjManager::deserializar(const NodoXml& nodo) {
 		pModeloActual->deserializar(*hijo);
 
 		Glib::ustring label = pModeloActual->getLabel();
-		std::cout << "Label leída: " << label << std::endl;
 
         mapaConsultasConfiguradas[label] = pModeloActual;
         consultasConfiguradas.push_back(pModeloActual);

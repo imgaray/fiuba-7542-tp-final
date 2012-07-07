@@ -23,7 +23,6 @@ void Consultante::hacerConsulta(ServidorRemoto& server) {
     cancelarConsulta(server);
 
     esperandoRespuesta = true;
-std::cout << "void Consultante::hacerConsulta(ServidorRemoto& server)... soy ID: " << ID << std::endl;
 	server.enviarConsulta(this, consulta);
     padre->informarConsultaIniciada();
     correrSpinner();

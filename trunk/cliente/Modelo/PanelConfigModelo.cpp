@@ -7,6 +7,8 @@
 #include "GraficoDeBarras.h"
 #include <iostream>
 
+#include <gtkmm-2.4/gtkmm/spinbutton.h>
+
 #define LABEL_POSICION "Posición en la grilla"
 #define ERROR " - Error"
 
@@ -53,6 +55,8 @@ PanelConfigModelo::PanelConfigModelo()
     desdeCol = 0; hastaCol = 1;
     posicionValida = true;
     indice_tipoGrafico = TABLA;
+
+    datosDeserializados = false;
 }
 
 PanelConfigModelo::~PanelConfigModelo() {
@@ -364,6 +368,19 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 
 	infoOK = infoOK && nodo.Attribute(ATR_TIPO_GRAF, &this->indice_tipoGrafico);
 
+	if (this->pSpinButtonDesdeCol)
+		this->pSpinButtonDesdeCol->set_value(desdeCol);
+
+	if (this->pSpinButtonDesdeFila)
+		this->pSpinButtonDesdeFila->set_value(desdeFila);
+
+	if (this->pSpinButtonHastaCol)
+		this->pSpinButtonHastaCol->set_value(hastaCol);
+
+	if (this->pSpinButtonHastaFila)
+		this->pSpinButtonHastaFila->set_value(hastaFila);
+
+	datosDeserializados = true;
 
 	if (infoOK == false) {
 		throw ErrorSerializacionXML();

@@ -62,8 +62,6 @@ void TabAdminConfigConsultas::initTabConfig() {
 }
 
 void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo) {
-    std::cout << "void TabAdminConfigConsultas::setArchivoPersonalizador(const char* )... deserializando... (@todo)" << std::endl;
-
     this->cargarConsultas(archivo);
 
     // @todo esta linea iva antes, comprobar funcionamiento
@@ -85,18 +83,17 @@ void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
 }
 
 bool TabAdminConfigConsultas::aplicarCambios() {
-    std::cout << "bool TabAdminConfigConsultas::aplicarCambios()... (@todo)" << std::endl;
+    //std::cout << "bool TabAdminConfigConsultas::aplicarCambios()... (@todo)" << std::endl;
     dynBuilder.construir(tabManager);
 
     TiXmlDocument docXml(rutaArchivo.c_str());
 
     docXml.InsertEndChild(tabManager->serializar());
 
-    if (docXml.SaveFile()) {
-    	std::cout << "Xml guardado correctamente" << std::endl;
-    }
-    else {
-    	std::cout << "--------------Error al guardar en XML." << std::endl;
+    // @todo ver otra forma de mostrar este error
+    if (docXml.SaveFile() == false) {
+    	std::cout << "Error al guardar en XML: ";
+    	std::cout << docXml.ErrorDesc() << std::endl;
     }
 
     return true;

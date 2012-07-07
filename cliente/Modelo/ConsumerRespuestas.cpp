@@ -16,9 +16,9 @@ void ConsumerRespuesta::correr() {
                                     cancelados[r.first]) {
                         cancelados[r.first] = false;
                 } else {
-                    std::cout << "Agregando a la cola de respuestas de ConsumerRespuesta respuesta: " << r.second.serializar() << ", de ID: ";
-                    if (r.first == r.second.devolverID())
-                        std:: cout << r.first << std::endl;
+                    //std::cout << "Agregando a la cola de respuestas de ConsumerRespuesta respuesta: " << r.second.serializar() << ", de ID: ";
+//                    if (r.first == r.second.devolverID())
+//                        std:: cout << r.first << std::endl;
                     respuestas.push(r);
                 }
             }

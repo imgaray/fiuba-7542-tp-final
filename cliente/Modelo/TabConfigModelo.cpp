@@ -299,9 +299,6 @@ NodoXml TabConfigModelo::serializar() {
 	nodo.InsertEndChild(inputsManager->serializar());
 	nodo.InsertEndChild(panelManager->serializar());
 
-	// @todo sacar el cout
-	std::cout << "TabConfigModelo Serializado++++++" << std::endl;
-
 	return nodo;
 }
 
@@ -331,6 +328,4 @@ void TabConfigModelo::deserializar(const NodoXml& nodo) {
 		throw ErrorSerializacionXML();
 
 	panelManager->deserializar(*hijo);
-	// @todo sacar el cout
-	std::cout << "TabConfigModelo Deserializado******" << std::endl;
 }

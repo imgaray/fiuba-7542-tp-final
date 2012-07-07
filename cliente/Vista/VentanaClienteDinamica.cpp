@@ -80,7 +80,7 @@ void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
     for (int i = 0; i < CANT_MAX_RESP_PROC && hayRespuestas ; i++) {
         resp = server.obtenerRespuesta();
         it = consultas.find(resp.devolverID());
-        std::cout << "Obtenida respuesta para consultante de ID: " << resp.devolverID() << std::endl;
+        //std::cout << "Obtenida respuesta para consultante de ID: " << resp.devolverID() << std::endl;
         consultanteExistente = it != consultas.end();
         assert(consultanteExistente);
 

@@ -59,7 +59,7 @@ void DialogoAutentif::on_aceptar_button_clicked() {
 	std::string usrclave = uclave.c_str();
 	 if (usrclave == clave) {
         response(Gtk::RESPONSE_OK);
-		std::cout << "DialogoAutentif::on_aceptar_button_clicked(): Tire RESPONSE_OK" << std::endl;
+		//std::cout << "DialogoAutentif::on_aceptar_button_clicked(): Tire RESPONSE_OK" << std::endl;
     }else
         response(Gtk::RESPONSE_CANCEL);
 }

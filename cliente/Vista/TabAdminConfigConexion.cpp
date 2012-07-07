@@ -42,5 +42,5 @@ bool TabAdminConfigConexion::aplicarCambios() {
 }
 
 void TabAdminConfigConexion::on_entry_ip_changed() {
-    std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
+    //std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
 }

@@ -50,8 +50,6 @@ void Personalizador::construir(AdminConfigObjManager* tabManager) {
     std::list< TabConfigModelo* >::iterator itConfig = tabsConfig.begin();
     for ( ; itConfig != tabsConfig.end(); ++itConfig) {
         tabs.push_back((*itConfig)->concretarConfig());
-        // @todo sacar el cout
-        std::cout << "TabConfigModelo construido desde Personalizador..." << std::endl;
     }
     it = tabs.begin();
 }

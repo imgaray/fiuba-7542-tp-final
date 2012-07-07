@@ -25,33 +25,30 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         FiltradoresPanel& getFiltrador() const;
     protected:
         std::list< Area* > areas;
-        double offset;
         double normalizacion;
 
         virtual void hallarNormalizacion(const std::list< Hecho >& datos) = 0;
         /** borra y regenera todas las referencias */
         void deleteAreas();
         void regenerarReferencias();
-        virtual bool on_expose_event(GdkEventExpose* ev);
-        virtual void dibujarEspecializacion(GdkEventExpose* ev,
-                            Cairo::RefPtr< Cairo::Context >& ctx) = 0;
         virtual void dibujarEspecializacionReferencias(
                 Cairo::RefPtr< Cairo::Context >& ctx) = 0;
-        virtual double getOffset() = 0;
         /** itera por las áreas y las grafica donde esté puesto el contexto */
-        virtual void dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx);
+        void dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx);
         /** itera por las referencias y las grafica donde esté puesto el contexto */
-        virtual void dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx);
+        void dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx);
     private:
         std::list< Referencia > referencias;
         std::list< Area* >::iterator areaSeleccionada;
+        bool on_expose_event(GdkEventExpose* ev);
         bool on_button_press_event(GdkEventButton* ev);
         bool on_motion_notify_event(GdkEventMotion* ev);
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
         int diferencia;
-        double furthest_p;
+        bool should_request_size;
+        double furthest_p;//, furthest_y;
         void resize();
 
         /** modelo */

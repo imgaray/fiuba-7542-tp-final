@@ -6,11 +6,13 @@
 class PorcionCircular : public Area {
     public:
         PorcionCircular(const Hecho& dato, double maximo, unsigned i,
+                        double offset,
                         double x0, double y0, double radio);
         ~PorcionCircular();
 
-        double dibujar(Cairo::RefPtr< Cairo::Context >& ctx, double offset);
-        bool fueClickeada(double x, double y, double& offset);
+        void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);
+        bool fueClickeada(double x, double y);
+        double getAvance();
     private:
         double x0;
         double y0;

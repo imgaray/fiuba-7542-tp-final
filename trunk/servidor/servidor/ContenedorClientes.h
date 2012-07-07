@@ -4,15 +4,11 @@
 #include "ClienteRemoto.h"
 
 
-/* @DOC
-	Clase ContenedorClientes
+/** @class ContenedorClientes
  
 	Es una clase que hace de interfaz a un objeto que pueda contener a los
-clientes remotos. La misma sera aplicada por el controlador del servidor
-que los contendra a todos. Sirve como para mitigar el acoplamiento.
-
- * @END
-*/
+clientes remotos. La misma será aplicada por el controlador del servidor
+que los contendrá a todos. Sirve como para mitigar el acoplamiento. */
 
 class ContenedorClientes {
 public:

@@ -6,52 +6,43 @@
 #include "Hilo.h"
 #include "ClienteRemoto.h"
 
-/* @DOC
+/** @class HiloResponderConsulta
 
-	Clase HiloResponderConsulta
-
-	Es la clase encargada de la resolucion de consultas del cliente. Es una
+	Es la clase encargada de la resolución de consultas del cliente. Es una
 clase heredera de hilo que hace las de consumer de la cola de consultas del
-servidor. A su vez, se encarga de enviar la consulta a traves del socket del
+servidor. A su vez, se encarga de enviar la consulta a través del socket del
 cliente requerido.
 
-Atributos:
 	
-	ConsultasClientesServidor& cconsultas: es una referencia a la cola de
-	consultas del servidor. De aca obtendra las consultas a resolver. Notar
-	que esta cola debe ser bloqueante en el metodo pop2.
-	
-	ResolvedorConsultas& resolvedor: es una referencia al objeto que se
-	encargue de resolver las consultas.
+	ConsultasClientesServidor& cconsultas:	
+	ResolvedorConsultas& resolvedor: 
 
 @END*/
 
 class HiloResponderConsulta: public Hilo {
 private:
-	ConsultasClientesServidor& cconsultas;
-	ResolvedorConsultas& resolvedor;
+	ConsultasClientesServidor& cconsultas; /*  es una referencia a la cola de
+	consultas del servidor. De aca obtendra las consultas a resolver. Debe ser
+	bloqueante en pop2. */
+
+	ResolvedorConsultas& resolvedor; /* es una referencia al objeto que se
+	encargue de resolver las consultas. */
+
 public:
-
-/* @DOC
-Metodos publicos:
-
- @END*/
  
-/* @DOC
-	HiloResponderConsulta(ConsultasClientesServidor& cconsultas, ResolvedorConsultas& rcons)
-		Constructor de HiloResponderconsulta. Recibe las referencias
-		correspondientes a la cola de consultas y al resolvedor.
-
-	@END*/
+/**	Constructor de HiloResponderconsulta.
+ * @param cconsultas Cola de consultas del servidor. Debe ser bloqueante y thread
+ * safe. @see BLQueue
+ * @param rcons Objeto capaz de resolver una consulta.
+ *  */
 	HiloResponderConsulta(ConsultasClientesServidor& cconsultas, ResolvedorConsultas& rcons);
+	
+/** Destructor. Si esta corriendo, lo detiene. */	
 	~HiloResponderConsulta();
 	
-	/* @DOC
-	void correr()
-		Es el metodo llamado por el callback del hilo. Es el encargado de
-		sacar consultas de la cola, pedir la respuesta y enviarla a traves
-		del ClienteRemoto correspondiente.		
-	@END */
+	/**	Es el metodo llamado por el callback del hilo. Es el encargado de
+		sacar consultas de la cola, pedir la respuesta y enviarla a través
+		del ClienteRemoto correspondiente. */
 	void correr();
 };
 

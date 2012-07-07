@@ -8,6 +8,12 @@
 #include "../../comun/Hilo.h"
 #include "../../comun/Definiciones.h"
 
+/** @class ThreadEntradaAgentes
+ 
+	Esta clase es la encargada de recepcionar las conexiones ingresantes de
+agentes. Al ingresar una conexión, crea un AgenteRemoto, lo guarda y lo pone
+a correr. */
+
 class ThreadEntradaAgentes: public Hilo {
 private:
 	Socket* entradaAgentes;
@@ -19,21 +25,24 @@ public:
 
 	bool activo();
 
-	// metodo que se queda pendiente de la conexion de nuevos agentes. 
-	// Si llega un agente, crea un AgenteRemoto que procesa las consultas
+	/** Método que se queda pendiente de la conexión de nuevos agentes. 
+	Si llega un agente, crea un AgenteRemoto que procese las consultas. */
 	void correr();
 	
-	// Detiene la conexion de entrada de agentes. Desconecta, detiene y
-	// sincroniza el hilo
+	/** Detiene la conexión de entrada de agentes. Desconecta, detiene y
+	 sincroniza el hilo. */
 	void detener_entrada();
 	
-	// constructor. Recibe un ContenedorAgentes valido y un ResolvedorEntradas.
-	// El primero sera el que contenga todos los AgenteRemoto. El segundo
-	// el que resuelva las entradas que reciba de cada AgenteRemoto
+	/** Al conectar la unica acción realizada es la de enlazamiento del socket.
+	 * @param cag Objeto capaz de contener AgentesRemotos.
+	 * @param rent Objeto capaz de resolver entradas. Será usado por los AgentesRemotos
+	 * conectados.
+	 * @param pagentes Puerto por el cual escuchará conexiones.
+	 * @param centr Cola de consultas de agente del servidor. */
 	ThreadEntradaAgentes(ContenedorAgentes& cag, ResolvedorEntradas& rent,
 					Puerto pagentes, ConsultasAgentesServidor& centr);
 	
-	// destructor. Detiene la entrada. Si sigue conectado, desconecta.
+	/** Detiene la entrada. Si sigue conectado, desconecta. */
 	~ThreadEntradaAgentes();
 };
 

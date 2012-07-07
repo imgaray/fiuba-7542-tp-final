@@ -8,26 +8,35 @@
 #include "HiloResponderConsulta.h"
 #include "ResolvedorConsultas.h"
 
-/* @DOC
-
-	Clase PoolClientes
+/** @class PoolClientes
 	
 	Es una clase que tiene una determinada cantidad de workers que consumen
-de la cola de clientes. No es mas que una forma de encapsular una lista que
+de la cola de clientes. No es más que una forma de encapsular una lista que
 contiene N instancias de HiloResponderConsulta.
 
-	Sus unicos metodos, detener() e iniciar() se encargan de detener e
-iniciar los hilos que contenga en su lista.
-	@END
-	*/
+	Sus únicos metodos, detener() e iniciar() se encargan de detener e
+iniciar los hilos que contenga en su lista. */
 
 class PoolClientes {
 private:
-	std::list<HiloResponderConsulta*> hilos;
+	std::list<HiloResponderConsulta*> hilos; /* Lista que contiene todos sus
+	workers */
+	
 public:
+
+	/** Popula la lista de workers.
+	 * @param resolvedor Objeto capaz de resolver consultas.
+	 * @param entradas Referencia a la cola de consultas de clientes del servidor.
+	 */
 	PoolClientes(ResolvedorConsultas& resolvedor, ConsultasClientesServidor& entradas);
+
+	/** Si esta en ejecución, detiene todos sus wworkers. Libera la memoria de los workers */
 	~PoolClientes();
+	
+	/** Detiene la ejecución de los workers. */
 	void detener();
+	
+	/** Comienza la ejecución de los workers. */
 	void iniciar();
 };
 

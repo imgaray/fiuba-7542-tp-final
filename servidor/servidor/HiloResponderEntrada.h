@@ -6,51 +6,36 @@
 #include "Hilo.h"
 #include "AgenteRemoto.h"
 
-/* @DOC
+/** @class HiloResponderEntrada
 
-	Clase HiloResponderEntrada
-
-	Es la clase encargada de la resolucion de entradas del agente. Es una
+	Es la clase encargada de la resolución de entradas del agente. Es una
 clase heredera de hilo que hace las de consumer de la cola de entradas del
-servidor. A su vez, se encarga de enviar la respuestas a traves del socket del
-agente pertinente.
-
-Atributos:
-	
-	ConsultasAgentesServidor& centradas: es una referencia a la cola de
-	entradas del servidor. De aca obtendra las entradas a resolver. Notar
-	que esta cola debe ser bloqueante en el metodo pop2.
-	
-	ResolvedorEntradas& resolvedor: es una referencia al objeto que se
-	encargue de resolver las entradas.
-
-@END*/
+servidor. A su vez, se encarga de enviar la respuestas a través del socket del
+agente pertinente. */
 
 class HiloResponderEntrada: public Hilo {
 private:
-	ConsultasAgentesServidor& centradas;
-	ResolvedorEntradas& resolvedor;
+	
+	ConsultasAgentesServidor& centradas; /* es una referencia a la cola de
+	entradas del servidor. De aca obtendra las entradas a resolver. Notar
+	que esta cola debe ser bloqueante en el metodo pop2. */
+	
+	ResolvedorEntradas& resolvedor; /* es una referencia al objeto que se
+	encargue de resolver las entradas. */
+
 public:
-/* @DOC
-Metodos publicos:
-
- @END*/
- 
-/* @DOC
-	HiloResponderEntrada(ConsultasAgentesServidor& centr, ResolvedorEntadas& rentr)
-		Constructor de HiloResponderEntrada. Recibe las referencias
-		correspondientes a la cola de entradas y al resolvedor.
-
-	@END*/
+/**	Constructor de HiloResponderEntrada.
+ * @param cconsultas Referencia a la cola de entradas del servidor. Debe ser
+ * bloqueante y thread safe. @see BLQueue
+ * @param rentr Objeto capaz de resolver entradas. */
 	HiloResponderEntrada(ConsultasAgentesServidor& cconsultas, ResolvedorEntradas& rentr);
+	
+	/** Destructor. Si esta corriendo, detiene la ejecucion del hilo. */
 	~HiloResponderEntrada();
 	
-/* @DOC
-	void correr()
-		Es el metodo llamado por el callback del hilo. Es el encargado de
-		sacar consultas de la cola, pedir la respuesta y enviarla a traves
-		del AgenteRemoto correspondiente.		
-	@END */
+/**	Es el método llamado por el callback del hilo. Es el encargado de
+	sacar consultas de la cola, pedir la respuesta y enviarla a traves
+	del AgenteRemoto correspondiente. */
 	void correr();
 };
 

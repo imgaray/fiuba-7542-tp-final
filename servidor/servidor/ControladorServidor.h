@@ -21,80 +21,21 @@
 #include "PoolAgentes.h"
 using namespace std;
 
-/* @DOC
-	Clase ControladorServidor
+/** @class ControladorServidor
 
 	Esta clase es fundamental. Su rol es controlar el flujo correcto de
-resolucion de consultas y actualizaciones. Se encarga de permitir que
-el servidor maneje multiples consultas, como tambien de frenarlas cuando
+resolución de consultas y actualizaciones. Se encarga de permitir que
+el servidor maneje múltiples consultas, como también de frenarlas cuando
 se requiera de procesar actualizaciones. Contiene un Pool de workers, cada
-uno con una dedicacion a alguna de las tareas ya sean de actualizacion
+uno con una dedicación a alguna de las tareas ya sean de actualización
 como de consultas. Implementa interfaces como ResolvedorConsultas, ResolvedorEntradas,
 ContenedorClientes y ContenedorAgentes, que hace que sus workers solo vean
-lo que necesiten ver de el.
+lo que necesiten ver del controlador.
 
-	Es el encargado tambien de leer la configuracion de puetos que va a tener
-el servidor, de manejar los hilos que se encargan de recibir clientes y
+	Es la clase encargada también de manejar los hilos que se encargan de recibir clientes y
 agentes. En definitiva, es el encargado de la coordinacion de la concurrencia
 del servidor.
-
-Atributos:
-
-	ConsultasAgentesServidor centradas: es la cola que contendra todos los
-	pedidos de actualizacion recibidos de los agentes. Dicha cola es thread
-	safe y sera compartida con todos los workers que esten en el pool de
-	workers para agentes.
-	
-	ConsultasClientesServidor cconsultas: es la cola que contendra todos los
-	pedidos de consultas recibidos de los clientes. Dicha cola es thread safe
-	y sera compartida con todos los workers que esten en el pool de workers
-	para clientes.
-
-	unsigned int ncons: es un indicador de la cantidad de consultas en
-	proceso, que es distinto a la cantidad de consultas encoladas. Sirve
-	para poder coordinar las consultas y las actualizaciones.
-	
-	unsigned int nact: es un indicador de la cantidad de entradas en proceso,
-	que es distinto a la cantidad de entradas encoladas. Sirve para coordinar
-	el proceso de actualizacion con el de consulta. A diferencia de ncons,
-	nact debe ser o 1 o 0.
-
-	lclientes clientes: es la lista que contiene todos los proxy de los clientes
-	conectados. Se utiliza para poder detenerlos y eliminarlos en caso de que se
-	quiera cerrar el servidor.
-
-	Puerto puerto_clientes: es el numero de puerto por el cual se conectan
-	los clientes.
-
-	Puerto puerto_agentes: es el numero de puerto por el cual se conectan
-	los agentes.
-	
-	lagentes agentes: es la lista que contiene todos los proxy de los agentes
-	conectados. Se utiliza para poder detenerlos y eliminarlos en caso de que
-	se quiera cerrar el servidor.
-
-	ResolvedorConsultas& rcons: contiene una referencia al objeto que se
-	encargue de resolver las consultas.
-
-	ResolvedorEntradas& rentr: contiene una referencia al objeto que se
-	encargue de resolver las entradas.
-
-	ThreadEntradaAgentes* tagentes: este hilo se encargara de recibir todas
-	las conexiones ingresantes de los agentes.
-
-	ThreadEntradaClientes* tclientes: este hilo se encargara de recibir todas
-	las conexiones ingresantes de los clientes.
-	
-	PoolClientes poolclientes: este es el pool de workers que minara de
-	la cola de consultas de clientes.
-	
-	PoolAgentes poolagentes: este es el pool de workers que minara de la
-	cola de consultas de agentes.
-	
-	Mutex m: este mutex es el que se utilizara para coordinar las actualizaciones
-	y las consultas.
-	
-* @END*/
+*/
 
 class ControladorServidor:  public ResolvedorConsultas, 
 							public ResolvedorEntradas,
@@ -102,107 +43,112 @@ class ControladorServidor:  public ResolvedorConsultas,
 							public ContenedorAgentes {
 private:
 	// atributos
-	ConsultasAgentesServidor centradas;
-	ConsultasClientesServidor cconsultas;
-	typedef std::list<ClienteRemoto*> lclientes;
-	typedef std::list<AgenteRemoto*> lagentes;
-	unsigned int ncons;
-	unsigned int nact;
+	
+	ConsultasAgentesServidor centradas; /* es la cola que contendrá todos los
+	pedidos de actualización recibidos de los agentes. Dicha cola es thread
+	safe y será compartida con todos los workers que esten en el pool de
+	workers para agentes. */
+	
+	ConsultasClientesServidor cconsultas; /* es la cola que contendrá todos los
+	pedidos de consultas recibidos de los clientes. Dicha cola es thread safe
+	y sera compartida con todos los workers que esten en el pool de workers
+	para clientes. */
+	
+	typedef std::list<ClienteRemoto*> lclientes; 
+	
+	typedef std::list<AgenteRemoto*> lagentes; 
+	
+	unsigned int ncons; /* es un indicador de 
+	la cantidad de consultas en proceso, que es distinto a la cantidad
+	de consultas encoladas. Sirve para poder coordinar las consultas y 
+	las actualizaciones. */
+	
+	unsigned int nact; /* es un indicador de la cantidad de entradas en proceso,
+	que es distinto a la cantidad de entradas encoladas. Sirve para coordinar
+	el proceso de actualizacion con el de consulta. A diferencia de ncons,
+	nact debe ser o 1 o 0. */
+	
 	bool corriendo;
-	lclientes clientes;
-	Puerto puerto_clientes;
-	Puerto puerto_agentes;
-	lagentes agentes;
-	ResolvedorConsultas& rcons;
-	ResolvedorEntradas& rentr;
-	ThreadEntradaAgentes* tagentes;
-	ThreadEntradaClientes* tclientes;
-	PoolClientes poolclientes;
-	PoolAgentes poolagentes;
-	Mutex m;
-public:
-/* @DOC
-Metodos publicos
-@END
-*/
+	
+	lclientes clientes;/* lista que contendrá
+	todos los clientes conectados al servidor. */
+	
+	Puerto puerto_clientes; /* es el numero de puerto por el cual se conectan
+	los clientes. */
+	
+	Puerto puerto_agentes; /* es el numero de puerto por el cual se conectan
+	los agentes. */
+	
+	lagentes agentes; /* lista que contendrá todos
+	los agentes conectados al servidor. */
+	
+	ResolvedorConsultas& rcons; /* contiene una referencia al objeto que se
+	encargue de resolver las consultas. */
+	
+	ResolvedorEntradas& rentr; /* contiene una referencia al objeto que se
+	encargue de resolver las entradas. */
+	
+	ThreadEntradaAgentes* tagentes; /* este hilo se encargara de recibir todas
+	las conexiones ingresantes de los agentes. */
+	
+	ThreadEntradaClientes* tclientes; /* este hilo se encargara de recibir todas
+	las conexiones ingresantes de los clientes. */
+	
+	PoolClientes poolclientes; /* este es el pool de workers que minara de
+	la cola de consultas de clientes. */
+	
+	PoolAgentes poolagentes; /* este es el pool de workers que minara de la
+	cola de consultas de agentes. */
 
-	/* 
-	@DOC
-	Respuesta resolverEntrada(Consulta& entrada)
-		Este metodo es el encargado de resolver las actualizaciones. Si
-		hay consultas resolviendose en el momento de la llamada, este metodo
-		quedara bloqueado hasta que pueda realizar la actualizacion.
-	@END*/
+	Mutex m; /* este mutex es el que se utilizara para coordinar las actualizaciones
+	y las consultas. */
+	
+public:
+
+	/**	Este método es el encargado de resolver las actualizaciones. Si
+		hay consultas resolviéndose en el momento de la llamada, quedará
+		bloqueado hasta que pueda realizar la actualización. */
 	Respuesta resolverEntrada(Consulta& entrada);
 	
-		/* 
-	@DOC
-	Respuesta resolver(Consulta& entrada)
-		Este metodo es el encargado de resolver las consultas. Si
-		hay entradas resolviendose en el momento de la llamada, este metodo
-		quedara bloqueado hasta que pueda realizar la consulta. Sin embargo
-		este metodo no se bloqueara si ortas consultas estan en proceso,
-		permitiendo la resolucion de consultas de forma concurrente.
-	@END*/
+		/** Este método es el encargado de resolver las consultas. Si
+		hay entradas resolviéndose en el momento de la llamada, este método
+		quedará bloqueado hasta que pueda realizar la consulta. Sin embargo
+		no se bloqueara si otras consultas están en proceso, permitiendo
+		la resolución de consultas de forma concurrente. */
 	Respuesta resolver(Consulta& consulta);
 	
-	/*
-	 @DOC
-	 ControladorServidor(ResolvedorConsultas& cons, ResolvedorEntradas& rent,
-								Puerto pclientes, Puerto pagentes)
-		Este es el constructor de controladorServidor. Debe recibir a los
-		resolvedores correspondientes y los puertos que seran utilizados
-		por los agentes.
-	 
-	 @END*/
+	/** Constructor de controladorServidor.
+	 * @param cons Objeto que resuelva las consultas.
+	 * @param rent Objeto que resuelva las entradas.
+	 * @param pclientes Puerto por el cual se escucharán conexiones entrantes
+	 * de los clientes.
+	 * @param pagentes Puerto por el cual se escucharán conexiones entrantes
+	 * de los agentes. */
 	ControladorServidor(ResolvedorConsultas& cons, ResolvedorEntradas& rent,
 								Puerto pclientes, Puerto pagentes);
 	
-	/* @DOC
-		bool activo();
-			Metodo utilizado para saber si las entradas siguen activas.
-	@END*/
-	
+	/**	Método utilizado para saber si las entradas siguen activas. */
 	bool activo();
 	
-	/*
-	 *@DOC
-	~ControladorServidor()
-		El destructor del controlador. Si esta en ejecucion, libera toda
-		la memoria que corresponda, cerrando conexiones y deteniendo hilos.
-	@END*/
+	/**	El destructor del controlador. Si esta en ejecución, libera toda
+		la memoria que corresponda, cerrando conexiones y deteniendo hilos. */
 	~ControladorServidor();
 	
-	/* @DOC
-	void agregarCliente(ClienteRemoto* rem)
-		El metodo que permite agregar un cliente remoto a su lista. Es el
-		heredado de la interfaz ContenedorClientes.
-	@END
-	*/
+	/** El método que permite agregar un cliente remoto a su lista. Es el
+		heredado de la interfaz ContenedorClientes. */
 	void agregarCliente(ClienteRemoto* rem);
 	
-	/* @DOC
-	void agregarAgente(AgenteRemoto* rem)
-		El metodo que permite agregar un agente remoto a su lista. Es el
-		heredado de la interfaz ContenedorAgentes.
-	@END
-	*/
+	/**	El método que permite agregar un agente remoto a su lista. Es el
+		heredado de la interfaz ContenedorAgentes. */
 	void agregarAgente(AgenteRemoto* agt);
 	
-	/* @DOC
-	void comenzar()
-		Se encarga de inicar los hilos correspondientes a los que escuchan
-		conexiones y a los pools de workers.
-	@END */
+	/**	Se encarga de inicar los hilos correspondientes a los que escuchan
+		conexiones y a los pools de workers. */
 	void comenzar();
 	
-	/* @DOC
-	void detener()
-		Se encarga de detener todos los hilos, tanto los workers como los
+	/**	Se encarga de detener todos los hilos, tanto los workers como los
 		que escuchan conexiones ingresantes, cierra las colas de consultas y
-		realiza tareas varias previas a la destruccion del mismo.
-		@END
-	*/
+		realiza tareas varias previas a la destruccion del mismo. */
 	void detener();
 };
 

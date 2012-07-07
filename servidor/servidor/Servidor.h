@@ -9,59 +9,54 @@
 #include "ControladorServidor.h"
 #include "../../comun/Definiciones.h"
 
-/* @DOC
-
-	Clase Servidor
+/** @class Servidor
 
 	Esta clase es la que se maneja desde el programa principal. La clase
-contendra a la base de datos, los verificadores y al controlador. En si,
+contendrá a la base de datos, los verificadores y al controlador. En sí,
 es la clase que nuclea las funcionalidades necesarias para el funcionamiento.
 
-	Su funcion es basicamente iniciar la base de datos, los verificadores y
+	Su función es básicamente iniciar la base de datos, los verificadores y
 el controlador. A su vez, tambien transmite las consultas y actualizaciones
-a la base de datos, haciendo previa verificacion de las mismas.
-
-@END */
+a la base de datos, haciendo previa verificacion de las mismas. */
 
 class Servidor: public ResolvedorConsultas, public ResolvedorEntradas {
 private:
-	BaseDeDatos *bdd;
-	VerificadorConsultasH vdc;
-	VerificadorEntradasH vde;
-	ControladorServidor cds;
-public:
+	BaseDeDatos *bdd; /* Base de datos a consultar o actualizar */
+	VerificadorConsultasH vdc; /* Verificador de integridad de consulta */
+	VerificadorEntradasH vde; /* Verificador de integridad de entrada */
+	ControladorServidor cds; /* Controlador del servidor */
 
-	/* @DOC
-Metodos publicos
-	@END */
+public:
 	
-	/* @DOC
-	Respuesta resolverEntrada(Consulta& entrada)
-		Es el metodo que realiza las actualizaciones. Antes de pasarle
-		la consulta a la base de datos, realiza una verificacion de la
-		entrada. Si es valida, pasara la entrada a la base de datos. En
-		caso contrario, devuelve un mensaje de error.
-	@END */
+	/** Es el método que realiza las actualizaciones. Antes de pasarle
+		la consulta a la base de datos, realiza una verificación de la
+		entrada. Si es válida, pasará la entrada a la base de datos. En
+		caso contrario, devuelve una respuesta con un mensaje de error.
+	*/
 	Respuesta resolverEntrada(Consulta& entrada);
 
-	/* @DOC
-	Respuesta resolver(Consulta& entrada)
-		Es el metodo que realiza las consultas. Antes de pasarle
-		la consulta a la base de datos, realiza una verificacion de la
-		misma. Si es valida, pasara la consulta a la base de datos, obteniendo
-		la respuesta a la misma. En	caso contrario, devuelve un mensaje de error.
-	@END */
+	/** Es el método que realiza las consultas. Antes de pasarle
+		la consulta a la base de datos, realiza una verificación de la
+		misma. Si es válida, pasará la consulta a la base de datos, obteniendo
+		la respuesta a la misma. En	caso contrario, devuelve una respuesta
+		con un mensaje de error.
+	 */
 	Respuesta resolver(Consulta& consulta);
 	
-	/* @DOC
-	bool funcional()
-		Evalua si el servidor esta funcional, es decir si los receptores
-		de conexino son validos 
-	@END */
+	/** Evalúa si el servidor esta funcional, es decir si los receptores
+		de conexión están activos. 
+	*/
 	bool funcional();
 	
+	/** Al crear el servidor, éste ya comienza sus funcionalidades.
+	 * @param pclientes El puerto por el cual se escucharán conexiones de clientes.
+	 * @param pagentes El puerto por el cual se escucharán conexiones de agentes.
+	*/
 	Servidor(Puerto pclientes, Puerto pagentes);
+	
+	/** Detiene la ejecución del servidor y se encarga de liberar la memoria pedida */
 	~Servidor();
+	
 	BaseDeDatos& baseDeDatos(){ return *this->bdd; }
 };
 #endif

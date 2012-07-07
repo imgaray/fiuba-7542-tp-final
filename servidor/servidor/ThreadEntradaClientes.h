@@ -8,6 +8,12 @@
 #include "../../comun/Hilo.h"
 #include "../../comun/Definiciones.h"
 
+/** @class ThreadEntradaClientes
+ 
+	Esta clase es la encargada de recepcionar las conexiones ingresantes de
+clientes. Al ingresar una conexión, crea un ClienteRemoto, lo guarda y lo pone
+a correr. */
+
 class ThreadEntradaClientes: public Hilo {
 private:
 	Socket* entradaClientes;
@@ -19,20 +25,23 @@ public:
 
 	bool activo();
 
-	// metodo que se encarga de escuchar las conexiones de clientes entrantes
-	// si encuentra un cliente, crea un ClienteRemoto y lo manda a correr
+	/** Método que se encarga de escuchar las conexiones de clientes entrantes
+	 si encuentra un cliente, crea un ClienteRemoto y lo manda a correr. */
 	void correr();
 	
-	// Desconecta, detiene y sincroniza el hilo
+	/** Desconecta, detiene y sincroniza el hilo. */
 	void detener_entrada();
 	
-	// constructor. Debe recibir un contenedor de clientes que sera el que
-	// vaya a poseer todos los clientes y un resolvedor de consultas, que 
-	// se encargara de las consultas del cliente
+	/** La ùnica acción realizada durante la creación del objeto es la de
+	 * enlazar el socket.
+	 * @param ccli Objeto capaz de almacenar los ClientesRemotos.
+	 * @param rcons Objeto capaz de resolver las consultas.
+	 * @param pclientes Puerto por el cual escuchará conexiones de los clientes.
+	 * @param ccons Cola de consultas del servidor. */
 	ThreadEntradaClientes(ContenedorClientes& ccli, ResolvedorConsultas& rcons,
 					Puerto pclientes, ConsultasClientesServidor& ccons);
 	
-	// destructor. Si esta corriendo, para. Si esta conectado, desconecta
+	/** Si esta corriendo, se detiene. Si esta conectado, desconecta. */
 	~ThreadEntradaClientes();
 };
 

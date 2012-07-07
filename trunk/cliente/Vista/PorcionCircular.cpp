@@ -3,8 +3,9 @@
 #include <iostream>
 
 PorcionCircular::PorcionCircular(const Hecho& dato, double maximo, unsigned i,
+                                 double _offset,
                                  double _x0, double _y0, double radio)
-    : Area(dato, maximo, i) {
+: Area(dato, maximo, i, _offset) {
     x0 = _x0;
     y0 = _y0;
     r = radio;
@@ -13,27 +14,20 @@ PorcionCircular::PorcionCircular(const Hecho& dato, double maximo, unsigned i,
 
 PorcionCircular::~PorcionCircular() {}
 
-double PorcionCircular::dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
-                                double offset) {
+void PorcionCircular::dibujar(Cairo::RefPtr< Cairo::Context >& ctx) {
     ctx->save();
-        if (seleccionada)
-            ctx->set_line_width(SELEC_LINE_WIDTH);
-        else
-            ctx->set_line_width(DEFAULT_LINE_WIDTH);
-
+        set_line_width(ctx);
         ctx->set_source_rgba(color[0], color[1], color[2], color[3]);
         ctx->move_to(x0, y0);
         ctx->arc(x0, y0, r, offset, offset + valor);
-//        ctx->move_to(x0, y0);
         ctx->close_path();
         ctx->fill_preserve();
         ctx->set_source_rgba(0.0, 0.0, 0.0, 1.0);
         ctx->stroke();
     ctx->restore();
-    return offset + valor;
 }
 
-bool PorcionCircular::fueClickeada(double x, double y, double& offset) {
+bool PorcionCircular::fueClickeada(double x, double y) {
     x -= x0;
     y -= y0;
     double angulo = atan2(y, x);
@@ -46,7 +40,10 @@ bool PorcionCircular::fueClickeada(double x, double y, double& offset) {
     else
         clickeada = false;
 
-    offset += valor;
     return clickeada;
+}
+
+double PorcionCircular::getAvance() {
+    return offset + valor;
 }
 

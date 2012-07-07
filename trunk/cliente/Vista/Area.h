@@ -7,20 +7,18 @@
 
 #define MAX_VALORES 15
 
-#define DEFAULT_LINE_WIDTH  0.01
-#define SELEC_LINE_WIDTH    1.5*DEFAULT_LINE_WIDTH
-
 class Area {
     public:
-        Area(const Hecho& dato, double maximo, unsigned i);
+        Area(const Hecho& dato, double maximo, unsigned i, double offset);
         ~Area();
 
         const Glib::ustring& getEtiqueta() const;
         virtual const double* getColor() const;
 
-        virtual double dibujar(Cairo::RefPtr< Cairo::Context >& ctx,
-                               double offset) = 0;
-        virtual bool fueClickeada(double x, double y, double& offset) = 0;
+        virtual void dibujar(Cairo::RefPtr< Cairo::Context >& ctx) = 0;
+        virtual bool fueClickeada(double x, double y) = 0;
+
+        virtual double getAvance() = 0;
 
         void setSeleccionada(bool selec);
     protected:
@@ -30,9 +28,12 @@ class Area {
         Hecho dato;
         double max;
         double color[4];
-        bool seleccionada;
+        double offset;
+
+        void set_line_width(Cairo::RefPtr< Cairo::Context >& ctx);
     private:
         static double colores[MAX_VALORES][4];
+        double lineWidth;
 };
 
 #endif  // AREA_H

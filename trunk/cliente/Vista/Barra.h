@@ -5,12 +5,13 @@
 
 class Barra : public Area {
     public:
-        Barra(const Hecho& dato, double maximo, unsigned i,
+        Barra(const Hecho& dato, double maximo, unsigned i, double offset,
               double separacion, double ancho);
         ~Barra();
 
-        double dibujar(Cairo::RefPtr< Cairo::Context >& ctx, double offset);
-        bool fueClickeada(double x, double y, double& offset);
+        void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);
+        bool fueClickeada(double x, double y);
+        double getAvance();
     private:
         double sep;
         double ancho;

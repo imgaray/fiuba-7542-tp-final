@@ -73,7 +73,7 @@ Tab* TabConfigModelo::concretarConfig() {
 
         // conseguir su posición y ponerlo en la grilla
         (*it)->getPosicion(desdeFila, hastaFila, desdeCol, hastaCol);
-        grilla->attach(*panel, desdeFila, hastaFila, desdeCol, hastaCol);
+        grilla->attach(*panel, desdeCol, hastaCol, desdeFila, hastaFila);
     }
 
     // agregar filtradores de la tab y la grilla

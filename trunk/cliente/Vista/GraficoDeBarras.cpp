@@ -8,7 +8,6 @@
 #define MIN_SIZE        4
 
 GraficoDeBarras::GraficoDeBarras(FiltradoresPanel& _f) : Grafico(_f) {
-    offset = INIT_OFFSET;
     separacion = SEPARACION_BASE/MIN_SIZE;
     ancho = ANCHO_BASE/MIN_SIZE;
 }
@@ -28,8 +27,13 @@ void GraficoDeBarras::actualizarDatos(const std::list< Hecho >& datos) {
 
     std::list< Hecho >::const_iterator itDatos = datos.begin();
     unsigned i = 0;
-    for ( ; itDatos != datos.end(); ++itDatos, ++i)
-        areas.push_back(new Barra(*itDatos, normalizacion, i, separacion, ancho));
+    double offset = INIT_OFFSET;
+    for ( ; itDatos != datos.end(); ++itDatos, ++i) {
+        Barra* barra = new Barra(*itDatos, normalizacion, i, offset,
+                                  separacion, ancho);
+        offset = barra->getAvance();
+        areas.push_back(barra);
+    }
 
     regenerarReferencias();
 }
@@ -45,16 +49,7 @@ void GraficoDeBarras::hallarNormalizacion(const std::list< Hecho >& datos) {
     }
 }
 
-void GraficoDeBarras::dibujarEspecializacion(GdkEventExpose* ev,
-                                    Cairo::RefPtr< Cairo::Context >& ctx) {
-    offset = getOffset();
-}
-
 void GraficoDeBarras::dibujarEspecializacionReferencias(
         Cairo::RefPtr< Cairo::Context >& ctx) {
     ctx->move_to(SEPARACION_BASE+ANCHO_BASE+0.1, 0.1);
-}
-
-double GraficoDeBarras::getOffset() {
-    return INIT_OFFSET;
 }

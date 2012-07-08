@@ -3,6 +3,11 @@
 
 #include <pthread.h>
 
+/** @class Mutex
+ * 
+ * Clase que enmascara el comportamiento de los pthread_mutex de POSIX.
+ *  */
+
 class Mutex {
 private:
 	pthread_mutex_t m;
@@ -37,6 +42,10 @@ public:
 	
 	friend class Lock;
 };
+
+/** @class Lock
+ * 
+ * Clase que aplica un patron RAII para manejo cómodo de Mutex. */
 
 class Lock{
 private:

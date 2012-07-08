@@ -27,9 +27,9 @@ public:
 	 */
 	M_Fechas() {}
 	virtual ~M_Fechas() {}
-	/*
+	/**
 	 * Se ingresa fecha como "12-12-2012" y se retorna en el formato
-	 * correcto utilazado para el indice
+	 * correcto utilazado para el índice
 	 */
 	Fecha fecha(const std::string& fechaComun)  const;
 	bool esFechaConvecional(const std::string& fecha)  const;
@@ -162,6 +162,7 @@ public:
 	Fecha convertir(const FechaNumerica& fecha, int ancho) const;
 private:
 
+private:
 	void desarmarMes(const Fecha& rango, Fecha& f1, Fecha& f2) const;
 	void desarmarBimes(const Fecha& rango, Fecha& f1, Fecha& f2) const;
 	void desarmarTrimes(const Fecha& rango, Fecha& f1, Fecha& f2) const;

@@ -100,7 +100,7 @@ private:
      */
     bool recibirDatos(std::string& datos);
 
-    /*
+    /**
      * Constructor copia privado.
      */
     Socket(const Socket& orig) {}

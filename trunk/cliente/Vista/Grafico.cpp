@@ -8,7 +8,7 @@
 
 #define MIN_LADO 200
 #define COL_RESULTADO 0  // constante que hace que siempre se tome la columna 0 de la respuesta para dar nombre a las áreas del gráfico
-#define SIN_DATOS "No hay resultados para mostrar"
+#define SIN_DATOS "No hay datos para mostrar"
 
 Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     f.signal_navegabilidad().connect(sigc::mem_fun(*this,
@@ -71,6 +71,7 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
         ctx->fill_preserve();
         ctx->clip();
         ctx->scale(min_lado, min_lado);
+
         dibujarAreas(ctx);
         dibujarReferencias(ctx);
     }
@@ -79,6 +80,10 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
 }
 
 bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
+    std::cout << ev->x << " " << ev->y << " = " << ev->x/min_lado << " " << ev->y/min_lado << std::endl;
+    if (areas.empty())
+        return true;
+    // comprobar que el área seleccionada siga siendo la seleccionada
     if (areaSeleccionada != areas.end() &&
         (*areaSeleccionada)->fueClickeada(ev->x/min_lado, ev->y/min_lado))
         return true;
@@ -140,8 +145,9 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
 void Grafico::dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx) {
     if (areas.empty()) {
         ctx->save();
-            ctx->move_to(0.14, 0.5);
-            ctx->set_font_size(0.08);
+            ctx->move_to(0.03, 0.1);
+            ctx->set_font_size(0.06);
+            ctx->set_source_rgb(0.5, 0.5, 0.5);
             ctx->show_text(SIN_DATOS);
         ctx->restore();
     } else {
@@ -152,6 +158,9 @@ void Grafico::dibujarAreas(Cairo::RefPtr< Cairo::Context >& ctx) {
 }
 
 void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
+    if (referencias.empty())
+        return;
+
     double offset = 0.0;
     double x, y;
     std::list< Referencia >::iterator it = referencias.begin();

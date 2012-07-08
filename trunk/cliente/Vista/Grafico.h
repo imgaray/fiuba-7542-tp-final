@@ -20,7 +20,6 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
 
         virtual void hacerConsulta(ServidorRemoto& server);
 
-        /** @todo implementar para cuando las referencias no entran en el [0,1]x[0,1] */
         void actualizarTamanioMinimo(double x, double y);
         FiltradoresPanel& getFiltrador() const;
     protected:

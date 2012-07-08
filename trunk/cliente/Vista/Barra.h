@@ -12,6 +12,8 @@ class Barra : public Area {
         void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);
         bool fueClickeada(double x, double y);
         double getAvance();
+
+        std::string getInfo();
     private:
         double sep;
         double ancho;

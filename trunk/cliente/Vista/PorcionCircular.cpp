@@ -1,6 +1,6 @@
 #include "PorcionCircular.h"
 #include <cmath>
-#include <iostream>
+#include <iomanip>
 
 PorcionCircular::PorcionCircular(const Hecho& dato, double maximo, unsigned i,
                                  double _offset,
@@ -45,5 +45,14 @@ bool PorcionCircular::fueClickeada(double x, double y) {
 
 double PorcionCircular::getAvance() {
     return offset + valor;
+}
+
+std::string PorcionCircular::getInfo() {
+    std::stringstream ssPorcentaje;
+    std::stringstream ssAclaracion;
+    double val = dato.getValor();
+    ssPorcentaje << std::fixed << std::setprecision(2) << val/max * 100;
+    ssAclaracion << "% (" << val << " de " << max << ")";
+    return ssPorcentaje.str() + ssAclaracion.str();
 }
 

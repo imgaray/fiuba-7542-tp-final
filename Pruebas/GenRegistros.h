@@ -9,9 +9,9 @@
 #define GENREGISTROS_H_
 #include <stdlib.h>
 #include <string>
-#include "../servidor/MotorDeConsultas/BaseDeDatos.h"
-#include "../comun/Organizacion.h"
-#include "../comun/Utilitario.h"
+#include "BaseDeDatos.h"
+#include "Organizacion.h"
+#include "Utilitario.h"
 
 int generarRandom (int cantMax);
 

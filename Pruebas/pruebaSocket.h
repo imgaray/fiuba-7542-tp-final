@@ -15,7 +15,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-#define PUERTO 4322
+#define PUERTO 4320
 using namespace std;
 
 class mCliente : public Hilo {
@@ -60,11 +60,14 @@ public:
 	}
 
 
-
 	virtual void correr() {
 		_sck.enlazar();
 		cout << "Servidor-socket enlazado" << endl;
-		Socket *nsck;
+		Socket *nsck = NULL;
+
+		if (_sck.conectado() == false)
+			cout << "Servidor-socket principal NO conectado" << endl;
+
 		nsck = _sck.escucharConexion();
 
 		if (nsck != NULL)
@@ -91,13 +94,14 @@ public:
  */
 void testSocket() {
 	cout << endl;
+	cout << "===============================================" << endl;
 	cout << "Inicia test para Socket" << endl;
 	mServidor servidor;
 	mCliente cliente("localhost");
 
 	servidor.iniciar();
 
-	sleep(3);
+	sleep(5);
 
 	cliente.iniciar();
 

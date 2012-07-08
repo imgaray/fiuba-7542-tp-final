@@ -6,15 +6,21 @@ CXXFLAGS =  -O0 -g -pthread -lpthread
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
-SUBDIRS = ../comun ../servidor/MotorDeConsultas ../servidor/servidor
+SUBDIRS = ../comun ../servidor/MotorDeConsultas ../servidor/servidor ../agente
 
 EXTERNOBJS = $(addsuffix .o, $(basename  $(wildcard */*.cpp)))
 
 EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../comun/*.cpp)))
+#EXTERNOBJS += $(addsuffix .o, $(basename  $(filter-out  main.cpp, $(wildcard ./*.cpp))))
+EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../servidor/servidor/*.cpp)))
+EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../servidor/MotorDeConsultas/*.cpp)))
+EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../agente/A*.cpp)))
 
 DOCDIRS = ../comun ../servidor/MotorDeConsultas ../servidor/servidor
 
 archivos = $(filter-out  main.cpp, $(wildcard *.cpp))
+
+EXTERNOBJS += $(addsuffix .o, $(basename $(archivos)))
 
 bin = $(archivos:.cpp=.o)
 
@@ -26,7 +32,27 @@ I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
 
 robjs = $(wildcard *.o main test)
 
-all:  main
+misobj = $(wildcard *.o)
+
+
+#verbose = si
+
+occ := $(CC)
+ocxx := $(CXX)
+orm := $(RM)
+old := $(LD)
+ifdef verbose
+RM := $(RM) -v
+else
+CC =  @echo "  Compilando  $@"; $(occ)
+CXX = @echo "  CXX $@"; $(ocxx)
+RM =  @echo "  CLEAN"; $(orm)
+LD =  @echo "  LD  $@"; $(old)
+endif
+
+
+
+all:  pruebas
 
 %.o: %.cpp
 	$(CC) $(CXXFLAGS) $(I-SUBDIRS) -c $<
@@ -38,8 +64,8 @@ subdirs:
 		$(MAKE) -C $$dir; \
 	done
 
-pruebas: subdirs binaries
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) main.cpp -o main
+pruebas: binaries subdirs 
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) main.cpp -o pruebas
 
 
 #test: subdirs
@@ -49,5 +75,6 @@ clean: $(SUBDIRS)
 	for dir in $(SUBDIRS); do \
 		$(MAKE) clean -C $$dir; \
 	done
+	rm -f *.o
 	
 .PHONY: all

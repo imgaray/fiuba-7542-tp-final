@@ -22,10 +22,33 @@ I-SUBDIRS = $(addprefix -I, $(SUBDIRS))
 
 robjs = $(wildcard *.o main test)
 
+
+#######################################
+#verbose = si
+
+occ := $(CC)
+ocxx := $(CXX)
+orm := $(RM)
+old := $(LD)
+ifdef verbose
+RM := $(RM) -v
+else
+CC =  @echo "  Compilando  $@"; $(occ)
+CXX = @echo "  CXX $@"; $(ocxx)
+RM =  @echo "  CLEAN"; $(orm)
+LD =  @echo "  LD  $@"; $(old)
+endif
+
+COMP_DEPEND = @echo "Compilar dependencias externos..."
+LIMPIAR = @echo "Limpiando..."
+
+#########################################
+
+
 all: main
 
 subdirs:
-	for dir in $(SUBDIRS); do \
+	$(COMP_DEPEND); for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir; \
 	done
 	
@@ -36,7 +59,7 @@ test: subdirs
 	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) test.cpp -o test
 
 clean: $(SUBDIRS)
-	for dir in $(SUBDIRS); do \
+	$(LIMPIAR); for dir in $(SUBDIRS); do \
 		$(MAKE) clean -C $$dir; \
 	done
 	

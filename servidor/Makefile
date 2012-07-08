@@ -1,6 +1,6 @@
 # Makefile
 
-MAKE = make
+MAKE = make --no-print-directory
 
 CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
 
@@ -39,7 +39,7 @@ RM =  @echo "  CLEAN"; $(orm)
 LD =  @echo "  LD  $@"; $(old)
 endif
 
-COMP_DEPEND = @echo "Compilar dependencias externos..."
+COMP_DEPEND = @echo "Compilar dependencias externas..."
 LIMPIAR = @echo "Limpiando..."
 
 #########################################

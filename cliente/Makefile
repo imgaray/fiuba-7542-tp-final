@@ -1,6 +1,6 @@
 # Makefile
 
-MAKE = make
+MAKE = make --no-print-directory
 
 CXXFLAGS = -O0 -g -pthread -lpthread
 

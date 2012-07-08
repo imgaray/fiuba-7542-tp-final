@@ -1,6 +1,6 @@
 # Makefile
 
-MAKE = make
+MAKE = make --no-print-directory
 
 CXXFLAGS =  -O0 -g -pthread -lpthread
 
@@ -34,7 +34,7 @@ robjs = $(wildcard *.o main test)
 
 misobj = $(wildcard *.o)
 
-
+######################################################
 #verbose = si
 
 occ := $(CC)
@@ -50,7 +50,10 @@ RM =  @echo "  CLEAN"; $(orm)
 LD =  @echo "  LD  $@"; $(old)
 endif
 
+COMP_DEPEND = @echo "Compilar dependencias externas..."
+LIMPIAR = @echo "Limpiando..."
 
+######################################################
 
 all:  pruebas
 
@@ -60,7 +63,7 @@ all:  pruebas
 binaries: $(bin)
 
 subdirs:
-	for dir in $(SUBDIRS); do \
+	$(COMP_DEPEND); for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir; \
 	done
 
@@ -72,9 +75,9 @@ pruebas: binaries subdirs
 #	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) test.cpp -o test
 
 clean: $(SUBDIRS)
-	for dir in $(SUBDIRS); do \
+	$(LIMPIAR); for dir in $(SUBDIRS); do \
 		$(MAKE) clean -C $$dir; \
 	done
-	rm -f *.o
+	$(LIMPIAR); rm -f *.o
 	
 .PHONY: all

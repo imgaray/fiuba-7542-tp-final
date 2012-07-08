@@ -1,6 +1,6 @@
 # Makefile
 
-MAKE = make
+MAKE = make --no-print-directory
 
 CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
 

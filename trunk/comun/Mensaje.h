@@ -11,7 +11,8 @@
 #include <string>
 
 /**
- * @class 	Esta clase es abstracta y representa a la comunicacion habra entre un
+ * @class Mensaje
+ * 	Esta clase es abstracta y representa a la comunicacion habra entre un
  * cliente con un servidor o un agente con un servidor.
  */
 

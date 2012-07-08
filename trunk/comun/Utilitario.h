@@ -11,7 +11,8 @@
 #include "Definiciones.h"
 
 /**
- * @class 	Esta clase es usada para realizar operaciones auxiliares como separar un
+ * @class Utilitario
+ * 	Esta clase es usada para realizar operaciones auxiliares como separar un
  *	string en varios, borrar caracterez de un string, convertir un string en entero
  *	y al reves.
  */

@@ -12,7 +12,8 @@
 #include "Utilitario.h"
 
 /**
- *	@class Esta clase es la encargada de manejar fechas, para un uso mas comodo guardando
+ *	@class M_Fechas
+ *  Esta clase es la encargada de manejar fechas, para un uso mas comodo guardando
  *	dia, semana, mes, bimestre , trimestre, cuatrimeste, semestre para algun anio.
  *	Se encarga de manejar fechas simple o fechas compuestas, siendo las fechas simples
  *	fechas con formato comun numerico y las fechas compuestas serian semana, mes,

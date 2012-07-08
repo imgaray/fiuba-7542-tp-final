@@ -24,7 +24,8 @@ class Consulta;
 class Respuesta;
 
 /**
- * @class 	Esta clase es la encarga de la comunicacion entre las distintas
+ * @class Socket
+ * Esta clase es la encarga de la comunicacion entre las distintas
  * partes como servidor, agente y cliente. Es la capa mas baja de comunicacion
  * que hay en este proyecto.
  */

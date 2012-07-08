@@ -32,7 +32,8 @@ typedef std::vector <std::string> vectorCampos;
 
 
 /**
- * @class Esta clase estatica encargada de cargar, guardar el modole del Archivo,
+ * @class Organizacion
+ *  Esta clase estatica encargada de cargar, guardar el modole del Archivo,
  *	pudiendo consultar sobre sus dimensiones, hechos, y cantidades que hay de estos,
  *	es decir, se encarga de resolver toda cuestion que implicase al modelo.
  *	La clasificacion de la Organizacino es la siguiente, las Dimensiones estan conformadas

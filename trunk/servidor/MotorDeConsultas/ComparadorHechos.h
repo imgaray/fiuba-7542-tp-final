@@ -40,7 +40,8 @@ Atributos:
 
 
 /**
- * @class Esta clase es la encargada de decidir si un registro en particular
+ * @class ComparadorHechos
+ *  Esta clase es la encargada de decidir si un registro en particular
  *  debe o no ser filtrado a partir de filtros de Hechos. Construyendose a
  *  partir un Consulta en particular.
  */

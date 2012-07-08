@@ -1,6 +1,12 @@
 # Makefile
 
-CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
+CXXFLAGS = -pthread -lpthread
+
+ifdef DEBUG
+CXXFLAGS += -g -O0
+else
+CXXFLAS += -O3
+endif
 
 CC = g++
 

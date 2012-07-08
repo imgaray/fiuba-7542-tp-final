@@ -6,10 +6,12 @@ MSJ_ESP = @echo "..."
 
 MSJ_DESINS = @echo "Desinstalando "
 
+MSJ_DOCS = @echo "Generando documentacion..."
+
 
 all: install
 
-install: install_agente install_cliente install_servidor
+install: uninstall doc install_agente install_cliente install_servidor
 
 install_agente:
 	$(MSJ_AGENTE);mkdir apAgente
@@ -25,9 +27,10 @@ install_cliente:
 	$(MSJ_ESP);cp -f cliente/main apCliente 
 	$(MSJ_ESP);cp -f cliente/*.conf apCliente 
 	$(MSJ_ESP);cp -f cliente/*.config apCliente 
-	$(MSJ_ESP);cp -f cliente/*.xml apCliente 
 	$(MSJ_ESP);mkdir apCliente/Vista 
 	$(MSJ_ESP);cp -f cliente/Vista/*.glade apCliente/Vista
+	$(MSJ_ESP);cp -f cliente/*.xml apCliente 
+	
 
 install_servidor:
 	$(MSJ_SERV); mkdir apServidor
@@ -37,13 +40,40 @@ install_servidor:
 	$(MSJ_ESP);cp -f servidor/*.config apServidor
 	$(MSJ_ESP);cp -f servidor/*.dat apServidor
 
+doc:
+	$(MSJ_DOCS); doxygen doxyConfig
 
+
+debug:
+	rm -r -f DEBUG_RELEASE
+	mkdir DEBUG_RELEASE
+	cd agente; make DEBUG=yes
+	mkdir DEBUG_RELEASE/agente
+	cp agente/main DEBUG_RELEASE/agente
+	cp agente/*.conf DEBUG_RELEASE/agente
+	cp agente/*.config DEBUG_RELEASE/agente
+	cd servidor; make DEBUG=yes
+	mkdir DEBUG_RELEASE/servidor
+	cp -f servidor/main DEBUG_RELEASE/servidor
+	cp -f servidor/*.conf DEBUG_RELEASE/servidor
+	cp -f servidor/*.config DEBUG_RELEASE/servidor
+	cp -f servidor/*.dat DEBUG_RELEASE/servidor
+	mkdir DEBUG_RELEASE/cliente 
+	cd cliente; make DEBUG=yes 
+	cp -f cliente/main DEBUG_RELEASE/cliente 
+	cp -f cliente/*.conf DEBUG_RELEASE/cliente 
+	cp -f cliente/*.config DEBUG_RELEASE/cliente 
+	mkdir DEBUG_RELEASE/cliente/Vista 
+	cp -f cliente/Vista/*.glade DEBUG_RELEASE/cliente/Vista
+	cp -f cliente/*.xml DEBUG_RELEASE/cliente 
+	
+	 	
 uninstall:
 	$(MSJ_DESINS)
 	$(MSJ_ESP);rm -f -r apCliente 
 	$(MSJ_ESP);rm -f -r apServidor
 	$(MSJ_ESP);rm -f -r apAgente
-	
-doc:
+	$(MSJ_ESP);rm -f -r docs
 
-.PHONY: all install	install_agente install_cliente install_servidor	uninstall doc
+
+.PHONY: all install	install_agente install_cliente install_servidor	uninstall debug doc

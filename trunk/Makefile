@@ -1,8 +1,8 @@
-MSJ_AGENTE = @echo "Instalando Agente..."
-MSJ_CLIENTE = @echo "Instalando Cliente..."
-MSJ_SERV = @echo "Instalando Servidor..."
+MSJ_AGENTE = @echo "::::::Instalando Agente::::::"
+MSJ_CLIENTE = @echo "::::::Instalando Cliente::::::"
+MSJ_SERV = @echo "::::::Instalando Servidor::::::"
 
-MSJ_ESP = @echo "."
+MSJ_ESP = @echo "..."
 
 MSJ_DESINS = @echo "Desinstalando "
 

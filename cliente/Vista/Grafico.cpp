@@ -16,10 +16,10 @@ Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
 
     add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
     set_size_request(MIN_LADO, MIN_LADO);
+    s.set_no_show_all();
     setSpinner(&s);
-    furthest_p = 1.0;
-//    furthest_x = 1.0;
-//    furthest_y = 1.0;
+    furthest_x = 1.0;
+    furthest_y = 1.0;
     min_lado = 0;
     diferencia = 0;
     areaSeleccionada = areas.end();
@@ -65,22 +65,14 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
         if (!min_lado)
             min_lado = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
 
-
         Cairo::RefPtr<Cairo::Context> ctx = window->create_cairo_context();
-        ctx->set_source_rgba(1.0, 1.0, 1.0, 1.0);std::cout << "min_lado antes de verificar contra la ventana: " << min_lado << std::endl;
-//        int min_lado_nuevo = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
-//        min_lado = min_lado > min_lado_nuevo? min_lado : min_lado_nuevo;std::cout << "min_lado después de verificar contra la ventana: " << min_lado << std::endl;
-//        min_lado = ancho_ventana < alto_ventana? ancho_ventana : alto_ventana;
-//        ctx->rectangle(ev->area.x, ev->area.y, ev->area.width, ev->area.height);
+        ctx->set_source_rgba(1.0, 1.0, 1.0, 1.0);
         ctx->rectangle(0, 0, ancho_ventana, alto_ventana);
         ctx->fill_preserve();
         ctx->clip();
         ctx->scale(min_lado, min_lado);
         dibujarAreas(ctx);
-        dibujarReferencias(ctx);//std::cout << "min_lado después de evaluar furthes_p: " << min_lado << std::endl;
-//        ctx->scale(min_lado, min_lado);
-//        int asfd;
-//        std::cin >> asfd;
+        dibujarReferencias(ctx);
     }
 
     return true;
@@ -92,15 +84,15 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
         return true;
 
     std::list< Area* >::iterator it = areas.begin();
-    bool encontrado = false;
+    bool encontrada = false;
     unsigned i = 0;
-    while ( !encontrado && it != areas.end()) {
-        encontrado = (*it)->fueClickeada(ev->x/min_lado, ev->y/min_lado);
+    while ( !encontrada && it != areas.end()) {
+        encontrada = (*it)->fueClickeada(ev->x/min_lado, ev->y/min_lado);
         (*(it++))->setSeleccionada(false);
         ++i;
     }
 
-    if (encontrado) {
+    if (encontrada) {
         areaSeleccionada = --it;
         (*areaSeleccionada)->setSeleccionada(true);
         ++it;
@@ -163,7 +155,7 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
     for ( ; it != referencias.end(); ++it) {
         dibujarEspecializacionReferencias(ctx);
         offset = it->dibujar(ctx, offset);
-        ctx->get_current_point(x, y); //std::cout << "Último punto: ( " << x << ", " << y << ")" << std::endl;
+        ctx->get_current_point(x, y);
         actualizarTamanioMinimo(x, y);
     }
     resize();
@@ -188,28 +180,18 @@ void Grafico::procesarRespuesta(const Respuesta& rta) {
 }
 
 void Grafico::actualizarTamanioMinimo(double x, double y) {
-//    furthest_x = x > furthest_x? x : furthest_x;
-//    furthest_y = y > furthest_y? y : furthest_y;
-    furthest_p = x > furthest_p? x : furthest_p;
-    furthest_p = y > furthest_p? y : furthest_p;std::cout << "Último punto: " << furthest_p << std::endl;
+    furthest_x = x > furthest_x? x : furthest_x;
+    furthest_y = y > furthest_y? y : furthest_y;
 }
 
 void Grafico::resize() {
-    if (furthest_p > 1 && should_request_size) {
+    if (should_request_size &&
+        (furthest_x > 1 || furthest_x > 1)) {
         // para que no termine la ventana pegada al último punto
-        furthest_p += 0.2;
-//        min_lado *= furthest_p;
-//        set_size_request(min_lado, min_lado);
-        set_size_request(min_lado * furthest_p, min_lado * furthest_p);
-//        ctx->scale(min_lado * furthest_p, min_lado * furthest_p);
+        furthest_x += 0.1;
+        furthest_y += 0.1;
+        set_size_request(min_lado * furthest_x, min_lado * furthest_y);
         should_request_size = false;
-//        diferencia = furthest_p -1;
-////        min_lado *= furthest_p;
-////    queue_draw_area( 0, 0, ancho_ventana, alto_ventana);
-//        int temp = MIN_LADO * furthest_p;
-////        set_size_request(temp, temp);
-////        std::cout << "MIN_LADO nuevo: " << temp << std::endl;
-//        furthest_p = 1;
-//
+        std::cout << "Size requested" << std::endl;
     }
 }

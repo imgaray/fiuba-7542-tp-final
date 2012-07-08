@@ -11,7 +11,7 @@
 Tabla::Tabla(FiltradoresPanel& filtradores) : ExhibidorRespuesta(filtradores) {
 	_colModelo = NULL;
 	setSpinner(&s);
-
+    s.set_no_show_all();
 }
 
 Tabla::~Tabla() {

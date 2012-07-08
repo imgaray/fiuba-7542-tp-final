@@ -10,6 +10,7 @@ Tab::Tab(const Glib::ustring& _etiqueta): etiqueta(_etiqueta), padre(NULL) {
     etiquetaCompuesta.pack_start(etiqueta, false, false);
     etiqueta.show();
     spinner.hide();
+    spinner.set_no_show_all();
 
     pConsultantesActivos = &filtrosConsultantes;
     hijosActualizando = 0;

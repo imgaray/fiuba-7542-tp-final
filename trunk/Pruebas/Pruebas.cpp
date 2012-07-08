@@ -10,17 +10,17 @@
 
 #include "Pruebas.h"
 
-#include "../comun/Organizacion.h"
-#include "../comun/Consulta.h"
-#include "../comun/Respuesta.h"
-#include "../comun/M_Fechas.h"
-#include "../comun/GenRegistros.h"
+#include "Organizacion.h"
+#include "Consulta.h"
+#include "Respuesta.h"
+#include "M_Fechas.h"
+#include "GenRegistros.h"
 
-#include "../servidor/MotorDeConsultas/BaseDeDatos.h"
-#include "../servidor/servidor/VerificadorConsultasH.h"
-#include "../servidor/servidor/VerificadorEntradasH.h"
-#include "../servidor/MotorDeConsultas/IndiceDeFechas.h"
-#include "../servidor/MotorDeConsultas/ArchivoDeDatos.h"
+#include "BaseDeDatos.h"
+#include "VerificadorConsultasH.h"
+#include "VerificadorEntradasH.h"
+#include "IndiceDeFechas.h"
+#include "ArchivoDeDatos.h"
 
 using namespace std;
 

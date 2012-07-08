@@ -1,9 +1,9 @@
-#include "../comun/ArchivoConfiguracion.h"
+#include "ArchivoConfiguracion.h"
 #include <iostream>
 #include "Pruebas.h"
 using namespace std;
 
-int main(int argc, char** argv) {
+int __main(int argc, char** argv) {
 	testGeneradorRegistros();
 	char ruta[] = "configuracionprueba";
 	ArchivoConfiguracion archivo(ruta);

@@ -69,6 +69,7 @@ void testAgenteCargaDesdeArchivo() {
 	cout << "=======================================" << endl;
 	int errores = 0;
 	cout << "Inicia Test para CargaDesdeArchivo de Agente."<< endl;
+	Utilitario u;
 
 	string rutaOrganizacion = "./Fuente/org.txt";
 	{
@@ -98,7 +99,7 @@ void testAgenteCargaDesdeArchivo() {
 				"HP \t 7-11-1223 \t Galaxy \t Sebastia \t 800 \t 250"};
 
 		for (int i = 0; i < cantReg ; i++)
-			Utilitario::borrarCaracter(reg[i], ' ');
+			u.borrarCaracter(reg[i], ' ');
 
 
 		fstream arch(rutaDatos.c_str(), fstream::out);
@@ -117,7 +118,7 @@ void testAgenteCargaDesdeArchivo() {
 	string ruta = "./configAgente";
 	{
 		string c1 = "PUERTO = ";
-		c1 += Utilitario::convertirAString(PUERTO_PRUEBA_SERVIDOR);
+		c1 += u.convertirAString(PUERTO_PRUEBA_SERVIDOR);
 		string c2 = "HUESPED = localhost";
 
 		fstream arch(ruta.c_str(), fstream::out);

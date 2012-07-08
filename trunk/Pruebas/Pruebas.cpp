@@ -24,6 +24,24 @@
 
 using namespace std;
 
+void eliminarArchivo(const std::string& ruta) {
+	std::string comando = "rm ";
+	comando += ruta;
+	system(comando.c_str());
+}
+
+void crearOrganizacionEstandar(const std::string& ruta) {
+	string c1 = "Dimensiones = { Sucursal, Vendedor, Fecha, Marca, Producto}";
+	string c2 = "Hechos = { PrecioLista, PrecioVenta }";
+
+	std::fstream arch(ruta.c_str(), fstream::out);
+	arch << c1;
+	arch << std::endl;
+	arch << c2;
+
+	arch.close();
+}
+
 void imprimirRespuesta(Respuesta& resp, const string& comentario) {
 	cout << endl;
 	cout << "Comentario: " << comentario << endl;
@@ -46,8 +64,18 @@ void testBaseDeDatosReal() {
 	cout << "================================================="<< endl;
 	cout << "Inicia Test para BaseDeDatos \"Real\"" << endl;
 
-	Organizacion::cargarDefiniciones("./Fuente/modelo.config");
-	BaseDeDatos bdd("./Fuente/BDD.dat");
+
+	std::string rutaOrganizacion;
+	std::string rutaBDD,rutaBDD_id;
+
+	rutaBDD = "./BDD.dat";
+	rutaBDD_id = rutaBDD + "-id.dat";
+	rutaOrganizacion = "./organizacion.txt";
+	crearOrganizacionEstandar(rutaOrganizacion);
+
+	Organizacion::cargarDefiniciones(rutaOrganizacion);
+	BaseDeDatos bdd(rutaBDD);
+	generarRegistros(bdd, 1000);
 
 
 	Consulta c;
@@ -247,6 +275,11 @@ void testBaseDeDatosReal() {
 	imprimirRespuesta(r, "Consulta de Evelyn");
 
 	cout << "Fin de Test de BaseDeDatos Real."<< endl;
+
+	//elimino los archivos utilizados para la prueba
+	eliminarArchivo(rutaBDD);
+	eliminarArchivo(rutaBDD_id);
+	eliminarArchivo(rutaOrganizacion);
 }
 
 void testOrganizacion() {
@@ -254,7 +287,7 @@ void testOrganizacion() {
 	int errores = 0;
 	cout << endl <<"Inicia Test Para Organizacion" << endl;
 
-	string ruta = "./Fuente/org.txt";
+	string ruta = "./org.txt";
 	string c1 = "Dimensiones = { Marca,  Fecha, Bonificacion, Producto, Vendedor,HOGAR, Organizacion}";
 	string c2 = "Hechos = { Precio, PrecioVenta ,PrecioLista }";
 
@@ -360,6 +393,7 @@ void testOrganizacion() {
 	}
 
 	cout << "FIN DE TEST DE Organizacion." << endl;
+	eliminarArchivo(ruta);
 }
 
 
@@ -490,6 +524,7 @@ void testValidadorConsulta() {
 	}
 
 	cout << "FIN DE TEST DE Verificador de Consulta." << endl;
+	eliminarArchivo(rutaOrganizacion);
 }
 
 
@@ -498,7 +533,10 @@ void testArchivoDeDatos() {
 	int errores = 0;
 	cout << endl << "Inicia Test para ArchivoDeDatos" << endl;
 
-	ArchivoDeDatos arch("archDatos.txt");
+	std::string rutaArchDatos = "archDatos.txt";
+	std::string rutaArchId = (rutaArchDatos + "-id.dat");
+
+	ArchivoDeDatos arch(rutaArchDatos);
 	arch.borrarDatos();
 
 	size_t regIniciales = arch.cantidadRegistros();
@@ -604,6 +642,8 @@ void testArchivoDeDatos() {
 	}
 
 	cout << "FIN DE TEST DE ARCHIVODEDATOS" << endl;
+	eliminarArchivo(rutaArchDatos);
+	eliminarArchivo(rutaArchId);
 }
 
 
@@ -612,8 +652,10 @@ void testInterseccion() {
 	cout << "Inicia test para Interseccion" << endl;
 	int errores = 0;
 
+	std::string rutaBDD = "ruta.txt";
+	std::string rutaBDDid(rutaBDD + "-id.dat");
 
-	BaseDeDatos bdd("ruta.txt");
+	BaseDeDatos bdd(rutaBDD);
 
 	Lista_Id l1;
 	Lista_Id l2;
@@ -649,6 +691,9 @@ void testInterseccion() {
 	}
 
 	cout << "Fin de test de BaseDeDatos::Interseccion" << endl;
+
+	eliminarArchivo(rutaBDD);
+	eliminarArchivo(rutaBDDid);
 }
 
 
@@ -662,24 +707,26 @@ void testBaseDeDatos() {
 
 	// Creo y configuro la organizacion.
 	string rutaOrganizacion = "./organizacion.txt";
-	{
-
-	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
-	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
-	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
-
-
-	archOrg << dimensiones;
-	archOrg << endl;
-	archOrg << hechos;
-
-	archOrg.close();
-
-	}
+//	{
+//
+//	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
+//	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
+//	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
+//
+//
+//	archOrg << dimensiones;
+//	archOrg << endl;
+//	archOrg << hechos;
+//
+//	archOrg.close();
+//
+//	}
+	crearOrganizacionEstandar(rutaOrganizacion);
 
 	Organizacion::cargarDefiniciones(rutaOrganizacion);
 
 	string rutaDatos = "./datos-bdd.txt";
+	string rutaDatosId = rutaDatos + "-id.dat";
 
 	BaseDeDatos bdd(rutaDatos);
 	bdd.borrarDatos();
@@ -1038,26 +1085,33 @@ void testBaseDeDatos() {
 	}
 
 	cout << "Fin de Test de BaseDeDatos" << endl;
+
+
+	//elimino los archivo utilizados en el test
+	eliminarArchivo(rutaDatos);
+	eliminarArchivo(rutaDatosId);
+	eliminarArchivo(rutaOrganizacion);
 }
 
 void testGeneradorRegistros() {
 	// Creo y configuro la organizacion.
 	string rutaOrganizacion = "./organizacion.txt";
-	{
+//	{
+//
+//	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
+//	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
+//	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
+//
+//
+//	archOrg << dimensiones;
+//	archOrg << endl;
+//	archOrg << hechos;
+//
+//	archOrg.close();
+//
+//	}
 
-	std::string dimensiones = "Dimensiones = { Sucursal, Vendedor, Fecha, Producto}";
-	std::string hechos = "Hechos = {PrecioLista, PrecioFinal }";
-	fstream archOrg(rutaOrganizacion.c_str(), fstream::out);
-
-
-	archOrg << dimensiones;
-	archOrg << endl;
-	archOrg << hechos;
-
-	archOrg.close();
-
-	}
-
+	crearOrganizacionEstandar(rutaOrganizacion);
 	Organizacion::cargarDefiniciones(rutaOrganizacion);
 
 	cout << "====================================================" << endl;
@@ -1065,6 +1119,7 @@ void testGeneradorRegistros() {
 
 
 	string rutaDatos = "./datosRegGen.dat";
+	string rutaDatosId(rutaDatos + "-id.dat");
 	BaseDeDatos bdd(rutaDatos);
 
 	long cantReg = 200;
@@ -1075,6 +1130,11 @@ void testGeneradorRegistros() {
 
 
 	cout << "FIN DE TEST DE Generador de Registros." << endl;
+
+	//elimino los archivos utilizados
+	eliminarArchivo(rutaDatos);
+	eliminarArchivo(rutaDatosId);
+	eliminarArchivo(rutaOrganizacion);
 
 }
 
@@ -2534,6 +2594,19 @@ void testIndFechas() {
 #include "../servidor/servidor/VerificadorEntradasH.h"
 
 void testValidadorEntrada() {
+
+	string ruta = "./org.txt";
+	string c1 = "Dimensiones = { Sucursal, Vendedor, Fecha, Marca, Producto}";
+	string c2 = "Hechos = { PrecioLista, PrecioVenta }";
+
+	std::fstream arch(ruta.c_str(), fstream::out);
+	arch << c1;
+	arch << std::endl;
+	arch << c2;
+
+	arch.close();
+
+
 	cout << "====================================" << endl;
 	cout << "Inicia test para validador Entrada" << endl;
 
@@ -2541,7 +2614,7 @@ int errores = 0;
 	VerificadorEntradasH verif;
 
 	Consulta c;
-	Organizacion::cargarDefiniciones("Fuente/modelo.config");
+	Organizacion::cargarDefiniciones(ruta);
 
 	c.definirComoConsultaAgente();
 
@@ -2566,9 +2639,15 @@ int errores = 0;
 	}
 	else {
 		cout << "Test con Errores: "<< errores << endl;
+		cout << "Fin De Test para Verificador Entrada" << endl;
 		exit(0);
 	}
 
 	cout << "Fin De Test para Verificador Entrada" << endl;
+
+	// borro el archivo usado para la prueba
+	std::string comandoBorrar = "rm ";
+	comandoBorrar += ruta;
+	system(comandoBorrar.c_str());
 
 }

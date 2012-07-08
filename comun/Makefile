@@ -1,6 +1,12 @@
 # Makefile
 
-CXXFLAGS = -Wall -O0 -g -pthread -lpthread
+CXXFLAGS = -pthread -lpthread
+
+ifdef DEBUG
+CXXFLAGS += -O0 -g
+else
+CXXFLAGS += -O3
+endif
 
 CC = g++
 

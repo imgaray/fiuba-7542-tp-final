@@ -308,6 +308,20 @@ void TabConfigModelo::deserializar(const NodoXml& nodo) {
 	infoOK = infoOK && nodo.Attribute(ATR_FILAS_GRILLA,&this->filas);
 	infoOK = infoOK && nodo.Attribute(ATR_COLS_GRILLA,&this->cols);
 
+	if (infoOK) {
+		if(pSpinButtonCols) {
+			pSpinButtonCols->set_value(this->cols);
+		}
+
+		if(pSpinButtonFilas) {
+			pSpinButtonFilas->set_value(this->filas);
+		}
+	}
+	else {
+		throw ErrorSerializacionXML();
+	}
+
+
 	if (nodo.Attribute(ATR_NOMBRE)) {
 		this->setLabel(nodo.Attribute(ATR_NOMBRE));
 	}

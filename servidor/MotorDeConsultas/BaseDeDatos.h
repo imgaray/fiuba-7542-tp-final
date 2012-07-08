@@ -123,7 +123,7 @@ private:
 	 */
 	bool hayResultadosDeDimensiones(const Consulta& consulta) const;
 
-	/*
+	/**
 	 * @brief Guarda las distintans combinaciones de dimensiones en MapaCombinacions y guardando
 	 * para combinacino un conjunto de id que pertenecen a esa combinacion.
 	 * @param consulta es la Consulta a resolver
@@ -133,7 +133,7 @@ private:
 	 */
 	void guardarCombinaciones(const Consulta& consulta, Lista_Id& lReg, MapaCombinaciones& mCombinaciones, bool filtrarHechos);
 
-	/*
+	/**
 	 * @brief Guarda las distintans combinaciones de dimensiones en MapaCombinacions y guardando
 	 * para combinacino un conjunto de id que pertenecen a esa combinacion.
 	 * @param consulta es la Consulta a resolver

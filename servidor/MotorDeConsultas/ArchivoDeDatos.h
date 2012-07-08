@@ -16,7 +16,7 @@ typedef unsigned int Id_Registro;
 
 /**
  * @class ArchivoDeDatos
- * Esta clase es la encargada de almacenar todo tipo de registros guardandolos
+ * Esta clase es la encargada de almacenar todo tipo de registros guardándolos
  * en disco, permitiendo acceder a estos a partir de su id de registro.
  */
 
@@ -49,7 +49,7 @@ public:
 	 */
 	size_t cantidadRegistros() const;
 
-	/*
+	/**
 	 * @brief Borra todo el contenido de los datos
 	 */
 	void borrarDatos();

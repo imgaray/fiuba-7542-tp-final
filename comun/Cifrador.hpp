@@ -5,6 +5,9 @@
 
 #define DEFAULT 115
 
+/** @class Cifrador
+ * Cifra y descifra mensajes. Aplica un cifrado básico. */
+
 class Cifrador {
 public:
 	void cifrar(std::string& obj, int clave = DEFAULT) {

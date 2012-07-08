@@ -266,15 +266,16 @@ public:
 	bool esConsultaDeAgente() const;
 
 private:
-	/*
+	/**
 	 * Guarda los "Filtros" de la consulta en el string datos a serializar
 	 */
 	void cargarFiltros(std::string& datos) const;
-	/*
+	/**
 	 * Guarda los "Resultados" de la consulta en el string datos a serializar
 	 */
 	 void cargarResultados(std::string& datos) const;
-	/*
+	
+	/**
 	 * Guarda los "Entradas" de la consulta en el string datos a serializar
 	 */
 	void cargarEntradas(std::string& datos) const;
@@ -283,7 +284,7 @@ private:
 
 	void cargarID(std::string& datos) const;
 
-	/*
+	/**
 	 * Metodos utilizados en la deserializacion de
 	 * la Consulta
 	 */
@@ -309,8 +310,6 @@ private:
 	bool _consultaValida;
 
 	static std::string s_nulo;
-
-	//Utilitario u;
 
 	Id_Mensaje _id;
 };

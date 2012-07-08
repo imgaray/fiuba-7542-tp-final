@@ -11,8 +11,8 @@
 #include <map>
 #include "Mutex.h"
 
-// Clase que encapsula el comportamiento de map, solo que thread safe
-
+/** @class BLMap
+ * Wrapper thread safe del map de STL */
 template <class T, class Y>
 class BLMap {
 private:
@@ -50,7 +50,7 @@ public:
 		Lock lock(m);
 		return mapa.empty();
 	}
-
+	/** Verifica si existe un elemento asociado a dicha clave */
 	bool has(const T& key) {
 		Lock lock(m);
 		return mapa.find(key) != mapa.end();

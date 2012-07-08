@@ -97,8 +97,9 @@ void Socket::conectar(const std::string& huesped) {
     he = gethostbyname(huesped.c_str());
     if (he == NULL) {
         perror("Error al obtener le Host. ");
-        printf("Error: %s \n", strerror(errno));
-        _conectado = true;
+        printf(" Error: %s \n", strerror(errno));
+        //_conectado = true;
+        _conectado = false;
         return;
     }
 //    else {
@@ -117,13 +118,11 @@ void Socket::conectar(const std::string& huesped) {
     memset(&(_direccion.sin_zero), 8, sizeof(int));
 
 
-    int resConexion = connect(_fd,
-            (struct sockaddr *)&_direccion,
-            sizeof(struct sockaddr));
+    int resConexion = connect(_fd, (struct sockaddr *)&_direccion,sizeof(struct sockaddr));
 
     if (resConexion == -1) {
         perror("Error al conectar. ");
-         printf(" Error: %s\n", strerror(errno));
+        printf(" Error: %s\n", strerror(errno));
         _conectado = false;
         return;
     }

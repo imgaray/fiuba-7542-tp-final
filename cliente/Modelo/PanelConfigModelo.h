@@ -46,7 +46,7 @@ class PanelConfigModelo : public ConfigModelo {
         /** modelo mismo */
         int desdeFila, hastaFila;
         int desdeCol, hastaCol;
-        bool posicionValida, datosDeserializados;
+        bool posicionValida, posicionesDeserializadas;
         FiltradorConfigManager* filtrosManager;
         FiltradorConfigManager* inputsManager;
         FiltradorConfigManager* pivoteXsManager;

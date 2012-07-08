@@ -56,7 +56,7 @@ PanelConfigModelo::PanelConfigModelo()
     posicionValida = true;
     indice_tipoGrafico = TABLA;
 
-    datosDeserializados = false;
+    posicionesDeserializadas = true;
 }
 
 PanelConfigModelo::~PanelConfigModelo() {
@@ -265,6 +265,9 @@ Panel* PanelConfigModelo::concretarConfig(FiltradoresPanel* filtPanel) {
 }
 
 void PanelConfigModelo::on_spinbuttons_posicion_changed() {
+	if (posicionesDeserializadas == false)
+		return;
+
     bloquearConnectionPosicion();
 
     int desdeFilaNuevo = pSpinButtonDesdeFila->get_value_as_int();
@@ -317,9 +320,9 @@ NodoXml PanelConfigModelo::serializar(){
 	NodoXml nodo(NOMBRE_NODO);
 
 	nodo.SetAttribute(ATR_DESDE_FILA, this->desdeFila);
-	nodo.SetAttribute(ATR_DESDE_COL, this->desdeCol);
-
 	nodo.SetAttribute(ATR_HASTA_FILA, this->hastaFila);
+
+	nodo.SetAttribute(ATR_DESDE_COL, this->desdeCol);
 	nodo.SetAttribute(ATR_HASTA_COL, this->hastaCol);
 
 	nodo.SetAttribute(ATR_TIPO_GRAF, this->indice_tipoGrafico);
@@ -352,6 +355,8 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 
 	// @todo cargar nombre
 
+	posicionesDeserializadas = false;
+
 	if (nodo.Attribute(ATR_NOMBRE) != NULL) {
 		this->setLabel(nodo.Attribute(ATR_NOMBRE));
 	}
@@ -361,30 +366,38 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 
 	bool infoOK = true;
 
-	infoOK = infoOK && nodo.Attribute(ATR_DESDE_FILA, &desdeFila);
-	infoOK = infoOK && nodo.Attribute(ATR_DESDE_COL, &desdeCol);
-	infoOK = infoOK && nodo.Attribute(ATR_HASTA_FILA, &hastaFila);
-	infoOK = infoOK && nodo.Attribute(ATR_HASTA_COL, &hastaCol);
+	infoOK = infoOK && nodo.Attribute(ATR_DESDE_FILA, &this->desdeFila);
+	infoOK = infoOK && nodo.Attribute(ATR_HASTA_FILA, &this->hastaFila);
+	infoOK = infoOK && nodo.Attribute(ATR_DESDE_COL, &this->desdeCol);
+	infoOK = infoOK && nodo.Attribute(ATR_HASTA_COL, &this->hastaCol);
 
 	infoOK = infoOK && nodo.Attribute(ATR_TIPO_GRAF, &this->indice_tipoGrafico);
-
-	if (this->pSpinButtonDesdeCol)
-		this->pSpinButtonDesdeCol->set_value(desdeCol);
-
-	if (this->pSpinButtonDesdeFila)
-		this->pSpinButtonDesdeFila->set_value(desdeFila);
-
-	if (this->pSpinButtonHastaCol)
-		this->pSpinButtonHastaCol->set_value(hastaCol);
-
-	if (this->pSpinButtonHastaFila)
-		this->pSpinButtonHastaFila->set_value(hastaFila);
-
-	datosDeserializados = true;
 
 	if (infoOK == false) {
 		throw ErrorSerializacionXML();
 	}
+
+
+	if (this->pSpinButtonDesdeCol) {
+		this->pSpinButtonDesdeCol->set_value(desdeCol);
+
+	}
+
+	if (this->pSpinButtonDesdeFila) {
+		this->pSpinButtonDesdeFila->set_value(desdeFila);
+	}
+
+	if (this->pSpinButtonHastaCol) {
+		this->pSpinButtonHastaCol->set_value(hastaCol);
+	}
+
+	if (this->pSpinButtonHastaFila) {
+		this->pSpinButtonHastaFila->set_value(hastaFila);
+	}
+
+
+	posicionesDeserializadas = true;
+
 
 	this->pComboBoxTextTipoGrafico->set_active(indice_tipoGrafico);
 

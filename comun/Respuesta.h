@@ -15,7 +15,8 @@
 
 
 /**
- * @class Esta clase se encarga guardar lo relacionado a la
+ * @class Respuesta
+ *  Esta clase se encarga guardar lo relacionado a la
  * resolucion de una consulta ya sea desde un agente o un servidor.
  */
 

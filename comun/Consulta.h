@@ -13,7 +13,8 @@
 #include "Utilitario.h"
 
 /**
- *  @class 	Esta clase es la encargada de guardar y administrar la consulta realizada
+ *  @class Consulta
+ *  Esta clase es la encargada de guardar y administrar la consulta realizada
  *	por un Cliente o Agente, para que sea enviada al servidor y sea resuelta
  *	por este.
  */

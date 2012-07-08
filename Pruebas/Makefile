@@ -2,7 +2,7 @@
 
 MAKE = make
 
-CXXFLAGS = -Wall -Werror -pedantic -pedantic-errors -O0 -g -pthread -lpthread
+CXXFLAGS =  -O0 -g -pthread -lpthread
 
 # EN ESTA VARIABLE VAN TODOS LOS DIRECTORIOS QUE QUIERAN COMPILAR PARA
 # USAR EN LA COMPILACION DEL MAIN
@@ -12,10 +12,9 @@ EXTERNOBJS = $(addsuffix .o, $(basename  $(wildcard */*.cpp)))
 
 EXTERNOBJS += $(addsuffix .o, $(basename  $(wildcard ../comun/*.cpp)))
 
-DOCDIRS = .
-#../comun ../servidor/MotorDeConsultas ../servidor/servidor
+DOCDIRS = ../comun ../servidor/MotorDeConsultas ../servidor/servidor
 
-archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
+archivos = $(filter-out  main.cpp, $(wildcard *.cpp))
 
 bin = $(archivos:.cpp=.o)
 
@@ -29,20 +28,19 @@ robjs = $(wildcard *.o main test)
 
 all:  main
 
+%.o: %.cpp
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) -c $<
+
 binaries: $(bin)
 
 subdirs:
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir; \
 	done
-	
-pruebas: PruebaCSS.h PruebaCSS.cpp Pruebas.h Pruebas.C
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS)  -c Pruebas.h
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) main.cpp -o pruebas
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) main.cpp -o pruebas
-	
-main: subdirs pruebas
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(bin) $(EXTERNOBJS) main.cpp -o pruebas
+
+pruebas: subdirs binaries
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) main.cpp -o main
+
 
 #test: subdirs
 #	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) test.cpp -o test

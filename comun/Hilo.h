@@ -12,7 +12,8 @@
 #include <iostream>
 
 /**
- * @class Clase Abstracta que utilizada para manipular un Hilo.
+ * @class Hilo
+ * Clase Abstracta que utilizada para manipular un Hilo.
  */
 
 class Hilo {

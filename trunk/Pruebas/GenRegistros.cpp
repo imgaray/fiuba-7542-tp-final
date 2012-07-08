@@ -6,8 +6,8 @@
  */
 
 #include "GenRegistros.h"
-#include "../comun/Consulta.h"
-#include "../comun/Respuesta.h"
+#include "Consulta.h"
+#include "Respuesta.h"
 
 int generarRandom (int cantMax) {
 	float  r = (float)random() / (float) RAND_MAX;

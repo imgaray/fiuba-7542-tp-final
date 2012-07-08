@@ -8,10 +8,10 @@
 #ifndef PRUEBASOCKET_H_
 #define PRUEBASOCKET_H_
 
-#include "comun/Hilo.h"
-#include "comun/Socket.h"
-#include "comun/Definiciones.h"
-#include "comun/Consulta.h"
+#include "Hilo.h"
+#include "Socket.h"
+#include "Definiciones.h"
+#include "Consulta.h"
 #include <iostream>
 #include <stdlib.h>
 
@@ -84,7 +84,11 @@ public:
 	Socket _sck;
 };
 
-
+/**
+ * @brief test que comprueba que se envien resciban y envian mensajes
+ * correctamente a travez de sockets. Se comprueba principal el
+ * correcto funcionamiento del socket.
+ */
 void testSocket() {
 	cout << endl;
 	cout << "Inicia test para Socket" << endl;

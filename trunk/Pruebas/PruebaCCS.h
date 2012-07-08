@@ -9,13 +9,13 @@
 #define PRUEBACCS_H_
 
 #include <iostream>
-#include "../comun/Hilo.h"
-#include "../comun/Socket.h"
-#include "../comun/GenRegistros.h"
-#include "../comun/Consulta.h"
-#include "../comun/Respuesta.h"
-#include "../comun/Definiciones.h"
-#include "../servidor/MotorDeConsultas/BaseDeDatos.h"
+#include "Hilo.h"
+#include "Socket.h"
+#include "GenRegistros.h"
+#include "Consulta.h"
+#include "Respuesta.h"
+#include "Definiciones.h"
+#include "BaseDeDatos.h"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ void imprimirRes(const Respuesta& resp);
 
 class ccsServidor : public Hilo {
 public:
-	ccsServidor() : bdd("rutaDatosCCS.txt"), _sckEnlace(PUERTO_CONEX){
+	ccsServidor() :  _sckEnlace(PUERTO_CONEX), bdd("rutaDatosCCS.txt") {
 		//bdd.borrarDatos();
 		generarRegistros(bdd,100);
 		_sckEnlace.enlazar();
@@ -51,8 +51,6 @@ public:
 		r = bdd.resolverConsulta(c);
 
 		nsocket->enviar(r);
-
-		nsocket;
 	}
 
 
@@ -88,8 +86,11 @@ public:
 	Socket _sck;
 };
 
-/*
- * Test para la resolucion de Consula de Cliente con Servidor
+/**
+ * @brief test para "Consulta Cliente con Servidor" que comprueba que se
+ * resuelvan correctamente consultas con corriendo un cliente y un
+ * servidor en dos hilos separados. Se comprueba la correcta recepcion
+ * de consulta resuelta a travez de un respuesta.
  */
 void testCCS();
 

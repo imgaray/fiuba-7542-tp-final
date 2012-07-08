@@ -21,6 +21,8 @@ class Area {
         virtual double getAvance() = 0;
 
         void setSeleccionada(bool selec);
+
+        std::string getInfo();
     protected:
         /** @todo quizás con una referencia al hecho baste, hasta podría ser
          * más conveniente si está directamente conectado con las consultas

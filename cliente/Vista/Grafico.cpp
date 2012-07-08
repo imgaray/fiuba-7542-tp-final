@@ -95,13 +95,16 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
     if (encontrada) {
         areaSeleccionada = --it;
         (*areaSeleccionada)->setSeleccionada(true);
+        set_tooltip_text((*areaSeleccionada)->getInfo());;
         ++it;
         for ( ; it != areas.end(); ++it)
             (*it)->setSeleccionada(false);
         --i;
     }
-    else
+    else {
+        set_tooltip_text("");
         areaSeleccionada = areas.end();
+    }
 
     std::list< Referencia >::iterator itRefs = referencias.begin();
     unsigned j = 0;

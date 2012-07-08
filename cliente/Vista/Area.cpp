@@ -1,5 +1,6 @@
 #include "Area.h"
 #include "Hecho.h"
+#include "Utilitario.h"
 #include <iostream>
 
 #define DEFAULT_LINE_WIDTH  0.01
@@ -42,4 +43,11 @@ void Area::setSeleccionada(bool selec) {
 
 void Area::set_line_width(Cairo::RefPtr< Cairo::Context >& ctx) {
     ctx->set_line_width(lineWidth);
+}
+
+std::string Area::getInfo() {
+    Utilitario u;
+    std::stringstream ss;
+    ss << dato.getValor() << " de " << max;
+    return ss.str();
 }

@@ -11,76 +11,62 @@
 #include <pthread.h>
 #include <iostream>
 
-/*
- * @DOC:
-						Clase Hilo
-
-	Esta clase abstracta, .
-
-Atributos:
-
-    pthread_t hilo:
-*
-    bool _correr: booleano que indica si esta en estado de "corriendo"
-*
-    bool _sincronizado: booleano que indica si el hilo a sido sincronizado.
-
- * @END
- * */
-
+/**
+ * @class Clase Abstracta que utilizada para manipular un Hilo.
+ */
 
 class Hilo {
 public:
-    /*
-     * Constructor sin argumentos de hilo
+    /**
+     * @brief Constructor sin argumentos de hilo
      */
     Hilo();
     
-    /*
-     * Destructor de Hilo
+    /**
+     * @brief Destructor de Hilo
      */
     virtual ~Hilo();
     
-    /*
-     * Metodo que inicia la ejecucion del hilo
+    /**
+     * @brief Metodo que inicia la ejecucion del hilo
      */
     virtual void iniciar();
     
-    /*
-     * Metodo que pone al hilo en estado de detener la ejecucion
+    /**
+     * @brief Metodo que pone al hilo en estado de detener la ejecucion
      */
     virtual void parar();    
     
-    /*
-     * Metodo virtual puro, que corre cuando se ejecuta el hilo
+    /**
+     * @brief Metodo virtual puro, que corre cuando se ejecuta el hilo
      */
     virtual void correr() = 0;
     
-    /*
-     * Metodo que espera a que finalice el hilo
+    /**
+     * @brief Metodo que espera a que finalice el hilo
      */
     virtual void sincronizar();
     
-    /*
-     * Metodo retornado true si el hilo esta corriendo o si esta 
+    /**
+     * @brief Metodo retornado true si el hilo esta corriendo o si esta
      * listo para correr.
      */
     bool corriendo();
 
-    /*
-     * Retorna un bool indicando si el Hilo a sido sincronizado
+    /**
+     * @brief Retorna un bool indicando si el Hilo a sido sincronizado
      */
     bool sincronizado();
 
 private:
-    /*
-     * Constructor copia privado
+    /**
+     * @brief Constructor copia privado
      */
     Hilo(const Hilo& orig) {}
     void operator=(const Hilo &orig) {}
     
-    /*
-     * Metodo estatico utilizado para llamar a la ejecucion del hilo.
+    /**
+     * @brief Metodo estatico utilizado para llamar a la ejecucion del hilo.
      */
     static void* llamarHilo(void* hilo);
     

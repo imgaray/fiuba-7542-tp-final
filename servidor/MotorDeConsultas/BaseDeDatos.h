@@ -19,31 +19,6 @@ class Respuesta;
 class Consulta;
 
 
-/*
- * @DOC:
-						Clase BaseDeDatos
-
-	Esta clase es la encargada de resolver las todos los tipos de consultas
-	hechas por un cliente y/o agente.
-
-Atributos:
-
-	Indice <Dimension> *_indDimensiones: es vector dinamico que contiene los
-	indices de ids de registro que se utilizaran para filtrar los datos en
-	la resolucion de una consulta.
- *
-	IndiceDeFechas _indFechas: es un indice especial utilizado para guardar
-	los id de registros y filtrarlos a partir de una gran cantidad de
-	diferentes tipos de rangos.
- *
-	ArchivoDeDatos _archDatos: clase que se encarga de almacenar los registros
-	en disco y permite acceder a estos a partir de su id cuando sea necesario
- *
-	unsigned _cantDimensionesSimples: se utiliza para tener la cantidad de dimensiones
-	simples que poseen por parte del Modelo.
- * @END
- * */
-
 /**
  * @class Esta clase es la encargada de resolver las todos los tipos de consultas
  * hechas por un cliente y/o agente.
@@ -77,7 +52,17 @@ public:
 	void borrarDatos();
 
 	virtual ~BaseDeDatos();
-//private:
+
+
+	/**
+	 * @brief Calcula interseccion de dos lista l1 y l2, y almacena el resultado en destino
+	 * @param l1 es la primer lista a calcular la interseccion
+	 * @param l2 es la segunda lista a calcular la interseccion
+	 * @param destino es la lista donde se guardara el resultado de la interseccion
+	 */
+	void calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, Lista_Id& destino) const;
+
+private:
 	/**
 	 * @brief Resuelve una consulta con tabla pivote.
 	 * @param consulta es la Consulta que se tiene que resolver.
@@ -98,14 +83,6 @@ public:
 	 * @param id identificador del registro.
 	 */
 	void actualizarIndices(const std::string& entrada, const Id_Registro& id);
-
-	/**
-	 * @brief Calcula interseccion de dos lista l1 y l2, y almacena el resultado en destino
-	 * @param l1 es la primer lista a calcular la interseccion
-	 * @param l2 es la segunda lista a calcular la interseccion
-	 * @param destino es la lista donde se guardara el resultado de la interseccion
-	 */
-	void calcularInterseccion(const Lista_Id& l1, const Lista_Id& l2, Lista_Id& destino) const;
 
 	/**
 	 * @brief Calcula los Filtros de una consulta y guarda los id filtrados en lista

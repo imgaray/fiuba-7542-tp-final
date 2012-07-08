@@ -13,30 +13,11 @@
 #include "Utilitario.h"
 #include <string>
 
-/*
- * @DOC:
-						Clase Respuesta
 
-	Esta clase se encarga guardar todo lo relacionado a la
-	resolucion de una consulta ya sea desde un agente o un servidor.
-
-Atributos:
-	Id_Mensaje _id: Id de la Respuesta que lo identifica univocamente.
-*
-	size_t _columnas: indica la cantidad de columnas que tiene tabla de la Respuesta
-*
-	DatosDeRespuesta _datos: contendor que guarda todo el contenido de la Tabla
-*
-	Fila _filaActual: contenedor que guarda el contenido para una fila, solo se utiliza
-	cuando se va generando la respuesta por parte del sevidor.
-*
-	std::string _msjInterno: string que guarda un mensaje para la Respuesta
-*
-	static Campo campo_nulo: string que para ser referenciado como string vacio
-*
-    Utilitario u: se encarga de hacer operaciones y calculos auxiliares.
- * @END
- * */
+/**
+ * @class Esta clase se encarga guardar lo relacionado a la
+ * resolucion de una consulta ya sea desde un agente o un servidor.
+ */
 
 class Respuesta : public Mensaje {
 public:
@@ -44,68 +25,103 @@ public:
 	Respuesta(const Respuesta& original);
 	virtual ~Respuesta();
 
-	/*
-	 *  Constructor de respuesta que se instancia con un mensaje
-	 *  interno espefico
+	/**
+	 * @brief Constructor de respuesta que se instancia con un mensaje
+	 * interno espefico.
+	 * @param mensaje string que contiene el mensaje para la respuesta intanciada.
 	 */
 	Respuesta(const std::string& mensaje);
 
+	/**
+	 * @brief Define cual es el identificador que tendra la respuesta(Por defecto es 0).
+	 * @param id es nuevo indetificado de la Respuesta.
+	 */
 	void definirID(const Id_Mensaje& id);
 
+	/**
+	 * @brief Retorna el identificador actual del mensaje.
+	 * @return Id de la Respuesta.
+	 */
 	Id_Mensaje devolverID() const;
 
-	// Serializa la Respuesta en un string
+	/**
+	 * @brief Serializa la Respuesta en un string.
+	 * @return string que contiene la Respuesta Serializada.
+	 */
 	std::string serializar() const;
 
-	// Deserializa la Respuesta a partir de un string
+	/**
+	 * @brief Deserializa la Respuesta a partir de un string.
+	 * @param datos string que contiene los datos de la Respuesta serializada.
+	 */
 	void deserializar(const std::string& datos);
 
-	// Metodo que implementa el operador= para hacer una copia de Respuesta
+	/**
+	 * @brief Metodo que implementa el operador= para hacer una copia de Respuesta.
+	 * @param resp Respuesta a la cual se le realizara la copia.
+	 * @return referencia de la Respuesta actual
+	 */
 	Respuesta& operator=(const Respuesta& resp);
 
-	// Retorna un mensaje Interno que posee una instancia de respuesta
+	/**
+	 * @brief Retorna un mensaje Interno que posee una instancia de respuesta.
+	 * @return string del mensaje que contiene respuesta.
+	 */
 	const std::string& mensajeInterno() const;
 
-	// Se define cual es el mensaje interno de la respuesta
+	/**
+	 * @brief Se define cual es el mensaje interno de la respuesta.
+	 * @param mensaje string que contiene el nuevo mensaje interno.
+	 */
 	void mensajeInterno(const std::string& mensaje);
 
-	/*
-	 * Deja la Respuesta vacia
+	/**
+	 * @brief Deja la Respuesta vacia.
 	 */
 	void limpiar();
 
-	/*
-	 * Define las columnas que tendra la respuesta.
+	/**
+	 * @brief Define las columnas que tendra la respuesta.
+	 * @param columnas la nueva cantidad de columnas.
 	 */
 	void definirColumnas(size_t columnas);
 
-	/*
-	 * Agrega un campo a la fila argumento
+	/**
+	 * @brief Agrega un campo Nuevo en la fila actual donde es que se encuentra.
+	 * @param dato string con el nuevo campo.
 	 */
 	void agregar(const std::string& dato);
 
-	/*
-	 * Finaliza la fila actual y comienza una nueva
+	/**
+	 * @brief Establece el fin de la fila actual y comienza una nueva.
 	 */
 	void filaCompletada();
 
-	/*
-	 * Retorna el string encontrado en la fila  y columna argumentos
+	/**
+	 * @brief Retorna el campo encontrado en la fila  y columna argumentos. Si se
+	 * sobrepasan los argumentos se retorna un string nulo.
+	 * @param fila es la fila del dato
+	 * @param columna es la columna del dato
+	 * @return string que contiene el campo recuperado.
 	 */
 	const std::string& dato(size_t fila, size_t columna) const;
 
-	/*
-	 * Retorna la cantidad de Columnas que posee la respuesta
+	/**
+	 * @brief Retorna la cantidad de Columnas que posee la respuesta
+	 * @return cantidad de columnas actual.
 	 */
 	size_t cantidadColumnas() const;
-	/*
-	 * Rertorna la cantidad de FIlas que posee la respuesta
+
+	/**
+	 * @brief Rertorna la cantidad de FIlas que posee la respuesta.
+	 * @return cantidad de filas actual.
 	 */
 	size_t cantidadFilas() const;
 
-	/*
-	 * Retorna un bool indicando si en la respuesta recibida
-	 * se encuentra algun mensaje de Error
+	/**
+	 * @brief Retorna un bool indicando si en la respuesta recibida
+	 * se encuentra algun mensaje de Error.
+	 * @return booleano indicandi si hubo error.
 	 */
 	bool huboError() const;
 
@@ -115,16 +131,19 @@ public:
 	static std::string respuestaValida;
 
 private:
-	/*
-	 * Metodo utilizado para deserializar una Respuesta.
+	/**
+	 * @brief Metodo utilizado para deserializar una Respuesta.
 	 * Guardando los datos del argumentos fila en la estructura
-	 * interna de la clase Respuesta
+	 * interna de la clase Respuesta.
+	 * @param fila string que contiene una fila completa serializada.
 	 */
 	void guardarFila(const std::string& fila);
 
-	/*
-	 * Metodo utilizado para serializar una Respuesta.
+	/**
+	 * @brief Metodo utilizado para serializar una Respuesta.
 	 * Guardando los datos del argumento Fila en el string datos.
+	 * @param fila Fila a la cual se va serializar.
+	 * @param datos string donde se guardara la Fila serializada.
 	 */
 	void cargarFila(const Fila& fila, std::string& datos) const;
 

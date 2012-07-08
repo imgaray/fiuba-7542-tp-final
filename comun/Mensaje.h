@@ -10,22 +10,29 @@
 
 #include <string>
 
-/*
- * @DOC:
-						Clase Mensaje
-
-	Esta clase es abstracta y representa a la comunicacion habra entre un cliente con
-	un servidor o un agente con un servidor.
-
- * @END
- * */
+/**
+ * @class 	Esta clase es abstracta y representa a la comunicacion habra entre un
+ * cliente con un servidor o un agente con un servidor.
+ */
 
 class Mensaje {
 public:
+	/**
+	 * @brief Constructor sin Argumentos.
+	 */
 	Mensaje();
 	virtual ~Mensaje();
 
+	/**
+	 * @brief Metodo que serializa todo el mensaje en un string
+	 * @return string con el mensjae serializado.
+	 */
 	virtual std::string serializar() const = 0;
+
+	/**
+	 * @brief Metodo que se deserialza a partir de un string.
+	 * @param datos string que contiene el Mensaje serializado.
+	 */
 	virtual void deserializar(const std::string& datos) = 0;
 };
 

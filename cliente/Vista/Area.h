@@ -22,7 +22,7 @@ class Area {
 
         void setSeleccionada(bool selec);
 
-        std::string getInfo();
+        virtual std::string getInfo() = 0;
     protected:
         /** @todo quizás con una referencia al hecho baste, hasta podría ser
          * más conveniente si está directamente conectado con las consultas

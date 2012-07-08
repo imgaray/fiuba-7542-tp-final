@@ -21,6 +21,7 @@ class FiltradorInputFecha : public FiltradorInput {
         void filtrar(Consulta& c);
     private:
         Gtk::Entry entrada;
+        Gtk::Label infoError;
         int i;  // iésimo valor del combobox posible
         Fecha f;
 

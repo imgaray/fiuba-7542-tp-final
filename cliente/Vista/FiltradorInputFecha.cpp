@@ -6,12 +6,14 @@
 #define MSJ_ERROR "Fecha inválida"
 
 FiltradorInputFecha::FiltradorInputFecha(const Glib::ustring& input)
-: FiltradorInput(input) {
+: FiltradorInput(input), infoError(MSJ_ERROR) {
     FiltradorHelper::getInstancia().popularComboFecha(&valores);
     i = 0;
     valores.set_active(i);
 
     centradorDerecho.pack_start(entrada, false, false);
+    centradorDerecho.pack_start(infoError, false, false);
+    infoError.hide();
 
     valores.signal_changed().connect(sigc::mem_fun(*this,
             &FiltradorInputFecha::on_combo_changed));
@@ -29,12 +31,14 @@ void FiltradorInputFecha::on_combo_changed() {
 void FiltradorInputFecha::on_entry_activated() {
     f = FiltradorHelper::getInstancia().validarFecha(i, entrada.get_text());
     if (f == STR_NULA) {
+        infoError.show();
         entrada.set_text(MSJ_ERROR);
         if (valido) {
             valido = false;
             tabPadre->informarInputNoDisponible();
         }
     } else {
+        infoError.hide();
         if (!valido) {
             valido = true;
             tabPadre->informarInputDisponible();

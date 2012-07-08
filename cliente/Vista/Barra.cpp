@@ -36,3 +36,9 @@ bool Barra::fueClickeada(double x, double y) {
 double Barra::getAvance() {
     return x0 + ancho + sep;
 }
+
+std::string Barra::getInfo() {
+    std::stringstream ss;
+    ss << dato.getValor();
+    return ss.str();
+}

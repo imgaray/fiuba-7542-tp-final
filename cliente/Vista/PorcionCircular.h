@@ -13,6 +13,7 @@ class PorcionCircular : public Area {
         void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);
         bool fueClickeada(double x, double y);
         double getAvance();
+        std::string getInfo();
     private:
         double x0;
         double y0;

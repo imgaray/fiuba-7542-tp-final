@@ -81,7 +81,10 @@ void Tab::informarConsultaTerminada() {
 
 void Tab::informarInputDisponible() {
     ++inputsDisponibles;
-    if (inputsDisponibles == filtrosNavegables.size()) {
+    // si todavía no hizo las consultas de sus combobox
+    // o si todos sus inputs están disponibles, puede actualizar
+    if (pConsultantesActivos == &filtrosConsultantes ||
+        inputsDisponibles == filtrosNavegables.size()) {
         puedeActualizar = true;
         padre->signal_puede_actualizar().emit(puedeActualizar);
     }
@@ -89,7 +92,10 @@ void Tab::informarInputDisponible() {
 
 void Tab::informarInputNoDisponible() {
     --inputsDisponibles;
-    if (inputsDisponibles < filtrosNavegables.size()) {
+    // si ya hizo las consultas de sus combobox
+    // y si no todos sus inputs están disponibles, no puede actualizar
+    if (pConsultantesActivos != &filtrosConsultantes &&
+        inputsDisponibles < filtrosNavegables.size()) {
         puedeActualizar = false;
         padre->signal_puede_actualizar().emit(puedeActualizar);
     }

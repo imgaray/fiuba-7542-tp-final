@@ -12,200 +12,256 @@
 #include "Mensaje.h"
 #include "Utilitario.h"
 
-/*
- * @DOC:
-						Clase Consulta
-
-	Esta clase es la encargada de guardar y administrar la consulta realizada
-	por un Cliente o Agente, para que sea enviada al servidor y sea resuelta
-	por este.
-
-Atributos:
-
-	Id_Mensaje _id: Id numerico para identificar univocamente a un Consulta
-*
-	Filtros _filtros: contenedor que almacena los filtros y sus valores para
-	una consulta
-*
-	Entradas _entradas: contenedor que almacena las entradas y sus valores para
-	una consulta.
-*
-	Resultados _resultados: contenedor que almacena los resultados que se quieren
-	obtener de la consulta.
-*
-	EntradasTabla _xTabla: contenedor utilizado para guardar el grupo X de dimensiones
-	y/o	hechos para una consulta de Tabla Pivote.
-*
-	EntradasTabla _yTabla: contenedor utilizado para guardar el grupo Y de dimensiones
-	y/o	hechos para una consulta de Tabla Pivote.
-*
-	bool _consultaTablaPivote: booleano que indica si la consulta es de tabla pivote o
-	es un a consulta normal.
-*
-	Campos &_campos: contenedor que guarda los campos para una consulta hecha por una
-	agente.
-*
-	Agregaciones _agregaciones: contenedor que guarda las agregaciones que tiene que hacerse
-	para en los resultados.
-*
-	bool _consultaDeCliente: booleano indicando si la consulta es de un cliente, en caso de que sea
-	false la consulta seria de un agente.
-*
-	bool _consultaValida: booleano indicando si la consulta es valida o correcta en su contenido.
-*
-	static std::string s_nulo: string utilizado como referencia a string vacia.
- * @END
- * */
-
+/**
+ *  @class 	Esta clase es la encargada de guardar y administrar la consulta realizada
+ *	por un Cliente o Agente, para que sea enviada al servidor y sea resuelta
+ *	por este.
+ */
 
 class Consulta : public Mensaje {
 public:
+	/**
+	 * @brief Constructor sin argumentos.
+	 */
 	Consulta();
 	Consulta(const Consulta& original);
 	virtual ~Consulta();
 
+	/**
+	 * @brief Realiza la copia de otro Consulta.
+	 * @param original consulta a copiar.
+	 * @return referecia de la Consulta actual.
+	 */
 	Consulta& operator=(const Consulta& original);
 
+	/**
+	 * @brief Define un nuevo identificador para la Consulta(por defecto es 0).
+	 * @param id nuevo identificador.
+	 */
 	void definirID(const Id_Mensaje& id);
 
+	/**
+	 * @brief Devuelve el identificador de la Consulta.
+	 * @return id de la Consulta.
+	 */
 	Id_Mensaje devolverID() const;
 
-	/*
-	 * Serializa toda la Consulta en string
+	/**
+	 * @brief Serializa toda la Consulta en string
+	 * @return string que contiene la Consulta serializada.
 	 */
 	std::string serializar() const;
 
-	/*
-	 * Deserializa la Consulta a partir del string
+	/**
+	 * @brief Deserializa la Consulta a partir del string
+	 * @para consulta string con que contiene la consulta serializada
 	 */
 	void deserializar(const std::string& consulta);
 
 
-
-
-
-	// Deja la consulta vacia
+	/**
+	 * @brief Deja la consulta vacia.
+	 */
 	void limpiar();
-	// Deja sin resultados la consulta pero conservando Filtros y Entradas
+
+	/**
+	 * @brief Deja la Consulta sin Resultados pero conservando Filtros y Entradas.
+	 */
 	void limpiarResultados();
 
-	/*
-	 * Agrega un Filtro a la Consulta
+	/**
+	 * @brief Agrega un Filtro a la Consulta
+	 * @param filtro string con el nombre del filtro
+	 * @param valor string que contiene el valor del filtro
 	 */
 	void agregarFiltro(const std::string& filtro, const std::string& valor);
-	/*
-	 * Agrega una Entrada a la Consulta
+
+	/**
+	 * @brief Agrega una Entrada a la Consulta.
+	 * @param entrada string con el nombre de la entrada
+	 * @param valor strinq que contiene el valor de la entrada.
 	 */
 	void agregarEntrada(const std::string entrada,
 				const std::string valor);
-	/*
-	 * Agrega un Resultado a la Consulta
+
+	/**
+	 * @brief Agrega un Resultado a la Consulta, la agregacion por defecto
+	 * para el resultado agregado es "NADA".
+	 * @param resultado string que contiene el nombre del campo a agregar.
 	 */
 	void agregarResultado(const std::string& resultado);
 
-	/*
-	 * Define la funcion de agregacion que tendra la consulta.
-	 * Por defecto es "NADA"
+	/**
+	 * @brief Agrega un Resultado a la consulta y define la agregacion del mismo.
+	 * @param agregacion tipo de agregacion para el resultado
+	 * @param resultado string que contiene el nombre del campo resultado.
 	 */
 	void defininirAgregacion(Agregacion agregacion, const std::string& resultado);
 
-	/*
-	 * Define a la consulta como de "Cliente"
+	/**
+	 * @brief Define el estado de la Consulta como consulta de "Cliente"
 	 */
 	void definirComoConsultaCliente();
-	/*
-	 * Define a la consulta como de "Agente"
+
+	/**
+	 * @brief Define el estado de la Consulta como consulta como de "Agente"
 	 */
 	void definirComoConsultaAgente();
 
-	// Define a la Consulta para que la respuesta sea una tabla pivote
+	/**
+	 * @brief Define a la Consulta para que la respuesta sea una tabla pivote
+	 */
 	void definirConsultaDeTablaPivote();
 
-	//void definirTablaPivote(const std::string& x, const std::string& y);
-
+	/**
+	 * @brief agrega un campo al Grupo X de la Tabla Pivote
+	 * @param x string con el nombre del campo a agregar.
+	 */
 	void agregarXTablaP(const std::string& x);
+
+	/**
+	 * @brief agrega un campo al Grupo Y de la Tabla Pivote
+	 * @param y string con el nombre del campo a agregar.
+	 */
 	void agregarYTablaP(const std::string& y);
 
-	// Retorna el campo "i" de la Tabla Pivote para el grupo X o Y
+	/**
+	 * @brief  Retorna el campo "i" de la Tabla Pivote para el grupo X
+	 * @param i indice del campo en el Grupo.
+	 * @return nombre del campo.
+	 */
 	const std::string& xDeTablaPivote(unsigned i) const;
+
+	/**
+	 * @brief  Retorna el campo "i" de la Tabla Pivote para el grupo Y
+	 * @param i indice del campo en el Grupo.
+	 * @return nombre del campo.
+	 */
 	const std::string& yDeTablaPivote(unsigned i) const;
 
-	// Retorna la cantidad de Campos que tiene el grupo X o Y de la Tabla Pivote
+	/**
+	 * @brief Indica la cantidad de campos que hay en el Grupo X de la Tabla Pivote.
+	 * @return cantidad de Campos
+	 */
 	unsigned cantVarXTabla() const;
+
+	/**
+	 * @brief Indica la cantidad de campos que hay en el Grupo Y de la Tabla Pivote.
+	 * @return cantidad de Campos.
+	 */
 	unsigned cantVarYTabla() const;
 
-	// Retorna un bool indicando si la consulta es de una Tabla Pivote
+	/**
+	 * @brief Indica si la consulta es de una Tabla Pivote
+	 * @return booleano que indica si consulta de Tabla Pivote
+	 */
 	bool esConsultaDeTablaPivote() const;
 
-	// Agrega un campo a la consulta hecha por el Agente
+	/**
+	 * @brief  Agrega un campo a la consulta hecha por el Agente.
+	 * @param campo string que contiene el valor de un campo.
+	 */
 	void agregarCampo(const std::string& campo);
 
-	// Retorna la cantidad de filtros que tiene la consulta
+	/**
+	 * @brief  Retorna la cantidad de filtros que tiene la consulta
+	 * @return cantidad de Filtros.
+	 */
 	unsigned cantidadFiltros() const;
-	/*
-	 * Retorna la cantidad de Entradas que tiene la consulta
+
+	/**
+	 * @brief Retorna la cantidad de Entradas que tiene la consulta
+	 * @return cantidad de Entradas.
 	 */
 	unsigned cantidadEntradas() const;
-	/*
-	 * Retorna la cantidad de Resultados que posee la consulta
+
+	/**
+	 * @brief Retorna la cantidad de Resultados que posee la consulta.
+	 * @return cantidad de Resultados.
 	 */
 	unsigned cantidadResultados() const;
 
-	/*
-	 *  Retorna la cantidad de campos que tiene la consulta
-	 *  (Para que la utilice un a Agente)
+	/**
+	 * @brief Retorna la cantidad de campos que tiene la consulta
+	 * (Para que la utilice un a Agente).
+	 * @return cantidad de campos.
 	 */
 	unsigned cantidadCampos() const;
 
-	/*
-	 * Retorna el Filtro indexado por el argumento indice
+	/**
+	 * @brief Retorna el Filtro indexado por el argumento indice.
+	 * @param indice es el indice del Filtro dentro de la Consulta
+	 * @return nombre del Filtro recuperado.
 	 */
 	const std::string& filtro(unsigned indice) const;
 
-	/*
-	 * Retorna el valor del Filtro indexado por el argumento indice
+	/**
+	 * @brief Retorna el valor del Filtro indexado por el argumento indice.
+	 * @param indice es el indice del Filtro dentro de la Consulta
+	 * @return string que contiene el valor del Filtro indexado.
 	 */
 	const std::string& valorFiltro(unsigned indice) const;
 
-	/*
-	 * Retorna el valor del Filtro indexado por el Filtro
+	/**
+	 * @brief Retorna el valor del Filtro indexado por el mismo filtro.
+	 * @param filtro es el nombre del filtro dentro de la consulta.
+	 * @return string que contiene el valor del Filtro indexado.
 	 */
 	const std::string& valorFiltro(const std::string& filtro) const;
 
-	/*
-	 * Retorna la Entrada indexada por el argumento indice
+	/**
+	 * @brief Retorna la Entrada indexada por el argumento indice.
+	 * @param indice es el indice de la Entrada dentro de la Consulta.
+	 * @return string que contiene el nombre de la Entrada.
 	 */
 	const std::string& entrada(unsigned indice) const;
-	/*
-	 * Retorna el Valor de la Entrada indexada por el argumento indice
-	 *  o por la entrada misma
+
+	/**
+	 * @brief Retorna el Valor de la Entrada indexada por el argumento indice
+	 * o por la entrada misma.
+	 * @param indice es el indice de la Entrada dentro de la Consulta
+	 * @return string que contiene el valor de la Entrada.
 	 */
 	const std::string& valorEntrada(unsigned indice) const;
+
+	/**
+	 * @brief Retorna el Valor de la Entrada indexada por la misma entrada.
+	 * @param entrada string con el nombre de la Entrada.
+	 * @return string que contiene el valor de la Entrada.
+	 */
 	const std::string& valorEntrada(const std::string& entrada) const;
 
-	/*
-	 * Retorna cual que es resultado indexado por el argumento indice
+	/**
+	 * @brief Retorna el nombre de un resultado indexado por el argumento indice.
+	 * @param indice es el numero del Resultado dentro de la consulta.
+	 * @return string que contiene el nombre del Resultado recuperado.
 	 */
 	const std::string& resultado(unsigned indice) const;
 
-
-	/*
-	 * Retorna la agregacion Agregacion de resultado.
+	/**
+	 * @brief Retorna la agregacion Agregacion de Resultado.
+	 * @param indice es el numero del Resultado dentro de la consulta.
+	 * @return agregacion del resultado.
 	 */
 	Agregacion agregacionDeResultado(unsigned indice) const;
 
 
-	/*
-	 * Retorna un campo de la "Consulta" hecha por el agente.
+	/**
+	 * @brief Retorna un campo de la "Consulta" hecha por el agente, indexado por indice.
+	 * @param indice es el numero del campo dentro de la Consulta.
+	 * @return string que contiene el nombre del Campo Recuperado.
 	 */
 	const std::string& campo(unsigned indice) const;
 
-	/*
-	 * Retorna un bool indicando si es una consulta del Cliente
+	/**
+	 * @brief Indica si la Consulta si es una consulta de Cliente.
+	 * @return booleano que indica si una consulta de Cliente.
 	 */
 	bool esConsultaDeCliente() const;
-	/*
-	 * Retorna un bool indicando si es una consulta del Agente
+
+	/**
+	 * @brief Indica si es una consulta de Agente.
+	 * @return booleano que indica si una consulta de Agente.
 	 */
 	bool esConsultaDeAgente() const;
 

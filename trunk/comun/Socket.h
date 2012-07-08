@@ -23,88 +23,80 @@ class Mensaje;
 class Consulta;
 class Respuesta;
 
-/*
- * @DOC:
-						Clase Socket
-
-	Esta clase es la encarga de la comunicacion entre las distintas partes como
-	servidor, agente y cliente. Es la capa mas baja de comunicacion que hay en
-	este proyecto.
-
-Atributos:
-    struct timeval _timeout:
-*
-    int _fd: indica el file descriptor que representa al socket.
-*
-    struct sockaddr_in _direccion: estructura que guarda la
-*
-    Puerto _puerto: indica el puerto por el cual se conectara el socket
-*
-    bool _conectado: booleano que indica si el socket esta conectado.
-*
-    bool _enlazado: booleano que indica si el socket esta enlazado
-    para escuchar conexiones entrantes.
-
- * @END
- * */
+/**
+ * @class 	Esta clase es la encarga de la comunicacion entre las distintas
+ * partes como servidor, agente y cliente. Es la capa mas baja de comunicacion
+ * que hay en este proyecto.
+ */
 
 class Socket {
 public:
-    /*
-     * Constructor para el Socket que recibe el puerto en donde
-     * se va a conectar
+    /**
+     * @brief Constructor para el Socket que recibe el puerto en donde se va a conectar.
+     * @param puerto es puerto por donde establecera la conexion el socket.
      */
     explicit Socket(Puerto puerto);
         
-    /*
-     * Destructor virtual de Socket
+    /**
+     * @brief Destructor virtual de Socket
      */
     virtual ~Socket();
     
-    /*
-     * Establece la conexion con
+    /**
+     * @brief Intenta establecer una conexion con el huesped.
+     * @param huesped string que contiene la direccione a la cual se conectara el socket.
      */
     void conectar(const std::string& huesped);
     
-    /*
-     * Enlaza el Socket para poder escuchar conexiones entrantes
+    /**
+     * @brief Enlaza el Socket para poder escuchar conexiones entrantes
      */
     void enlazar();
     
-    /*
-     * Escucha una conexion entrante y retorna un Socket para
+    /**
+     * @brief Escucha una conexion entrante y retorna un Socket para
      * realizar la comunicion con esta.
+     * @return Instancia de otro socket conectado anfitrion.
      */
     Socket* escucharConexion();
     
-    /*
-     * Envia el mensaje atravez
+    /**
+     * @brief Envia el mensaje atravez del socket, confirmando si fue enviado correctamente.
+     * @param mensaje Mensaje con los datos a enviar.
+     * @return booleano indicando si envio correctamente el mensaje
      */
     bool enviar(const Mensaje& mensaje);
 
-    /*
-	 * Se pone en espera a recibir una respuesta.
+    /**
+	 * @brief Se pone en espera a recibir una respuesta.
+	 * @param mensaje Mensaje que donde se van a almacenar los datos recibidos.
+	 * @return booleano indicando si se recibio correctamente el mensaje..
 	 */
     bool recibir(Mensaje& mesaje);
-    /*
-     * Cierra la conexion.
+
+    /**
+     * @brief Cierra la conexion con el huesped.
      */
     void desconectar();
     
-    /*
-     * Retorna un bool indicando si el socket se encuentra
+    /**
+     * @brief Retorna un bool indicando si el socket se encuentra
      * en estado de conectado.
+     * @return booleano indicando que representa el estado "conectado".
      */
     bool conectado();
 private:
-    /*
-     * Constructor que recibe un "file descriptor" ya inicializado
+    /**
+     * @brief Constructor que recibe un "file descriptor" ya inicializado.
+     * @param fd "File Descriptor" del nuevo socket.
      */
     explicit Socket(int fd);
     
-    /*
-     * Metodo que guarda lo recibido del socket en el string datos.
+    /**
+     * @brief Metodo que guarda lo recibido del socket en el string datos.
      * hasta tener un mensaje completo.
+     * @param datos string donde se escribiran los datos recibidos.
+     * @return booleano indicando si se recibieron bien los datos.
      */
     bool recibirDatos(std::string& datos);
 
@@ -114,8 +106,8 @@ private:
     Socket(const Socket& orig) {}
     void operator=(const Socket& orig) {}
     
-    /*
-     * Metodo privado que inicializa los atributos basicos
+    /**
+     * @brief Metodo privado que inicializa los atributos basicos.
      */
     void inicializar();
     

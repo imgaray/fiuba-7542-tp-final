@@ -11,6 +11,7 @@ FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input)
     setSpinner(&s);
     centradorDerecho.pack_start(s, false, false);
     s.hide();
+    s.set_no_show_all();
 
     // para popular el combobox
     consulta.agregarResultado(getFiltro());

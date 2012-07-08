@@ -48,7 +48,7 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         int min_lado;
         int diferencia;
         bool should_request_size;
-        double furthest_p;//, furthest_y;
+        double furthest_x, furthest_y;
         void resize();
 
         /** modelo */

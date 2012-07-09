@@ -2,13 +2,7 @@
 
 MAKE = make --no-print-directory
 
-CXXFLAGS = -pthread -lpthread
-
-ifdef DEBUG
-CXXFLAGS += -g -O0
-else
-CXXFLAS += -O3
-endif
+CXXFLAGS = -g -O0 -pthread -lpthread
 
 GTKFLAGS = `pkg-config gtkmm-2.4 --cflags --libs`
 

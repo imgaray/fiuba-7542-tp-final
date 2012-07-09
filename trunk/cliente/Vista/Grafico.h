@@ -39,13 +39,16 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
     private:
         std::list< Referencia > referencias;
         std::list< Area* >::iterator areaSeleccionada;
+
+        virtual void dibujarEspecializacion(GdkEventExpose* ev,
+                        Cairo::RefPtr< Cairo::Context >& ctx) = 0;
+
         bool on_expose_event(GdkEventExpose* ev);
         bool on_button_press_event(GdkEventButton* ev);
         bool on_motion_notify_event(GdkEventMotion* ev);
         int ancho_ventana;
         int alto_ventana;
         int min_lado;
-        int diferencia;
         bool should_request_size;
         double furthest_x, furthest_y;
         void resize();

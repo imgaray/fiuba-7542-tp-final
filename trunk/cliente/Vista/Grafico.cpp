@@ -21,7 +21,6 @@ Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
     furthest_x = 1.0;
     furthest_y = 1.0;
     min_lado = 0;
-    diferencia = 0;
     areaSeleccionada = areas.end();
     should_request_size = true;
 }
@@ -71,19 +70,19 @@ bool Grafico::on_expose_event(GdkEventExpose* ev) {
         ctx->fill_preserve();
         ctx->clip();
         ctx->scale(min_lado, min_lado);
-
         dibujarAreas(ctx);
         dibujarReferencias(ctx);
+        dibujarEspecializacion(ev, ctx);
     }
 
     return true;
 }
 
 bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
-    std::cout << ev->x << " " << ev->y << " = " << ev->x/min_lado << " " << ev->y/min_lado << std::endl;
     if (areas.empty())
         return true;
-    // comprobar que el área seleccionada siga siendo la seleccionada
+    // comprobar que el área seleccionada siga siendo la seleccionada, para
+    // evitar iterar sobre todas y redibujar cuando no hubo cambios
     if (areaSeleccionada != areas.end() &&
         (*areaSeleccionada)->fueClickeada(ev->x/min_lado, ev->y/min_lado))
         return true;
@@ -105,8 +104,11 @@ bool Grafico::on_motion_notify_event(GdkEventMotion* ev) {
         for ( ; it != areas.end(); ++it)
             (*it)->setSeleccionada(false);
         --i;
-    }
-    else {
+    } else {
+        // si ya se daba que ninguna estuviera seleccionada, cortar acá
+        if (areaSeleccionada == areas.end())
+            return true;
+
         set_tooltip_text("");
         areaSeleccionada = areas.end();
     }

@@ -1,12 +1,7 @@
 # Makefile
 
-CXXFLAGS = -pthread -lpthread
+CXXFLAGS = -O0 -g -pthread -lpthread
 
-ifdef DEBUG
-CXXFLAGS += -O0 -g
-else
-CXXFLAGS += -O3
-endif
 
 GTKFLAGS = `pkg-config gtkmm-2.4 --cflags --libs`
 

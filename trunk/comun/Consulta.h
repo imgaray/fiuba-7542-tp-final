@@ -55,7 +55,7 @@ public:
 
 	/**
 	 * @brief Deserializa la Consulta a partir del string
-	 * @para consulta string con que contiene la consulta serializada
+	 * @param consulta string con que contiene la consulta serializada
 	 */
 	void deserializar(const std::string& consulta);
 
@@ -275,7 +275,7 @@ private:
 	 * Guarda los "Resultados" de la consulta en el string datos a serializar
 	 */
 	 void cargarResultados(std::string& datos) const;
-	
+
 	/**
 	 * Guarda los "Entradas" de la consulta en el string datos a serializar
 	 */

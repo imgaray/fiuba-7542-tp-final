@@ -29,14 +29,8 @@ void GraficoDeBarras::actualizarDatos(const std::list< Hecho >& datos) {
         datosSize = MIN_SIZE;
 
     espacio = POS_REF - INIT_OFFSET;
-//    separacion = POS_REF * SEPARACION_BASE/datosSize;
-//    ancho = POS_REF * ANCHO_BASE/datosSize;
     ancho = (espacio/datosSize) * ANCHO_BASE/(POS_REF);
     separacion = (espacio/datosSize) * SEPARACION_BASE/(POS_REF);
-//    separacion = (1.0 - INIT_OFFSET) * SEPARACION_BASE/datosSize;
-//    ancho = (1.0 - INIT_OFFSET) * ANCHO_BASE/datosSize;
-//    separacion = SEPARACION_BASE/datosSize;
-//    ancho = ANCHO_BASE/datosSize;
 
     std::list< Hecho >::const_iterator itDatos = datos.begin();
     unsigned i = 0;

@@ -129,11 +129,7 @@ void FiltradorConfigManager::on_agregar_button_clicked() {
 
 void FiltradorConfigManager::on_filtrador_campo_changed(
     Glib::ustring campoAnterior, Glib::ustring campoNuevo) {
-    std::list< std::string >::iterator itt = camposTomados.begin();
-    std::cout << "Lista antes del cambio: " << std::endl;
-    for ( ; itt!= camposTomados.end(); ++itt)
-        std::cout << "\t" << *itt;
-    std::cout << std::endl;
+    // remover el campo anterior
     if (campoAnterior != "") {
         std::list< std::string >::iterator it = find(camposTomados.begin(),
                                                      camposTomados.end(),
@@ -141,17 +137,12 @@ void FiltradorConfigManager::on_filtrador_campo_changed(
         if (it != camposTomados.end())
             camposTomados.erase(it);
     }
-
-
+    // agregar el campo nuevo
     if (campoNuevo != "")
         camposTomados.push_back(campoNuevo);
 
-    itt = camposTomados.begin();
-    std::cout << "Lista después del cambio: " << std::endl;
-    for ( ; itt!= camposTomados.end(); ++itt)
-        std::cout << "\t" << *itt;
-    std::cout << std::endl;
-
+    // informarle a todos los filtros que el campo nuevo ya no está disponible
+    // y que el campo anterior volvió a estarlo
     std::list< filtrador >::iterator itFilt = filtradores.begin();
     for ( ; itFilt != filtradores.end(); ++itFilt)
         itFilt->second->actualizarCampos(campoNuevo, campoAnterior);

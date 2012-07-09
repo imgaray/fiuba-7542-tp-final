@@ -50,10 +50,13 @@ class FiltradorConfigManager : public sigc::trackable, public Serializable {
         sigc::connection connectionButtonAgregar;
 
         void on_agregar_button_clicked();
+        void on_filtrador_campo_changed(Glib::ustring campoAnterior,
+                                        Glib::ustring campoNuevo);
         void on_delete_filtrador(unsigned ID);
 
         typedef std::pair< FiltradorConfigVista*, FiltradorConfigModelo* > filtrador;
         std::list< filtrador > filtradores;
+        std::list< std::string > camposTomados;
         FiltradorConfigModelo* ulitmoFilConfigModelo;
         // para una búsqueda más rápida
         std::map< unsigned,  filtrador > mapaFiltradores;

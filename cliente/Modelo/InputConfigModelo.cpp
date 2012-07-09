@@ -2,8 +2,9 @@
 #include "FiltradoresTab.h"
 #include "FiltradoresPanel.h"
 
-InputConfigModelo::InputConfigModelo(unsigned _ID)
-: FiltradorSoloDimensionConfigModelo(_ID) {}
+InputConfigModelo::InputConfigModelo(unsigned _ID,
+    const std::list< std::string >& _camposDisponibles)
+: FiltradorSoloDimensionConfigModelo(_ID,  _camposDisponibles) {}
 
 InputConfigModelo::~InputConfigModelo() {}
 

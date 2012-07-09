@@ -6,7 +6,8 @@
 
 class InputConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
-        InputConfigModelo(unsigned ID);
+        InputConfigModelo(unsigned ID,
+                          const std::list< std::string >& _camposDisponibles);
         ~InputConfigModelo();
 
         void setFiltradorEn(FiltradoresTab* filtTab);

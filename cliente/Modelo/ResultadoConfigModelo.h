@@ -5,7 +5,8 @@
 
 class ResultadoConfigModelo : public FiltradorConfigModelo {
     public:
-        ResultadoConfigModelo(unsigned ID);
+        ResultadoConfigModelo(unsigned ID,
+                        const std::list< std::string >& _camposDisponibles);
         ~ResultadoConfigModelo();
 
         void setFiltradorEn(FiltradoresTab* filtTab);

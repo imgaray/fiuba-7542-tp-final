@@ -1,11 +1,15 @@
 #include "FiltradorConfigManager.h"
+#include <algorithm>
 #include "FiltroConfigModelo.h"
 #include "InputConfigModelo.h"
 #include "PivoteXConfigModelo.h"
 #include "PivoteYConfigModelo.h"
 #include "ResultadoConfigModelo.h"
 #include "FiltradorConfigVista.h"
+#include "Organizacion.h"
 
+
+#define TOOLTIPO_BOTON_AGREGAR "No hay más campos para agregar"
 
 #define NOMBRE_NODO "Filtrador_Config_Manager"
 #define ATR_TIPO "atr_tipo"
@@ -66,14 +70,31 @@ void FiltradorConfigManager::setFiltradoresEn(FiltradoresPanel* filtPanel) {
 }
 
 FiltradorConfigModelo* FiltradorConfigManager::new_filtrador() {
+    std::list< std::string > camposDisponibles;
+    std::string campo;
+    for (unsigned i = 0; i < Organizacion::cantidadCampos(); ++i) {
+        campo = Organizacion::nombreCampo(i);
+        if (find(camposTomados.begin(), camposTomados.end(), campo)
+                == camposTomados.end())
+            camposDisponibles.push_back(campo);
+    }
+
+    if (camposDisponibles.size() == 0)
+        return NULL;
+
     unsigned ID = generadorID++;
 
     switch (tipo) {
-        case FILT_FILTRO: return new FiltroConfigModelo(ID);
-        case FILT_INPUT: return new InputConfigModelo(ID);
-        case FILT_PIVOTE_X: return new PivoteXConfigModelo(ID);
-        case FILT_PIVOTE_Y: return new PivoteYConfigModelo(ID);
-        case FILT_RESULTADO: return new ResultadoConfigModelo(ID);
+        case FILT_FILTRO:
+            return new FiltroConfigModelo(ID, camposDisponibles);
+        case FILT_INPUT:
+            return new InputConfigModelo(ID, camposDisponibles);
+        case FILT_PIVOTE_X:
+            return new PivoteXConfigModelo(ID, camposDisponibles);
+        case FILT_PIVOTE_Y:
+            return new PivoteYConfigModelo(ID, camposDisponibles);
+        case FILT_RESULTADO:
+            return new ResultadoConfigModelo(ID, camposDisponibles);
         default: return NULL;
     }
 }
@@ -81,6 +102,15 @@ FiltradorConfigModelo* FiltradorConfigManager::new_filtrador() {
 void FiltradorConfigManager::on_agregar_button_clicked() {
     // crear el par vista/modelo
     FiltradorConfigModelo* filtModelo = new_filtrador();
+    if (!filtModelo) {
+        pButtonAgregar->set_sensitive(false);
+        pButtonAgregar->set_tooltip_text(TOOLTIPO_BOTON_AGREGAR);
+        return;
+    }
+
+    filtModelo->signal_campo_changed().connect(sigc::mem_fun(*this,
+        &FiltradorConfigManager::on_filtrador_campo_changed));
+
     FiltradorConfigVista* filtVista = new FiltradorConfigVista(filtModelo);
 
     // conectar señales
@@ -97,6 +127,36 @@ void FiltradorConfigManager::on_agregar_button_clicked() {
     ulitmoFilConfigModelo = filtModelo;
 }
 
+void FiltradorConfigManager::on_filtrador_campo_changed(
+    Glib::ustring campoAnterior, Glib::ustring campoNuevo) {
+    std::list< std::string >::iterator itt = camposTomados.begin();
+    std::cout << "Lista antes del cambio: " << std::endl;
+    for ( ; itt!= camposTomados.end(); ++itt)
+        std::cout << "\t" << *itt;
+    std::cout << std::endl;
+    if (campoAnterior != "") {
+        std::list< std::string >::iterator it = find(camposTomados.begin(),
+                                                     camposTomados.end(),
+                                                     campoAnterior);
+        if (it != camposTomados.end())
+            camposTomados.erase(it);
+    }
+
+
+    if (campoNuevo != "")
+        camposTomados.push_back(campoNuevo);
+
+    itt = camposTomados.begin();
+    std::cout << "Lista después del cambio: " << std::endl;
+    for ( ; itt!= camposTomados.end(); ++itt)
+        std::cout << "\t" << *itt;
+    std::cout << std::endl;
+
+    std::list< filtrador >::iterator itFilt = filtradores.begin();
+    for ( ; itFilt != filtradores.end(); ++itFilt)
+        itFilt->second->actualizarCampos(campoNuevo, campoAnterior);
+}
+
 void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
     filtrador f = mapaFiltradores[ID];
 
@@ -111,6 +171,8 @@ void FiltradorConfigManager::on_delete_filtrador(unsigned ID) {
 
     // sacarlo de la vista
     pVBoxFiltradores->remove(*(f.first));
+    pButtonAgregar->set_sensitive(true);
+    pButtonAgregar->set_tooltip_text("");
 
     // liberar memoria
     delete f.first;

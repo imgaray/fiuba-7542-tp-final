@@ -7,7 +7,6 @@
 
 #include "TablaComun.h"
 #include "Tab.h"
-#include <iostream>
 #include <string>
 
 TablaComun::TablaComun(FiltradoresPanel* filtradores) : Tabla(filtradores) {
@@ -26,7 +25,6 @@ void TablaComun::procesarRespuesta(const Respuesta& rta) {
 	if (_colModelo != NULL) {
 		this->remove_all_columns();
 		delete _colModelo;
-		//_refTreeModel.clear();
 	}
 
 	_colModelo = new ColumnasModelo(rta.cantidadColumnas());
@@ -56,18 +54,7 @@ void TablaComun::agregarColumnas() {
 	}
 }
 void TablaComun::fila_activada(const Gtk::TreeModel::Path& path, Gtk::TreeViewColumn* column) {
-
-//	std::cout << "Direccion de COlumna: "<< column << std::endl;
-//	std::cout << "Nombre COl: " <<column->get_title() << std::endl;
-//	std::cout << "A string de Path: " << path.to_string() << std::endl;
-
-	std::string dimension, valor;
-
-//	for (unsigned i = 0; i < path.size() ; i++) {
-//
-//		Gtk::TreePath::const_reference referencia = path[i];
-//		std::cout << "Referencia al Path " << i <<": " << referencia << std::endl;
-//	}
+    std::string dimension, valor;
 
 	int col = 0;
 	bool colEncontrada = false;
@@ -80,10 +67,6 @@ void TablaComun::fila_activada(const Gtk::TreeModel::Path& path, Gtk::TreeViewCo
 
 	if (!colEncontrada)
 		throw "COLUMAN NO ENCONTRADA PARA NAVEGACION DE TABLA COMUN";
-
-//	std::cout << "TIPO: " << column->get_title() << std::endl;
-//	std::cout << "COLUMNA: " << col << std::endl;
-//	std::cout << "DATO: " << _respActual.dato(path[0], col) << std::endl;
 
 	dimension = column->get_title();
 	valor = _respActual.dato(path[0], col);

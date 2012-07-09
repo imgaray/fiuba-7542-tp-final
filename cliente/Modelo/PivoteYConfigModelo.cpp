@@ -2,8 +2,9 @@
 #include "ExcepcionTabSoloAdmiteInputs.h"
 #include "FiltradoresPanel.h"
 
-PivoteYConfigModelo::PivoteYConfigModelo(unsigned _ID)
-: FiltradorSoloDimensionConfigModelo(_ID) {}
+PivoteYConfigModelo::PivoteYConfigModelo(unsigned _ID,
+    const std::list< std::string >& _camposDisponibles)
+: FiltradorSoloDimensionConfigModelo(_ID, _camposDisponibles) {}
 
 PivoteYConfigModelo::~PivoteYConfigModelo() {}
 

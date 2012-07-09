@@ -1,7 +1,8 @@
 #include "FiltradorSoloDimensionConfigModelo.h"
 
-FiltradorSoloDimensionConfigModelo::FiltradorSoloDimensionConfigModelo(unsigned _ID)
-: FiltradorConfigModelo(_ID) {}
+FiltradorSoloDimensionConfigModelo::FiltradorSoloDimensionConfigModelo(unsigned _ID,
+    const std::list< std::string >& _camposDisponibles)
+: FiltradorConfigModelo(_ID, _camposDisponibles) {}
 
 FiltradorSoloDimensionConfigModelo::~FiltradorSoloDimensionConfigModelo() {}
 
@@ -12,9 +13,11 @@ void FiltradorSoloDimensionConfigModelo::especializarVista() {
 }
 
 void FiltradorSoloDimensionConfigModelo::on_combo_dimension_changed() {
-    campoSelecc = comboDimension->get_active_text();
+    campoSeleccNuevo = comboDimension->get_active_text();
+    signal_campo_changed().emit(campoSelecc, campoSeleccNuevo);
+    campoSelecc = campoSeleccNuevo;
 }
 
 void FiltradorSoloDimensionConfigModelo::completarAtributos() {
-	comboDimension->set_active_text(campoSelecc);
+	comboDimension->set_active_text(campoSeleccNuevo);
 }

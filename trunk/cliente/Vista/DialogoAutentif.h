@@ -15,6 +15,7 @@ class DialogoAutentif : public Gtk::Dialog, public Buildable {
 //        Glib::RefPtr< Gtk::Builder > builder;
         Gtk::Entry* pEntryPassword;
 
+        void on_show();
         void on_aceptar_button_clicked();
         void on_cancelar_button_clicked();
 };

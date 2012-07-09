@@ -22,7 +22,6 @@ VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
     get_widget_derived(VBOX_TAB_CONSULTAS, tabConsultas);
     tabs.push_back(tabConsultas);
 
-    TabAdminConfigPassword* tabPassword;
     get_widget_derived(VBOX_TAB_PASSWORD, tabPassword);
     tabs.push_back(tabPassword);
 
@@ -39,6 +38,10 @@ VentanaAdminConfiguracion::VentanaAdminConfiguracion(BaseObjectType* cobject,
 
 VentanaAdminConfiguracion::~VentanaAdminConfiguracion() {}
 
+void VentanaAdminConfiguracion::on_show() {
+    Window::on_show();
+    tabPassword->limpiar_pass_entries();
+}
 
 void VentanaAdminConfiguracion::setArchivoPersonalizador(const char* archivo) {
     tabConsultas->setArchivoPersonalizador(archivo);

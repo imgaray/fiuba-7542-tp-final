@@ -39,3 +39,8 @@ bool TabAdminConfigPassword::aplicarCambios() {
 	}
     return true;
 }
+
+void TabAdminConfigPassword::limpiar_pass_entries() {
+    pEntryPassActual->set_text("");
+    pEntryPassNueva->set_text("");
+}

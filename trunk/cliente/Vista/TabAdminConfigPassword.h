@@ -12,6 +12,8 @@ class TabAdminConfigPassword : public TabAdminConfig {
         ~TabAdminConfigPassword();
 
         bool aplicarCambios();
+
+        void limpiar_pass_entries();
     private:
         Gtk::Entry* pEntryPassActual;
         Gtk::Entry* pEntryPassNueva;

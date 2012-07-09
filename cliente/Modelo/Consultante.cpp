@@ -31,6 +31,11 @@ void Consultante::hacerConsulta(ServidorRemoto& server) {
     if (f)
         f->filtrar(consulta);
 
+    if (!verificador.verificarConsulta(consulta)) {
+        std::cout << "Error en consulta" << std::endl;
+        return;
+    }
+
     cancelarConsulta(server);
 
     esperandoRespuesta = true;

@@ -5,7 +5,8 @@
 #include <iostream>
 #include <cassert>
 
-Tab::Tab(const Glib::ustring& _etiqueta): etiqueta(_etiqueta), padre(NULL) {
+Tab::Tab(const Glib::ustring& _etiqueta)
+: etiqueta(_etiqueta), padre(NULL) {
     etiquetaCompuesta.pack_start(spinner, false, false);
     etiquetaCompuesta.pack_start(etiqueta, false, false);
     etiqueta.show();
@@ -24,7 +25,6 @@ Tab::~Tab() {}
 Gtk::HBox& Tab::getEtiqueta() {
     return etiquetaCompuesta;
 }
-
 
 void Tab::agregarConsultante(FiltradorInputDimension* f) {
     filtrosConsultantes[f->getID()] = f;
@@ -86,18 +86,20 @@ void Tab::informarInputDisponible() {
     if (pConsultantesActivos == &filtrosConsultantes ||
         inputsDisponibles == filtrosNavegables.size()) {
         puedeActualizar = true;
-        padre->signal_puede_actualizar().emit(puedeActualizar);
+        if (padre)
+            padre->signal_puede_actualizar().emit(puedeActualizar);
     }
 }
 
 void Tab::informarInputNoDisponible() {
     --inputsDisponibles;
     // si ya hizo las consultas de sus combobox
-    // y si no todos sus inputs están disponibles, no puede actualizar
+    // o si no todos sus inputs están disponibles, no puede actualizar
     if (pConsultantesActivos != &filtrosConsultantes &&
         inputsDisponibles < filtrosNavegables.size()) {
         puedeActualizar = false;
-        padre->signal_puede_actualizar().emit(puedeActualizar);
+        if (padre)
+            padre->signal_puede_actualizar().emit(puedeActualizar);
     }
 }
 

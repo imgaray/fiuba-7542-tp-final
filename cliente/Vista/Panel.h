@@ -5,6 +5,8 @@
 #include <gtkmm/scrolledwindow.h>
 #include <gtkmm/frame.h>
 #include <gtkmm/viewport.h>
+#include <gtkmm/spinner.h>
+#include <gtkmm/label.h>
 
 class Grafico;
 class Tabla;
@@ -23,6 +25,10 @@ class Panel : public Gtk::Frame {
         Consultante* getConsultante();
 
     private:
+        Gtk::HBox etiquetaCompuesta;
+        Gtk::Label etiqueta;
+        Gtk::Spinner spinner;
+
         Gtk::VBox box;
         Gtk::ScrolledWindow scrWin;
         Gtk::Viewport* pViewport;

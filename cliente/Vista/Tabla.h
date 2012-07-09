@@ -8,8 +8,8 @@
 #ifndef TABLA_H_
 #define TABLA_H_
 #include <gtkmm/treeview.h>
-#include "ExhibidorRespuesta.h"
 #include <string>
+#include "Consultante.h"
 
 
 class Tabla : public Consultante, public Gtk::TreeView {
@@ -18,7 +18,6 @@ public:
 	virtual ~Tabla();
 
 protected:
-	//virtual void procesarRespuesta(const Respuesta& rta) = 0;
 
 	class ColumnasModelo : public Gtk::TreeModelColumnRecord {
 	public:

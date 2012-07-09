@@ -100,6 +100,8 @@ void VentanaCliente::on_conectar_button_clicked() {
         pVDinamica->hacerConsultaInicial(server);
         botones[BOTON_EXPORTAR_PDF]->set_sensitive();
         botones[BOTON_CONECTAR]->set_sensitive(false);
+        botones[BOTON_ACTUALIZAR]->set_sensitive(true);
+        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(true);
 
         Glib::signal_timeout().connect(sigc::mem_fun(*this,
                     &VentanaCliente::on_timeout), TIMEOUT);

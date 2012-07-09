@@ -3,6 +3,7 @@
 
 #include <gtkmm/window.h>
 #include <gtkmm/toolbutton.h>
+#include <gtkmm/aboutdialog.h>
 #include "../Modelo/ServidorRemoto.h"
 #include "Buildable.h"
 
@@ -20,8 +21,13 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         VentanaClienteDinamica* pVDinamica;
         DialogoAutentif* pDAutentifAdmin;
         VentanaAdminConfiguracion* pVAdminConfig;
+        Gtk::AboutDialog* pDAbout;
         std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
+
+        void initVentanas();
+        void initBotones();
+        void initBarraDeMenu();
 
         void on_puede_actualizar(bool puede);
         void on_actualizacion_solicitada(Consultante* c);
@@ -32,11 +38,9 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         void on_exportarPDF_button_clicked();
         void on_configurar_button_clicked();
         void on_salir_button_clicked();
+        void on_acerca_de_button_clicked();
 
         bool on_timeout();
-        bool on_idle();
-        void on_timeout_idle();
-        sigc::connection connOnIdle;
 };
 
 #endif  // VENTANA_CLIENTE_H

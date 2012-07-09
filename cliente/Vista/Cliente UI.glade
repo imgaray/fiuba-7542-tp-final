@@ -27,7 +27,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem5">
+                      <object class="GtkImageMenuItem" id="menuSalir">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
@@ -47,7 +47,7 @@
                   <object class="GtkMenu" id="menu2">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem9">
+                      <object class="GtkImageMenuItem" id="menuConfigurar">
                         <property name="label">Configurar</property>
                         <property name="visible">True</property>
                         <property name="image">image1</property>
@@ -67,7 +67,7 @@
                   <object class="GtkMenu" id="menu3">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem10">
+                      <object class="GtkImageMenuItem" id="menuAcercaDe">
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
@@ -1619,10 +1619,10 @@
     <property name="version">1.0</property>
     <property name="copyright" translatable="yes">Authors: Miguel Torres, Sebasti&#xE1;n Bogado, Ignacio Garay
 Bajo licencia GPL de GNU v3.</property>
-    <property name="comments" translatable="yes">Requierimientos:
+    <property name="comments" translatable="yes">Requerimientos:
 gtkmm 2.4
 g++ compiler
-Linux OS
+GNU/Linux OS
 
 </property>
     <property name="website">http://code.google.com/p/fiuba-7542-tp-final/</property>

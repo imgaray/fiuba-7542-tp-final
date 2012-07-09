@@ -1,6 +1,7 @@
 #include "DialogoAutentif.h"
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include <gtkmm/button.h>
+#include <gtkmm/messagedialog.h>
 #include "ArchivoConfiguracion.h"
 #include "Cifrador.hpp"
 #include <iostream>
@@ -25,28 +26,6 @@ DialogoAutentif::DialogoAutentif(BaseObjectType* cobject,
     get_widget(BOTON_CANCELAR, pBotonAux);
     pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
             &DialogoAutentif::on_cancelar_button_clicked));
-
-//    builder->get_widget(ENTRY_PASSWORD, pEntryPassword);
-//    if (!pEntryPassword)
-//        throw ExcepcionArchivoGladeCorrupto(ENTRY_PASSWORD);
-//
-//    Gtk::Button* pBotonAux;
-//
-//    builder->get_widget(BOTON_ACEPTAR, pBotonAux);
-//    if (pBotonAux)
-//        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
-//            &DialogoAutentif::on_aceptar_button_clicked));
-//    else
-//        throw ExcepcionArchivoGladeCorrupto(BOTON_ACEPTAR);
-//
-//
-//    builder->get_widget(BOTON_CANCELAR, pBotonAux);
-//    if (pBotonAux)
-//        pBotonAux->signal_clicked().connect(sigc::mem_fun(*this,
-//            &DialogoAutentif::on_cancelar_button_clicked));
-//    else
-//        throw ExcepcionArchivoGladeCorrupto(BOTON_CANCELAR);
-
 }
 
 DialogoAutentif::~DialogoAutentif() {}
@@ -57,11 +36,19 @@ void DialogoAutentif::on_aceptar_button_clicked() {
 	std::string clave = arch.obtenerAtributo(atr);
 	Glib::ustring uclave = pEntryPassword->get_text();
 	std::string usrclave = uclave.c_str();
-	 if (usrclave == clave) {
+	 if (usrclave == clave)
         response(Gtk::RESPONSE_OK);
-		//std::cout << "DialogoAutentif::on_aceptar_button_clicked(): Tire RESPONSE_OK" << std::endl;
-    }else
+    else {
+        Gtk::MessageDialog dialog(*this,
+                                  "Contraseña incorrecta",
+                                  false,
+                                  Gtk::MESSAGE_ERROR,
+                                  Gtk::BUTTONS_OK,
+                                  true);
+        dialog.set_title("Error");
+        dialog.run();
         response(Gtk::RESPONSE_CANCEL);
+    }
 }
 
 void DialogoAutentif::on_cancelar_button_clicked() {

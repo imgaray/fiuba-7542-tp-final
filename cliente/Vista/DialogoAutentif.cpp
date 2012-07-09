@@ -30,6 +30,11 @@ DialogoAutentif::DialogoAutentif(BaseObjectType* cobject,
 
 DialogoAutentif::~DialogoAutentif() {}
 
+void DialogoAutentif::on_show() {
+    Dialog::on_show();
+    pEntryPassword->set_text("");
+}
+
 void DialogoAutentif::on_aceptar_button_clicked() {
 	ArchivoConfiguracion arch("servRemoto.conf");
 	std::string atr = CLAVE_ATR;

@@ -7,6 +7,7 @@
 
 class TabAdminConfig;
 class TabAdminConfigConsultas;
+class TabAdminConfigPassword;
 class VentanaClienteDinamica;
 
 class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
@@ -19,9 +20,11 @@ class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
         void setArchivoPersonalizador(const char* archivo);
     private:
         TabAdminConfigConsultas* tabConsultas;
+        TabAdminConfigPassword* tabPassword;
         VentanaClienteDinamica* pVDinamica;
         std::list< TabAdminConfig* > tabs;
 
+        void on_show();
         void on_aplicar_button_clicked();
         void on_cancelar_button_clicked();
 };

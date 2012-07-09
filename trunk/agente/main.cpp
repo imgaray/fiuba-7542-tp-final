@@ -65,7 +65,9 @@ int configurar() {
 	if (nombre_host.empty() == false)
 		arch.setearAtributo(atr_nombre, nombre_host);
 
-	std::cout << "Configuracion realizada correctamente." << std::endl;
+	if (!nombre_host.empty() || !puerto.empty())
+		std::cout << "Configuracion realizada correctamente." << std::endl;
+
 	return 0;
 }
 

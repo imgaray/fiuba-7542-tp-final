@@ -68,6 +68,9 @@ int configurar() {
 		return 2;
 	}
 
+	if (puerto_agente.empty() && puerto_cliente.empty())
+		return 0;
+
 	if (puerto_cliente == puerto_agente) {
 		std::cout << "No se puede asignar el mismo puerto para entradas." << std::endl;
 		return 2;
@@ -79,6 +82,7 @@ int configurar() {
 	if (puerto_cliente.empty() == false)
 		arch.setearAtributo(atr_puerto_cliente, puerto_cliente);
 
+	if (!puerto_cliente.empty() || !puerto_agente.empty())
 	std::cout << "Configuracion realizada correctamente." << std::endl;
 	return 0;
 }

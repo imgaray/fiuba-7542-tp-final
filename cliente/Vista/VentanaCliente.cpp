@@ -21,7 +21,6 @@
 // botones
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
 #define BOTON_DETENER_ACTUALIZAR "HerramientaDetenerActualizar"
-#define BOTON_EXPORTAR_PDF "HerramientaExportarPDF"
 #define BOTON_CONFIGURAR "HerramientaConfigurar"
 #define BOTON_SALIR "HerramientaSalir"
 #define BOTON_CONECTAR "HerramientaConectar"
@@ -42,6 +41,7 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
 VentanaCliente::~VentanaCliente() {
     delete pDAutentifAdmin;
     delete pVAdminConfig;
+    delete pDAbout;
 }
 
 void VentanaCliente::initVentanas() {
@@ -50,8 +50,6 @@ void VentanaCliente::initVentanas() {
     get_widget_derived(CONFIG_ADMIN, pVAdminConfig);
     get_widget(ACERCA_DE, pDAbout);
 
-    pVDinamica->signal_puede_actualizar().connect(sigc::mem_fun(*this,
-        &VentanaCliente::on_puede_actualizar));
     pVDinamica->signal_actualizacion().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_actualizacion_solicitada));
 }
@@ -73,11 +71,6 @@ void VentanaCliente::initBotones() {
     botones[BOTON_DETENER_ACTUALIZAR] = pAux;
     pAux->signal_clicked().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_detenerActualizar_button_clicked));
-
-    get_widget(BOTON_EXPORTAR_PDF, pAux);
-    botones[BOTON_EXPORTAR_PDF] = pAux;
-    pAux->signal_clicked().connect(sigc::mem_fun(*this,
-        &VentanaCliente::on_exportarPDF_button_clicked));
 
     get_widget(BOTON_CONFIGURAR, pAux);
     botones[BOTON_CONFIGURAR] = pAux;
@@ -111,13 +104,6 @@ void VentanaCliente::personalizar(const char* archivo) {
     pVAdminConfig->setArchivoPersonalizador(archivo);
 }
 
-void VentanaCliente::on_puede_actualizar(bool puede) {
-    if (server.conectado()) {
-        botones[BOTON_ACTUALIZAR]->set_sensitive(puede);
-        botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(puede);
-    }
-}
-
 void VentanaCliente::on_actualizacion_solicitada(Consultante* c) {
     if (server.conectado())
         c->hacerConsulta(server);
@@ -127,7 +113,6 @@ void VentanaCliente::on_conectar_button_clicked() {
     try {
         server.conectar();
         pVDinamica->hacerConsultaInicial(server);
-        botones[BOTON_EXPORTAR_PDF]->set_sensitive();
         botones[BOTON_CONECTAR]->set_sensitive(false);
         botones[BOTON_ACTUALIZAR]->set_sensitive(true);
         botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(true);
@@ -153,10 +138,6 @@ void VentanaCliente::on_actualizar_button_clicked() {
 
 void VentanaCliente::on_detenerActualizar_button_clicked() {
     pVDinamica->cancelarConsulta(server);
-}
-
-void VentanaCliente::on_exportarPDF_button_clicked() {
-    std::cout << BOTON_EXPORTAR_PDF " clicked. (@todo)" << std::endl;
 }
 
 void VentanaCliente::on_configurar_button_clicked() {

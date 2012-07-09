@@ -15,8 +15,6 @@ Tab::Tab(const Glib::ustring& _etiqueta)
 
     pConsultantesActivos = &filtrosConsultantes;
     hijosActualizando = 0;
-    inputsDisponibles = 0;
-    puedeActualizar = false;
 }
 
 
@@ -79,33 +77,7 @@ void Tab::informarConsultaTerminada() {
         detenerSpinner();
 }
 
-void Tab::informarInputDisponible() {
-    ++inputsDisponibles;
-    // si todavía no hizo las consultas de sus combobox
-    // o si todos sus inputs están disponibles, puede actualizar
-    if (pConsultantesActivos == &filtrosConsultantes ||
-        inputsDisponibles == filtrosNavegables.size()) {
-        puedeActualizar = true;
-        if (padre)
-            padre->signal_puede_actualizar().emit(puedeActualizar);
-    }
-}
-
-void Tab::informarInputNoDisponible() {
-    --inputsDisponibles;
-    // si ya hizo las consultas de sus combobox
-    // o si no todos sus inputs están disponibles, no puede actualizar
-    if (pConsultantesActivos != &filtrosConsultantes &&
-        inputsDisponibles < filtrosNavegables.size()) {
-        puedeActualizar = false;
-        if (padre)
-            padre->signal_puede_actualizar().emit(puedeActualizar);
-    }
-}
-
 void Tab::informarFinCreacion() {
-    if (filtrosNavegables.size() == 0)
-        puedeActualizar = true;
     if (filtrosConsultantes.size() == 0)
         pConsultantesActivos = &consultantes;
 }
@@ -138,6 +110,4 @@ void Tab::detenerSpinner() {
 
 void Tab::setPadre(VentanaClienteDinamica* _padre) {
     padre = _padre;
-    if (padre)
-        padre->signal_puede_actualizar().emit(puedeActualizar);
 }

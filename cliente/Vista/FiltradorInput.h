@@ -16,12 +16,14 @@ class FiltradorInput : public Filtrador {
                                             const Glib::ustring& valor) = 0;
         void setTabPadre(Tab* padre);
          sigc::signal< void > signal_navegabilidad();
+         sigc::signal< void, bool > signal_input_disponible();
     protected:
         Gtk::ComboBoxText valores;
         bool valido;
         Tab* tabPadre;
 
         sigc::signal< void > signal_navegabilidad_seleccionada;
+        sigc::signal< void, bool > _signal_input_disponible;
 
     private:
         Gtk::VSeparator sep;

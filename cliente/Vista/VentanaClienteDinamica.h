@@ -32,7 +32,6 @@ class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
 
         void retirarRespuestas(ServidorRemoto& server);
 
-        sigc::signal< void, bool > signal_puede_actualizar();
         sigc::signal< void, Consultante* > signal_actualizacion();
 
     private:
@@ -42,7 +41,6 @@ class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
         void agregarData(Tab& t);
 
         sigc::signal< void, Consultante* > solicitudDeActualizacion;
-        sigc::signal< void, bool > _signal_puede_actualizar;
 };
 
 #endif  // VENTANA_CLIENTE_DINAMICA_H

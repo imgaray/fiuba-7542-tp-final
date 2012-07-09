@@ -1,21 +1,16 @@
 #ifndef FILTRADORES_PANEL_H
 #define FILTRADORES_PANEL_H
 
-#include <list>
-#include <queue>
-#include <gtkmm/box.h>
+#include "Filtradores.h"
 
 class FiltradoresTab;
-class Filtrador;
-class FiltradorInput;
-class FiltradorInputDimension;
-class Consulta;
 
-class FiltradoresPanel : public Gtk::VBox {
+class FiltradoresPanel : public Filtradores {
     public:
         FiltradoresPanel(FiltradoresTab& filtTab);
         ~FiltradoresPanel();
 
+        bool puedeFiltrar();
         void filtrar(Consulta& c);
 
         /// este método no verifica que el filtro sea dimensión
@@ -40,21 +35,11 @@ class FiltradoresPanel : public Gtk::VBox {
         void agregarResultado(const std::string& hecho,
                               const std::string& agregacion);
 
-        bool tieneFiltrosNavegables();
-        bool tieneFiltrosConsultantes();
-        bool tieneFiltrosParaTablaPivote();
-
-
-        FiltradorInput* getFiltroNavegable();
-        FiltradorInputDimension* getFiltroConsultante();
 
         sigc::signal< void > signal_navegabilidad();
 
     private:
         FiltradoresTab& filtrosHeredados;
-        std::list< Filtrador* > filtradores;
-        std::queue< FiltradorInput* > filtrosNavegables;
-        std::queue< FiltradorInputDimension* > filtrosConsultantes;
         sigc::signal< void > signal_navegabilidad_seleccionada;
         void on_signal_navegabilidad();
 

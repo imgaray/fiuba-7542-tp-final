@@ -17,3 +17,7 @@ void FiltradorInput::setTabPadre(Tab* padre) {
 sigc::signal< void > FiltradorInput::signal_navegabilidad() {
     return signal_navegabilidad_seleccionada;
 }
+
+sigc::signal< void, bool > FiltradorInput::signal_input_disponible() {
+    return _signal_input_disponible;
+}

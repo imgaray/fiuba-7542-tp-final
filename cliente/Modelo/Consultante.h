@@ -17,11 +17,11 @@ class Consultante {
         Consultante(FiltradoresPanel* f);
         ~Consultante();
 
-        virtual void hacerConsulta(ServidorRemoto& server);
-        virtual void cancelarConsulta(ServidorRemoto& server);
-        virtual void recibirRespuesta(const Respuesta& rta);
+        void hacerConsulta(ServidorRemoto& server);
+        void cancelarConsulta(ServidorRemoto& server);
+        void recibirRespuesta(const Respuesta& rta);
 
-        virtual unsigned getID() const;
+        unsigned getID() const;
 
         FiltradoresPanel* getFiltrador() const;
 

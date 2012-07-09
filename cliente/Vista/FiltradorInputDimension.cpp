@@ -31,7 +31,7 @@ void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
 
     valores.set_active(0);
     padre->removerConsultante(getID());
-    padre->informarInputDisponible();
+    _signal_input_disponible.emit(true);
 }
 
 void FiltradorInputDimension::filtrar(Consulta& c) {

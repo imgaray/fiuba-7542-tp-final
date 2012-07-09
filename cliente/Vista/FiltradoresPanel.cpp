@@ -26,16 +26,16 @@ FiltradoresPanel::FiltradoresPanel(FiltradoresTab& filtTab)
 : filtrosHeredados(filtTab),
   esParaTablaPivote(false) {}
 
-FiltradoresPanel::~FiltradoresPanel() {
-    std::list< Filtrador* >::iterator it = filtradores.begin();
-    for ( ; it != filtradores.end(); ++it)
-        delete *it;
+FiltradoresPanel::~FiltradoresPanel() {}
+
+bool FiltradoresPanel::puedeFiltrar() {
+    return _puedeFiltrar && filtrosHeredados.puedeFiltrar();
 }
 
 /** @todo verificar que el filtro/input/resultado no exista ya */
 void FiltradoresPanel::agregarFiltro(const std::string& filtro,
                                      const std::string& valor) {
-    FiltradorFiltroDimension* f = new FiltradorFiltroDimension(filtro, valor);
+    FiltradorFiltroDimension* f = manage(new FiltradorFiltroDimension(filtro, valor));
     add(*f);
     filtradores.push_back(f);
 }
@@ -46,9 +46,9 @@ void FiltradoresPanel::agregarFiltro(const std::string& filtro,
     FiltradorFiltro* f;
     try {
         if (Organizacion::esDimensionEspecial(filtro))
-            f = new FiltradorFiltroFecha(filtro, valorCombo, valorEntrada);
+            f = manage(new FiltradorFiltroFecha(filtro, valorCombo, valorEntrada));
         else
-            f = new FiltradorFiltroHecho(filtro, valorCombo, valorEntrada);
+            f = manage(new FiltradorFiltroHecho(filtro, valorCombo, valorEntrada));
 
         add(*f);
         filtradores.push_back(f);
@@ -63,22 +63,27 @@ void FiltradoresPanel::agregarEntrada(const std::string& entrada) {
     try {
         if (Organizacion::esDimension(entrada)) {
             if (Organizacion::esDimensionEspecial(entrada))
-                f = new FiltradorInputFecha(entrada);
+                f = manage(new FiltradorInputFecha(entrada));
             else {
-                f = new FiltradorInputDimension(entrada);
+                f = manage(new FiltradorInputDimension(entrada));
                 filtrosConsultantes.push((FiltradorInputDimension* ) f);
             }
         } else {
             if (Organizacion::esHecho(entrada))
-                f = new FiltradorInputHecho(entrada);
+                f = manage(new FiltradorInputHecho(entrada));
             else
                 throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_INPUT_MAL);
         }
         add(*f);
         filtradores.push_back(f);
         filtrosNavegables.push(f);
+        ++cant_inputs;
+
         f->signal_navegabilidad().connect(sigc::mem_fun(*this,
             &FiltradoresPanel::on_signal_navegabilidad));
+
+        f->signal_input_disponible().connect(sigc::mem_fun(*this,
+            &FiltradoresPanel::on_input_esta_disponible));
     }
     catch (const ExcepcionFiltradorMalConstruido& e) {
         std::cout << e.what() << std::endl;
@@ -90,7 +95,8 @@ void FiltradoresPanel::agregarResultado(const std::string& dimension) {
         if (esParaTablaPivote)
             throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_RESULTADO_MAL);
 
-        FiltradorResultadoDimension* f = new FiltradorResultadoDimension(dimension);
+        FiltradorResultadoDimension* f = manage(
+            new FiltradorResultadoDimension(dimension));
         add(*f);
         filtradores.push_back(f);
     }
@@ -107,7 +113,7 @@ void FiltradoresPanel::agregarResultado(const std::string& fecha,
         if (esParaTablaPivote)
             throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_RESULTADO_MAL);
 
-        f = new FiltradorResultadoFecha(fecha, valorCombo, valorEntrada);
+        f = manage(new FiltradorResultadoFecha(fecha, valorCombo, valorEntrada));
         add(*f);
         filtradores.push_back(f);
     }
@@ -120,7 +126,7 @@ void FiltradoresPanel::agregarResultado(const std::string& hecho,
                                         const std::string& agregacion) {
     FiltradorResultadoHecho* f;
     try {
-        f = new FiltradorResultadoHecho(hecho, agregacion);
+        f = manage(new FiltradorResultadoHecho(hecho, agregacion));
         add(*f);
         filtradores.push_back(f);
     }
@@ -136,7 +142,7 @@ void FiltradoresPanel::agregarXTablaP(const std::string& valor) {
             !Organizacion::esHecho(valor))
             throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_MAL);
 
-        f = new FiltradorPivoteX(valor);
+        f = manage(new FiltradorPivoteX(valor));
         add(*f);
         filtradores.push_back(f);
         esParaTablaPivote = true;
@@ -153,7 +159,7 @@ void FiltradoresPanel::agregarYTablaP(const std::string& valor) {
             !Organizacion::esHecho(valor))
             throw ExcepcionFiltradorMalConstruido(EXCEP_MSJ_TABLA_P_MAL);
 
-        f = new FiltradorPivoteY(valor);
+        f = manage(new FiltradorPivoteY(valor));
         add(*f);
         filtradores.push_back(f);
         esParaTablaPivote = true;
@@ -168,29 +174,7 @@ void FiltradoresPanel::filtrar(Consulta& c) {
         c.definirConsultaDeTablaPivote();
 
     filtrosHeredados.filtrar(c);
-    std::list< Filtrador* >::iterator it = filtradores.begin();
-    for ( ; it != filtradores.end(); ++it)
-        (*it)->filtrar(c);
-}
-
-bool FiltradoresPanel::tieneFiltrosNavegables() {
-    return !filtrosNavegables.empty();
-}
-
-bool FiltradoresPanel::tieneFiltrosConsultantes() {
-    return !filtrosConsultantes.empty();
-}
-
-FiltradorInput* FiltradoresPanel::getFiltroNavegable() {
-    FiltradorInput* f = filtrosNavegables.front();
-    filtrosNavegables.pop();
-    return f;
-}
-
-FiltradorInputDimension* FiltradoresPanel::getFiltroConsultante() {
-    FiltradorInputDimension* f = filtrosConsultantes.front();
-    filtrosConsultantes.pop();
-    return f;
+    Filtradores::filtrar(c);
 }
 
 sigc::signal< void > FiltradoresPanel::signal_navegabilidad() {

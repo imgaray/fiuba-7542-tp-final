@@ -52,5 +52,4 @@ void Cliente::initGtk(int argc, char* argv[]) {
         pVentana->show_all();
     } else
         throw ExcepcionArchivoGladeCorrupto(VENTANA_CLIENTE);
-
 }

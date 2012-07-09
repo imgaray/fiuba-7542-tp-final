@@ -159,30 +159,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="HerramientaExportarPDF">
-                    <property name="visible">True</property>
-                    <property name="sensitive">False</property>
-                    <property name="has_tooltip">True</property>
-                    <property name="tooltip_text" translatable="yes">Exportar a PDF</property>
-                    <property name="label" translatable="yes">Exportar a PDF</property>
-                    <property name="use_underline">True</property>
-                    <property name="stock_id">gtk-floppy</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="homogeneous">True</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparatorToolItem" id="toolbutton1">
-                    <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="homogeneous">True</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkToolButton" id="HerramientaConfigurar">
                     <property name="visible">True</property>
                     <property name="has_tooltip">True</property>
@@ -411,6 +387,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="padding">2</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -443,6 +420,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="padding">2</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -617,6 +595,7 @@
                             </child>
                           </object>
                           <packing>
+                            <property name="expand">False</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
@@ -953,6 +932,7 @@
                                                             </child>
                                                             </object>
                                                             <packing>
+                                                            <property name="expand">False</property>
                                                             <property name="position">0</property>
                                                             </packing>
                                                             </child>

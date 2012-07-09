@@ -2,6 +2,8 @@
 #include "Consulta.h"
 #include "Tab.h"
 #include "FiltradorHelper.h"
+#include <ctime>
+#include "Utilitario.h"
 
 #define MSJ_ERROR "Fecha inválida"
 
@@ -10,10 +12,15 @@ FiltradorInputFecha::FiltradorInputFecha(const Glib::ustring& input)
     FiltradorHelper::getInstancia().popularComboFecha(&valores);
     i = 0;
     valores.set_active(i);
+    time_t t = time(0);
+    tm* t_ahora = localtime(&t);
+    Utilitario u;
+    entrada.set_text(u.convertirAString( t_ahora->tm_year + 1900));
 
     centradorDerecho.pack_start(entrada, false, false);
     centradorDerecho.pack_start(infoError, false, false);
     infoError.hide();
+    infoError.set_no_show_all();
 
     valores.signal_changed().connect(sigc::mem_fun(*this,
             &FiltradorInputFecha::on_combo_changed));
@@ -35,13 +42,13 @@ void FiltradorInputFecha::on_entry_activated() {
         entrada.set_text(MSJ_ERROR);
         if (valido) {
             valido = false;
-            tabPadre->informarInputNoDisponible();
+            _signal_input_disponible.emit(valido);
         }
     } else {
         infoError.hide();
         if (!valido) {
             valido = true;
-            tabPadre->informarInputDisponible();
+            _signal_input_disponible.emit(valido);
         }
     }
 }

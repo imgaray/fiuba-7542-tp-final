@@ -90,10 +90,6 @@ void VentanaClienteDinamica::retirarRespuestas(ServidorRemoto& server) {
     }
 }
 
-sigc::signal< void, bool > VentanaClienteDinamica::signal_puede_actualizar() {
-    return _signal_puede_actualizar;
-}
-
 sigc::signal< void, Consultante* > VentanaClienteDinamica::signal_actualizacion() {
     return solicitudDeActualizacion;
 }

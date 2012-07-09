@@ -27,11 +27,10 @@ void Consultante::setPadre(Tab* _padre) {
 }
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
-    consulta.limpiar();
-
     // si hay filtradores, verificar que estén correctos:
     // comboboxes populados y entries bien escritas
     if (f) {
+        consulta.limpiar();
         if (!f->puedeFiltrar())
             return;
         f->filtrar(consulta);

@@ -13,7 +13,7 @@
 
 // config tabs
 #define HBOX_TAB_SELEC "hboxTabSelec"
-#define TABLE_TAB_CONFIG "tableTabConfig"
+#define VBOX_TAB_CONFIG "vboxTabConfig"
 #define ENTRY_TAB_LABEL "entryTabLabel"
 
 #include <iostream>
@@ -53,7 +53,7 @@ void TabAdminConfigConsultas::initBotones() {
 
 void TabAdminConfigConsultas::initTabConfig() {
     get_widget(ENTRY_TAB_LABEL, pEntryTabLabel);
-    get_widget_derived(TABLE_TAB_CONFIG, pTabVista);
+    get_widget_derived(VBOX_TAB_CONFIG, pTabVista);
 
     Gtk::HBox* pHBoxTabSelec;
     get_widget(HBOX_TAB_SELEC, pHBoxTabSelec);

@@ -25,7 +25,7 @@
 
 TabConfigVista::TabConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& _builder)
-: Gtk::Table(cobject), Buildable(_builder),
+: Gtk::VBox(cobject), Buildable(_builder),
   pModelo(NULL) {
     initBotones();
     initPanelConfig();

@@ -35,7 +35,6 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         void on_conectar_button_clicked();
         void on_actualizar_button_clicked();
         void on_detenerActualizar_button_clicked();
-        void on_exportarPDF_button_clicked();
         void on_configurar_button_clicked();
         void on_salir_button_clicked();
         void on_acerca_de_button_clicked();

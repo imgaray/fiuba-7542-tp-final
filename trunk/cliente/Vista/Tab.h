@@ -33,8 +33,6 @@ class Tab : public Gtk::VBox {
 
         void informarConsultaIniciada();
         void informarConsultaTerminada();
-        void informarInputDisponible();
-        void informarInputNoDisponible();
         void informarFinCreacion();
 
         void agregarFiltroNavegable(FiltradorInput* f);
@@ -56,11 +54,9 @@ class Tab : public Gtk::VBox {
         std::list< FiltradorInput* > filtrosNavegables;
 
         unsigned hijosActualizando;
-        unsigned inputsDisponibles;
         void correrSpinner();
         void detenerSpinner();
         VentanaClienteDinamica* padre;
-        bool puedeActualizar;
 };
 
 #endif  // TAB_H__

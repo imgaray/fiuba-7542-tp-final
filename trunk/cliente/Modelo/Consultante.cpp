@@ -28,8 +28,14 @@ void Consultante::setPadre(Tab* _padre) {
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
     consulta.limpiar();
-    if (f)
+
+    // si hay filtradores, verificar que estén correctos:
+    // comboboxes populados y entries bien escritas
+    if (f) {
+        if (!f->puedeFiltrar())
+            return;
         f->filtrar(consulta);
+    }
 
     if (!verificador.verificarConsulta(consulta)) {
         std::cout << "Error en consulta" << std::endl;

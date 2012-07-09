@@ -11,7 +11,7 @@
 #include "VentanaCliente.h"
 #include "ExcepcionArchivoGladeCorrupto.h"
 
-#define UI_ESTATICA "Vista/Cliente UI.glade"
+#define UI_ESTATICA "Cliente UI.glade"
 #define UI_DINAMICA "ventanaPersonalizada.xml"
 #define VENTANA_CLIENTE "VentanaCliente"
 

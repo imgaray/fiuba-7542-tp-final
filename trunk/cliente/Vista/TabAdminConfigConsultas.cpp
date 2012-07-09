@@ -63,8 +63,6 @@ void TabAdminConfigConsultas::initTabConfig() {
 
 void TabAdminConfigConsultas::setArchivoPersonalizador(const char* archivo) {
     this->cargarConsultas(archivo);
-
-    // @todo esta linea iva antes, comprobar funcionamiento
     dynBuilder.construir(tabManager);
 }
 

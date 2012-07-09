@@ -30,7 +30,9 @@ void VentanaClienteDinamica::personalizar(Personalizador& dynBuilder) {
 }
 
 void VentanaClienteDinamica::hacerConsulta(ServidorRemoto& server) {
-    tabs[get_current_page()]->hacerConsulta(server);
+    int i = get_current_page();
+    if (i > -1)
+        tabs[i]->hacerConsulta(server);
 }
 
 void VentanaClienteDinamica::hacerConsultaInicial(ServidorRemoto& server) {
@@ -40,7 +42,9 @@ void VentanaClienteDinamica::hacerConsultaInicial(ServidorRemoto& server) {
 }
 
 void VentanaClienteDinamica::cancelarConsulta(ServidorRemoto& server) {
-    tabs[get_current_page()]->cancelarConsulta(server);
+    int i = get_current_page();
+    if (i > -1)
+        tabs[i]->cancelarConsulta(server);
 }
 
 void VentanaClienteDinamica::actualizarConsulta(Consultante* c) {

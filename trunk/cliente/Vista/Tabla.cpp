@@ -8,7 +8,7 @@
 #include "Tabla.h"
 #include <iostream>
 
-Tabla::Tabla(FiltradoresPanel& filtradores) : ExhibidorRespuesta(filtradores) {
+Tabla::Tabla(FiltradoresPanel* filtradores) : Consultante(filtradores) {
 	_colModelo = NULL;
 	setSpinner(&s);
     s.set_no_show_all();

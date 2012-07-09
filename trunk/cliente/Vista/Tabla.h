@@ -12,13 +12,9 @@
 #include <string>
 
 
-class Tabla : public ExhibidorRespuesta, public Gtk::TreeView {
+class Tabla : public Consultante, public Gtk::TreeView {
 public:
-	Tabla(FiltradoresPanel& filtradores);
-	virtual void actualizarTamanioMinimo(double x, double y) {
-		// @todo Completar este metodo SEBAAAAAAAAAA!!!!!!
-	}
-
+	Tabla(FiltradoresPanel* filtradores);
 	virtual ~Tabla();
 
 protected:

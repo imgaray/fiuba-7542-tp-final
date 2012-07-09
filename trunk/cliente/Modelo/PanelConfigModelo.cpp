@@ -186,47 +186,37 @@ void PanelConfigModelo::setExpandersPivote(Gtk::Expander* pXPivote,
 
 
 void PanelConfigModelo::setFiltrosHandlers(const filtradoresHandlers& handlers) {
-    if (!filtrosManager) {
+    if (!filtrosManager)
         filtrosManager = new FiltradorConfigManager(FILT_FILTRO, handlers);
-//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_deleted));
-    } else
+    else
         filtrosManager->reconectar();
 }
 
 void PanelConfigModelo::setInputsHandlers(const filtradoresHandlers& handlers) {
-    if (!inputsManager) {
+    if (!inputsManager)
         inputsManager = new FiltradorConfigManager(FILT_INPUT, handlers);
-//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_deleted));
-    } else
+    else
         inputsManager->reconectar();
 }
 
 void PanelConfigModelo::setPivoteXsHandlers(const filtradoresHandlers& handlers) {
-    if (!pivoteXsManager) {
+    if (!pivoteXsManager)
         pivoteXsManager = new FiltradorConfigManager(FILT_PIVOTE_X, handlers);
-//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_deleted));
-    } else
+    else
         pivoteXsManager->reconectar();
 }
 
 void PanelConfigModelo::setPivoteYsHandlers(const filtradoresHandlers& handlers) {
-    if (!pivoteYsManager) {
+    if (!pivoteYsManager)
         pivoteYsManager = new FiltradorConfigManager(FILT_PIVOTE_Y, handlers);
-//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_deleted));
-    } else
+    else
         pivoteYsManager->reconectar();
 }
 
 void PanelConfigModelo::setResultadosHandlers(const filtradoresHandlers& handlers) {
-    if (!resutadosManager) {
+    if (!resutadosManager)
         resutadosManager = new FiltradorConfigManager(FILT_RESULTADO, handlers);
-//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_deleted));
-    } else
+    else
         resutadosManager->reconectar();
 }
 
@@ -234,28 +224,29 @@ Panel* PanelConfigModelo::concretarConfig(FiltradoresPanel* filtPanel) {
     // crear el panel
     Panel* panel = manage(new Panel(getLabel()));
 
-    // cargar el conjunto de filtradores normales
+    // cargar el conjunto de filtradores
     filtrosManager->setFiltradoresEn(filtPanel);
     inputsManager->setFiltradoresEn(filtPanel);
+    if (indice_tipoGrafico == PIVOTE) {
+        pivoteXsManager->setFiltradoresEn(filtPanel);
+        pivoteYsManager->setFiltradoresEn(filtPanel);
+    }
     resutadosManager->setFiltradoresEn(filtPanel);
 
     // crear el gráfico y agregarlo al panel
     Tabla* tabla;
     Grafico* grafico;
     switch (indice_tipoGrafico) {
-        case TABLA:     tabla = manage(new TablaComun(*filtPanel));
+        case TABLA:     tabla = manage(new TablaComun(filtPanel));
                         panel->setContenido(*tabla);
                         break;
-        case PIVOTE:    // agregar filtradores para tabla pivote
-                        pivoteXsManager->setFiltradoresEn(filtPanel);
-                        pivoteYsManager->setFiltradoresEn(filtPanel);
-                        tabla = manage(new TablaPivote(*filtPanel));
+        case PIVOTE:    tabla = manage(new TablaPivote(filtPanel));
                         panel->setContenido(*tabla);
                         break;
-        case BARRAS:    grafico = manage(new GraficoDeBarras(*filtPanel));
+        case BARRAS:    grafico = manage(new GraficoDeBarras(filtPanel));
                         panel->setContenido(*grafico);
                         break;
-        case TORTA:     grafico = manage(new GraficoDeTorta(*filtPanel));
+        case TORTA:     grafico = manage(new GraficoDeTorta(filtPanel));
                         panel->setContenido(*grafico);
                         break;
         default: break;
@@ -417,21 +408,23 @@ void PanelConfigModelo::deserializar(const NodoXml& nodo){
 	else
 		throw ErrorSerializacionXML();
 
-	// Deserializos el grupo X de la Tabla Pivote
+    if (indice_tipoGrafico == PIVOTE) {
+        // Deserializos el grupo X de la Tabla Pivote
 
-	hijo = nodo.FirstChildElement(HIJO_X_PIV);
-	if (hijo != NULL)
-		pivoteXsManager->deserializar(*hijo);
-	else
-		throw ErrorSerializacionXML();
+        hijo = nodo.FirstChildElement(HIJO_X_PIV);
+        if (hijo != NULL)
+            pivoteXsManager->deserializar(*hijo);
+        else
+            throw ErrorSerializacionXML();
 
-	// Deserializo el grupo Y de la Tabla Pivote
+        // Deserializo el grupo Y de la Tabla Pivote
 
-	hijo = nodo.FirstChildElement(HIJO_Y_PIV);
-	if (hijo != NULL)
-		pivoteYsManager->deserializar(*hijo);
-	else
-		throw ErrorSerializacionXML();
+        hijo = nodo.FirstChildElement(HIJO_Y_PIV);
+        if (hijo != NULL)
+            pivoteYsManager->deserializar(*hijo);
+        else
+            throw ErrorSerializacionXML();
+    }
 
 	// Deserializo los resultados
 	hijo = nodo.FirstChildElement(HIJO_RES);

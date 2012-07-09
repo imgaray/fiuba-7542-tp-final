@@ -10,8 +10,8 @@
 #define COL_RESULTADO 0  // constante que hace que siempre se tome la columna 0 de la respuesta para dar nombre a las áreas del gráfico
 #define SIN_DATOS "No hay datos para mostrar"
 
-Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
-    f.signal_navegabilidad().connect(sigc::mem_fun(*this,
+Grafico::Grafico(FiltradoresPanel* _f) : Consultante(_f) {
+    _f->signal_navegabilidad().connect(sigc::mem_fun(*this,
         &Consultante::on_navegabilidad_seleccionada));
 
     add_events(Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
@@ -27,16 +27,6 @@ Grafico::Grafico(FiltradoresPanel& _f) : f(_f) {
 
 Grafico::~Grafico() {
     deleteAreas();
-}
-
-void Grafico::hacerConsulta(ServidorRemoto& server) {
-    consulta.limpiar();
-    f.filtrar(consulta);
-    Consultante::hacerConsulta(server);
-}
-
-FiltradoresPanel& Grafico::getFiltrador() const {
-    return f;
 }
 
 void Grafico::deleteAreas() {
@@ -206,6 +196,5 @@ void Grafico::resize() {
         furthest_y += 0.1;
         set_size_request(min_lado * furthest_x, min_lado * furthest_y);
         should_request_size = false;
-        std::cout << "Size requested" << std::endl;
     }
 }

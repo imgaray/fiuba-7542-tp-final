@@ -164,6 +164,9 @@ void FiltradoresPanel::agregarYTablaP(const std::string& valor) {
 }
 
 void FiltradoresPanel::filtrar(Consulta& c) {
+    if (esParaTablaPivote)
+        c.definirConsultaDeTablaPivote();
+
     filtrosHeredados.filtrar(c);
     std::list< Filtrador* >::iterator it = filtradores.begin();
     for ( ; it != filtradores.end(); ++it)

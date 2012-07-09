@@ -1,6 +1,7 @@
 #include "Grafico.h"
 #include <iostream>
 #include <exception>
+#include <gtkmm/messagedialog.h>
 #include "Area.h"
 #include "FiltradoresPanel.h"
 #include "Respuesta.h"
@@ -127,8 +128,6 @@ bool Grafico::on_button_press_event(GdkEventButton* ev) {
 
     Glib::ustring valor = (*areaSeleccionada)->getEtiqueta();
     Glib::ustring input = consulta.resultado(COL_RESULTADO);
-    if (input == STR_NULA)
-        throw "Error en los resultados de un gráfico";
 
     padre->difundirNavegacionSeleccionada(input, valor);
     return true;
@@ -166,8 +165,16 @@ void Grafico::dibujarReferencias(Cairo::RefPtr< Cairo::Context >& ctx) {
 }
 
 void Grafico::procesarRespuesta(const Respuesta& rta) {
-    if (rta.cantidadColumnas() != 2)
-        throw "Respuesta para grafico con más o menos de dos columnas";
+    if (rta.cantidadColumnas() != 2) {
+        Gtk::MessageDialog dialog("Los gráficos sólo admiten un par de resultados",
+                                  false,
+                                  Gtk::MESSAGE_ERROR,
+                                  Gtk::BUTTONS_OK,
+                                  true);
+        dialog.set_title("Error en una consulta");
+        dialog.run();
+        return;
+    }
 
     double valor;
     std::stringstream ss;

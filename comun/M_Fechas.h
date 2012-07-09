@@ -67,7 +67,7 @@ public:
      * Que compredera las fechas comprendidas en ese periodo.
      * @param sem semestre del año (siendo 1 o 2)
      * @param anio año de la Fecha
-     * @retur Fecha que representa el rango
+     * @return Fecha que representa el rango
      */
 	Fecha semestre(int sem, const std::string& anio) const;
 
@@ -76,7 +76,7 @@ public:
      * Que compredera las fechas comprendidas en ese periodo.
      * @param cuat cuatrimestre del año (siendo 1, 2 o 3)
      * @param anio año de la Fecha
-     * @retur Fecha que representa el rango
+     * @return Fecha que representa el rango
      */
 	Fecha cuatrimestre(int cuat, const std::string& anio) const;
 
@@ -85,7 +85,7 @@ public:
      * Que compredera las fechas comprendidas en ese periodo.
      * @param tri trimeste del año (siendo 1, 2, 3 o 4)
      * @param anio año de la Fecha
-     * @retur Fecha que representa el rango
+     * @return Fecha que representa el rango
      */
 	Fecha trimestre(int tri, const std::string& anio) const;
 
@@ -94,7 +94,7 @@ public:
      * Que compredera las fechas comprendidas en ese periodo.
      * @param bim bimestre del año (siendo 1, 2, 3, 4, 5 o 6)
      * @param anio año de la Fecha
-     * @retur Fecha que representa el rango
+     * @return Fecha que representa el rango
      */
 	Fecha bimestre(int bim, const std::string& anio) const;
 
@@ -103,7 +103,7 @@ public:
      * Que compredera las fechas comprendidas en ese periodo.
      * @param mes mes del año (siendo 1, 2, 3, ... , 10, 11 o 12)
      * @param anio año de la Fecha
-     * @retur Fecha que representa el rango
+     * @return Fecha que representa el rango
      */
 	Fecha mes(int mes, const std::string& anio) const;
 
@@ -112,7 +112,7 @@ public:
      * Que compredera las fechas comprendidas en ese periodo.
      * @param semana semana del año (siendo desde 1 hasta 53)
      * @param anio año de la Fecha
-     * @retur Fecha que representa el rango
+     * @return Fecha que representa el rango
      */
 	Fecha semana(int semana, const std::string& anio) const;
 

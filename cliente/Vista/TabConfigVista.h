@@ -15,7 +15,7 @@ class TabConfigModelo;
 class PanelConfigModelo;
 class PanelConfigVista;
 
-class TabConfigVista : public Gtk::Table, public Buildable  {
+class TabConfigVista : public Gtk::VBox, public Buildable  {
     public:
         TabConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& builder);

@@ -374,7 +374,7 @@
     <property name="title" translatable="yes">Configuraciones</property>
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>
-    <property name="default_width">672</property>
+    <property name="default_width">500</property>
     <property name="default_height">378</property>
     <property name="icon_name">administration</property>
     <property name="transient_for">VentanaCliente</property>
@@ -510,45 +510,15 @@
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTable" id="tableTabConfig">
+                      <object class="GtkVBox" id="vboxTabConfig">
                         <property name="visible">True</property>
-                        <property name="n_rows">2</property>
-                        <property name="n_columns">2</property>
-                        <child>
-                          <object class="GtkVBox" id="vbox9">
-                            <property name="visible">True</property>
-                            <child>
-                              <object class="GtkLabel" id="label6">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">Estado de la grilla</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkDrawingArea" id="drawingareaGrilla">
-                                <property name="visible">True</property>
-                              </object>
-                              <packing>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="bottom_attach">2</property>
-                          </packing>
-                        </child>
                         <child>
                           <object class="GtkFrame" id="frame2">
                             <property name="visible">True</property>
                             <property name="label_xalign">0.5</property>
                             <property name="shadow_type">in</property>
                             <child>
-                              <object class="GtkVBox" id="vbox3">
+                              <object class="GtkVBox" id="vbox4">
                                 <property name="visible">True</property>
                                 <child>
                                   <object class="GtkHBox" id="hbox2">
@@ -559,7 +529,9 @@
                                         <property name="label" translatable="yes">T&#xED;tulo</property>
                                       </object>
                                       <packing>
+                                        <property name="expand">False</property>
                                         <property name="fill">False</property>
+                                        <property name="padding">3</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
@@ -583,6 +555,9 @@
                                             <property name="label" translatable="yes">Grilla</property>
                                           </object>
                                           <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="padding">8</property>
                                             <property name="position">0</property>
                                           </packing>
                                         </child>
@@ -635,13 +610,14 @@
                             <child type="label">
                               <object class="GtkLabel" id="label3">
                                 <property name="visible">True</property>
+                                <property name="xpad">1</property>
                                 <property name="label" translatable="yes">&lt;b&gt;Caracter&#xED;sticas generales&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                               </object>
                             </child>
                           </object>
                           <packing>
-                            <property name="y_options">GTK_FILL</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -744,6 +720,7 @@
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">False</property>
+                                            <property name="padding">4</property>
                                             <property name="position">-1</property>
                                           </packing>
                                         </child>
@@ -796,6 +773,9 @@
                                                             <property name="label" translatable="yes">T&#xED;tulo</property>
                                                             </object>
                                                             <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="padding">3</property>
                                                             <property name="position">0</property>
                                                             </packing>
                                                             </child>
@@ -816,6 +796,9 @@
                                                             <property name="label" translatable="yes">Tipo</property>
                                                             </object>
                                                             <packing>
+                                                            <property name="expand">False</property>
+                                                            <property name="fill">False</property>
+                                                            <property name="padding">8</property>
                                                             <property name="position">2</property>
                                                             </packing>
                                                             </child>
@@ -837,18 +820,37 @@
                                                             <property name="label_xalign">0.5</property>
                                                             <property name="shadow_type">in</property>
                                                             <child>
-                                                            <object class="GtkVBox" id="vbox8">
+                                                            <object class="GtkTable" id="table2">
                                                             <property name="visible">True</property>
+                                                            <property name="n_rows">2</property>
+                                                            <property name="n_columns">4</property>
+                                                            <property name="column_spacing">3</property>
                                                             <child>
-                                                            <object class="GtkHBox" id="hbox9">
+                                                            <object class="GtkSpinButton" id="spinbuttonPanelHastaFila">
                                                             <property name="visible">True</property>
-                                                            <child>
-                                                            <object class="GtkLabel" id="label21">
-                                                            <property name="visible">True</property>
-                                                            <property name="label" translatable="yes">Desde fila</property>
+                                                            <property name="can_focus">True</property>
+                                                            <property name="max_length">2</property>
+                                                            <property name="invisible_char">&#x25CF;</property>
+                                                            <property name="width_chars">2</property>
+                                                            <property name="adjustment">adjustment2</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="position">0</property>
+                                                            <property name="left_attach">3</property>
+                                                            <property name="right_attach">4</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
+                                                            </packing>
+                                                            </child>
+                                                            <child>
+                                                            <object class="GtkLabel" id="label22">
+                                                            <property name="visible">True</property>
+                                                            <property name="label" translatable="yes">hasta fila</property>
+                                                            </object>
+                                                            <packing>
+                                                            <property name="left_attach">2</property>
+                                                            <property name="right_attach">3</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
                                                             <child>
@@ -861,48 +863,33 @@
                                                             <property name="adjustment">adjustment1</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="expand">False</property>
-                                                            <property name="position">1</property>
+                                                            <property name="left_attach">1</property>
+                                                            <property name="right_attach">2</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
                                                             <child>
-                                                            <object class="GtkLabel" id="label22">
+                                                            <object class="GtkLabel" id="label21">
                                                             <property name="visible">True</property>
-                                                            <property name="label" translatable="yes">hasta fila</property>
+                                                            <property name="label" translatable="yes">Desde fila</property>
+                                                            <property name="width_chars">13</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="position">2</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
-                                                            <child>
-                                                            <object class="GtkSpinButton" id="spinbuttonPanelHastaFila">
-                                                            <property name="visible">True</property>
-                                                            <property name="can_focus">True</property>
-                                                            <property name="max_length">2</property>
-                                                            <property name="invisible_char">&#x25CF;</property>
-                                                            <property name="width_chars">2</property>
-                                                            <property name="adjustment">adjustment2</property>
-                                                            </object>
-                                                            <packing>
-                                                            <property name="expand">False</property>
-                                                            <property name="position">3</property>
-                                                            </packing>
-                                                            </child>
-                                                            </object>
-                                                            <packing>
-                                                            <property name="position">0</property>
-                                                            </packing>
-                                                            </child>
-                                                            <child>
-                                                            <object class="GtkHBox" id="hbox10">
-                                                            <property name="visible">True</property>
                                                             <child>
                                                             <object class="GtkLabel" id="label23">
                                                             <property name="visible">True</property>
                                                             <property name="label" translatable="yes">Desde columna</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="position">0</property>
+                                                            <property name="top_attach">1</property>
+                                                            <property name="bottom_attach">2</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
                                                             <child>
@@ -915,8 +902,12 @@
                                                             <property name="adjustment">adjustment3</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="expand">False</property>
-                                                            <property name="position">1</property>
+                                                            <property name="left_attach">1</property>
+                                                            <property name="right_attach">2</property>
+                                                            <property name="top_attach">1</property>
+                                                            <property name="bottom_attach">2</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
                                                             <child>
@@ -925,7 +916,12 @@
                                                             <property name="label" translatable="yes">hasta columna</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="position">2</property>
+                                                            <property name="left_attach">2</property>
+                                                            <property name="right_attach">3</property>
+                                                            <property name="top_attach">1</property>
+                                                            <property name="bottom_attach">2</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
                                                             <child>
@@ -938,13 +934,12 @@
                                                             <property name="adjustment">adjustment4</property>
                                                             </object>
                                                             <packing>
-                                                            <property name="expand">False</property>
-                                                            <property name="position">3</property>
-                                                            </packing>
-                                                            </child>
-                                                            </object>
-                                                            <packing>
-                                                            <property name="position">1</property>
+                                                            <property name="left_attach">3</property>
+                                                            <property name="right_attach">4</property>
+                                                            <property name="top_attach">1</property>
+                                                            <property name="bottom_attach">2</property>
+                                                            <property name="x_options"></property>
+                                                            <property name="y_options"></property>
                                                             </packing>
                                                             </child>
                                                             </object>
@@ -1283,6 +1278,8 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">True</property>
+                                            <property name="has_tooltip">True</property>
+                                            <property name="tooltip_text" translatable="yes">Agregar panel</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1296,6 +1293,8 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">True</property>
+                                            <property name="has_tooltip">True</property>
+                                            <property name="tooltip_text" translatable="yes">Guardar cambios de panel</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1309,6 +1308,8 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">True</property>
+                                            <property name="has_tooltip">True</property>
+                                            <property name="tooltip_text" translatable="yes">Eliminar panel</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1327,6 +1328,7 @@
                                 <child type="label">
                                   <object class="GtkLabel" id="label13">
                                     <property name="visible">True</property>
+                                    <property name="xpad">1</property>
                                     <property name="label" translatable="yes">&lt;b&gt;Paneles&lt;/b&gt;</property>
                                     <property name="use_markup">True</property>
                                   </object>
@@ -1339,8 +1341,7 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                       </object>
@@ -1368,7 +1369,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="has_tooltip">True</property>
-                        <property name="tooltip_text" translatable="yes">Agrega la pesta&#xF1;a al conjunto</property>
+                        <property name="tooltip_text" translatable="yes">Agregar pesta&#xF1;a</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -1383,7 +1384,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="has_tooltip">True</property>
-                        <property name="tooltip_text" translatable="yes">Guarda los cambios en la pesta&#xF1;a actual</property>
+                        <property name="tooltip_text" translatable="yes">Guardar cambios de pesta&#xF1;a</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -1398,7 +1399,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="has_tooltip">True</property>
-                        <property name="tooltip_text" translatable="yes">Elimina la pesta&#xF1;a actual</property>
+                        <property name="tooltip_text" translatable="yes">Eliminar pesta&#xF1;a</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>

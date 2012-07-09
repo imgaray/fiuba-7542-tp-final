@@ -10,11 +10,13 @@
 
 
 
-FiltradorConfigModelo::FiltradorConfigModelo(unsigned _ID)
+FiltradorConfigModelo::FiltradorConfigModelo(unsigned _ID,
+                            const std::list< std::string >& _camposDisponibles)
 : comboDimension(NULL), comboFecha(NULL), comboHecho(NULL),
   entryExtra(NULL),
   botonEliminar(NULL),
-  ID(_ID) {
+  ID(_ID),
+  camposDisponibles(_camposDisponibles) {
 
 }
 
@@ -38,11 +40,21 @@ unsigned FiltradorConfigModelo::getID() const {
     return ID;
 }
 
+void FiltradorConfigModelo::actualizarCampos(const Glib::ustring& remover,
+                                             const Glib::ustring& agregar) {
+    if (remover != "" && remover != campoSeleccNuevo)
+        comboDimension->remove_text(remover);
+    if (agregar != "" && agregar != campoSelecc)
+        comboDimension->insert_text(Organizacion::indiceDeCampo(agregar),
+                                    agregar);
+}
+
 void FiltradorConfigModelo::setComboDimension(Gtk::ComboBoxText* comboDim) {
     comboDimension = comboDim;
     comboDimension->clear_items();
-    for (unsigned i = 0; i < Organizacion::cantidadCampos(); ++i)
-        comboDimension->append_text(Organizacion::nombreCampo(i));
+    std::list< std::string >::const_iterator it = camposDisponibles.begin();
+    for ( ; it != camposDisponibles.end(); ++it)
+        comboDimension->append_text(*it);
 
     comboDimension->signal_changed().connect(sigc::mem_fun(*this,
         &FiltradorConfigModelo::on_combo_dimension_changed));
@@ -90,11 +102,17 @@ sigc::signal< void, unsigned > FiltradorConfigModelo::signal_delete_filtrador() 
     return _signal_delete_filtrador;
 }
 
+sigc::signal< void, Glib::ustring, Glib::ustring >
+    FiltradorConfigModelo::signal_campo_changed() {
+    return _signal_campo_changed;
+}
+
 void FiltradorConfigModelo::on_combo_aux_changed(Gtk::ComboBoxText* pCombo) {
     _campoAux = pCombo->get_active_text();
 }
 
 void FiltradorConfigModelo::on_boton_eliminar_clicked() {
+    _signal_campo_changed.emit(campoSelecc, "");
     _signal_delete_filtrador.emit(ID);
 }
 
@@ -115,7 +133,7 @@ NodoXml FiltradorConfigModelo::serializar() {
 void FiltradorConfigModelo::deserializar(const NodoXml& nodo) {
 
 	if (nodo.Attribute(ATR_CAMPO)) {
-		campoSelecc = nodo.Attribute(ATR_CAMPO);
+		campoSeleccNuevo = nodo.Attribute(ATR_CAMPO);
 	}
 	else {
 		throw ErrorSerializacionXML();

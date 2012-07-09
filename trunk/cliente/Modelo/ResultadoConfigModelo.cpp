@@ -4,8 +4,9 @@
 #include "ExcepcionTabSoloAdmiteInputs.h"
 #include "FiltradoresPanel.h"
 
-ResultadoConfigModelo::ResultadoConfigModelo(unsigned _ID)
-: FiltradorConfigModelo(_ID) {}
+ResultadoConfigModelo::ResultadoConfigModelo(unsigned _ID,
+    const std::list< std::string >& _camposDisponibles)
+: FiltradorConfigModelo(_ID, _camposDisponibles) {}
 
 ResultadoConfigModelo::~ResultadoConfigModelo() {}
 
@@ -35,7 +36,9 @@ void ResultadoConfigModelo::setComboHecho(Gtk::ComboBoxText* _comboHecho) {
 }
 
 void ResultadoConfigModelo::on_combo_dimension_changed() {
-    campoSelecc = comboDimension->get_active_text();
+    campoSeleccNuevo = comboDimension->get_active_text();
+    signal_campo_changed().emit(campoSelecc, campoSeleccNuevo);
+    campoSelecc = campoSeleccNuevo;
 
     if (Organizacion::esDimensionEspecial(campoSelecc)) {
         comboFecha->show();
@@ -55,9 +58,9 @@ void ResultadoConfigModelo::on_combo_dimension_changed() {
 }
 
 void ResultadoConfigModelo::completarAtributos() {
-	if (Organizacion::esHecho(campoSelecc)) {
+	if (Organizacion::esHecho(campoSeleccNuevo)) {
 		comboHecho->set_active_text(_campoAux);
 	}
 
-	comboDimension->set_active_text(campoSelecc);
+	comboDimension->set_active_text(campoSeleccNuevo);
 }

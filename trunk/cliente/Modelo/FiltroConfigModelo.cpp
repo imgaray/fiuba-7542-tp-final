@@ -3,8 +3,9 @@
 #include "ExcepcionTabSoloAdmiteInputs.h"
 #include "FiltradoresPanel.h"
 
-FiltroConfigModelo::FiltroConfigModelo(unsigned _ID)
-: FiltradorConfigModelo(_ID) {}
+FiltroConfigModelo::FiltroConfigModelo(unsigned _ID,
+    const std::list< std::string >& _camposDisponibles)
+: FiltradorConfigModelo(_ID, _camposDisponibles) {}
 
 FiltroConfigModelo::~FiltroConfigModelo() {}
 
@@ -28,7 +29,9 @@ void FiltroConfigModelo::especializarVista() {
 }
 
 void FiltroConfigModelo::on_combo_dimension_changed() {
-    campoSelecc = comboDimension->get_active_text();
+    campoSeleccNuevo = comboDimension->get_active_text();
+    signal_campo_changed().emit(campoSelecc, campoSeleccNuevo);
+    campoSelecc = campoSeleccNuevo;
 
     if (Organizacion::esDimensionEspecial(campoSelecc)) {
         comboFecha->show();
@@ -53,12 +56,12 @@ void FiltroConfigModelo::on_entry_changed() {
 void FiltroConfigModelo::completarAtributos() {
 	entryPorCampo[campoSelecc] = _valorCampo;
 
-	if (Organizacion::esDimensionEspecial(campoSelecc)) {
+	if (Organizacion::esDimensionEspecial(campoSeleccNuevo)) {
 		comboFecha->set_active_text(_campoAux);
 	}
-	else if (Organizacion::esHecho(campoSelecc)) {
+	else if (Organizacion::esHecho(campoSeleccNuevo)) {
 		comboHecho->set_active_text(_campoAux);
 	}
 
-	comboDimension->set_active_text(campoSelecc);
+	comboDimension->set_active_text(campoSeleccNuevo);
 }

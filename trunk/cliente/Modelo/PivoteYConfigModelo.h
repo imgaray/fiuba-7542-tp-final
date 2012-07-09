@@ -5,7 +5,8 @@
 
 class PivoteYConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
-        PivoteYConfigModelo(unsigned ID);
+        PivoteYConfigModelo(unsigned ID,
+                        const std::list< std::string >& _camposDisponibles);
         ~PivoteYConfigModelo();
 
         void setFiltradorEn(FiltradoresTab* filtTab);

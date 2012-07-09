@@ -5,7 +5,8 @@
 
 class FiltradorSoloDimensionConfigModelo : public FiltradorConfigModelo {
     public:
-        FiltradorSoloDimensionConfigModelo(unsigned ID);
+        FiltradorSoloDimensionConfigModelo(unsigned ID,
+                        const std::list< std::string >& _camposDisponibles);
         ~FiltradorSoloDimensionConfigModelo();
 
     protected:

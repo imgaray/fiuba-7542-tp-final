@@ -15,7 +15,7 @@ class AdminConfigObjManager;
 class TabAdminConfigConsultas : public TabAdminConfig {
     public:
         /**
-         * @brief constructor requerido para construir con Gtk::Builder
+         * @brief Constructor requerido para construir con Gtk::Builder..
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */

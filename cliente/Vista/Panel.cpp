@@ -17,14 +17,14 @@ Panel::~Panel() {}
 
 void Panel::setContenido(Grafico& g) {
     consultante = &g;
-    box.pack_start(g.getFiltrador(), false, false);
+    box.pack_start(*(g.getFiltrador()), false, false);
     pViewport->add(g);
     box.add(scrWin);
 }
 
 void Panel::setContenido(Tabla& t) {
     consultante = &t;
-    box.pack_start(t.getFiltrador(), false, false);
+    box.pack_start(*(t.getFiltrador()), false, false);
     pViewport->add(t);
     box.add(scrWin);
 }

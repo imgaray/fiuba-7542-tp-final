@@ -13,7 +13,7 @@
 #define CANT_PUNTOS_EJE 10
 #define ANCHO_REF_EJE   0.02
 
-GraficoDeBarras::GraficoDeBarras(FiltradoresPanel& _f) : Grafico(_f) {
+GraficoDeBarras::GraficoDeBarras(FiltradoresPanel* _f) : Grafico(_f) {
     normalizacion = -DBL_MAX;
 }
 

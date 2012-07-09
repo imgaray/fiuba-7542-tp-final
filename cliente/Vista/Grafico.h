@@ -15,13 +15,9 @@ class FiltradoresPanel;
 
 class Grafico : public Gtk::DrawingArea, public Consultante {
     public:
-        Grafico(FiltradoresPanel& f);
+        Grafico(FiltradoresPanel* f);
         virtual ~Grafico();
 
-        virtual void hacerConsulta(ServidorRemoto& server);
-
-        void actualizarTamanioMinimo(double x, double y);
-        FiltradoresPanel& getFiltrador() const;
     protected:
         std::list< Area* > areas;
         double normalizacion;
@@ -54,9 +50,9 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         void resize();
 
         /** modelo */
-        FiltradoresPanel& f;
         void procesarRespuesta(const Respuesta& rta);
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
+        void actualizarTamanioMinimo(double x, double y);
         Gtk::Spinner s;
 };
 #endif  // GRAFICO_H

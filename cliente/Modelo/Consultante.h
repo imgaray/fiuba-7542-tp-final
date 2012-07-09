@@ -9,10 +9,12 @@ class Respuesta;
 class ServidorRemoto;
 class PadreDeConsultantes;
 class Tab;
+class FiltradoresPanel;
 
 class Consultante {
     public:
         Consultante();
+        Consultante(FiltradoresPanel* f);
         ~Consultante();
 
         virtual void hacerConsulta(ServidorRemoto& server);
@@ -20,6 +22,8 @@ class Consultante {
         virtual void recibirRespuesta(const Respuesta& rta);
 
         virtual unsigned getID() const;
+
+        FiltradoresPanel* getFiltrador() const;
 
         void setSpinner(Gtk::Spinner* s);
         void setPadre(Tab* padre);
@@ -33,6 +37,7 @@ class Consultante {
         void detenerSpinner();
     private:
         VerificadorConsultasH verificador;
+        FiltradoresPanel* f;
         static unsigned generadorID;
         unsigned ID;
         bool esperandoRespuesta;

@@ -4,10 +4,17 @@
 #include "Consulta.h"
 #include "ServidorRemoto.h"
 #include "Tab.h"
+#include "FiltradoresPanel.h"
 
 unsigned Consultante::generadorID = 0;
 
-Consultante::Consultante() {
+Consultante::Consultante() : f(NULL){
+    ID = generadorID++;
+    esperandoRespuesta = false;
+    consulta.definirID(ID);
+}
+
+Consultante::Consultante(FiltradoresPanel* _f) : f(_f){
     ID = generadorID++;
     esperandoRespuesta = false;
     consulta.definirID(ID);
@@ -20,6 +27,10 @@ void Consultante::setPadre(Tab* _padre) {
 }
 
 void Consultante::hacerConsulta(ServidorRemoto& server) {
+    consulta.limpiar();
+    if (f)
+        f->filtrar(consulta);
+
     cancelarConsulta(server);
 
     esperandoRespuesta = true;
@@ -48,6 +59,10 @@ void Consultante::recibirRespuesta(const Respuesta& rta) {
 
 unsigned Consultante::getID() const {
     return ID;
+}
+
+FiltradoresPanel* Consultante::getFiltrador() const {
+    return f;
 }
 
 void Consultante::on_navegabilidad_seleccionada() {

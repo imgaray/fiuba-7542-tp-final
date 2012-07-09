@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 
-TablaComun::TablaComun(FiltradoresPanel& filtradores) : Tabla(filtradores) {
+TablaComun::TablaComun(FiltradoresPanel* filtradores) : Tabla(filtradores) {
 
 	this->signal_row_activated().connect(sigc::mem_fun(*this,
 	        &TablaComun::fila_activada));

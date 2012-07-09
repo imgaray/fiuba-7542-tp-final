@@ -14,7 +14,7 @@
 
 class TablaComun : public Tabla {
 public:
-	TablaComun(FiltradoresPanel& filtradores);
+	TablaComun(FiltradoresPanel* filtradores);
 	virtual ~TablaComun();
 
 protected:

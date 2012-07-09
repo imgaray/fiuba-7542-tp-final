@@ -7,7 +7,7 @@
 #define Y_0     0.5
 #define RADIO   0.3
 
-GraficoDeTorta::GraficoDeTorta(FiltradoresPanel& _f) : Grafico(_f) {
+GraficoDeTorta::GraficoDeTorta(FiltradoresPanel* _f) : Grafico(_f) {
 }
 
 GraficoDeTorta::~GraficoDeTorta() {}

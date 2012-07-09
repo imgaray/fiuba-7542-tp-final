@@ -106,8 +106,6 @@ void Tab::informarFinCreacion() {
         puedeActualizar = true;
     if (filtrosConsultantes.size() == 0)
         pConsultantesActivos = &consultantes;
-    if (padre)
-        padre->signal_puede_actualizar().emit(puedeActualizar);
 }
 
 void Tab::agregarFiltroNavegable(FiltradorInput* f) {
@@ -138,4 +136,6 @@ void Tab::detenerSpinner() {
 
 void Tab::setPadre(VentanaClienteDinamica* _padre) {
     padre = _padre;
+    if (padre)
+        padre->signal_puede_actualizar().emit(puedeActualizar);
 }

@@ -12,12 +12,10 @@
 
 class TablaPivote : public Tabla {
 public:
-	TablaPivote(FiltradoresPanel& filtradores);
+	TablaPivote(FiltradoresPanel* filtradores);
 	virtual ~TablaPivote();
-
-	void hacerConsulta(ServidorRemoto& server);
 protected:
-	virtual void procesarRespuesta(const Respuesta& resp);
+	void procesarRespuesta(const Respuesta& resp);
 
 	void agregarFila(int numFila, const Respuesta& resp);
 	void agregarColumnas();

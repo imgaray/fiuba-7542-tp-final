@@ -9,20 +9,12 @@
 #include "Respuesta.h"
 #include "Consulta.h"
 
-TablaPivote::TablaPivote(FiltradoresPanel& filtradores) : Tabla(filtradores) {
+TablaPivote::TablaPivote(FiltradoresPanel* filtradores) : Tabla(filtradores) {
 
 }
 
 TablaPivote::~TablaPivote() {
 
-}
-
-void TablaPivote::hacerConsulta(ServidorRemoto& server) {
-//    Consulta& c = getConsulta();
-    consulta.limpiar();
-    consulta.definirConsultaDeTablaPivote();
-    _filtradores.filtrar(consulta);
-    Consultante::hacerConsulta(server);
 }
 
 void TablaPivote::procesarRespuesta(const Respuesta& rta) {

@@ -1,21 +1,24 @@
 #include "VentanaCliente.h"
 #include <iostream>
-#include <cstdlib>
 #include <gtkmm/builder.h>
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
+#include <gtkmm/imagemenuitem.h>
 #include "VentanaClienteDinamica.h"
 #include "DialogoAutentif.h"
 #include "VentanaAdminConfiguracion.h"
 #include "ExcepcionConsultanteNoExiste.h"
 #include "Consultante.h"
 
-#define TIMEOUT 20000
-#define TIMEOUT_IDLE 100
+#define TIMEOUT_RETIRAR_RESPUESTAS 100
 
+// ventanas
 #define V_DINAMICA "VentanaDinamica"
 #define AUTENTIF_ADMIN "AutentificacionAdmin"
 #define CONFIG_ADMIN "ConfiguracionAdmin"
+#define ACERCA_DE "aboutdialog"
+
+// botones
 #define BOTON_ACTUALIZAR "HerramientaActualizar"
 #define BOTON_DETENER_ACTUALIZAR "HerramientaDetenerActualizar"
 #define BOTON_EXPORTAR_PDF "HerramientaExportarPDF"
@@ -23,22 +26,37 @@
 #define BOTON_SALIR "HerramientaSalir"
 #define BOTON_CONECTAR "HerramientaConectar"
 
+// menú
+#define MENU_SALIR "menuSalir"
+#define MENU_CONFIGURAR "menuConfigurar"
+#define MENU_ACERCA_DE "menuAcercaDe"
+
 VentanaCliente::VentanaCliente(BaseObjectType* cobject,
             const Glib::RefPtr< Gtk::Builder >& _builder)
 : Gtk::Window(cobject), Buildable(_builder) {
-    srand(time(NULL));
+    initVentanas();
+    initBotones();
+    initBarraDeMenu();
+}
 
+VentanaCliente::~VentanaCliente() {
+    delete pDAutentifAdmin;
+    delete pVAdminConfig;
+}
+
+void VentanaCliente::initVentanas() {
     get_widget_derived(V_DINAMICA, pVDinamica);
-
     get_widget_derived(AUTENTIF_ADMIN, pDAutentifAdmin);
-
     get_widget_derived(CONFIG_ADMIN, pVAdminConfig);
+    get_widget(ACERCA_DE, pDAbout);
 
     pVDinamica->signal_puede_actualizar().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_puede_actualizar));
     pVDinamica->signal_actualizacion().connect(sigc::mem_fun(*this,
         &VentanaCliente::on_actualizacion_solicitada));
+}
 
+void VentanaCliente::initBotones() {
     Gtk::ToolButton* pAux;
 
     get_widget(BOTON_CONECTAR, pAux);
@@ -72,9 +90,20 @@ VentanaCliente::VentanaCliente(BaseObjectType* cobject,
         &VentanaCliente::on_salir_button_clicked));
 }
 
-VentanaCliente::~VentanaCliente() {
-    delete pDAutentifAdmin;
-    delete pVAdminConfig;
+void VentanaCliente::initBarraDeMenu() {
+    Gtk::ImageMenuItem* pAux;
+
+    get_widget(MENU_SALIR, pAux);
+    pAux->signal_activate().connect(sigc::mem_fun(*this,
+        &VentanaCliente::on_salir_button_clicked));
+
+    get_widget(MENU_CONFIGURAR, pAux);
+    pAux->signal_activate().connect(sigc::mem_fun(*this,
+        &VentanaCliente::on_configurar_button_clicked));
+
+    get_widget(MENU_ACERCA_DE, pAux);
+    pAux->signal_activate().connect(sigc::mem_fun(*this,
+        &VentanaCliente::on_acerca_de_button_clicked));
 }
 
 void VentanaCliente::personalizar(const char* archivo) {
@@ -104,9 +133,7 @@ void VentanaCliente::on_conectar_button_clicked() {
         botones[BOTON_DETENER_ACTUALIZAR]->set_sensitive(true);
 
         Glib::signal_timeout().connect(sigc::mem_fun(*this,
-                    &VentanaCliente::on_timeout), TIMEOUT);
-        connOnIdle = Glib::signal_idle().connect(sigc::mem_fun(*this,
-                    &VentanaCliente::on_idle));
+                    &VentanaCliente::on_timeout), TIMEOUT_RETIRAR_RESPUESTAS);
     }
     catch (const char* msj) {
         Gtk::MessageDialog dialog(*this,
@@ -144,21 +171,11 @@ void VentanaCliente::on_salir_button_clicked() {
     hide();
 }
 
+void VentanaCliente::on_acerca_de_button_clicked() {
+    pDAbout->run();
+}
+
 bool VentanaCliente::on_timeout() {
-    return true;
-}
-
-bool VentanaCliente::on_idle() {
     pVDinamica->retirarRespuestas(server);
-    connOnIdle.disconnect();
-    Glib::signal_timeout().connect_once(sigc::mem_fun(*this,
-                &VentanaCliente::on_timeout_idle), TIMEOUT_IDLE);
-
     return true;
-}
-
-void VentanaCliente::on_timeout_idle() {
-
-        connOnIdle = Glib::signal_idle().connect(sigc::mem_fun(*this,
-                    &VentanaCliente::on_idle));
 }

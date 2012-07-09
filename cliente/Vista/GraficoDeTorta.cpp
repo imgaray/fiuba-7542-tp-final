@@ -39,6 +39,9 @@ void GraficoDeTorta::hallarNormalizacion(const std::list< Hecho >& datos) {
         normalizacion += itDatos->getValor();
 }
 
+void GraficoDeTorta::dibujarEspecializacion(GdkEventExpose* ev,
+                        Cairo::RefPtr< Cairo::Context >& ctx) {}
+
 void GraficoDeTorta::dibujarEspecializacionReferencias(
         Cairo::RefPtr< Cairo::Context >& ctx) {
     ctx->move_to(0.75, 0.1);

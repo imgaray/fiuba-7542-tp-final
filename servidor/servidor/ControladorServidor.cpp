@@ -69,7 +69,7 @@ void ControladorServidor::agregarCliente(ClienteRemoto* rem) {
 
 void ControladorServidor::detener() {
 	m.lock();
-	// detengo las entradas
+	// detengo las entradas y las sincronizo
 	tclientes->detener_entrada();
 	tagentes->detener_entrada();
 	tclientes->sincronizar();
@@ -88,6 +88,7 @@ void ControladorServidor::detener() {
 		AgenteRemoto* arem = *iter_agentes;
 		arem->detener_agente();
 	}
+	// espero a que se resuelvan las ultimas consultas
 	while (nact || ncons)
 		m.wait();
 	// desconecto los clientes y los sincronizo

@@ -27,9 +27,9 @@ install_cliente:
 	$(MSJ_ESP);cp -f cliente/main apCliente 
 	$(MSJ_ESP);cp -f cliente/*.conf apCliente 
 	$(MSJ_ESP);cp -f cliente/*.config apCliente 
-	$(MSJ_ESP);mkdir apCliente/Vista 
-	$(MSJ_ESP);cp -f cliente/Vista/*.glade apCliente/Vista
-	$(MSJ_ESP);cp -f cliente/*.xml apCliente 
+	$(MSJ_ESP);cp -f cliente/*.glade apCliente
+	$(MSJ_ESP);cp -f cliente/*.xml apCliente
+	$(MSJ_ESP);cp -f cliente/*.png apCliente 
 	
 
 install_servidor:
@@ -62,9 +62,9 @@ debug:
 	cd cliente; make DEBUG=yes 
 	cp -f cliente/main DEBUG_RELEASE/cliente 
 	cp -f cliente/*.conf DEBUG_RELEASE/cliente 
-	cp -f cliente/*.config DEBUG_RELEASE/cliente 
-	mkdir DEBUG_RELEASE/cliente/Vista 
-	cp -f cliente/Vista/*.glade DEBUG_RELEASE/cliente/Vista
+	cp -f cliente/*.config DEBUG_RELEASE/cliente
+	cp -f cliente/*.glade DEBUG_RELEASE/cliente
+	cp -f cliente/*.png DEBUG_RELEASE/cliente
 	cp -f cliente/*.xml DEBUG_RELEASE/cliente 
 	
 	 	
@@ -74,6 +74,7 @@ uninstall:
 	$(MSJ_ESP);rm -f -r apServidor
 	$(MSJ_ESP);rm -f -r apAgente
 	$(MSJ_ESP);rm -f -r docs
+	$(MSJ_ESP);rm -f -r DEBUG_RELEASE
 
 
 .PHONY: all install	install_agente install_cliente install_servidor	uninstall debug doc

@@ -32,6 +32,5 @@ ThreadEntradaClientes::ThreadEntradaClientes(ContenedorClientes& ccli,
 
 ThreadEntradaClientes::~ThreadEntradaClientes() {
 	detener_entrada();
-	if (entradaClientes)
-		delete entradaClientes;
+	delete entradaClientes;
 }

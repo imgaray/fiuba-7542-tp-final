@@ -69,7 +69,7 @@ void Agente::cargarDesdeConsola() {
 
 	std::cout << ":::CARGA DE CAMPOS DESDE CONSOLA:::" << std::endl;
 
-	while (seguirCargando) {
+	while (seguirCargando && _sck->conectado()) {
 		cons.limpiar();
         cons.definirComoConsultaAgente();
 		for (unsigned i = 0; i < Organizacion::cantidadCampos() ; i++) {
@@ -100,7 +100,7 @@ void Agente::cargarDesdeArchivo(const std::string& rutaDatos) {
 	std::string campo;
 	Utilitario util;
 
-	while (archivo.good()) {
+	while (archivo.good() && _sck->conectado()) {
 		cons.limpiar();
 		cons.definirComoConsultaAgente();
 

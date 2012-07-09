@@ -18,6 +18,9 @@ int main(int argc, char* argv[]) {
     catch (char const* _msj) {
         msj = _msj;
     }
+    catch (...) {
+    	msj = "Consulta Mal Formada";
+    }
 
     if (msj != SIN_ERRORES) {
         msj += "\n\nContáctese con el administrador.";

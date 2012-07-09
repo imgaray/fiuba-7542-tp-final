@@ -44,28 +44,41 @@ bool obtenerPuerto(std::string& puerto) {
 }
 
 int configurar() {
+	std::string ruta = RUTACONFIGSERV;
+	ArchivoConfiguracion arch(ruta.c_str());
+	std::string atr_puerto_agente = PUERTOAGENTE;
+	std::string atr_puerto_cliente = PUERTOCLIENTE;
+
+
 	std::string puerto_agente;
+	std::cout << "Puerto de Agente actual: ";
+	std::cout << arch.obtenerAtributo(atr_puerto_agente) << std::endl;
 	std::cout << "1) ingrese el puerto del agente: ";
 	if (!obtenerPuerto(puerto_agente)) {
 		std::cout << "No se configuraron los puertos." << std::endl;
 		return 2;
 	}
+
 	std::string puerto_cliente;
+	std::cout << std::endl << "Puerto de Cliente actual: ";
+	std::cout << arch.obtenerAtributo(atr_puerto_cliente) << std::endl;
 	std::cout << "2) ingrese el puerto del cliente: ";
 	if (!obtenerPuerto(puerto_cliente)) {
 		std::cout << "No se configuraron los puertos." << std::endl;
 		return 2;
 	}
+
 	if (puerto_cliente == puerto_agente) {
 		std::cout << "No se puede asignar el mismo puerto para entradas." << std::endl;
 		return 2;
 	}
-	std::string ruta = RUTACONFIGSERV;
-	ArchivoConfiguracion arch(ruta.c_str());
-	std::string atr_puerto_agente = PUERTOAGENTE;
-	std::string atr_puerto_cliente = PUERTOCLIENTE;
-	arch.setearAtributo(atr_puerto_agente, puerto_agente);
-	arch.setearAtributo(atr_puerto_cliente, puerto_cliente);
+
+	if (puerto_agente.empty() == false)
+		arch.setearAtributo(atr_puerto_agente, puerto_agente);
+
+	if (puerto_cliente.empty() == false)
+		arch.setearAtributo(atr_puerto_cliente, puerto_cliente);
+
 	std::cout << "Configuracion realizada correctamente." << std::endl;
 	return 0;
 }

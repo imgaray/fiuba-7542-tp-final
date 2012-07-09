@@ -37,21 +37,34 @@ bool obtenerPuerto(std::string& puerto) {
 }
 
 int configurar() {
+	std::string atr_puerto = PUERTO_AGENTE_ATR;
+	std::string atr_nombre = HOST_AGENTE_ATR;
+	std::string ruta = RUTA_CONFIG;
+	ArchivoConfiguracion arch(ruta.c_str());
+
 	std::string puerto;
+	std::cout << "Puerto Actual: ";
+	std::cout << arch.obtenerAtributo(atr_puerto);
+	std::cout << std::endl;
 	std::cout << "1) ingrese el puerto del host: ";
 	if (!obtenerPuerto(puerto)) {
 		std::cout << "No se configuro el agente." << std::endl;
 		return 2;
 	}
+
 	std::string nombre_host;
+	std::cout << std::endl << "Huesped Actual: \""<<  arch.obtenerAtributo(atr_nombre);
+	std::cout << "\"" << std::endl;
 	std::cout << "2) ingrese el nombre del host: ";
 	std::getline(std::cin, nombre_host);
-	std::string ruta = RUTA_CONFIG;
-	ArchivoConfiguracion arch(ruta.c_str());
-	std::string atr_puerto = PUERTO_AGENTE_ATR;
-	std::string atr_nombre = HOST_AGENTE_ATR;
-	arch.setearAtributo(atr_puerto, puerto);
-	arch.setearAtributo(atr_nombre, nombre_host);
+
+
+	if (puerto.empty() == false)
+		arch.setearAtributo(atr_puerto, puerto);
+
+	if (nombre_host.empty() == false)
+		arch.setearAtributo(atr_nombre, nombre_host);
+
 	std::cout << "Configuracion realizada correctamente." << std::endl;
 	return 0;
 }

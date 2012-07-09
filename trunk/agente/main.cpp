@@ -42,6 +42,8 @@ int configurar() {
 	std::string ruta = RUTA_CONFIG;
 	ArchivoConfiguracion arch(ruta.c_str());
 
+	std::cout << "::::::Modo Configuracion::::::" << std::endl;
+
 	std::string puerto;
 	std::cout << "Puerto Actual: ";
 	std::cout << arch.obtenerAtributo(atr_puerto);

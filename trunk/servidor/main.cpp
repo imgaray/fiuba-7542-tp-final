@@ -49,6 +49,7 @@ int configurar() {
 	std::string atr_puerto_agente = PUERTOAGENTE;
 	std::string atr_puerto_cliente = PUERTOCLIENTE;
 
+	std::cout << "::::::Modo Configuracion::::::" << std::endl;
 
 	std::string puerto_agente;
 	std::cout << "Puerto de Agente actual: ";

@@ -55,10 +55,10 @@ subdirs:
 	done
 	
 Agente.o: Agente.h Agente.cpp
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) -c Agente.cpp
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) -c Agente.cpp
 	
 main: subdirs Agente.o
-	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) Agente.h Agente.cpp main.cpp -o main
+	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) Agente.o main.cpp -o main
 
 test: subdirs
 	$(CC) $(CXXFLAGS) $(I-SUBDIRS) $(EXTERNOBJS) test.cpp -o test

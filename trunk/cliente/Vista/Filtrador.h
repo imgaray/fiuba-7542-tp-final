@@ -7,6 +7,12 @@
 
 class Consulta;
 
+/** @class Filtrador
+ * Clase abstracta que representa tanto un constructor de consulta como la
+ * vista del mismo. Un constructor de consulta es, como se ve en las clases
+ * que heredan de esta, un filtro, un input, un resultado y un elemento de
+ * X e Y para la tabla pivot.
+ */
 class Filtrador : public Gtk::HBox {
     public:
         Filtrador(const Glib::ustring& filtro);

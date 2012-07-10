@@ -7,6 +7,15 @@ class Tab;
 class VentanaClienteDinamica;
 class AdminConfigObjManager;
 
+/** @class Personalizador
+ * Clase intermedia entre el conjunto de objetos de configuración
+ * (AdminConfigObjManager) y la VentanaClienteDinamica.
+ *
+ * Además de presentarle una interfaz limpia de estilo STL-container,
+ * se encarga de la memoria reservada del heap de las configuraciones
+ * anteriores, deprecadas, para eliminarlas todas juntas al cierre de la
+ * aplicación.
+ */
 class Personalizador {
     public:
         Personalizador();

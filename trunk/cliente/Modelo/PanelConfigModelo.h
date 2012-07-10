@@ -12,6 +12,14 @@ class FiltradorConfigManager;
 class Panel;
 class FiltradoresPanel;
 
+/** @class PanelConfigModelo
+ * Clase concreta que modela la configuración de un panel.
+ *
+ * Un método importante que posee es Panel* concretarConfig(), dado que
+ * mediante este se generan los entes mismos de la aplicación, capaces
+ * de mostrar los filtradores aplicados, hacer consultas y representar
+ * gráficamente respuestas.
+ */
 class PanelConfigModelo : public ConfigModelo {
     public:
         PanelConfigModelo();
@@ -43,7 +51,7 @@ class PanelConfigModelo : public ConfigModelo {
         virtual void deserializar(const NodoXml& nodo);
 
     private:
-        /** modelo mismo */
+        /* modelo mismo */
         int desdeFila, hastaFila;
         int desdeCol, hastaCol;
         bool posicionValida, posicionesDeserializadas;
@@ -55,11 +63,11 @@ class PanelConfigModelo : public ConfigModelo {
 
         int indice_tipoGrafico;
         static Glib::ustring tiposGrafico[];
-        /** señales propias */
+        /* señales propias */
         sigc::signal< void, PanelConfigModelo*, int, int, int, int > _signal_posicion_changed;
 
         void desconectarDeHijo();
-        /** conexiones a las señales de la vista */
+        /* conexiones a las señales de la vista */
         sigc::connection connectionLabelPosicion;
         sigc::connection connectionSpinButtonDesdeFila;
         sigc::connection connectionSpinButtonHastaFila;
@@ -70,13 +78,39 @@ class PanelConfigModelo : public ConfigModelo {
         void desbloquearConnectionPosicion();
 
 
-        /** signal handlers*/
+        /* signal handlers*/
+
+        /**
+         * Signal handler para el cambio en la opción seleccionada en el
+         * combobox de campo.
+         *
+         * Consigue de los Gtk::SpinButtons los cuatro nuevos valores que
+         * definen su posición. Los arregla dentro de lo que puede ver el
+         * método, por ejemplo, si la selección del admin genera:
+         * @code{.cpp}
+         * desdeFila = 1;
+         * hastaFila = 1;
+         * @endcode
+         * entonces se aumenta en uno @code{.cpp} hastaFila @endcode
+         * Finalmente, emite la señal _signal_posicion_changed, solicitando
+         * validación por parte de la grilla.
+         *
+         */
         void on_spinbuttons_posicion_changed();
+
+        /**
+         * Signal handler para el cambio en la opción seleccionada en el
+         * combobox de tipo de gráfico.
+         *
+         * Almacena en indice_tipoGrafico el valor de la selección actual y
+         * verifica si es o no PIVOTE para mostrar o no sus opciones
+         * específicas.
+         */
         void on_combobox_tipo_grafico_changed();
 
 
 
-        /** referencias a la vista */
+        /* referencias a la vista */
         Gtk::Label* pLabelPosicion;
         Gtk::SpinButton* pSpinButtonDesdeFila;
         Gtk::SpinButton* pSpinButtonHastaFila;

@@ -107,22 +107,17 @@ void TabConfigModelo::setObjManagerPanel(Gtk::ComboBoxText* cbtext,
             &TabConfigModelo::on_panel_model_saved));
         panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
             &TabConfigModelo::on_panel_model_deleted));
-    } else {
+    } else
         panelManager->reconectar();
-    }
 }
 
 void TabConfigModelo::setInputsHandlers(const filtradoresHandlers& handlers) {
-    if (!inputsManager) {
+    if (!inputsManager)
         inputsManager = new FiltradorConfigManager(FILT_INPUT, handlers);
-//        panelManager->signal_model_deleted().connect(sigc::mem_fun(*this,
-//            &TabConfigModelo::on_panel_model_deleted));
-    } else {
+    else
         inputsManager->reconectar();
-    }
 }
 
-#include <iostream>
 void TabConfigModelo::desconectarDeHijo() {
     if (panelManager)
         panelManager->desconectar();
@@ -135,8 +130,6 @@ void TabConfigModelo::desconectarDeHijo() {
 }
 
 void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
-//    imprimirGrilla();
-
     int desdeFila, hastaFila;
     int desdeCol, hastaCol;
     pModelo->getPosicion(desdeFila, hastaFila, desdeCol, hastaCol);
@@ -148,19 +141,13 @@ void TabConfigModelo::ocuparGrilla(PanelConfigModelo* pModelo) {
     for (int i = desdeFila; i < hastaFila; ++i)
         for (int j = desdeCol; j < hastaCol; ++j)
             ocupacionesGrilla[i][j] = pModelo;
-
-//    imprimirGrilla();
 }
 
 void TabConfigModelo::desocuparGrilla(PanelConfigModelo* pModelo) {
-//    imprimirGrilla();
-
     for (int i = 0; i < filas; ++i)
         for (int j = 0; j < cols; ++j)
             if (ocupacionesGrilla[i][j] == pModelo)
                 ocupacionesGrilla[i][j] = NULL;
-
-//    imprimirGrilla();
 }
 
 void TabConfigModelo::on_panel_model_changed(ConfigModelo* m) {
@@ -177,7 +164,6 @@ void TabConfigModelo::on_panel_model_changed(ConfigModelo* m) {
 }
 
 void TabConfigModelo::on_panel_model_saved(ConfigModelo* m) {
-//    std::cout << "TabConfigModelo ( " << this << " ) recibida la señal de modelo nuevo ";
     PanelConfigModelo* mPanel = dynamic_cast< PanelConfigModelo* >(m);
     if (mPanel) {
         desocuparGrilla(mPanel);
@@ -231,19 +217,6 @@ void TabConfigModelo::on_panel_solicita_validacion(PanelConfigModelo* pPanel,
                                                    int hastaFila,
                                                    int desdeCol,
                                                    int hastaCol) {
-//
-//    for (int ii = 0; ii < filas; ++ii) {
-//        for (int ji = 0; ji < cols; ++ji)
-//            if (ocupacionesGrilla[ii][ji])
-//                if (ocupacionesGrilla[ii][ji] == pPanel)
-//                    std::cout << "=";
-//                else
-//                    std::cout << "!";
-//            else
-//                std::cout << ".";
-//        std::cout << std::endl;
-//    }
-
     bool ocupado = hastaFila > filas || hastaCol > cols;
     int i = desdeFila;
     int j = desdeCol;
@@ -256,37 +229,7 @@ void TabConfigModelo::on_panel_solicita_validacion(PanelConfigModelo* pPanel,
         j = desdeCol;
         ++i;
     }
-
-//    if (!ocupado)
-//        for (i = desdeFila; i < hastaFila; ++i)
-//            for (j = desdeCol; j < hastaCol; ++j)
-//                ocupacionesGrilla[i][j] = pPanel;
-
-//    std::cout << "Nuevo estado de la grilla: " << std::endl;
-//    for (int ii = 0; ii < filas; ++ii) {
-//        for (int ji = 0; ji < cols; ++ji)
-//            if (ocupacionesGrilla[ii][ji])
-//                if (ocupacionesGrilla[ii][ji] == pPanel)
-//                    std::cout << "=";
-//                else
-//                    std::cout << "!";
-//            else
-//                std::cout << ".";
-//        std::cout << std::endl;
-//    }
     pModeloPanel->setPosicionNuevaComoValida(!ocupado);
-}
-
-void TabConfigModelo::imprimirGrilla() {
-    std::cout << "Estado de la grilla" << std::endl;
-    for (int i = 0; i < filas; ++i) {
-        for (int j = 0; j < cols; ++j)
-            if (ocupacionesGrilla[i][j])
-                std::cout << "x";
-            else
-                std::cout << ".";
-        std::cout << std::endl;
-    }
 }
 
 NodoXml TabConfigModelo::serializar() {

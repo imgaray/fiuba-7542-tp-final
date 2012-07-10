@@ -3,6 +3,9 @@
 
 #include "FiltradorFiltro.h"
 
+/** @class FiltradorFiltroFecha
+ * Filtro de tipo fecha.
+ */
 class FiltradorFiltroFecha : public FiltradorFiltro {
     public:
         FiltradorFiltroFecha(const Glib::ustring& fecha,

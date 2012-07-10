@@ -4,6 +4,9 @@
 #include "FiltradorResultado.h"
 #include "Definiciones.h"
 
+/** @class FiltradorResultadoHecho
+ * Resultado de tipo hecho.
+ */
 class FiltradorResultadoHecho : public FiltradorResultado {
     public:
         FiltradorResultadoHecho(const Glib::ustring& hecho,

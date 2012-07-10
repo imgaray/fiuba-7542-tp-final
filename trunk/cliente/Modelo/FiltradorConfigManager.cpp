@@ -98,7 +98,7 @@ FiltradorConfigModelo* FiltradorConfigManager::new_filtrador() {
         default: return NULL;
     }
 }
-#include <iostream>
+
 void FiltradorConfigManager::on_agregar_button_clicked() {
     // crear el par vista/modelo
     FiltradorConfigModelo* filtModelo = new_filtrador();

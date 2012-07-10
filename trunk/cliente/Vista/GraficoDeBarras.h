@@ -3,6 +3,9 @@
 
 #include "Grafico.h"
 
+/** @class GraficoDeBarras
+ * Consultante que muestra sus resultados como un gráfico de barras.
+ */
 class GraficoDeBarras : public Grafico {
     public:
         GraficoDeBarras(FiltradoresPanel* f);

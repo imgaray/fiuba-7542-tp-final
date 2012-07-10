@@ -6,31 +6,40 @@
 #include <gtkmm/aboutdialog.h>
 #include "../Modelo/ServidorRemoto.h"
 #include "Buildable.h"
+#include "gtkmm/misc.h"
 
 class VentanaClienteDinamica;
 class DialogoAutentif;
 class VentanaAdminConfiguracion;
 
+
+/** @class VentanaCliente
+ * Ventana principal de la aplicación.
+ *
+ * De aquí se conectan las señales principales que dan lugar a otras ventanas,
+ * y se muestran las consultas configuradas.
+ */
 class VentanaCliente : public Gtk::Window , public Buildable {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder..
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */
         VentanaCliente(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& builder);
         /**
-         * @brief Destructor. Libera explícitamente las ventanas top-level.
+         * Destructor. Libera explícitamente las ventanas top-level.
          */
         ~VentanaCliente();
 
         /**
-         * @brief Construye la parte dinámica y configurable de la aplicación.
+         * Construye la parte dinámica y configurable de la aplicación.
+         *
+         * Si el archivo no existe, lo crea y empieza con una configuración
+         * vacía.
          * @param archivo nombre del archivo con la configuración
          * @throw ErrorSerializacionXML
-         *
-         * Si el archivo no existe, lo crea y empieza con una configuración vacía.
          */
         void personalizar(const char* archivo);
     private:
@@ -43,29 +52,29 @@ class VentanaCliente : public Gtk::Window , public Buildable {
 
 
         /**
-         * @brief Inicializa los punteros a las ventanas y diálogos.
+         * Inicializa los punteros a las ventanas y diálogos.
          */
         void initVentanas();
 
         /**
-         * @brief Inicializa el mapa de botones y conecta sus señales.
+         * Inicializa el mapa de botones y conecta sus señales.
          */
         void initBotones();
 
         /**
-         * @brief Conecta las señales a los ítems de la barra de menú.
+         * Conecta las señales a los ítems de la barra de menú.
          */
         void initBarraDeMenu();
 
         /**
-         * @brief Signal handler para la solicitud explícita de actualización.
+         * Signal handler para la solicitud explícita de actualización.
          * @param c el consultante que solicitó ser actualizado.
          */
         void on_actualizacion_solicitada(Consultante* c);
 
 
         /**
-         * @brief Signal handler para el click sobre el botón "Conectar".
+         * Signal handler para el click sobre el botón "Conectar".
          *
          * Conecta al cliente al servidor, mostrando un mensaje de error si
          * no lo consigue
@@ -73,7 +82,7 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         void on_conectar_button_clicked();
 
         /**
-         * @brief Signal handler para el click sobre el botón "Actualizar".
+         * Signal handler para el click sobre el botón "Actualizar".
          *
          * Actualiza todas las consultas de la pestaña actual, excepto aquellas
          * no disponibles (alguna con input mal formado, por ejemplo).
@@ -81,14 +90,15 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         void on_actualizar_button_clicked();
 
         /**
-         * @brief Signal handler para el click sobre el botón "Detener actualización".
+         * Signal handler para el click sobre el botón "Detener actualización".
          *
-         * Cancela todas las actualizaciones en proceso para la tab seleccionada.
+         * Cancela todas las actualizaciones en proceso para la tab
+         * seleccionada.
          */
         void on_detenerActualizar_button_clicked();
 
         /**
-         * @brief Signal handler para el click sobre el botón "Configurar".
+         * Signal handler para el click sobre el botón "Configurar".
          *
          * Lanza un cuadro para ingresar la contraseña del administrador. Si
          * se la ingresa, abre la ventana de configuración de paneles.
@@ -97,14 +107,14 @@ class VentanaCliente : public Gtk::Window , public Buildable {
 
 
         /**
-         * @brief Signal handler para el click sobre el botón "Salir".
+         * Signal handler para el click sobre el botón "Salir".
          *
          * Cierra la aplicación.
          */
         void on_salir_button_clicked();
 
         /**
-         * @brief Signal handler para el click sobre el ítem de menú "Acerca de".
+         * Signal handler para el click sobre el ítem de menú "Acerca de".
          *
          * Lanza la ventana "Acerca de...".
          */
@@ -112,7 +122,8 @@ class VentanaCliente : public Gtk::Window , public Buildable {
 
 
         /**
-         * @brief Signal handler para un evento cíclico.
+         * Signal handler para un evento cíclico.
+         * @return true siempre, el manejo del evento termina acá.
          *
          * Procesa las respuestas que el servidor tenga disponibles.
          */

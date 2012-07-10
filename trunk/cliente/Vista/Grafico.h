@@ -13,6 +13,11 @@
 class Area;
 class FiltradoresPanel;
 
+/** @class Grafico
+ * Clase abstracta que comprende comportamiento común a un consultante que
+ * muestra sus resultados gráficamente. Limitado a dos columnas de resultados,
+ * el segundo necesariamente un hecho.
+ */
 class Grafico : public Gtk::DrawingArea, public Consultante {
     public:
         Grafico(FiltradoresPanel* f);
@@ -43,31 +48,33 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
 
 
         /**
-         * @brief Signal handler para el evento Gtk::Widget::signal_expose_event.
-         * @return true siempre, el manejo del evento termina acá.
+         * Signal handler para el evento Gtk::Widget::signal_expose_event.
          *
          * Regrafica todo el widget.
+         * @return true siempre, el manejo del evento termina acá.
          */
         bool on_expose_event(GdkEventExpose* ev);
 
         /**
-         * @brief Signal handler para el evento Gtk::Widget::signal_button_press_event.
-         * @return true siempre, el manejo del evento termina acá.
+         * Signal handler para el evento
+         * Gtk::Widget::signal_button_press_event.
          *
          * Sólo toma el click del botón izquierdo del mouse.
          * Si el área seleccionada es válida, inicializa la cascada de llamadas
          * (void Tab::difundirNavegacionSeleccionada(const Glib::ustring& ,
          * const Glib::ustring& )) para que se interprete la navegación.
+         * @return true siempre, el manejo del evento termina acá.
          */
         bool on_button_press_event(GdkEventButton* ev);
 
         /**
-         * @brief Signal handler para el evento Gtk::Widget::signal_motion_notify_event.
-         * @return true siempre, el manejo del evento termina acá.
+         * Signal handler para el evento
+         * Gtk::Widget::signal_motion_notify_event.
          *
          * Itera por las áreas hasta encontrar la seleccionada por el usuario,
          * que es aquella que se encuentra debajo del mouse. Si hubo cambios,
          * agrega un evento de redibujado a la cola de eventos.
+         * @return true siempre, el manejo del evento termina acá.
          */
         bool on_motion_notify_event(GdkEventMotion* ev);
         int ancho_ventana;
@@ -77,7 +84,7 @@ class Grafico : public Gtk::DrawingArea, public Consultante {
         double furthest_x, furthest_y;
         void resize();
 
-        /** modelo */
+        /* modelo */
         void procesarRespuesta(const Respuesta& rta);
         virtual void actualizarDatos(const std::list< Hecho >& datos) = 0;
         void actualizarTamanioMinimo(double x, double y);

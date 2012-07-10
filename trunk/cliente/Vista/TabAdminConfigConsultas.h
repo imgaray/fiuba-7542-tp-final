@@ -12,10 +12,13 @@ class ConfigModelo;
 class TabConfigVista;
 class AdminConfigObjManager;
 
+/** @class TabAdminConfigConsultas
+ * Pestaña del admin para configurar la vista del cliente (las consultas).
+ */
 class TabAdminConfigConsultas : public TabAdminConfig {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder..
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */
@@ -32,7 +35,7 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         Personalizador dynBuilder;
 
         /**
-         * @brief Signal handler para el click sobre el botón "Actualizar".
+         * Signal handler para el click sobre el botón "Actualizar".
          *
          * Actualiza todas las consultas de la pestaña actual, excepto aquellas
          * no disponibles (alguna con input mal formado, por ejemplo).

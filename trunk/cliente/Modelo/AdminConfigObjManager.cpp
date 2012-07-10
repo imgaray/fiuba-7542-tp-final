@@ -1,7 +1,6 @@
 #include "AdminConfigObjManager.h"
 #include "TabConfigModelo.h"
 #include "PanelConfigModelo.h"
-#include <iostream>
 
 #define NOMBRE_PANELES "Paneles"
 #define NOMBRE_TABS "Tabs"

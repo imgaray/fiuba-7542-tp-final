@@ -10,6 +10,23 @@
 class FiltradoresTab;
 class FiltradoresPanel;
 
+
+/** @class FiltradorConfigModelo
+ * Clase base para los modelos que están detrás de las vistas de configuración
+ * de filtradores.
+ *
+ * Es identificable por un número, pero sólo sirve para cuando está en memoria.
+ * Al persistirse, queda definido por el valor de tres strings:
+ * -el campo de la base de datos por el que filtra
+ * -un valor auxiliar, que sólo sirve cuando es seleccionado un hecho o fecha,
+ * ingresado por combobox
+ * -otro valor auxiliar, que sólo sirve para Filtro y Resultado, ingresado por
+ * entry
+ *
+ * Para evitar elegir campos repetidos, cada vez que cambia su selección emite
+ * una señal. Trabajando en conjunto con FiltradorConfigManager, la señal se
+ * difunde y todos sus filtradores hermanos actualizan sus campos disponibles.
+ */
 class FiltradorConfigModelo : public Serializable {
     public:
         FiltradorConfigModelo(unsigned ID,
@@ -68,8 +85,30 @@ class FiltradorConfigModelo : public Serializable {
         void setBotonEliminar(Gtk::ToolButton* botonEliminar);
         virtual void especializarVista() = 0;
 
+        /**
+         * Signal handler para el cambio en la opción seleccionada en el
+         * combobox de campo.
+         *
+         * Emite la señal _signal_campo_changed con el campo anteriormente
+         * seleccionado y el nuevo. Además, especializa estados de la vista.
+         */
         virtual void on_combo_dimension_changed() = 0;
+
+        /**
+         * Signal handler para el cambio en la opción seleccionada en el
+         * combobox auxiliar.
+         *
+         * Almacena en _campoAux la selección actual de pCombo.
+         * @param pCombo puntero al combobox que emitió la señal
+         */
         void on_combo_aux_changed(Gtk::ComboBoxText* pCombo);
+
+        /**
+         * Signal handler para el click del botón eliminar
+         *
+         * Emite la señal _signal_campo_changed para liberar su selección
+         * actual, y la señal _signal_delete_filtrador(ID).
+         */
         void on_boton_eliminar_clicked();
 };
 

@@ -13,10 +13,22 @@ class Consultante;
 typedef std::map < unsigned, Consultante* > MapaConsultantesTab;
 typedef std::pair < unsigned, Consultante* > parMapaConsultas;
 
+
+/** @class VentanaClienteDinamica
+ * Sector configurable de la aplicación. Se llama ventana pero en realidad es
+ * un notebook.
+ *
+ * Gráficamente no tiene nada estático, con lo cual, sus métodos reflejan
+ * el comportamiento de la resolución de consultas.
+ *
+ * Tiene un mapa con todos los consultantes presentes en la aplicación para
+ * poder derivar directamente las respuestas, dado que es esta clase quien las
+ * retira del servidor (a través del proxy ServidorRemoto).
+ */
 class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder..
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */

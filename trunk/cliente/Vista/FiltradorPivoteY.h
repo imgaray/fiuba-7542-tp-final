@@ -4,6 +4,9 @@
 #include "Filtrador.h"
 #include <gtkmm/separator.h>
 
+/** @class FiltradorPivoteY
+ * Filtrador concretado en un elemento de Y de la tabla pivote.
+ */
 class FiltradorPivoteY : public Filtrador {
     public:
         FiltradorPivoteY(const Glib::ustring& valor);

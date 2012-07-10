@@ -3,6 +3,9 @@
 
 #include "Area.h"
 
+/** @class Barra
+ * Clase concreta que representa una barra de un gráfico de barras.
+ */
 class Barra : public Area {
     public:
         Barra(const Hecho& dato, double maximo, unsigned i, double offset,

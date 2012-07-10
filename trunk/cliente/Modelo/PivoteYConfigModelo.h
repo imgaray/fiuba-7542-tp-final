@@ -3,6 +3,11 @@
 
 #include "FiltradorSoloDimensionConfigModelo.h"
 
+/** @class PivoteYConfigModelo
+ * Clase que modela la configuración de un elemento del grupo Y para una
+ * consulta de tabla pivot.
+ * Sólo selecciona el campo.
+ */
 class PivoteYConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
         PivoteYConfigModelo(unsigned ID,

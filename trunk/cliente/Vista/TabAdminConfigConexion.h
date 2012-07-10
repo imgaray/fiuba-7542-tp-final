@@ -5,10 +5,13 @@
 #include <gtkmm/entry.h>
 #include <gtkmm/spinbutton.h>
 
+/** @class TabAdminConfigConexion
+ * Pestaña del admin para configurar el servidor.
+ */
 class TabAdminConfigConexion : public TabAdminConfig {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder..
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */

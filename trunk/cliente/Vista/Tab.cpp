@@ -2,7 +2,6 @@
 #include "FiltradorInputDimension.h"
 #include "VentanaClienteDinamica.h"
 #include "Respuesta.h"
-#include <iostream>
 #include <cassert>
 
 Tab::Tab(const Glib::ustring& _etiqueta)

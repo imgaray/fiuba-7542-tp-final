@@ -7,6 +7,11 @@
 
 class Tab;
 
+/** @class FiltradorInput
+ * Filtrador concretado en un input. Puede interpretar navegabilidad
+ * seleccionada. Como todavía varía según la entrada sea un hecho, dimensión
+ * o fecha, sigue siendo una clase abstracta.
+ */
 class FiltradorInput : public Filtrador {
     public:
         FiltradorInput(const Glib::ustring& input);

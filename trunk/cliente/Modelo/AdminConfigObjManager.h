@@ -14,11 +14,15 @@ enum t_Objeto {
     OBJ_TAB,
     OBJ_PANEL
 };
+
 /** @class AdminConfigObjManager
- * clase encargada de manejar la parte de agregado de objetos dinámicos
- * por el admin (pestañas y paneles)
- * Emite la señal signal_model_changed cuando el modelo que está detrás de la
- * vista cambia
+ * Clase encargada de manejar la parte de agregado de objetos dinámicos
+ * por el admin (pestañas y paneles).
+ *
+ * Emite las señaesl:
+ * -signal_model_changed cuando el modelo que está detrás de la vista cambia.
+ * -signal_model_deleted cuando el modelo seleccionado fue eliminado
+ * -signal_model_saved   cuando el modelo seleccionado guarda sus cambios
  */
 class AdminConfigObjManager : public sigc::trackable , public Serializable {
     public:
@@ -59,7 +63,7 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
         t_Objeto tipo;
         ConfigModelo* new_modelo();
 
-        /** conexiones a las señales */
+        /* conexiones a las señales */
         sigc::connection connectionCombobox;
         sigc::connection connectionEntryLabel;
         sigc::connection connectionEntryLabelFocusIn;
@@ -72,12 +76,68 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
         Gtk::Entry* pEntryLabel;
         std::map< t_boton, Gtk::Button* > botones;
 
+        /**
+         * Signal handler para el cambio del combobox que elige el modelo
+         * activo del manager
+         *
+         * Establece la visibilidad de los botones "Agregar", "Guardar cambios"
+         * y "Eliminar" según si el modelo seleccionado existe o no. Fija el
+         * modelo seleccionado y emite la señal de cambio de modelo,
+         * _signal_model_changed.
+         */
         void on_combo_selec_changed();
+
+        /**
+         * Signal handler para la activación de la Gtk::Entry donde se ingresa
+         * el nombre del modelo seleccionado.
+         *
+         * Al apretar "enter", simula que se presionó el botón "Agregar" o
+         * "Guardar cambios" según corresponda.
+         */
         void on_entry_label_activate();
+
+        /**
+         * Signal handler para la recepción del foco de la Gtk::Entry donde
+         * se ingresa el nombre del modelo seleccionado.
+         *
+         * Si está ingresado el nombre por defecto, lo borra.
+         * @param e características del foco
+         * @return true siempre, el manejo del evento termina acá.
+         */
         bool on_entry_label_focus_in(GdkEventFocus* e);
+
+        /**
+         * Signal handler para la pérdida del foco de la Gtk::Entry donde se
+         * ingresa el nombre del modelo seleccionado.
+         *
+         * Si no hay nada ingresado, vuelve a escribir el nombre por defecto
+         * @param e características del foco
+         * @return true siempre, el manejo del evento termina acá.
+         */
         bool on_entry_label_focus_out(GdkEventFocus* e);
+
+        /**
+         * Signal handler para el click sobre el botón "Agregar".
+         *
+         * Verifica que el nombre ingresado esté permitido, sea porque no
+         * es el nombre por defecto o porque no pertenece a otro objeto ya,
+         * y lo añade a los contenedores.
+         */
         void on_agregar_button_clicked();
+
+        /**
+         * Signal handler para el click sobre el botón "Guardar cambios".
+         *
+         * Valida los cambios que deban ser validados del modelo actual,
+         * por ejemplo, cambios en el nombre, y los guarda.
+         */
         void on_guardar_cambios_button_clicked();
+
+        /**
+         * Signal handler para el click sobre el botón "Eliminar".
+         *
+         * Elimina el modelo seleccionado.
+         */
         void on_eliminar_button_clicked();
 
         Glib::ustring nombre_por_defecto;

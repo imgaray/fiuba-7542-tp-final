@@ -4,6 +4,10 @@
 #include "Filtrador.h"
 #include <gtkmm/separator.h>
 
+/** @class FiltradorFiltro
+ * Filtrador concretado en un filtro. Como todavía varía según se
+ * filtre por hecho, dimensión o fecha, sigue siendo una clase abstracta.
+ */
 class FiltradorFiltro : public Filtrador {
     public:
         FiltradorFiltro(const Glib::ustring& filtro,

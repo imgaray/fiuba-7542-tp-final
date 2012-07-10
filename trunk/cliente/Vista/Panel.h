@@ -13,9 +13,17 @@ class Tabla;
 class FiltradoresPanel;
 class Consultante;
 
+/** @class Panel
+ * Clase que representa visualmente una consulta configurada. Además de
+ * contener un consultante (sea gráfico o tabla), tiene un conjunto de
+ * filtradores, y el título con que fue guardado.
+ */
 class Panel : public Gtk::Frame {
     public:
         Panel(const Glib::ustring& label);
+        /**
+         * Destructor.
+         */
         ~Panel();
 
         // Agrega también a los filtradores, pidiéndoselos al gráfico

@@ -1,5 +1,6 @@
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
+#include <gtkmm/builder.h>
 #include "Cliente.h"
 #include "ExcepcionArchivoGladeCorrupto.h"
 
@@ -11,6 +12,15 @@ int main(int argc, char* argv[]) {
     try {
         Cliente c(argc, argv);
         c.run();
+    }
+    catch(const Glib::FileError& e) {
+        msj = "FileError: " + e.what();
+    }
+    catch(const Gtk::BuilderError& e) {
+        msj = "BuilderError: " + e.what();
+    }
+    catch(const Glib::MarkupError& e) {
+        msj = "MarkupError: " + e.what();
     }
     catch (const ExcepcionArchivoGladeCorrupto& e) {
          msj = e.what();

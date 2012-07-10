@@ -4,7 +4,6 @@
 #include <gtkmm/messagedialog.h>
 #include "ArchivoConfiguracion.h"
 #include "Cifrador.hpp"
-#include <iostream>
 #include "Definiciones.h"
 
 #define BOTON_ACEPTAR "BotonAceptar"

@@ -2,9 +2,6 @@
 #include "Respuesta.h"
 #include "Consulta.h"
 #include "Tab.h"
-#include <iostream>
-#include <exception>
-#include <cassert>
 
 FiltradorInputDimension::FiltradorInputDimension(const Glib::ustring& input)
 : FiltradorInput(input) {
@@ -22,9 +19,6 @@ FiltradorInputDimension::~FiltradorInputDimension() {}
 void FiltradorInputDimension::procesarRespuesta(const Respuesta& rta) {
     if (valores.get_active_text() != STR_NULA)
         return;
-
-    if (rta.cantidadColumnas() != 1)
-        throw "*******ERROR: FiltradorInputDimension esperaba una respuesta con 1 columna";
 
     for (unsigned i = 0; i < rta.cantidadFilas(); ++i)
         valores.append_text(rta.dato(i, 0));

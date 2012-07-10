@@ -3,6 +3,9 @@
 
 #include "Area.h"
 
+/** @class PorcionCircular
+ * Clase concreta que representa una porción circular de un gráfico de torta.
+ */
 class PorcionCircular : public Area {
     public:
         PorcionCircular(const Hecho& dato, double maximo, unsigned i,

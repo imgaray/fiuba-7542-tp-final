@@ -7,6 +7,10 @@
 class Area;
 class Grafico;
 
+/** @class Referencia
+ * Una referencia para los gráficos. Son un cuadradito con el color del
+ * área que refieren y la etiqueta del hecho que generó dicha área.
+ */
 class Referencia {
     public:
         Referencia(const Area& referente);

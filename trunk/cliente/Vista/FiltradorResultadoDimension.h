@@ -3,6 +3,9 @@
 
 #include "FiltradorResultado.h"
 
+/** @class FiltradorResultadoDimension
+ * Resultado de comportamiento "básico", es decir, no es hecho ni fecha.
+ */
 class FiltradorResultadoDimension : public FiltradorResultado {
     public:
         FiltradorResultadoDimension(const Glib::ustring& resultado);

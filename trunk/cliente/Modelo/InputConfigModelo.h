@@ -3,7 +3,10 @@
 
 #include "FiltradorSoloDimensionConfigModelo.h"
 
-
+/** @class InputConfigModelo
+ * Clase que modela la configuración de un input para una consulta.
+ * Sólo selecciona el campo.
+ */
 class InputConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
         InputConfigModelo(unsigned ID,

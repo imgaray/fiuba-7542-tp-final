@@ -6,16 +6,15 @@
 
 /**
  * @class Buildable
- * Clase "helper" para todas las que se construyen desde un archivo GLADE
- * tengan métodos más limpios que, además de conseguir la referencia al
- * objeto buscado, verifiquen la existencia y lancen la excepción pertinente
+ * Clase "helper" para que todas las que se construyen desde un archivo GLADE
+ * tengan métodos más limpios. Éstos, además de conseguir la referencia al
+ * objeto buscado, verifican la existencia y lanzan la excepción si deben.
  */
-
 class Buildable {
     public:
         /**
-         * @brief constructor, crea la referencia al Gtk::Builder
-         * @param builder referencia a la instancia que lo construye
+         * constructor, crea la referencia al Gtk::Builder
+         * @param _builder referencia a la instancia que lo construye
          */
         Buildable(const Glib::RefPtr< Gtk::Builder >& _builder)
         : builder(_builder) {}
@@ -24,7 +23,8 @@ class Buildable {
         Glib::RefPtr< Gtk::Builder > builder;
 
         /**
-         * @brief wrapper a Gtk::Builder::get_widget(const Glib::ustring& , T_Widget*& )
+         * wrapper a Gtk::Builder::get_widget(const Glib::ustring& ,
+         * T_Widget*& ) que verifica existencia
          * @param nombre    nombre del objeto a obtener
          * @retval pWidget  puntero al objeto buscado
          * @throw instancia de ExcepcionArchivoGladeCorrupto(nombre)
@@ -37,7 +37,8 @@ class Buildable {
         }
 
         /**
-         * @brief wrapper a Gtk::Builder::get_widget_derived(const Glib::ustring& , T_Widget*& )
+         * wrapper a Gtk::Builder::get_widget_derived(const Glib::ustring& ,
+         * T_Widget*& ) que verifica existencia
          * @param nombre    nombre del objeto a obtener
          * @retval pWidget  puntero al objeto buscado
          * @throw instancia de ExcepcionArchivoGladeCorrupto(nombre)

@@ -6,6 +6,13 @@
 #include <gtkmm/comboboxtext.h>
 #include "Definiciones.h"
 
+/** @class FiltradorHelper
+ * Singleton. Clase que sólo sirve por su capacidad de:
+ * -popular los combobox que no sean por consulta y validar selecciones de
+ * filtradores estáticos
+ * -validar entradas
+ * -funcionalidades menores
+ */
 class FiltradorHelper {
     public:
         static const FiltradorHelper& getInstancia();

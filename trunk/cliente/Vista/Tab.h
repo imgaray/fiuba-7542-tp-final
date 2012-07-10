@@ -14,6 +14,14 @@ class FiltradorInput;
 class FiltradorInputDimension;
 class VentanaClienteDinamica;
 
+/** @class Tab
+ * Pestaña concreta configurada por el admin.
+ *
+ * Es un conjunto de paneles, cada uno con sus particularidades de
+ * filtradores y consultantes. Los distribuye en una matriz según la posición
+ * configurada de cada uno. Agrega además unos inputs que se aplican a todas
+ * las consultas de la tab.
+ */
 class Tab : public Gtk::VBox {
     public:
         Tab(const Glib::ustring& etiqueta);
@@ -21,7 +29,7 @@ class Tab : public Gtk::VBox {
 
         Gtk::HBox& getEtiqueta();
 
-        /** modelo */
+        /* modelo */
         void agregarConsultante(FiltradorInputDimension* f);
         void agregarConsultante(Consultante* c);
         void removerConsultante(unsigned ID);
@@ -47,7 +55,7 @@ class Tab : public Gtk::VBox {
         Gtk::Label etiqueta;
         Gtk::Spinner spinner;
 
-        /** modelo */
+        /* modelo */
         std::map< unsigned, Consultante* > consultantes;
         std::map< unsigned, Consultante* > filtrosConsultantes;
         std::map< unsigned, Consultante* >* pConsultantesActivos;

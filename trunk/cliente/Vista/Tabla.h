@@ -11,7 +11,10 @@
 #include <string>
 #include "Consultante.h"
 
-
+/** @class Tabla
+ * Clase abstracta que comprende comportamiento común a un consultante que
+ * muestra sus resultados en forma de tabla.
+ */
 class Tabla : public Consultante, public Gtk::TreeView {
 public:
 	Tabla(FiltradoresPanel* filtradores);
@@ -19,6 +22,9 @@ public:
 
 protected:
 
+    /** @class ColumnasModelo
+     * Modelo detrás de la Tabla.
+     */
 	class ColumnasModelo : public Gtk::TreeModelColumnRecord {
 	public:
 		ColumnasModelo(int cantidadColumnas){

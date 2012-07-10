@@ -27,7 +27,6 @@ TabAdminConfigConexion::TabAdminConfigConexion(BaseObjectType* cobject,
 
 TabAdminConfigConexion::~TabAdminConfigConexion() {}
 
-#include <iostream>
 bool TabAdminConfigConexion::aplicarCambios() {
     std::string IP = pEntryIP->get_text();
     std::string puerto = pSpinButtonPuerto->get_text();

@@ -1,5 +1,4 @@
 #include "Grafico.h"
-#include <iostream>
 #include <exception>
 #include <gtkmm/messagedialog.h>
 #include "Area.h"

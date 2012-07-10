@@ -1,38 +1,80 @@
 <Tabs atr_tipo="0">
-    <Tab_Config_Modelo atr_nombre="Tab 1" atr_filas_grilla="2" atr_cols_grilla="2">
-        <Filtrador_Config_Manager atr_tipo="1">
-            <Filtrador_Config_Modelo atr_campo="Fecha" atr_valor_campo="" atr_campo_aux="&gt;" />
-        </Filtrador_Config_Manager>
+    <Tab_Config_Modelo atr_nombre="Promedio de Ventas" atr_filas_grilla="1" atr_cols_grilla="1">
+        <Filtrador_Config_Manager atr_tipo="1" />
         <Paneles atr_tipo="1">
-            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="2" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="0" atr_nombre="Tabla">
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="2" atr_nombre="Panel Tab1">
+                <hijos_filtros atr_tipo="0">
+                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="800" atr_campo_aux="&lt;" />
+                </hijos_filtros>
+                <hijo_inputs atr_tipo="1">
+                    <Filtrador_Config_Modelo atr_campo="Marca" atr_valor_campo="" atr_campo_aux="&gt;" />
+                </hijo_inputs>
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="MAX" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+        </Paneles>
+    </Tab_Config_Modelo>
+    <Tab_Config_Modelo atr_nombre="Resumen de Mes" atr_filas_grilla="2" atr_cols_grilla="2">
+        <Filtrador_Config_Manager atr_tipo="1" />
+        <Paneles atr_tipo="1">
+            <Panel_Config_Modelo atr_desde_fila="1" atr_hasta_fila="2" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="3" atr_nombre="Grafico Torta">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1" />
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="Producto" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="CONT" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="2" atr_nombre="Graf Barras">
                 <hijos_filtros atr_tipo="0" />
                 <hijo_inputs atr_tipo="1" />
                 <hijo_x_piv atr_tipo="2" />
                 <hijo_y_piv atr_tipo="3" />
                 <hijo_res atr_tipo="4">
                     <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="NADA" />
-                    <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="NADA" />
-                    <Filtrador_Config_Modelo atr_campo="Marca" atr_valor_campo="" atr_campo_aux="NADA" />
-                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="" atr_campo_aux="SUM" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="" atr_campo_aux="PROM" />
                 </hijo_res>
             </Panel_Config_Modelo>
-            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="3" atr_nombre="Torta">
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="2" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="0" atr_nombre="Tabla Comun">
                 <hijos_filtros atr_tipo="0" />
-                <hijo_inputs atr_tipo="1">
-                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="&gt;" />
-                </hijo_inputs>
+                <hijo_inputs atr_tipo="1" />
                 <hijo_x_piv atr_tipo="2" />
                 <hijo_y_piv atr_tipo="3" />
                 <hijo_res atr_tipo="4">
                     <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="NADA" />
-                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="" atr_campo_aux="SUM" />
+                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="Producto" atr_valor_campo="" atr_campo_aux="NADA" />
                 </hijo_res>
             </Panel_Config_Modelo>
-            <Panel_Config_Modelo atr_desde_fila="1" atr_hasta_fila="2" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="2" atr_nombre="Barras">
+        </Paneles>
+    </Tab_Config_Modelo>
+    <Tab_Config_Modelo atr_nombre="Estadisticas Anuales" atr_filas_grilla="2" atr_cols_grilla="2">
+        <Filtrador_Config_Manager atr_tipo="1" />
+        <Paneles atr_tipo="1">
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="2" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="0" atr_nombre="Tabla Comun">
                 <hijos_filtros atr_tipo="0" />
-                <hijo_inputs atr_tipo="1">
+                <hijo_inputs atr_tipo="1" />
+                <hijo_x_piv atr_tipo="2">
+                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="&gt;" />
+                    <Filtrador_Config_Modelo atr_campo="Producto" atr_valor_campo="" atr_campo_aux="&gt;" />
+                </hijo_x_piv>
+                <hijo_y_piv atr_tipo="3">
                     <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="&gt;" />
-                </hijo_inputs>
+                </hijo_y_piv>
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="Producto" atr_valor_campo="" atr_campo_aux="NADA" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="2" atr_nombre="Grafico Barras">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1" />
                 <hijo_x_piv atr_tipo="2" />
                 <hijo_y_piv atr_tipo="3" />
                 <hijo_res atr_tipo="4">
@@ -40,20 +82,73 @@
                     <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="SUM" />
                 </hijo_res>
             </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="1" atr_hasta_fila="2" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="3" atr_nombre="Torta">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1">
+                    <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="&gt;" />
+                </hijo_inputs>
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="Marca" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="" atr_campo_aux="SUM" />
+                </hijo_res>
+            </Panel_Config_Modelo>
         </Paneles>
     </Tab_Config_Modelo>
-    <Tab_Config_Modelo atr_nombre="Fechas" atr_filas_grilla="1" atr_cols_grilla="1">
+    <Tab_Config_Modelo atr_nombre="Ventas Semanales" atr_filas_grilla="3" atr_cols_grilla="3">
         <Filtrador_Config_Manager atr_tipo="1" />
         <Paneles atr_tipo="1">
-            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="0" atr_nombre="Fechas">
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="0" atr_hasta_col="1" atr_tipo_graf="2" atr_nombre="Barras">
                 <hijos_filtros atr_tipo="0" />
                 <hijo_inputs atr_tipo="1" />
                 <hijo_x_piv atr_tipo="2" />
                 <hijo_y_piv atr_tipo="3" />
                 <hijo_res atr_tipo="4">
-                    <Filtrador_Config_Modelo atr_campo="Fecha" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="CONT" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="1" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="2" atr_nombre="Barras2">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1" />
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="Marca" atr_valor_campo="" atr_campo_aux="NADA" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="SUM" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="1" atr_hasta_fila="2" atr_desde_col="0" atr_hasta_col="2" atr_tipo_graf="3" atr_nombre="Torta Intermedioa">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1" />
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
+                <hijo_res atr_tipo="4">
                     <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="NADA" />
-                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="MAX" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="" atr_campo_aux="MIN" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="3" atr_desde_col="2" atr_hasta_col="3" atr_tipo_graf="0" atr_nombre="Tabla">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1" />
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="NADA" />
+                </hijo_res>
+            </Panel_Config_Modelo>
+            <Panel_Config_Modelo atr_desde_fila="2" atr_hasta_fila="3" atr_desde_col="0" atr_hasta_col="2" atr_tipo_graf="1" atr_nombre="Pivote">
+                <hijos_filtros atr_tipo="0" />
+                <hijo_inputs atr_tipo="1" />
+                <hijo_x_piv atr_tipo="2">
+                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="&gt;" />
+                </hijo_x_piv>
+                <hijo_y_piv atr_tipo="3">
+                    <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="&gt;" />
+                </hijo_y_piv>
+                <hijo_res atr_tipo="4">
+                    <Filtrador_Config_Modelo atr_campo="PrecioVenta" atr_valor_campo="" atr_campo_aux="SUM" />
                 </hijo_res>
             </Panel_Config_Modelo>
         </Paneles>

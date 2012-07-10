@@ -1,0 +1,97 @@
+\hypertarget{classServidor}{\section{\-Referencia de la \-Clase \-Servidor}
+\label{classServidor}\index{\-Servidor@{\-Servidor}}
+}
+
+
+{\ttfamily \#include $<$\-Servidor.\-h$>$}
+
+\-Diagrama de herencias de \-Servidor\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classServidor}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRespuesta}{\-Respuesta} \hyperlink{classServidor_a2eb01d909e9206d9ab3722ccb1e38795}{resolver\-Entrada} (\hyperlink{classConsulta}{\-Consulta} \&entrada)
+\item 
+\hyperlink{classRespuesta}{\-Respuesta} \hyperlink{classServidor_a0ec43bd5d9e7c4e36149ba9c00198950}{resolver} (\hyperlink{classConsulta}{\-Consulta} \&consulta)
+\item 
+bool \hyperlink{classServidor_af86cf5fe5d72f3c41abd5b9c20160388}{funcional} ()
+\item 
+\hyperlink{classServidor_acdee1b67c33a2f8ec771fa685ade9096}{\-Servidor} (\-Puerto pclientes, \-Puerto pagentes)
+\item 
+\hyperlink{classServidor_a5ac1d9360e9c3010be4023f315cd64c1}{$\sim$\-Servidor} ()
+\item 
+\hypertarget{classServidor_adc64676e3415243151de5dbb2673e65a}{\hyperlink{classBaseDeDatos}{\-Base\-De\-Datos} \& {\bfseries base\-De\-Datos} ()}\label{classServidor_adc64676e3415243151de5dbb2673e65a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la que se maneja desde el programa principal. \-La clase contendrá a la base de datos, los verificadores y al controlador. \-En sí, es la clase que nuclea las funcionalidades necesarias para el funcionamiento.
+
+\-Su función es básicamente iniciar la base de datos, los verificadores y el controlador. \-A su vez, tambien transmite las consultas y actualizaciones a la base de datos, haciendo previa verificacion de las mismas. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classServidor_acdee1b67c33a2f8ec771fa685ade9096}{\index{\-Servidor@{\-Servidor}!\-Servidor@{\-Servidor}}
+\index{\-Servidor@{\-Servidor}!Servidor@{\-Servidor}}
+\subsubsection[{\-Servidor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Servidor\-::\-Servidor} (
+\begin{DoxyParamCaption}
+\item[{\-Puerto}]{pclientes, }
+\item[{\-Puerto}]{pagentes}
+\end{DoxyParamCaption}
+)}}\label{classServidor_acdee1b67c33a2f8ec771fa685ade9096}
+\-Al crear el servidor, éste ya comienza sus funcionalidades. 
+\begin{DoxyParams}{\-Parámetros}
+{\em pclientes} & \-El puerto por el cual se escucharán conexiones de clientes. \\
+\hline
+{\em pagentes} & \-El puerto por el cual se escucharán conexiones de agentes. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classServidor_a5ac1d9360e9c3010be4023f315cd64c1}{\index{\-Servidor@{\-Servidor}!$\sim$\-Servidor@{$\sim$\-Servidor}}
+\index{$\sim$\-Servidor@{$\sim$\-Servidor}!Servidor@{\-Servidor}}
+\subsubsection[{$\sim$\-Servidor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Servidor\-::$\sim$\-Servidor} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classServidor_a5ac1d9360e9c3010be4023f315cd64c1}
+\-Detiene la ejecución del servidor y se encarga de liberar la memoria pedida 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classServidor_af86cf5fe5d72f3c41abd5b9c20160388}{\index{\-Servidor@{\-Servidor}!funcional@{funcional}}
+\index{funcional@{funcional}!Servidor@{\-Servidor}}
+\subsubsection[{funcional}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Servidor\-::funcional} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classServidor_af86cf5fe5d72f3c41abd5b9c20160388}
+\-Evalúa si el servidor esta funcional, es decir si los receptores de conexión están activos. \hypertarget{classServidor_a0ec43bd5d9e7c4e36149ba9c00198950}{\index{\-Servidor@{\-Servidor}!resolver@{resolver}}
+\index{resolver@{resolver}!Servidor@{\-Servidor}}
+\subsubsection[{resolver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Respuesta} {\bf \-Servidor\-::resolver} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Consulta} \&}]{consulta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classServidor_a0ec43bd5d9e7c4e36149ba9c00198950}
+\-Es el método que realiza las consultas. \-Antes de pasarle la consulta a la base de datos, realiza una verificación de la misma. \-Si es válida, pasará la consulta a la base de datos, obteniendo la respuesta a la misma. \-En caso contrario, devuelve una respuesta con un mensaje de error. 
+
+\-Implementa \hyperlink{classResolvedorConsultas_a077d3d962848e14a84790d5a929fea17}{\-Resolvedor\-Consultas}.
+
+\hypertarget{classServidor_a2eb01d909e9206d9ab3722ccb1e38795}{\index{\-Servidor@{\-Servidor}!resolver\-Entrada@{resolver\-Entrada}}
+\index{resolver\-Entrada@{resolver\-Entrada}!Servidor@{\-Servidor}}
+\subsubsection[{resolver\-Entrada}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Respuesta} {\bf \-Servidor\-::resolver\-Entrada} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Consulta} \&}]{entrada}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classServidor_a2eb01d909e9206d9ab3722ccb1e38795}
+\-Es el método que realiza las actualizaciones. \-Antes de pasarle la consulta a la base de datos, realiza una verificación de la entrada. \-Si es válida, pasará la entrada a la base de datos. \-En caso contrario, devuelve una respuesta con un mensaje de error. 
+
+\-Implementa \hyperlink{classResolvedorEntradas_a197be7d4db0a07250a51c2c390dd2372}{\-Resolvedor\-Entradas}.
+
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/servidor/\-Servidor.\-h\item 
+servidor/servidor/\-Servidor.\-cpp\end{DoxyCompactItemize}

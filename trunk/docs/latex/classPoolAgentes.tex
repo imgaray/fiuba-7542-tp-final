@@ -1,0 +1,71 @@
+\hypertarget{classPoolAgentes}{\section{\-Referencia de la \-Clase \-Pool\-Agentes}
+\label{classPoolAgentes}\index{\-Pool\-Agentes@{\-Pool\-Agentes}}
+}
+
+
+{\ttfamily \#include $<$\-Pool\-Agentes.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPoolAgentes_a9607b621706f1f5100c7d72b453ea1d2}{\-Pool\-Agentes} (\hyperlink{classResolvedorEntradas}{\-Resolvedor\-Entradas} \&resolvedor, \hyperlink{classBLQueue}{\-Consultas\-Agentes\-Servidor} \&entradas)
+\item 
+\hyperlink{classPoolAgentes_ae5eee99676a5ab94236f85831149caef}{$\sim$\-Pool\-Agentes} ()
+\item 
+void \hyperlink{classPoolAgentes_a1a4362cbb173ca0475525551d87d5348}{detener} ()
+\item 
+void \hyperlink{classPoolAgentes_a7a47447438844ebfa5113a3e0c4b62db}{iniciar} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Es una clase que tiene una determinada cantidad de workers que consumen de la cola de agentes. \-No es más que una forma de encapsular una lista que contiene \-N instancias de \hyperlink{classHiloResponderEntrada}{\-Hilo\-Responder\-Entrada}.
+
+\-Sus únicos metodos, \hyperlink{classPoolAgentes_a1a4362cbb173ca0475525551d87d5348}{detener()} e \hyperlink{classPoolAgentes_a7a47447438844ebfa5113a3e0c4b62db}{iniciar()} se encargan de detener e iniciar los hilos que contenga en su lista. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classPoolAgentes_a9607b621706f1f5100c7d72b453ea1d2}{\index{\-Pool\-Agentes@{\-Pool\-Agentes}!\-Pool\-Agentes@{\-Pool\-Agentes}}
+\index{\-Pool\-Agentes@{\-Pool\-Agentes}!PoolAgentes@{\-Pool\-Agentes}}
+\subsubsection[{\-Pool\-Agentes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Pool\-Agentes\-::\-Pool\-Agentes} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Resolvedor\-Entradas} \&}]{resolvedor, }
+\item[{{\bf \-Consultas\-Agentes\-Servidor} \&}]{entradas}
+\end{DoxyParamCaption}
+)}}\label{classPoolAgentes_a9607b621706f1f5100c7d72b453ea1d2}
+\-En el constructor es que se popula la lista de hilos 
+\begin{DoxyParams}{\-Parámetros}
+{\em resolvedor} & \-Objeto capaz de resolver entradas. \\
+\hline
+{\em entradas} & \-Cola de entradas de agente del servidor. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classPoolAgentes_ae5eee99676a5ab94236f85831149caef}{\index{\-Pool\-Agentes@{\-Pool\-Agentes}!$\sim$\-Pool\-Agentes@{$\sim$\-Pool\-Agentes}}
+\index{$\sim$\-Pool\-Agentes@{$\sim$\-Pool\-Agentes}!PoolAgentes@{\-Pool\-Agentes}}
+\subsubsection[{$\sim$\-Pool\-Agentes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Pool\-Agentes\-::$\sim$\-Pool\-Agentes} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPoolAgentes_ae5eee99676a5ab94236f85831149caef}
+\-Detiene todos sus workers y los elimina 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classPoolAgentes_a1a4362cbb173ca0475525551d87d5348}{\index{\-Pool\-Agentes@{\-Pool\-Agentes}!detener@{detener}}
+\index{detener@{detener}!PoolAgentes@{\-Pool\-Agentes}}
+\subsubsection[{detener}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Pool\-Agentes\-::detener} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPoolAgentes_a1a4362cbb173ca0475525551d87d5348}
+\-Detiene la ejecución de todos sus workers. \hypertarget{classPoolAgentes_a7a47447438844ebfa5113a3e0c4b62db}{\index{\-Pool\-Agentes@{\-Pool\-Agentes}!iniciar@{iniciar}}
+\index{iniciar@{iniciar}!PoolAgentes@{\-Pool\-Agentes}}
+\subsubsection[{iniciar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Pool\-Agentes\-::iniciar} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPoolAgentes_a7a47447438844ebfa5113a3e0c4b62db}
+\-Comienza la ejecución de todos sus workers. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/servidor/\-Pool\-Agentes.\-h\item 
+servidor/servidor/\-Pool\-Agentes.\-cpp\end{DoxyCompactItemize}

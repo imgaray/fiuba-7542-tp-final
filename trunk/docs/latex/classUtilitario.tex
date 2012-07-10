@@ -1,0 +1,115 @@
+\hypertarget{classUtilitario}{\section{\-Referencia de la \-Clase \-Utilitario}
+\label{classUtilitario}\index{\-Utilitario@{\-Utilitario}}
+}
+
+
+{\ttfamily \#include $<$\-Utilitario.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classUtilitario_ad3b4aba2f9b704ed60663fee17668ae8}{\hyperlink{classUtilitario_ad3b4aba2f9b704ed60663fee17668ae8}{\-Utilitario} ()}\label{classUtilitario_ad3b4aba2f9b704ed60663fee17668ae8}
+
+\begin{DoxyCompactList}\small\item\em \-Constructor sin argumentos. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classUtilitario_acbe7fdb159f88101343affb15e5fda9b}{separar} (const std\-::string \&datos, const char separador, const size\-\_\-t indice)
+\begin{DoxyCompactList}\small\item\em \-Metodo utilizado para separa un string en partes, separadas por un caracter. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classUtilitario_adba909993e81d32022e90ada706bea63}{convertir\-A\-String} (const int \&numero) const 
+\begin{DoxyCompactList}\small\item\em \-Transforma un numero en string. \end{DoxyCompactList}\item 
+int \hyperlink{classUtilitario_a9d4503d48e1922d8290247d5e44eaab5}{convertir\-A\-Entero} (const std\-::string \&numero) const 
+\begin{DoxyCompactList}\small\item\em \-Transforma un string en su valor numerico. \end{DoxyCompactList}\item 
+void \hyperlink{classUtilitario_ad59453fdfc7947874f4551310ee6a0dc}{borrar\-Caracter} (std\-::string \&palabra, const char caracter)
+\begin{DoxyCompactList}\small\item\em \-Borra un caracter de todo un string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es usada para realizar operaciones auxiliares como separar un string en varios, borrar caracterez de un string, convertir un string en entero y al reves. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classUtilitario_ad59453fdfc7947874f4551310ee6a0dc}{\index{\-Utilitario@{\-Utilitario}!borrar\-Caracter@{borrar\-Caracter}}
+\index{borrar\-Caracter@{borrar\-Caracter}!Utilitario@{\-Utilitario}}
+\subsubsection[{borrar\-Caracter}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Utilitario\-::borrar\-Caracter} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{palabra, }
+\item[{const char}]{caracter}
+\end{DoxyParamCaption}
+)}}\label{classUtilitario_ad59453fdfc7947874f4551310ee6a0dc}
+
+
+\-Borra un caracter de todo un string. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em palabra} & string al cual se eliminaran los caracteres. \\
+\hline
+{\em caracter} & char a borrar del string. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilitario_a9d4503d48e1922d8290247d5e44eaab5}{\index{\-Utilitario@{\-Utilitario}!convertir\-A\-Entero@{convertir\-A\-Entero}}
+\index{convertir\-A\-Entero@{convertir\-A\-Entero}!Utilitario@{\-Utilitario}}
+\subsubsection[{convertir\-A\-Entero}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-Utilitario\-::convertir\-A\-Entero} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{numero}
+\end{DoxyParamCaption}
+) const}}\label{classUtilitario_a9d4503d48e1922d8290247d5e44eaab5}
+
+
+\-Transforma un string en su valor numerico. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em numero} & string que contiene los caractes de digitos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+entero que contiene el valor numerico del string. 
+\end{DoxyReturn}
+\hypertarget{classUtilitario_adba909993e81d32022e90ada706bea63}{\index{\-Utilitario@{\-Utilitario}!convertir\-A\-String@{convertir\-A\-String}}
+\index{convertir\-A\-String@{convertir\-A\-String}!Utilitario@{\-Utilitario}}
+\subsubsection[{convertir\-A\-String}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Utilitario\-::convertir\-A\-String} (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{numero}
+\end{DoxyParamCaption}
+) const}}\label{classUtilitario_adba909993e81d32022e90ada706bea63}
+
+
+\-Transforma un numero en string. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em numero} & valor numerico a transforma \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el numeor tranformado. 
+\end{DoxyReturn}
+\hypertarget{classUtilitario_acbe7fdb159f88101343affb15e5fda9b}{\index{\-Utilitario@{\-Utilitario}!separar@{separar}}
+\index{separar@{separar}!Utilitario@{\-Utilitario}}
+\subsubsection[{separar}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Utilitario\-::separar} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{datos, }
+\item[{const char}]{separador, }
+\item[{const size\-\_\-t}]{indice}
+\end{DoxyParamCaption}
+)}}\label{classUtilitario_acbe7fdb159f88101343affb15e5fda9b}
+
+
+\-Metodo utilizado para separa un string en partes, separadas por un caracter. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em datos} & string a separar. \\
+\hline
+{\em separador} & caracter utilizado como delimitador de las partes en el string. \\
+\hline
+{\em indice} & numero que representa que parte se va a serpara del string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el segmento extraido del string principal. 
+\end{DoxyReturn}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+comun/\-Utilitario.\-h\item 
+comun/\-Utilitario.\-cpp\end{DoxyCompactItemize}

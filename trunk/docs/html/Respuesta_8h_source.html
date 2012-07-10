@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente comun/Respuesta.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('Respuesta_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">comun/Respuesta.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * Respuesta.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 26/05/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef RESPUESTA_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define RESPUESTA_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;Definiciones.h&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;Mensaje.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;Utilitario.h&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00023"></a><a class="code" href="classRespuesta.html">00023</a> <span class="keyword">class </span><a class="code" href="classRespuesta.html">Respuesta</a> : <span class="keyword">public</span> <a class="code" href="classMensaje.html">Mensaje</a> {
+<a name="l00024"></a>00024 <span class="keyword">public</span>:
+<a name="l00025"></a>00025         <a class="code" href="classRespuesta.html">Respuesta</a>();
+<a name="l00026"></a>00026         <a class="code" href="classRespuesta.html">Respuesta</a>(<span class="keyword">const</span> <a class="code" href="classRespuesta.html">Respuesta</a>&amp; original);
+<a name="l00027"></a>00027         <span class="keyword">virtual</span> ~<a class="code" href="classRespuesta.html">Respuesta</a>();
+<a name="l00028"></a>00028 
+<a name="l00034"></a>00034         <a class="code" href="classRespuesta.html">Respuesta</a>(<span class="keyword">const</span> std::string&amp; mensaje);
+<a name="l00035"></a>00035 
+<a name="l00040"></a>00040         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#abdde56c03b7f11e977cdd3617408fa43" title="Define cual es el identificador que tendra la respuesta(Por defecto es 0).">definirID</a>(<span class="keyword">const</span> Id_Mensaje&amp; <span class="keywordtype">id</span>);
+<a name="l00041"></a>00041 
+<a name="l00046"></a>00046         Id_Mensaje <a class="code" href="classRespuesta.html#af14e9c6d7a5de669a8a6012793da88e5" title="Retorna el identificador actual del mensaje.">devolverID</a>() <span class="keyword">const</span>;
+<a name="l00047"></a>00047 
+<a name="l00052"></a>00052         std::string <a class="code" href="classRespuesta.html#a3705c87e5738e9612410cb3567caf54c" title="Serializa la Respuesta en un string.">serializar</a>() <span class="keyword">const</span>;
+<a name="l00053"></a>00053 
+<a name="l00058"></a>00058         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#ae0481de83f0bdb1fd13d25885ce6e310" title="Deserializa la Respuesta a partir de un string.">deserializar</a>(<span class="keyword">const</span> std::string&amp; datos);
+<a name="l00059"></a>00059 
+<a name="l00065"></a>00065         <a class="code" href="classRespuesta.html">Respuesta</a>&amp; <a class="code" href="classRespuesta.html#a46f8802b653802901e245bc766eb6896" title="Metodo que implementa el operador= para hacer una copia de Respuesta.">operator=</a>(<span class="keyword">const</span> <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00066"></a>00066 
+<a name="l00071"></a>00071         <span class="keyword">const</span> std::string&amp; <a class="code" href="classRespuesta.html#a562ba8b4160fdab0140ea475f1ea1b4a" title="Retorna un mensaje Interno que posee una instancia de respuesta.">mensajeInterno</a>() <span class="keyword">const</span>;
+<a name="l00072"></a>00072 
+<a name="l00077"></a>00077         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#a562ba8b4160fdab0140ea475f1ea1b4a" title="Retorna un mensaje Interno que posee una instancia de respuesta.">mensajeInterno</a>(<span class="keyword">const</span> std::string&amp; mensaje);
+<a name="l00078"></a>00078 
+<a name="l00082"></a>00082         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#a1e21c514d26c3385a5651a36d4f7f34a" title="Deja la Respuesta vacia.">limpiar</a>();
+<a name="l00083"></a>00083 
+<a name="l00088"></a>00088         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#a35c60fc408efd0b7b092d28b5be69f44" title="Define las columnas que tendra la respuesta.">definirColumnas</a>(<span class="keywordtype">size_t</span> columnas);
+<a name="l00089"></a>00089 
+<a name="l00094"></a>00094         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#ab8ac28c6ed5208dbc8c315fdf6b74185" title="Agrega un campo Nuevo en la fila actual donde es que se encuentra.">agregar</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="classRespuesta.html#ae774da66d9ba0886f93d2534a5b6f143" title="Retorna el campo encontrado en la fila y columna argumentos. Si se sobrepasan los argumentos se retor...">dato</a>);
+<a name="l00095"></a>00095 
+<a name="l00099"></a>00099         <span class="keywordtype">void</span> <a class="code" href="classRespuesta.html#acab88cb460bb85a0e2d481a6259f6dda" title="Establece el fin de la fila actual y comienza una nueva.">filaCompletada</a>();
+<a name="l00100"></a>00100 
+<a name="l00108"></a>00108         <span class="keyword">const</span> std::string&amp; <a class="code" href="classRespuesta.html#ae774da66d9ba0886f93d2534a5b6f143" title="Retorna el campo encontrado en la fila y columna argumentos. Si se sobrepasan los argumentos se retor...">dato</a>(<span class="keywordtype">size_t</span> fila, <span class="keywordtype">size_t</span> columna) <span class="keyword">const</span>;
+<a name="l00109"></a>00109 
+<a name="l00114"></a>00114         <span class="keywordtype">size_t</span> <a class="code" href="classRespuesta.html#ae786f9f4a9aa972132e5e32015543ab6" title="Retorna la cantidad de Columnas que posee la respuesta.">cantidadColumnas</a>() <span class="keyword">const</span>;
+<a name="l00115"></a>00115 
+<a name="l00120"></a>00120         <span class="keywordtype">size_t</span> <a class="code" href="classRespuesta.html#a9c7ba3983494e31fad1cb3d634130938" title="Rertorna la cantidad de FIlas que posee la respuesta.">cantidadFilas</a>() <span class="keyword">const</span>;
+<a name="l00121"></a>00121 
+<a name="l00127"></a>00127         <span class="keywordtype">bool</span> <a class="code" href="classRespuesta.html#a920555187de6a86754036ace66cf5213" title="Retorna un bool indicando si en la respuesta recibida se encuentra algun mensaje de Error...">huboError</a>() <span class="keyword">const</span>;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130         <span class="keyword">static</span> std::string mensajeError;
+<a name="l00131"></a>00131         <span class="keyword">static</span> std::string respuestaVacia;
+<a name="l00132"></a>00132         <span class="keyword">static</span> std::string respuestaValida;
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="keyword">private</span>:
+<a name="l00141"></a>00141         <span class="keywordtype">void</span> guardarFila(<span class="keyword">const</span> std::string&amp; fila);
+<a name="l00142"></a>00142 
+<a name="l00149"></a>00149         <span class="keywordtype">void</span> cargarFila(<span class="keyword">const</span> Fila&amp; fila, std::string&amp; datos) <span class="keyword">const</span>;
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151         <span class="keywordtype">size_t</span> _columnas;
+<a name="l00152"></a>00152         DatosDeRespuesta _datos;
+<a name="l00153"></a>00153         Fila _filaActual;
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155         std::string _msjInterno;
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157         <span class="keyword">static</span> Campo campo_nulo;
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159     <a class="code" href="classUtilitario.html">Utilitario</a> u;
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161     Id_Mensaje _id;
+<a name="l00162"></a>00162 };
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="preprocessor">#endif </span><span class="comment">/* RESPUESTA_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>Respuesta.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

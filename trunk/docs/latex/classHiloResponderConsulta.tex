@@ -1,0 +1,76 @@
+\hypertarget{classHiloResponderConsulta}{\section{\-Referencia de la \-Clase \-Hilo\-Responder\-Consulta}
+\label{classHiloResponderConsulta}\index{\-Hilo\-Responder\-Consulta@{\-Hilo\-Responder\-Consulta}}
+}
+
+
+{\ttfamily \#include $<$\-Hilo\-Responder\-Consulta.\-h$>$}
+
+\-Diagrama de herencias de \-Hilo\-Responder\-Consulta\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classHiloResponderConsulta}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classHiloResponderConsulta_aef65ff26b3d1ece048e2a83038e4a891}{\-Hilo\-Responder\-Consulta} (\hyperlink{classBLQueue}{\-Consultas\-Clientes\-Servidor} \&cconsultas, \hyperlink{classResolvedorConsultas}{\-Resolvedor\-Consultas} \&rcons)
+\item 
+\hyperlink{classHiloResponderConsulta_a460be54bcc8b8e6236a7c292192d56d4}{$\sim$\-Hilo\-Responder\-Consulta} ()
+\item 
+void \hyperlink{classHiloResponderConsulta_a11e5fc2a5b3ae20696a1051a4c282845}{correr} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Es la clase encargada de la resolución de consultas del cliente. \-Es una clase heredera de hilo que hace las de consumer de la cola de consultas del servidor. \-A su vez, se encarga de enviar la consulta a través del socket del cliente requerido. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classHiloResponderConsulta_aef65ff26b3d1ece048e2a83038e4a891}{\index{\-Hilo\-Responder\-Consulta@{\-Hilo\-Responder\-Consulta}!\-Hilo\-Responder\-Consulta@{\-Hilo\-Responder\-Consulta}}
+\index{\-Hilo\-Responder\-Consulta@{\-Hilo\-Responder\-Consulta}!HiloResponderConsulta@{\-Hilo\-Responder\-Consulta}}
+\subsubsection[{\-Hilo\-Responder\-Consulta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Hilo\-Responder\-Consulta\-::\-Hilo\-Responder\-Consulta} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Consultas\-Clientes\-Servidor} \&}]{cconsultas, }
+\item[{{\bf \-Resolvedor\-Consultas} \&}]{rcons}
+\end{DoxyParamCaption}
+)}}\label{classHiloResponderConsulta_aef65ff26b3d1ece048e2a83038e4a891}
+\-Constructor de \-Hilo\-Responderconsulta. 
+\begin{DoxyParams}{\-Parámetros}
+{\em cconsultas} & \-Cola de consultas del servidor. \-Debe ser bloqueante y thread safe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{\-Ver también}
+\hyperlink{classBLQueue}{\-B\-L\-Queue} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{\-Parámetros}
+{\em rcons} & \-Objeto capaz de resolver una consulta. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classHiloResponderConsulta_a460be54bcc8b8e6236a7c292192d56d4}{\index{\-Hilo\-Responder\-Consulta@{\-Hilo\-Responder\-Consulta}!$\sim$\-Hilo\-Responder\-Consulta@{$\sim$\-Hilo\-Responder\-Consulta}}
+\index{$\sim$\-Hilo\-Responder\-Consulta@{$\sim$\-Hilo\-Responder\-Consulta}!HiloResponderConsulta@{\-Hilo\-Responder\-Consulta}}
+\subsubsection[{$\sim$\-Hilo\-Responder\-Consulta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Hilo\-Responder\-Consulta\-::$\sim$\-Hilo\-Responder\-Consulta} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classHiloResponderConsulta_a460be54bcc8b8e6236a7c292192d56d4}
+\-Destructor. \-Si esta corriendo, lo detiene. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classHiloResponderConsulta_a11e5fc2a5b3ae20696a1051a4c282845}{\index{\-Hilo\-Responder\-Consulta@{\-Hilo\-Responder\-Consulta}!correr@{correr}}
+\index{correr@{correr}!HiloResponderConsulta@{\-Hilo\-Responder\-Consulta}}
+\subsubsection[{correr}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Hilo\-Responder\-Consulta\-::correr} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classHiloResponderConsulta_a11e5fc2a5b3ae20696a1051a4c282845}
+\-Es el metodo llamado por el callback del hilo. \-Es el encargado de sacar consultas de la cola, pedir la respuesta y enviarla a través del \hyperlink{classClienteRemoto}{\-Cliente\-Remoto} correspondiente. 
+
+\-Implementa \hyperlink{classHilo_a187b055e3504487a6bb64340fac2c70d}{\-Hilo}.
+
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/servidor/\-Hilo\-Responder\-Consulta.\-h\item 
+servidor/servidor/\-Hilo\-Responder\-Consulta.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,144 @@
+\hypertarget{classSocket}{\section{\-Referencia de la \-Clase \-Socket}
+\label{classSocket}\index{\-Socket@{\-Socket}}
+}
+
+
+{\ttfamily \#include $<$\-Socket.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSocket_aecd84cd77e3c7906c9b6bc62eb139e94}{\-Socket} (\-Puerto puerto)
+\begin{DoxyCompactList}\small\item\em \-Constructor para el \hyperlink{classSocket}{\-Socket} que recibe el puerto en donde se va a conectar. \end{DoxyCompactList}\item 
+\hypertarget{classSocket_aeac4eb6379a543d38ed88977d3b6630a}{virtual \hyperlink{classSocket_aeac4eb6379a543d38ed88977d3b6630a}{$\sim$\-Socket} ()}\label{classSocket_aeac4eb6379a543d38ed88977d3b6630a}
+
+\begin{DoxyCompactList}\small\item\em \-Destructor virtual de \hyperlink{classSocket}{\-Socket}. \end{DoxyCompactList}\item 
+void \hyperlink{classSocket_a4b072b1d4e02bb676b4d2bfc17bc252c}{conectar} (const std\-::string \&huesped)
+\begin{DoxyCompactList}\small\item\em \-Intenta establecer una conexion con el huesped. \end{DoxyCompactList}\item 
+\hypertarget{classSocket_a96467ca6d4fda8fb3d9fbc6818ec5c39}{void \hyperlink{classSocket_a96467ca6d4fda8fb3d9fbc6818ec5c39}{enlazar} ()}\label{classSocket_a96467ca6d4fda8fb3d9fbc6818ec5c39}
+
+\begin{DoxyCompactList}\small\item\em \-Enlaza el \hyperlink{classSocket}{\-Socket} para poder escuchar conexiones entrantes. \end{DoxyCompactList}\item 
+\hyperlink{classSocket}{\-Socket} $\ast$ \hyperlink{classSocket_a0dea5b749aa54a23dcdbfb72aceed3c0}{escuchar\-Conexion} ()
+\begin{DoxyCompactList}\small\item\em \-Escucha una conexion entrante y retorna un \hyperlink{classSocket}{\-Socket} para realizar la comunicion con esta. \end{DoxyCompactList}\item 
+bool \hyperlink{classSocket_a9b61fa7f865eb17e727b1e08a8467274}{enviar} (const \hyperlink{classMensaje}{\-Mensaje} \&mensaje)
+\begin{DoxyCompactList}\small\item\em \-Envia el mensaje atravez del socket, confirmando si fue enviado correctamente. \end{DoxyCompactList}\item 
+bool \hyperlink{classSocket_a820da69df857dabb200934da3a8a53ae}{recibir} (\hyperlink{classMensaje}{\-Mensaje} \&mensaje)
+\begin{DoxyCompactList}\small\item\em \-Se pone en espera a recibir una respuesta. \end{DoxyCompactList}\item 
+\hypertarget{classSocket_adc70891a239124b75ceb11275464e981}{void \hyperlink{classSocket_adc70891a239124b75ceb11275464e981}{desconectar} ()}\label{classSocket_adc70891a239124b75ceb11275464e981}
+
+\begin{DoxyCompactList}\small\item\em \-Cierra la conexion con el huesped. \end{DoxyCompactList}\item 
+bool \hyperlink{classSocket_acd86b2a177083a141c61afeab3816fab}{conectado} ()
+\begin{DoxyCompactList}\small\item\em \-Retorna un bool indicando si el socket se encuentra en estado de conectado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encarga de la comunicacion entre las distintas partes como servidor, agente y cliente. \-Es la capa mas baja de comunicacion que hay en este proyecto. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classSocket_aecd84cd77e3c7906c9b6bc62eb139e94}{\index{\-Socket@{\-Socket}!\-Socket@{\-Socket}}
+\index{\-Socket@{\-Socket}!Socket@{\-Socket}}
+\subsubsection[{\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Socket\-::\-Socket} (
+\begin{DoxyParamCaption}
+\item[{\-Puerto}]{puerto}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}\label{classSocket_aecd84cd77e3c7906c9b6bc62eb139e94}
+
+
+\-Constructor para el \hyperlink{classSocket}{\-Socket} que recibe el puerto en donde se va a conectar. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em puerto} & es puerto por donde establecera la conexion el socket. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classSocket_acd86b2a177083a141c61afeab3816fab}{\index{\-Socket@{\-Socket}!conectado@{conectado}}
+\index{conectado@{conectado}!Socket@{\-Socket}}
+\subsubsection[{conectado}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Socket\-::conectado} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSocket_acd86b2a177083a141c61afeab3816fab}
+
+
+\-Retorna un bool indicando si el socket se encuentra en estado de conectado. 
+
+\begin{DoxyReturn}{\-Devuelve}
+booleano indicando que representa el estado \char`\"{}conectado\char`\"{}. 
+\end{DoxyReturn}
+\hypertarget{classSocket_a4b072b1d4e02bb676b4d2bfc17bc252c}{\index{\-Socket@{\-Socket}!conectar@{conectar}}
+\index{conectar@{conectar}!Socket@{\-Socket}}
+\subsubsection[{conectar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Socket\-::conectar} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{huesped}
+\end{DoxyParamCaption}
+)}}\label{classSocket_a4b072b1d4e02bb676b4d2bfc17bc252c}
+
+
+\-Intenta establecer una conexion con el huesped. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em huesped} & string que contiene la direccione a la cual se conectara el socket. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSocket_a9b61fa7f865eb17e727b1e08a8467274}{\index{\-Socket@{\-Socket}!enviar@{enviar}}
+\index{enviar@{enviar}!Socket@{\-Socket}}
+\subsubsection[{enviar}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Socket\-::enviar} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Mensaje} \&}]{mensaje}
+\end{DoxyParamCaption}
+)}}\label{classSocket_a9b61fa7f865eb17e727b1e08a8467274}
+
+
+\-Envia el mensaje atravez del socket, confirmando si fue enviado correctamente. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em mensaje} & \hyperlink{classMensaje}{\-Mensaje} con los datos a enviar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+booleano indicando si envio correctamente el mensaje 
+\end{DoxyReturn}
+\hypertarget{classSocket_a0dea5b749aa54a23dcdbfb72aceed3c0}{\index{\-Socket@{\-Socket}!escuchar\-Conexion@{escuchar\-Conexion}}
+\index{escuchar\-Conexion@{escuchar\-Conexion}!Socket@{\-Socket}}
+\subsubsection[{escuchar\-Conexion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Socket} $\ast$ {\bf \-Socket\-::escuchar\-Conexion} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSocket_a0dea5b749aa54a23dcdbfb72aceed3c0}
+
+
+\-Escucha una conexion entrante y retorna un \hyperlink{classSocket}{\-Socket} para realizar la comunicion con esta. 
+
+\begin{DoxyReturn}{\-Devuelve}
+\-Instancia de otro socket conectado anfitrion. 
+\end{DoxyReturn}
+\hypertarget{classSocket_a820da69df857dabb200934da3a8a53ae}{\index{\-Socket@{\-Socket}!recibir@{recibir}}
+\index{recibir@{recibir}!Socket@{\-Socket}}
+\subsubsection[{recibir}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Socket\-::recibir} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Mensaje} \&}]{mensaje}
+\end{DoxyParamCaption}
+)}}\label{classSocket_a820da69df857dabb200934da3a8a53ae}
+
+
+\-Se pone en espera a recibir una respuesta. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em mensaje} & \hyperlink{classMensaje}{\-Mensaje} que donde se van a almacenar los datos recibidos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+booleano indicando si se recibio correctamente el mensaje.. 
+\end{DoxyReturn}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+comun/\-Socket.\-h\item 
+comun/\-Socket.\-cpp\end{DoxyCompactItemize}

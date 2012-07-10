@@ -1,0 +1,88 @@
+\hypertarget{classThreadEntradaAgentes}{\section{\-Referencia de la \-Clase \-Thread\-Entrada\-Agentes}
+\label{classThreadEntradaAgentes}\index{\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}}
+}
+
+
+{\ttfamily \#include $<$\-Thread\-Entrada\-Agentes.\-h$>$}
+
+\-Diagrama de herencias de \-Thread\-Entrada\-Agentes\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classThreadEntradaAgentes}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classThreadEntradaAgentes_a7026233eb4d88a5262fa5ede40e49d0c}{bool {\bfseries activo} ()}\label{classThreadEntradaAgentes_a7026233eb4d88a5262fa5ede40e49d0c}
+
+\item 
+void \hyperlink{classThreadEntradaAgentes_ae7ae2e0706d4daf52a368523e39216e6}{correr} ()
+\item 
+void \hyperlink{classThreadEntradaAgentes_a3d6baf4fb4e1ac666d3404d6544c32c1}{detener\-\_\-entrada} ()
+\item 
+\hyperlink{classThreadEntradaAgentes_aeb43331665e5a96221fa1382435ba49c}{\-Thread\-Entrada\-Agentes} (\hyperlink{classContenedorAgentes}{\-Contenedor\-Agentes} \&cag, \hyperlink{classResolvedorEntradas}{\-Resolvedor\-Entradas} \&rent, \-Puerto pagentes, \hyperlink{classBLQueue}{\-Consultas\-Agentes\-Servidor} \&centr)
+\item 
+\hyperlink{classThreadEntradaAgentes_a52b3a7406301678c2495bb87d690ef19}{$\sim$\-Thread\-Entrada\-Agentes} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encargada de recepcionar las conexiones ingresantes de agentes. \-Al ingresar una conexión, crea un \hyperlink{classAgenteRemoto}{\-Agente\-Remoto}, lo guarda y lo pone a correr. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classThreadEntradaAgentes_aeb43331665e5a96221fa1382435ba49c}{\index{\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}!\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}}
+\index{\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}!ThreadEntradaAgentes@{\-Thread\-Entrada\-Agentes}}
+\subsubsection[{\-Thread\-Entrada\-Agentes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Thread\-Entrada\-Agentes\-::\-Thread\-Entrada\-Agentes} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Contenedor\-Agentes} \&}]{cag, }
+\item[{{\bf \-Resolvedor\-Entradas} \&}]{rent, }
+\item[{\-Puerto}]{pagentes, }
+\item[{{\bf \-Consultas\-Agentes\-Servidor} \&}]{centr}
+\end{DoxyParamCaption}
+)}}\label{classThreadEntradaAgentes_aeb43331665e5a96221fa1382435ba49c}
+\-Al conectar la unica acción realizada es la de enlazamiento del socket. 
+\begin{DoxyParams}{\-Parámetros}
+{\em cag} & \-Objeto capaz de contener \-Agentes\-Remotos. \\
+\hline
+{\em rent} & \-Objeto capaz de resolver entradas. \-Será usado por los \-Agentes\-Remotos conectados. \\
+\hline
+{\em pagentes} & \-Puerto por el cual escuchará conexiones. \\
+\hline
+{\em centr} & \-Cola de consultas de agente del servidor. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classThreadEntradaAgentes_a52b3a7406301678c2495bb87d690ef19}{\index{\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}!$\sim$\-Thread\-Entrada\-Agentes@{$\sim$\-Thread\-Entrada\-Agentes}}
+\index{$\sim$\-Thread\-Entrada\-Agentes@{$\sim$\-Thread\-Entrada\-Agentes}!ThreadEntradaAgentes@{\-Thread\-Entrada\-Agentes}}
+\subsubsection[{$\sim$\-Thread\-Entrada\-Agentes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Thread\-Entrada\-Agentes\-::$\sim$\-Thread\-Entrada\-Agentes} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classThreadEntradaAgentes_a52b3a7406301678c2495bb87d690ef19}
+\-Detiene la entrada. \-Si sigue conectado, desconecta. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classThreadEntradaAgentes_ae7ae2e0706d4daf52a368523e39216e6}{\index{\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}!correr@{correr}}
+\index{correr@{correr}!ThreadEntradaAgentes@{\-Thread\-Entrada\-Agentes}}
+\subsubsection[{correr}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Thread\-Entrada\-Agentes\-::correr} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classThreadEntradaAgentes_ae7ae2e0706d4daf52a368523e39216e6}
+\-Método que se queda pendiente de la conexión de nuevos agentes. \-Si llega un agente, crea un \hyperlink{classAgenteRemoto}{\-Agente\-Remoto} que procese las consultas. 
+
+\-Implementa \hyperlink{classHilo_a187b055e3504487a6bb64340fac2c70d}{\-Hilo}.
+
+\hypertarget{classThreadEntradaAgentes_a3d6baf4fb4e1ac666d3404d6544c32c1}{\index{\-Thread\-Entrada\-Agentes@{\-Thread\-Entrada\-Agentes}!detener\-\_\-entrada@{detener\-\_\-entrada}}
+\index{detener\-\_\-entrada@{detener\-\_\-entrada}!ThreadEntradaAgentes@{\-Thread\-Entrada\-Agentes}}
+\subsubsection[{detener\-\_\-entrada}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Thread\-Entrada\-Agentes\-::detener\-\_\-entrada} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classThreadEntradaAgentes_a3d6baf4fb4e1ac666d3404d6544c32c1}
+\-Detiene la conexión de entrada de agentes. \-Desconecta, detiene y sincroniza el hilo. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/servidor/\-Thread\-Entrada\-Agentes.\-h\item 
+servidor/servidor/\-Thread\-Entrada\-Agentes.\-cpp\end{DoxyCompactItemize}

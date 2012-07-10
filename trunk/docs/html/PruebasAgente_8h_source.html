@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente Pruebas/PruebasAgente.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('PruebasAgente_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">Pruebas/PruebasAgente.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * PruebasAgente.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 10/06/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef PRUEBASAGENTE_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define PRUEBASAGENTE_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;../comun/Hilo.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;../comun/Socket.h&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;../comun/Consulta.h&quot;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;../comun/Respuesta.h&quot;</span>
+<a name="l00016"></a>00016 <span class="keyword">using namespace </span>std;
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="preprocessor">#define PUERTO_PRUEBA_SERVIDOR 4351</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define CANT_CONSULTA 7</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span>
+<a name="l00021"></a><a class="code" href="classmServidor.html">00021</a> <span class="keyword">class </span><a class="code" href="classmServidor.html">mServidor</a> : <span class="keyword">public</span> <a class="code" href="classHilo.html">Hilo</a> {
+<a name="l00022"></a>00022 <span class="keyword">public</span>:
+<a name="l00023"></a>00023         <a class="code" href="classmServidor.html">mServidor</a>() : _sck((Puerto)PUERTO_PRUEBA_SERVIDOR) {
+<a name="l00024"></a>00024                 cout &lt;&lt; <span class="stringliteral">&quot;Se instancia el Servidor&quot;</span> &lt;&lt; endl;
+<a name="l00025"></a>00025         }
+<a name="l00026"></a>00026 
+<a name="l00027"></a><a class="code" href="classmServidor.html#a67e6c4e358e277a9638e304f4a5f412d">00027</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmServidor.html#a67e6c4e358e277a9638e304f4a5f412d" title="Metodo virtual puro, que corre cuando se ejecuta el hilo.">correr</a>() {
+<a name="l00028"></a>00028                 _sck.enlazar();
+<a name="l00029"></a>00029                 cout &lt;&lt; <span class="stringliteral">&quot;Servidor-socket enlazado&quot;</span> &lt;&lt; endl;
+<a name="l00030"></a>00030                 <a class="code" href="classSocket.html">Socket</a> *nsck;
+<a name="l00031"></a>00031                 nsck = _sck.<a class="code" href="classSocket.html#a0dea5b749aa54a23dcdbfb72aceed3c0" title="Escucha una conexion entrante y retorna un Socket para realizar la comunicion con esta...">escucharConexion</a>();
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033                 <span class="keywordflow">if</span> (nsck != NULL)
+<a name="l00034"></a>00034                         cout &lt;&lt; <span class="stringliteral">&quot;Servidor-conexion Establecida&quot;</span> &lt;&lt; endl;
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037                 <a class="code" href="classConsulta.html">Consulta</a> crec;
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039                 <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7 ; i++) {
+<a name="l00040"></a>00040                         nsck-&gt;<a class="code" href="classSocket.html#a820da69df857dabb200934da3a8a53ae" title="Se pone en espera a recibir una respuesta.">recibir</a>(crec);
+<a name="l00041"></a>00041                         cout &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;Consulta N°&quot;</span> &lt;&lt; i &lt;&lt;<span class="stringliteral">&quot; Recibida.&quot;</span> &lt;&lt; endl;
+<a name="l00042"></a>00042                         cout &lt;&lt; <span class="stringliteral">&quot;Campos: &quot;</span>;
+<a name="l00043"></a>00043                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; crec.<a class="code" href="classConsulta.html#a4bc49d0bdbd55835f463d6d89dee81b6" title="Retorna la cantidad de campos que tiene la consulta (Para que la utilice un a Agente).">cantidadCampos</a>() ; j++) {
+<a name="l00044"></a>00044                                 cout.width(10);
+<a name="l00045"></a>00045                                 cout.fill(<span class="charliteral">&#39; &#39;</span>);
+<a name="l00046"></a>00046                                 cout &lt;&lt; crec.<a class="code" href="classConsulta.html#a2002e971cfc49f7fdec5f7a9d1de3bf8" title="Retorna un campo de la &quot;Consulta&quot; hecha por el agente, indexado por indice.">campo</a>(j);
+<a name="l00047"></a>00047                                 cout &lt;&lt; <span class="stringliteral">&quot;|&quot;</span>;
+<a name="l00048"></a>00048                         }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050                         <span class="keywordflow">if</span> (i == 4) {
+<a name="l00051"></a>00051                                 nsck-&gt;<a class="code" href="classSocket.html#a9b61fa7f865eb17e727b1e08a8467274" title="Envia el mensaje atravez del socket, confirmando si fue enviado correctamente.">enviar</a>(<a class="code" href="classRespuesta.html">Respuesta</a>(<span class="stringliteral">&quot;:::CONSULTA RECIBIDA OK:::(ServidoR)&quot;</span>));
+<a name="l00052"></a>00052                         }
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054                         cout &lt;&lt; endl;
+<a name="l00055"></a>00055                         crec.<a class="code" href="classConsulta.html#a4029f6916b9f06308774422156a14cd3" title="Deja la consulta vacia.">limpiar</a>();
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057                 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060                 cout &lt;&lt; <span class="stringliteral">&quot;Servidor-Paquete recibido: &quot;</span>;
+<a name="l00061"></a>00061                 cout &lt;&lt; crec.<a class="code" href="classConsulta.html#a0d3fd7d84c1a68b8cbe31a4118150269" title="Serializa toda la Consulta en string.">serializar</a>() &lt;&lt; endl;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063                 nsck-&gt;<a class="code" href="classSocket.html#adc70891a239124b75ceb11275464e981" title="Cierra la conexion con el huesped.">desconectar</a>();
+<a name="l00064"></a>00064                 <span class="keyword">delete</span> nsck;
+<a name="l00065"></a>00065         }
+<a name="l00066"></a>00066         ~<a class="code" href="classmServidor.html">mServidor</a>(){}
+<a name="l00067"></a>00067         <a class="code" href="classSocket.html">Socket</a> _sck;
+<a name="l00068"></a>00068 };
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="keywordtype">void</span> testAgenteCargaConfig();
+<a name="l00072"></a>00072 <span class="keywordtype">void</span> testAgenteSimple();
+<a name="l00073"></a>00073 <span class="keywordtype">void</span> testAgenteCargaDesdeArchivo();
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="preprocessor">#endif </span><span class="comment">/* PRUEBASAGENTE_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>PruebasAgente.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

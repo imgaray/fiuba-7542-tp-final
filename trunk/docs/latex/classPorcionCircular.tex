@@ -1,0 +1,146 @@
+\hypertarget{classPorcionCircular}{\section{\-Referencia de la \-Clase \-Porcion\-Circular}
+\label{classPorcionCircular}\index{\-Porcion\-Circular@{\-Porcion\-Circular}}
+}
+
+
+{\ttfamily \#include $<$\-Porcion\-Circular.\-h$>$}
+
+\-Diagrama de herencias de \-Porcion\-Circular\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classPorcionCircular}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPorcionCircular_a08265d1aa799ee7aa5e3397b6db44fa0}{\-Porcion\-Circular} (const \hyperlink{classHecho}{\-Hecho} \&dato, double maximo, unsigned i, double offset, double x0, double y0, double radio)
+\item 
+\hyperlink{classPorcionCircular_a91aa83bdf942a5e63a5eface222c4c2d}{$\sim$\-Porcion\-Circular} ()
+\item 
+void \hyperlink{classPorcionCircular_a88b4c95825dd491a343576dbe6e00496}{dibujar} (\-Cairo\-::\-Ref\-Ptr$<$ \-Cairo\-::\-Context $>$ \&ctx)
+\item 
+bool \hyperlink{classPorcionCircular_aa39b24dbc7966b5b44c65e85eb389a71}{fue\-Clickeada} (double x, double y)
+\item 
+double \hyperlink{classPorcionCircular_ac92b4a76e251f16006f06419354f28d7}{get\-Avance} ()
+\item 
+std\-::string \hyperlink{classPorcionCircular_ae19f4777d0f9b0ed31e9305783e34a40}{get\-Info} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase concreta que representa una porción circular de un gráfico de torta. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classPorcionCircular_a08265d1aa799ee7aa5e3397b6db44fa0}{\index{\-Porcion\-Circular@{\-Porcion\-Circular}!\-Porcion\-Circular@{\-Porcion\-Circular}}
+\index{\-Porcion\-Circular@{\-Porcion\-Circular}!PorcionCircular@{\-Porcion\-Circular}}
+\subsubsection[{\-Porcion\-Circular}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Porcion\-Circular\-::\-Porcion\-Circular} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Hecho} \&}]{dato, }
+\item[{double}]{maximo, }
+\item[{unsigned}]{i, }
+\item[{double}]{offset, }
+\item[{double}]{x0, }
+\item[{double}]{y0, }
+\item[{double}]{radio}
+\end{DoxyParamCaption}
+)}}\label{classPorcionCircular_a08265d1aa799ee7aa5e3397b6db44fa0}
+\-Constructor. 
+\begin{DoxyParams}{\-Parámetros}
+{\em dato} & aquello que representará la porción \\
+\hline
+{\em maximo} & el valor máximo encontrado \\
+\hline
+{\em i} & número de porción (esto es meramente por el color) \\
+\hline
+{\em offset} & desplazamiento de la porción \\
+\hline
+{\em x0} & centro del círculo \\
+\hline
+{\em y0} & centro del círculo \\
+\hline
+{\em radio} & radio del círculo \\
+\hline
+\end{DoxyParams}
+\hypertarget{classPorcionCircular_a91aa83bdf942a5e63a5eface222c4c2d}{\index{\-Porcion\-Circular@{\-Porcion\-Circular}!$\sim$\-Porcion\-Circular@{$\sim$\-Porcion\-Circular}}
+\index{$\sim$\-Porcion\-Circular@{$\sim$\-Porcion\-Circular}!PorcionCircular@{\-Porcion\-Circular}}
+\subsubsection[{$\sim$\-Porcion\-Circular}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Porcion\-Circular\-::$\sim$\-Porcion\-Circular} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPorcionCircular_a91aa83bdf942a5e63a5eface222c4c2d}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classPorcionCircular_a88b4c95825dd491a343576dbe6e00496}{\index{\-Porcion\-Circular@{\-Porcion\-Circular}!dibujar@{dibujar}}
+\index{dibujar@{dibujar}!PorcionCircular@{\-Porcion\-Circular}}
+\subsubsection[{dibujar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Porcion\-Circular\-::dibujar} (
+\begin{DoxyParamCaption}
+\item[{\-Cairo\-::\-Ref\-Ptr$<$ \-Cairo\-::\-Context $>$ \&}]{ctx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classPorcionCircular_a88b4c95825dd491a343576dbe6e00496}
+\-Dibuja la porción circular. 
+\begin{DoxyParams}{\-Parámetros}
+{\em ctx} & contexto sobre el que se dibuja \\
+\hline
+\end{DoxyParams}
+
+
+\-Implementa \hyperlink{classArea_a95274f96ffa5525307f0a00d074047fb}{\-Area}.
+
+\hypertarget{classPorcionCircular_aa39b24dbc7966b5b44c65e85eb389a71}{\index{\-Porcion\-Circular@{\-Porcion\-Circular}!fue\-Clickeada@{fue\-Clickeada}}
+\index{fue\-Clickeada@{fue\-Clickeada}!PorcionCircular@{\-Porcion\-Circular}}
+\subsubsection[{fue\-Clickeada}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Porcion\-Circular\-::fue\-Clickeada} (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classPorcionCircular_aa39b24dbc7966b5b44c65e85eb389a71}
+\-Evalúa si el mouse está posado sobre la porción circular. 
+\begin{DoxyParams}{\-Parámetros}
+{\em x} & posición x del mouse en la ventana, normalizada \\
+\hline
+{\em y} & posición y del mouse en la ventana, normalizada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+true o false, según la posición pertenece al área 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classArea_a4158f8c72ff8c67b5d1de00aa9691e90}{\-Area}.
+
+\hypertarget{classPorcionCircular_ac92b4a76e251f16006f06419354f28d7}{\index{\-Porcion\-Circular@{\-Porcion\-Circular}!get\-Avance@{get\-Avance}}
+\index{get\-Avance@{get\-Avance}!PorcionCircular@{\-Porcion\-Circular}}
+\subsubsection[{get\-Avance}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-Porcion\-Circular\-::get\-Avance} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classPorcionCircular_ac92b4a76e251f16006f06419354f28d7}
+\-Obtener el offset nuevo. \begin{DoxyReturn}{\-Devuelve}
+posición siguiente a dibujar un porción circular 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classArea_ac8a3293cc9ba5678997e9cb0b4a142f9}{\-Area}.
+
+\hypertarget{classPorcionCircular_ae19f4777d0f9b0ed31e9305783e34a40}{\index{\-Porcion\-Circular@{\-Porcion\-Circular}!get\-Info@{get\-Info}}
+\index{get\-Info@{get\-Info}!PorcionCircular@{\-Porcion\-Circular}}
+\subsubsection[{get\-Info}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Porcion\-Circular\-::get\-Info} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classPorcionCircular_ae19f4777d0f9b0ed31e9305783e34a40}
+\-Información sobre el área. \begin{DoxyReturn}{\-Devuelve}
+string para tooltip 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classArea_a1934f44c890ca764b7e47dba984a32d5}{\-Area}.
+
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Vista/\-Porcion\-Circular.\-h\item 
+cliente/\-Vista/\-Porcion\-Circular.\-cpp\end{DoxyCompactItemize}

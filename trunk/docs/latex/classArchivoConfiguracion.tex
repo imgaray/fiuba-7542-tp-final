@@ -1,0 +1,87 @@
+\hypertarget{classArchivoConfiguracion}{\section{\-Referencia de la \-Clase \-Archivo\-Configuracion}
+\label{classArchivoConfiguracion}\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}}
+}
+
+
+{\ttfamily \#include $<$\-Archivo\-Configuracion.\-h$>$}
+
+\subsection*{\-Tipos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classArchivoConfiguracion_ab833c19535774fe9d0221c7168ee76be}{typedef std\-::map$<$ std\-::string, \*
+std\-::string $>$\-::iterator {\bfseries iterator}}\label{classArchivoConfiguracion_ab833c19535774fe9d0221c7168ee76be}
+
+\end{DoxyCompactItemize}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+std\-::string \hyperlink{classArchivoConfiguracion_a95768ee9e7dbbbfe5569bc2184af3ee8}{obtener\-Atributo} (std\-::string \&name)
+\item 
+std\-::string \hyperlink{classArchivoConfiguracion_ad6205cb38e5a6453ef98a772c4e198dd}{obtener\-Atributo} (char $\ast$nombre)
+\item 
+void \hyperlink{classArchivoConfiguracion_a197987be642dd81cb57d6f96cbd08873}{setear\-Atributo} (std\-::string \&nom, std\-::string \&valor)
+\item 
+\hypertarget{classArchivoConfiguracion_adf342e6c4d4dc3aa48c08f8b623a7ac1}{iterator {\bfseries begin} ()}\label{classArchivoConfiguracion_adf342e6c4d4dc3aa48c08f8b623a7ac1}
+
+\item 
+\hypertarget{classArchivoConfiguracion_a38b2a659a848866e48b237a0edefede5}{iterator {\bfseries end} ()}\label{classArchivoConfiguracion_a38b2a659a848866e48b237a0edefede5}
+
+\item 
+\hyperlink{classArchivoConfiguracion_acee8a865caeee4ab8dad8e799f776717}{\-Archivo\-Configuracion} (const char $\ast$ruta=\-R\-U\-T\-A)
+\item 
+\hyperlink{classArchivoConfiguracion_a18138422c075e0090c98978089ac91b0}{$\sim$\-Archivo\-Configuracion} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Es una clase de archivo que contiene atributos levantados de un archivo de texto. \-El archivo a levantar se encuentra encriptado. \-Nota\-: esta clase no es thread-\/safe. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classArchivoConfiguracion_acee8a865caeee4ab8dad8e799f776717}{\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}!\-Archivo\-Configuracion@{\-Archivo\-Configuracion}}
+\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}!ArchivoConfiguracion@{\-Archivo\-Configuracion}}
+\subsubsection[{\-Archivo\-Configuracion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Archivo\-Configuracion\-::\-Archivo\-Configuracion} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ruta = {\ttfamily \-R\-U\-T\-A}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}\label{classArchivoConfiguracion_acee8a865caeee4ab8dad8e799f776717}
+\-Si el archivo no existe, no levanta ningun tipo de excepcion \hypertarget{classArchivoConfiguracion_a18138422c075e0090c98978089ac91b0}{\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}!$\sim$\-Archivo\-Configuracion@{$\sim$\-Archivo\-Configuracion}}
+\index{$\sim$\-Archivo\-Configuracion@{$\sim$\-Archivo\-Configuracion}!ArchivoConfiguracion@{\-Archivo\-Configuracion}}
+\subsubsection[{$\sim$\-Archivo\-Configuracion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Archivo\-Configuracion\-::$\sim$\-Archivo\-Configuracion} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classArchivoConfiguracion_a18138422c075e0090c98978089ac91b0}
+\-En el destructor es que se persisten los cambios del archivo 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classArchivoConfiguracion_a95768ee9e7dbbbfe5569bc2184af3ee8}{\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}!obtener\-Atributo@{obtener\-Atributo}}
+\index{obtener\-Atributo@{obtener\-Atributo}!ArchivoConfiguracion@{\-Archivo\-Configuracion}}
+\subsubsection[{obtener\-Atributo}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Archivo\-Configuracion\-::obtener\-Atributo} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{classArchivoConfiguracion_a95768ee9e7dbbbfe5569bc2184af3ee8}
+\-Devuelve el atributo asociado \hypertarget{classArchivoConfiguracion_ad6205cb38e5a6453ef98a772c4e198dd}{\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}!obtener\-Atributo@{obtener\-Atributo}}
+\index{obtener\-Atributo@{obtener\-Atributo}!ArchivoConfiguracion@{\-Archivo\-Configuracion}}
+\subsubsection[{obtener\-Atributo}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Archivo\-Configuracion\-::obtener\-Atributo} (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{nombre}
+\end{DoxyParamCaption}
+)}}\label{classArchivoConfiguracion_ad6205cb38e5a6453ef98a772c4e198dd}
+\begin{DoxySeeAlso}{\-Ver también}
+\hyperlink{classArchivoConfiguracion_a95768ee9e7dbbbfe5569bc2184af3ee8}{obtener\-Atributo} 
+\end{DoxySeeAlso}
+\hypertarget{classArchivoConfiguracion_a197987be642dd81cb57d6f96cbd08873}{\index{\-Archivo\-Configuracion@{\-Archivo\-Configuracion}!setear\-Atributo@{setear\-Atributo}}
+\index{setear\-Atributo@{setear\-Atributo}!ArchivoConfiguracion@{\-Archivo\-Configuracion}}
+\subsubsection[{setear\-Atributo}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Archivo\-Configuracion\-::setear\-Atributo} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{nom, }
+\item[{std\-::string \&}]{valor}
+\end{DoxyParamCaption}
+)}}\label{classArchivoConfiguracion_a197987be642dd81cb57d6f96cbd08873}
+\-Setea el atributo \char`\"{}nom\char`\"{} con \char`\"{}valor\char`\"{} 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+comun/\-Archivo\-Configuracion.\-h\item 
+comun/\-Archivo\-Configuracion.\-cpp\end{DoxyCompactItemize}

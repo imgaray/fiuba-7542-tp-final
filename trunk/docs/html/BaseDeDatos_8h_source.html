@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente servidor/MotorDeConsultas/BaseDeDatos.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('BaseDeDatos_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">servidor/MotorDeConsultas/BaseDeDatos.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * BaseDeDatos.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 26/05/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef BASEDEDATOS_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define BASEDEDATOS_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#include &quot;TiposDeDatos.h&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;Indice.hpp&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;IndiceDeFechas.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;ArchivoDeDatos.h&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;../../comun/Utilitario.h&quot;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;Mutex.h&quot;</span>
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="keyword">class </span><a class="code" href="classRespuesta.html">Respuesta</a>;
+<a name="l00019"></a>00019 <span class="keyword">class </span><a class="code" href="classConsulta.html">Consulta</a>;
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00028"></a><a class="code" href="classBaseDeDatos.html">00028</a> <span class="keyword">class </span><a class="code" href="classBaseDeDatos.html">BaseDeDatos</a> {
+<a name="l00029"></a>00029 <span class="keyword">public</span>:
+<a name="l00034"></a>00034         <a class="code" href="classBaseDeDatos.html#ae221c6a11843aa762f30cb132827a432" title="Constructor que recibe la ruta del archivo de datos.">BaseDeDatos</a>(<span class="keyword">const</span> std::string rutaArchivo = <span class="stringliteral">&quot;ruta.txt&quot;</span>);
+<a name="l00035"></a>00035 
+<a name="l00041"></a>00041         <a class="code" href="classRespuesta.html">Respuesta</a> <a class="code" href="classBaseDeDatos.html#a5869d6fbcbb68f45c9d5d585c6aabc89" title="Resuelve una Consulta y retorna la Respuesta de esta.">resolverConsulta</a>(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta);
+<a name="l00042"></a>00042 
+<a name="l00048"></a>00048         <a class="code" href="classRespuesta.html">Respuesta</a> <a class="code" href="classBaseDeDatos.html#a890f098afb8946ad045e908ae2146cbf" title="Agrega una entrada por parte del agente.">agregarEntrada</a>(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; entrada);
+<a name="l00049"></a>00049 
+<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="classBaseDeDatos.html#a4563aa915fd3d0a878f49ff14573c7a5" title="Metodo que deja a la base de datos vacia.">borrarDatos</a>();
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         <span class="keyword">virtual</span> ~<a class="code" href="classBaseDeDatos.html">BaseDeDatos</a>();
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00064"></a>00064         <span class="keywordtype">void</span> <a class="code" href="classBaseDeDatos.html#ae35b96b6ef743328f6a3d1a64832b971" title="Calcula interseccion de dos lista l1 y l2, y almacena el resultado en destino.">calcularInterseccion</a>(<span class="keyword">const</span> Lista_Id&amp; l1, <span class="keyword">const</span> Lista_Id&amp; l2, Lista_Id&amp; destino) <span class="keyword">const</span>;
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="keyword">private</span>:
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> resolverTablaPivote(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00073"></a>00073 
+<a name="l00079"></a>00079         <span class="keywordtype">void</span> resolverConsultaNormal(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; respuesta);
+<a name="l00080"></a>00080 
+<a name="l00086"></a>00086         <span class="keywordtype">void</span> actualizarIndices(<span class="keyword">const</span> std::string&amp; entrada, <span class="keyword">const</span> Id_Registro&amp; <span class="keywordtype">id</span>);
+<a name="l00087"></a>00087 
+<a name="l00093"></a>00093         <span class="keywordtype">void</span> calcularFiltros(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, Lista_Id&amp; lista) <span class="keyword">const</span>;
+<a name="l00094"></a>00094 
+<a name="l00100"></a>00100         <span class="keywordtype">void</span> calcularEntradas(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, Lista_Id&amp; lista) <span class="keyword">const</span>;
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00110"></a>00110         <span class="keywordtype">bool</span> filtrarDatos(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, Lista_Id&amp; listaReg) <span class="keyword">const</span>;
+<a name="l00111"></a>00111 
+<a name="l00118"></a>00118         <span class="keywordtype">bool</span> hayFiltrosDeHechos(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta) <span class="keyword">const</span>;
+<a name="l00125"></a>00125         <span class="keywordtype">bool</span> hayResultadosDeDimensiones(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta) <span class="keyword">const</span>;
+<a name="l00126"></a>00126 
+<a name="l00135"></a>00135         <span class="keywordtype">void</span> guardarCombinaciones(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, Lista_Id&amp; lReg, MapaCombinaciones&amp; mCombinaciones, <span class="keywordtype">bool</span> filtrarHechos);
+<a name="l00136"></a>00136 
+<a name="l00144"></a>00144         <span class="keywordtype">void</span> guardarCombinaciones(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, MapaCombinaciones&amp; mCombinaciones, <span class="keywordtype">bool</span> filtrarHechos);
+<a name="l00145"></a>00145 
+<a name="l00155"></a>00155         <span class="keywordtype">void</span> guardarCombinacionesTP(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, MapaCombinaciones&amp; mCombinaciones, <span class="keywordtype">bool</span> filtrarHechos, Lista_Id* lReg = NULL);
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157 
+<a name="l00165"></a>00165         <span class="keywordtype">void</span> hacerAgregaciones(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, <span class="keyword">const</span> MapaCombinaciones&amp; mCombinaciones, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; respuesta);
+<a name="l00166"></a>00166 
+<a name="l00177"></a>00177         <span class="keywordtype">void</span> hacerAgregacionesTP(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cX,
+<a name="l00178"></a>00178                         <span class="keyword">const</span> MapaCombinaciones&amp; mCombX,
+<a name="l00179"></a>00179                         <span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cY,
+<a name="l00180"></a>00180                         <span class="keyword">const</span> MapaCombinaciones&amp; mCombY,
+<a name="l00181"></a>00181                         <span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cons,
+<a name="l00182"></a>00182                         <a class="code" href="classRespuesta.html">Respuesta</a>&amp; respuesta);
+<a name="l00183"></a>00183 
+<a name="l00191"></a>00191         <span class="keywordtype">void</span> calcularAgregacionTP(<span class="keyword">const</span> Lista_Id&amp; ids, <span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cons, std::string&amp; campoRes);
+<a name="l00192"></a>00192 
+<a name="l00200"></a>00200     <span class="keywordtype">void</span> agregaParaFila(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; consulta, <span class="keyword">const</span> Combinacion&amp; combinacion,<span class="keyword">const</span> Lista_Id&amp; ids, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 
+<a name="l00209"></a>00209         <span class="keywordtype">void</span> calcularAgregacion(<span class="keyword">const</span> Agregacion&amp; agregacion, <span class="keywordtype">unsigned</span>&amp; acumulador, <span class="keywordtype">unsigned</span> aAgregar) <span class="keyword">const</span>;
+<a name="l00210"></a>00210 
+<a name="l00217"></a>00217         <span class="keywordtype">void</span> calcularPromedio(<span class="keywordtype">unsigned</span>&amp; acumulador, <span class="keywordtype">unsigned</span>&amp; cantidad, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nuevoHecho) <span class="keyword">const</span>;
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219 
+<a name="l00224"></a>00224         <span class="keywordtype">void</span> __guardarRegistros(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cons, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00225"></a>00225 
+<a name="l00233"></a>00233         <span class="keywordtype">void</span> guardarHechos(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cons,<span class="keyword">const</span> Lista_Id&amp; ids, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00234"></a>00234 
+<a name="l00241"></a>00241         <span class="keywordtype">void</span> guardarHechos(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cons, <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00242"></a>00242 
+<a name="l00251"></a>00251         <span class="keywordtype">bool</span> aplicarAgregacionHechos(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; cons, std::vector &lt;unsigned&gt;&amp; indice) <span class="keyword">const</span>;
+<a name="l00252"></a>00252 
+<a name="l00256"></a>00256         <span class="keywordtype">void</span> cargarIndices();
+<a name="l00257"></a>00257 
+<a name="l00262"></a>00262         <span class="keywordtype">void</span> imprimirRegistro(Id_Registro <span class="keywordtype">id</span>);
+<a name="l00263"></a>00263 
+<a name="l00264"></a>00264 <span class="keyword">private</span>:
+<a name="l00265"></a>00265         Lista_Id _interseccion; <span class="comment">// no puedo tenerla tengo que hacer instancias</span>
+<a name="l00266"></a>00266                                                         <span class="comment">// porque tiene que ser concurrente</span>
+<a name="l00267"></a>00267         <a class="code" href="classIndice.html">Indice &lt;Dimension&gt;</a> *_indDimensiones;
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269         <a class="code" href="classIndiceDeFechas.html">IndiceDeFechas</a> _indFechas;
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271         <a class="code" href="classArchivoDeDatos.html">ArchivoDeDatos</a> _archDatos;
+<a name="l00272"></a>00272         <span class="keywordtype">unsigned</span> _cantDimensionesSimples;
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274         <a class="code" href="classMutex.html">Mutex</a> _mutex;
+<a name="l00275"></a>00275 };
+<a name="l00276"></a>00276 
+<a name="l00277"></a>00277 <span class="preprocessor">#endif </span><span class="comment">/* BASEDEDATOS_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>BaseDeDatos.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

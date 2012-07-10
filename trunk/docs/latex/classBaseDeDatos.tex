@@ -1,0 +1,112 @@
+\hypertarget{classBaseDeDatos}{\section{\-Referencia de la \-Clase \-Base\-De\-Datos}
+\label{classBaseDeDatos}\index{\-Base\-De\-Datos@{\-Base\-De\-Datos}}
+}
+
+
+{\ttfamily \#include $<$\-Base\-De\-Datos.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBaseDeDatos_ae221c6a11843aa762f30cb132827a432}{\-Base\-De\-Datos} (const std\-::string ruta\-Archivo=\char`\"{}ruta.\-txt\char`\"{})
+\begin{DoxyCompactList}\small\item\em \-Constructor que recibe la ruta del archivo de datos. \end{DoxyCompactList}\item 
+\hyperlink{classRespuesta}{\-Respuesta} \hyperlink{classBaseDeDatos_a5869d6fbcbb68f45c9d5d585c6aabc89}{resolver\-Consulta} (const \hyperlink{classConsulta}{\-Consulta} \&consulta)
+\begin{DoxyCompactList}\small\item\em \-Resuelve una \hyperlink{classConsulta}{\-Consulta} y retorna la \hyperlink{classRespuesta}{\-Respuesta} de esta. \end{DoxyCompactList}\item 
+\hyperlink{classRespuesta}{\-Respuesta} \hyperlink{classBaseDeDatos_a890f098afb8946ad045e908ae2146cbf}{agregar\-Entrada} (const \hyperlink{classConsulta}{\-Consulta} \&entrada)
+\begin{DoxyCompactList}\small\item\em \-Agrega una entrada por parte del agente. \end{DoxyCompactList}\item 
+\hypertarget{classBaseDeDatos_a4563aa915fd3d0a878f49ff14573c7a5}{void \hyperlink{classBaseDeDatos_a4563aa915fd3d0a878f49ff14573c7a5}{borrar\-Datos} ()}\label{classBaseDeDatos_a4563aa915fd3d0a878f49ff14573c7a5}
+
+\begin{DoxyCompactList}\small\item\em \-Metodo que deja a la base de datos vacia. \end{DoxyCompactList}\item 
+void \hyperlink{classBaseDeDatos_ae35b96b6ef743328f6a3d1a64832b971}{calcular\-Interseccion} (const \-Lista\-\_\-\-Id \&l1, const \-Lista\-\_\-\-Id \&l2, \-Lista\-\_\-\-Id \&destino) const 
+\begin{DoxyCompactList}\small\item\em \-Calcula interseccion de dos lista l1 y l2, y almacena el resultado en destino. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encargada de resolver todos los tipos de consultas hechas por un cliente o agente. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classBaseDeDatos_ae221c6a11843aa762f30cb132827a432}{\index{\-Base\-De\-Datos@{\-Base\-De\-Datos}!\-Base\-De\-Datos@{\-Base\-De\-Datos}}
+\index{\-Base\-De\-Datos@{\-Base\-De\-Datos}!BaseDeDatos@{\-Base\-De\-Datos}}
+\subsubsection[{\-Base\-De\-Datos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Base\-De\-Datos\-::\-Base\-De\-Datos} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string}]{ruta\-Archivo = {\ttfamily \char`\"{}ruta.txt\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classBaseDeDatos_ae221c6a11843aa762f30cb132827a432}
+
+
+\-Constructor que recibe la ruta del archivo de datos. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em ruta\-Archivo} & string que contiene la ruta del archivo \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classBaseDeDatos_a890f098afb8946ad045e908ae2146cbf}{\index{\-Base\-De\-Datos@{\-Base\-De\-Datos}!agregar\-Entrada@{agregar\-Entrada}}
+\index{agregar\-Entrada@{agregar\-Entrada}!BaseDeDatos@{\-Base\-De\-Datos}}
+\subsubsection[{agregar\-Entrada}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Respuesta} {\bf \-Base\-De\-Datos\-::agregar\-Entrada} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Consulta} \&}]{entrada}
+\end{DoxyParamCaption}
+)}}\label{classBaseDeDatos_a890f098afb8946ad045e908ae2146cbf}
+
+
+\-Agrega una entrada por parte del agente. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em entrada} & es la \hyperlink{classConsulta}{\-Consulta} que recive por parte del agente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+respuesta que contiene informacion del estado de la resolucion de la entrada. 
+\end{DoxyReturn}
+\hypertarget{classBaseDeDatos_ae35b96b6ef743328f6a3d1a64832b971}{\index{\-Base\-De\-Datos@{\-Base\-De\-Datos}!calcular\-Interseccion@{calcular\-Interseccion}}
+\index{calcular\-Interseccion@{calcular\-Interseccion}!BaseDeDatos@{\-Base\-De\-Datos}}
+\subsubsection[{calcular\-Interseccion}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Base\-De\-Datos\-::calcular\-Interseccion} (
+\begin{DoxyParamCaption}
+\item[{const \-Lista\-\_\-\-Id \&}]{l1, }
+\item[{const \-Lista\-\_\-\-Id \&}]{l2, }
+\item[{\-Lista\-\_\-\-Id \&}]{destino}
+\end{DoxyParamCaption}
+) const}}\label{classBaseDeDatos_ae35b96b6ef743328f6a3d1a64832b971}
+
+
+\-Calcula interseccion de dos lista l1 y l2, y almacena el resultado en destino. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em l1} & es la primer lista a calcular la interseccion \\
+\hline
+{\em l2} & es la segunda lista a calcular la interseccion \\
+\hline
+{\em destino} & es la lista donde se guardara el resultado de la interseccion \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBaseDeDatos_a5869d6fbcbb68f45c9d5d585c6aabc89}{\index{\-Base\-De\-Datos@{\-Base\-De\-Datos}!resolver\-Consulta@{resolver\-Consulta}}
+\index{resolver\-Consulta@{resolver\-Consulta}!BaseDeDatos@{\-Base\-De\-Datos}}
+\subsubsection[{resolver\-Consulta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Respuesta} {\bf \-Base\-De\-Datos\-::resolver\-Consulta} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Consulta} \&}]{consulta}
+\end{DoxyParamCaption}
+)}}\label{classBaseDeDatos_a5869d6fbcbb68f45c9d5d585c6aabc89}
+
+
+\-Resuelve una \hyperlink{classConsulta}{\-Consulta} y retorna la \hyperlink{classRespuesta}{\-Respuesta} de esta. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em consulta} & es la \hyperlink{classConsulta}{\-Consulta} a resolver \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+respuesta que contiene los datos de la consulta resuelta. 
+\end{DoxyReturn}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/\-Motor\-De\-Consultas/\-Base\-De\-Datos.\-h\item 
+servidor/\-Motor\-De\-Consultas/\-Base\-De\-Datos.\-cpp\end{DoxyCompactItemize}

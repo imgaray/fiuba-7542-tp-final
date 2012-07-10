@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente comun/M_Fechas.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('M__Fechas_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">comun/M_Fechas.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * M_Fechas.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 01/06/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef M_FECHAS_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define M_FECHAS_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#include &quot;Definiciones.h&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;sstream&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;Utilitario.h&quot;</span>
+<a name="l00013"></a>00013 
+<a name="l00023"></a><a class="code" href="classM__Fechas.html">00023</a> <span class="keyword">class </span><a class="code" href="classM__Fechas.html">M_Fechas</a> {
+<a name="l00024"></a>00024 <span class="keyword">public</span>:
+<a name="l00025"></a>00025 
+<a name="l00029"></a><a class="code" href="classM__Fechas.html#a4e85392938b64b9e75860de17ce9e954">00029</a>         <a class="code" href="classM__Fechas.html#a4e85392938b64b9e75860de17ce9e954" title="Constructor sin argumentos.">M_Fechas</a>() {}
+<a name="l00030"></a>00030         <span class="keyword">virtual</span> ~<a class="code" href="classM__Fechas.html">M_Fechas</a>() {}
+<a name="l00035"></a>00035         Fecha <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>(<span class="keyword">const</span> std::string&amp; fechaComun)  <span class="keyword">const</span>;
+<a name="l00036"></a>00036         <span class="keywordtype">bool</span> esFechaConvecional(<span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>)  <span class="keyword">const</span>;
+<a name="l00037"></a>00037 
+<a name="l00045"></a>00045         Fecha <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>(<span class="keyword">const</span> Fecha&amp; f1,<span class="keyword">const</span> Fecha&amp; f2) <span class="keyword">const</span>;
+<a name="l00046"></a>00046 
+<a name="l00055"></a>00055         Fecha <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>(<span class="keywordtype">int</span> dia, <span class="keywordtype">int</span> <a class="code" href="classM__Fechas.html#ae6ad20c72a5f70a334613da72459c006" title="A partir de un año y un mes se crea una Fecha de Rango. Que compredera las fechas comprendidas en ese...">mes</a>, <span class="keywordtype">int</span> <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00056"></a>00056 
+<a name="l00063"></a>00063     Fecha <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00064"></a>00064 
+<a name="l00072"></a>00072         Fecha <a class="code" href="classM__Fechas.html#a1b1343d9bf9d4fdd62bffbfc1ddb55ba" title="A partir de un año y un semestre se crea una Fecha de Rango. Que compredera las fechas comprendidas e...">semestre</a>(<span class="keywordtype">int</span> sem, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00073"></a>00073 
+<a name="l00081"></a>00081         Fecha <a class="code" href="classM__Fechas.html#ac900ccecd850f4d01fd9c6a0a26549e4" title="A partir de un año y un cuatrimestre se crea una Fecha de Rango. Que compredera las fechas comprendid...">cuatrimestre</a>(<span class="keywordtype">int</span> cuat, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 
+<a name="l00090"></a>00090         Fecha <a class="code" href="classM__Fechas.html#a26b592cebfd7ac3a1965937961bbe731" title="A partir de un año y un trimestre se crea una Fecha de Rango. Que compredera las fechas comprendidas ...">trimestre</a>(<span class="keywordtype">int</span> tri, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00091"></a>00091 
+<a name="l00099"></a>00099         Fecha <a class="code" href="classM__Fechas.html#ae22a1174bdcacf0fd15c1a437e85b701" title="A partir de un año y un bimestre se crea una Fecha de Rango. Que compredera las fechas comprendidas e...">bimestre</a>(<span class="keywordtype">int</span> bim, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00100"></a>00100 
+<a name="l00108"></a>00108         Fecha <a class="code" href="classM__Fechas.html#ae6ad20c72a5f70a334613da72459c006" title="A partir de un año y un mes se crea una Fecha de Rango. Que compredera las fechas comprendidas en ese...">mes</a>(<span class="keywordtype">int</span> <a class="code" href="classM__Fechas.html#ae6ad20c72a5f70a334613da72459c006" title="A partir de un año y un mes se crea una Fecha de Rango. Que compredera las fechas comprendidas en ese...">mes</a>, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00109"></a>00109 
+<a name="l00117"></a>00117         Fecha <a class="code" href="classM__Fechas.html#a32fe27a2628bce51a3762ce8bc3e03b2" title="A partir de un año y un semama se crea una Fecha de Rango. Que compredera las fechas comprendidas en ...">semana</a>(<span class="keywordtype">int</span> <a class="code" href="classM__Fechas.html#a32fe27a2628bce51a3762ce8bc3e03b2" title="A partir de un año y un semama se crea una Fecha de Rango. Que compredera las fechas comprendidas en ...">semana</a>, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>) <span class="keyword">const</span>;
+<a name="l00118"></a>00118 
+<a name="l00124"></a>00124         <span class="keywordtype">bool</span> <a class="code" href="classM__Fechas.html#af24fa241e5423b0e7afbb8843fba4e64" title="Indica si una Fecha es Rango(o Compuesta).">esRango</a>(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>) <span class="keyword">const</span>;
+<a name="l00125"></a>00125 
+<a name="l00131"></a>00131         <span class="keywordtype">bool</span> <a class="code" href="classM__Fechas.html#ada328f6bc5cb26120f4c41197cbf5a51" title="Indica si una Fecha es simple, es decir, que no es Rango.">esSimple</a>(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>) <span class="keyword">const</span>;
+<a name="l00132"></a>00132 
+<a name="l00140"></a>00140         <span class="keywordtype">void</span> <a class="code" href="classM__Fechas.html#a3790e696e581431ab028af5cbd834b96" title="Descompone una Fecha Rango en dos fechas que compreden el perido que representaba el rango...">desarmar</a>(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2) <span class="keyword">const</span>;
+<a name="l00141"></a>00141 
+<a name="l00148"></a>00148         FechaNumerica <a class="code" href="classM__Fechas.html#a2382b435f48d53cb4957e17b28c8752a" title="Transforma una Fecha con el formato utilizado en un representacion numerica de esta.">convertir</a>(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>) <span class="keyword">const</span>;
+<a name="l00149"></a>00149 
+<a name="l00156"></a>00156         Fecha <a class="code" href="classM__Fechas.html#a2382b435f48d53cb4957e17b28c8752a" title="Transforma una Fecha con el formato utilizado en un representacion numerica de esta.">convertir</a>(<span class="keyword">const</span> FechaNumerica&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>) <span class="keyword">const</span>;
+<a name="l00157"></a>00157 
+<a name="l00165"></a>00165         Fecha <a class="code" href="classM__Fechas.html#a2382b435f48d53cb4957e17b28c8752a" title="Transforma una Fecha con el formato utilizado en un representacion numerica de esta.">convertir</a>(<span class="keyword">const</span> FechaNumerica&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>, <span class="keywordtype">int</span> ancho) <span class="keyword">const</span>;
+<a name="l00166"></a>00166 <span class="keyword">private</span>:
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168 <span class="keyword">private</span>:
+<a name="l00169"></a>00169         <span class="keywordtype">void</span> desarmarMes(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2) <span class="keyword">const</span>;
+<a name="l00170"></a>00170         <span class="keywordtype">void</span> desarmarBimes(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2) <span class="keyword">const</span>;
+<a name="l00171"></a>00171         <span class="keywordtype">void</span> desarmarTrimes(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2) <span class="keyword">const</span>;
+<a name="l00172"></a>00172         <span class="keywordtype">void</span> desarmarCuatrimes(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2)  <span class="keyword">const</span>;
+<a name="l00173"></a>00173         <span class="keywordtype">void</span> desarmarSemes(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2)  <span class="keyword">const</span>;
+<a name="l00174"></a>00174         <span class="keywordtype">void</span> desarmarAnio(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2)  <span class="keyword">const</span>;
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177         <span class="keywordtype">void</span> desarmarFechas(<span class="keyword">const</span> Fecha&amp; <a class="code" href="classM__Fechas.html#a549b5b7c70620d16f24623ab6c0a7ec6" title="Transforma dos Fechas en una Fecha Compuesta, que representa un rango de fechas.">rango</a>, Fecha&amp; f1, Fecha&amp; f2, <span class="keywordtype">unsigned</span> mul)  <span class="keyword">const</span>;
+<a name="l00178"></a>00178         <span class="keywordtype">void</span> armarFecha(FechaNumerica x, <span class="keyword">const</span> std::string&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>, Fecha&amp; <a class="code" href="classM__Fechas.html#a9ab0eddea3638aba66d48215c216d91e">fecha</a>)  <span class="keyword">const</span>;
+<a name="l00179"></a>00179 
+<a name="l00180"></a>00180         <span class="keywordtype">void</span> calcularDia(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; diaAnio,<span class="keyword">const</span> FechaNumerica&amp; <a class="code" href="classM__Fechas.html#a833db0292ef2aae8764fb1e4d397dbfb" title="A partir de un año se crea un Fecha Rango que corresponde a todo el año. Que compredera las fechas co...">anio</a>, <span class="keywordtype">int</span>&amp; dia, <span class="keywordtype">int</span>&amp; <a class="code" href="classM__Fechas.html#ae6ad20c72a5f70a334613da72459c006" title="A partir de un año y un mes se crea una Fecha de Rango. Que compredera las fechas comprendidas en ese...">mes</a>) <span class="keyword">const</span>;
+<a name="l00181"></a>00181 };
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183 <span class="preprocessor">#endif </span><span class="comment">/* M_FECHAS_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>M_Fechas.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

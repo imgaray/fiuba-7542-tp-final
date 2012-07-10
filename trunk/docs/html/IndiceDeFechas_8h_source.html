@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente servidor/MotorDeConsultas/IndiceDeFechas.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('IndiceDeFechas_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">servidor/MotorDeConsultas/IndiceDeFechas.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * IndiceDeFechas.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 01/06/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef INDICEDEFECHAS_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define INDICEDEFECHAS_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;TiposDeDatos.h&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;../../comun/M_Fechas.h&quot;</span>
+<a name="l00013"></a>00013 
+<a name="l00021"></a><a class="code" href="classIndiceDeFechas.html">00021</a> <span class="keyword">class </span><a class="code" href="classIndiceDeFechas.html">IndiceDeFechas</a> {
+<a name="l00022"></a>00022 <span class="keyword">public</span>:
+<a name="l00026"></a>00026         <a class="code" href="classIndiceDeFechas.html#adbb24ea96af6412784ed12b547035bfa" title="Constructor sin argumentos.">IndiceDeFechas</a>();
+<a name="l00027"></a>00027         <span class="keyword">virtual</span> ~<a class="code" href="classIndiceDeFechas.html">IndiceDeFechas</a>();
+<a name="l00028"></a>00028 
+<a name="l00035"></a>00035         <span class="comment">//const Lista_Id&amp; recuperar(const Fecha&amp; fecha);</span>
+<a name="l00036"></a>00036 
+<a name="l00043"></a>00043         <span class="keywordtype">void</span> <a class="code" href="classIndiceDeFechas.html#a3ea1d6d6c6a57a8a53dea9b8adf86468" title="Se recupera una lista con Ids que corresponden a la fecha pasada como argumento.">recuperar</a>(<span class="keyword">const</span> Fecha&amp; fecha, Lista_Id&amp; ids) <span class="keyword">const</span>;
+<a name="l00044"></a>00044 
+<a name="l00050"></a>00050         <span class="keywordtype">void</span> <a class="code" href="classIndiceDeFechas.html#a35d827e4bdd41c60fbb60fb100894292" title="Se guarda una fecha al indice con su id correspondiente.">guardarFecha</a>(<span class="keyword">const</span> Fecha&amp; fecha, <span class="keyword">const</span> Id_Registro&amp; <span class="keywordtype">id</span>);
+<a name="l00051"></a>00051 
+<a name="l00055"></a>00055         <span class="keywordtype">void</span> <a class="code" href="classIndiceDeFechas.html#a27f43bb41937c43900ce29bce09a8131" title="Se borra y reestablece el contenido del indice.">limpiar</a>();
+<a name="l00056"></a>00056 <span class="keyword">private</span>:
+<a name="l00063"></a>00063         <span class="comment">//void guardarDesdeRango(const FechaNumerica&amp; f1, const FechaNumerica&amp; f2);</span>
+<a name="l00064"></a>00064         <span class="keywordtype">void</span> guardarDesdeRango(<span class="keyword">const</span> FechaNumerica&amp; f1, <span class="keyword">const</span> FechaNumerica&amp; f2, Lista_Id&amp; ids) <span class="keyword">const</span>;
+<a name="l00065"></a>00065 
+<a name="l00071"></a>00071         <span class="comment">//void guardarIDs(const FechaNumerica&amp; fecha);</span>
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> guardarIDs(<span class="keyword">const</span> FechaNumerica&amp; fecha, Lista_Id&amp; ids) <span class="keyword">const</span>;
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074         MapaDeFechas _fechas;
+<a name="l00075"></a>00075         <a class="code" href="classM__Fechas.html">M_Fechas</a> m_fechas;
+<a name="l00076"></a>00076         <span class="comment">//Lista_Id _res;</span>
+<a name="l00077"></a>00077 };
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="preprocessor">#endif </span><span class="comment">/* INDICEDEFECHAS_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>IndiceDeFechas.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

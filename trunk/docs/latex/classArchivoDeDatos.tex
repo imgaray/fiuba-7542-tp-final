@@ -1,0 +1,86 @@
+\hypertarget{classArchivoDeDatos}{\section{\-Referencia de la \-Clase \-Archivo\-De\-Datos}
+\label{classArchivoDeDatos}\index{\-Archivo\-De\-Datos@{\-Archivo\-De\-Datos}}
+}
+
+
+{\ttfamily \#include $<$\-Archivo\-De\-Datos.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classArchivoDeDatos_a7388ffa446c1c16388367bb7a485d791}{\hyperlink{classArchivoDeDatos_a7388ffa446c1c16388367bb7a485d791}{\-Archivo\-De\-Datos} (const std\-::string \&ruta)}\label{classArchivoDeDatos_a7388ffa446c1c16388367bb7a485d791}
+
+\begin{DoxyCompactList}\small\item\em \-Constructor que recibe la ruta del archivo de datos. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classArchivoDeDatos_acb8bffaaacd961744a0f450ab8e3924a}{obtener\-Registro} (\-Id\-\_\-\-Registro id)
+\begin{DoxyCompactList}\small\item\em \-Obtiene el registro con numero \char`\"{}id\char`\"{} del archivo. \end{DoxyCompactList}\item 
+\-Id\-\_\-\-Registro \hyperlink{classArchivoDeDatos_af678ef7076885d11cefb0a21f2239526}{guardar\-Registro} (const std\-::string \&registro)
+\begin{DoxyCompactList}\small\item\em \-Guarda el registro en el archivo. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{classArchivoDeDatos_a62e7765b4d6dc435fdf760ceb7a12cc4}{cantidad\-Registros} () const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la cantidad de registros que estan guardados en el archivo. \end{DoxyCompactList}\item 
+\hypertarget{classArchivoDeDatos_a42079c29fd3c465a1ba83693795e7341}{void \hyperlink{classArchivoDeDatos_a42079c29fd3c465a1ba83693795e7341}{borrar\-Datos} ()}\label{classArchivoDeDatos_a42079c29fd3c465a1ba83693795e7341}
+
+\begin{DoxyCompactList}\small\item\em \-Borra todo el contenido de los datos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encargada de almacenar todo tipo de registros guardándolos en disco, permitiendo acceder a estos a partir de su id de registro. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classArchivoDeDatos_a62e7765b4d6dc435fdf760ceb7a12cc4}{\index{\-Archivo\-De\-Datos@{\-Archivo\-De\-Datos}!cantidad\-Registros@{cantidad\-Registros}}
+\index{cantidad\-Registros@{cantidad\-Registros}!ArchivoDeDatos@{\-Archivo\-De\-Datos}}
+\subsubsection[{cantidad\-Registros}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t {\bf \-Archivo\-De\-Datos\-::cantidad\-Registros} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classArchivoDeDatos_a62e7765b4d6dc435fdf760ceb7a12cc4}
+
+
+\-Retorna la cantidad de registros que estan guardados en el archivo. 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de registros actual. 
+\end{DoxyReturn}
+\hypertarget{classArchivoDeDatos_af678ef7076885d11cefb0a21f2239526}{\index{\-Archivo\-De\-Datos@{\-Archivo\-De\-Datos}!guardar\-Registro@{guardar\-Registro}}
+\index{guardar\-Registro@{guardar\-Registro}!ArchivoDeDatos@{\-Archivo\-De\-Datos}}
+\subsubsection[{guardar\-Registro}]{\setlength{\rightskip}{0pt plus 5cm}\-Id\-\_\-\-Registro {\bf \-Archivo\-De\-Datos\-::guardar\-Registro} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{registro}
+\end{DoxyParamCaption}
+)}}\label{classArchivoDeDatos_af678ef7076885d11cefb0a21f2239526}
+
+
+\-Guarda el registro en el archivo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em registro} & que se almacenara en el archivo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+identificador del registro guardado 
+\end{DoxyReturn}
+\hypertarget{classArchivoDeDatos_acb8bffaaacd961744a0f450ab8e3924a}{\index{\-Archivo\-De\-Datos@{\-Archivo\-De\-Datos}!obtener\-Registro@{obtener\-Registro}}
+\index{obtener\-Registro@{obtener\-Registro}!ArchivoDeDatos@{\-Archivo\-De\-Datos}}
+\subsubsection[{obtener\-Registro}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Archivo\-De\-Datos\-::obtener\-Registro} (
+\begin{DoxyParamCaption}
+\item[{\-Id\-\_\-\-Registro}]{id}
+\end{DoxyParamCaption}
+)}}\label{classArchivoDeDatos_acb8bffaaacd961744a0f450ab8e3924a}
+
+
+\-Obtiene el registro con numero \char`\"{}id\char`\"{} del archivo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em id} & identificador del registro a recuperar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el registro completo recuperado 
+\end{DoxyReturn}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/\-Motor\-De\-Consultas/\-Archivo\-De\-Datos.\-h\item 
+servidor/\-Motor\-De\-Consultas/\-Archivo\-De\-Datos.\-cpp\end{DoxyCompactItemize}

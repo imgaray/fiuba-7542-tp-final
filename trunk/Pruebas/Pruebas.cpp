@@ -1122,7 +1122,7 @@ void testGeneradorRegistros() {
 	string rutaDatosId(rutaDatos + "-id.dat");
 	BaseDeDatos bdd(rutaDatos);
 
-	long cantReg = 200;
+	long cantReg = 50;
 
 	generarRegistros(bdd, cantReg);
 

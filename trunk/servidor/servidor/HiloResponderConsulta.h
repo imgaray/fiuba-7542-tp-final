@@ -12,12 +12,7 @@
 clase heredera de hilo que hace las de consumer de la cola de consultas del
 servidor. A su vez, se encarga de enviar la consulta a través del socket del
 cliente requerido.
-
-	
-	ConsultasClientesServidor& cconsultas:	
-	ResolvedorConsultas& resolvedor: 
-
-@END*/
+*/
 
 class HiloResponderConsulta: public Hilo {
 private:

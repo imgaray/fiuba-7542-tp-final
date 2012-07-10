@@ -73,7 +73,7 @@ public:
 	 * @param mensaje Mensaje que donde se van a almacenar los datos recibidos.
 	 * @return booleano indicando si se recibio correctamente el mensaje..
 	 */
-    bool recibir(Mensaje& mesaje);
+    bool recibir(Mensaje& mensaje);
 
     /**
      * @brief Cierra la conexion con el huesped.

@@ -78,7 +78,7 @@ public:
 	 * @brief Devuelve el nombre de un campo segun su indice en la Organizacion. Si
 	 * no existe un nombre para el indice argumento, se retorna un string nulo.
 	 * @param indice es indice del Campo a recuperar.
-	 * @retrun string que contiene el nombre del campo.
+	 * @return string que contiene el nombre del campo.
 	 */
 	static const std::string& nombreCampo(unsigned indice);
 
@@ -149,13 +149,13 @@ public:
 
 	/**
 	 * @brief Indica la cantidad de Campos que posee la Organización.
-	 * @param cantidad de Campos.
+	 * @return cantidad de Campos.
 	 */
 	static unsigned cantidadCampos();
 
 	/**
 	 * @brief Indica la cantidad de Campos Simples que posee la Organizacion.
-	 * @param cantidad de Campos Simples.
+	 * @return cantidad de Campos Simples.
 	 */
 	static unsigned cantidadCamposSimples();
 

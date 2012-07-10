@@ -28,7 +28,7 @@ public:
 	/**
 	 * @brief Metodo utilizado para separa un string en partes, separadas por un caracter.
 	 * @param datos string a separar.
-	 * @param separadar caracter utilizado como delimitador de las partes en el string.
+	 * @param separador caracter utilizado como delimitador de las partes en el string.
 	 * @param indice numero que representa que parte se va a serpara del string.
 	 * @return string que contiene el segmento extraido del string principal.
 	 */

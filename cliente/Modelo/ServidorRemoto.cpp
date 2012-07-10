@@ -29,6 +29,11 @@ ServidorRemoto::ServidorRemoto():
 }
 
 void ServidorRemoto::conectar() throw(char* ) {
+	std::string aux = RUTACONFIGURACIONSR;
+	ArchivoConfiguracion archivo(aux.c_str());
+	aux = ATRIBDIRECCION;
+	sdireccion = archivo.obtenerAtributo(aux);
+
 	sock->conectar(sdireccion);
 	if (!sock->conectado()) {
 		throw strerror(errno);

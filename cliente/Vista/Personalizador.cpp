@@ -1,21 +1,8 @@
-#include <gtkmm/separator.h>
-#include <gtkmm/table.h>
-#include <gtkmm/adjustment.h>
 #include "Personalizador.h"
-#include "Grafico.h"
-#include "GraficoDeBarras.h"
-#include "GraficoDeTorta.h"
-#include "Tab.h"
-#include "Panel.h"
-#include "FiltradoresPanel.h"
 #include "Organizacion.h"
-#include "VentanaClienteDinamica.h"
-#include "TablaComun.h"
-#include "TablaPivote.h"
 #include "AdminConfigObjManager.h"
 #include "TabConfigModelo.h"
 
-#include <iostream>
 
 Personalizador::Personalizador() {
     Organizacion::cargarDefiniciones();

@@ -147,18 +147,20 @@ public:
 	 */
 	FechaNumerica convertir(const Fecha& fecha) const;
 
-	/*@brief Trasnforma una Fecha desde su representacion numerica en el formato
+	/**
+	 * @brief Trasnforma una Fecha desde su representacion numerica en el formato
 	 * tradicional utilizado por la aplicaión.
 	 * @param fecha valor numerico de la fecha.
 	 * @return Fecha en el formato comun.
 	 */
 	Fecha convertir(const FechaNumerica& fecha) const;
 
-	/*@brief Trasnforma una Fecha desde su representacion numerica en el formato
-	 * tradicional utilizado por la aplicaión.
+	/**
+	 * @brief Trasnforma una Fecha desde su representacion numerica en el formato
+	 * tradicional utilizado por la aplicación.
 	 * @param fecha valor numerico de la fecha.
 	 * @param ancho indica el tamaño de digitos que tendra la Fecha transformada.
-	 * @return Fecha en el formato comun.
+	 * @return Fecha en el formato común.
 	 */
 	Fecha convertir(const FechaNumerica& fecha, int ancho) const;
 private:

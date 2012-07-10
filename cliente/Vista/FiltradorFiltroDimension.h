@@ -4,6 +4,9 @@
 #include "FiltradorFiltro.h"
 #include <gtkmm/separator.h>
 
+/** @class FiltradorFiltroDimension
+ * Filtro de comportamiento "básico", es decir, no es hecho ni fecha.
+ */
 class FiltradorFiltroDimension : public FiltradorFiltro {
     public:
         FiltradorFiltroDimension(const Glib::ustring& filtro,

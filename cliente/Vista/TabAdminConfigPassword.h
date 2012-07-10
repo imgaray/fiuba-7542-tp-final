@@ -5,10 +5,13 @@
 #include <gtkmm/entry.h>
 #include <gtkmm/spinbutton.h>
 
+/** @class TabAdminConfigPassword
+ * Pestaña del admin para cambiar el password.
+ */
 class TabAdminConfigPassword : public TabAdminConfig {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder..
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */

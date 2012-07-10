@@ -6,7 +6,6 @@
  */
 
 #include "Tabla.h"
-#include <iostream>
 
 Tabla::Tabla(FiltradoresPanel* filtradores) : Consultante(filtradores) {
 	_colModelo = NULL;

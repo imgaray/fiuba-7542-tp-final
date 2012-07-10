@@ -12,6 +12,10 @@
 #include "Tabla.h"
 #include "Respuesta.h"
 
+/** @class TablaComun
+ * Consultante que muestra sus resultados como una tabla común. No tiene
+ * limitaciones en cuanto a los resultados.
+ */
 class TablaComun : public Tabla {
 public:
 	TablaComun(FiltradoresPanel* filtradores);
@@ -25,7 +29,7 @@ protected:
 
 
     /**
-     * @brief Signal handler para el doble click sobre alguna celda.
+     * Signal handler para el doble click sobre alguna celda.
      * @param path camino hacia la fila activada
      * @param column columna de la fila activada
      *

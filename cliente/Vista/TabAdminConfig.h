@@ -4,10 +4,14 @@
 #include <gtkmm/box.h>
 #include "Buildable.h"
 
+/** @class TabAdminConfig
+ * Clase que propone una interfaz para las pestrañas de la ventana de
+ * configuración del admin.
+ */
 class TabAdminConfig : public Gtk::VBox, public Buildable  {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder.
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */

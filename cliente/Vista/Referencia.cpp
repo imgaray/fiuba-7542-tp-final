@@ -1,7 +1,6 @@
 #include "Referencia.h"
 #include "Area.h"
 #include "Grafico.h"
-#include <iostream>
 
 double Referencia::anchoCuadradito = 0.06;
 

@@ -1,6 +1,6 @@
 #include "GraficoDeBarras.h"
 #include "Barra.h"
-#include <iostream>
+#include <sstream>
 #include <iomanip>
 
 #define INIT_OFFSET     0.2

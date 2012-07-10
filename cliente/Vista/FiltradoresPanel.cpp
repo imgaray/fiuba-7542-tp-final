@@ -32,7 +32,6 @@ bool FiltradoresPanel::puedeFiltrar() {
     return _puedeFiltrar && filtrosHeredados.puedeFiltrar();
 }
 
-/** @todo verificar que el filtro/input/resultado no exista ya */
 void FiltradoresPanel::agregarFiltro(const std::string& filtro,
                                      const std::string& valor) {
     FiltradorFiltroDimension* f = manage(new FiltradorFiltroDimension(filtro, valor));

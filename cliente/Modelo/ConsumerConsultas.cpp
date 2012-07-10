@@ -1,6 +1,5 @@
 #include "ConsumerConsultas.h"
 #include <sstream>
-#include <iostream>
 #include "BLQueue.h"
 
 void ConsumerConsulta::correr() {
@@ -8,7 +7,7 @@ void ConsumerConsulta::correr() {
 		if (servidor && servidor->conectado()) {
 			try {
 				ParConsulta pconsulta = consultas.pop2();
-				if (cancelados.has(pconsulta.first) && 
+				if (cancelados.has(pconsulta.first) &&
 								cancelados[pconsulta.first]) {
 					cancelados[pconsulta.first] = false;
 				} else {

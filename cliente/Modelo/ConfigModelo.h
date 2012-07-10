@@ -7,6 +7,16 @@
 
 typedef std::pair< Gtk::VBox*, Gtk::ToolButton* > filtradoresHandlers;
 
+
+/** @class ConfigModelo
+ * Clase base para los modelos que están detrás de las vistas de configuración.
+ *
+ * Como hay una vista y muchos modelos, tiene la capacidad de desconectarse y
+ * reconectarse (cuando le pasan las referencias a la vista).
+ *
+ * Identificable por su Glib::ustring label modificable, difieren de los
+ * configModelo de los filtradores en eso principalmente.
+ */
 class ConfigModelo : public sigc::trackable , public Serializable {
     public:
         ConfigModelo(const Glib::ustring& label);

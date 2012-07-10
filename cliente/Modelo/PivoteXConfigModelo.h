@@ -3,6 +3,11 @@
 
 #include "FiltradorSoloDimensionConfigModelo.h"
 
+/** @class PivoteXConfigModelo
+ * Clase que modela la configuración de un elemento del grupo X para una
+ * consulta de tabla pivot.
+ * Sólo selecciona el campo.
+ */
 class PivoteXConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
         PivoteXConfigModelo(unsigned ID,

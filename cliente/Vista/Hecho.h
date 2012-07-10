@@ -3,6 +3,9 @@
 
 #include <glibmm/ustring.h>
 
+/** @class Hecho
+ * Encapsula un par < etiqueta, valor >.
+ */
 class Hecho {
     public:
         Hecho(const Hecho& original);

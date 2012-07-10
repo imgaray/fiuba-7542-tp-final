@@ -7,6 +7,9 @@
 
 class Respuesta;
 
+/** @class FiltradorInputDimension
+ * Input de comportamiento "básico", es decir, no es hecho ni fecha.
+ */
 class FiltradorInputDimension : public FiltradorInput, public Consultante {
     public:
         FiltradorInputDimension(const Glib::ustring& input);

@@ -1,5 +1,4 @@
 #include "Hecho.h"
-#include <iostream>
 
 Hecho::Hecho(const Hecho& original) {
     etiqueta = original.etiqueta;

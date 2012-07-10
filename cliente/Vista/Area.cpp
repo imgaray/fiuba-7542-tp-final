@@ -1,11 +1,11 @@
 #include "Area.h"
 #include "Hecho.h"
 #include "Utilitario.h"
-#include <iostream>
 
 #define DEFAULT_LINE_WIDTH  0.01
 #define SELEC_LINE_WIDTH    1.5*DEFAULT_LINE_WIDTH
 
+#define MAX_VALORES 15
 double Area::colores[MAX_VALORES][4] = {
     {0.77, 0.2, 0.4, 1.0}, {0.4, 0.77, 0.2, 1.0}, {0.4, 0.3, 0.77, 1.0},
     {0.7, 0.3, 0.77, 1.0}, {0.1, 0.7, 0.77, 1.0}, {0.4, 0.9, 0.77, 1.0},

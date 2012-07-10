@@ -5,6 +5,12 @@
 
 class FiltradoresTab;
 
+/** @class FiltradoresPanel
+ * Implementación concreta de un conjunto de filtradores, el de los paneles.
+ * Admiten todos los filtradores existentes, aunque cuando se agrega uno para
+ * X o Y de tabla pivote, la consulta al ser filtrada quedará definida como
+ * dicha tabla.
+ */
 class FiltradoresPanel : public Filtradores {
     public:
         FiltradoresPanel(FiltradoresTab& filtTab);
@@ -43,7 +49,7 @@ class FiltradoresPanel : public Filtradores {
         sigc::signal< void > signal_navegabilidad_seleccionada;
 
         /**
-         * @brief Signal handler para FiltradorInput::signal_navegabilidad.
+         * Signal handler para FiltradorInput::signal_navegabilidad.
          *
          * Emite FiltradoresPanel::signal_navegabilidad_seleccionada.
          */

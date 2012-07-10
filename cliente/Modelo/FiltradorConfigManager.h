@@ -18,8 +18,12 @@ class FiltradoresTab;
 class FiltradoresPanel;
 
 /** @class FiltradorConfigManager
- * clase encargada de manejar la parte de agregado de filtradores dinámicos
- * por el admin (filtros, inputs, columna X e Y en tabla pivote, y resultados)
+ * Clase encargada de manejar la parte de agregado de filtradores dinámicos
+ * por el admin (filtros, inputs, columna X e Y en tabla pivote, y resultados).
+ *
+ * Está conectado a una señal, en cada uno de los objetos que controla, que
+ * informa qué campos están disponibles para ser seleccionados. Al recibirla,
+ * la difunde por todos sus objetos.
  */
 class FiltradorConfigManager : public sigc::trackable, public Serializable {
     public:
@@ -36,22 +40,45 @@ class FiltradorConfigManager : public sigc::trackable, public Serializable {
         virtual NodoXml serializar();
         virtual void deserializar(const NodoXml& nodo);
 
-// podría haber una señal que indique qué dimensión o hecho fue agregado o eliminado para actualizar todos los restantes combobox
-
-//        sigc::signal< void, ConfigModelo* > signal_model_changed();
     private:
-//        sigc::signal< void, ConfigModelo* > _signal_model_changed;
         t_Filt tipo;
         Gtk::VBox* pVBoxFiltradores;
         Gtk::ToolButton* pButtonAgregar;
         FiltradorConfigModelo* new_filtrador();
 
-        /** conexiones a las señales */
+        /* conexiones a las señales */
         sigc::connection connectionButtonAgregar;
 
+
+        /**
+         * Signal handler para el click sobre el botón agregar filtrador.
+         *
+         * Agrega un filtrador del tipo adecuado, mientras haya campos no
+         * utilizados. Cuando se acaban, deja de ser sensible el botón a los
+         * clicks y se informa en un tooltip la razón.
+         */
         void on_agregar_button_clicked();
+
+        /**
+         * Signal handler para el cambio de selección del campo en el combobox.
+         *
+         * Agrega a la lista de campos disponibles campoAnterior, y remueve
+         * campoNuevo. Itera por todos los filtradores informándoles que tienen
+         * que remover de sus opciones campoNuevo, y agregar campoAnterior.
+         * @param campoAnterior el campo seleccionado antes
+         * @param campoNuevo el campo seleccionado próximamente
+         */
         void on_filtrador_campo_changed(Glib::ustring campoAnterior,
                                         Glib::ustring campoNuevo);
+
+        /**
+         * Signal handler para el click sobre el botón de eliminar filtrador.
+         *
+         * Remueve el filtrador de ID del mapa, lista, vista. Libera su
+         * memoria, y quita el tooltip del botón de agregar y lo vuelve
+         * sensible.
+         * @param ID identificador del filtrador
+         */
         void on_delete_filtrador(unsigned ID);
 
         typedef std::pair< FiltradorConfigVista*, FiltradorConfigModelo* > filtrador;

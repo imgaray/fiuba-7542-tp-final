@@ -1,7 +1,7 @@
 #include "Barra.h"
 
 #define SEP_TECHO 0.1
-#include <iostream>
+
 Barra::Barra(const Hecho& dato, double maximo, unsigned i, double _offset,
              double separacion, double _ancho)
 : Area(dato, maximo, i, _offset) {

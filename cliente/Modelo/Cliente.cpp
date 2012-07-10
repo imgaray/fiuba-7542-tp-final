@@ -6,7 +6,6 @@
  */
 
 #include "Cliente.h"
-#include <iostream>
 #include <gtkmm/main.h>
 #include "VentanaCliente.h"
 #include "ExcepcionArchivoGladeCorrupto.h"
@@ -30,21 +29,8 @@ void Cliente::run() {
 
 void Cliente::initGtk(int argc, char* argv[]) {
     Glib::RefPtr< Gtk::Builder > builder = Gtk::Builder::create();
-    try {
-        builder->add_from_file(UI_ESTATICA);
-    }
-    catch(const Glib::FileError& e) {
-        std::cerr << "FileError: " << e.what() << std::endl;
-        return;
-    }
-    catch(const Gtk::BuilderError& e) {
-        std::cerr << "BuilderError: " << e.what() << std::endl;
-        return;
-    }
-    catch(const Glib::MarkupError& e) {
-        std::cerr << "MarkupError: " << e.what() << std::endl;
-        return;
-    }
+
+    builder->add_from_file(UI_ESTATICA);
 
     builder->get_widget_derived(VENTANA_CLIENTE, pVentana);
     if (pVentana) {

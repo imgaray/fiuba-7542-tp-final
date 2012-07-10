@@ -10,6 +10,10 @@
 #include <gtkmm/liststore.h>
 #include "Tabla.h"
 
+/** @class TablaPivote
+ * Consultante que muestra sus resultados como una tabla común. Sólo admite
+ * hechos en sus resultados.
+ */
 class TablaPivote : public Tabla {
 public:
 	TablaPivote(FiltradoresPanel* filtradores);

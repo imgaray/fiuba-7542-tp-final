@@ -10,15 +10,24 @@ class TabAdminConfigConsultas;
 class TabAdminConfigPassword;
 class VentanaClienteDinamica;
 
+/** @class VentanaAdminConfiguracion
+ * Ventana del admin para configurar la aplicación.
+ *
+ * Se compone de una lista de TabAdminConfig*, que al momento de clickear el
+ * botón "Aplicar", es recorrida aplicando los cambios por pestaña.
+ */
 class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder..
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */
         VentanaAdminConfiguracion(BaseObjectType* cobject,
                                   const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~VentanaAdminConfiguracion();
 
         void setVDinamica(VentanaClienteDinamica* pVDinamica);
@@ -31,7 +40,7 @@ class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
 
 
         /**
-         * @brief Signal handler para signal_show.
+         * Signal handler para signal_show.
          *
          * Llama a Gtk::Window::on_show() y borra el texto en las entries
          * para cambiar el password en la tercer pestaña.
@@ -39,7 +48,7 @@ class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
         void on_show();
 
         /**
-         * @brief Signal handler para el click sobre el botón "Aplicar cambios".
+         * Signal handler para el click sobre el botón "Aplicar cambios".
          *
          * Apica los cambios realizados en cada pestaña, si son todos válidos.
          * Si no lo son, informa con un mensaje de error la pestaña errónea.
@@ -47,7 +56,7 @@ class VentanaAdminConfiguracion : public Gtk::Window, public Buildable  {
         void on_aplicar_button_clicked();
 
         /**
-         * @brief Signal handler para el click sobre el botón "Cancelar".
+         * Signal handler para el click sobre el botón "Cancelar".
          *
          * Esconde la ventana. Las modificaciones efectuadas permanecerán en
          * memoria.

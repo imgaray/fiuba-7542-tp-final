@@ -12,10 +12,22 @@
 
 class PanelConfigModelo;
 
+/** @class PanelConfigVista
+ * Clase que representa la vista de configuración de paneles. Si no está
+ * asociada a un modelo de configuración de paneles, no tiene mucho sentido.
+ *
+ * Presenta:
+ * -un combobox para elegir qué panel está siendo modificado
+ * -tres botones, "Agregar", "Guardar cambios" y "Eliminar"
+ * -una entrada para poner el nombre del panel
+ * -cuatro Gtk::SpinButtons para elegir la posición
+ * -un combobox para elegir el tipo de gráfico
+ * -sector de filtradores
+ */
 class PanelConfigVista : public Gtk::VBox, public Buildable  {
     public:
         /**
-         * @brief Constructor requerido para construir con Gtk::Builder.
+         * Constructor requerido para construir con Gtk::Builder.
          * @param cobject puntero al tipo base
          * @param builder referencia a la instancia que lo construye
          */

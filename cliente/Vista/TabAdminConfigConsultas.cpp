@@ -5,6 +5,7 @@
 #include "AdminConfigObjManager.h"
 #include "VentanaClienteDinamica.h"
 #include "DefinicionesXML.h"
+#include <iostream>
 
 // botones
 #define BUTTON_AGREGAR_TAB "buttonAgregarTab"
@@ -16,7 +17,6 @@
 #define VBOX_TAB_CONFIG "vboxTabConfig"
 #define ENTRY_TAB_LABEL "entryTabLabel"
 
-#include <iostream>
 TabAdminConfigConsultas::TabAdminConfigConsultas(BaseObjectType* cobject,
                                 const Glib::RefPtr< Gtk::Builder >& _builder)
 : TabAdminConfig(cobject, _builder) {
@@ -80,7 +80,6 @@ void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
 }
 
 bool TabAdminConfigConsultas::aplicarCambios() {
-    //std::cout << "bool TabAdminConfigConsultas::aplicarCambios()... (@todo)" << std::endl;
     dynBuilder.construir(tabManager);
 
     TiXmlDocument docXml(rutaArchivo.c_str());

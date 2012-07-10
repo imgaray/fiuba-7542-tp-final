@@ -10,16 +10,21 @@
 
 class VentanaCliente;
 
+/** @class Cliente
+ * Clase que comprende la abstracción de la aplicación en sí, manejando la
+ * ventana principal, la carga desde el archivo GLADE y de configuración
+ * de pestañas, y el main loop de GTK+.
+ */
 class Cliente {
-public:
-    Cliente(int argc, char* argv[]);
-    virtual ~Cliente();
+    public:
+        Cliente(int argc, char* argv[]);
+        ~Cliente();
 
-    void run();
+        void run();
 
-private:
-    VentanaCliente* pVentana;
-    void initGtk(int argc, char* argv[]);
+    private:
+        VentanaCliente* pVentana;
+        void initGtk(int argc, char* argv[]);
 };
 
 #endif /* CLIENTE_H_ */

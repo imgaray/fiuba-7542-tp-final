@@ -5,9 +5,6 @@
 #include "TablaPivote.h"
 #include "GraficoDeTorta.h"
 #include "GraficoDeBarras.h"
-#include <iostream>
-
-#include <gtkmm-2.4/gtkmm/spinbutton.h>
 
 #define LABEL_POSICION "Posición en la grilla"
 #define ERROR " - Error"

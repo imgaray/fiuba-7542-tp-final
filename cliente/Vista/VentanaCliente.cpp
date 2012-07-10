@@ -1,6 +1,4 @@
 #include "VentanaCliente.h"
-#include <iostream>
-#include <gtkmm/builder.h>
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
 #include <gtkmm/imagemenuitem.h>

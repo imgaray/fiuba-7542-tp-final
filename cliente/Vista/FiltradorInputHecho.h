@@ -3,12 +3,10 @@
 
 #include "FiltradorInput.h"
 #include <gtkmm/entry.h>
-#include "Utilitario.h"
 
-#ifndef NO_PERTENECE
-#define NO_PERTENECE -1
-#endif
-
+/** @class FiltradorInputHecho
+ * Input de tipo hecho.
+ */
 class FiltradorInputHecho : public FiltradorInput {
     public:
         FiltradorInputHecho(const Glib::ustring& input);
@@ -25,14 +23,16 @@ class FiltradorInputHecho : public FiltradorInput {
 
 
         /**
-         * @brief Signal handler para el cambio de la selección en el combobox.
+         * Signal handler para el cambio de la selección en el combobox.
          *
-         * Actualiza el número de fila seleccionada (int FiltradorInputHecho::i).
+         * Actualiza el número de fila seleccionada
+         * (int FiltradorInputHecho::i).
          */
         void on_combo_changed();
 
         /**
-         * @brief Signal handler para la activación de la entrada de texto (al apretar "enter")
+         * Signal handler para la activación de la entrada de texto (al
+         * apretar "enter")
          *
          * Valida el ingreso y emite FiltradorInput::_signal_input_disponible
          * si cambió su estado de disponibilidad.

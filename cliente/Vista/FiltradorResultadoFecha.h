@@ -3,6 +3,9 @@
 
 #include "FiltradorResultado.h"
 
+/** @class FiltradorResultadoFecha
+ * Resultado de tipo fecha.
+ */
 class FiltradorResultadoFecha : public FiltradorResultado {
     public:
         FiltradorResultadoFecha(const Glib::ustring& fecha,

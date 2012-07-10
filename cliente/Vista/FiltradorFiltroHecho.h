@@ -3,6 +3,9 @@
 
 #include "FiltradorFiltro.h"
 
+/** @class FiltradorFiltroHecho
+ * Filtro de tipo hecho.
+ */
 class FiltradorFiltroHecho : public FiltradorFiltro {
     public:
         FiltradorFiltroHecho(const Glib::ustring& hecho,

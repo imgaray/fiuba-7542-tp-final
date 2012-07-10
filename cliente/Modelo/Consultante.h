@@ -11,6 +11,14 @@ class PadreDeConsultantes;
 class Tab;
 class FiltradoresPanel;
 
+
+/** @class Consultante
+ * Clase capaz de armar consultas y enviarlas al servidor que se le solicite.
+ *
+ * Es el modelo de conexión detrás de las tablas y gráficos y el input por
+ * dimensión. Controla también el estado de los Gtk::Spinners, un widget
+ * informativo para indicar que se espera una respuesta del servidor.
+ */
 class Consultante {
     public:
         Consultante();

@@ -10,6 +10,10 @@ class FiltradorInput;
 class FiltradorInputDimension;
 class Consulta;
 
+/** @class Filtradores
+ * Clase abstracta que representa tanto un conjunto de filtradores como la
+ * vista del conjunto. Cada filtrador se dispone uno abajo del otro.
+ */
 class Filtradores : public Gtk::VBox {
     public:
         Filtradores();
@@ -35,12 +39,13 @@ class Filtradores : public Gtk::VBox {
 
 
         /**
-         * @brief Signal handler para la señal FiltradorInput::_signal_input_disponible.
-         * @param estado estado de la disponibilidad del input
+         * Signal handler para la señal
+         * FiltradorInput::_signal_input_disponible.
          *
          * Aumenta o disminuye la cantidad de inputs disponibles, según sea
          * true o false el parámetro. Si todos los inputs están disponibles
          * entonces puede filtrar una consulta.
+         * @param estado estado de la disponibilidad del input
          */
         void on_input_esta_disponible(bool estado);
 };

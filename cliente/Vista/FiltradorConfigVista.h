@@ -11,6 +11,14 @@
 
 class FiltradorConfigModelo;
 
+/** @class FiltradorConfigVista
+ * Representación visual de la configuración de un filtrador. Se construye
+ * asociada a un modelo porque a diferencias de las otras vistas, es un
+ * modelo por vista.
+ *
+ * Una vez relaciada al modelo, es controlada desde allí con lo cual, no tiene
+ * ninguna otra particularidad.
+ */
 class FiltradorConfigVista : public Gtk::HBox {
     public:
         FiltradorConfigVista(FiltradorConfigModelo* pModelo);

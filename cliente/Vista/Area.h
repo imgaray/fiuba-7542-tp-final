@@ -5,8 +5,11 @@
 #include <glibmm/ustring.h>
 #include "Hecho.h"
 
-#define MAX_VALORES 15
-
+/** @class Area
+ * Clase abstracta que comprende comportamiento común a toda área de un
+ * gŕafico, como la capacidad de responder si un click del mouse cayó sobre
+ * ella, retornar una string informativa y, el más importante, dibujarse.
+ */
 class Area {
     public:
         Area(const Hecho& dato, double maximo, unsigned i, double offset);
@@ -24,9 +27,6 @@ class Area {
 
         virtual std::string getInfo() = 0;
     protected:
-        /** @todo quizás con una referencia al hecho baste, hasta podría ser
-         * más conveniente si está directamente conectado con las consultas
-         */
         Hecho dato;
         double max;
         double color[4];
@@ -34,7 +34,7 @@ class Area {
 
         void set_line_width(Cairo::RefPtr< Cairo::Context >& ctx);
     private:
-        static double colores[MAX_VALORES][4];
+        static double colores[][4];
         double lineWidth;
 };
 

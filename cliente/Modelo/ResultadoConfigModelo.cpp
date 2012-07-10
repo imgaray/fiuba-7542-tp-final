@@ -23,8 +23,6 @@ void ResultadoConfigModelo::setFiltradorEn(FiltradoresPanel* filtPanel) {
 
 void ResultadoConfigModelo::especializarVista() {
     entryExtra->hide();
-//    entryExtra->signal_changed().connect(sigc::mem_fun(*this,
-//        &FiltroConfigModelo::on_entry_changed));
 }
 
 void ResultadoConfigModelo::setComboHecho(Gtk::ComboBoxText* _comboHecho) {
@@ -40,13 +38,7 @@ void ResultadoConfigModelo::on_combo_dimension_changed() {
     signal_campo_changed().emit(campoSelecc, campoSeleccNuevo);
     campoSelecc = campoSeleccNuevo;
 
-    if (Organizacion::esDimensionEspecial(campoSelecc)) {
-        //comboFecha->show();
-        //entryExtra->show();
-        //comboHecho->hide();
-        //_campoAux = comboFecha->get_active_text();
-        //_valorCampo = entryExtra->get_text();
-    } else if (Organizacion::esHecho(campoSelecc)) {
+    if (Organizacion::esHecho(campoSelecc)) {
         comboFecha->hide();
         entryExtra->hide();
         comboHecho->show();

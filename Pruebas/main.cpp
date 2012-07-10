@@ -33,10 +33,7 @@ int main() {
 	testSocket();
 	testCCS();
 
-
-
 	testBaseDeDatosReal();
-
 
 	testGeneradorRegistros();
 

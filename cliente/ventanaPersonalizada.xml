@@ -53,7 +53,7 @@
                 <hijo_res atr_tipo="4">
                     <Filtrador_Config_Modelo atr_campo="Fecha" atr_valor_campo="" atr_campo_aux="NADA" />
                     <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="NADA" />
-                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="CONT" />
+                    <Filtrador_Config_Modelo atr_campo="PrecioLista" atr_valor_campo="" atr_campo_aux="MAX" />
                 </hijo_res>
             </Panel_Config_Modelo>
         </Paneles>

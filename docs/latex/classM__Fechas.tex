@@ -1,0 +1,385 @@
+\hypertarget{classM__Fechas}{\section{\-Referencia de la \-Clase \-M\-\_\-\-Fechas}
+\label{classM__Fechas}\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}}
+}
+
+
+{\ttfamily \#include $<$\-M\-\_\-\-Fechas.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classM__Fechas_a4e85392938b64b9e75860de17ce9e954}{\hyperlink{classM__Fechas_a4e85392938b64b9e75860de17ce9e954}{\-M\-\_\-\-Fechas} ()}\label{classM__Fechas_a4e85392938b64b9e75860de17ce9e954}
+
+\begin{DoxyCompactList}\small\item\em \-Constructor sin argumentos. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha} (const std\-::string \&fecha\-Comun) const 
+\item 
+\hypertarget{classM__Fechas_ac343493066e728100dfeb386d247d808}{bool {\bfseries es\-Fecha\-Convecional} (const std\-::string \&\hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha}) const }\label{classM__Fechas_ac343493066e728100dfeb386d247d808}
+
+\item 
+\-Fecha \hyperlink{classM__Fechas_a549b5b7c70620d16f24623ab6c0a7ec6}{rango} (const \-Fecha \&f1, const \-Fecha \&f2) const 
+\begin{DoxyCompactList}\small\item\em \-Transforma dos \-Fechas en una \-Fecha \-Compuesta, que representa un rango de fechas. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a1d302c89571ae873947a636de221ae0d}{fecha} (int dia, int \hyperlink{classM__Fechas_ae6ad20c72a5f70a334613da72459c006}{mes}, int \hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-Transforma una fecha a partir de de los datos numericos de esta, al formato utilizado en la aplicacion. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio} (const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año se crea un \-Fecha \-Rango que corresponde a todo el año. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a1b1343d9bf9d4fdd62bffbfc1ddb55ba}{semestre} (int sem, const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año y un semestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_ac900ccecd850f4d01fd9c6a0a26549e4}{cuatrimestre} (int cuat, const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año y un cuatrimestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a26b592cebfd7ac3a1965937961bbe731}{trimestre} (int tri, const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año y un trimestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_ae22a1174bdcacf0fd15c1a437e85b701}{bimestre} (int bim, const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año y un bimestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_ae6ad20c72a5f70a334613da72459c006}{mes} (int \hyperlink{classM__Fechas_ae6ad20c72a5f70a334613da72459c006}{mes}, const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año y un mes se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a32fe27a2628bce51a3762ce8bc3e03b2}{semana} (int \hyperlink{classM__Fechas_a32fe27a2628bce51a3762ce8bc3e03b2}{semana}, const std\-::string \&\hyperlink{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{anio}) const 
+\begin{DoxyCompactList}\small\item\em \-A partir de un año y un semama se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. \end{DoxyCompactList}\item 
+bool \hyperlink{classM__Fechas_af24fa241e5423b0e7afbb8843fba4e64}{es\-Rango} (const \-Fecha \&\hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha}) const 
+\begin{DoxyCompactList}\small\item\em \-Indica si una \-Fecha es \-Rango(o Compuesta). \end{DoxyCompactList}\item 
+bool \hyperlink{classM__Fechas_ada328f6bc5cb26120f4c41197cbf5a51}{es\-Simple} (const \-Fecha \&\hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha}) const 
+\begin{DoxyCompactList}\small\item\em \-Indica si una \-Fecha es simple, es decir, que no es \-Rango. \end{DoxyCompactList}\item 
+void \hyperlink{classM__Fechas_a3790e696e581431ab028af5cbd834b96}{desarmar} (const \-Fecha \&\hyperlink{classM__Fechas_a549b5b7c70620d16f24623ab6c0a7ec6}{rango}, \-Fecha \&f1, \-Fecha \&f2) const 
+\begin{DoxyCompactList}\small\item\em \-Descompone una \-Fecha \-Rango en dos fechas que compreden el perido que representaba el rango. \end{DoxyCompactList}\item 
+\-Fecha\-Numerica \hyperlink{classM__Fechas_a2382b435f48d53cb4957e17b28c8752a}{convertir} (const \-Fecha \&\hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha}) const 
+\begin{DoxyCompactList}\small\item\em \-Transforma una \-Fecha con el formato utilizado en un representacion numerica de esta. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_a93212687f09b0a89cc7b9d42bdd7dec8}{convertir} (const \-Fecha\-Numerica \&\hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha}) const 
+\begin{DoxyCompactList}\small\item\em \-Trasnforma una \-Fecha desde su representacion numerica en el formato tradicional utilizado por la aplicaión. \end{DoxyCompactList}\item 
+\-Fecha \hyperlink{classM__Fechas_ab6c2daf098d9c539e8a84b146f4651a2}{convertir} (const \-Fecha\-Numerica \&\hyperlink{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{fecha}, int ancho) const 
+\begin{DoxyCompactList}\small\item\em \-Trasnforma una \-Fecha desde su representacion numerica en el formato tradicional utilizado por la aplicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encargada de manejar fechas, para un uso mas comodo guardando dia, semana, mes, bimestre , trimestre, cuatrimeste, semestre para algun anio. \-Se encarga de manejar fechas simple o fechas compuestas, siendo las fechas simples fechas con formato comun numerico y las fechas compuestas serian semana, mes, bimestes, etc. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!anio@{anio}}
+\index{anio@{anio}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{anio}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::anio} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a833db0292ef2aae8764fb1e4d397dbfb}
+
+
+\-A partir de un año se crea un \-Fecha \-Rango que corresponde a todo el año. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em anio} & entero que representa al año que se va a utilizar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_ae22a1174bdcacf0fd15c1a437e85b701}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!bimestre@{bimestre}}
+\index{bimestre@{bimestre}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{bimestre}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::bimestre} (
+\begin{DoxyParamCaption}
+\item[{int}]{bim, }
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_ae22a1174bdcacf0fd15c1a437e85b701}
+
+
+\-A partir de un año y un bimestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em bim} & bimestre del año (siendo 1, 2, 3, 4, 5 o 6) \\
+\hline
+{\em anio} & año de la \-Fecha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha que representa el rango 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a2382b435f48d53cb4957e17b28c8752a}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!convertir@{convertir}}
+\index{convertir@{convertir}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{convertir}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha\-Numerica {\bf \-M\-\_\-\-Fechas\-::convertir} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{fecha}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a2382b435f48d53cb4957e17b28c8752a}
+
+
+\-Transforma una \-Fecha con el formato utilizado en un representacion numerica de esta. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & \-Fecha a transformar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Valor numerico que representa la \-Fecha parametro. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a93212687f09b0a89cc7b9d42bdd7dec8}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!convertir@{convertir}}
+\index{convertir@{convertir}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{convertir}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::convertir} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha\-Numerica \&}]{fecha}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a93212687f09b0a89cc7b9d42bdd7dec8}
+
+
+\-Trasnforma una \-Fecha desde su representacion numerica en el formato tradicional utilizado por la aplicaión. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & valor numerico de la fecha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha en el formato comun. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_ab6c2daf098d9c539e8a84b146f4651a2}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!convertir@{convertir}}
+\index{convertir@{convertir}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{convertir}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::convertir} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha\-Numerica \&}]{fecha, }
+\item[{int}]{ancho}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_ab6c2daf098d9c539e8a84b146f4651a2}
+
+
+\-Trasnforma una \-Fecha desde su representacion numerica en el formato tradicional utilizado por la aplicación. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & valor numerico de la fecha. \\
+\hline
+{\em ancho} & indica el tamaño de digitos que tendra la \-Fecha transformada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha en el formato común. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_ac900ccecd850f4d01fd9c6a0a26549e4}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!cuatrimestre@{cuatrimestre}}
+\index{cuatrimestre@{cuatrimestre}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{cuatrimestre}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::cuatrimestre} (
+\begin{DoxyParamCaption}
+\item[{int}]{cuat, }
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_ac900ccecd850f4d01fd9c6a0a26549e4}
+
+
+\-A partir de un año y un cuatrimestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em cuat} & cuatrimestre del año (siendo 1, 2 o 3) \\
+\hline
+{\em anio} & año de la \-Fecha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha que representa el rango 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a3790e696e581431ab028af5cbd834b96}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!desarmar@{desarmar}}
+\index{desarmar@{desarmar}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{desarmar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-M\-\_\-\-Fechas\-::desarmar} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{rango, }
+\item[{\-Fecha \&}]{f1, }
+\item[{\-Fecha \&}]{f2}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a3790e696e581431ab028af5cbd834b96}
+
+
+\-Descompone una \-Fecha \-Rango en dos fechas que compreden el perido que representaba el rango. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em rango} & \-Fecha \-Rango a desarmar \\
+\hline
+{\em f1} & \-Fecha inferior del rango a escribir \\
+\hline
+{\em f2} & \-Fecha superior del rango a escribir \\
+\hline
+\end{DoxyParams}
+\hypertarget{classM__Fechas_af24fa241e5423b0e7afbb8843fba4e64}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!es\-Rango@{es\-Rango}}
+\index{es\-Rango@{es\-Rango}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{es\-Rango}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-M\-\_\-\-Fechas\-::es\-Rango} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{fecha}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_af24fa241e5423b0e7afbb8843fba4e64}
+
+
+\-Indica si una \-Fecha es \-Rango(o Compuesta). 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & \-Fecha a analizar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+booleano indicando el resultado. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_ada328f6bc5cb26120f4c41197cbf5a51}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!es\-Simple@{es\-Simple}}
+\index{es\-Simple@{es\-Simple}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{es\-Simple}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-M\-\_\-\-Fechas\-::es\-Simple} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{fecha}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_ada328f6bc5cb26120f4c41197cbf5a51}
+
+
+\-Indica si una \-Fecha es simple, es decir, que no es \-Rango. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & \-Fecha a analizar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+booleano indicando el resultado. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!fecha@{fecha}}
+\index{fecha@{fecha}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{fecha}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::fecha} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{fecha\-Comun}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a9ab0eddea3638aba66d48215c216d91e}
+\-Se ingresa fecha como \char`\"{}12-\/12-\/2012\char`\"{} y se retorna en el formato correcto utilazado para el índice \hypertarget{classM__Fechas_a1d302c89571ae873947a636de221ae0d}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!fecha@{fecha}}
+\index{fecha@{fecha}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{fecha}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::fecha} (
+\begin{DoxyParamCaption}
+\item[{int}]{dia, }
+\item[{int}]{mes, }
+\item[{int}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a1d302c89571ae873947a636de221ae0d}
+
+
+\-Transforma una fecha a partir de de los datos numericos de esta, al formato utilizado en la aplicacion. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em dia} & entero que representa al dia \\
+\hline
+{\em mes} & entero que representa al mes \\
+\hline
+{\em anio} & entero que representa al año \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha con el formato utilizado. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_ae6ad20c72a5f70a334613da72459c006}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!mes@{mes}}
+\index{mes@{mes}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{mes}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::mes} (
+\begin{DoxyParamCaption}
+\item[{int}]{mes, }
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_ae6ad20c72a5f70a334613da72459c006}
+
+
+\-A partir de un año y un mes se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em mes} & mes del año (siendo 1, 2, 3, ... , 10, 11 o 12) \\
+\hline
+{\em anio} & año de la \-Fecha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha que representa el rango 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a549b5b7c70620d16f24623ab6c0a7ec6}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!rango@{rango}}
+\index{rango@{rango}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{rango}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::rango} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{f1, }
+\item[{const \-Fecha \&}]{f2}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a549b5b7c70620d16f24623ab6c0a7ec6}
+
+
+\-Transforma dos \-Fechas en una \-Fecha \-Compuesta, que representa un rango de fechas. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em f1} & \-Fecha que representara al limite inferior del rango \\
+\hline
+{\em f2} & \-Fecha que representara al limite superior del rango \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha \-Compuesta que comprede el rango de fechas. 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a32fe27a2628bce51a3762ce8bc3e03b2}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!semana@{semana}}
+\index{semana@{semana}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{semana}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::semana} (
+\begin{DoxyParamCaption}
+\item[{int}]{semana, }
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a32fe27a2628bce51a3762ce8bc3e03b2}
+
+
+\-A partir de un año y un semama se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em semana} & semana del año (siendo desde 1 hasta 53) \\
+\hline
+{\em anio} & año de la \-Fecha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha que representa el rango 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a1b1343d9bf9d4fdd62bffbfc1ddb55ba}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!semestre@{semestre}}
+\index{semestre@{semestre}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{semestre}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::semestre} (
+\begin{DoxyParamCaption}
+\item[{int}]{sem, }
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a1b1343d9bf9d4fdd62bffbfc1ddb55ba}
+
+
+\-A partir de un año y un semestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em sem} & semestre del año (siendo 1 o 2) \\
+\hline
+{\em anio} & año de la \-Fecha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha que representa el rango 
+\end{DoxyReturn}
+\hypertarget{classM__Fechas_a26b592cebfd7ac3a1965937961bbe731}{\index{\-M\-\_\-\-Fechas@{\-M\-\_\-\-Fechas}!trimestre@{trimestre}}
+\index{trimestre@{trimestre}!M_Fechas@{\-M\-\_\-\-Fechas}}
+\subsubsection[{trimestre}]{\setlength{\rightskip}{0pt plus 5cm}\-Fecha {\bf \-M\-\_\-\-Fechas\-::trimestre} (
+\begin{DoxyParamCaption}
+\item[{int}]{tri, }
+\item[{const std\-::string \&}]{anio}
+\end{DoxyParamCaption}
+) const}}\label{classM__Fechas_a26b592cebfd7ac3a1965937961bbe731}
+
+
+\-A partir de un año y un trimestre se crea una \-Fecha de \-Rango. \-Que compredera las fechas comprendidas en ese periodo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em tri} & trimeste del año (siendo 1, 2, 3 o 4) \\
+\hline
+{\em anio} & año de la \-Fecha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+\-Fecha que representa el rango 
+\end{DoxyReturn}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+comun/\-M\-\_\-\-Fechas.\-h\item 
+comun/\-M\-\_\-\-Fechas.\-cpp\end{DoxyCompactItemize}

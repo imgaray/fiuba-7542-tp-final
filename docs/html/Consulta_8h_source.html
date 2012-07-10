@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente comun/Consulta.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('Consulta_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">comun/Consulta.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * Consulta.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 26/05/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef CONSULTA_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define CONSULTA_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;Definiciones.h&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;Mensaje.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;Utilitario.h&quot;</span>
+<a name="l00014"></a>00014 
+<a name="l00022"></a><a class="code" href="classConsulta.html">00022</a> <span class="keyword">class </span><a class="code" href="classConsulta.html">Consulta</a> : <span class="keyword">public</span> <a class="code" href="classMensaje.html">Mensaje</a> {
+<a name="l00023"></a>00023 <span class="keyword">public</span>:
+<a name="l00027"></a>00027         <a class="code" href="classConsulta.html#a941db28c9c5f5606fcbfcbd76a4381a7" title="Constructor sin argumentos.">Consulta</a>();
+<a name="l00028"></a>00028         <a class="code" href="classConsulta.html#a941db28c9c5f5606fcbfcbd76a4381a7" title="Constructor sin argumentos.">Consulta</a>(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; original);
+<a name="l00029"></a>00029         <span class="keyword">virtual</span> ~<a class="code" href="classConsulta.html">Consulta</a>();
+<a name="l00030"></a>00030 
+<a name="l00036"></a>00036         <a class="code" href="classConsulta.html">Consulta</a>&amp; <a class="code" href="classConsulta.html#a6acfebe58cc8a740d57ce31276d47fa9" title="Realiza la copia de otro Consulta.">operator=</a>(<span class="keyword">const</span> <a class="code" href="classConsulta.html">Consulta</a>&amp; original);
+<a name="l00037"></a>00037 
+<a name="l00042"></a>00042         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a70da0b4ca2b41a62eff57d6f52a67fb8" title="Define un nuevo identificador para la Consulta(por defecto es 0).">definirID</a>(<span class="keyword">const</span> Id_Mensaje&amp; <span class="keywordtype">id</span>);
+<a name="l00043"></a>00043 
+<a name="l00048"></a>00048         Id_Mensaje <a class="code" href="classConsulta.html#aedb25cbbcb6ee24cc846c29779678bd7" title="Devuelve el identificador de la Consulta.">devolverID</a>() <span class="keyword">const</span>;
+<a name="l00049"></a>00049 
+<a name="l00054"></a>00054         std::string <a class="code" href="classConsulta.html#a0d3fd7d84c1a68b8cbe31a4118150269" title="Serializa toda la Consulta en string.">serializar</a>() <span class="keyword">const</span>;
+<a name="l00055"></a>00055 
+<a name="l00060"></a>00060         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#ac3edafd9d21258d9e2b2db753b6a0b61" title="Deserializa la Consulta a partir del string.">deserializar</a>(<span class="keyword">const</span> std::string&amp; consulta);
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 
+<a name="l00066"></a>00066         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a4029f6916b9f06308774422156a14cd3" title="Deja la consulta vacia.">limpiar</a>();
+<a name="l00067"></a>00067 
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a9272b3e00577483b722ad30dd398e006" title="Deja la Consulta sin Resultados pero conservando Filtros y Entradas.">limpiarResultados</a>();
+<a name="l00072"></a>00072 
+<a name="l00078"></a>00078         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a4df85591716aa2c2ca9f0e305697dcf3" title="Agrega un Filtro a la Consulta.">agregarFiltro</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a51966644f6a3fb18e719ba8b10c9f862" title="Retorna el Filtro indexado por el argumento indice.">filtro</a>, <span class="keyword">const</span> std::string&amp; valor);
+<a name="l00079"></a>00079 
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a78a9d811efd007e8d6d3402123de9494" title="Agrega una Entrada a la Consulta.">agregarEntrada</a>(<span class="keyword">const</span> std::string <a class="code" href="classConsulta.html#a0f8951484349b8b31653615b1ff74bc3" title="Retorna la Entrada indexada por el argumento indice.">entrada</a>,
+<a name="l00086"></a>00086                                 <span class="keyword">const</span> std::string valor);
+<a name="l00087"></a>00087 
+<a name="l00093"></a>00093         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a18c9407b7f8853e18a379ad532e61cd9" title="Agrega un Resultado a la Consulta, la agregacion por defecto para el resultado agregado es &quot;NADA&quot;...">agregarResultado</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#acc0fd21c01a4de089670cd5385be4206" title="Retorna el nombre de un resultado indexado por el argumento indice.">resultado</a>);
+<a name="l00094"></a>00094 
+<a name="l00100"></a>00100         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#af9a1f73d3f6120a950cd02068f58893b" title="Agrega un Resultado a la consulta y define la agregacion del mismo.">defininirAgregacion</a>(Agregacion agregacion, <span class="keyword">const</span> std::string&amp; resultado);
+<a name="l00101"></a>00101 
+<a name="l00105"></a>00105         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a6020e3a06d8ef8158949ee2d4f6499e0" title="Define el estado de la Consulta como consulta de &quot;Cliente&quot;.">definirComoConsultaCliente</a>();
+<a name="l00106"></a>00106 
+<a name="l00110"></a>00110         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a592341b178ed0ab458a4c873dd5492ff" title="Define el estado de la Consulta como consulta como de &quot;Agente&quot;.">definirComoConsultaAgente</a>();
+<a name="l00111"></a>00111 
+<a name="l00115"></a>00115         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a165215249beb1a7d6da248e234d7d682" title="Define a la Consulta para que la respuesta sea una tabla pivote.">definirConsultaDeTablaPivote</a>();
+<a name="l00116"></a>00116 
+<a name="l00121"></a>00121         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#aae2c5422470a3471eb7a85938ec6dfe1" title="agrega un campo al Grupo X de la Tabla Pivote">agregarXTablaP</a>(<span class="keyword">const</span> std::string&amp; x);
+<a name="l00122"></a>00122 
+<a name="l00127"></a>00127         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#ab31d73a9ad0c0b3ef5fdc39f8cefe275" title="agrega un campo al Grupo Y de la Tabla Pivote">agregarYTablaP</a>(<span class="keyword">const</span> std::string&amp; y);
+<a name="l00128"></a>00128 
+<a name="l00134"></a>00134         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#ab1c28cbebea96855890deaeb156b4777" title="Retorna el campo &quot;i&quot; de la Tabla Pivote para el grupo X.">xDeTablaPivote</a>(<span class="keywordtype">unsigned</span> i) <span class="keyword">const</span>;
+<a name="l00135"></a>00135 
+<a name="l00141"></a>00141         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a3c42bada58e3474e622dae3951530d82" title="Retorna el campo &quot;i&quot; de la Tabla Pivote para el grupo Y.">yDeTablaPivote</a>(<span class="keywordtype">unsigned</span> i) <span class="keyword">const</span>;
+<a name="l00142"></a>00142 
+<a name="l00147"></a>00147         <span class="keywordtype">unsigned</span> <a class="code" href="classConsulta.html#a45ef5db7d7d017fb4f3dcded13bee6a2" title="Indica la cantidad de campos que hay en el Grupo X de la Tabla Pivote.">cantVarXTabla</a>() <span class="keyword">const</span>;
+<a name="l00148"></a>00148 
+<a name="l00153"></a>00153         <span class="keywordtype">unsigned</span> <a class="code" href="classConsulta.html#aeeadf61eb1a51cb8b750950724b3725b" title="Indica la cantidad de campos que hay en el Grupo Y de la Tabla Pivote.">cantVarYTabla</a>() <span class="keyword">const</span>;
+<a name="l00154"></a>00154 
+<a name="l00159"></a>00159         <span class="keywordtype">bool</span> <a class="code" href="classConsulta.html#abea0b8acdf1d6dc9dc55998c5a13d022" title="Indica si la consulta es de una Tabla Pivote.">esConsultaDeTablaPivote</a>() <span class="keyword">const</span>;
+<a name="l00160"></a>00160 
+<a name="l00165"></a>00165         <span class="keywordtype">void</span> <a class="code" href="classConsulta.html#a353df10eb0afdf7135ffec3ee95d3980" title="Agrega un campo a la consulta hecha por el Agente.">agregarCampo</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a2002e971cfc49f7fdec5f7a9d1de3bf8" title="Retorna un campo de la &quot;Consulta&quot; hecha por el agente, indexado por indice.">campo</a>);
+<a name="l00166"></a>00166 
+<a name="l00171"></a>00171         <span class="keywordtype">unsigned</span> <a class="code" href="classConsulta.html#a1ebfc9dd876b84c9d97ecf7d60d20aa8" title="Retorna la cantidad de filtros que tiene la consulta.">cantidadFiltros</a>() <span class="keyword">const</span>;
+<a name="l00172"></a>00172 
+<a name="l00177"></a>00177         <span class="keywordtype">unsigned</span> <a class="code" href="classConsulta.html#a1c1cf418be7d6d4932f5ed4b94900eb8" title="Retorna la cantidad de Entradas que tiene la consulta.">cantidadEntradas</a>() <span class="keyword">const</span>;
+<a name="l00178"></a>00178 
+<a name="l00183"></a>00183         <span class="keywordtype">unsigned</span> <a class="code" href="classConsulta.html#a0b7a5033d52038604faa3c60e1563b6e" title="Retorna la cantidad de Resultados que posee la consulta.">cantidadResultados</a>() <span class="keyword">const</span>;
+<a name="l00184"></a>00184 
+<a name="l00190"></a>00190         <span class="keywordtype">unsigned</span> <a class="code" href="classConsulta.html#a4bc49d0bdbd55835f463d6d89dee81b6" title="Retorna la cantidad de campos que tiene la consulta (Para que la utilice un a Agente).">cantidadCampos</a>() <span class="keyword">const</span>;
+<a name="l00191"></a>00191 
+<a name="l00197"></a>00197         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a51966644f6a3fb18e719ba8b10c9f862" title="Retorna el Filtro indexado por el argumento indice.">filtro</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00198"></a>00198 
+<a name="l00204"></a>00204         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a130e8ff49d0f34d4d02124c4b22ff33d" title="Retorna el valor del Filtro indexado por el argumento indice.">valorFiltro</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00205"></a>00205 
+<a name="l00211"></a>00211         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a130e8ff49d0f34d4d02124c4b22ff33d" title="Retorna el valor del Filtro indexado por el argumento indice.">valorFiltro</a>(<span class="keyword">const</span> std::string&amp; filtro) <span class="keyword">const</span>;
+<a name="l00212"></a>00212 
+<a name="l00218"></a>00218         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a0f8951484349b8b31653615b1ff74bc3" title="Retorna la Entrada indexada por el argumento indice.">entrada</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00219"></a>00219 
+<a name="l00226"></a>00226         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a0e8eb452c594a166eadc35d3b49a8286" title="Retorna el Valor de la Entrada indexada por el argumento indice o por la entrada misma.">valorEntrada</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00227"></a>00227 
+<a name="l00233"></a>00233         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a0e8eb452c594a166eadc35d3b49a8286" title="Retorna el Valor de la Entrada indexada por el argumento indice o por la entrada misma.">valorEntrada</a>(<span class="keyword">const</span> std::string&amp; entrada) <span class="keyword">const</span>;
+<a name="l00234"></a>00234 
+<a name="l00240"></a>00240         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#acc0fd21c01a4de089670cd5385be4206" title="Retorna el nombre de un resultado indexado por el argumento indice.">resultado</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00241"></a>00241 
+<a name="l00247"></a>00247         Agregacion <a class="code" href="classConsulta.html#a51e8e30d03493fd5c818b4ad6bd5fdf3" title="Retorna la agregacion Agregacion de Resultado.">agregacionDeResultado</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00248"></a>00248 
+<a name="l00249"></a>00249 
+<a name="l00255"></a>00255         <span class="keyword">const</span> std::string&amp; <a class="code" href="classConsulta.html#a2002e971cfc49f7fdec5f7a9d1de3bf8" title="Retorna un campo de la &quot;Consulta&quot; hecha por el agente, indexado por indice.">campo</a>(<span class="keywordtype">unsigned</span> indice) <span class="keyword">const</span>;
+<a name="l00256"></a>00256 
+<a name="l00261"></a>00261         <span class="keywordtype">bool</span> <a class="code" href="classConsulta.html#a721508f359b9391d9b9a906067d9a368" title="Indica si la Consulta si es una consulta de Cliente.">esConsultaDeCliente</a>() <span class="keyword">const</span>;
+<a name="l00262"></a>00262 
+<a name="l00267"></a>00267         <span class="keywordtype">bool</span> <a class="code" href="classConsulta.html#a6e39b6d94eba4c3ff0079a7ce64f0008" title="Indica si es una consulta de Agente.">esConsultaDeAgente</a>() <span class="keyword">const</span>;
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269 <span class="keyword">private</span>:
+<a name="l00273"></a>00273         <span class="keywordtype">void</span> cargarFiltros(std::string&amp; datos) <span class="keyword">const</span>;
+<a name="l00277"></a>00277          <span class="keywordtype">void</span> cargarResultados(std::string&amp; datos) <span class="keyword">const</span>;
+<a name="l00278"></a>00278 
+<a name="l00282"></a>00282         <span class="keywordtype">void</span> cargarEntradas(std::string&amp; datos) <span class="keyword">const</span>;
+<a name="l00283"></a>00283 
+<a name="l00284"></a>00284         <span class="keywordtype">void</span> cargarVarDeTabla(std::string&amp; datos) <span class="keyword">const</span>;
+<a name="l00285"></a>00285 
+<a name="l00286"></a>00286         <span class="keywordtype">void</span> cargarID(std::string&amp; datos) <span class="keyword">const</span>;
+<a name="l00287"></a>00287 
+<a name="l00292"></a>00292         <span class="keywordtype">void</span> guardarFiltros(<span class="keyword">const</span> std::string&amp; filtros);
+<a name="l00293"></a>00293         <span class="keywordtype">void</span> guardarResultados(<span class="keyword">const</span> std::string&amp; resultados);
+<a name="l00294"></a>00294         <span class="keywordtype">void</span> guardarEntradas(<span class="keyword">const</span> std::string&amp; entradas);
+<a name="l00295"></a>00295         <span class="keywordtype">void</span> guardarVarDeTabla(<span class="keyword">const</span> std::string&amp; variables);
+<a name="l00296"></a>00296         <span class="keywordtype">void</span> guardarID(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>);
+<a name="l00297"></a>00297 
+<a name="l00298"></a>00298         Filtros _filtros;
+<a name="l00299"></a>00299         Entradas _entradas;
+<a name="l00300"></a>00300         Resultados _resultados;
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302         EntradasTabla _xTabla;
+<a name="l00303"></a>00303         EntradasTabla _yTabla;
+<a name="l00304"></a>00304         <span class="keywordtype">bool</span> _consultaTablaPivote;
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306         Campos &amp;_campos;
+<a name="l00307"></a>00307 
+<a name="l00308"></a>00308         Agregaciones _agregaciones;
+<a name="l00309"></a>00309 
+<a name="l00310"></a>00310         <span class="keywordtype">bool</span> _consultaDeCliente;
+<a name="l00311"></a>00311         <span class="keywordtype">bool</span> _consultaValida;
+<a name="l00312"></a>00312 
+<a name="l00313"></a>00313         <span class="keyword">static</span> std::string s_nulo;
+<a name="l00314"></a>00314 
+<a name="l00315"></a>00315         Id_Mensaje _id;
+<a name="l00316"></a>00316 };
+<a name="l00317"></a>00317 
+<a name="l00318"></a>00318 <span class="preprocessor">#endif </span><span class="comment">/* CONSULTA_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>Consulta.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

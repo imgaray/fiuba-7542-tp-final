@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente cliente/Modelo/ServidorRemoto.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('ServidorRemoto_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">cliente/Modelo/ServidorRemoto.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef __SERVIDORREMOTO_H</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define __SERVIDORREMOTO_H</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;Definiciones.h&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;Consulta.h&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;Respuesta.h&quot;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;ConsumerConsultas.h&quot;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;ConsumerRespuestas.h&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;BLQueue.h&quot;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;BLMap.h&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;utility&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;list&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;Socket.h&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 <span class="keyword">class </span><a class="code" href="classConsultante.html">Consultante</a>;
+<a name="l00017"></a>00017 
+<a name="l00038"></a><a class="code" href="classServidorRemoto.html">00038</a> <span class="keyword">class </span><a class="code" href="classServidorRemoto.html">ServidorRemoto</a> {
+<a name="l00039"></a>00039 <span class="keyword">private</span>:
+<a name="l00040"></a>00040         <span class="comment">// atributos contenedores</span>
+<a name="l00041"></a>00041         <a class="code" href="classBLQueue.html">ColaConsultas</a> consultas; <span class="comment">/* Esta cola contendra todas las consultas pendientes</span>
+<a name="l00042"></a>00042 <span class="comment">        de envio. De esta cola consumira el hilo que se encarga del envio de</span>
+<a name="l00043"></a>00043 <span class="comment">        consultas. */</span>
+<a name="l00044"></a>00044         
+<a name="l00045"></a>00045         <a class="code" href="classBLQueue.html">ColaRespuestas</a> respuestas; <span class="comment">/* Esta cola contendra todas las respuestas</span>
+<a name="l00046"></a>00046 <span class="comment">        producidas por el hilo encargado de la recepcion de las mismas. El</span>
+<a name="l00047"></a>00047 <span class="comment">        servidor, al recibir un pedido de obtenerRespuesta, intentara desencolar</span>
+<a name="l00048"></a>00048 <span class="comment">        de la misma. */</span>
+<a name="l00049"></a>00049         
+<a name="l00050"></a>00050         <a class="code" href="classBLMap.html">MapaConsultantes</a> consultantes; <span class="comment">/* (deprecated) Es un mapa de consultantes.</span>
+<a name="l00051"></a>00051 <span class="comment">        Todo Consultante que haya hecho una consulta queda registrado. En un</span>
+<a name="l00052"></a>00052 <span class="comment">        primer momento sirvio para distribucion de respuestas. */</span>
+<a name="l00053"></a>00053         
+<a name="l00054"></a>00054         <a class="code" href="classBLMap.html">BitmapCancelados</a> cancelados; <span class="comment">/* Es el bitmap que contiene las consultas</span>
+<a name="l00055"></a>00055 <span class="comment">        canceladas. En escencia, es un map&lt;unsigned, bool&gt;. El primer elemento</span>
+<a name="l00056"></a>00056 <span class="comment">        es el ID del Consultante que haya hecho la consulta. El segundo valor</span>
+<a name="l00057"></a>00057 <span class="comment">        corresponde a un valor de true o false, que dice si la consulta debe cancelarse</span>
+<a name="l00058"></a>00058 <span class="comment">        o no. */</span>
+<a name="l00059"></a>00059         
+<a name="l00060"></a>00060         <a class="code" href="classConsumerRespuesta.html">ConsumerRespuesta</a> crespuesta; <span class="comment">/*  Es el encargado de &quot;producir&quot; las</span>
+<a name="l00061"></a>00061 <span class="comment">        respuestas que popularan la cola de respuestas. */</span>
+<a name="l00062"></a>00062         
+<a name="l00063"></a>00063         <a class="code" href="classConsumerConsulta.html">ConsumerConsulta</a> cconsulta; <span class="comment">/* Es el consumer encargado de enviar las</span>
+<a name="l00064"></a>00064 <span class="comment">        consultas pendientes de la cola de consultas. */</span>
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066         <a class="code" href="classSocket.html">Socket</a>* sock; <span class="comment">/* Es el socket utilizado para conectar con el servidor.</span>
+<a name="l00067"></a>00067 <span class="comment">        Este puntero es compartido tanto por crespuesta como por cconsulta.</span>
+<a name="l00068"></a>00068 <span class="comment">        El encargado de cerrar este socket es unicamente el servidorRemoto. */</span> 
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         std::string sdireccion; <span class="comment">/* Atributo que se utiliza unicamente para</span>
+<a name="l00071"></a>00071 <span class="comment">        conectar el socket al servidor. Contiene la direccion del mismo. */</span>
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="keyword">public</span>:
+<a name="l00074"></a>00074         
+<a name="l00077"></a>00077         <a class="code" href="classServidorRemoto.html#a72f8c644faf3490b1f92a46b6511d9a7">ServidorRemoto</a>();
+<a name="l00078"></a>00078         
+<a name="l00081"></a>00081         <a class="code" href="classServidorRemoto.html#a1463614bdc7306b059312d24d6b8ad6e">~ServidorRemoto</a>();
+<a name="l00082"></a>00082         
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="classServidorRemoto.html#ada46e4be2c67a36dc407e8b56d55d25a">conectar</a>() <span class="keywordflow">throw</span>(<span class="keywordtype">char</span>* );
+<a name="l00086"></a>00086         
+<a name="l00091"></a>00091         <span class="keywordtype">void</span> <a class="code" href="classServidorRemoto.html#a88916beeb79e2c6fae55855421dc4e12">enviarConsulta</a>(<a class="code" href="classConsultante.html">Consultante</a>* consultante, <a class="code" href="classConsulta.html">Consulta</a> consulta);
+<a name="l00092"></a>00092         
+<a name="l00094"></a>00094         <span class="keywordtype">unsigned</span> <a class="code" href="classServidorRemoto.html#ab94de4bf6596f587cd2ecc322505c170">cantidadRespuestas</a>();
+<a name="l00095"></a>00095         
+<a name="l00101"></a>00101         <a class="code" href="classRespuesta.html">Respuesta</a> <a class="code" href="classServidorRemoto.html#ad72107564d7d94d961d4520037496918">obtenerRespuesta</a>();
+<a name="l00102"></a>00102         
+<a name="l00107"></a>00107         <span class="keywordtype">void</span> <a class="code" href="classServidorRemoto.html#a80cb4acdf8cdd7138f9cd525bfd9414a">cancelarConsulta</a>(<span class="keywordtype">unsigned</span> IDcons);
+<a name="l00108"></a>00108         
+<a name="l00112"></a>00112         <span class="keywordtype">bool</span> <a class="code" href="classServidorRemoto.html#a5c362b6e732e03f2f5cf6b2020d3e518">conectado</a>();
+<a name="l00113"></a>00113 };
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>ServidorRemoto.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:01 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

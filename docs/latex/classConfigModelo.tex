@@ -1,0 +1,65 @@
+\hypertarget{classConfigModelo}{\section{\-Referencia de la \-Clase \-Config\-Modelo}
+\label{classConfigModelo}\index{\-Config\-Modelo@{\-Config\-Modelo}}
+}
+
+
+{\ttfamily \#include $<$\-Config\-Modelo.\-h$>$}
+
+\-Diagrama de herencias de \-Config\-Modelo\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classConfigModelo}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classConfigModelo_a128c0b7edc981b8c7f6e5d8f3ee8e9eb}{\-Config\-Modelo} (const \-Glib\-::ustring \&label)
+\item 
+\hyperlink{classConfigModelo_a5425d7855cf55abe9c8955b92ee9e802}{$\sim$\-Config\-Modelo} ()
+\item 
+\hypertarget{classConfigModelo_a94d779e447527f246e31f3b65bd28d03}{void {\bfseries desconectar} ()}\label{classConfigModelo_a94d779e447527f246e31f3b65bd28d03}
+
+\item 
+\hypertarget{classConfigModelo_a4bed8ed3f91ef9c2bb1064391c2dad8d}{\-Glib\-::ustring {\bfseries get\-Label} () const }\label{classConfigModelo_a4bed8ed3f91ef9c2bb1064391c2dad8d}
+
+\item 
+\hypertarget{classConfigModelo_addc4c60afe8773f540c7c672312b5f55}{void {\bfseries set\-Label} (const \-Glib\-::ustring \&label)}\label{classConfigModelo_addc4c60afe8773f540c7c672312b5f55}
+
+\end{DoxyCompactItemize}
+\subsection*{\-Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classConfigModelo_a40b9aa7742ba791440af155a1055aa24}{{\footnotesize template$<$typename T\-\_\-\-Widget $>$ }\\void {\bfseries desconectar} (sigc\-::connection \&conex, \-T\-\_\-\-Widget $\ast$\&p\-Algo)}\label{classConfigModelo_a40b9aa7742ba791440af155a1055aa24}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase base para los modelos que están detrás de las vistas de configuración.
+
+\-Como hay una vista y muchos modelos, tiene la capacidad de desconectarse y reconectarse (cuando le pasan las referencias a la vista).
+
+\-Identificable por su \-Glib\-::ustring label modificable, difieren de los config\-Modelo de los filtradores en eso principalmente. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classConfigModelo_a128c0b7edc981b8c7f6e5d8f3ee8e9eb}{\index{\-Config\-Modelo@{\-Config\-Modelo}!\-Config\-Modelo@{\-Config\-Modelo}}
+\index{\-Config\-Modelo@{\-Config\-Modelo}!ConfigModelo@{\-Config\-Modelo}}
+\subsubsection[{\-Config\-Modelo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Config\-Modelo\-::\-Config\-Modelo} (
+\begin{DoxyParamCaption}
+\item[{const \-Glib\-::ustring \&}]{label}
+\end{DoxyParamCaption}
+)}}\label{classConfigModelo_a128c0b7edc981b8c7f6e5d8f3ee8e9eb}
+\-Constructor. \hypertarget{classConfigModelo_a5425d7855cf55abe9c8955b92ee9e802}{\index{\-Config\-Modelo@{\-Config\-Modelo}!$\sim$\-Config\-Modelo@{$\sim$\-Config\-Modelo}}
+\index{$\sim$\-Config\-Modelo@{$\sim$\-Config\-Modelo}!ConfigModelo@{\-Config\-Modelo}}
+\subsubsection[{$\sim$\-Config\-Modelo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Config\-Modelo\-::$\sim$\-Config\-Modelo} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classConfigModelo_a5425d7855cf55abe9c8955b92ee9e802}
+\-Destructor. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Modelo/\-Config\-Modelo.\-h\item 
+cliente/\-Modelo/\-Config\-Modelo.\-cpp\end{DoxyCompactItemize}

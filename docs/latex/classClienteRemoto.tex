@@ -1,0 +1,100 @@
+\hypertarget{classClienteRemoto}{\section{\-Referencia de la \-Clase \-Cliente\-Remoto}
+\label{classClienteRemoto}\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}}
+}
+
+
+{\ttfamily \#include $<$\-Cliente\-Remoto.\-h$>$}
+
+\-Diagrama de herencias de \-Cliente\-Remoto\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classClienteRemoto}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classClienteRemoto_a741c9308f0d805e09069c79cfad783f4}{correr} ()
+\item 
+void \hyperlink{classClienteRemoto_af56e06fb4f6e792d9783619b36678df0}{detener\-\_\-cliente} ()
+\item 
+void \hyperlink{classClienteRemoto_aa73516bc91c7e0967734b11354018bbf}{desconectar\-\_\-cliente} ()
+\item 
+void \hyperlink{classClienteRemoto_a3364a54ae8e8076743b0867cd4b9375c}{enviar\-Respuesta} (\hyperlink{classRespuesta}{\-Respuesta} \&r)
+\item 
+\hyperlink{classClienteRemoto_a77480686aca165ca72a7bb316b9918ac}{\-Cliente\-Remoto} (\hyperlink{classSocket}{\-Socket} $\ast$cl, \hyperlink{classResolvedorConsultas}{\-Resolvedor\-Consultas} \&rcons, \hyperlink{classBLQueue}{\-Consultas\-Clientes\-Servidor} \&cons)
+\item 
+\hyperlink{classClienteRemoto_a14f0c6930666dbbc3b7d4506696f89ef}{$\sim$\-Cliente\-Remoto} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es el proxy del cliente. \-A través de la misma el servidor obtendrá consultas realizadas y enviará respuestas. \-Es tambien un productor que alimenta la cola de consultas del servidor. \-Se maneja en un hilo aparte, dado que existe un \hyperlink{classClienteRemoto}{\-Cliente\-Remoto} por cliente conectado al servidor. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classClienteRemoto_a77480686aca165ca72a7bb316b9918ac}{\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!\-Cliente\-Remoto@{\-Cliente\-Remoto}}
+\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!ClienteRemoto@{\-Cliente\-Remoto}}
+\subsubsection[{\-Cliente\-Remoto}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Cliente\-Remoto\-::\-Cliente\-Remoto} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Socket} $\ast$}]{cl, }
+\item[{{\bf \-Resolvedor\-Consultas} \&}]{rcons, }
+\item[{{\bf \-Consultas\-Clientes\-Servidor} \&}]{cons}
+\end{DoxyParamCaption}
+)}}\label{classClienteRemoto_a77480686aca165ca72a7bb316b9918ac}
+constructor del servidor remoto. 
+\begin{DoxyParams}{\-Parámetros}
+{\em cl} & \hyperlink{classSocket}{\-Socket} activo conectado. \\
+\hline
+{\em rcons} & \-Objeto encargado de resolver consultas. \\
+\hline
+{\em cons} & \-Cola de consultas de cliente del servidor. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classClienteRemoto_a14f0c6930666dbbc3b7d4506696f89ef}{\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!$\sim$\-Cliente\-Remoto@{$\sim$\-Cliente\-Remoto}}
+\index{$\sim$\-Cliente\-Remoto@{$\sim$\-Cliente\-Remoto}!ClienteRemoto@{\-Cliente\-Remoto}}
+\subsubsection[{$\sim$\-Cliente\-Remoto}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Cliente\-Remoto\-::$\sim$\-Cliente\-Remoto} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClienteRemoto_a14f0c6930666dbbc3b7d4506696f89ef}
+\-Destructor de cliente remoto. \-Si esta corriendo, lo detiene. \-Si esta conectado, lo desconecta. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classClienteRemoto_a741c9308f0d805e09069c79cfad783f4}{\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!correr@{correr}}
+\index{correr@{correr}!ClienteRemoto@{\-Cliente\-Remoto}}
+\subsubsection[{correr}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Cliente\-Remoto\-::correr} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classClienteRemoto_a741c9308f0d805e09069c79cfad783f4}
+\-Método que se ejecuta mientras este en ejecución el hilo. \-Es el encargado de recibir elementos del socket y encolarlos para que responda el servidor. 
+
+\-Implementa \hyperlink{classHilo_a187b055e3504487a6bb64340fac2c70d}{\-Hilo}.
+
+\hypertarget{classClienteRemoto_aa73516bc91c7e0967734b11354018bbf}{\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!desconectar\-\_\-cliente@{desconectar\-\_\-cliente}}
+\index{desconectar\-\_\-cliente@{desconectar\-\_\-cliente}!ClienteRemoto@{\-Cliente\-Remoto}}
+\subsubsection[{desconectar\-\_\-cliente}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Cliente\-Remoto\-::desconectar\-\_\-cliente} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClienteRemoto_aa73516bc91c7e0967734b11354018bbf}
+\-Desconecta el socket del cliente. \hypertarget{classClienteRemoto_af56e06fb4f6e792d9783619b36678df0}{\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!detener\-\_\-cliente@{detener\-\_\-cliente}}
+\index{detener\-\_\-cliente@{detener\-\_\-cliente}!ClienteRemoto@{\-Cliente\-Remoto}}
+\subsubsection[{detener\-\_\-cliente}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Cliente\-Remoto\-::detener\-\_\-cliente} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classClienteRemoto_af56e06fb4f6e792d9783619b36678df0}
+\-Detiene la ejecución del cliente remoto. \hypertarget{classClienteRemoto_a3364a54ae8e8076743b0867cd4b9375c}{\index{\-Cliente\-Remoto@{\-Cliente\-Remoto}!enviar\-Respuesta@{enviar\-Respuesta}}
+\index{enviar\-Respuesta@{enviar\-Respuesta}!ClienteRemoto@{\-Cliente\-Remoto}}
+\subsubsection[{enviar\-Respuesta}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Cliente\-Remoto\-::enviar\-Respuesta} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Respuesta} \&}]{r}
+\end{DoxyParamCaption}
+)}}\label{classClienteRemoto_a3364a54ae8e8076743b0867cd4b9375c}
+\-Envía la respuesta obtenida del servidor al cliente. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/servidor/\-Cliente\-Remoto.\-h\item 
+servidor/servidor/\-Cliente\-Remoto.\-cpp\end{DoxyCompactItemize}

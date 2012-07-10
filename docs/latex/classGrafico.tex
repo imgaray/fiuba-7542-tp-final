@@ -1,0 +1,81 @@
+\hypertarget{classGrafico}{\section{\-Referencia de la \-Clase \-Grafico}
+\label{classGrafico}\index{\-Grafico@{\-Grafico}}
+}
+
+
+{\ttfamily \#include $<$\-Grafico.\-h$>$}
+
+\-Diagrama de herencias de \-Grafico\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGrafico}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGrafico_ae432e5a7b909182132551b359a6a1ea3}{\-Grafico} (\hyperlink{classFiltradoresPanel}{\-Filtradores\-Panel} $\ast$f)
+\item 
+virtual \hyperlink{classGrafico_a1db5d0b80dfa9467542b37278a4f9f66}{$\sim$\-Grafico} ()
+\end{DoxyCompactItemize}
+\subsection*{\-Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGrafico_a3ea17dc3e92eb867069eab9331891e03}{virtual void {\bfseries hallar\-Normalizacion} (const std\-::list$<$ \hyperlink{classHecho}{\-Hecho} $>$ \&datos)=0}\label{classGrafico_a3ea17dc3e92eb867069eab9331891e03}
+
+\item 
+void \hyperlink{classGrafico_a3abd6861308594594d76f09f61087e95}{delete\-Areas} ()
+\item 
+\hypertarget{classGrafico_a664b44ea30af98769a2c8ba9c07e3743}{void {\bfseries regenerar\-Referencias} ()}\label{classGrafico_a664b44ea30af98769a2c8ba9c07e3743}
+
+\end{DoxyCompactItemize}
+\subsection*{\-Atributos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGrafico_a9c1acb54ce5a8c9cd7f11430804467d6}{std\-::list$<$ \hyperlink{classArea}{\-Area} $\ast$ $>$ {\bfseries areas}}\label{classGrafico_a9c1acb54ce5a8c9cd7f11430804467d6}
+
+\item 
+\hypertarget{classGrafico_a33c53444bc586899595318a37a0ed16a}{double {\bfseries normalizacion}}\label{classGrafico_a33c53444bc586899595318a37a0ed16a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase abstracta que comprende comportamiento común a un consultante que muestra sus resultados gráficamente. \-Limitado a dos columnas de resultados, el segundo necesariamente un hecho. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classGrafico_ae432e5a7b909182132551b359a6a1ea3}{\index{\-Grafico@{\-Grafico}!\-Grafico@{\-Grafico}}
+\index{\-Grafico@{\-Grafico}!Grafico@{\-Grafico}}
+\subsubsection[{\-Grafico}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Grafico\-::\-Grafico} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Filtradores\-Panel} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{classGrafico_ae432e5a7b909182132551b359a6a1ea3}
+\-Constructor. 
+\begin{DoxyParams}{\-Parámetros}
+{\em f} & filtradores de panel \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGrafico_a1db5d0b80dfa9467542b37278a4f9f66}{\index{\-Grafico@{\-Grafico}!$\sim$\-Grafico@{$\sim$\-Grafico}}
+\index{$\sim$\-Grafico@{$\sim$\-Grafico}!Grafico@{\-Grafico}}
+\subsubsection[{$\sim$\-Grafico}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Grafico\-::$\sim$\-Grafico} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classGrafico_a1db5d0b80dfa9467542b37278a4f9f66}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classGrafico_a3abd6861308594594d76f09f61087e95}{\index{\-Grafico@{\-Grafico}!delete\-Areas@{delete\-Areas}}
+\index{delete\-Areas@{delete\-Areas}!Grafico@{\-Grafico}}
+\subsubsection[{delete\-Areas}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Grafico\-::delete\-Areas} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}\label{classGrafico_a3abd6861308594594d76f09f61087e95}
+borra y regenera todas las referencias 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Vista/\-Grafico.\-h\item 
+cliente/\-Vista/\-Grafico.\-cpp\end{DoxyCompactItemize}

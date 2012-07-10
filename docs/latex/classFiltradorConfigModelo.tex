@@ -1,0 +1,141 @@
+\hypertarget{classFiltradorConfigModelo}{\section{\-Referencia de la \-Clase \-Filtrador\-Config\-Modelo}
+\label{classFiltradorConfigModelo}\index{\-Filtrador\-Config\-Modelo@{\-Filtrador\-Config\-Modelo}}
+}
+
+
+{\ttfamily \#include $<$\-Filtrador\-Config\-Modelo.\-h$>$}
+
+\-Diagrama de herencias de \-Filtrador\-Config\-Modelo\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.434783cm]{classFiltradorConfigModelo}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFiltradorConfigModelo_aa4bf89d3b9c17421b1885e2666b8d76c}{\-Filtrador\-Config\-Modelo} (unsigned \-I\-D, const std\-::list$<$ std\-::string $>$ \&campos\-Disponibles)
+\item 
+\hyperlink{classFiltradorConfigModelo_ae3fe5e02af21a1724d2abb940266ac64}{$\sim$\-Filtrador\-Config\-Modelo} ()
+\item 
+\hypertarget{classFiltradorConfigModelo_abf83fdb10b4c05a534a72dece6526f58}{void {\bfseries set\-Vista} (\-Gtk\-::\-Combo\-Box\-Text $\ast$combo\-Dimension, \-Gtk\-::\-Combo\-Box\-Text $\ast$combo\-Fecha, \-Gtk\-::\-Combo\-Box\-Text $\ast$combo\-Hecho, \-Gtk\-::\-Entry $\ast$entry\-Extra, \-Gtk\-::\-Tool\-Button $\ast$boton\-Eliminar)}\label{classFiltradorConfigModelo_abf83fdb10b4c05a534a72dece6526f58}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_abcd792426ccc0f95c6241ddf3fffdcf7}{unsigned {\bfseries get\-I\-D} () const }\label{classFiltradorConfigModelo_abcd792426ccc0f95c6241ddf3fffdcf7}
+
+\item 
+void \hyperlink{classFiltradorConfigModelo_a234d1f37a3f7ed8df4a3639dc7eeb319}{actualizar\-Campos} (const \-Glib\-::ustring \&remover, const \-Glib\-::ustring \&agregar)
+\item 
+\hypertarget{classFiltradorConfigModelo_a388b04e618a004da441f04519d55381f}{sigc\-::signal$<$ void, unsigned $>$ {\bfseries signal\-\_\-delete\-\_\-filtrador} ()}\label{classFiltradorConfigModelo_a388b04e618a004da441f04519d55381f}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a35853241db6782cf6d3172621221e0ad}{sigc\-::signal$<$ void, \*
+\-Glib\-::ustring, \-Glib\-::ustring $>$ {\bfseries signal\-\_\-campo\-\_\-changed} ()}\label{classFiltradorConfigModelo_a35853241db6782cf6d3172621221e0ad}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a8dd955d0b124af9bf564b1890e8a3ab1}{virtual void {\bfseries set\-Filtrador\-En} (\hyperlink{classFiltradoresTab}{\-Filtradores\-Tab} $\ast$filt\-Tab)=0}\label{classFiltradorConfigModelo_a8dd955d0b124af9bf564b1890e8a3ab1}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a80cca4f94ccffd75b8022d73e46da642}{virtual void {\bfseries set\-Filtrador\-En} (\hyperlink{classFiltradoresPanel}{\-Filtradores\-Panel} $\ast$filt\-Panel)=0}\label{classFiltradorConfigModelo_a80cca4f94ccffd75b8022d73e46da642}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a0994bf3080dcad82bdbabe433e2a4de0}{virtual \hyperlink{classTiXmlElement}{\-Nodo\-Xml} {\bfseries serializar} ()}\label{classFiltradorConfigModelo_a0994bf3080dcad82bdbabe433e2a4de0}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a91c5fc88daee14e804531af8fc8e2057}{virtual void {\bfseries deserializar} (const \hyperlink{classTiXmlElement}{\-Nodo\-Xml} \&nodo)}\label{classFiltradorConfigModelo_a91c5fc88daee14e804531af8fc8e2057}
+
+\end{DoxyCompactItemize}
+\subsection*{\-Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classFiltradorConfigModelo_abfc6c03689b768c273f58ab7d0ac4cd5}{virtual void {\bfseries completar\-Atributos} ()=0}\label{classFiltradorConfigModelo_abfc6c03689b768c273f58ab7d0ac4cd5}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_abe052870e7ee1ca6222c2cd730281683}{void {\bfseries conectar\-Combo\-Hecho} ()}\label{classFiltradorConfigModelo_abe052870e7ee1ca6222c2cd730281683}
+
+\end{DoxyCompactItemize}
+\subsection*{\-Atributos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classFiltradorConfigModelo_a43e9f68c76a27aae5ec54eeb1a1666ff}{\-Gtk\-::\-Combo\-Box\-Text $\ast$ {\bfseries combo\-Dimension}}\label{classFiltradorConfigModelo_a43e9f68c76a27aae5ec54eeb1a1666ff}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_aba1543a41d1b3c49b3488c58257a32a1}{\-Gtk\-::\-Combo\-Box\-Text $\ast$ {\bfseries combo\-Fecha}}\label{classFiltradorConfigModelo_aba1543a41d1b3c49b3488c58257a32a1}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_ad84b08da5792c339d09593272b0389b4}{\-Gtk\-::\-Combo\-Box\-Text $\ast$ {\bfseries combo\-Hecho}}\label{classFiltradorConfigModelo_ad84b08da5792c339d09593272b0389b4}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a323f0f15a5ee911048627126f432e133}{\-Gtk\-::\-Entry $\ast$ {\bfseries entry\-Extra}}\label{classFiltradorConfigModelo_a323f0f15a5ee911048627126f432e133}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_ac2aa0b9e2955fbbabc46bbd034974b4a}{\-Glib\-::ustring {\bfseries campo\-Selecc}}\label{classFiltradorConfigModelo_ac2aa0b9e2955fbbabc46bbd034974b4a}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_ad5bdaf21bd5e7b23bad35ee52f0a13f7}{\-Glib\-::ustring {\bfseries campo\-Selecc\-Nuevo}}\label{classFiltradorConfigModelo_ad5bdaf21bd5e7b23bad35ee52f0a13f7}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_aee91ddf82ded67ca6c5304151d9740a3}{\-Glib\-::ustring {\bfseries \-\_\-valor\-Campo}}\label{classFiltradorConfigModelo_aee91ddf82ded67ca6c5304151d9740a3}
+
+\item 
+\hypertarget{classFiltradorConfigModelo_a8bd83eaf50ecbe958c5a1aa5f94dac89}{\-Glib\-::ustring {\bfseries \-\_\-campo\-Aux}}\label{classFiltradorConfigModelo_a8bd83eaf50ecbe958c5a1aa5f94dac89}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase base para los modelos que están detrás de las vistas de configuración de filtradores.
+
+\-Es identificable por un número, pero sólo sirve para cuando está en memoria. \-Al persistirse, queda definido por el valor de tres strings\-: -\/el campo de la base de datos por el que filtra -\/un valor auxiliar, que sólo sirve cuando es seleccionado un hecho o fecha, ingresado por combobox -\/otro valor auxiliar, que sólo sirve para \-Filtro y \-Resultado, ingresado por entry
+
+\-Para evitar elegir campos repetidos, cada vez que cambia su selección emite una señal. \-Trabajando en conjunto con \hyperlink{classFiltradorConfigManager}{\-Filtrador\-Config\-Manager}, la señal se difunde y todos sus filtradores hermanos actualizan sus campos disponibles.
+
+\-Un método importante, en paralelo a los \char`\"{}concretar\-Config\char`\"{} de las clases para configurar paneles y tabs, es set\-Filtrador\-En(), sobrecargado para actuar distinto según se agregue a \hyperlink{classFiltradoresTab}{\-Filtradores\-Tab} o \hyperlink{classFiltradoresPanel}{\-Filtradores\-Panel}. \-Lo que hacen es concretar su configuración como filtrador, agregando al conjunto de filtradores. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classFiltradorConfigModelo_aa4bf89d3b9c17421b1885e2666b8d76c}{\index{\-Filtrador\-Config\-Modelo@{\-Filtrador\-Config\-Modelo}!\-Filtrador\-Config\-Modelo@{\-Filtrador\-Config\-Modelo}}
+\index{\-Filtrador\-Config\-Modelo@{\-Filtrador\-Config\-Modelo}!FiltradorConfigModelo@{\-Filtrador\-Config\-Modelo}}
+\subsubsection[{\-Filtrador\-Config\-Modelo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Filtrador\-Config\-Modelo\-::\-Filtrador\-Config\-Modelo} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{\-I\-D, }
+\item[{const std\-::list$<$ std\-::string $>$ \&}]{campos\-Disponibles}
+\end{DoxyParamCaption}
+)}}\label{classFiltradorConfigModelo_aa4bf89d3b9c17421b1885e2666b8d76c}
+\-Constructor. 
+\begin{DoxyParams}{\-Parámetros}
+{\em \-I\-D} & identificador de la instancia \\
+\hline
+{\em campos\-Disponibles} & lista de los campos disponibles, para popular su combobox \\
+\hline
+\end{DoxyParams}
+\hypertarget{classFiltradorConfigModelo_ae3fe5e02af21a1724d2abb940266ac64}{\index{\-Filtrador\-Config\-Modelo@{\-Filtrador\-Config\-Modelo}!$\sim$\-Filtrador\-Config\-Modelo@{$\sim$\-Filtrador\-Config\-Modelo}}
+\index{$\sim$\-Filtrador\-Config\-Modelo@{$\sim$\-Filtrador\-Config\-Modelo}!FiltradorConfigModelo@{\-Filtrador\-Config\-Modelo}}
+\subsubsection[{$\sim$\-Filtrador\-Config\-Modelo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Filtrador\-Config\-Modelo\-::$\sim$\-Filtrador\-Config\-Modelo} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classFiltradorConfigModelo_ae3fe5e02af21a1724d2abb940266ac64}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classFiltradorConfigModelo_a234d1f37a3f7ed8df4a3639dc7eeb319}{\index{\-Filtrador\-Config\-Modelo@{\-Filtrador\-Config\-Modelo}!actualizar\-Campos@{actualizar\-Campos}}
+\index{actualizar\-Campos@{actualizar\-Campos}!FiltradorConfigModelo@{\-Filtrador\-Config\-Modelo}}
+\subsubsection[{actualizar\-Campos}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Filtrador\-Config\-Modelo\-::actualizar\-Campos} (
+\begin{DoxyParamCaption}
+\item[{const \-Glib\-::ustring \&}]{remover, }
+\item[{const \-Glib\-::ustring \&}]{agregar}
+\end{DoxyParamCaption}
+)}}\label{classFiltradorConfigModelo_a234d1f37a3f7ed8df4a3639dc7eeb319}
+\-Actualiza los campos disponibles para elegir. 
+\begin{DoxyParams}{\-Parámetros}
+{\em remover} & campo a remover de su combobox \\
+\hline
+{\em agregar} & campo a agregar a su combobox \\
+\hline
+\end{DoxyParams}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Modelo/\-Filtrador\-Config\-Modelo.\-h\item 
+cliente/\-Modelo/\-Filtrador\-Config\-Modelo.\-cpp\end{DoxyCompactItemize}

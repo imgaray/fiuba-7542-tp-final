@@ -1,0 +1,92 @@
+\hypertarget{classTablaComun}{\section{\-Referencia de la \-Clase \-Tabla\-Comun}
+\label{classTablaComun}\index{\-Tabla\-Comun@{\-Tabla\-Comun}}
+}
+
+
+{\ttfamily \#include $<$\-Tabla\-Comun.\-h$>$}
+
+\-Diagrama de herencias de \-Tabla\-Comun\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classTablaComun}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTablaComun_a3c6d2d5d000807ed6e9d360982328fbd}{\-Tabla\-Comun} (\hyperlink{classFiltradoresPanel}{\-Filtradores\-Panel} $\ast$filtradores)
+\item 
+virtual \hyperlink{classTablaComun_aa93de4d0703966dbfcfa178327cd3de3}{$\sim$\-Tabla\-Comun} ()
+\end{DoxyCompactItemize}
+\subsection*{\-Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTablaComun_a849ad22dec9cbb565b320ba4e5927f17}{virtual void {\bfseries procesar\-Respuesta} (const \hyperlink{classRespuesta}{\-Respuesta} \&rta)}\label{classTablaComun_a849ad22dec9cbb565b320ba4e5927f17}
+
+\item 
+\hypertarget{classTablaComun_acee1b9e1fd7ad451c25454aa2c74ddd3}{void {\bfseries agregar\-Fila} (int num\-Fila, const \hyperlink{classRespuesta}{\-Respuesta} \&resp)}\label{classTablaComun_acee1b9e1fd7ad451c25454aa2c74ddd3}
+
+\item 
+\hypertarget{classTablaComun_aba13fc035e45b08fa27af781b0d92b1c}{void {\bfseries agregar\-Columnas} ()}\label{classTablaComun_aba13fc035e45b08fa27af781b0d92b1c}
+
+\item 
+void \hyperlink{classTablaComun_a6df26712c8f8dc3c09b1d789cd103ab9}{fila\-\_\-activada} (const \-Gtk\-::\-Tree\-Model\-::\-Path \&path, \-Gtk\-::\-Tree\-View\-Column $\ast$column)
+\end{DoxyCompactItemize}
+\subsection*{\-Atributos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTablaComun_a142e5fd9df094afd54783c5033a69ac9}{\-Glib\-::\-Ref\-Ptr$<$ \-Gtk\-::\-List\-Store $>$ {\bfseries \-\_\-ref\-Tree\-Model}}\label{classTablaComun_a142e5fd9df094afd54783c5033a69ac9}
+
+\item 
+\hypertarget{classTablaComun_a2d8fe03cabdda0d59e24a21fed14da0b}{\hyperlink{classRespuesta}{\-Respuesta} {\bfseries \-\_\-resp\-Actual}}\label{classTablaComun_a2d8fe03cabdda0d59e24a21fed14da0b}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\hyperlink{classConsultante}{\-Consultante} que muestra sus resultados como una tabla común. \-No tiene limitaciones en cuanto a los resultados. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classTablaComun_a3c6d2d5d000807ed6e9d360982328fbd}{\index{\-Tabla\-Comun@{\-Tabla\-Comun}!\-Tabla\-Comun@{\-Tabla\-Comun}}
+\index{\-Tabla\-Comun@{\-Tabla\-Comun}!TablaComun@{\-Tabla\-Comun}}
+\subsubsection[{\-Tabla\-Comun}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Tabla\-Comun\-::\-Tabla\-Comun} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Filtradores\-Panel} $\ast$}]{filtradores}
+\end{DoxyParamCaption}
+)}}\label{classTablaComun_a3c6d2d5d000807ed6e9d360982328fbd}
+\-Constructor. 
+\begin{DoxyParams}{\-Parámetros}
+{\em filtradores} & filtradores del panel \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTablaComun_aa93de4d0703966dbfcfa178327cd3de3}{\index{\-Tabla\-Comun@{\-Tabla\-Comun}!$\sim$\-Tabla\-Comun@{$\sim$\-Tabla\-Comun}}
+\index{$\sim$\-Tabla\-Comun@{$\sim$\-Tabla\-Comun}!TablaComun@{\-Tabla\-Comun}}
+\subsubsection[{$\sim$\-Tabla\-Comun}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Tabla\-Comun\-::$\sim$\-Tabla\-Comun} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classTablaComun_aa93de4d0703966dbfcfa178327cd3de3}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classTablaComun_a6df26712c8f8dc3c09b1d789cd103ab9}{\index{\-Tabla\-Comun@{\-Tabla\-Comun}!fila\-\_\-activada@{fila\-\_\-activada}}
+\index{fila\-\_\-activada@{fila\-\_\-activada}!TablaComun@{\-Tabla\-Comun}}
+\subsubsection[{fila\-\_\-activada}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tabla\-Comun\-::fila\-\_\-activada} (
+\begin{DoxyParamCaption}
+\item[{const \-Gtk\-::\-Tree\-Model\-::\-Path \&}]{path, }
+\item[{\-Gtk\-::\-Tree\-View\-Column $\ast$}]{column}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}\label{classTablaComun_a6df26712c8f8dc3c09b1d789cd103ab9}
+\-Signal handler para el doble click sobre alguna celda. 
+\begin{DoxyParams}{\-Parámetros}
+{\em path} & camino hacia la fila activada \\
+\hline
+{\em column} & columna de la fila activada\\
+\hline
+\end{DoxyParams}
+\-Busca el par de valores $<$ nombre\-\_\-columna, valor\-\_\-celda $>$ e inicializa la cascada de llamadas (void \hyperlink{classTab_a16a4ce877365b06b134e5c319eab5a28}{\-Tab\-::difundir\-Navegacion\-Seleccionada}(const \-Glib\-::ustring\& , const \-Glib\-::ustring\& )) para que se interprete la navegación. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Vista/\-Tabla\-Comun.\-h\item 
+cliente/\-Vista/\-Tabla\-Comun.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,656 @@
+\hypertarget{classConsulta}{\section{\-Referencia de la \-Clase \-Consulta}
+\label{classConsulta}\index{\-Consulta@{\-Consulta}}
+}
+
+
+{\ttfamily \#include $<$\-Consulta.\-h$>$}
+
+\-Diagrama de herencias de \-Consulta\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classConsulta}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classConsulta_a941db28c9c5f5606fcbfcbd76a4381a7}{\hyperlink{classConsulta_a941db28c9c5f5606fcbfcbd76a4381a7}{\-Consulta} ()}\label{classConsulta_a941db28c9c5f5606fcbfcbd76a4381a7}
+
+\begin{DoxyCompactList}\small\item\em \-Constructor sin argumentos. \end{DoxyCompactList}\item 
+\hypertarget{classConsulta_afab55aa5839f10dada36ebe7d6363ca5}{{\bfseries \-Consulta} (const \hyperlink{classConsulta}{\-Consulta} \&original)}\label{classConsulta_afab55aa5839f10dada36ebe7d6363ca5}
+
+\item 
+\hyperlink{classConsulta}{\-Consulta} \& \hyperlink{classConsulta_a6acfebe58cc8a740d57ce31276d47fa9}{operator=} (const \hyperlink{classConsulta}{\-Consulta} \&original)
+\begin{DoxyCompactList}\small\item\em \-Realiza la copia de otro \hyperlink{classConsulta}{\-Consulta}. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_a70da0b4ca2b41a62eff57d6f52a67fb8}{definir\-I\-D} (const \-Id\-\_\-\-Mensaje \&id)
+\begin{DoxyCompactList}\small\item\em \-Define un nuevo identificador para la \-Consulta(por defecto es 0). \end{DoxyCompactList}\item 
+\-Id\-\_\-\-Mensaje \hyperlink{classConsulta_aedb25cbbcb6ee24cc846c29779678bd7}{devolver\-I\-D} () const 
+\begin{DoxyCompactList}\small\item\em \-Devuelve el identificador de la \hyperlink{classConsulta}{\-Consulta}. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classConsulta_a0d3fd7d84c1a68b8cbe31a4118150269}{serializar} () const 
+\begin{DoxyCompactList}\small\item\em \-Serializa toda la \hyperlink{classConsulta}{\-Consulta} en string. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_ac3edafd9d21258d9e2b2db753b6a0b61}{deserializar} (const std\-::string \&consulta)
+\begin{DoxyCompactList}\small\item\em \-Deserializa la \hyperlink{classConsulta}{\-Consulta} a partir del string. \end{DoxyCompactList}\item 
+\hypertarget{classConsulta_a4029f6916b9f06308774422156a14cd3}{void \hyperlink{classConsulta_a4029f6916b9f06308774422156a14cd3}{limpiar} ()}\label{classConsulta_a4029f6916b9f06308774422156a14cd3}
+
+\begin{DoxyCompactList}\small\item\em \-Deja la consulta vacia. \end{DoxyCompactList}\item 
+\hypertarget{classConsulta_a9272b3e00577483b722ad30dd398e006}{void \hyperlink{classConsulta_a9272b3e00577483b722ad30dd398e006}{limpiar\-Resultados} ()}\label{classConsulta_a9272b3e00577483b722ad30dd398e006}
+
+\begin{DoxyCompactList}\small\item\em \-Deja la \hyperlink{classConsulta}{\-Consulta} sin \-Resultados pero conservando \-Filtros y \-Entradas. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_a4df85591716aa2c2ca9f0e305697dcf3}{agregar\-Filtro} (const std\-::string \&\hyperlink{classConsulta_a51966644f6a3fb18e719ba8b10c9f862}{filtro}, const std\-::string \&valor)
+\begin{DoxyCompactList}\small\item\em \-Agrega un \-Filtro a la \hyperlink{classConsulta}{\-Consulta}. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_a78a9d811efd007e8d6d3402123de9494}{agregar\-Entrada} (const std\-::string \hyperlink{classConsulta_a0f8951484349b8b31653615b1ff74bc3}{entrada}, const std\-::string valor)
+\begin{DoxyCompactList}\small\item\em \-Agrega una \-Entrada a la \hyperlink{classConsulta}{\-Consulta}. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_a18c9407b7f8853e18a379ad532e61cd9}{agregar\-Resultado} (const std\-::string \&\hyperlink{classConsulta_acc0fd21c01a4de089670cd5385be4206}{resultado})
+\begin{DoxyCompactList}\small\item\em \-Agrega un \-Resultado a la \hyperlink{classConsulta}{\-Consulta}, la agregacion por defecto para el resultado agregado es \char`\"{}\-N\-A\-D\-A\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_af9a1f73d3f6120a950cd02068f58893b}{defininir\-Agregacion} (\-Agregacion agregacion, const std\-::string \&\hyperlink{classConsulta_acc0fd21c01a4de089670cd5385be4206}{resultado})
+\begin{DoxyCompactList}\small\item\em \-Agrega un \-Resultado a la consulta y define la agregacion del mismo. \end{DoxyCompactList}\item 
+\hypertarget{classConsulta_a6020e3a06d8ef8158949ee2d4f6499e0}{void \hyperlink{classConsulta_a6020e3a06d8ef8158949ee2d4f6499e0}{definir\-Como\-Consulta\-Cliente} ()}\label{classConsulta_a6020e3a06d8ef8158949ee2d4f6499e0}
+
+\begin{DoxyCompactList}\small\item\em \-Define el estado de la \hyperlink{classConsulta}{\-Consulta} como consulta de \char`\"{}\-Cliente\char`\"{}. \end{DoxyCompactList}\item 
+\hypertarget{classConsulta_a592341b178ed0ab458a4c873dd5492ff}{void \hyperlink{classConsulta_a592341b178ed0ab458a4c873dd5492ff}{definir\-Como\-Consulta\-Agente} ()}\label{classConsulta_a592341b178ed0ab458a4c873dd5492ff}
+
+\begin{DoxyCompactList}\small\item\em \-Define el estado de la \hyperlink{classConsulta}{\-Consulta} como consulta como de \char`\"{}\-Agente\char`\"{}. \end{DoxyCompactList}\item 
+\hypertarget{classConsulta_a165215249beb1a7d6da248e234d7d682}{void \hyperlink{classConsulta_a165215249beb1a7d6da248e234d7d682}{definir\-Consulta\-De\-Tabla\-Pivote} ()}\label{classConsulta_a165215249beb1a7d6da248e234d7d682}
+
+\begin{DoxyCompactList}\small\item\em \-Define a la \hyperlink{classConsulta}{\-Consulta} para que la respuesta sea una tabla pivote. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_aae2c5422470a3471eb7a85938ec6dfe1}{agregar\-X\-Tabla\-P} (const std\-::string \&x)
+\begin{DoxyCompactList}\small\item\em agrega un campo al \-Grupo \-X de la \hyperlink{classTabla}{\-Tabla} \-Pivote \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_ab31d73a9ad0c0b3ef5fdc39f8cefe275}{agregar\-Y\-Tabla\-P} (const std\-::string \&y)
+\begin{DoxyCompactList}\small\item\em agrega un campo al \-Grupo \-Y de la \hyperlink{classTabla}{\-Tabla} \-Pivote \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_ab1c28cbebea96855890deaeb156b4777}{x\-De\-Tabla\-Pivote} (unsigned i) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el campo \char`\"{}i\char`\"{} de la \hyperlink{classTabla}{\-Tabla} \-Pivote para el grupo \-X. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a3c42bada58e3474e622dae3951530d82}{y\-De\-Tabla\-Pivote} (unsigned i) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el campo \char`\"{}i\char`\"{} de la \hyperlink{classTabla}{\-Tabla} \-Pivote para el grupo \-Y. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classConsulta_a45ef5db7d7d017fb4f3dcded13bee6a2}{cant\-Var\-X\-Tabla} () const 
+\begin{DoxyCompactList}\small\item\em \-Indica la cantidad de campos que hay en el \-Grupo \-X de la \hyperlink{classTabla}{\-Tabla} \-Pivote. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classConsulta_aeeadf61eb1a51cb8b750950724b3725b}{cant\-Var\-Y\-Tabla} () const 
+\begin{DoxyCompactList}\small\item\em \-Indica la cantidad de campos que hay en el \-Grupo \-Y de la \hyperlink{classTabla}{\-Tabla} \-Pivote. \end{DoxyCompactList}\item 
+bool \hyperlink{classConsulta_abea0b8acdf1d6dc9dc55998c5a13d022}{es\-Consulta\-De\-Tabla\-Pivote} () const 
+\begin{DoxyCompactList}\small\item\em \-Indica si la consulta es de una \hyperlink{classTabla}{\-Tabla} \-Pivote. \end{DoxyCompactList}\item 
+void \hyperlink{classConsulta_a353df10eb0afdf7135ffec3ee95d3980}{agregar\-Campo} (const std\-::string \&\hyperlink{classConsulta_a2002e971cfc49f7fdec5f7a9d1de3bf8}{campo})
+\begin{DoxyCompactList}\small\item\em \-Agrega un campo a la consulta hecha por el \hyperlink{classAgente}{\-Agente}. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classConsulta_a1ebfc9dd876b84c9d97ecf7d60d20aa8}{cantidad\-Filtros} () const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la cantidad de filtros que tiene la consulta. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classConsulta_a1c1cf418be7d6d4932f5ed4b94900eb8}{cantidad\-Entradas} () const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la cantidad de \-Entradas que tiene la consulta. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classConsulta_a0b7a5033d52038604faa3c60e1563b6e}{cantidad\-Resultados} () const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la cantidad de \-Resultados que posee la consulta. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classConsulta_a4bc49d0bdbd55835f463d6d89dee81b6}{cantidad\-Campos} () const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la cantidad de campos que tiene la consulta (\-Para que la utilice un a \hyperlink{classAgente}{\-Agente}). \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a51966644f6a3fb18e719ba8b10c9f862}{filtro} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el \-Filtro indexado por el argumento indice. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a130e8ff49d0f34d4d02124c4b22ff33d}{valor\-Filtro} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el valor del \-Filtro indexado por el argumento indice. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a99d8a8e585efeec3757cd46632b01290}{valor\-Filtro} (const std\-::string \&\hyperlink{classConsulta_a51966644f6a3fb18e719ba8b10c9f862}{filtro}) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el valor del \-Filtro indexado por el mismo filtro. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a0f8951484349b8b31653615b1ff74bc3}{entrada} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la \-Entrada indexada por el argumento indice. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a0e8eb452c594a166eadc35d3b49a8286}{valor\-Entrada} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el \-Valor de la \-Entrada indexada por el argumento indice o por la entrada misma. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a8722053d1fe2d87550c3e1463cee471d}{valor\-Entrada} (const std\-::string \&\hyperlink{classConsulta_a0f8951484349b8b31653615b1ff74bc3}{entrada}) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el \-Valor de la \-Entrada indexada por la misma entrada. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_acc0fd21c01a4de089670cd5385be4206}{resultado} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna el nombre de un resultado indexado por el argumento indice. \end{DoxyCompactList}\item 
+\-Agregacion \hyperlink{classConsulta_a51e8e30d03493fd5c818b4ad6bd5fdf3}{agregacion\-De\-Resultado} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna la agregacion \-Agregacion de \-Resultado. \end{DoxyCompactList}\item 
+const std\-::string \& \hyperlink{classConsulta_a2002e971cfc49f7fdec5f7a9d1de3bf8}{campo} (unsigned indice) const 
+\begin{DoxyCompactList}\small\item\em \-Retorna un campo de la \char`\"{}\-Consulta\char`\"{} hecha por el agente, indexado por indice. \end{DoxyCompactList}\item 
+bool \hyperlink{classConsulta_a721508f359b9391d9b9a906067d9a368}{es\-Consulta\-De\-Cliente} () const 
+\begin{DoxyCompactList}\small\item\em \-Indica si la \hyperlink{classConsulta}{\-Consulta} si es una consulta de \hyperlink{classCliente}{\-Cliente}. \end{DoxyCompactList}\item 
+bool \hyperlink{classConsulta_a6e39b6d94eba4c3ff0079a7ce64f0008}{es\-Consulta\-De\-Agente} () const 
+\begin{DoxyCompactList}\small\item\em \-Indica si es una consulta de \hyperlink{classAgente}{\-Agente}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encargada de guardar y administrar la consulta realizada por un \hyperlink{classCliente}{\-Cliente} o \hyperlink{classAgente}{\-Agente}, para que sea enviada al servidor y sea resuelta por este. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classConsulta_a51e8e30d03493fd5c818b4ad6bd5fdf3}{\index{\-Consulta@{\-Consulta}!agregacion\-De\-Resultado@{agregacion\-De\-Resultado}}
+\index{agregacion\-De\-Resultado@{agregacion\-De\-Resultado}!Consulta@{\-Consulta}}
+\subsubsection[{agregacion\-De\-Resultado}]{\setlength{\rightskip}{0pt plus 5cm}\-Agregacion {\bf \-Consulta\-::agregacion\-De\-Resultado} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a51e8e30d03493fd5c818b4ad6bd5fdf3}
+
+
+\-Retorna la agregacion \-Agregacion de \-Resultado. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el numero del \-Resultado dentro de la consulta. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+agregacion del resultado. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a353df10eb0afdf7135ffec3ee95d3980}{\index{\-Consulta@{\-Consulta}!agregar\-Campo@{agregar\-Campo}}
+\index{agregar\-Campo@{agregar\-Campo}!Consulta@{\-Consulta}}
+\subsubsection[{agregar\-Campo}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::agregar\-Campo} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{campo}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_a353df10eb0afdf7135ffec3ee95d3980}
+
+
+\-Agrega un campo a la consulta hecha por el \hyperlink{classAgente}{\-Agente}. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em campo} & string que contiene el valor de un campo. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_a78a9d811efd007e8d6d3402123de9494}{\index{\-Consulta@{\-Consulta}!agregar\-Entrada@{agregar\-Entrada}}
+\index{agregar\-Entrada@{agregar\-Entrada}!Consulta@{\-Consulta}}
+\subsubsection[{agregar\-Entrada}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::agregar\-Entrada} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string}]{entrada, }
+\item[{const std\-::string}]{valor}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_a78a9d811efd007e8d6d3402123de9494}
+
+
+\-Agrega una \-Entrada a la \hyperlink{classConsulta}{\-Consulta}. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em entrada} & string con el nombre de la entrada \\
+\hline
+{\em valor} & strinq que contiene el valor de la entrada. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_a4df85591716aa2c2ca9f0e305697dcf3}{\index{\-Consulta@{\-Consulta}!agregar\-Filtro@{agregar\-Filtro}}
+\index{agregar\-Filtro@{agregar\-Filtro}!Consulta@{\-Consulta}}
+\subsubsection[{agregar\-Filtro}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::agregar\-Filtro} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{filtro, }
+\item[{const std\-::string \&}]{valor}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_a4df85591716aa2c2ca9f0e305697dcf3}
+
+
+\-Agrega un \-Filtro a la \hyperlink{classConsulta}{\-Consulta}. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em filtro} & string con el nombre del filtro \\
+\hline
+{\em valor} & string que contiene el valor del filtro \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_a18c9407b7f8853e18a379ad532e61cd9}{\index{\-Consulta@{\-Consulta}!agregar\-Resultado@{agregar\-Resultado}}
+\index{agregar\-Resultado@{agregar\-Resultado}!Consulta@{\-Consulta}}
+\subsubsection[{agregar\-Resultado}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::agregar\-Resultado} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{resultado}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_a18c9407b7f8853e18a379ad532e61cd9}
+
+
+\-Agrega un \-Resultado a la \hyperlink{classConsulta}{\-Consulta}, la agregacion por defecto para el resultado agregado es \char`\"{}\-N\-A\-D\-A\char`\"{}. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em resultado} & string que contiene el nombre del campo a agregar. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_aae2c5422470a3471eb7a85938ec6dfe1}{\index{\-Consulta@{\-Consulta}!agregar\-X\-Tabla\-P@{agregar\-X\-Tabla\-P}}
+\index{agregar\-X\-Tabla\-P@{agregar\-X\-Tabla\-P}!Consulta@{\-Consulta}}
+\subsubsection[{agregar\-X\-Tabla\-P}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::agregar\-X\-Tabla\-P} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{x}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_aae2c5422470a3471eb7a85938ec6dfe1}
+
+
+agrega un campo al \-Grupo \-X de la \hyperlink{classTabla}{\-Tabla} \-Pivote 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em x} & string con el nombre del campo a agregar. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_ab31d73a9ad0c0b3ef5fdc39f8cefe275}{\index{\-Consulta@{\-Consulta}!agregar\-Y\-Tabla\-P@{agregar\-Y\-Tabla\-P}}
+\index{agregar\-Y\-Tabla\-P@{agregar\-Y\-Tabla\-P}!Consulta@{\-Consulta}}
+\subsubsection[{agregar\-Y\-Tabla\-P}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::agregar\-Y\-Tabla\-P} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_ab31d73a9ad0c0b3ef5fdc39f8cefe275}
+
+
+agrega un campo al \-Grupo \-Y de la \hyperlink{classTabla}{\-Tabla} \-Pivote 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em y} & string con el nombre del campo a agregar. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_a2002e971cfc49f7fdec5f7a9d1de3bf8}{\index{\-Consulta@{\-Consulta}!campo@{campo}}
+\index{campo@{campo}!Consulta@{\-Consulta}}
+\subsubsection[{campo}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::campo} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a2002e971cfc49f7fdec5f7a9d1de3bf8}
+
+
+\-Retorna un campo de la \char`\"{}\-Consulta\char`\"{} hecha por el agente, indexado por indice. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el numero del campo dentro de la \hyperlink{classConsulta}{\-Consulta}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el nombre del \-Campo \-Recuperado. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a4bc49d0bdbd55835f463d6d89dee81b6}{\index{\-Consulta@{\-Consulta}!cantidad\-Campos@{cantidad\-Campos}}
+\index{cantidad\-Campos@{cantidad\-Campos}!Consulta@{\-Consulta}}
+\subsubsection[{cantidad\-Campos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned {\bf \-Consulta\-::cantidad\-Campos} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a4bc49d0bdbd55835f463d6d89dee81b6}
+
+
+\-Retorna la cantidad de campos que tiene la consulta (\-Para que la utilice un a \hyperlink{classAgente}{\-Agente}). 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de campos. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a1c1cf418be7d6d4932f5ed4b94900eb8}{\index{\-Consulta@{\-Consulta}!cantidad\-Entradas@{cantidad\-Entradas}}
+\index{cantidad\-Entradas@{cantidad\-Entradas}!Consulta@{\-Consulta}}
+\subsubsection[{cantidad\-Entradas}]{\setlength{\rightskip}{0pt plus 5cm}unsigned {\bf \-Consulta\-::cantidad\-Entradas} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a1c1cf418be7d6d4932f5ed4b94900eb8}
+
+
+\-Retorna la cantidad de \-Entradas que tiene la consulta. 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de \-Entradas. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a1ebfc9dd876b84c9d97ecf7d60d20aa8}{\index{\-Consulta@{\-Consulta}!cantidad\-Filtros@{cantidad\-Filtros}}
+\index{cantidad\-Filtros@{cantidad\-Filtros}!Consulta@{\-Consulta}}
+\subsubsection[{cantidad\-Filtros}]{\setlength{\rightskip}{0pt plus 5cm}unsigned {\bf \-Consulta\-::cantidad\-Filtros} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a1ebfc9dd876b84c9d97ecf7d60d20aa8}
+
+
+\-Retorna la cantidad de filtros que tiene la consulta. 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de \-Filtros. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a0b7a5033d52038604faa3c60e1563b6e}{\index{\-Consulta@{\-Consulta}!cantidad\-Resultados@{cantidad\-Resultados}}
+\index{cantidad\-Resultados@{cantidad\-Resultados}!Consulta@{\-Consulta}}
+\subsubsection[{cantidad\-Resultados}]{\setlength{\rightskip}{0pt plus 5cm}unsigned {\bf \-Consulta\-::cantidad\-Resultados} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a0b7a5033d52038604faa3c60e1563b6e}
+
+
+\-Retorna la cantidad de \-Resultados que posee la consulta. 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de \-Resultados. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a45ef5db7d7d017fb4f3dcded13bee6a2}{\index{\-Consulta@{\-Consulta}!cant\-Var\-X\-Tabla@{cant\-Var\-X\-Tabla}}
+\index{cant\-Var\-X\-Tabla@{cant\-Var\-X\-Tabla}!Consulta@{\-Consulta}}
+\subsubsection[{cant\-Var\-X\-Tabla}]{\setlength{\rightskip}{0pt plus 5cm}unsigned {\bf \-Consulta\-::cant\-Var\-X\-Tabla} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a45ef5db7d7d017fb4f3dcded13bee6a2}
+
+
+\-Indica la cantidad de campos que hay en el \-Grupo \-X de la \hyperlink{classTabla}{\-Tabla} \-Pivote. 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de \-Campos 
+\end{DoxyReturn}
+\hypertarget{classConsulta_aeeadf61eb1a51cb8b750950724b3725b}{\index{\-Consulta@{\-Consulta}!cant\-Var\-Y\-Tabla@{cant\-Var\-Y\-Tabla}}
+\index{cant\-Var\-Y\-Tabla@{cant\-Var\-Y\-Tabla}!Consulta@{\-Consulta}}
+\subsubsection[{cant\-Var\-Y\-Tabla}]{\setlength{\rightskip}{0pt plus 5cm}unsigned {\bf \-Consulta\-::cant\-Var\-Y\-Tabla} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_aeeadf61eb1a51cb8b750950724b3725b}
+
+
+\-Indica la cantidad de campos que hay en el \-Grupo \-Y de la \hyperlink{classTabla}{\-Tabla} \-Pivote. 
+
+\begin{DoxyReturn}{\-Devuelve}
+cantidad de \-Campos. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_af9a1f73d3f6120a950cd02068f58893b}{\index{\-Consulta@{\-Consulta}!defininir\-Agregacion@{defininir\-Agregacion}}
+\index{defininir\-Agregacion@{defininir\-Agregacion}!Consulta@{\-Consulta}}
+\subsubsection[{defininir\-Agregacion}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::defininir\-Agregacion} (
+\begin{DoxyParamCaption}
+\item[{\-Agregacion}]{agregacion, }
+\item[{const std\-::string \&}]{resultado}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_af9a1f73d3f6120a950cd02068f58893b}
+
+
+\-Agrega un \-Resultado a la consulta y define la agregacion del mismo. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em agregacion} & tipo de agregacion para el resultado \\
+\hline
+{\em resultado} & string que contiene el nombre del campo resultado. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_a70da0b4ca2b41a62eff57d6f52a67fb8}{\index{\-Consulta@{\-Consulta}!definir\-I\-D@{definir\-I\-D}}
+\index{definir\-I\-D@{definir\-I\-D}!Consulta@{\-Consulta}}
+\subsubsection[{definir\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::definir\-I\-D} (
+\begin{DoxyParamCaption}
+\item[{const \-Id\-\_\-\-Mensaje \&}]{id}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_a70da0b4ca2b41a62eff57d6f52a67fb8}
+
+
+\-Define un nuevo identificador para la \-Consulta(por defecto es 0). 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em id} & nuevo identificador. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classConsulta_ac3edafd9d21258d9e2b2db753b6a0b61}{\index{\-Consulta@{\-Consulta}!deserializar@{deserializar}}
+\index{deserializar@{deserializar}!Consulta@{\-Consulta}}
+\subsubsection[{deserializar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Consulta\-::deserializar} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{consulta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classConsulta_ac3edafd9d21258d9e2b2db753b6a0b61}
+
+
+\-Deserializa la \hyperlink{classConsulta}{\-Consulta} a partir del string. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em consulta} & string con que contiene la consulta serializada \\
+\hline
+\end{DoxyParams}
+
+
+\-Implementa \hyperlink{classMensaje_a49422c2abf7fe32e887ee854cdf6cf25}{\-Mensaje}.
+
+\hypertarget{classConsulta_aedb25cbbcb6ee24cc846c29779678bd7}{\index{\-Consulta@{\-Consulta}!devolver\-I\-D@{devolver\-I\-D}}
+\index{devolver\-I\-D@{devolver\-I\-D}!Consulta@{\-Consulta}}
+\subsubsection[{devolver\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}\-Id\-\_\-\-Mensaje {\bf \-Consulta\-::devolver\-I\-D} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_aedb25cbbcb6ee24cc846c29779678bd7}
+
+
+\-Devuelve el identificador de la \hyperlink{classConsulta}{\-Consulta}. 
+
+\begin{DoxyReturn}{\-Devuelve}
+id de la \hyperlink{classConsulta}{\-Consulta}. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a0f8951484349b8b31653615b1ff74bc3}{\index{\-Consulta@{\-Consulta}!entrada@{entrada}}
+\index{entrada@{entrada}!Consulta@{\-Consulta}}
+\subsubsection[{entrada}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::entrada} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a0f8951484349b8b31653615b1ff74bc3}
+
+
+\-Retorna la \-Entrada indexada por el argumento indice. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el indice de la \-Entrada dentro de la \hyperlink{classConsulta}{\-Consulta}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el nombre de la \-Entrada. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a6e39b6d94eba4c3ff0079a7ce64f0008}{\index{\-Consulta@{\-Consulta}!es\-Consulta\-De\-Agente@{es\-Consulta\-De\-Agente}}
+\index{es\-Consulta\-De\-Agente@{es\-Consulta\-De\-Agente}!Consulta@{\-Consulta}}
+\subsubsection[{es\-Consulta\-De\-Agente}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Consulta\-::es\-Consulta\-De\-Agente} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a6e39b6d94eba4c3ff0079a7ce64f0008}
+
+
+\-Indica si es una consulta de \hyperlink{classAgente}{\-Agente}. 
+
+\begin{DoxyReturn}{\-Devuelve}
+booleano que indica si una consulta de \hyperlink{classAgente}{\-Agente}. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a721508f359b9391d9b9a906067d9a368}{\index{\-Consulta@{\-Consulta}!es\-Consulta\-De\-Cliente@{es\-Consulta\-De\-Cliente}}
+\index{es\-Consulta\-De\-Cliente@{es\-Consulta\-De\-Cliente}!Consulta@{\-Consulta}}
+\subsubsection[{es\-Consulta\-De\-Cliente}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Consulta\-::es\-Consulta\-De\-Cliente} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a721508f359b9391d9b9a906067d9a368}
+
+
+\-Indica si la \hyperlink{classConsulta}{\-Consulta} si es una consulta de \hyperlink{classCliente}{\-Cliente}. 
+
+\begin{DoxyReturn}{\-Devuelve}
+booleano que indica si una consulta de \hyperlink{classCliente}{\-Cliente}. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_abea0b8acdf1d6dc9dc55998c5a13d022}{\index{\-Consulta@{\-Consulta}!es\-Consulta\-De\-Tabla\-Pivote@{es\-Consulta\-De\-Tabla\-Pivote}}
+\index{es\-Consulta\-De\-Tabla\-Pivote@{es\-Consulta\-De\-Tabla\-Pivote}!Consulta@{\-Consulta}}
+\subsubsection[{es\-Consulta\-De\-Tabla\-Pivote}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Consulta\-::es\-Consulta\-De\-Tabla\-Pivote} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_abea0b8acdf1d6dc9dc55998c5a13d022}
+
+
+\-Indica si la consulta es de una \hyperlink{classTabla}{\-Tabla} \-Pivote. 
+
+\begin{DoxyReturn}{\-Devuelve}
+booleano que indica si consulta de \hyperlink{classTabla}{\-Tabla} \-Pivote 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a51966644f6a3fb18e719ba8b10c9f862}{\index{\-Consulta@{\-Consulta}!filtro@{filtro}}
+\index{filtro@{filtro}!Consulta@{\-Consulta}}
+\subsubsection[{filtro}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::filtro} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a51966644f6a3fb18e719ba8b10c9f862}
+
+
+\-Retorna el \-Filtro indexado por el argumento indice. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el indice del \-Filtro dentro de la \hyperlink{classConsulta}{\-Consulta} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+nombre del \-Filtro recuperado. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a6acfebe58cc8a740d57ce31276d47fa9}{\index{\-Consulta@{\-Consulta}!operator=@{operator=}}
+\index{operator=@{operator=}!Consulta@{\-Consulta}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Consulta} \& \-Consulta\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Consulta} \&}]{original}
+\end{DoxyParamCaption}
+)}}\label{classConsulta_a6acfebe58cc8a740d57ce31276d47fa9}
+
+
+\-Realiza la copia de otro \hyperlink{classConsulta}{\-Consulta}. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em original} & consulta a copiar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+referecia de la \hyperlink{classConsulta}{\-Consulta} actual. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_acc0fd21c01a4de089670cd5385be4206}{\index{\-Consulta@{\-Consulta}!resultado@{resultado}}
+\index{resultado@{resultado}!Consulta@{\-Consulta}}
+\subsubsection[{resultado}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::resultado} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_acc0fd21c01a4de089670cd5385be4206}
+
+
+\-Retorna el nombre de un resultado indexado por el argumento indice. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el numero del \-Resultado dentro de la consulta. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el nombre del \-Resultado recuperado. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a0d3fd7d84c1a68b8cbe31a4118150269}{\index{\-Consulta@{\-Consulta}!serializar@{serializar}}
+\index{serializar@{serializar}!Consulta@{\-Consulta}}
+\subsubsection[{serializar}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Consulta\-::serializar} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classConsulta_a0d3fd7d84c1a68b8cbe31a4118150269}
+
+
+\-Serializa toda la \hyperlink{classConsulta}{\-Consulta} en string. 
+
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene la \hyperlink{classConsulta}{\-Consulta} serializada. 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classMensaje_afd69cd129ca7ce1cf967a6f3690ad904}{\-Mensaje}.
+
+\hypertarget{classConsulta_a0e8eb452c594a166eadc35d3b49a8286}{\index{\-Consulta@{\-Consulta}!valor\-Entrada@{valor\-Entrada}}
+\index{valor\-Entrada@{valor\-Entrada}!Consulta@{\-Consulta}}
+\subsubsection[{valor\-Entrada}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::valor\-Entrada} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a0e8eb452c594a166eadc35d3b49a8286}
+
+
+\-Retorna el \-Valor de la \-Entrada indexada por el argumento indice o por la entrada misma. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el indice de la \-Entrada dentro de la \hyperlink{classConsulta}{\-Consulta} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el valor de la \-Entrada. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a8722053d1fe2d87550c3e1463cee471d}{\index{\-Consulta@{\-Consulta}!valor\-Entrada@{valor\-Entrada}}
+\index{valor\-Entrada@{valor\-Entrada}!Consulta@{\-Consulta}}
+\subsubsection[{valor\-Entrada}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::valor\-Entrada} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{entrada}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a8722053d1fe2d87550c3e1463cee471d}
+
+
+\-Retorna el \-Valor de la \-Entrada indexada por la misma entrada. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em entrada} & string con el nombre de la \-Entrada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el valor de la \-Entrada. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a130e8ff49d0f34d4d02124c4b22ff33d}{\index{\-Consulta@{\-Consulta}!valor\-Filtro@{valor\-Filtro}}
+\index{valor\-Filtro@{valor\-Filtro}!Consulta@{\-Consulta}}
+\subsubsection[{valor\-Filtro}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::valor\-Filtro} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{indice}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a130e8ff49d0f34d4d02124c4b22ff33d}
+
+
+\-Retorna el valor del \-Filtro indexado por el argumento indice. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em indice} & es el indice del \-Filtro dentro de la \hyperlink{classConsulta}{\-Consulta} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el valor del \-Filtro indexado. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a99d8a8e585efeec3757cd46632b01290}{\index{\-Consulta@{\-Consulta}!valor\-Filtro@{valor\-Filtro}}
+\index{valor\-Filtro@{valor\-Filtro}!Consulta@{\-Consulta}}
+\subsubsection[{valor\-Filtro}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::valor\-Filtro} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{filtro}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a99d8a8e585efeec3757cd46632b01290}
+
+
+\-Retorna el valor del \-Filtro indexado por el mismo filtro. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em filtro} & es el nombre del filtro dentro de la consulta. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+string que contiene el valor del \-Filtro indexado. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_ab1c28cbebea96855890deaeb156b4777}{\index{\-Consulta@{\-Consulta}!x\-De\-Tabla\-Pivote@{x\-De\-Tabla\-Pivote}}
+\index{x\-De\-Tabla\-Pivote@{x\-De\-Tabla\-Pivote}!Consulta@{\-Consulta}}
+\subsubsection[{x\-De\-Tabla\-Pivote}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::x\-De\-Tabla\-Pivote} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{i}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_ab1c28cbebea96855890deaeb156b4777}
+
+
+\-Retorna el campo \char`\"{}i\char`\"{} de la \hyperlink{classTabla}{\-Tabla} \-Pivote para el grupo \-X. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em i} & indice del campo en el \-Grupo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+nombre del campo. 
+\end{DoxyReturn}
+\hypertarget{classConsulta_a3c42bada58e3474e622dae3951530d82}{\index{\-Consulta@{\-Consulta}!y\-De\-Tabla\-Pivote@{y\-De\-Tabla\-Pivote}}
+\index{y\-De\-Tabla\-Pivote@{y\-De\-Tabla\-Pivote}!Consulta@{\-Consulta}}
+\subsubsection[{y\-De\-Tabla\-Pivote}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& {\bf \-Consulta\-::y\-De\-Tabla\-Pivote} (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{i}
+\end{DoxyParamCaption}
+) const}}\label{classConsulta_a3c42bada58e3474e622dae3951530d82}
+
+
+\-Retorna el campo \char`\"{}i\char`\"{} de la \hyperlink{classTabla}{\-Tabla} \-Pivote para el grupo \-Y. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em i} & indice del campo en el \-Grupo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+nombre del campo. 
+\end{DoxyReturn}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+comun/\-Consulta.\-h\item 
+comun/\-Consulta.\-cpp\end{DoxyCompactItemize}

@@ -11,7 +11,7 @@ MSJ_DOCS = @echo "Generando documentacion..."
 
 all: install
 
-install: uninstall doc install_agente install_cliente install_servidor
+install: uninstall install_agente install_cliente install_servidor
 
 install_agente:
 	$(MSJ_AGENTE);mkdir apAgente
@@ -73,7 +73,6 @@ uninstall:
 	$(MSJ_ESP);rm -f -r apCliente 
 	$(MSJ_ESP);rm -f -r apServidor
 	$(MSJ_ESP);rm -f -r apAgente
-	$(MSJ_ESP);rm -f -r docs
 	$(MSJ_ESP);rm -f -r DEBUG_RELEASE
 
 

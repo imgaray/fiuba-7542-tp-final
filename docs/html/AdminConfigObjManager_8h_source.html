@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente cliente/Modelo/AdminConfigObjManager.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('AdminConfigObjManager_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">cliente/Modelo/AdminConfigObjManager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef ADMIN_CONFIG_OBJ_MANAGER_H</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define ADMIN_CONFIG_OBJ_MANAGER_H</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;gtkmm/button.h&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;gtkmm/comboboxtext.h&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;gtkmm/entry.h&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;Serializable.h&quot;</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <span class="keyword">class </span><a class="code" href="classConfigModelo.html">ConfigModelo</a>;
+<a name="l00010"></a>00010 <span class="keyword">class </span><a class="code" href="classTabConfigModelo.html">TabConfigModelo</a>;
+<a name="l00011"></a>00011 <span class="keyword">class </span><a class="code" href="classPanelConfigModelo.html">PanelConfigModelo</a>;
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="keyword">enum</span> t_Objeto {
+<a name="l00014"></a>00014     OBJ_TAB,
+<a name="l00015"></a>00015     OBJ_PANEL
+<a name="l00016"></a>00016 };
+<a name="l00017"></a>00017 
+<a name="l00029"></a><a class="code" href="classAdminConfigObjManager.html">00029</a> <span class="keyword">class </span><a class="code" href="classAdminConfigObjManager.html">AdminConfigObjManager</a> : <span class="keyword">public</span> sigc::trackable , <span class="keyword">public</span> <a class="code" href="classSerializable.html">Serializable</a> {
+<a name="l00030"></a>00030     <span class="keyword">public</span>:
+<a name="l00034"></a>00034         <a class="code" href="classAdminConfigObjManager.html#ac1cf996dac14964ef66fa2a58cb203cc">AdminConfigObjManager</a>(t_Objeto tipo,
+<a name="l00035"></a>00035                               Gtk::ComboBoxText* cbtext,
+<a name="l00036"></a>00036                               Gtk::Entry* pEntry,
+<a name="l00037"></a>00037                               Gtk::Button* pAceptar,
+<a name="l00038"></a>00038                               Gtk::Button* pGuardarCambios,
+<a name="l00039"></a>00039                               Gtk::Button* pEliminar,
+<a name="l00040"></a>00040                               <span class="keyword">const</span> Glib::ustring&amp; def);
+<a name="l00044"></a>00044         <a class="code" href="classAdminConfigObjManager.html#a0ad7c3b6f6efbd2dc9ed22a10419a262">~AdminConfigObjManager</a>();
+<a name="l00045"></a>00045 
+<a name="l00049"></a>00049         <span class="keywordtype">void</span> <a class="code" href="classAdminConfigObjManager.html#af1ffbc3bf75851e87b596c664769720c">desconectar</a>();
+<a name="l00050"></a>00050 
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> <a class="code" href="classAdminConfigObjManager.html#a2c1bd9dab0e7549e07792e77ba639f63">reconectar</a>();
+<a name="l00055"></a>00055 
+<a name="l00060"></a>00060         <a class="code" href="classConfigModelo.html">ConfigModelo</a>* <a class="code" href="classAdminConfigObjManager.html#a988c37775c19546db9c20d099c3b6cf1">getModelo</a>() <span class="keyword">const</span>;
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062         std::list&lt; TabConfigModelo* &gt; getModelosComoTabs();
+<a name="l00063"></a>00063         std::list&lt; PanelConfigModelo* &gt; getModelosComoPaneles();
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         sigc::signal&lt; void, ConfigModelo* &gt; signal_model_changed();
+<a name="l00066"></a>00066         sigc::signal&lt; void, ConfigModelo* &gt; signal_model_saved();
+<a name="l00067"></a>00067         sigc::signal&lt; void, ConfigModelo* &gt; signal_model_deleted();
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         <span class="keyword">virtual</span> <a class="code" href="classTiXmlElement.html">NodoXml</a> serializar();
+<a name="l00071"></a>00071         <span class="keyword">virtual</span> <span class="keywordtype">void</span> deserializar(<span class="keyword">const</span> <a class="code" href="classTiXmlElement.html">NodoXml</a>&amp; nodo);
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073     <span class="keyword">private</span>:
+<a name="l00074"></a>00074         sigc::signal&lt; void, ConfigModelo* &gt; _signal_model_changed;
+<a name="l00075"></a>00075         sigc::signal&lt; void, ConfigModelo* &gt; _signal_model_saved;
+<a name="l00076"></a>00076         sigc::signal&lt; void, ConfigModelo* &gt; _signal_model_deleted;
+<a name="l00077"></a>00077         <span class="keyword">enum</span> t_boton {
+<a name="l00078"></a>00078             B_AGREGAR,
+<a name="l00079"></a>00079             B_GUARDAR,
+<a name="l00080"></a>00080             B_ELIMINAR
+<a name="l00081"></a>00081         };
+<a name="l00082"></a>00082         t_Objeto tipo;
+<a name="l00083"></a>00083         <a class="code" href="classConfigModelo.html">ConfigModelo</a>* new_modelo();
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085         <span class="comment">/* conexiones a las señales */</span>
+<a name="l00086"></a>00086         sigc::connection connectionCombobox;
+<a name="l00087"></a>00087         sigc::connection connectionEntryLabel;
+<a name="l00088"></a>00088         sigc::connection connectionEntryLabelFocusIn;
+<a name="l00089"></a>00089         sigc::connection connectionEntryLabelFocusOut;
+<a name="l00090"></a>00090         sigc::connection connectionButtonAgregar;
+<a name="l00091"></a>00091         sigc::connection connectionButtonGuardar;
+<a name="l00092"></a>00092         sigc::connection connectionButtonEliminar;
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094         Gtk::ComboBoxText* comboSelec;
+<a name="l00095"></a>00095         Gtk::Entry* pEntryLabel;
+<a name="l00096"></a>00096         std::map&lt; t_boton, Gtk::Button* &gt; botones;
+<a name="l00097"></a>00097 
+<a name="l00107"></a>00107         <span class="keywordtype">void</span> on_combo_selec_changed();
+<a name="l00108"></a>00108 
+<a name="l00116"></a>00116         <span class="keywordtype">void</span> on_entry_label_activate();
+<a name="l00117"></a>00117 
+<a name="l00126"></a>00126         <span class="keywordtype">bool</span> on_entry_label_focus_in(GdkEventFocus* e);
+<a name="l00127"></a>00127 
+<a name="l00136"></a>00136         <span class="keywordtype">bool</span> on_entry_label_focus_out(GdkEventFocus* e);
+<a name="l00137"></a>00137 
+<a name="l00145"></a>00145         <span class="keywordtype">void</span> on_agregar_button_clicked();
+<a name="l00146"></a>00146 
+<a name="l00153"></a>00153         <span class="keywordtype">void</span> on_guardar_cambios_button_clicked();
+<a name="l00154"></a>00154 
+<a name="l00160"></a>00160         <span class="keywordtype">void</span> on_eliminar_button_clicked();
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162         Glib::ustring nombre_por_defecto;
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164         std::list&lt; ConfigModelo* &gt; consultasConfiguradas;
+<a name="l00165"></a>00165         <span class="comment">// para una búsqueda más rápida</span>
+<a name="l00166"></a>00166         std::map&lt; Glib::ustring, ConfigModelo* &gt; mapaConsultasConfiguradas;
+<a name="l00167"></a>00167         <a class="code" href="classConfigModelo.html">ConfigModelo</a>* pModeloActual;
+<a name="l00168"></a>00168         <span class="keywordtype">bool</span> guardandoCambios;
+<a name="l00169"></a>00169 };
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171 <span class="preprocessor">#endif  // ADMIN_CONFIG_OBJ_MANAGER_H</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>AdminConfigObjManager.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:01 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

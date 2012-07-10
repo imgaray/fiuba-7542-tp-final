@@ -1,0 +1,113 @@
+\hypertarget{classAdminConfigObjManager}{\section{\-Referencia de la \-Clase \-Admin\-Config\-Obj\-Manager}
+\label{classAdminConfigObjManager}\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}}
+}
+
+
+{\ttfamily \#include $<$\-Admin\-Config\-Obj\-Manager.\-h$>$}
+
+\-Diagrama de herencias de \-Admin\-Config\-Obj\-Manager\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAdminConfigObjManager}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAdminConfigObjManager_ac1cf996dac14964ef66fa2a58cb203cc}{\-Admin\-Config\-Obj\-Manager} (t\-\_\-\-Objeto tipo, \-Gtk\-::\-Combo\-Box\-Text $\ast$cbtext, \-Gtk\-::\-Entry $\ast$p\-Entry, \-Gtk\-::\-Button $\ast$p\-Aceptar, \-Gtk\-::\-Button $\ast$p\-Guardar\-Cambios, \-Gtk\-::\-Button $\ast$p\-Eliminar, const \-Glib\-::ustring \&def)
+\item 
+\hyperlink{classAdminConfigObjManager_a0ad7c3b6f6efbd2dc9ed22a10419a262}{$\sim$\-Admin\-Config\-Obj\-Manager} ()
+\item 
+void \hyperlink{classAdminConfigObjManager_af1ffbc3bf75851e87b596c664769720c}{desconectar} ()
+\item 
+void \hyperlink{classAdminConfigObjManager_a2c1bd9dab0e7549e07792e77ba639f63}{reconectar} ()
+\item 
+\hyperlink{classConfigModelo}{\-Config\-Modelo} $\ast$ \hyperlink{classAdminConfigObjManager_a988c37775c19546db9c20d099c3b6cf1}{get\-Modelo} () const 
+\item 
+\hypertarget{classAdminConfigObjManager_ad110baeb7c0888dcf09bb5d72f1d7e37}{std\-::list$<$ \hyperlink{classTabConfigModelo}{\-Tab\-Config\-Modelo} $\ast$ $>$ {\bfseries get\-Modelos\-Como\-Tabs} ()}\label{classAdminConfigObjManager_ad110baeb7c0888dcf09bb5d72f1d7e37}
+
+\item 
+\hypertarget{classAdminConfigObjManager_a7d7fe15793209afad0c51853e778acef}{std\-::list$<$ \hyperlink{classPanelConfigModelo}{\-Panel\-Config\-Modelo} $\ast$ $>$ {\bfseries get\-Modelos\-Como\-Paneles} ()}\label{classAdminConfigObjManager_a7d7fe15793209afad0c51853e778acef}
+
+\item 
+\hypertarget{classAdminConfigObjManager_a471986147f5b118b418c350a0f06088c}{sigc\-::signal$<$ void, \*
+\hyperlink{classConfigModelo}{\-Config\-Modelo} $\ast$ $>$ {\bfseries signal\-\_\-model\-\_\-changed} ()}\label{classAdminConfigObjManager_a471986147f5b118b418c350a0f06088c}
+
+\item 
+\hypertarget{classAdminConfigObjManager_aa1702ac8baace3d410a3379d9acbfb5e}{sigc\-::signal$<$ void, \*
+\hyperlink{classConfigModelo}{\-Config\-Modelo} $\ast$ $>$ {\bfseries signal\-\_\-model\-\_\-saved} ()}\label{classAdminConfigObjManager_aa1702ac8baace3d410a3379d9acbfb5e}
+
+\item 
+\hypertarget{classAdminConfigObjManager_af50cdd1b684a7170cf35836c80768763}{sigc\-::signal$<$ void, \*
+\hyperlink{classConfigModelo}{\-Config\-Modelo} $\ast$ $>$ {\bfseries signal\-\_\-model\-\_\-deleted} ()}\label{classAdminConfigObjManager_af50cdd1b684a7170cf35836c80768763}
+
+\item 
+\hypertarget{classAdminConfigObjManager_aa25ec5375405a77449aa2c9b345f42c9}{virtual \hyperlink{classTiXmlElement}{\-Nodo\-Xml} {\bfseries serializar} ()}\label{classAdminConfigObjManager_aa25ec5375405a77449aa2c9b345f42c9}
+
+\item 
+\hypertarget{classAdminConfigObjManager_a2b266588c890c4fa828daa716ea5653e}{virtual void {\bfseries deserializar} (const \hyperlink{classTiXmlElement}{\-Nodo\-Xml} \&nodo)}\label{classAdminConfigObjManager_a2b266588c890c4fa828daa716ea5653e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase encargada de manejar la parte de agregado de objetos dinámicos por el admin (pestañas y paneles).
+
+\-Implementa una pequeña factory en base al enum t\-\_\-\-Objeto.
+
+\-Emite las señales\-: -\/signal\-\_\-model\-\_\-changed cuando el modelo que está detrás de la vista cambia. -\/signal\-\_\-model\-\_\-deleted cuando el modelo seleccionado fue eliminado -\/signal\-\_\-model\-\_\-saved cuando el modelo seleccionado guarda sus cambios 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classAdminConfigObjManager_ac1cf996dac14964ef66fa2a58cb203cc}{\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}!\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}}
+\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}!AdminConfigObjManager@{\-Admin\-Config\-Obj\-Manager}}
+\subsubsection[{\-Admin\-Config\-Obj\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Admin\-Config\-Obj\-Manager\-::\-Admin\-Config\-Obj\-Manager} (
+\begin{DoxyParamCaption}
+\item[{t\-\_\-\-Objeto}]{tipo, }
+\item[{\-Gtk\-::\-Combo\-Box\-Text $\ast$}]{cbtext, }
+\item[{\-Gtk\-::\-Entry $\ast$}]{p\-Entry, }
+\item[{\-Gtk\-::\-Button $\ast$}]{p\-Aceptar, }
+\item[{\-Gtk\-::\-Button $\ast$}]{p\-Guardar\-Cambios, }
+\item[{\-Gtk\-::\-Button $\ast$}]{p\-Eliminar, }
+\item[{const \-Glib\-::ustring \&}]{def}
+\end{DoxyParamCaption}
+)}}\label{classAdminConfigObjManager_ac1cf996dac14964ef66fa2a58cb203cc}
+\-Constructor. \hypertarget{classAdminConfigObjManager_a0ad7c3b6f6efbd2dc9ed22a10419a262}{\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}!$\sim$\-Admin\-Config\-Obj\-Manager@{$\sim$\-Admin\-Config\-Obj\-Manager}}
+\index{$\sim$\-Admin\-Config\-Obj\-Manager@{$\sim$\-Admin\-Config\-Obj\-Manager}!AdminConfigObjManager@{\-Admin\-Config\-Obj\-Manager}}
+\subsubsection[{$\sim$\-Admin\-Config\-Obj\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Admin\-Config\-Obj\-Manager\-::$\sim$\-Admin\-Config\-Obj\-Manager} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAdminConfigObjManager_a0ad7c3b6f6efbd2dc9ed22a10419a262}
+\-Destructor. \-Libera todos los \hyperlink{classConfigModelo}{\-Config\-Modelo} instanciados en el heap 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classAdminConfigObjManager_af1ffbc3bf75851e87b596c664769720c}{\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}!desconectar@{desconectar}}
+\index{desconectar@{desconectar}!AdminConfigObjManager@{\-Admin\-Config\-Obj\-Manager}}
+\subsubsection[{desconectar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Admin\-Config\-Obj\-Manager\-::desconectar} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAdminConfigObjManager_af1ffbc3bf75851e87b596c664769720c}
+\-Desconecta toda conexión con señales de widgets de vista. \hypertarget{classAdminConfigObjManager_a988c37775c19546db9c20d099c3b6cf1}{\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}!get\-Modelo@{get\-Modelo}}
+\index{get\-Modelo@{get\-Modelo}!AdminConfigObjManager@{\-Admin\-Config\-Obj\-Manager}}
+\subsubsection[{get\-Modelo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Config\-Modelo} $\ast$ {\bf \-Admin\-Config\-Obj\-Manager\-::get\-Modelo} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAdminConfigObjManager_a988c37775c19546db9c20d099c3b6cf1}
+\-Obtener el modelo seleccionado. \begin{DoxyReturn}{\-Devuelve}
+puntero al modelo actual 
+\end{DoxyReturn}
+\hypertarget{classAdminConfigObjManager_a2c1bd9dab0e7549e07792e77ba639f63}{\index{\-Admin\-Config\-Obj\-Manager@{\-Admin\-Config\-Obj\-Manager}!reconectar@{reconectar}}
+\index{reconectar@{reconectar}!AdminConfigObjManager@{\-Admin\-Config\-Obj\-Manager}}
+\subsubsection[{reconectar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Admin\-Config\-Obj\-Manager\-::reconectar} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAdminConfigObjManager_a2c1bd9dab0e7549e07792e77ba639f63}
+\-Reconecta las conexiones. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Modelo/\-Admin\-Config\-Obj\-Manager.\-h\item 
+cliente/\-Modelo/\-Admin\-Config\-Obj\-Manager.\-cpp\end{DoxyCompactItemize}

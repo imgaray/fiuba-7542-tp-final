@@ -1,0 +1,152 @@
+\hypertarget{classTab}{\section{\-Referencia de la \-Clase \-Tab}
+\label{classTab}\index{\-Tab@{\-Tab}}
+}
+
+
+{\ttfamily \#include $<$\-Tab.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTab_adf46383cb8b4278681e32a40ef89c545}{\-Tab} (const \-Glib\-::ustring \&etiqueta)
+\item 
+\hyperlink{classTab_a8cc210bcede02daa21145bb1675c3c80}{$\sim$\-Tab} ()
+\item 
+\hypertarget{classTab_a5a4e5e895f7a0a313d469aad02947abb}{\-Gtk\-::\-H\-Box \& {\bfseries get\-Etiqueta} ()}\label{classTab_a5a4e5e895f7a0a313d469aad02947abb}
+
+\item 
+void \hyperlink{classTab_ab8ffebb5665e2203b505730539e7263e}{agregar\-Consultante} (\hyperlink{classFiltradorInputDimension}{\-Filtrador\-Input\-Dimension} $\ast$f)
+\item 
+void \hyperlink{classTab_a6869b3f6cc2f3e7ab89d0de93e9eb40e}{agregar\-Consultante} (\hyperlink{classConsultante}{\-Consultante} $\ast$c)
+\item 
+\hypertarget{classTab_ad63c85c78ad3f5b6b5dc1c6941e1f5b2}{void {\bfseries remover\-Consultante} (unsigned \-I\-D)}\label{classTab_ad63c85c78ad3f5b6b5dc1c6941e1f5b2}
+
+\item 
+void \hyperlink{classTab_a2702dc2c1dc1d0ec163f26483880199a}{hacer\-Consulta} (\hyperlink{classServidorRemoto}{\-Servidor\-Remoto} \&server)
+\item 
+void \hyperlink{classTab_a04f0afa07a274bcfee2ddbbb58a7f0dd}{cancelar\-Consulta} (\hyperlink{classServidorRemoto}{\-Servidor\-Remoto} \&server)
+\item 
+void \hyperlink{classTab_a956337a5e9f33fccaf1f0f275f7920b9}{actualizar\-Consulta} (\hyperlink{classConsultante}{\-Consultante} $\ast$c)
+\item 
+void \hyperlink{classTab_a2aead15ff3730f8ec5fb0aa2cf8124bb}{informar\-Consulta\-Iniciada} ()
+\item 
+void \hyperlink{classTab_a3a6a052ecc01597c2d6040a5065d7dd8}{informar\-Consulta\-Terminada} ()
+\item 
+void \hyperlink{classTab_a0bca519aadf5728818037564c584b30a}{informar\-Fin\-Creacion} ()
+\item 
+\hypertarget{classTab_a5890898a9b09a57abeb9e97928b51f9a}{void {\bfseries agregar\-Filtro\-Navegable} (\hyperlink{classFiltradorInput}{\-Filtrador\-Input} $\ast$f)}\label{classTab_a5890898a9b09a57abeb9e97928b51f9a}
+
+\item 
+void \hyperlink{classTab_a16a4ce877365b06b134e5c319eab5a28}{difundir\-Navegacion\-Seleccionada} (const \-Glib\-::ustring \&input, const \-Glib\-::ustring \&valor)
+\item 
+\hypertarget{classTab_a9b1f4c54ef6d163fbc2bf832fd835aaa}{const std\-::map$<$ unsigned, \*
+\hyperlink{classConsultante}{\-Consultante} $\ast$ $>$ \& {\bfseries get\-Consultantes} ()}\label{classTab_a9b1f4c54ef6d163fbc2bf832fd835aaa}
+
+\item 
+\hypertarget{classTab_a3522dbefc715bfaebd922ef5542736a5}{void {\bfseries set\-Padre} (\hyperlink{classVentanaClienteDinamica}{\-Ventana\-Cliente\-Dinamica} $\ast$padre)}\label{classTab_a3522dbefc715bfaebd922ef5542736a5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Pestaña concreta configurada por el admin.
+
+\-Es un conjunto de paneles, cada uno con sus particularidades de filtradores y consultantes. \-Los distribuye en una matriz según la posición configurada de cada uno. \-Agrega además unos inputs que se aplican a todas las consultas de la tab.
+
+\-En cuanto al modelo, tiene dos mapas de consultantes, uno para los filtradores que necesiten popular su combobox consultando los valores posibles a la base de datos, y el otro es para los consultantes concretos, es decir, tablas y gráficos. \-Cada vez que se le solicita que actualice, itera a través del mapa activo de consultantes.
+
+\-El mapa activo es, por defecto, el de filtradores. \-Cuando un filtrador recibe su respuesta informa a la tab que puede ser removido del mapa, dado que sólo se actualizan una vez durante la aplicación. \-Si este mapa llega a cero elementos, el otro pasa a ser el mapa activo. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classTab_adf46383cb8b4278681e32a40ef89c545}{\index{\-Tab@{\-Tab}!\-Tab@{\-Tab}}
+\index{\-Tab@{\-Tab}!Tab@{\-Tab}}
+\subsubsection[{\-Tab}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Tab\-::\-Tab} (
+\begin{DoxyParamCaption}
+\item[{const \-Glib\-::ustring \&}]{etiqueta}
+\end{DoxyParamCaption}
+)}}\label{classTab_adf46383cb8b4278681e32a40ef89c545}
+\-Constructor. 
+\begin{DoxyParams}{\-Parámetros}
+{\em etiqueta} & título de la pestaña \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTab_a8cc210bcede02daa21145bb1675c3c80}{\index{\-Tab@{\-Tab}!$\sim$\-Tab@{$\sim$\-Tab}}
+\index{$\sim$\-Tab@{$\sim$\-Tab}!Tab@{\-Tab}}
+\subsubsection[{$\sim$\-Tab}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Tab\-::$\sim$\-Tab} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTab_a8cc210bcede02daa21145bb1675c3c80}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classTab_a956337a5e9f33fccaf1f0f275f7920b9}{\index{\-Tab@{\-Tab}!actualizar\-Consulta@{actualizar\-Consulta}}
+\index{actualizar\-Consulta@{actualizar\-Consulta}!Tab@{\-Tab}}
+\subsubsection[{actualizar\-Consulta}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::actualizar\-Consulta} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Consultante} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{classTab_a956337a5e9f33fccaf1f0f275f7920b9}
+\-Actualiza una consulta en particular, a pedido. \hypertarget{classTab_ab8ffebb5665e2203b505730539e7263e}{\index{\-Tab@{\-Tab}!agregar\-Consultante@{agregar\-Consultante}}
+\index{agregar\-Consultante@{agregar\-Consultante}!Tab@{\-Tab}}
+\subsubsection[{agregar\-Consultante}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::agregar\-Consultante} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Filtrador\-Input\-Dimension} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{classTab_ab8ffebb5665e2203b505730539e7263e}
+\-Agrega un filtrador consultante al mapa de filtradores consultantes \hypertarget{classTab_a6869b3f6cc2f3e7ab89d0de93e9eb40e}{\index{\-Tab@{\-Tab}!agregar\-Consultante@{agregar\-Consultante}}
+\index{agregar\-Consultante@{agregar\-Consultante}!Tab@{\-Tab}}
+\subsubsection[{agregar\-Consultante}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::agregar\-Consultante} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Consultante} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{classTab_a6869b3f6cc2f3e7ab89d0de93e9eb40e}
+\-Agrega un consultante concreto al mapa de consultantes normales \hypertarget{classTab_a04f0afa07a274bcfee2ddbbb58a7f0dd}{\index{\-Tab@{\-Tab}!cancelar\-Consulta@{cancelar\-Consulta}}
+\index{cancelar\-Consulta@{cancelar\-Consulta}!Tab@{\-Tab}}
+\subsubsection[{cancelar\-Consulta}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::cancelar\-Consulta} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Servidor\-Remoto} \&}]{server}
+\end{DoxyParamCaption}
+)}}\label{classTab_a04f0afa07a274bcfee2ddbbb58a7f0dd}
+\-Cancela las consultas del grupo de consultantes activos. \hypertarget{classTab_a16a4ce877365b06b134e5c319eab5a28}{\index{\-Tab@{\-Tab}!difundir\-Navegacion\-Seleccionada@{difundir\-Navegacion\-Seleccionada}}
+\index{difundir\-Navegacion\-Seleccionada@{difundir\-Navegacion\-Seleccionada}!Tab@{\-Tab}}
+\subsubsection[{difundir\-Navegacion\-Seleccionada}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::difundir\-Navegacion\-Seleccionada} (
+\begin{DoxyParamCaption}
+\item[{const \-Glib\-::ustring \&}]{input, }
+\item[{const \-Glib\-::ustring \&}]{valor}
+\end{DoxyParamCaption}
+)}}\label{classTab_a16a4ce877365b06b134e5c319eab5a28}
+\-Informa a todos los filtros navegables la navegación seleccionada. \hypertarget{classTab_a2702dc2c1dc1d0ec163f26483880199a}{\index{\-Tab@{\-Tab}!hacer\-Consulta@{hacer\-Consulta}}
+\index{hacer\-Consulta@{hacer\-Consulta}!Tab@{\-Tab}}
+\subsubsection[{hacer\-Consulta}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::hacer\-Consulta} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Servidor\-Remoto} \&}]{server}
+\end{DoxyParamCaption}
+)}}\label{classTab_a2702dc2c1dc1d0ec163f26483880199a}
+\-Realiza las consultas del grupo de consultantes activos. \hypertarget{classTab_a2aead15ff3730f8ec5fb0aa2cf8124bb}{\index{\-Tab@{\-Tab}!informar\-Consulta\-Iniciada@{informar\-Consulta\-Iniciada}}
+\index{informar\-Consulta\-Iniciada@{informar\-Consulta\-Iniciada}!Tab@{\-Tab}}
+\subsubsection[{informar\-Consulta\-Iniciada}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::informar\-Consulta\-Iniciada} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTab_a2aead15ff3730f8ec5fb0aa2cf8124bb}
+\-Informar a la pestaña que un consultante suyo está actualizando. \hypertarget{classTab_a3a6a052ecc01597c2d6040a5065d7dd8}{\index{\-Tab@{\-Tab}!informar\-Consulta\-Terminada@{informar\-Consulta\-Terminada}}
+\index{informar\-Consulta\-Terminada@{informar\-Consulta\-Terminada}!Tab@{\-Tab}}
+\subsubsection[{informar\-Consulta\-Terminada}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::informar\-Consulta\-Terminada} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTab_a3a6a052ecc01597c2d6040a5065d7dd8}
+\-Informar a la pestaña que un consultante suyo terminó de actualizar. \hypertarget{classTab_a0bca519aadf5728818037564c584b30a}{\index{\-Tab@{\-Tab}!informar\-Fin\-Creacion@{informar\-Fin\-Creacion}}
+\index{informar\-Fin\-Creacion@{informar\-Fin\-Creacion}!Tab@{\-Tab}}
+\subsubsection[{informar\-Fin\-Creacion}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Tab\-::informar\-Fin\-Creacion} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTab_a0bca519aadf5728818037564c584b30a}
+\-Informar a la pestaña que no le agregarán nada. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Vista/\-Tab.\-h\item 
+cliente/\-Vista/\-Tab.\-cpp\end{DoxyCompactItemize}

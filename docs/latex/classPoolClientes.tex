@@ -1,0 +1,71 @@
+\hypertarget{classPoolClientes}{\section{\-Referencia de la \-Clase \-Pool\-Clientes}
+\label{classPoolClientes}\index{\-Pool\-Clientes@{\-Pool\-Clientes}}
+}
+
+
+{\ttfamily \#include $<$\-Pool\-Clientes.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPoolClientes_a533c69156754c4b45cebad5bb50567ad}{\-Pool\-Clientes} (\hyperlink{classResolvedorConsultas}{\-Resolvedor\-Consultas} \&resolvedor, \hyperlink{classBLQueue}{\-Consultas\-Clientes\-Servidor} \&entradas)
+\item 
+\hyperlink{classPoolClientes_ad1303833692f98080ac2c2cfe26ae41b}{$\sim$\-Pool\-Clientes} ()
+\item 
+void \hyperlink{classPoolClientes_ae930d0c64dbb0e1adf68839e5c8794e1}{detener} ()
+\item 
+void \hyperlink{classPoolClientes_ac294e117a0bc44724abbb1de36a821da}{iniciar} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Es una clase que tiene una determinada cantidad de workers que consumen de la cola de clientes. \-No es más que una forma de encapsular una lista que contiene \-N instancias de \hyperlink{classHiloResponderConsulta}{\-Hilo\-Responder\-Consulta}.
+
+\-Sus únicos metodos, \hyperlink{classPoolClientes_ae930d0c64dbb0e1adf68839e5c8794e1}{detener()} e \hyperlink{classPoolClientes_ac294e117a0bc44724abbb1de36a821da}{iniciar()} se encargan de detener e iniciar los hilos que contenga en su lista. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classPoolClientes_a533c69156754c4b45cebad5bb50567ad}{\index{\-Pool\-Clientes@{\-Pool\-Clientes}!\-Pool\-Clientes@{\-Pool\-Clientes}}
+\index{\-Pool\-Clientes@{\-Pool\-Clientes}!PoolClientes@{\-Pool\-Clientes}}
+\subsubsection[{\-Pool\-Clientes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Pool\-Clientes\-::\-Pool\-Clientes} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Resolvedor\-Consultas} \&}]{resolvedor, }
+\item[{{\bf \-Consultas\-Clientes\-Servidor} \&}]{entradas}
+\end{DoxyParamCaption}
+)}}\label{classPoolClientes_a533c69156754c4b45cebad5bb50567ad}
+\-Popula la lista de workers. 
+\begin{DoxyParams}{\-Parámetros}
+{\em resolvedor} & \-Objeto capaz de resolver consultas. \\
+\hline
+{\em entradas} & \hyperlink{classReferencia}{\-Referencia} a la cola de consultas de clientes del servidor. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classPoolClientes_ad1303833692f98080ac2c2cfe26ae41b}{\index{\-Pool\-Clientes@{\-Pool\-Clientes}!$\sim$\-Pool\-Clientes@{$\sim$\-Pool\-Clientes}}
+\index{$\sim$\-Pool\-Clientes@{$\sim$\-Pool\-Clientes}!PoolClientes@{\-Pool\-Clientes}}
+\subsubsection[{$\sim$\-Pool\-Clientes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Pool\-Clientes\-::$\sim$\-Pool\-Clientes} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPoolClientes_ad1303833692f98080ac2c2cfe26ae41b}
+\-Si esta en ejecución, detiene todos sus wworkers. \-Libera la memoria de los workers 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classPoolClientes_ae930d0c64dbb0e1adf68839e5c8794e1}{\index{\-Pool\-Clientes@{\-Pool\-Clientes}!detener@{detener}}
+\index{detener@{detener}!PoolClientes@{\-Pool\-Clientes}}
+\subsubsection[{detener}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Pool\-Clientes\-::detener} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPoolClientes_ae930d0c64dbb0e1adf68839e5c8794e1}
+\-Detiene la ejecución de los workers. \hypertarget{classPoolClientes_ac294e117a0bc44724abbb1de36a821da}{\index{\-Pool\-Clientes@{\-Pool\-Clientes}!iniciar@{iniciar}}
+\index{iniciar@{iniciar}!PoolClientes@{\-Pool\-Clientes}}
+\subsubsection[{iniciar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Pool\-Clientes\-::iniciar} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPoolClientes_ac294e117a0bc44724abbb1de36a821da}
+\-Comienza la ejecución de los workers. 
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/servidor/\-Pool\-Clientes.\-h\item 
+servidor/servidor/\-Pool\-Clientes.\-cpp\end{DoxyCompactItemize}

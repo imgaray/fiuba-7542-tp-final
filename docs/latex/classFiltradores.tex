@@ -1,0 +1,111 @@
+\hypertarget{classFiltradores}{\section{\-Referencia de la \-Clase \-Filtradores}
+\label{classFiltradores}\index{\-Filtradores@{\-Filtradores}}
+}
+
+
+{\ttfamily \#include $<$\-Filtradores.\-h$>$}
+
+\-Diagrama de herencias de \-Filtradores\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classFiltradores}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFiltradores_a3d450f3b376ff71acb8c06d7be7bf49b}{\-Filtradores} ()
+\item 
+\hyperlink{classFiltradores_a6d9df7e673dd658d851cb6e809ba472f}{$\sim$\-Filtradores} ()
+\item 
+\hypertarget{classFiltradores_a62f207dc95b9bfdfd2e4250c82c160f3}{virtual bool {\bfseries puede\-Filtrar} ()}\label{classFiltradores_a62f207dc95b9bfdfd2e4250c82c160f3}
+
+\item 
+\hypertarget{classFiltradores_a28e80978bb0e2e03adebae297b76a309}{virtual void {\bfseries filtrar} (\hyperlink{classConsulta}{\-Consulta} \&c)}\label{classFiltradores_a28e80978bb0e2e03adebae297b76a309}
+
+\item 
+\hypertarget{classFiltradores_a84dc1b94f28a2965e90b36bc149ab164}{virtual void {\bfseries agregar\-Entrada} (const std\-::string \&entrada)=0}\label{classFiltradores_a84dc1b94f28a2965e90b36bc149ab164}
+
+\item 
+\hypertarget{classFiltradores_ad302fc3bea625acdd3f623afbcc8a030}{bool {\bfseries tiene\-Filtros\-Navegables} ()}\label{classFiltradores_ad302fc3bea625acdd3f623afbcc8a030}
+
+\item 
+\hypertarget{classFiltradores_a5d4e09183a8858e6fd410202cbf9ace4}{bool {\bfseries tiene\-Filtros\-Consultantes} ()}\label{classFiltradores_a5d4e09183a8858e6fd410202cbf9ace4}
+
+\item 
+\hypertarget{classFiltradores_a538fe2160d8d3037563603c47e9566f2}{\hyperlink{classFiltradorInput}{\-Filtrador\-Input} $\ast$ {\bfseries get\-Filtro\-Navegable} ()}\label{classFiltradores_a538fe2160d8d3037563603c47e9566f2}
+
+\item 
+\hypertarget{classFiltradores_a6d64cad1b899951c50ac42cbaf49921f}{\hyperlink{classFiltradorInputDimension}{\-Filtrador\-Input\-Dimension} $\ast$ {\bfseries get\-Filtro\-Consultante} ()}\label{classFiltradores_a6d64cad1b899951c50ac42cbaf49921f}
+
+\end{DoxyCompactItemize}
+\subsection*{\-Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFiltradores_a53e6d4e610239dc8890853ac0ac647a6}{on\-\_\-input\-\_\-esta\-\_\-disponible} (bool estado)
+\end{DoxyCompactItemize}
+\subsection*{\-Atributos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classFiltradores_aca46b72d23d8c16e708768340994eef6}{std\-::list$<$ \hyperlink{classFiltrador}{\-Filtrador} $\ast$ $>$ {\bfseries filtradores}}\label{classFiltradores_aca46b72d23d8c16e708768340994eef6}
+
+\item 
+\hypertarget{classFiltradores_ad8e0a2aecedd410cf8fc268a87f39135}{std\-::queue$<$ \hyperlink{classFiltradorInput}{\-Filtrador\-Input} $\ast$ $>$ {\bfseries filtros\-Navegables}}\label{classFiltradores_ad8e0a2aecedd410cf8fc268a87f39135}
+
+\item 
+\hypertarget{classFiltradores_aa97b49681afb1fa7a0a03d0ebb11db1f}{std\-::queue\*
+$<$ \hyperlink{classFiltradorInputDimension}{\-Filtrador\-Input\-Dimension} $\ast$ $>$ {\bfseries filtros\-Consultantes}}\label{classFiltradores_aa97b49681afb1fa7a0a03d0ebb11db1f}
+
+\item 
+\hypertarget{classFiltradores_add3494980d7aafcf16e2c77cfd7bce10}{unsigned {\bfseries cant\-\_\-inputs}}\label{classFiltradores_add3494980d7aafcf16e2c77cfd7bce10}
+
+\item 
+\hypertarget{classFiltradores_a007d812879b019b9299465d02d848cfd}{unsigned {\bfseries inputs\-Disponibles}}\label{classFiltradores_a007d812879b019b9299465d02d848cfd}
+
+\item 
+\hypertarget{classFiltradores_a8d54b2ddb1d763c323c77ce53a1cacb6}{bool {\bfseries \-\_\-puede\-Filtrar}}\label{classFiltradores_a8d54b2ddb1d763c323c77ce53a1cacb6}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase abstracta que representa tanto un conjunto de filtradores como la vista del conjunto. \-Cada filtrador se dispone uno abajo del otro. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classFiltradores_a3d450f3b376ff71acb8c06d7be7bf49b}{\index{\-Filtradores@{\-Filtradores}!\-Filtradores@{\-Filtradores}}
+\index{\-Filtradores@{\-Filtradores}!Filtradores@{\-Filtradores}}
+\subsubsection[{\-Filtradores}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Filtradores\-::\-Filtradores} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classFiltradores_a3d450f3b376ff71acb8c06d7be7bf49b}
+\-Constructor. \hypertarget{classFiltradores_a6d9df7e673dd658d851cb6e809ba472f}{\index{\-Filtradores@{\-Filtradores}!$\sim$\-Filtradores@{$\sim$\-Filtradores}}
+\index{$\sim$\-Filtradores@{$\sim$\-Filtradores}!Filtradores@{\-Filtradores}}
+\subsubsection[{$\sim$\-Filtradores}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Filtradores\-::$\sim$\-Filtradores} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classFiltradores_a6d9df7e673dd658d851cb6e809ba472f}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classFiltradores_a53e6d4e610239dc8890853ac0ac647a6}{\index{\-Filtradores@{\-Filtradores}!on\-\_\-input\-\_\-esta\-\_\-disponible@{on\-\_\-input\-\_\-esta\-\_\-disponible}}
+\index{on\-\_\-input\-\_\-esta\-\_\-disponible@{on\-\_\-input\-\_\-esta\-\_\-disponible}!Filtradores@{\-Filtradores}}
+\subsubsection[{on\-\_\-input\-\_\-esta\-\_\-disponible}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Filtradores\-::on\-\_\-input\-\_\-esta\-\_\-disponible} (
+\begin{DoxyParamCaption}
+\item[{bool}]{estado}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}\label{classFiltradores_a53e6d4e610239dc8890853ac0ac647a6}
+\-Signal handler para la señal \-Filtrador\-Input\-::\-\_\-signal\-\_\-input\-\_\-disponible.
+
+\-Aumenta o disminuye la cantidad de inputs disponibles, según sea true o false el parámetro. \-Si todos los inputs están disponibles entonces puede filtrar una consulta. 
+\begin{DoxyParams}{\-Parámetros}
+{\em estado} & estado de la disponibilidad del input \\
+\hline
+\end{DoxyParams}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Vista/\-Filtradores.\-h\item 
+cliente/\-Vista/\-Filtradores.\-cpp\end{DoxyCompactItemize}

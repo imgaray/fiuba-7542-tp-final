@@ -1,0 +1,143 @@
+\hypertarget{classBarra}{\section{\-Referencia de la \-Clase \-Barra}
+\label{classBarra}\index{\-Barra@{\-Barra}}
+}
+
+
+{\ttfamily \#include $<$\-Barra.\-h$>$}
+
+\-Diagrama de herencias de \-Barra\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classBarra}
+\end{center}
+\end{figure}
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBarra_a8edaf9bde1490cb349c50a1665c32193}{\-Barra} (const \hyperlink{classHecho}{\-Hecho} \&dato, double maximo, unsigned i, double offset, double separacion, double ancho)
+\item 
+\hyperlink{classBarra_a0d8469e11d2382e0808879f4f500062f}{$\sim$\-Barra} ()
+\item 
+void \hyperlink{classBarra_af5dc4f34b2441270ad906de2d8a745d0}{dibujar} (\-Cairo\-::\-Ref\-Ptr$<$ \-Cairo\-::\-Context $>$ \&ctx)
+\item 
+bool \hyperlink{classBarra_a5d04d0e7c196327c0b58409c7854d5ca}{fue\-Clickeada} (double x, double y)
+\item 
+double \hyperlink{classBarra_a705b42ca3d507c0f02786065c889f199}{get\-Avance} ()
+\item 
+std\-::string \hyperlink{classBarra_a5d8b121357bdeec02ab3cf46e95b740c}{get\-Info} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Clase concreta que representa una barra de un gráfico de barras. 
+
+\subsection{\-Documentación del constructor y destructor}
+\hypertarget{classBarra_a8edaf9bde1490cb349c50a1665c32193}{\index{\-Barra@{\-Barra}!\-Barra@{\-Barra}}
+\index{\-Barra@{\-Barra}!Barra@{\-Barra}}
+\subsubsection[{\-Barra}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Barra\-::\-Barra} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Hecho} \&}]{dato, }
+\item[{double}]{maximo, }
+\item[{unsigned}]{i, }
+\item[{double}]{offset, }
+\item[{double}]{separacion, }
+\item[{double}]{ancho}
+\end{DoxyParamCaption}
+)}}\label{classBarra_a8edaf9bde1490cb349c50a1665c32193}
+\-Constructor. 
+\begin{DoxyParams}{\-Parámetros}
+{\em dato} & aquello que representará la barra \\
+\hline
+{\em maximo} & el valor máximo encontrado \\
+\hline
+{\em i} & número de porción (esto es meramente por el color) \\
+\hline
+{\em offset} & desplazamiento de la barra \\
+\hline
+{\em separacion} & separación entre barras \\
+\hline
+{\em ancho} & ancho de las barras \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBarra_a0d8469e11d2382e0808879f4f500062f}{\index{\-Barra@{\-Barra}!$\sim$\-Barra@{$\sim$\-Barra}}
+\index{$\sim$\-Barra@{$\sim$\-Barra}!Barra@{\-Barra}}
+\subsubsection[{$\sim$\-Barra}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Barra\-::$\sim$\-Barra} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBarra_a0d8469e11d2382e0808879f4f500062f}
+\-Destructor. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classBarra_af5dc4f34b2441270ad906de2d8a745d0}{\index{\-Barra@{\-Barra}!dibujar@{dibujar}}
+\index{dibujar@{dibujar}!Barra@{\-Barra}}
+\subsubsection[{dibujar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Barra\-::dibujar} (
+\begin{DoxyParamCaption}
+\item[{\-Cairo\-::\-Ref\-Ptr$<$ \-Cairo\-::\-Context $>$ \&}]{ctx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classBarra_af5dc4f34b2441270ad906de2d8a745d0}
+\-Dibuja la barra. 
+\begin{DoxyParams}{\-Parámetros}
+{\em ctx} & contexto sobre el que se dibuja \\
+\hline
+\end{DoxyParams}
+
+
+\-Implementa \hyperlink{classArea_a95274f96ffa5525307f0a00d074047fb}{\-Area}.
+
+\hypertarget{classBarra_a5d04d0e7c196327c0b58409c7854d5ca}{\index{\-Barra@{\-Barra}!fue\-Clickeada@{fue\-Clickeada}}
+\index{fue\-Clickeada@{fue\-Clickeada}!Barra@{\-Barra}}
+\subsubsection[{fue\-Clickeada}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Barra\-::fue\-Clickeada} (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classBarra_a5d04d0e7c196327c0b58409c7854d5ca}
+\-Evalúa si el mouse está posado sobre la barra. 
+\begin{DoxyParams}{\-Parámetros}
+{\em x} & posición x del mouse en la ventana, normalizada \\
+\hline
+{\em y} & posición y del mouse en la ventana, normalizada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+true o false, según la posición pertenece al área 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classArea_a4158f8c72ff8c67b5d1de00aa9691e90}{\-Area}.
+
+\hypertarget{classBarra_a705b42ca3d507c0f02786065c889f199}{\index{\-Barra@{\-Barra}!get\-Avance@{get\-Avance}}
+\index{get\-Avance@{get\-Avance}!Barra@{\-Barra}}
+\subsubsection[{get\-Avance}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-Barra\-::get\-Avance} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classBarra_a705b42ca3d507c0f02786065c889f199}
+\-Obtener el offset nuevo. \begin{DoxyReturn}{\-Devuelve}
+posición siguiente a dibujar una barra 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classArea_ac8a3293cc9ba5678997e9cb0b4a142f9}{\-Area}.
+
+\hypertarget{classBarra_a5d8b121357bdeec02ab3cf46e95b740c}{\index{\-Barra@{\-Barra}!get\-Info@{get\-Info}}
+\index{get\-Info@{get\-Info}!Barra@{\-Barra}}
+\subsubsection[{get\-Info}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Barra\-::get\-Info} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classBarra_a5d8b121357bdeec02ab3cf46e95b740c}
+\-Información sobre el área. \begin{DoxyReturn}{\-Devuelve}
+string para tooltip 
+\end{DoxyReturn}
+
+
+\-Implementa \hyperlink{classArea_a1934f44c890ca764b7e47dba984a32d5}{\-Area}.
+
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+cliente/\-Vista/\-Barra.\-h\item 
+cliente/\-Vista/\-Barra.\-cpp\end{DoxyCompactItemize}

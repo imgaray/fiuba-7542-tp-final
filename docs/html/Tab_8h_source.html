@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente cliente/Vista/Tab.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('Tab_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">cliente/Vista/Tab.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef TAB_H__</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define TAB_H__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;list&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;gtkmm/label.h&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;gtkmm/box.h&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;gtkmm/spinner.h&gt;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 <span class="keyword">class </span><a class="code" href="classServidorRemoto.html">ServidorRemoto</a>;
+<a name="l00011"></a>00011 <span class="keyword">class </span><a class="code" href="classConsultante.html">Consultante</a>;
+<a name="l00012"></a>00012 <span class="keyword">class </span><a class="code" href="classRespuesta.html">Respuesta</a>;
+<a name="l00013"></a>00013 <span class="keyword">class </span><a class="code" href="classFiltradorInput.html">FiltradorInput</a>;
+<a name="l00014"></a>00014 <span class="keyword">class </span><a class="code" href="classFiltradorInputDimension.html">FiltradorInputDimension</a>;
+<a name="l00015"></a>00015 <span class="keyword">class </span><a class="code" href="classVentanaClienteDinamica.html">VentanaClienteDinamica</a>;
+<a name="l00016"></a>00016 
+<a name="l00037"></a><a class="code" href="classTab.html">00037</a> <span class="keyword">class </span><a class="code" href="classTab.html">Tab</a> : <span class="keyword">public</span> Gtk::VBox {
+<a name="l00038"></a>00038     <span class="keyword">public</span>:
+<a name="l00043"></a>00043         <a class="code" href="classTab.html#adf46383cb8b4278681e32a40ef89c545">Tab</a>(<span class="keyword">const</span> Glib::ustring&amp; etiqueta);
+<a name="l00047"></a>00047         <a class="code" href="classTab.html#a8cc210bcede02daa21145bb1675c3c80">~Tab</a>();
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049         Gtk::HBox&amp; getEtiqueta();
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         <span class="comment">/* modelo */</span>
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> <a class="code" href="classTab.html#ab8ffebb5665e2203b505730539e7263e">agregarConsultante</a>(<a class="code" href="classFiltradorInputDimension.html">FiltradorInputDimension</a>* f);
+<a name="l00055"></a>00055 
+<a name="l00058"></a>00058         <span class="keywordtype">void</span> <a class="code" href="classTab.html#ab8ffebb5665e2203b505730539e7263e">agregarConsultante</a>(<a class="code" href="classConsultante.html">Consultante</a>* c);
+<a name="l00059"></a>00059         <span class="keywordtype">void</span> removerConsultante(<span class="keywordtype">unsigned</span> ID);
+<a name="l00060"></a>00060 
+<a name="l00063"></a>00063         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a2702dc2c1dc1d0ec163f26483880199a">hacerConsulta</a>(<a class="code" href="classServidorRemoto.html">ServidorRemoto</a>&amp; server);
+<a name="l00064"></a>00064 
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a04f0afa07a274bcfee2ddbbb58a7f0dd">cancelarConsulta</a>(<a class="code" href="classServidorRemoto.html">ServidorRemoto</a>&amp; server);
+<a name="l00068"></a>00068 
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a956337a5e9f33fccaf1f0f275f7920b9">actualizarConsulta</a>(<a class="code" href="classConsultante.html">Consultante</a>* c);
+<a name="l00072"></a>00072 
+<a name="l00075"></a>00075         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a2aead15ff3730f8ec5fb0aa2cf8124bb">informarConsultaIniciada</a>();
+<a name="l00076"></a>00076 
+<a name="l00080"></a>00080         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a3a6a052ecc01597c2d6040a5065d7dd8">informarConsultaTerminada</a>();
+<a name="l00081"></a>00081 
+<a name="l00084"></a>00084         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a0bca519aadf5728818037564c584b30a">informarFinCreacion</a>();
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086         <span class="keywordtype">void</span> agregarFiltroNavegable(<a class="code" href="classFiltradorInput.html">FiltradorInput</a>* f);
+<a name="l00087"></a>00087 
+<a name="l00090"></a>00090         <span class="keywordtype">void</span> <a class="code" href="classTab.html#a16a4ce877365b06b134e5c319eab5a28">difundirNavegacionSeleccionada</a>(<span class="keyword">const</span> Glib::ustring&amp; input,
+<a name="l00091"></a>00091                                             <span class="keyword">const</span> Glib::ustring&amp; valor);
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093         <span class="keyword">const</span> std::map&lt; unsigned, Consultante* &gt;&amp; getConsultantes();
+<a name="l00094"></a>00094         <span class="keywordtype">void</span> setPadre(<a class="code" href="classVentanaClienteDinamica.html">VentanaClienteDinamica</a>* padre);
+<a name="l00095"></a>00095     <span class="keyword">private</span>:
+<a name="l00096"></a>00096         Gtk::HBox etiquetaCompuesta;
+<a name="l00097"></a>00097         Gtk::Label etiqueta;
+<a name="l00098"></a>00098         Gtk::Spinner spinner;
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100         <span class="comment">/* modelo */</span>
+<a name="l00101"></a>00101         std::map&lt; unsigned, Consultante* &gt; consultantes;
+<a name="l00102"></a>00102         std::map&lt; unsigned, Consultante* &gt; filtrosConsultantes;
+<a name="l00103"></a>00103         std::map&lt; unsigned, Consultante* &gt;* pConsultantesActivos;
+<a name="l00104"></a>00104         std::list&lt; FiltradorInput* &gt; filtrosNavegables;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106         <span class="keywordtype">unsigned</span> hijosActualizando;
+<a name="l00107"></a>00107         <span class="keywordtype">void</span> correrSpinner();
+<a name="l00108"></a>00108         <span class="keywordtype">void</span> detenerSpinner();
+<a name="l00109"></a>00109         <a class="code" href="classVentanaClienteDinamica.html">VentanaClienteDinamica</a>* padre;
+<a name="l00110"></a>00110 };
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="preprocessor">#endif  // TAB_H__</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>Tab.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:01 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

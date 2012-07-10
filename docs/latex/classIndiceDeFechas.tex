@@ -1,0 +1,78 @@
+\hypertarget{classIndiceDeFechas}{\section{\-Referencia de la \-Clase \-Indice\-De\-Fechas}
+\label{classIndiceDeFechas}\index{\-Indice\-De\-Fechas@{\-Indice\-De\-Fechas}}
+}
+
+
+{\ttfamily \#include $<$\-Indice\-De\-Fechas.\-h$>$}
+
+\subsection*{\-Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classIndiceDeFechas_adbb24ea96af6412784ed12b547035bfa}{\hyperlink{classIndiceDeFechas_adbb24ea96af6412784ed12b547035bfa}{\-Indice\-De\-Fechas} ()}\label{classIndiceDeFechas_adbb24ea96af6412784ed12b547035bfa}
+
+\begin{DoxyCompactList}\small\item\em \-Constructor sin argumentos. \end{DoxyCompactList}\item 
+void \hyperlink{classIndiceDeFechas_a3ea1d6d6c6a57a8a53dea9b8adf86468}{recuperar} (const \-Fecha \&fecha, \-Lista\-\_\-\-Id \&ids) const 
+\begin{DoxyCompactList}\small\item\em \-Se recupera una lista con \-Ids que corresponden a la fecha pasada como argumento. \end{DoxyCompactList}\item 
+void \hyperlink{classIndiceDeFechas_a35d827e4bdd41c60fbb60fb100894292}{guardar\-Fecha} (const \-Fecha \&fecha, const \-Id\-\_\-\-Registro \&id)
+\begin{DoxyCompactList}\small\item\em \-Se guarda una fecha al indice con su id correspondiente. \end{DoxyCompactList}\item 
+\hypertarget{classIndiceDeFechas_a27f43bb41937c43900ce29bce09a8131}{void \hyperlink{classIndiceDeFechas_a27f43bb41937c43900ce29bce09a8131}{limpiar} ()}\label{classIndiceDeFechas_a27f43bb41937c43900ce29bce09a8131}
+
+\begin{DoxyCompactList}\small\item\em \-Se borra y reestablece el contenido del indice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Descripción detallada}
+\-Esta clase es la encargada de funcionar como un indice para las fechas, guardando los id de registros, permitiendo que los ids sean recuperados por distintos tipos de rangos para las fechas. 
+
+\subsection{\-Documentación de las funciones miembro}
+\hypertarget{classIndiceDeFechas_a35d827e4bdd41c60fbb60fb100894292}{\index{\-Indice\-De\-Fechas@{\-Indice\-De\-Fechas}!guardar\-Fecha@{guardar\-Fecha}}
+\index{guardar\-Fecha@{guardar\-Fecha}!IndiceDeFechas@{\-Indice\-De\-Fechas}}
+\subsubsection[{guardar\-Fecha}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Indice\-De\-Fechas\-::guardar\-Fecha} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{fecha, }
+\item[{const \-Id\-\_\-\-Registro \&}]{id}
+\end{DoxyParamCaption}
+)}}\label{classIndiceDeFechas_a35d827e4bdd41c60fbb60fb100894292}
+
+
+\-Se guarda una fecha al indice con su id correspondiente. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & valor de fecha por que se va a guardar en el indice \\
+\hline
+{\em id} & identificador de la fecha \\
+\hline
+\end{DoxyParams}
+\hypertarget{classIndiceDeFechas_a3ea1d6d6c6a57a8a53dea9b8adf86468}{\index{\-Indice\-De\-Fechas@{\-Indice\-De\-Fechas}!recuperar@{recuperar}}
+\index{recuperar@{recuperar}!IndiceDeFechas@{\-Indice\-De\-Fechas}}
+\subsubsection[{recuperar}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Indice\-De\-Fechas\-::recuperar} (
+\begin{DoxyParamCaption}
+\item[{const \-Fecha \&}]{fecha, }
+\item[{\-Lista\-\_\-\-Id \&}]{ids}
+\end{DoxyParamCaption}
+) const}}\label{classIndiceDeFechas_a3ea1d6d6c6a57a8a53dea9b8adf86468}
+
+
+\-Se recupera una lista con \-Ids que corresponden a la fecha pasada como argumento. 
+
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & valor por el cual se van a recupara los ids \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Devuelve}
+lista que contiene los ids recuperados \-Se recupera una lista con \-Ids que corresponden a la fecha pasada como argumento. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{\-Parámetros}
+{\em fecha} & valor por el cual se van a recupara los ids \\
+\hline
+{\em ids} & lista donde se guardaran los ids recuperados \\
+\hline
+\end{DoxyParams}
+
+
+\-La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+servidor/\-Motor\-De\-Consultas/\-Indice\-De\-Fechas.\-h\item 
+servidor/\-Motor\-De\-Consultas/\-Indice\-De\-Fechas.\-cpp\end{DoxyCompactItemize}

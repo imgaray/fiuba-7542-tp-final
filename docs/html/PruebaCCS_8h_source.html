@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>MIC: Fichero Fuente Pruebas/PruebaCCS.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">MIC
+   
+   </div>
+   <div id="projectbrief">Motor de Inteligencia de Comercio en tiempo real</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('PruebaCCS_8h.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">Pruebas/PruebaCCS.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * PruebaCCS.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 12/06/2012</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: migue</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef PRUEBACCS_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define PRUEBACCS_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;Hilo.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;Socket.h&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;GenRegistros.h&quot;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;Consulta.h&quot;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;Respuesta.h&quot;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &quot;Definiciones.h&quot;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;BaseDeDatos.h&quot;</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 <span class="keyword">using namespace </span>std;
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="preprocessor">#define P_SERVIDOR      (Puerto) 4000</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span><span class="preprocessor">#define P_CLIENTE       (Puerto) 4000</span>
+<a name="l00024"></a>00024 <span class="preprocessor"></span>
+<a name="l00025"></a>00025 <span class="preprocessor">#define PUERTO_CONEX (Puerto) 4000</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 <span class="keywordtype">void</span> imprimirRes(<span class="keyword">const</span> <a class="code" href="classRespuesta.html">Respuesta</a>&amp; resp);
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 
+<a name="l00030"></a><a class="code" href="classccsServidor.html">00030</a> <span class="keyword">class </span><a class="code" href="classccsServidor.html">ccsServidor</a> : <span class="keyword">public</span> <a class="code" href="classHilo.html">Hilo</a> {
+<a name="l00031"></a>00031 <span class="keyword">public</span>:
+<a name="l00032"></a>00032         <a class="code" href="classccsServidor.html">ccsServidor</a>() :  _sckEnlace(PUERTO_CONEX), bdd(<span class="stringliteral">&quot;rutaDatosCCS.txt&quot;</span>) {
+<a name="l00033"></a>00033                 <span class="comment">//bdd.borrarDatos();</span>
+<a name="l00034"></a>00034                 generarRegistros(bdd,100);
+<a name="l00035"></a>00035                 _sckEnlace.enlazar();
+<a name="l00036"></a>00036         }
+<a name="l00037"></a>00037         ~<a class="code" href="classccsServidor.html">ccsServidor</a>() {}
+<a name="l00038"></a>00038 
+<a name="l00039"></a><a class="code" href="classccsServidor.html#adb932252cd6a818744a3017dfbcc0605">00039</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classccsServidor.html#adb932252cd6a818744a3017dfbcc0605" title="Metodo virtual puro, que corre cuando se ejecuta el hilo.">correr</a>() {
+<a name="l00040"></a>00040                 <a class="code" href="classSocket.html">Socket</a>* nsocket;
+<a name="l00041"></a>00041                 <a class="code" href="classConsulta.html">Consulta</a> c;
+<a name="l00042"></a>00042                 <a class="code" href="classRespuesta.html">Respuesta</a> r;
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044                 nsocket = _sckEnlace.<a class="code" href="classSocket.html#a0dea5b749aa54a23dcdbfb72aceed3c0" title="Escucha una conexion entrante y retorna un Socket para realizar la comunicion con esta...">escucharConexion</a>();
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046                 <span class="keywordflow">if</span> (nsocket == NULL) {
+<a name="l00047"></a>00047                         cout &lt;&lt; <span class="stringliteral">&quot;************SOCKET NULO&quot;</span> &lt;&lt; endl;
+<a name="l00048"></a>00048                 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050                 nsocket-&gt;<a class="code" href="classSocket.html#a820da69df857dabb200934da3a8a53ae" title="Se pone en espera a recibir una respuesta.">recibir</a>(c);
+<a name="l00051"></a>00051                 r = bdd.resolverConsulta(c);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053                 nsocket-&gt;<a class="code" href="classSocket.html#a9b61fa7f865eb17e727b1e08a8467274" title="Envia el mensaje atravez del socket, confirmando si fue enviado correctamente.">enviar</a>(r);
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">private</span>:
+<a name="l00058"></a>00058         <a class="code" href="classSocket.html">Socket</a> _sckEnlace;
+<a name="l00059"></a>00059         <a class="code" href="classBaseDeDatos.html">BaseDeDatos</a> bdd;
+<a name="l00060"></a>00060 };
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 
+<a name="l00063"></a><a class="code" href="classccsCliente.html">00063</a> <span class="keyword">class </span><a class="code" href="classccsCliente.html">ccsCliente</a> : <span class="keyword">public</span> <a class="code" href="classHilo.html">Hilo</a> {
+<a name="l00064"></a>00064 <span class="keyword">public</span>:
+<a name="l00065"></a>00065         <a class="code" href="classccsCliente.html">ccsCliente</a>() : _sck(PUERTO_CONEX){
+<a name="l00066"></a>00066                 _sck.conectar(<span class="stringliteral">&quot;localhost&quot;</span>);
+<a name="l00067"></a>00067         }
+<a name="l00068"></a>00068         <span class="keyword">virtual</span> ~<a class="code" href="classccsCliente.html">ccsCliente</a>() {}
+<a name="l00069"></a>00069 
+<a name="l00070"></a><a class="code" href="classccsCliente.html#aa0797528dcd3b5aa3162c0efe49a890c">00070</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classccsCliente.html#aa0797528dcd3b5aa3162c0efe49a890c" title="Metodo virtual puro, que corre cuando se ejecuta el hilo.">correr</a>() {
+<a name="l00071"></a>00071                 <a class="code" href="classConsulta.html">Consulta</a> c;
+<a name="l00072"></a>00072                 <a class="code" href="classRespuesta.html">Respuesta</a> r;
+<a name="l00073"></a>00073                 c.<a class="code" href="classConsulta.html#a6020e3a06d8ef8158949ee2d4f6499e0" title="Define el estado de la Consulta como consulta de &quot;Cliente&quot;.">definirComoConsultaCliente</a>();
+<a name="l00074"></a>00074                 c.<a class="code" href="classConsulta.html#a18c9407b7f8853e18a379ad532e61cd9" title="Agrega un Resultado a la Consulta, la agregacion por defecto para el resultado agregado es &quot;NADA&quot;...">agregarResultado</a>(<span class="stringliteral">&quot;Vendedor&quot;</span>);
+<a name="l00075"></a>00075                 c.<a class="code" href="classConsulta.html#af9a1f73d3f6120a950cd02068f58893b" title="Agrega un Resultado a la consulta y define la agregacion del mismo.">defininirAgregacion</a>(SUM, <a class="code" href="classOrganizacion.html#aa5ccaedf53bdce391f7e0dd8f23a0892" title="Devuelve el nombre de un Hecho segun su indice en la Organizacion. Si no existe un nombre para el ind...">Organizacion::nombreHecho</a>(0));
+<a name="l00076"></a>00076                 <span class="comment">//c.agregarResultado(&quot;Sucursal&quot;);</span>
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078                 _sck.enviar(c);
+<a name="l00079"></a>00079                 _sck.recibir(r);
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081                 imprimirRes(r);
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083                 _sck.desconectar();
+<a name="l00084"></a>00084         }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086         <a class="code" href="classSocket.html">Socket</a> _sck;
+<a name="l00087"></a>00087 };
+<a name="l00088"></a>00088 
+<a name="l00095"></a>00095 <span class="keywordtype">void</span> testCCS();
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="preprocessor">#endif </span><span class="comment">/* PRUEBACCS_H_ */</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumeraciones</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>PruebaCCS.h</b>      </li>
+
+    <li class="footer">Generado el Martes, 10 de Julio de 2012 15:15:02 para MIC por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

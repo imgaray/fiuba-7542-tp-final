@@ -89,7 +89,7 @@ int configurar() {
 }
 
 int main(int argc, char **argv) {
-	std::cout << "argc = " << argc << std::endl;
+
 	if (argc > 1) {
 		if ((argc == 2) && (strcmp(argv[1], "-c") == 0)) {
 			return configurar();

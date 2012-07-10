@@ -27,6 +27,7 @@ class Consultante {
         Consultante();
         /**
          * Constructor.
+         * @param f conjunto de filtradores asociados
          */
         Consultante(FiltradoresPanel* f);
         /**
@@ -34,8 +35,21 @@ class Consultante {
          */
         ~Consultante();
 
+        /**
+         * Envía la consulta, cancelando si ya estaba esperando una respuesta
+         * e informa al padre para que pueda controlar su spinner.
+         */
         void hacerConsulta(ServidorRemoto& server);
+
+        /**
+         * Cancela la consulta enviada, e informa al padre que no espera más
+         * respuesta.
+         */
         void cancelarConsulta(ServidorRemoto& server);
+
+        /**
+         * Si estaba esperando una respuesta, la procesa.
+         */
         void recibirRespuesta(const Respuesta& rta);
 
         unsigned getID() const;

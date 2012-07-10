@@ -31,8 +31,25 @@ class PorcionCircular : public Area {
          * @param ctx contexto sobre el que se dibuja
          */
         void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);
+
+        /**
+         * Evalúa si el mouse está posado sobre la porción circular.
+         * @param x posición x del mouse en la ventana, normalizada
+         * @param y posición y del mouse en la ventana, normalizada
+         * @return true o false, según la posición pertenece al área
+         */
         bool fueClickeada(double x, double y);
+
+        /**
+         * Obtener el offset nuevo.
+         * @return posición siguiente a dibujar un porción circular
+         */
         double getAvance();
+
+        /**
+         * Información sobre el área.
+         * @return string para tooltip
+         */
         std::string getInfo();
     private:
         double x0;

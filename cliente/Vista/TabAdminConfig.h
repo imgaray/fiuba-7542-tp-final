@@ -22,7 +22,9 @@ class TabAdminConfig : public Gtk::VBox, public Buildable  {
          */
         ~TabAdminConfig();
 
-        // retorna true si el estado de la pestaña es válido para guardar
+        /**
+         *@return true si el estado de la pestaña es válido para guardar
+         */
         virtual bool aplicarCambios() = 0;
 };
 

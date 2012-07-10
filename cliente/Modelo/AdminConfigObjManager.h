@@ -19,7 +19,9 @@ enum t_Objeto {
  * Clase encargada de manejar la parte de agregado de objetos dinámicos
  * por el admin (pestañas y paneles).
  *
- * Emite las señaesl:
+ * Implementa una pequeña factory en base al enum t_Objeto.
+ *
+ * Emite las señales:
  * -signal_model_changed cuando el modelo que está detrás de la vista cambia.
  * -signal_model_deleted cuando el modelo seleccionado fue eliminado
  * -signal_model_saved   cuando el modelo seleccionado guarda sus cambios
@@ -41,9 +43,20 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
          */
         ~AdminConfigObjManager();
 
+        /**
+         * Desconecta toda conexión con señales de widgets de vista.
+         */
         void desconectar();
+
+        /**
+         * Reconecta las conexiones.
+         */
         void reconectar();
 
+        /**
+         * Obtener el modelo seleccionado.
+         * @return puntero al modelo actual
+         */
         ConfigModelo* getModelo() const;
 
         std::list< TabConfigModelo* > getModelosComoTabs();

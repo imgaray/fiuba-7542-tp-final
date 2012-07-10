@@ -32,21 +32,38 @@ class TabConfigModelo : public ConfigModelo {
          */
         ~TabConfigModelo();
 
+        /**
+         * Setter para los elementos de la vista que refieren al manejo de los
+         * paneles a configurar. Conecta también señales.
+         */
         void setObjManagerPanel(Gtk::ComboBoxText* cbtext,
                                 Gtk::Entry* pEntryPanelLabel,
                                 Gtk::Button* pAceptar,
                                 Gtk::Button* pGuardarCambios,
                                 Gtk::Button* pEliminar
                                 );
+
+        /**
+         * Setter para los elementos de la vista que refieren a la
+         * configuración del tamaño de la grilla.
+         */
         void setSpinButtonsGrilla(Gtk::SpinButton* pFilas,
                                   Gtk::SpinButton* pCols);
 
+        /**
+         * Setter para los elementos de la vista que refieren a la
+         * configuración de los inputs.
+         */
         void setInputsHandlers(const filtradoresHandlers& handlers);
 
         sigc::signal< void, PanelConfigModelo* > signal_panel_model_changed();
 
         PanelConfigModelo* getModeloPanel() const;
 
+        /**
+         * En base a lo configurado, retorna una instancia concreta de Tab
+         * @return manage(Tab* )
+         */
         Tab* concretarConfig();
 
         virtual NodoXml serializar();

@@ -41,15 +41,25 @@ class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
 
         void personalizar(Personalizador& dynBuilder);
 
+        /** Solicita a la pestaña actual que haga sus consultas.
+         */
         void hacerConsulta(ServidorRemoto& server);
+        /** Solicita a todas las pestañas que hagan sus consultas.
+         */
         void hacerConsultaInicial(ServidorRemoto& server);
+        /** Solicita a la pestaña actual que cancele sus consultas.
+         */
         void cancelarConsulta(ServidorRemoto& server);
-        // actualiza una consulta en particular, a pedido
+        /** Actualiza una consulta en particular, a pedido
+         */
         void actualizarConsulta(Consultante* c);
 
         void removerConsultante(unsigned ID);
         void agregarConsultantesTab(const MapaConsultantesTab& consultantes);
 
+        /** Retira, si las hay, respuestas del servidor y las deriva al
+         * consultante correspondiente.
+         */
         void retirarRespuestas(ServidorRemoto& server);
 
         sigc::signal< void, Consultante* > signal_actualizacion();

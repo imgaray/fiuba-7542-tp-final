@@ -76,8 +76,7 @@ void TabAdminConfigConsultas::on_tab_model_changed(ConfigModelo* m) {
     if (mTab) {
         pEntryTabLabel->set_text(mTab->getLabel());
         pTabVista->setModelo(mTab);
-    } else
-        throw "Vista y modelo incompatibles";
+    }
 }
 
 bool TabAdminConfigConsultas::aplicarCambios() {

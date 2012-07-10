@@ -31,6 +31,12 @@ class TabAdminConfigConsultas : public TabAdminConfig {
         AdminConfigObjManager* tabManager;
         Personalizador dynBuilder;
 
+        /**
+         * @brief Signal handler para el click sobre el botón "Actualizar".
+         *
+         * Actualiza todas las consultas de la pestaña actual, excepto aquellas
+         * no disponibles (alguna con input mal formado, por ejemplo).
+         */
         void on_tab_model_changed(ConfigModelo* m);
 
 

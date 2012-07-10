@@ -154,6 +154,7 @@ void VentanaCliente::on_salir_button_clicked() {
 
 void VentanaCliente::on_acerca_de_button_clicked() {
     pDAbout->run();
+    pDAbout->hide();
 }
 
 bool VentanaCliente::on_timeout() {

@@ -10,8 +10,6 @@ TabAdminConfigConexion::TabAdminConfigConexion(BaseObjectType* cobject,
                                 const Glib::RefPtr< Gtk::Builder >& _builder)
 : TabAdminConfig(cobject, _builder) {
 	get_widget(ENTRY_IP, pEntryIP);
-	pEntryIP->signal_changed().connect(sigc::mem_fun(*this,
-		&TabAdminConfigConexion::on_entry_ip_changed));
 
 	get_widget(SPIN_BUTTON_PUERTO, pSpinButtonPuerto);
 
@@ -39,8 +37,4 @@ bool TabAdminConfigConexion::aplicarCambios() {
     arch.setearAtributo(clave_ip, IP);
     arch.setearAtributo(clave_puerto, puerto);
     return true;
-}
-
-void TabAdminConfigConexion::on_entry_ip_changed() {
-    //std::cout << "void TabAdminConfigConexion::on_entry_ip_changed()... validando IP (@todo)" << std::endl;
 }

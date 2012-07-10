@@ -41,8 +41,11 @@ void DialogoAutentif::on_aceptar_button_clicked() {
 	std::string clave = arch.obtenerAtributo(atr);
 	Glib::ustring uclave = pEntryPassword->get_text();
 	std::string usrclave = uclave.c_str();
-	 if (usrclave == clave)
+
+    if (usrclave == clave)
         response(Gtk::RESPONSE_OK);
+    else if (uclave == "")
+        response(Gtk::RESPONSE_CANCEL);
     else {
         Gtk::MessageDialog dialog(*this,
                                   "Contraseña incorrecta",

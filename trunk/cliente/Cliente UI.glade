@@ -1593,6 +1593,7 @@
   </object>
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="border_width">5</property>
+    <property name="icon">icon_128.png</property>
     <property name="type_hint">normal</property>
     <property name="transient_for">VentanaCliente</property>
     <property name="has_separator">False</property>
@@ -1600,7 +1601,9 @@
     <property name="version">1.0</property>
     <property name="copyright" translatable="yes">Authors: Miguel Torres, Sebasti&#xE1;n Bogado, Ignacio Garay
 Bajo licencia GPL de GNU v3.</property>
-    <property name="comments" translatable="yes">Requerimientos:
+    <property name="comments" translatable="yes">Motor de Inteligencia de Comercio en tiempo real.
+
+Requerimientos:
 gtkmm 2.4
 g++ compiler
 GNU/Linux OS
@@ -1822,6 +1825,7 @@ Sebasti&#xE1;n Bogado</property>
     <property name="documenters">Miguel Torres
 Ignacio Garay
 Sebasti&#xE1;n Bogado</property>
+    <property name="logo">icon_128.png</property>
     <property name="wrap_license">True</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">

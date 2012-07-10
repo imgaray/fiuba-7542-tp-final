@@ -33,6 +33,15 @@ class TabConfigVista : public Gtk::VBox, public Buildable  {
 
         TabConfigModelo* pModelo;
         sigc::connection connectionTabModelo;
+
+        /**
+         * @brief Signal handler para TabConfigModelo::signal_panel_model_changed, emitida cuando el panel seleccionado cambia.
+         * @param m modelo nuevo para la vista de configuración de panel
+         *
+         * Escribe en la entrada del nombre del panel el nombde de m, y le
+         * informa del cambio de modelo a la vista de la configuración del
+         * panel (void PanelConfigModelo::setModelo(PanelConfigModelo* )).
+         */
         void on_panel_model_changed(PanelConfigModelo* m);
 
         PanelConfigVista* pPanelVista;

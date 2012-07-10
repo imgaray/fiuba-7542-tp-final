@@ -13,7 +13,7 @@ class FiltradorFiltroFecha : public FiltradorFiltro {
          * @param fecha nombre del campo fecha
          * @param valorCombo tipo de filtrado de la fecha ("Año", "Bimestre",
          * etc.)
-         * @param valorEntrada valor del filtro (2012, 2-2012, etc.)
+         * @param valorEntrada valor del filtro ("2012", "2-2012", etc.)
          */
         FiltradorFiltroFecha(const Glib::ustring& fecha,
                              const Glib::ustring& valorCombo,
@@ -23,6 +23,10 @@ class FiltradorFiltroFecha : public FiltradorFiltro {
          */
         ~FiltradorFiltroFecha();
 
+        /**
+         * Agrega el filtro a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
 
     private:

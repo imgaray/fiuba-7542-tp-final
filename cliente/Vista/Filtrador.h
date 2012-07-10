@@ -17,6 +17,7 @@ class Filtrador : public Gtk::HBox {
     public:
         /**
          * Constructor.
+         * @param filtro nombre del campo
          */
         Filtrador(const Glib::ustring& filtro);
         /**
@@ -24,8 +25,16 @@ class Filtrador : public Gtk::HBox {
          */
         virtual ~Filtrador();
 
+        /**
+         * Retorna el nombre del campo.
+         * @return nombre del campo que afecta este filtrador
+         */
         Glib::ustring getFiltro();
 
+        /**
+         * Agrega su aporte a la consulta.
+         * @param c consulta
+         */
         virtual void filtrar(Consulta& c) = 0;
 
     protected:

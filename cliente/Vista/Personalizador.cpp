@@ -2,6 +2,7 @@
 #include "Organizacion.h"
 #include "AdminConfigObjManager.h"
 #include "TabConfigModelo.h"
+#include "Tab.h"
 
 
 Personalizador::Personalizador() {

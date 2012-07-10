@@ -23,6 +23,7 @@ class FiltradorConfigVista : public Gtk::HBox {
     public:
         /**
          * Constructor.
+         * @param pModelo el modelo asociado a esta vista
          */
         FiltradorConfigVista(FiltradorConfigModelo* pModelo);
         /**

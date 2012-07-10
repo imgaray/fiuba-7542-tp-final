@@ -34,6 +34,9 @@ class VentanaClienteDinamica : public Gtk::Notebook, public Buildable  {
          */
         VentanaClienteDinamica(BaseObjectType* cobject,
                                const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~VentanaClienteDinamica();
 
         void personalizar(Personalizador& dynBuilder);

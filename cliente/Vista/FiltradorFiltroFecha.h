@@ -8,9 +8,19 @@
  */
 class FiltradorFiltroFecha : public FiltradorFiltro {
     public:
+        /**
+         * Constructor.
+         * @param fecha nombre del campo fecha
+         * @param valorCombo tipo de filtrado de la fecha ("Año", "Bimestre",
+         * etc.)
+         * @param valorEntrada valor del filtro (2012, 2-2012, etc.)
+         */
         FiltradorFiltroFecha(const Glib::ustring& fecha,
                              const Glib::ustring& valorCombo,
                              const std::string& valorEntrada);
+        /**
+         * Destructor.
+         */
         ~FiltradorFiltroFecha();
 
         void filtrar(Consulta& c);

@@ -17,6 +17,9 @@ class TabAdminConfigConexion : public TabAdminConfig {
          */
         TabAdminConfigConexion(BaseObjectType* cobject,
                   const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~TabAdminConfigConexion();
 
         bool aplicarCambios();

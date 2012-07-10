@@ -18,7 +18,14 @@
  */
 class TablaComun : public Tabla {
 public:
+    /**
+     * Constructor.
+     * @param filtradores filtradores del panel
+     */
 	TablaComun(FiltradoresPanel* filtradores);
+    /**
+     * Destructor.
+     */
 	virtual ~TablaComun();
 
 protected:

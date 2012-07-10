@@ -23,7 +23,13 @@ class Tab;
  */
 class TabConfigModelo : public ConfigModelo {
     public:
+        /**
+         * Constructor.
+         */
 		TabConfigModelo();
+        /**
+         * Destructor.
+         */
         ~TabConfigModelo();
 
         void setObjManagerPanel(Gtk::ComboBoxText* cbtext,

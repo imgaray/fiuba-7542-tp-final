@@ -20,7 +20,14 @@ class FiltradoresPanel;
  */
 class Grafico : public Gtk::DrawingArea, public Consultante {
     public:
+        /**
+         * Constructor.
+         * @param f filtradores de panel
+         */
         Grafico(FiltradoresPanel* f);
+        /**
+         * Destructor.
+         */
         virtual ~Grafico();
 
     protected:

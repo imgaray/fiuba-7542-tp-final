@@ -33,6 +33,9 @@ class PanelConfigVista : public Gtk::VBox, public Buildable  {
          */
         PanelConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~PanelConfigVista();
 
         void setModelo(PanelConfigModelo* pModeloNuevo);

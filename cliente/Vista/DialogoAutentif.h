@@ -20,6 +20,9 @@ class DialogoAutentif : public Gtk::Dialog, public Buildable {
          */
         DialogoAutentif(BaseObjectType* cobject,
                         const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~DialogoAutentif();
     private:
         Gtk::Entry* pEntryPassword;

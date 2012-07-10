@@ -9,8 +9,14 @@
  */
 class ResultadoConfigModelo : public FiltradorConfigModelo {
     public:
+        /**
+         * Constructor.
+         */
         ResultadoConfigModelo(unsigned ID,
                         const std::list< std::string >& _camposDisponibles);
+        /**
+         * Destructor.
+         */
         ~ResultadoConfigModelo();
 
         void setFiltradorEn(FiltradoresTab* filtTab);

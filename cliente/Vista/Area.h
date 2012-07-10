@@ -12,7 +12,13 @@
  */
 class Area {
     public:
+        /**
+         * Constructor.
+         */
         Area(const Hecho& dato, double maximo, unsigned i, double offset);
+        /**
+         * Destructor.
+         */
         ~Area();
 
         const Glib::ustring& getEtiqueta() const;

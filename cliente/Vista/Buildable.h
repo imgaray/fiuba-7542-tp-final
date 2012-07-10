@@ -13,7 +13,7 @@
 class Buildable {
     public:
         /**
-         * constructor, crea la referencia al Gtk::Builder
+         * Constructor, crea la referencia al Gtk::Builder
          * @param _builder referencia a la instancia que lo construye
          */
         Buildable(const Glib::RefPtr< Gtk::Builder >& _builder)

@@ -26,6 +26,9 @@ enum t_Objeto {
  */
 class AdminConfigObjManager : public sigc::trackable , public Serializable {
     public:
+        /**
+         * Constructor.
+         */
         AdminConfigObjManager(t_Objeto tipo,
                               Gtk::ComboBoxText* cbtext,
                               Gtk::Entry* pEntry,
@@ -33,6 +36,9 @@ class AdminConfigObjManager : public sigc::trackable , public Serializable {
                               Gtk::Button* pGuardarCambios,
                               Gtk::Button* pEliminar,
                               const Glib::ustring& def);
+        /**
+         * Destructor. Libera todos los ConfigModelo instanciados en el heap
+         */
         ~AdminConfigObjManager();
 
         void desconectar();

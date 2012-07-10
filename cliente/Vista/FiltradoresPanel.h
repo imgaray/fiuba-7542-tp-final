@@ -13,7 +13,14 @@ class FiltradoresTab;
  */
 class FiltradoresPanel : public Filtradores {
     public:
+        /**
+         * Constructor.
+         * @param filtTab referencia a los filtradores de la tab
+         */
         FiltradoresPanel(FiltradoresTab& filtTab);
+        /**
+         * Destructor.
+         */
         ~FiltradoresPanel();
 
         bool puedeFiltrar();

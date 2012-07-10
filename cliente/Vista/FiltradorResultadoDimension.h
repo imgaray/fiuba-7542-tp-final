@@ -8,7 +8,14 @@
  */
 class FiltradorResultadoDimension : public FiltradorResultado {
     public:
+        /**
+         * Constructor.
+         * @param resultado nombre del campo
+         */
         FiltradorResultadoDimension(const Glib::ustring& resultado);
+        /**
+         * Destructor.
+         */
         virtual ~FiltradorResultadoDimension();
 
         void filtrar(Consulta& c);

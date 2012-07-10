@@ -9,8 +9,16 @@
  */
 class FiltradorResultadoHecho : public FiltradorResultado {
     public:
+        /**
+         * Constructor.
+         * @param hecho nombre del campo
+         * @param agregacion nombre de la agregación
+         */
         FiltradorResultadoHecho(const Glib::ustring& hecho,
                                 const Glib::ustring& agregacion);
+        /**
+         * Destructor.
+         */
         virtual ~FiltradorResultadoHecho();
 
         void filtrar(Consulta& c);

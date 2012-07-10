@@ -9,7 +9,13 @@
  */
 class FiltradoresTab : public Filtradores {
     public:
+        /**
+         * Constructor.
+         */
         FiltradoresTab();
+        /**
+         * Destructor.
+         */
         ~FiltradoresTab();
 
         void agregarEntrada(const std::string& entrada);

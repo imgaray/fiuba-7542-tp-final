@@ -8,7 +8,14 @@
  */
 class GraficoDeTorta : public Grafico {
     public:
+        /**
+         * Constructor.
+         * @param f filtradores del panel
+         */
         GraficoDeTorta(FiltradoresPanel* f);
+        /**
+         * Destructor.
+         */
         virtual ~GraficoDeTorta();
 
         void actualizarDatos(const std::list< Hecho >& datos);

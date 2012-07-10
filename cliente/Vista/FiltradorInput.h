@@ -14,7 +14,14 @@ class Tab;
  */
 class FiltradorInput : public Filtrador {
     public:
+        /**
+         * Constructor.
+         * @param input nombre del campo
+         */
         FiltradorInput(const Glib::ustring& input);
+        /**
+         * Destructor.
+         */
         virtual ~FiltradorInput();
 
         virtual void recibirNavegacionSeleccionada(const Glib::ustring& input,

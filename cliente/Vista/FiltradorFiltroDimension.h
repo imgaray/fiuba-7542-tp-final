@@ -9,8 +9,14 @@
  */
 class FiltradorFiltroDimension : public FiltradorFiltro {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorFiltroDimension(const Glib::ustring& filtro,
                                  const Glib::ustring& valor);
+        /**
+         * Destructor.
+         */
         ~FiltradorFiltroDimension();
 
         void filtrar(Consulta& c);

@@ -9,7 +9,14 @@
  */
 class FiltradorPivoteX : public Filtrador {
     public:
+        /**
+         * Constructor.
+         * @param valor nombre del campo
+         */
         FiltradorPivoteX(const Glib::ustring& valor);
+        /**
+         * Destructor.
+         */
         ~FiltradorPivoteX();
 
         void filtrar(Consulta& c);

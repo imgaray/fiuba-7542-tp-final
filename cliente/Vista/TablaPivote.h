@@ -16,7 +16,14 @@
  */
 class TablaPivote : public Tabla {
 public:
+    /**
+     * Constructor.
+     * @param filtradores filtradores del panel
+     */
 	TablaPivote(FiltradoresPanel* filtradores);
+    /**
+     * Destructor.
+     */
 	virtual ~TablaPivote();
 protected:
 	void procesarRespuesta(const Respuesta& resp);

@@ -13,7 +13,14 @@ class Grafico;
  */
 class Referencia {
     public:
+        /**
+         * Constructor.
+         * @param referente área a la que se relaciona la referencia
+         */
         Referencia(const Area& referente);
+        /**
+         * Destructor.
+         */
         ~Referencia();
 
         void setNegrita(bool estado);

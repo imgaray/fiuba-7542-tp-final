@@ -9,7 +9,14 @@
  */
 class FiltradorPivoteY : public Filtrador {
     public:
+        /**
+         * Constructor.
+         * @param valor nombre del campo
+         */
         FiltradorPivoteY(const Glib::ustring& valor);
+        /**
+         * Destructor.
+         */
         ~FiltradorPivoteY();
 
         void filtrar(Consulta& c);

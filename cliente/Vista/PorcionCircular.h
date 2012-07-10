@@ -8,9 +8,22 @@
  */
 class PorcionCircular : public Area {
     public:
+        /**
+         * Constructor.
+         * @param dato aquello que representará la porción
+         * @param maximo el valor máximo encontrado
+         * @param i número de porción (esto es méramente por el color)
+         * @param offset desplazamiento de la porción
+         * @param x0 centro del círculo
+         * @param y0 centro del círculo
+         * @param radio radio del círculo
+         */
         PorcionCircular(const Hecho& dato, double maximo, unsigned i,
                         double offset,
                         double x0, double y0, double radio);
+        /**
+         * Destructor.
+         */
         ~PorcionCircular();
 
         void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);

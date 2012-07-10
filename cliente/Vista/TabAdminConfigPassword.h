@@ -17,6 +17,9 @@ class TabAdminConfigPassword : public TabAdminConfig {
          */
         TabAdminConfigPassword(BaseObjectType* cobject,
                   const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~TabAdminConfigPassword();
 
         bool aplicarCambios();

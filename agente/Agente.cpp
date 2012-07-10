@@ -41,7 +41,6 @@ void Agente::cargarConfiguracion(const std::string& rutaConfig) {
 	_huesped = arch.obtenerAtributo(atrhuesped);
 	if (_huesped.size() == 0) {
 		_huesped = "localhost";
-		std::cout << "entre al caso default del huesped"<<std::endl;
 	}
 	std::string spuerto = arch.obtenerAtributo(atrpuerto);
 	Utilitario u;
@@ -53,7 +52,7 @@ void Agente::cargarConfiguracion(const std::string& rutaConfig) {
 		puerto = PUERTO_ESTANDAR_AGENTE;
 	}
 	std::cout << "Puerto:  -"<< puerto <<"-"<< std::endl;
-	std::cout << "Huesped: -"<< _huesped<<"- size = " << _huesped.size() << std::endl;
+	std::cout << "Huesped: -"<< _huesped<<"-" << std::endl;
 
 
 	this->_sck = new Socket(puerto);

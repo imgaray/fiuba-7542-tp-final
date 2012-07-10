@@ -60,13 +60,8 @@
             <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="2" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="0" atr_nombre="Tabla Comun">
                 <hijos_filtros atr_tipo="0" />
                 <hijo_inputs atr_tipo="1" />
-                <hijo_x_piv atr_tipo="2">
-                    <Filtrador_Config_Modelo atr_campo="Sucursal" atr_valor_campo="" atr_campo_aux="&gt;" />
-                    <Filtrador_Config_Modelo atr_campo="Producto" atr_valor_campo="" atr_campo_aux="&gt;" />
-                </hijo_x_piv>
-                <hijo_y_piv atr_tipo="3">
-                    <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="&gt;" />
-                </hijo_y_piv>
+                <hijo_x_piv atr_tipo="2" />
+                <hijo_y_piv atr_tipo="3" />
                 <hijo_res atr_tipo="4">
                     <Filtrador_Config_Modelo atr_campo="Vendedor" atr_valor_campo="" atr_campo_aux="NADA" />
                     <Filtrador_Config_Modelo atr_campo="Producto" atr_valor_campo="" atr_campo_aux="NADA" />

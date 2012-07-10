@@ -22,6 +22,10 @@ class FiltradorResultadoFecha : public FiltradorResultado {
          */
         virtual ~FiltradorResultadoFecha();
 
+        /**
+         * Agrega el resultado a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
 
     private:

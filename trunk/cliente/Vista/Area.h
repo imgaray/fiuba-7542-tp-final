@@ -14,6 +14,10 @@ class Area {
     public:
         /**
          * Constructor.
+         * @param dato aquello que representará el área
+         * @param maximo el valor máximo encontrado
+         * @param i número de porción (esto es meramente por el color)
+         * @param offset desplazamiento del área
          */
         Area(const Hecho& dato, double maximo, unsigned i, double offset);
         /**
@@ -24,13 +28,32 @@ class Area {
         const Glib::ustring& getEtiqueta() const;
         virtual const double* getColor() const;
 
+        /**
+         * Dibuja el área.
+         * @param ctx contexto sobre el que se dibuja
+         */
         virtual void dibujar(Cairo::RefPtr< Cairo::Context >& ctx) = 0;
+
+        /**
+         * Evalúa si el mouse está posado sobre el área.
+         * @param x posición x del mouse en la ventana, normalizada
+         * @param y posición y del mouse en la ventana, normalizada
+         * @return true o false, según la posición pertenece al área
+         */
         virtual bool fueClickeada(double x, double y) = 0;
 
+        /**
+         * Obtener el offset nuevo.
+         * @return posición siguiente a dibujar un área
+         */
         virtual double getAvance() = 0;
 
         void setSeleccionada(bool selec);
 
+        /**
+         * Información sobre el área.
+         * @return string para tooltip
+         */
         virtual std::string getInfo() = 0;
     protected:
         Hecho dato;

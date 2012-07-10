@@ -19,6 +19,10 @@ class FiltradorFiltroDimension : public FiltradorFiltro {
          */
         ~FiltradorFiltroDimension();
 
+        /**
+         * Agrega el filtro a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
 };
 

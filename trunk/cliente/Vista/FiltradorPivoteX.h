@@ -19,6 +19,10 @@ class FiltradorPivoteX : public Filtrador {
          */
         ~FiltradorPivoteX();
 
+        /**
+         * Agrega un elemento al grupo X de la consulta de tabla pivote.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
     private:
         Gtk::Label valor;

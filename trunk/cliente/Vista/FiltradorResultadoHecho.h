@@ -21,6 +21,10 @@ class FiltradorResultadoHecho : public FiltradorResultado {
          */
         virtual ~FiltradorResultadoHecho();
 
+        /**
+         * Agrega el resultado a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
 
     private:

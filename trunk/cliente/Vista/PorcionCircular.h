@@ -12,7 +12,7 @@ class PorcionCircular : public Area {
          * Constructor.
          * @param dato aquello que representará la porción
          * @param maximo el valor máximo encontrado
-         * @param i número de porción (esto es méramente por el color)
+         * @param i número de porción (esto es meramente por el color)
          * @param offset desplazamiento de la porción
          * @param x0 centro del círculo
          * @param y0 centro del círculo
@@ -26,6 +26,10 @@ class PorcionCircular : public Area {
          */
         ~PorcionCircular();
 
+        /**
+         * Dibuja la porción circular.
+         * @param ctx contexto sobre el que se dibuja
+         */
         void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);
         bool fueClickeada(double x, double y);
         double getAvance();

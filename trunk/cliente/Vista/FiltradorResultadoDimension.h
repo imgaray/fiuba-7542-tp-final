@@ -18,6 +18,10 @@ class FiltradorResultadoDimension : public FiltradorResultado {
          */
         virtual ~FiltradorResultadoDimension();
 
+        /**
+         * Agrega el resultado a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
 };
 

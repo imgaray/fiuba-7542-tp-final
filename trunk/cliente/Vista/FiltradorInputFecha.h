@@ -23,6 +23,10 @@ class FiltradorInputFecha : public FiltradorInput {
         void recibirNavegacionSeleccionada(const Glib::ustring& input,
                                            const Glib::ustring& valor);
 
+        /**
+         * Agrega el input a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
     private:
         Gtk::Entry entrada;

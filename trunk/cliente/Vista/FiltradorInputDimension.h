@@ -22,6 +22,10 @@ class FiltradorInputDimension : public FiltradorInput, public Consultante {
          */
         ~FiltradorInputDimension();
 
+        /**
+         * Agrega el input a la consulta.
+         * @param c consulta
+         */
         void filtrar(Consulta& c);
 
         void recibirNavegacionSeleccionada(const Glib::ustring& input,

@@ -14,6 +14,8 @@ archivos = $(filter-out main.cpp test.cpp, $(wildcard *.cpp))
 
 INCLUDES = ../../comun ../MotorDeConsultas
 
+I-INCLUDES = $(addprefix -I, $(INCLUDES))
+
 bin = $(archivos:.cpp=.o)
 
 robjs = $(wildcard *.o main test)
@@ -45,7 +47,7 @@ all: binaries
 binaries: $(bin)
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) -I$(INCLUDES) -c $<
+	$(CC) $(CXXFLAGS) $(I-INCLUDES) -c $<
 
 test: $(bin)
 	$(CC) $(CXXFLAGS) $(bin) test.cpp -o test

@@ -12,8 +12,8 @@
 /** @class AgenteRemoto
 	Esta clase es el proxy del agente. A través de la misma el servidor
 obtendrá entradas de actualización y enviará respuestas. Es, a su vez,
-un producer que alimenta la cola de consultas del servidor. Se maneja
-en un hilo aparte, dado que va a haber un AgenteRemoto por agente
+un productor que alimenta la cola de consultas del servidor. Se maneja
+en un hilo aparte, dado que existe un AgenteRemoto por agente
 conectado al servidor.
 */
 

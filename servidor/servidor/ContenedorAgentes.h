@@ -6,8 +6,8 @@
 /** @class ContenedorAgentes
  
 	Es una clase que hace de interfaz a un objeto que pueda contener a los
-agentes remotos. La misma será aplicada por el controlador del servidor
-que los contendrá a todos. Sirve como para mitigar el acoplamiento.
+agentes remotos. La misma será utilizada por el controlador del servidor
+que los contendrá a todos. Sirve para mitigar el acoplamiento.
 
 */
 

@@ -12,7 +12,14 @@ class Respuesta;
  */
 class FiltradorInputDimension : public FiltradorInput, public Consultante {
     public:
+        /**
+         * Constructor.
+         * @param input nombre de la dimensión elegida
+         */
         FiltradorInputDimension(const Glib::ustring& input);
+        /**
+         * Destructor.
+         */
         ~FiltradorInputDimension();
 
         void filtrar(Consulta& c);

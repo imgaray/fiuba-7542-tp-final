@@ -24,7 +24,14 @@ class VentanaClienteDinamica;
  */
 class Tab : public Gtk::VBox {
     public:
+        /**
+         * Constructor.
+         * @param etiqueta título de la pestaña
+         */
         Tab(const Glib::ustring& etiqueta);
+        /**
+         * Destructor.
+         */
         ~Tab();
 
         Gtk::HBox& getEtiqueta();

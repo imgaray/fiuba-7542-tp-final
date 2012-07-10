@@ -17,6 +17,9 @@ class TabAdminConfig : public Gtk::VBox, public Buildable  {
          */
         TabAdminConfig(BaseObjectType* cobject,
                   const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~TabAdminConfig();
 
         // retorna true si el estado de la pestaña es válido para guardar

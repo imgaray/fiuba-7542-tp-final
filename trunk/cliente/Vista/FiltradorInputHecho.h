@@ -9,7 +9,14 @@
  */
 class FiltradorInputHecho : public FiltradorInput {
     public:
+        /**
+         * Constructor.
+         * @param input nombre del hecho
+         */
         FiltradorInputHecho(const Glib::ustring& input);
+        /**
+         * Destructor.
+         */
         ~FiltradorInputHecho();
 
         void recibirNavegacionSeleccionada(const Glib::ustring& input,

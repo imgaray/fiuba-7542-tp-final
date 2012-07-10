@@ -21,7 +21,13 @@ class FiltradorConfigModelo;
  */
 class FiltradorConfigVista : public Gtk::HBox {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorConfigVista(FiltradorConfigModelo* pModelo);
+        /**
+         * Destructor.
+         */
         ~FiltradorConfigVista();
 
     private:

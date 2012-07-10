@@ -9,8 +9,14 @@
  */
 class InputConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
+        /**
+         * Constructor.
+         */
         InputConfigModelo(unsigned ID,
                           const std::list< std::string >& _camposDisponibles);
+        /**
+         * Destructor.
+         */
         ~InputConfigModelo();
 
         void setFiltradorEn(FiltradoresTab* filtTab);

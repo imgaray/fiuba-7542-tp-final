@@ -18,7 +18,14 @@ class AdminConfigObjManager;
  */
 class Personalizador {
     public:
+        /**
+         * Constructor.
+         */
         Personalizador();
+        /**
+         * Destructor. Libera toda la memoria de las tabs configuradas que ya
+         * no están en uso.
+         */
         ~Personalizador();
         void construir(AdminConfigObjManager* tabManager);
         bool tieneSiguiente() const;

@@ -8,9 +8,18 @@
  */
 class FiltradorResultadoFecha : public FiltradorResultado {
     public:
+        /**
+         * Constructor.
+         * @param fecha nombre del campo
+         * @param valorCombo modo de fecha seleccionado
+         * @param valorEntrada valor de la entrada de fecha
+         */
         FiltradorResultadoFecha(const Glib::ustring& fecha,
                                 const Glib::ustring& valorCombo,
                                 const Glib::ustring& valorEntrada);
+        /**
+         * Destructor.
+         */
         virtual ~FiltradorResultadoFecha();
 
         void filtrar(Consulta& c);

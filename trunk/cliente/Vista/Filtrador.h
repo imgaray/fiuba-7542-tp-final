@@ -15,7 +15,13 @@ class Consulta;
  */
 class Filtrador : public Gtk::HBox {
     public:
+        /**
+         * Constructor.
+         */
         Filtrador(const Glib::ustring& filtro);
+        /**
+         * Destructor.
+         */
         virtual ~Filtrador();
 
         Glib::ustring getFiltro();

@@ -10,8 +10,14 @@
  */
 class FiltradorSoloDimensionConfigModelo : public FiltradorConfigModelo {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorSoloDimensionConfigModelo(unsigned ID,
                         const std::list< std::string >& _camposDisponibles);
+        /**
+         * Destructor.
+         */
         ~FiltradorSoloDimensionConfigModelo();
 
     protected:

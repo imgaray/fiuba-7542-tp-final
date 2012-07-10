@@ -10,8 +10,14 @@
  */
 class PivoteYConfigModelo : public FiltradorSoloDimensionConfigModelo {
     public:
+        /**
+         * Constructor.
+         */
         PivoteYConfigModelo(unsigned ID,
                         const std::list< std::string >& _camposDisponibles);
+        /**
+         * Destructor.
+         */
         ~PivoteYConfigModelo();
 
         void setFiltradorEn(FiltradoresTab* filtTab);

@@ -29,8 +29,14 @@ class FiltradoresPanel;
  */
 class FiltradorConfigModelo : public Serializable {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorConfigModelo(unsigned ID,
                             const std::list< std::string >& camposDisponibles);
+        /**
+         * Destructor.
+         */
         ~FiltradorConfigModelo();
 
         void setVista(Gtk::ComboBoxText* comboDimension,

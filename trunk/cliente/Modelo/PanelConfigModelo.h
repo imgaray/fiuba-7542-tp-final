@@ -22,7 +22,13 @@ class FiltradoresPanel;
  */
 class PanelConfigModelo : public ConfigModelo {
     public:
+        /**
+         * Constructor.
+         */
         PanelConfigModelo();
+        /**
+         * Destructor.
+         */
         ~PanelConfigModelo();
 
         void setLabelPosicion(Gtk::Label* pLabel);

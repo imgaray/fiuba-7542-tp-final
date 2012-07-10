@@ -8,8 +8,20 @@
  */
 class Hecho {
     public:
+        /**
+         * Constructor copia.
+         * @param original el otro Hecho
+         */
         Hecho(const Hecho& original);
+        /**
+         * Constructor.
+         * @param etiqueta nombre del dato del área referente
+         * @param valor valor del dato del área referente
+         */
         Hecho(const Glib::ustring& etiqueta, double valor);
+        /**
+         * Destructor.
+         */
         ~Hecho();
 
         Hecho& operator=(const Hecho& original);

@@ -20,6 +20,10 @@ class Consultante;
  */
 class Panel : public Gtk::Frame {
     public:
+        /**
+         * Constructor.
+         * @param label título del panel
+         */
         Panel(const Glib::ustring& label);
         /**
          * Destructor.

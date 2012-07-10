@@ -37,6 +37,9 @@ class TabConfigVista : public Gtk::VBox, public Buildable  {
          */
         TabConfigVista(BaseObjectType* cobject,
                        const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~TabConfigVista();
 
         void setModelo(TabConfigModelo* pModeloNuevo);

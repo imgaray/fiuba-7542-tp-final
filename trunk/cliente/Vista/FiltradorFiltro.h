@@ -10,8 +10,14 @@
  */
 class FiltradorFiltro : public Filtrador {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorFiltro(const Glib::ustring& filtro,
                         const Glib::ustring& valor);
+        /**
+         * Destructor.
+         */
         virtual ~FiltradorFiltro();
     protected:
         void setValor(const Glib::ustring& valor);

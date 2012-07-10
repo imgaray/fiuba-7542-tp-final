@@ -8,9 +8,15 @@
  */
 class FiltradorFiltroHecho : public FiltradorFiltro {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorFiltroHecho(const Glib::ustring& hecho,
                              const Glib::ustring& valorCombo,
                              const std::string& valorEntrada);
+        /**
+         * Destructor.
+         */
         ~FiltradorFiltroHecho();
 
         void filtrar(Consulta& c);

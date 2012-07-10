@@ -11,7 +11,14 @@
  */
 class FiltradorResultado : public Filtrador {
     public:
+        /**
+         * Constructor.
+         * @param resultado nombre del campo
+         */
         FiltradorResultado(const Glib::ustring& resultado);
+        /**
+         * Destructor.
+         */
         virtual ~FiltradorResultado();
 
     protected:

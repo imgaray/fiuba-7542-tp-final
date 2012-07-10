@@ -27,8 +27,14 @@ class FiltradoresPanel;
  */
 class FiltradorConfigManager : public sigc::trackable, public Serializable {
     public:
+        /**
+         * Constructor.
+         */
         FiltradorConfigManager(t_Filt tipo,
                               const filtradoresHandlers& handlers);
+        /**
+         * Destructor.
+         */
         ~FiltradorConfigManager();
 
         void desconectar();

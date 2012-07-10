@@ -17,7 +17,14 @@
  */
 class Tabla : public Consultante, public Gtk::TreeView {
 public:
+    /**
+     * Constructor.
+     * @param filtradores filtradores del panel
+     */
 	Tabla(FiltradoresPanel* filtradores);
+    /**
+     * Destructor.
+     */
 	virtual ~Tabla();
 
 protected:

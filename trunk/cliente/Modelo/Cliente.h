@@ -17,7 +17,15 @@ class VentanaCliente;
  */
 class Cliente {
     public:
+        /**
+         * Constructor.
+         * @param argc cantidad de argumentos del programa
+         * @param argv vector de argumentos del programa
+         */
         Cliente(int argc, char* argv[]);
+        /**
+         * Destructor.
+         */
         ~Cliente();
 
         void run();

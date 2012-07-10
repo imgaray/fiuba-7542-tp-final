@@ -8,8 +8,14 @@
  */
 class Barra : public Area {
     public:
+        /**
+         * Constructor.
+         */
         Barra(const Hecho& dato, double maximo, unsigned i, double offset,
               double separacion, double ancho);
+        /**
+         * Destructor.
+         */
         ~Barra();
 
         void dibujar(Cairo::RefPtr< Cairo::Context >& ctx);

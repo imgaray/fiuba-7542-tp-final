@@ -19,7 +19,13 @@ typedef std::pair< Gtk::VBox*, Gtk::ToolButton* > filtradoresHandlers;
  */
 class ConfigModelo : public sigc::trackable , public Serializable {
     public:
+        /**
+         * Constructor.
+         */
         ConfigModelo(const Glib::ustring& label);
+        /**
+         * Destructor.
+         */
         ~ConfigModelo();
 
         void desconectar();

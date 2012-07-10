@@ -21,8 +21,17 @@ class FiltradoresPanel;
  */
 class Consultante {
     public:
+        /**
+         * Constructor.
+         */
         Consultante();
+        /**
+         * Constructor.
+         */
         Consultante(FiltradoresPanel* f);
+        /**
+         * Destructor.
+         */
         ~Consultante();
 
         void hacerConsulta(ServidorRemoto& server);

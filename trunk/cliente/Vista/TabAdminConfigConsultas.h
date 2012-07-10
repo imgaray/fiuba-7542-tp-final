@@ -24,6 +24,9 @@ class TabAdminConfigConsultas : public TabAdminConfig {
          */
         TabAdminConfigConsultas(BaseObjectType* cobject,
                            const Glib::RefPtr< Gtk::Builder >& builder);
+        /**
+         * Destructor.
+         */
         ~TabAdminConfigConsultas();
 
         void setArchivoPersonalizador(const char* archivo);

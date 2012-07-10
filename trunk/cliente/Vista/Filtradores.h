@@ -16,7 +16,13 @@ class Consulta;
  */
 class Filtradores : public Gtk::VBox {
     public:
+        /**
+         * Constructor.
+         */
         Filtradores();
+        /**
+         * Destructor.
+         */
         ~Filtradores();
 
         virtual bool puedeFiltrar();

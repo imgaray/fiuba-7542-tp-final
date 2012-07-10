@@ -10,7 +10,14 @@
  */
 class FiltradorInputFecha : public FiltradorInput {
     public:
+        /**
+         * Constructor.
+         * @param input nombre del campo fecha
+         */
         FiltradorInputFecha(const Glib::ustring& input);
+        /**
+         * Destructor.
+         */
         ~FiltradorInputFecha();
 
         void recibirNavegacionSeleccionada(const Glib::ustring& input,

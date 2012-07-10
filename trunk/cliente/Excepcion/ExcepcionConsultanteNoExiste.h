@@ -13,11 +13,17 @@
 
 class ExcepcionConsultanteNoExiste : public std::exception {
     public:
+        /**
+         * Constructor.
+         */
 		ExcepcionConsultanteNoExiste(const std::string& _msj) :
             msj ("El Consultante No Existe: ") {
             msj += _msj;
         }
 
+        /**
+         * Destructor.
+         */
         ~ExcepcionConsultanteNoExiste() throw() {}
 
         virtual const char* what() const throw() {

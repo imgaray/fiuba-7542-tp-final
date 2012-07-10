@@ -41,6 +41,12 @@ class FiltradoresPanel : public Filtradores {
     private:
         FiltradoresTab& filtrosHeredados;
         sigc::signal< void > signal_navegabilidad_seleccionada;
+
+        /**
+         * @brief Signal handler para FiltradorInput::signal_navegabilidad.
+         *
+         * Emite FiltradoresPanel::signal_navegabilidad_seleccionada.
+         */
         void on_signal_navegabilidad();
 
         bool esParaTablaPivote;

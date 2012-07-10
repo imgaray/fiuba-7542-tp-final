@@ -19,8 +19,29 @@ class DialogoAutentif : public Gtk::Dialog, public Buildable {
     private:
         Gtk::Entry* pEntryPassword;
 
+
+        /**
+         * @brief Signal handler para signal_show.
+         *
+         * Llama a Gtk::Dialog::on_show() y luego borra el texto en la pEntryPassword.
+         */
         void on_show();
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Aceptar".
+         *
+         * Verifica si la contraseña ingresa es correcta. Si lo es, emite la
+         * respuesta Gtk::RESPONSE_OK. Si no, informa con un diálogo y emite
+         * Gtk::RESPONSE_CANCEL
+         * Por último, si no ingresó nada, emite Gtk::RESPONSE_CANCEL.
+         */
         void on_aceptar_button_clicked();
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Cancelar".
+         *
+         * Emite la respuesta Gtk::RESPONSE_CANCEL..
+         */
         void on_cancelar_button_clicked();
 };
 

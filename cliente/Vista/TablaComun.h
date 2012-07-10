@@ -23,6 +23,17 @@ protected:
 	void agregarFila(int numFila, const Respuesta& resp);
 	void agregarColumnas();
 
+
+    /**
+     * @brief Signal handler para el doble click sobre alguna celda.
+     * @param path camino hacia la fila activada
+     * @param column columna de la fila activada
+     *
+     * Busca el par de valores < nombre_columna, valor_celda > e
+     * inicializa la cascada de llamadas
+     * (void Tab::difundirNavegacionSeleccionada(const Glib::ustring& ,
+     * const Glib::ustring& )) para que se interprete la navegación.
+     */
 	void fila_activada(const Gtk::TreeModel::Path& path, Gtk::TreeViewColumn* column);
 
 	Glib::RefPtr<Gtk::ListStore> _refTreeModel;

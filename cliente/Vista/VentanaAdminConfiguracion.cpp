@@ -1,5 +1,6 @@
 #include "VentanaAdminConfiguracion.h"
 #include <gtkmm/button.h>
+#include <gtkmm/messagedialog.h>
 #include "ExcepcionArchivoGladeCorrupto.h"
 #include "TabAdminConfigConexion.h"
 #include "TabAdminConfigConsultas.h"
@@ -65,6 +66,22 @@ void VentanaAdminConfiguracion::on_aplicar_button_clicked() {
 
     if (it == tabs.end())
         hide();
+    else {
+        Glib::ustring msj;
+        if (*it == tabConsultas)
+            msj = "Revise las configuraciones de las consultas.";
+        else
+            msj = "En el cambio de password, el actual es erróneo.";
+
+        Gtk::MessageDialog dialog(*this,
+                                  msj,
+                                  false,
+                                  Gtk::MESSAGE_ERROR,
+                                  Gtk::BUTTONS_OK,
+                                  true);
+        dialog.set_title("Error en la configuración");
+        dialog.run();
+    }
 }
 
 void VentanaAdminConfiguracion::on_cancelar_button_clicked() {

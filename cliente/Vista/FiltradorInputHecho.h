@@ -23,9 +23,20 @@ class FiltradorInputHecho : public FiltradorInput {
         int i;  // iésimo valor del combobox posible
         Glib::ustring valorHecho;
 
-        // handler para cuando el combobox cambia su selección
+
+        /**
+         * @brief Signal handler para el cambio de la selección en el combobox.
+         *
+         * Actualiza el número de fila seleccionada (int FiltradorInputHecho::i).
+         */
         void on_combo_changed();
-        // handler para cuando el usuario presiona "enter" estando en la Gtk::Entry
+
+        /**
+         * @brief Signal handler para la activación de la entrada de texto (al apretar "enter")
+         *
+         * Valida el ingreso y emite FiltradorInput::_signal_input_disponible
+         * si cambió su estado de disponibilidad.
+         */
         void on_entry_activated();
 };
 

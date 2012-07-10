@@ -28,6 +28,7 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         /**
          * @brief Construye la parte dinámica y configurable de la aplicación.
          * @param archivo nombre del archivo con la configuración
+         * @throw ErrorSerializacionXML
          *
          * Si el archivo no existe, lo crea y empieza con una configuración vacía.
          */
@@ -40,20 +41,81 @@ class VentanaCliente : public Gtk::Window , public Buildable {
         std::map< const char*, Gtk::ToolButton* > botones;
         ServidorRemoto server;
 
+
+        /**
+         * @brief Inicializa los punteros a las ventanas y diálogos.
+         */
         void initVentanas();
+
+        /**
+         * @brief Inicializa el mapa de botones y conecta sus señales.
+         */
         void initBotones();
+
+        /**
+         * @brief Conecta las señales a los ítems de la barra de menú.
+         */
         void initBarraDeMenu();
 
-        void on_puede_actualizar(bool puede);
+        /**
+         * @brief Signal handler para la solicitud explícita de actualización.
+         * @param c el consultante que solicitó ser actualizado.
+         */
         void on_actualizacion_solicitada(Consultante* c);
 
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Conectar".
+         *
+         * Conecta al cliente al servidor, mostrando un mensaje de error si
+         * no lo consigue
+         */
         void on_conectar_button_clicked();
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Actualizar".
+         *
+         * Actualiza todas las consultas de la pestaña actual, excepto aquellas
+         * no disponibles (alguna con input mal formado, por ejemplo).
+         */
         void on_actualizar_button_clicked();
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Detener actualización".
+         *
+         * Cancela todas las actualizaciones en proceso para la tab seleccionada.
+         */
         void on_detenerActualizar_button_clicked();
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Configurar".
+         *
+         * Lanza un cuadro para ingresar la contraseña del administrador. Si
+         * se la ingresa, abre la ventana de configuración de paneles.
+         */
         void on_configurar_button_clicked();
+
+
+        /**
+         * @brief Signal handler para el click sobre el botón "Salir".
+         *
+         * Cierra la aplicación.
+         */
         void on_salir_button_clicked();
+
+        /**
+         * @brief Signal handler para el click sobre el ítem de menú "Acerca de".
+         *
+         * Lanza la ventana "Acerca de...".
+         */
         void on_acerca_de_button_clicked();
 
+
+        /**
+         * @brief Signal handler para un evento cíclico.
+         *
+         * Procesa las respuestas que el servidor tenga disponibles.
+         */
         bool on_timeout();
 };
 

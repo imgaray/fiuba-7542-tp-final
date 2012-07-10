@@ -63,7 +63,6 @@ void TabConfigVista::initPanelConfig() {
     comboPanelSelec.show();
 }
 
-#include <iostream>
 void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
     if (pModelo == pModeloNuevo)
         return;
@@ -71,7 +70,6 @@ void TabConfigVista::setModelo(TabConfigModelo* pModeloNuevo) {
     if (pModelo)
         pModelo->desconectar();
 
-//    std::cout << "TabConfigVista ( " << this << " ) seteando modelo nuevo de tab: " <<pModeloNuevo << std::endl;
     pModelo = pModeloNuevo;
     pModelo->setObjManagerPanel(&comboPanelSelec,
                                 pEntryPanelLabel,

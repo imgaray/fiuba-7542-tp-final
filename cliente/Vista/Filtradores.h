@@ -33,6 +33,15 @@ class Filtradores : public Gtk::VBox {
         unsigned cant_inputs, inputsDisponibles;
         bool _puedeFiltrar;
 
+
+        /**
+         * @brief Signal handler para la señal FiltradorInput::_signal_input_disponible.
+         * @param estado estado de la disponibilidad del input
+         *
+         * Aumenta o disminuye la cantidad de inputs disponibles, según sea
+         * true o false el parámetro. Si todos los inputs están disponibles
+         * entonces puede filtrar una consulta.
+         */
         void on_input_esta_disponible(bool estado);
 };
 

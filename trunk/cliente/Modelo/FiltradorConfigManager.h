@@ -21,6 +21,8 @@ class FiltradoresPanel;
  * Clase encargada de manejar la parte de agregado de filtradores dinámicos
  * por el admin (filtros, inputs, columna X e Y en tabla pivote, y resultados).
  *
+ * Implementa una pequeña factory en base al enum t_Filt.
+ *
  * Está conectado a una señal, en cada uno de los objetos que controla, que
  * informa qué campos están disponibles para ser seleccionados. Al recibirla,
  * la difunde por todos sus objetos.

@@ -26,11 +26,20 @@ class FiltradoresPanel;
  * Para evitar elegir campos repetidos, cada vez que cambia su selección emite
  * una señal. Trabajando en conjunto con FiltradorConfigManager, la señal se
  * difunde y todos sus filtradores hermanos actualizan sus campos disponibles.
+ *
+ * Un método importante, en paralelo a los "concretarConfig" de las clases para
+ * configurar paneles y tabs, es setFiltradorEn(), sobrecargado para actuar
+ * distinto según se agregue a FiltradoresTab o FiltradoresPanel. Lo que hacen
+ * es concretar su configuración como filtrador, agregando al conjunto de
+ * filtradores.
  */
 class FiltradorConfigModelo : public Serializable {
     public:
         /**
          * Constructor.
+         * @param ID identificador de la instancia
+         * @param camposDisponibles lista de los campos disponibles, para
+         * popular su combobox
          */
         FiltradorConfigModelo(unsigned ID,
                             const std::list< std::string >& camposDisponibles);
@@ -47,6 +56,11 @@ class FiltradorConfigModelo : public Serializable {
 
         unsigned getID() const;
 
+        /**
+         * Actualiza los campos disponibles para elegir.
+         * @param remover campo a remover de su combobox
+         * @param agregar campo a agregar a su combobox
+         */
         void actualizarCampos(const Glib::ustring& remover,
                               const Glib::ustring& agregar);
 

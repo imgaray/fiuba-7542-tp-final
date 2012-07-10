@@ -21,6 +21,18 @@ class VentanaClienteDinamica;
  * filtradores y consultantes. Los distribuye en una matriz según la posición
  * configurada de cada uno. Agrega además unos inputs que se aplican a todas
  * las consultas de la tab.
+ *
+ * En cuanto al modelo, tiene dos mapas de consultantes, uno para los
+ * filtradores que necesiten popular su combobox consultando los valores
+ * posibles a la base de datos, y el otro es para los consultantes concretos,
+ * es decir, tablas y gráficos. Cada vez que se le solicita que actualice,
+ * itera a través del mapa activo de consultantes.
+ *
+ * El mapa activo es, por defecto, el de filtradores.
+ * Cuando un filtrador recibe su respuesta informa a la tab que puede ser
+ * removido del mapa, dado que sólo se actualizan una vez durante la
+ * aplicación. Si este mapa llega a cero elementos, el otro pasa a ser el mapa
+ * activo.
  */
 class Tab : public Gtk::VBox {
     public:
@@ -37,21 +49,44 @@ class Tab : public Gtk::VBox {
         Gtk::HBox& getEtiqueta();
 
         /* modelo */
+        /** Agrega un filtrador consultante al mapa de filtradores consultantes
+         */
         void agregarConsultante(FiltradorInputDimension* f);
+
+        /** Agrega un consultante concreto al mapa de consultantes normales
+         */
         void agregarConsultante(Consultante* c);
         void removerConsultante(unsigned ID);
 
+        /** Realiza las consultas del grupo de consultantes activos.
+         */
         void hacerConsulta(ServidorRemoto& server);
+
+        /** Cancela las consultas del grupo de consultantes activos.
+         */
         void cancelarConsulta(ServidorRemoto& server);
-        // actualiza una consulta en particular, a pedido
+
+        /** Actualiza una consulta en particular, a pedido.
+         */
         void actualizarConsulta(Consultante* c);
 
+        /** Informar a la pestaña que un consultante suyo está actualizando.
+         */
         void informarConsultaIniciada();
+
+        /** Informar a la pestaña que un consultante suyo terminó de
+         *  actualizar.
+         */
         void informarConsultaTerminada();
+
+        /** Informar a la pestaña que no le agregarán nada.
+         */
         void informarFinCreacion();
 
         void agregarFiltroNavegable(FiltradorInput* f);
 
+        /** Informa a todos los filtros navegables la navegación seleccionada.
+         */
         void difundirNavegacionSeleccionada(const Glib::ustring& input,
                                             const Glib::ustring& valor);
 

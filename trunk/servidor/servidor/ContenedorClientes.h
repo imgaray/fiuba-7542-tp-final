@@ -7,8 +7,8 @@
 /** @class ContenedorClientes
  
 	Es una clase que hace de interfaz a un objeto que pueda contener a los
-clientes remotos. La misma será aplicada por el controlador del servidor
-que los contendrá a todos. Sirve como para mitigar el acoplamiento. */
+clientes remotos. La misma será uitlizada por el controlador del servidor
+que los contendrá a todos. Sirve para mitigar el acoplamiento. */
 
 class ContenedorClientes {
 public:

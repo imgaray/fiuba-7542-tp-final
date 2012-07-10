@@ -20,8 +20,9 @@ class Consulta;
 
 
 /**
- * @class Esta clase es la encargada de resolver las todos los tipos de consultas
- * hechas por un cliente y/o agente.
+ * @class BaseDeDatos
+ * 		Esta clase es la encargada de resolver todos los tipos de consultas
+ * hechas por un cliente o agente.
  */
 
 class BaseDeDatos {

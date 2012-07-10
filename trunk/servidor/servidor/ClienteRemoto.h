@@ -13,9 +13,9 @@ using namespace std;
 /** @class ClienteRemoto
 						 
 	Esta clase es el proxy del cliente. A través de la misma el servidor
-obtendrá consultas realizadas y enviará respuestas. Es, a su vez,
-un producer que alimenta la cola de consultas del servidor. Se maneja
-en un hilo aparte, dado que va a haber un ClienteRemoto por cliente
+obtendrá consultas realizadas y enviará respuestas. Es tambien
+un productor que alimenta la cola de consultas del servidor. Se maneja
+en un hilo aparte, dado que existe un ClienteRemoto por cliente
 conectado al servidor.
 */ 
 

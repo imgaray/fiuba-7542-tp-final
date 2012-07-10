@@ -26,10 +26,10 @@ using namespace std;
 	Esta clase es fundamental. Su rol es controlar el flujo correcto de
 resolución de consultas y actualizaciones. Se encarga de permitir que
 el servidor maneje múltiples consultas, como también de frenarlas cuando
-se requiera de procesar actualizaciones. Contiene un Pool de workers, cada
+se requiera de procesar actualizaciones. Contiene un Pool de "workers", cada
 uno con una dedicación a alguna de las tareas ya sean de actualización
 como de consultas. Implementa interfaces como ResolvedorConsultas, ResolvedorEntradas,
-ContenedorClientes y ContenedorAgentes, que hace que sus workers solo vean
+ContenedorClientes y ContenedorAgentes, que hace que sus "workers" sólo vean
 lo que necesiten ver del controlador.
 
 	Es la clase encargada también de manejar los hilos que se encargan de recibir clientes y

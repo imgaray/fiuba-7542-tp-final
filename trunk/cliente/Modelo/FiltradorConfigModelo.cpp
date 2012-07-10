@@ -131,7 +131,6 @@ NodoXml FiltradorConfigModelo::serializar() {
 }
 
 void FiltradorConfigModelo::deserializar(const NodoXml& nodo) {
-
 	if (nodo.Attribute(ATR_CAMPO)) {
 		campoSeleccNuevo = nodo.Attribute(ATR_CAMPO);
 	}

@@ -59,7 +59,9 @@
         <Paneles atr_tipo="1">
             <Panel_Config_Modelo atr_desde_fila="0" atr_hasta_fila="2" atr_desde_col="1" atr_hasta_col="2" atr_tipo_graf="0" atr_nombre="Tabla Comun">
                 <hijos_filtros atr_tipo="0" />
-                <hijo_inputs atr_tipo="1" />
+                <hijo_inputs atr_tipo="1">
+                    <Filtrador_Config_Modelo atr_campo="Marca" atr_valor_campo="" atr_campo_aux="&gt;" />
+                </hijo_inputs>
                 <hijo_x_piv atr_tipo="2" />
                 <hijo_y_piv atr_tipo="3" />
                 <hijo_res atr_tipo="4">

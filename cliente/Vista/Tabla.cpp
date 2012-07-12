@@ -6,8 +6,11 @@
  */
 
 #include "Tabla.h"
+#include "FiltradoresPanel.h"
 
 Tabla::Tabla(FiltradoresPanel* filtradores) : Consultante(filtradores) {
+    filtradores->signal_navegabilidad().connect(sigc::mem_fun(
+	*this, &Consultante::on_navegabilidad_seleccionada));
 	_colModelo = NULL;
 	setSpinner(&s);
     s.set_no_show_all();
